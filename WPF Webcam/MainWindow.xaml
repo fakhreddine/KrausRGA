@@ -4,7 +4,7 @@
     xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
     Title="WPF Webcam" Height="800" Width="1500" Loaded="Window_Loaded">
     <Grid>
-        <cam:Webcam Name="WebCamCtrl" Margin="392,18,784,502" BorderThickness="2"/>
+        <cam:Webcam Name="WebCamCtrl" Margin="120,8,1072,523"  Background="#FFCBCBCB" BorderBrush="#FF3C3C3C" BorderThickness="2"/>
         <ComboBox Height="22" HorizontalAlignment="Left" Margin="104,269,0,0" Name="VidDvcsComboBox" VerticalAlignment="Top" Width="210" Visibility="Hidden" />
         <ComboBox Visibility="Hidden" Height="23" HorizontalAlignment="Left" Margin="105,302,0,0" Name="AudDvcsComboBox" VerticalAlignment="Top" Width="209" />
         <Button Visibility="Hidden" Content="Start Recording" Height="24" HorizontalAlignment="Left" Margin="51,380,0,0" Name="RecordButton" VerticalAlignment="Top" Width="115" Click="RecordButton_Click" />
@@ -13,11 +13,11 @@
         <TextBlock Visibility="Hidden" FlowDirection="LeftToRight" Height="22" HorizontalAlignment="Left" Margin="28,307,0,0" Name="TextBlock2" Text="Audio Device" TextAlignment="Left" VerticalAlignment="Top" Width="78" />
         <Button Visibility="Hidden" Content="End Capture" Height="24" HorizontalAlignment="Right" Margin="0,341,51,0" Name="EndButton" VerticalAlignment="Top" Width="112" Click="EndButton_Click" />
         <Button Visibility="Hidden" Content="Start Capture" Height="24" HorizontalAlignment="Left" Margin="51,341,0,0" Name="StartButton" VerticalAlignment="Top" Width="115" Click="StartButton_Click" />
-        <ScrollViewer Name="sclPh" Margin="28,551,51,33" CanContentScroll="True" HorizontalScrollBarVisibility="Visible"  >
-            <StackPanel Background="#FFE6E1E1" OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="1403"/>
+        <ScrollViewer Name="sclPh" Margin="420,40,0,544" CanContentScroll="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" >
+            <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="1072" Background="#FFE8E8E8"/>
         </ScrollViewer>
-        <Canvas Margin="0,0,1366,600">
-            <Border Name="bdrStartCapture" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="71" Canvas.Top="10" Width="78" CornerRadius="10">
+        <Canvas Margin="0,0,1377,518" Background="#FFB9B7B7">
+            <Border Name="bdrCapture" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="71" Canvas.Top="106" Width="78" CornerRadius="10" Canvas.Left="10">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Style.Triggers>
@@ -42,16 +42,90 @@
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
-                <Canvas Background="Black" >
-                    <Button Name="btnStartCapture" BorderBrush="{x:Null}" BorderThickness="0" Height="60" Width="78" Click="SnapshotButton_Click" >
-                        <Button.Foreground>
-                            <ImageBrush ImageSource="Images/iconcamera.png"/>
-                        </Button.Foreground>
+                <Canvas >
+                    <Button Name="btnCapture"  BorderThickness="0" Height="60" Width="78" Click="SnapshotButton_Click" >
                         <Button.Background>
                             <ImageBrush ImageSource="Images/iconcamera.png"/>
                         </Button.Background>
+                        <Button.Foreground>
+                            <ImageBrush ImageSource="Images/iconcamera.png"/>
+                        </Button.Foreground>
                     </Button>
-                    <TextBlock x:Name="tbkStartCapture" Text="Start Capture" HorizontalAlignment="Center" Height="16" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White"/>
+                    <TextBlock x:Name="tbkCapture" Text="Capture" TextAlignment="Center" Height="16" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White"/>
+                </Canvas>
+            </Border>
+            <Border Name="bdrStartCapture" Visibility="Visible" BorderThickness="0" Height="71" Canvas.Top="30" Width="78" CornerRadius="10" Canvas.Left="10">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="Visibility" Value="Hidden">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                            <Trigger Property="Visibility" Value="Visible">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Canvas >
+                    <Button Name="btnStartCapture" BorderThickness="0" Height="60" Width="78" Click="btnStartCapture_Click"  >
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images/iconplay.png"/>
+                        </Button.Background>
+                        <Button.Foreground>
+                            <ImageBrush ImageSource="Images/iconplay.png"/>
+                        </Button.Foreground>
+                    </Button>
+                    <TextBlock x:Name="tbkStartCapture" Text="Start Camera" HorizontalAlignment="Center" Height="16" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White"/>
+                </Canvas>
+            </Border>
+            <Border Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="71" Canvas.Top="30" Width="78" CornerRadius="10" Canvas.Left="-98">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="Visibility" Value="Hidden">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                            <Trigger Property="Visibility" Value="Visible">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Canvas  >
+                    <Button Name="btnStop" BorderThickness="0" Height="60" Width="78" Click="btnStop_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Images/Stopicon.png"/>
+                        </Button.Background>
+                        <Button.Foreground>
+                            <ImageBrush ImageSource="Images/Stopicon.png"/>
+                        </Button.Foreground>
+                    </Button>
+                    <TextBlock x:Name="tbkStop" Text="Stop Camera" HorizontalAlignment="Center" Height="16" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White"/>
                 </Canvas>
             </Border>
         </Canvas>

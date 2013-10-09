@@ -162,7 +162,26 @@ namespace KrausGRA
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Display webcam video on control.
+           // WebCamCtrl.StartCapture(); 
+            bdrStop.Visibility = System.Windows.Visibility.Hidden;
+            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void btnStartCapture_Click(object sender, RoutedEventArgs e)
+        {
+            
+            bdrCapture.Visibility = System.Windows.Visibility.Visible;
+            bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
+            bdrStop.Visibility = System.Windows.Visibility.Visible;
             WebCamCtrl.StartCapture(); 
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            WebCamCtrl.StopCapture();
+            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
+            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
+            bdrStop.Visibility = System.Windows.Visibility.Hidden;
         }           
        
     }
