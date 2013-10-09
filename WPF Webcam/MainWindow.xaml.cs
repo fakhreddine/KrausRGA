@@ -128,7 +128,7 @@ namespace KrausGRA
         private void SnapshotButton_Click(object sender, RoutedEventArgs e)
         {
             // Take snapshot of webcam image.
-            // WebCamCtrl.TakeSnapshot();
+             WebCamCtrl.TakeSnapshot();
 
          //   SnapshotButton.Focus();
 

@@ -4,7 +4,7 @@
     xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
     Title="WPF Webcam" Height="800" Width="1500" Loaded="Window_Loaded">
     <Grid>
-        <cam:Webcam Name="WebCamCtrl" Margin="392,18,764,476" BorderThickness="2"/>
+        <cam:Webcam Name="WebCamCtrl" Margin="392,18,784,502" BorderThickness="2"/>
         <ComboBox Height="22" HorizontalAlignment="Left" Margin="104,269,0,0" Name="VidDvcsComboBox" VerticalAlignment="Top" Width="210" Visibility="Hidden" />
         <ComboBox Visibility="Hidden" Height="23" HorizontalAlignment="Left" Margin="105,302,0,0" Name="AudDvcsComboBox" VerticalAlignment="Top" Width="209" />
         <Button Visibility="Hidden" Content="Start Recording" Height="24" HorizontalAlignment="Left" Margin="51,380,0,0" Name="RecordButton" VerticalAlignment="Top" Width="115" Click="RecordButton_Click" />
