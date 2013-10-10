@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Encoder, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86" />
+    <Reference Include="PackingClassLibrary">
+      <HintPath>..\..\visualstudio\Packing Net\PackingClassLibrary\bin\Debug\PackingClassLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -111,6 +114,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EntityModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
