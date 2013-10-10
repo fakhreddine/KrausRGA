@@ -3,6 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="UI/MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="TextMenu" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="TextRegular" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="TxtMain" TargetType="TextBox">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="bdrTextBox" TargetType="Border">
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+        </Style>
+        
     </Application.Resources>
 </Application>

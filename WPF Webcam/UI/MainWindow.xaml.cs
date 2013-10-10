@@ -94,37 +94,6 @@ namespace KrausGRA
 
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Display webcam video on control.
-                WebCamCtrl.StartCapture();               
-            }
-            catch (Microsoft.Expression.Encoder.SystemErrorException )
-            {
-                MessageBox.Show("Device is in use by another application");
-            }
-        }
-
-        private void EndButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Stop the display of webcam video.
-            WebCamCtrl.StopCapture();
-        }
-
-        private void RecordButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Start recording of webcam video to harddisk.
-            WebCamCtrl.StartRecording();
-        }
-
-        private void StopRecordButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Stop recording of webcam video to harddisk.
-            WebCamCtrl.StopRecording();
-        }
-
         private void SnapshotButton_Click(object sender, RoutedEventArgs e)
         {
             // Take snapshot of webcam image.
@@ -152,19 +121,20 @@ namespace KrausGRA
             img.Stretch = Stretch.Fill;
             img.Name = "KrausGRA" + DateTime.Now.ToString("hhmmsstt");
             img.Source = bs;
-            //img.Margin = new Thickness(2.0);
+            img.Margin = new Thickness(2.0);
             spPhotos.Children.Add(img);
             img.Focus();
             sclPh.ScrollToRightEnd();
 
 
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Display webcam video on control.
-           // WebCamCtrl.StartCapture(); 
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
             bdrCapture.Visibility = System.Windows.Visibility.Hidden;
+          //  cnCamera.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void btnStartCapture_Click(object sender, RoutedEventArgs e)
@@ -173,16 +143,56 @@ namespace KrausGRA
             bdrCapture.Visibility = System.Windows.Visibility.Visible;
             bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
             bdrStop.Visibility = System.Windows.Visibility.Visible;
+
+            
             WebCamCtrl.StartCapture(); 
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             WebCamCtrl.StopCapture();
+
             bdrCapture.Visibility = System.Windows.Visibility.Hidden;
             bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
-        }           
-       
+
+          
+        }
+
+        private void btnOpenCamera_Click(object sender, RoutedEventArgs e)
+        {
+            bdrCamera.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+        private void brnCloseCamera_Click(object sender, RoutedEventArgs e)
+        {
+            WebCamCtrl.StopCapture();
+            WebCamCtrl.Dispose();
+            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
+            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
+            bdrStop.Visibility = System.Windows.Visibility.Hidden;
+            bdrCamera.Visibility = System.Windows.Visibility.Hidden;
+            removeStackPanelChild(spPhotos);
+        }
+
+        /// <summary>
+        /// remove child controles from Stackpanel
+        /// </summary>
+        /// <param name="stackPacnel">
+        /// StackPanel UI Element
+        /// </param>
+        private void removeStackPanelChild(StackPanel stackPacnel)
+        {
+            try
+            {
+                while (stackPacnel.Children.Count>0)
+                {
+                    stackPacnel.Children.RemoveAt(stackPacnel.Children.Count-1);
+                }
+            }
+            catch (Exception)
+            {}
+        }
     }
 }
