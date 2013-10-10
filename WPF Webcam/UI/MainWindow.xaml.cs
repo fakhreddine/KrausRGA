@@ -78,13 +78,13 @@ namespace KrausGRA
             var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
             var audDevices = EncoderDevices.FindDevices(EncoderDeviceType.Audio);
 
+            int CameraNumber = KrausGRA.Properties.Settings.Default.CameraNumber;
             int i = 0;
-
             foreach (EncoderDevice dvc in vidDevices)
             {
-                //if (i!=0)
+                if (i==CameraNumber)
                 VidDvcsComboBox.Items.Add(dvc.Name);
-                //i++;
+                i++;
             }
 
             foreach (EncoderDevice dvc in audDevices)

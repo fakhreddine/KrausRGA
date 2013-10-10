@@ -22,5 +22,14 @@ namespace KrausGRA.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CameraNumber {
+            get {
+                return ((int)(this["CameraNumber"]));
+            }
+        }
     }
 }
