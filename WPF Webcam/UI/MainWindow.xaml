@@ -13,17 +13,20 @@
                 </LinearGradientBrush>
             </Canvas.Background>
             <Canvas x:Name="cnMainArea" Height="625" Width="1024" Canvas.Left="158" Canvas.Top="145">
+                <Canvas Name="cnPackageInfo" Height="93" Canvas.Top="45" Width="1024" Background="#33000000">
+                    <TextBlock Style="{StaticResource TextMenu}" Canvas.Left="1" TextWrapping="Wrap" Text="Package Information" Canvas.Top="4"/>
+                </Canvas>
                 <Border Style="{StaticResource ResourceKey=bdrTextBox}" BorderBrush="Black" BorderThickness="1" Height="30" Canvas.Left="111" Canvas.Top="10" Width="204">
                     <TextBox x:Name="txtBoxNumber" Style="{StaticResource ResourceKey=TxtMain}" TextWrapping="Wrap" />
                 </Border>
                 <TextBlock Style="{StaticResource ResourceKey=TextRegular}" Canvas.Left="10" TextWrapping="Wrap" Text="Box Number :" Canvas.Top="17" Width="101"/>
-                <Border Canvas.Top="138">
+                <Border Name="bdrPackageDg" Canvas.Top="138">
                     <DataGrid  x:Name="dgPackageInfo" SelectionMode="Extended" 
-                           ItemsSource="{Binding}" HorizontalAlignment="Center" Height="482" VerticalAlignment="Center" Width="1024" 
-                           ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                           CanUserAddRows="False"    AutoGenerateColumns="False" FontSize="17" Canvas.Top="136" Background="#FFFBFBFB"
-                           SelectionUnit="Cell" BorderThickness="1" Cursor="Hand"   
-                           BorderBrush="Black"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" 
+            			ItemsSource="{Binding}" HorizontalAlignment="Center" Height="482" VerticalAlignment="Center" Width="1024" 
+            			ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            			CanUserAddRows="False"    AutoGenerateColumns="False" FontSize="17" Canvas.Top="136" Background="#FFFBFBFB"
+            			SelectionUnit="Cell" BorderThickness="1" Cursor="Hand"   
+            			BorderBrush="Black"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" 
                            >
                         <DataGrid.Resources>
                             <Style x:Key="ErrorStyle" TargetType="{x:Type TextBox}">
@@ -32,7 +35,7 @@
                                     <Trigger Property="Validation.HasError" Value="True">
                                         <Setter Property="Background" Value="Red"/>
                                         <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -42,54 +45,52 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate >
                                         <StackPanel >
-                                            <Image Name="ImgSKU" Loaded="ImgSKU_Loaded" Stretch="Uniform" />
+                                            <Image x:Name="ImgSKU" Stretch="Uniform" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Binding="{Binding SKU}" Header="SKU"  Width="180" IsReadOnly="True" FontSize="17">
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader">
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding ProductName}" Header="Product Name" Width="250" IsReadOnly="True" FontSize="17" >
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader">
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding Quantity}" Header="Qty" Width="60" IsReadOnly="True" FontSize="17" >
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader">
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
-                                        <Style.Setters>
-                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                        </Style.Setters>
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                        <DataGridTemplateColumn Header="Image" Width="*"  >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate >
-                                    <StackPanel >
-                                        <Image Name="ImgSKU" Loaded="ImgSKU_Loaded" Height="60" Width="60" Stretch="Fill" />
-                                            <Image Name="ImgSKU1" Loaded="ImgSKU_Loaded" Height="60" Width="60" Stretch="Fill" />
-                                            <Image Name="ImgSKU2" Loaded="ImgSKU_Loaded" Height="60" Width="60" Stretch="Fill" />
-                                            <Image Name="ImgSKU3" Loaded="ImgSKU_Loaded" Height="60" Width="60" Stretch="Fill" />
-                                            <Image Name="ImgSKU4" Loaded="ImgSKU_Loaded" Height="60" Width="60" Stretch="Fill" />
-                                            <Image Name="ImgSKU5" Loaded="ImgSKU_Loaded" Height="60" Width="60" Stretch="Fill" />
-                                            <Image Name="ImgSKU6" Loaded="ImgSKU_Loaded" Height="60" Width="60" Stretch="Fill" />
+                            <DataGridTemplateColumn Header="Image" Width="*"  >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <StackPanel >
+                                            <Image x:Name="ImgSKU"  Height="60" Width="60" Stretch="Fill" />
+                                            <Image x:Name="ImgSKU1" Height="60" Width="60" Stretch="Fill" />
+                                            <Image x:Name="ImgSKU2" Height="60" Width="60" Stretch="Fill" />
+                                            <Image x:Name="ImgSKU3" Height="60" Width="60" Stretch="Fill" />
+                                            <Image x:Name="ImgSKU4" Height="60" Width="60" Stretch="Fill" />
+                                            <Image x:Name="ImgSKU5" Height="60" Width="60" Stretch="Fill" />
+                                            <Image x:Name="ImgSKU6" Height="60" Width="60" Stretch="Fill" />
                                         </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

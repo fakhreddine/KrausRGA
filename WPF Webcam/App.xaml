@@ -19,6 +19,7 @@
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <Style x:Key="bdrTextBox" TargetType="Border">
