@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48153b6b0eb347fabeebfcddddc81d1e" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="ShippingDatabase.Audit" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.BoxPackage" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.ErrorLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.Package" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.PackageDetail" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.Role" Width="1.5" PointX="1.5" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.Shipping" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.SKUImage" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.Station" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.Tracking" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.User" Width="1.5" PointX="1.5" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShippingDatabase.UserStation" Width="1.5" PointX="3.75" PointY="18.625" IsExpanded="true" />
+        <AssociationConnector Association="ShippingDatabase.FK_UserLogs_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_BoxPackage_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_Tracking_BoxPackage" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_Package_Shipping" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_Package_Station" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_Package_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_PackageDetail_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_Tracking_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_User_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_Tracking_Shipping" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_Station_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_tblUserStation_tblStationMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="ShippingDatabase.FK_UserStation_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
