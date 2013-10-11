@@ -26,6 +26,19 @@
             <Setter Property="CornerRadius" Value="4"/>
             <Setter Property="Background" Value="WhiteSmoke"/>
         </Style>
-        
+        <Style x:Key="bdrWin8btn" TargetType="Border">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+        </Style>
+        <Style x:Key="win8btn" TargetType="Button">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
     </Application.Resources>
 </Application>
