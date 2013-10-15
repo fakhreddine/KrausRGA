@@ -1,49 +1,57 @@
 ﻿<Window x:Class="KrausGRA.UI.wndBoxInformation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="wndBoxInformation" Height="800" Width="1200">
-    <Grid>
-        <Canvas Margin="0,0,0,0">
-            <Canvas.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF308EAA" Offset="0"/>
-                    <GradientStop Color="#FFB5D0D6" Offset="0.162"/>
-                    <GradientStop Color="#FF308EAA" Offset="1"/>
-                    <GradientStop Color="#FFB5D0D6" Offset="0.814"/>
-                </LinearGradientBrush>
-            </Canvas.Background>
-            <Canvas x:Name="cnTitle" Height="100" Canvas.Left="3" Canvas.Top="11" Width="1187">
-                <Image x:Name="imgLogo" Height="100" Canvas.Left="-1" Canvas.Top="-3" Width="258" Stretch="Fill" Cursor="None" Source="/KrausGra;component/Images/logo.png"/>
-                <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="GRA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30"/>
-            </Canvas>
-            <Canvas Name="cnMainArea" />
-            <Canvas Name="cnNewReturn" Height="171" Width="1190" Canvas.Top="187" Canvas.Left="3">
-                <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="145" Canvas.Left="400" Canvas.Top="10" Width="305" Background="#FF4F4B48">
+        Title="Kraus GRA System" Height="800" Width="1400"
+        Name="wndLogin" Loaded="wndLogin_Loaded" WindowState="Maximized"
+        >
+    <Viewbox >
+        <Grid>
+            <Canvas Margin="0,0,0,0" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" >
+                <Canvas.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF308EAA" Offset="0"/>
+                        <GradientStop Color="#FFDADADA" Offset="0.139"/>
+                        <GradientStop Color="#FFDEE5EA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Canvas.Background>
+                <Canvas x:Name="cnTitle" Height="100" Canvas.Left="5" Width="1187">
+                    <Image x:Name="imgLogo" Height="90" Canvas.Left="1" Canvas.Top="10" Width="211" Stretch="Fill" Cursor="None" Source="/KrausGra;component/Images/logo.png"/>
+                    <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="GRA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30"/>
+                </Canvas>
+
+                <Border Name="bdrButtons" Style="{StaticResource trgBorderHideShow0 }" Canvas.Top="105" CornerRadius="20" Background="#CC377D9E" Height="665">
+                    <Canvas Name="cnNewReturn" Width="340" Canvas.Top="128" >
+                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Top="59" Width="305" Background="#FF474747" Canvas.Left="15">
+                            <Button x:Name="btnNewScan" Style="{StaticResource win8btn}" Content="New Return" Margin="-1,-1,-1,1"/>
+                        </Border>
+                        <TextBlock TextWrapping="Wrap" Text="New Return" FontWeight="Bold" TextAlignment="Center" FontSize="35" Width="332" Canvas.Left="5" Foreground="White" Canvas.Top="6"/>
+                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="562" Width="305" Background="#FFE0752B">
+                            <Button x:Name="btnSRNumber" Style="{StaticResource win8btn}" Content="Scan - SR Number" Margin="-1,-1,-1,1"/>
+                        </Border>
+                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="469" Width="305" Background="#FFD6A728">
+                            <Button x:Name="btnPONumber" Style="{StaticResource win8btn}" Content="Scan - PO Number" Margin="-1,-1,-1,1"/>
+                        </Border>
+                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="378" Width="305" Background="#FF237BC5">
+                            <Button x:Name="btnPCKNumber" Style="{StaticResource win8btn}" Content="Scan - Packing Number" Margin="-1,-1,-1,1"/>
+                        </Border>
+                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="16" Canvas.Top="195" Width="305" Background="#FF8323C5">
+                            <Button x:Name="btnBoxNumber" Style="{StaticResource win8btn}" Content="Scan - Box Number" Margin="-1,-1,-1,1"/>
+                        </Border>
+                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="287" Width="305" Background="#FF008F34">
+                            <Button x:Name="btnShipmentNumber" Style="{StaticResource win8btn}" Content="Scan - Shipment Number" Margin="-1,-1,-1,1"/>
+                        </Border>
+                        <TextBlock TextWrapping="Wrap" Text="Other Return" FontWeight="Bold" TextAlignment="Center" Canvas.Top="144" FontSize="35" Width="337" Foreground="White"/>
+                    </Canvas>
+                </Border>
+
+                <Border Name="bdrLogin" Style="{StaticResource trgBorderHideShowTO390}" BorderBrush="Black" BorderThickness="1" Height="265" Canvas.Left="390" Canvas.Top="325" Width="750" CornerRadius="15" Background="#CC636363">
                     <Canvas>
-                        <Button x:Name="btnNewReturn" Style="{StaticResource win8btn}"  Content="                New Return" Width="303" Height="143" BorderBrush="#FF4F4B48"/>
-                        <TextBlock Background="#FF4F4B48" Text="✅" Width="69" Height="84" Canvas.Top="25" Canvas.Left="39" Foreground="White" FontSize="70" />
+                        <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="174" Canvas.Top="99" Width="395" CornerRadius="10" Background="White">
+                            <TextBox Name="txtLogin" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtLogin_KeyDown"/>
+                        </Border>
                     </Canvas>
                 </Border>
             </Canvas>
-            <Canvas x:Name="cnScan" Canvas.Left="3" Height="235" Width="1189" Canvas.Top="430">
-                <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="100" Canvas.Left="133" Canvas.Top="10" Width="305" Background="#FFC56523">
-                    <Button x:Name="btnSRNumber" Style="{StaticResource win8btn}" Content="Scan - SR Number" Margin="-1,-1,-1,1"/>
-                </Border>
-                <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="100" Canvas.Left="275" Canvas.Top="124" Width="305" Background="#FFC59923">
-                    <Button x:Name="btnPONumber" Style="{StaticResource win8btn}" Content="Scan - PO Number" Margin="-1,-1,-1,1"/>
-                </Border>
-                <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="100" Canvas.Left="598" Canvas.Top="122" Width="305" Background="#FF237BC5">
-                    <Button x:Name="btnPCKNumber" Style="{StaticResource win8btn}" Content="Scan - Packing Number" Margin="-1,-1,-1,1"/>
-                </Border>
-                <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="100" Canvas.Left="455" Canvas.Top="10" Width="305" Background="#FF8323C5">
-                    <Button x:Name="btnBoxNumber" Style="{StaticResource win8btn}" Content="Scan - Box Number" Margin="-1,-1,-1,1"/>
-                </Border>
-                <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="100" Canvas.Left="781" Canvas.Top="10" Width="305" Background="#FF008F34">
-                    <Button x:Name="btnShipmentNumber" Style="{StaticResource win8btn}" Content="Scan - Shipment Number" Margin="-1,-1,-1,1"/>
-                </Border>
-            </Canvas>
-            <TextBlock TextWrapping="Wrap" Text="Other Type Return" FontWeight="Bold" TextAlignment="Center" Canvas.Top="358" FontSize="50" Width="1193" Background="#FF98BDCF"/>
-        </Canvas>
-
-    </Grid>
+        </Grid>
+    </Viewbox>
 </Window>
