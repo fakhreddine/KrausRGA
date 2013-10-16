@@ -69,6 +69,13 @@ namespace KrausGRA.UI
                 hideButtons(System.Windows.Visibility.Visible);
             }
         }
+
+        private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow wnd = new MainWindow();
+            wnd.Show();
+            this.Close();
+        }
     }
 
 }
