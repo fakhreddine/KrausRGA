@@ -88,6 +88,7 @@
       <DependentUpon>wndLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\mBox.cs" />
+    <Compile Include="Views\Box.cs" />
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -13,5 +13,9 @@ namespace KrausGRA.ViewModels
 
        public String BoxNumber { get; set; }
 
+
+ 
+
+
     }
 }

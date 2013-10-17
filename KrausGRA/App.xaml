@@ -41,6 +41,12 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Arial"/>
         </Style>
+        
+        <Style x:Key="tbFormTitle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="FontSize" Value="45"/>
+        </Style>
         <!--  _________________________ -->
         
         <!-- Trigges -->
