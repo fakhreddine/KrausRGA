@@ -24,7 +24,6 @@ namespace KrausGRA
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         public MainWindow()
         {
             InitializeComponent();                    
@@ -97,9 +96,7 @@ namespace KrausGRA
         private void SnapshotButton_Click(object sender, RoutedEventArgs e)
         {
             // Take snapshot of webcam image.
-             WebCamCtrl.TakeSnapshot();
-
-         //   SnapshotButton.Focus();
+            WebCamCtrl.TakeSnapshot();
 
             int panelWidth = Convert.ToInt32(WebCamCtrl.ActualWidth);
             int panelHeight = Convert.ToInt32(WebCamCtrl.ActualHeight);
@@ -113,7 +110,7 @@ namespace KrausGRA
             gcs.CopyFromScreen(pnl, System.Drawing.Point.Empty, new System.Drawing.Size(panelWidth, panelHeight));
 
             BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero,
-                System.Windows.Int32Rect.Empty,BitmapSizeOptions.FromWidthAndHeight(bmp.Width, bmp.Height));
+                System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight(bmp.Width, bmp.Height));
 
             Image img = new Image();
             img.Height = 165;
@@ -125,8 +122,6 @@ namespace KrausGRA
             spPhotos.Children.Add(img);
             img.Focus();
             sclPh.ScrollToRightEnd();
-
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -134,7 +129,6 @@ namespace KrausGRA
             // Display webcam video on control.
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
             bdrCapture.Visibility = System.Windows.Visibility.Hidden;
-          //  cnCamera.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void btnStartCapture_Click(object sender, RoutedEventArgs e)

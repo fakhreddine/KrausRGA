@@ -6,54 +6,57 @@
         >
     <Viewbox >
         <Grid>
-            <Canvas Margin="0,0,0,0" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" >
-                <Canvas.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF308EAA" Offset="0"/>
-                        <GradientStop Color="#FFDADADA" Offset="0.139"/>
-                        <GradientStop Color="#FFDEE5EA" Offset="1"/>
-                    </LinearGradientBrush>
-                </Canvas.Background>
-                <Canvas x:Name="cnTitle" Height="100" Canvas.Left="5" Width="1187">
-                    <Image x:Name="imgLogo" Height="90" Canvas.Left="1" Canvas.Top="10" Width="211" Stretch="Fill" Cursor="None" Source="/KrausGra;component/Images/logo.png"/>
-                    <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="GRA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30"/>
+            <Border BorderThickness="2" BorderBrush="#FFD49919">
+                <Canvas Margin="0,0,0,0" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" Background="#FFE3E9EA" >
+                    <Canvas x:Name="cnTitle" Height="100" Width="1400">
+                        <Canvas.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF46C0E4" Offset="0.012"/>
+                                <GradientStop Color="#FF686868" Offset="0.988"/>
+                            </LinearGradientBrush>
+                        </Canvas.Background>
+                        <Image x:Name="imgLogo" Height="80" Canvas.Left="1" Canvas.Top="10" Width="211" Stretch="Fill" Cursor="None" Source="/KrausGra;component/Images/logo.png"/>
+                        <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="GRA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30" Foreground="White"/>
+                    </Canvas>
+
+                    <Border Name="bdrButtons" Style="{StaticResource trgBorderHideShow0 }" Canvas.Top="100" CornerRadius="20" Background="#B21B4064" Height="677">
+                        <Canvas Name="cnNewReturn" Width="340" Canvas.Top="128" >
+                            <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Top="59" Width="305" Background="#FFD49611" Canvas.Left="15" BorderBrush="Black">
+                                <Button x:Name="btnNewScan" Style="{StaticResource win8btn}" Content="New Return" Margin="-1,-1,-1,1"/>
+                            </Border>
+                            <TextBlock TextWrapping="Wrap" Text="New Return" FontWeight="Bold" TextAlignment="Center" FontSize="35" Width="332" Canvas.Left="5"  Canvas.Top="6" Foreground="#FFD49611"/>
+                            <TextBlock TextWrapping="Wrap" Text="Scan Barcode from Return" FontWeight="Bold" TextAlignment="Center" Canvas.Top="172" FontSize="35" Width="337" Foreground="#FF79CB84"/>
+                            <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="516" Width="305" Background="#FF474747">
+                                <Button x:Name="btnPONumber" Style="{StaticResource win8btn}" Content="Enter Number" Margin="-1,-1,-1,1"/>
+                            </Border>
+                            <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="271" Width="305" Background="#FF337829">
+                                <Button x:Name="btnBoxNumber" Style="{StaticResource win8btn}" Content="Scan" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
+                            </Border>
+                            <TextBlock TextWrapping="Wrap" Text="Tracking #/ Cusromer PO#/SR # of Return" FontWeight="Bold" TextAlignment="Center" Canvas.Top="371" FontSize="35" Width="337" Foreground="White"/>
+                        </Canvas>
+                    </Border>
+
+                    <Border Name="bdrLogin" Style="{StaticResource trgBorderHideShowTO390}" BorderBrush="Black" BorderThickness="1" Height="265" Canvas.Left="390" Canvas.Top="325" Width="750" CornerRadius="15" Background="#CC636363">
+                        <Canvas>
+                            <TextBlock Name="tbLoginText" Text="Please scan your badge" FontSize="20" Canvas.Left="188" Canvas.Top="71" />
+                            <TextBlock Name="tbTitleLogin" Style="{StaticResource tbFormTitle}"  Text="Login" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
+                            <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10" Background="White">
+                                <TextBox Name="txtLogin" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtLogin_KeyDown"/>
+                            </Border>
+                        </Canvas>
+                    </Border>
+
+                    <Border Name="bdrScan" Visibility="Hidden" Style="{StaticResource trgBorderHideShowTO390}" BorderBrush="Black" BorderThickness="1" Height="265" Canvas.Left="1404" Canvas.Top="325" Width="750" CornerRadius="15" Background="#CC636363">
+                        <Canvas>
+                            <TextBlock Name="tbScanText" Text="Please Scan Barcode" FontSize="20" Canvas.Left="188" Canvas.Top="71" />
+                            <TextBlock Name="tbTitleScan" Style="{StaticResource tbFormTitle}"  Text="Scan" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
+                            <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10" Background="White">
+                                <TextBox Name="txtScan" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtScan_KeyDown"/>
+                            </Border>
+                        </Canvas>
+                    </Border>
                 </Canvas>
-
-                <Border Name="bdrButtons" Style="{StaticResource trgBorderHideShow0 }" Canvas.Top="105" CornerRadius="20" Background="#CC377D9E" Height="665">
-                    <Canvas Name="cnNewReturn" Width="340" Canvas.Top="128" >
-                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Top="59" Width="305" Background="#FF474747" Canvas.Left="15">
-                            <Button x:Name="btnNewScan" Style="{StaticResource win8btn}" Content="New Return" Margin="-1,-1,-1,1"/>
-                        </Border>
-                        <TextBlock TextWrapping="Wrap" Text="New Return" FontWeight="Bold" TextAlignment="Center" FontSize="35" Width="332" Canvas.Left="5" Foreground="White" Canvas.Top="6"/>
-                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="562" Width="305" Background="#FFE0752B">
-                            <Button x:Name="btnSRNumber" Style="{StaticResource win8btn}" Content="Scan - SR Number" Margin="-1,-1,-1,1"/>
-                        </Border>
-                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="469" Width="305" Background="#FFD6A728">
-                            <Button x:Name="btnPONumber" Style="{StaticResource win8btn}" Content="Scan - PO Number" Margin="-1,-1,-1,1"/>
-                        </Border>
-                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="378" Width="305" Background="#FF237BC5">
-                            <Button x:Name="btnPCKNumber" Style="{StaticResource win8btn}" Content="Scan - Packing Number" Margin="-1,-1,-1,1"/>
-                        </Border>
-                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="16" Canvas.Top="195" Width="305" Background="#FF8323C5">
-                            <Button x:Name="btnBoxNumber" Style="{StaticResource win8btn}" Content="Scan - Box Number" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
-                        </Border>
-                        <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="287" Width="305" Background="#FF008F34">
-                            <Button x:Name="btnShipmentNumber" Style="{StaticResource win8btn}" Content="Scan - Shipment Number" Margin="-1,-1,-1,1"/>
-                        </Border>
-                        <TextBlock TextWrapping="Wrap" Text="Other Return" FontWeight="Bold" TextAlignment="Center" Canvas.Top="144" FontSize="35" Width="337" Foreground="White"/>
-                    </Canvas>
-                </Border>
-
-                <Border Name="bdrLogin" Style="{StaticResource trgBorderHideShowTO390}" BorderBrush="Black" BorderThickness="1" Height="265" Canvas.Left="390" Canvas.Top="325" Width="750" CornerRadius="15" Background="#CC636363">
-                    <Canvas>
-                        <TextBlock Name="tbLoginText" Text="Please scan your badge" FontSize="20" Canvas.Left="188" Canvas.Top="71" />
-                        <TextBlock Name="tbTitleLogin" Style="{StaticResource tbFormTitle}"  Text="Login" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
-                        <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10" Background="White">
-                            <TextBox Name="txtLogin" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtLogin_KeyDown"/>
-                        </Border>
-                    </Canvas>
-                </Border>
-            </Canvas>
+            </Border>
         </Grid>
     </Viewbox>
 </Window>

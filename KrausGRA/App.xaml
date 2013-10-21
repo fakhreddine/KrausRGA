@@ -4,6 +4,20 @@
              StartupUri="UI/wndBoxInformation.xaml">
     <Application.Resources>
         <!--UI styles -->
+        
+<!-- Controls From Main Informaion Screen -->
+        <Style x:Key="lblConstant" TargetType="Label">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="lblVeriable" TargetType="Label">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+<!-- ____________________________________-->
+        
+        
         <Style x:Key="TextMenu" TargetType="TextBlock">
             <Setter Property="FontSize" Value="17"/>
             <Setter Property="FontFamily" Value="Arial"/>
@@ -29,7 +43,7 @@
         </Style>
         <Style x:Key="bdrWin8btn" TargetType="Border">
             <Setter Property="CornerRadius" Value="0"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
         </Style>
         <Style x:Key="win8btn" TargetType="Button">
@@ -41,13 +55,13 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Arial"/>
         </Style>
-        
         <Style x:Key="tbFormTitle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="WhiteSmoke"/>
             <Setter Property="FontSize" Value="45"/>
         </Style>
         <!--  _________________________ -->
+        
         
         <!-- Trigges -->
         <!-- 1 -->
@@ -72,7 +86,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard >
-                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-500" To="190"/>
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-500" To="390"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>

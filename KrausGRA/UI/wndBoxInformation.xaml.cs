@@ -72,9 +72,24 @@ namespace KrausGRA.UI
 
         private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow wnd = new MainWindow();
-            wnd.Show();
-            this.Close();
+            bdrScan.Visibility = System.Windows.Visibility.Hidden;
+            bdrScan.Visibility = System.Windows.Visibility.Visible;
+            txtScan.Focus();
+        }
+
+        private void txtScan_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        MainWindow main = new MainWindow();
+                        main.Show();
+
+                    }));
+                this.Close();
+            }
         }
     }
 
