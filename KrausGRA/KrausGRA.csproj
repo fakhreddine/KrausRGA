@@ -81,13 +81,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EntityModel\ShippingDB.cs" />
+    <Compile Include="EntityModel\ShippingManagerFunctions\AbstractClassMethods.cs" />
+    <Compile Include="EntityModel\ShippingManagerFunctions\cmdShipping.cs" />
+    <Compile Include="GRAEnum\ScannedValueType.cs" />
     <Compile Include="UI\wndBoxInformation.xaml.cs">
       <DependentUpon>wndBoxInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\wndLogin.xaml.cs">
       <DependentUpon>wndLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\mBox.cs" />
+    <Compile Include="ViewModels\mScanned.cs" />
     <Compile Include="Views\Box.cs" />
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

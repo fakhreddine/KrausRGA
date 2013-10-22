@@ -2,41 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KrausGRA.EntityModel;
+
 
 namespace KrausGRA.ViewModels
 {
+   
     /// <summary>
     /// Avinash-  Date : Oct 22, 2013.
     /// Model For scanned value search and its related functions
     /// </summary>
-  public class mScanned
+    public class mScanned
     {
+        //Shipping Manager entity Object.
+        Shipping_ManagerEntities entShipping = new Shipping_ManagerEntities();
 
-      public string ScannedNumber { get; set; }
-      
+        public static string ScannedNumber { get; set; }
+        public static Shipping ShippingTblInfo = null;
 
-      /// <summary>
-      /// Search value scanned in to Database and Defin the Type Of value Enum
-      /// </summary>
-      /// <param name="ScannedValue">
-      /// String Scanned Value.
-      /// </param>
-      /// <returns>
-      /// Enum ScannedValueType.
-      /// </returns>
-      public String SearchValueIntoDatabase(String ScannedValue)
-      {
-          String _dbFoundValue = "";
-          try
-          {
+        /// <summary>
+        /// Search value in database and Rerurn Enum of ScannedValueType 
+        /// that contails Value Types.
+        /// </summary>
+        /// <param name="ScannedValue">
+        /// String Scanned value Type
+        /// </param>
+        /// <returns>
+        /// String Enum of ScannedValueType.
+        /// </returns>
+        public String SearchValueIntoDatabase(String ScannedValue)
+        {
+            String _dbFoundValue = GRAEnum.ScannedValueType.NoMatch.ToString();
+            try
+            {
 
-          }
-          catch (Exception)
-          {}
-          return _dbFoundValue;
- 
-      }
-        
+            }
+            catch (Exception)
+            { }
+            return _dbFoundValue;
+        }
 
 
     }

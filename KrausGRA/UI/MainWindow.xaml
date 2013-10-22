@@ -15,13 +15,14 @@
         <Border BorderThickness="2" BorderBrush="#FFD49919">
             <Canvas  Height="780" Width="1360" Background="#FFE3E9EA" >
                 <Canvas x:Name="cnMainArea" Height="680" Width="1360" Canvas.Top="100">
-                    <Border Name="bdrPackageDg" Canvas.Top="194" Width="1360" Height="377">
+                    
+                    <Border Name="bdrPackageDg" Canvas.Top="202" Width="1328" Height="379" Canvas.Left="10">
                         <DataGrid  x:Name="dgPackageInfo" SelectionMode="Extended" 
-            			ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1360" 
+            			ItemsSource="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1328" 
             			ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             			CanUserAddRows="False"    AutoGenerateColumns="False" FontSize="17" Canvas.Top="136" Background="#FFE6E6E6"
             			SelectionUnit="Cell" BorderThickness="1" Cursor="Hand"   
-            			BorderBrush="{x:Null}"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="377" >
+            			BorderBrush="{x:Null}"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="383" Margin="0,0,0,-4" >
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn Header="Item" Width="50"  >
                                     <DataGridTemplateColumn.CellTemplate>
@@ -82,30 +83,31 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Border>
-                    <Border BorderBrush="Black" BorderThickness="1" Height="195" Width="1360" CornerRadius="20" Background="#7F8D8D8D" Canvas.Top="2">
+                    
+                    <Border BorderThickness="1" Height="195" Width="1360" CornerRadius="20" Background="#7F818080" Canvas.Top="2">
                         <Canvas x:Name="cnPackageInfo" Margin="-1">
                             <Label Name="lblCBoxKNo" Content="Box Number : " Style="{StaticResource lblConstant}" Canvas.Left="9" Canvas.Top="143"/>
-                            <Label Name="lblBoxNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="147" Canvas.Top="141" Width="227"/>
+                            <Label Name="lblBoxNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="147" Canvas.Top="141" Width="243"/>
 
                             <Label Name="lblCSrNo" Content="SR Number : " Style="{StaticResource lblConstant}" Canvas.Left="13" Canvas.Top="8"/>
-                            <Label Name="lblSrNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="136" Canvas.Top="8" Width="238"/>
+                            <Label Name="lblSrNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="136" Canvas.Top="8" Width="254"/>
 
                             <Label Name="lblCPONo" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Left="9" Canvas.Top="44"/>
-                            <Label Name="lblPONo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="136" Canvas.Top="44" Width="238"/>
+                            <Label Name="lblPONo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="136" Canvas.Top="44" Width="254"/>
 
                             <Label Name="lblCSHNo" Content="Shipment Number : " Style="{StaticResource lblConstant}" Canvas.Left="9" Canvas.Top="77"/>
-                            <Label Name="lblSHNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="189" Canvas.Top="75" Width="185"/>
+                            <Label Name="lblSHNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="189" Canvas.Top="75" Width="201"/>
 
                             <Label Name="lblCPCKNo" Content="Packing Number : " Style="{StaticResource lblConstant}" Canvas.Left="9" Canvas.Top="110"/>
-                            <Label Name="lblPCKNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="184" Canvas.Top="108" Width="190"/>
+                            <Label Name="lblPCKNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="184" Canvas.Top="108" Width="206"/>
 
                             <Label Name="lblCPackingDate" Content="Packing Date : " Style="{StaticResource lblConstant}" Canvas.Left="417" Canvas.Top="149"/>
-                            <Label Name="lblPackingDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="551" Width="236" Canvas.Top="149"/>
+                            <Label Name="lblPackingDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="551" Width="352" Canvas.Top="149"/>
 
-                            <Label Name="lblCCustomerName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Left="920" Canvas.Top="12"/>
-                            <Label Name="lblCustomerName" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="920" Canvas.Top="44" Width="382"/>
+                            <Label Name="lblCCustomerName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Left="920" Canvas.Top="8"/>
+                            <Label Name="lblCustomerName" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="920" Canvas.Top="48" Width="382"/>
 
-                            <Label Name="lblCCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Left="920" Canvas.Top="83"/>
+                            <Label Name="lblCCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Left="920" Canvas.Top="77"/>
                             <Label Name="lblCustomerAddress" Style="{StaticResource lblVeriable}" Canvas.Left="920" Canvas.Top="110" Width="382" Height="72">
                                 <Label.Content>
                                     <TextBlock TextWrapping="Wrap" Text="N/A"/>
@@ -113,16 +115,16 @@
                             </Label>
 
                             <Label Name="lblCDeliveryMode" Content="Delivery Mode : " Style="{StaticResource lblConstant}" Canvas.Left="417" Canvas.Top="10" Width="148"/>
-                            <Label Name="lblDeliveryMode" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="570" Canvas.Top="10" Width="300" Height="31"/>
+                            <Label Name="lblDeliveryMode" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="570" Canvas.Top="10" Width="333" Height="31"/>
 
                             <Label Name="lblCDeliveryProvider" Content="Delivery Provider : " Style="{StaticResource lblConstant}" Canvas.Left="417" Canvas.Top="48" Width="172"/>
-                            <Label Name="lblDeliveryProvider" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="594" Canvas.Top="48" Width="276" Height="31"/>
+                            <Label Name="lblDeliveryProvider" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="594" Canvas.Top="48" Width="309" Height="31"/>
 
                             <Label Name="lblCTrackingNumber" Content="Tracking Number : " Style="{StaticResource lblConstant}" Canvas.Left="417" Canvas.Top="116"/>
                             <Label Name="lblTrackingNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="589" Canvas.Top="114" Width="314" Height="31"/>
 
                             <Label Name="lblCWarehouse" Content="Warehouse : " Style="{StaticResource lblConstant}" Canvas.Left="417" Canvas.Top="83" Width="123"/>
-                            <Label Name="lblWarehouse" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="535" Canvas.Top="82" Width="324" Height="31" RenderTransformOrigin="0.5,0.5">
+                            <Label Name="lblWarehouse" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="535" Canvas.Top="82" Width="369" Height="31" RenderTransformOrigin="0.5,0.5">
                                 <Label.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -139,15 +141,15 @@
                           x:Name="VidDvcsComboBox" VerticalAlignment="Top" Width="210" Visibility="Hidden" />
                 <ComboBox Visibility="Hidden" Height="23" HorizontalAlignment="Left" Margin="105,302,0,0"
                           x:Name="AudDvcsComboBox" VerticalAlignment="Top" Width="209" />
-                <Border BorderThickness="0" Height="115" Canvas.Left="1221" Canvas.Top="655" Width="129"
+                <Border BorderThickness="0" Height="85" Canvas.Left="1211" Canvas.Top="685" Width="123"
                         CornerRadius="10">
                     <Canvas>
-                        <Button x:Name="btnOpenCamera" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Content="" Width="95" Height="88" BorderBrush="{x:Null}" BorderThickness="0" Click="btnOpenCamera_Click" Canvas.Left="16" Canvas.Top="-1" >
+                        <Button x:Name="btnOpenCamera" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Content="" Width="69" Height="60" BorderBrush="{x:Null}" BorderThickness="0" Click="btnOpenCamera_Click" Canvas.Left="32" >
                             <Button.Background>
                                 <ImageBrush ImageSource="/KrausGra;component/Images/Camera Folder.png"/>
                             </Button.Background>
                         </Button>
-                        <TextBlock Canvas.Left="-1" Style="{StaticResource TextMenu}" TextWrapping="Wrap" Text="Open Camera" Canvas.Top="90" Width="123"/>
+                        <TextBlock Style="{StaticResource TextMenu}" TextWrapping="Wrap" Text="Open Camera" Canvas.Top="59" Width="123"/>
                     </Canvas>
                 </Border>
                 <Canvas x:Name="cnTitle" Height="100" Width="1360">
