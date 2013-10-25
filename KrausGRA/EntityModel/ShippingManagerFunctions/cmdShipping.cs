@@ -11,7 +11,7 @@ namespace KrausGRA.EntityModel.ShippingManagerFunctions
     /// shipping table commands.
     /// GetData
     /// </summary>
-    class cmdShipping
+  public  class cmdShipping
     {
         //Shipping Manager Database Object
         Shipping_ManagerEntities entShippingManager = new Shipping_ManagerEntities();

@@ -72,8 +72,10 @@ namespace KrausGRA.UI
 
         private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
         {
+            bdrSrNumber.Visibility = System.Windows.Visibility.Hidden;
             bdrScan.Visibility = System.Windows.Visibility.Hidden;
             bdrScan.Visibility = System.Windows.Visibility.Visible;
+
             txtScan.Focus();
         }
 
@@ -88,6 +90,29 @@ namespace KrausGRA.UI
                         main.Show();
 
                     }));
+                this.Close();
+            }
+        }
+
+        private void btnPONumber_Click(object sender, RoutedEventArgs e)
+        {
+            bdrScan.Visibility = System.Windows.Visibility.Hidden;
+            bdrSrNumber.Visibility = System.Windows.Visibility.Hidden;
+            bdrSrNumber.Visibility = System.Windows.Visibility.Visible;
+            txtsrScan.Focus();
+        }
+
+        private void txtsrScan_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    wndSrNumberInfo main = new wndSrNumberInfo();
+                    main.Show();
+
+                }));
                 this.Close();
             }
         }
