@@ -103,9 +103,6 @@
     <Compile Include="UI\wndBoxInformation.xaml.cs">
       <DependentUpon>wndBoxInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\wndLogin.xaml.cs">
-      <DependentUpon>wndLogin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\wndSrNumberInfo.xaml.cs">
       <DependentUpon>wndSrNumberInfo.xaml</DependentUpon>
     </Compile>
@@ -129,10 +126,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\wndBoxInformation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\wndLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
