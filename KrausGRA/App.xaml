@@ -9,6 +9,7 @@
         <Style x:Key="lblConstant" TargetType="Label">
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
         </Style>
         <Style x:Key="lblVeriable" TargetType="Label">
             <Setter Property="FontSize" Value="22"/>
@@ -63,7 +64,7 @@
         <!--  _________________________ -->
         
         
-        <!-- Trigges -->
+        <!--Border Trigges -->
         <!-- 1 -->
         <Style x:Key="trgBorderHideShow0" TargetType="Border">
             <Style.Triggers >
@@ -94,5 +95,8 @@
             </Style.Triggers>
         </Style>
         <!--  _________________________ -->
+        
+        <!-- Tab Control Styles-->
+            <!-- __________________________ -->
     </Application.Resources>
 </Application>
