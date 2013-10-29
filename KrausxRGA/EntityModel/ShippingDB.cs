@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using KrausGRA.EntityModel;
-using KrausGRA.EntityModel.ShippingManagerFunctions;
+using KrausRGA.EntityModel;
+using KrausRGA.EntityModel.ShippingManagerFunctions;
 
 
-namespace KrausGRA.EntityModel
+namespace KrausRGA.EntityModel
 {
     /// <summary>
     /// Avinash : 22 Oct 2013.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace KrausGRA.Views
+namespace KrausRGA.Views
 {
    public class Box
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace KrausGRA.EntityModel.ShippingManagerFunctions
+namespace KrausRGA.EntityModel.ShippingManagerFunctions
 {
 
     /// <summary>

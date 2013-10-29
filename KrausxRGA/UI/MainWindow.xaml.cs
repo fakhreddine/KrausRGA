@@ -17,7 +17,7 @@ using System.IO;
 using System.Drawing.Imaging;
 
 
-namespace KrausGRA
+namespace KrausRGA
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -77,7 +77,7 @@ namespace KrausGRA
             var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
             var audDevices = EncoderDevices.FindDevices(EncoderDeviceType.Audio);
 
-            int CameraNumber = KrausGRA.Properties.Settings.Default.CameraNumber;
+            int CameraNumber = KrausRGA.Properties.Settings.Default.CameraNumber;
             int i = 0;
             foreach (EncoderDevice dvc in vidDevices)
             {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using KrausGRA.EntityModel.ShippingManagerFunctions;
+using KrausRGA.EntityModel.ShippingManagerFunctions;
 
-namespace KrausGRA.EntityModel.ShippingManagerFunctions
+namespace KrausRGA.EntityModel.ShippingManagerFunctions
 {
     /// <summary>
     /// Avinash :22 oct 2013

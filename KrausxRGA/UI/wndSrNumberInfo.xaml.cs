@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KrausGRA.UI
+namespace KrausRGA.UI
 {
     /// <summary>
     /// Interaction logic for wndSrNumberInfo.xaml
@@ -21,6 +21,12 @@ namespace KrausGRA.UI
         public wndSrNumberInfo()
         {
             InitializeComponent();
+        }
+
+        private void bdrButtonTemp_Loaded(object sender, RoutedEventArgs e)
+        {
+            btnTemp.Focus();
+            //btnTemp.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }

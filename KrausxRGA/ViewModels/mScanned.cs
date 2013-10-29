@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using KrausGRA.EntityModel;
+using KrausRGA.EntityModel;
 
 
-namespace KrausGRA.ViewModels
+namespace KrausRGA.ViewModels
 {
    
     /// <summary>
