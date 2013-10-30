@@ -5,9 +5,12 @@ using System.Text;
 
 namespace KrausRGA.Views
 {
+    /// <summary>
+    /// Box information.
+    /// </summary>
     public class Box
     {
-        public int SKUNUmber { get; set; }
+        public int RowID { get; set; }
         public String BoxNumber { get; set; }
         public String SKUName { get; set; }
         public String ProductName { get; set; }
