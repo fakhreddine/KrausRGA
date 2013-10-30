@@ -26,9 +26,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ProductName>RGA System</ProductName>
+    <PublisherName>Kraus USA</PublisherName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -52,6 +57,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>KrausRGA.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>8EF2026A8D76410BA520B0A12FC8FD75D2B3D6FF</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>KrausRGA_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -93,18 +110,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EntityModel\ShippingDB.cs" />
-    <Compile Include="EntityModel\ShippingManagerFunctions\AbstractClassMethods.cs" />
-    <Compile Include="EntityModel\ShippingManagerFunctions\cmdShipping.cs" />
-    <Compile Include="GRAEnum\ScannedValueType.cs" />
+    <Compile Include="EntityModel\x3v6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>x3v6.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="UI\wndBoxInformation.xaml.cs">
       <DependentUpon>wndBoxInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\wndSrNumberInfo.xaml.cs">
       <DependentUpon>wndSrNumberInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\mScanned.cs" />
     <Compile Include="Views\Box.cs" />
+    <Compile Include="Views\Image.cs" />
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -159,6 +178,13 @@
     <None Include="EntityModel\ShippingManager.edmx.diagram">
       <DependentUpon>ShippingManager.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="EntityModel\x3v6.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>x3v6.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityModel\x3v6.edmx.diagram">
+      <DependentUpon>x3v6.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -204,6 +230,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DBLogics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

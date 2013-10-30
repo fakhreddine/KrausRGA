@@ -99,9 +99,6 @@
                                         <!-- Grid View-->
                                         <Border Visibility="Visible" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437" Loaded="bdrButtonTemp_Loaded">
                                             <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
-
-
-
                                         </Border>
 
                                         <!-- Grid View-->
@@ -186,16 +183,14 @@
 
                                         </DataGrid>
                                         <!-- Grid Finish-->
-                                        <Border x:Name="bdrButton" Height="62" Width="249" Canvas.Left="1088" Canvas.Top="553">
+                                        <Border x:Name="bdrButton" Height="62" Width="249" Canvas.Left="1093" Canvas.Top="553">
                                             <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                     			Content="Save" 
                                     			Width="249" 
                                     			Height="62" 
                                     			Background="#FF464343" 
                                     			Foreground="#FFF9F9F9" 
-                                    			OpacityMask="Black"
-                                                />
-
+                                    			OpacityMask="Black" />
                                         </Border>
 
                                     </Canvas>
