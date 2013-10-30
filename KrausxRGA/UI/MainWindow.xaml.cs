@@ -116,7 +116,7 @@ namespace KrausRGA
             img.Height = 165;
             img.Width = 200;
             img.Stretch = Stretch.Fill;
-            img.Name = "KrausGRA" + DateTime.Now.ToString("hhmmsstt");
+            img.Name = "KrausRGA" + DateTime.Now.ToString("hhmmsstt");
             img.Source = bs;
             img.Margin = new Thickness(2.0);
             spPhotos.Children.Add(img);

@@ -28,7 +28,7 @@
                             <Border Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="219" Width="305" Background="#FF474747">
                                 <Button x:Name="btnPONumber" Style="{StaticResource win8btn}" Content="Enter Number" Margin="-1,-1,-1,1" Click="btnPONumber_Click"/>
                             </Border>
-                            <Border Visibility="Hidden" Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="5" Canvas.Top="587" Width="305" Background="#FF3E3F42">
+                            <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="5" Canvas.Top="587" Width="305" Background="#FF3E3F42">
                                 <Button x:Name="btnBoxNumber" Style="{StaticResource win8btn}" Content="Scan" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
                             </Border>
                             <TextBlock TextWrapping="Wrap" Text="SR # of Return" FontWeight="Bold" TextAlignment="Center" Canvas.Top="167" FontSize="35" Width="337" Foreground="White" Canvas.Left="-7"/>

@@ -14,7 +14,7 @@
                                 <GradientStop Color="#FF686868" Offset="0.988"/>
                             </LinearGradientBrush>
                         </Canvas.Background>
-                        <Image x:Name="imgLogo" Height="80" Canvas.Left="1" Canvas.Top="10" Width="211" Stretch="Fill" Cursor="None" Source="/KrausGra;component/Images/logo.png"/>
+                        <Image x:Name="imgLogo" Height="80" Canvas.Left="1" Canvas.Top="10" Width="211" Stretch="Fill" Cursor="None" Source="/KrausRGA;component/Images/logo.png"/>
                         <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="RGA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30" Foreground="White"/>
                     </Canvas>
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
