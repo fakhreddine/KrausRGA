@@ -11,12 +11,11 @@ namespace KrausRGA.Models
     /// Avainsh : 30-oct 2013
     /// Model for Entered Number validations, 
     /// also all information about that number.
+    /// class properties are Auto-set when Constructor is called.
     /// </summary>
     public class mReturnDetails
-    {  
-       
-
-        #region Class Contructor
+    {
+        #region Class Contructors
 
         /// <summary>
         /// Class Constructor. 
@@ -67,7 +66,7 @@ namespace KrausRGA.Models
         #endregion
 
         #region Member Functions of class.
-        
+
         /// <summary>
         /// Entered Number Type.
         /// if its PO number then lsRMAInformation will not be null of this class.
@@ -131,33 +130,33 @@ namespace KrausRGA.Models
             {
                 switch (enumNumberType)
                 {
-                        //Order Number Case.
+                    //Order Number Case.
                     case NumberType.OrderNumber:
                         lsRMAInformation = Sage.GetRMAInfoBySONumber(Number);
                         if (lsRMAInformation.Count() > 0)
                             _isNumberValid = true;
                         break;
 
-                        //SR Number Case.
+                    //SR Number Case.
                     case NumberType.SRNumber:
                         lsRMAInformation = Sage.GetRMAInfoBySRNumber(Number);
                         if (lsRMAInformation.Count() > 0)
                             _isNumberValid = true;
                         break;
 
-                        //Shipment Number case.
+                    //Shipment Number case.
                     case NumberType.ShipmentNumber:
                         lsRMAInformation = Sage.GetRMAInfoByShipmentNumber(Number);
                         if (lsRMAInformation.Count() > 0)
                             _isNumberValid = true;
                         break;
 
-                        //PO Number Case. no need to set lsRMAInformation. is set when PO Number validation check
+                    //PO Number Case. no need to set lsRMAInformation. is set when PO Number validation check
                     case NumberType.PONumber:
                         _isNumberValid = true;
                         break;
 
-                        //Default Number case. also UnIdentified case.
+                    //Default Number case. also UnIdentified case.
                     default:
                         _isNumberValid = false;
                         break;
@@ -168,6 +167,17 @@ namespace KrausRGA.Models
             { }
 
             return _isNumberValid;
+        }
+
+        /// <summary>
+        /// create shallow copy of current class;
+        /// </summary>
+        /// <returns>
+        /// new object with shallow copy.
+        /// </returns>
+        public mReturnDetails GetShollowCopy()
+        {
+            return (mReturnDetails)this.MemberwiseClone();
         }
 
         #endregion
