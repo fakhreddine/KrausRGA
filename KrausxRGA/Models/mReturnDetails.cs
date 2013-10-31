@@ -83,8 +83,6 @@ namespace KrausRGA.Models
         /// </returns>
         public NumberType GetEnteredNumberType(String Number)
         {
-
-
             NumberType _numberType = new NumberType();
             try
             {
