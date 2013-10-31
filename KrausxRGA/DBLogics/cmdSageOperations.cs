@@ -87,7 +87,7 @@ namespace KrausRGA.DBLogics
                                                                                     LEFT JOIN PRODUCTION.BPCUSTOMER bpc ON sr.BPCORD_0 = bpc.BPCNUM_0
                                                                                     LEFT JOIN PRODUCTION.ITMMASTER itm
                                                                                     ON itm.ITMREF_0 = srd.ITMREF_0
-                                                                                    WHERE sr.SRHNUM_0 ='" + SRNumber + "';");
+                                                                                    WHERE sr.SRHNUM_0 ='" + SRNumber + "';").ToList();
                if (RMAdetailsInfo.Count()>0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)
@@ -170,7 +170,7 @@ namespace KrausRGA.DBLogics
                                                                                     LEFT JOIN PRODUCTION.BPCUSTOMER bpc ON sr.BPCORD_0 = bpc.BPCNUM_0
                                                                                     LEFT JOIN PRODUCTION.ITMMASTER itm
                                                                                     ON itm.ITMREF_0 = srd.ITMREF_0
-                                                                                    WHERE sr.SOHNUM_0 ='" + PONumber + "';");
+                                                                                    WHERE so.CUSORDREF_0 ='" + PONumber + "';").ToList();
                if (RMAdetailsInfo.Count() > 0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)
@@ -253,7 +253,7 @@ namespace KrausRGA.DBLogics
                                                                                     LEFT JOIN PRODUCTION.BPCUSTOMER bpc ON sr.BPCORD_0 = bpc.BPCNUM_0
                                                                                     LEFT JOIN PRODUCTION.ITMMASTER itm
                                                                                     ON itm.ITMREF_0 = srd.ITMREF_0
-                                                                                    WHERE sr.SOHNUM_0 ='" + SONumber + "';");
+                                                                                    WHERE so.SOHNUM_0 ='" + SONumber + "';").ToList();
                if (RMAdetailsInfo.Count() > 0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)
@@ -336,7 +336,7 @@ namespace KrausRGA.DBLogics
                                                                                     LEFT JOIN PRODUCTION.BPCUSTOMER bpc ON sr.BPCORD_0 = bpc.BPCNUM_0
                                                                                     LEFT JOIN PRODUCTION.ITMMASTER itm
                                                                                     ON itm.ITMREF_0 = srd.ITMREF_0
-                                                                                    WHERE sr.SOHNUM_0 ='" + ShipmentNumber + "';");
+                                                                                    WHERE sr.SDHNUM_0 ='" + ShipmentNumber + "';").ToList();
                if (RMAdetailsInfo.Count() > 0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)
