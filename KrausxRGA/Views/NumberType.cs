@@ -11,7 +11,7 @@ namespace KrausRGA.Views
     /// </summary>
     public enum NumberType
     {
-        UnDefined =0,
+        UnIdefined =0,
         SRNumber = 1,
         OrderNumber=2,
         PONumber,
