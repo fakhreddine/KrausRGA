@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KrausRGA.Views;
 
 namespace KrausRGA.UI
 {
@@ -31,7 +33,6 @@ namespace KrausRGA.UI
         {
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
-
         }
         
         #endregion

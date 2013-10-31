@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KrausRGA.Views;
+using KrausRGA.DBLogics;
 
 namespace KrausRGA.Models
 {
@@ -10,27 +12,62 @@ namespace KrausRGA.Models
     /// Model for Entered Number validations, 
     /// also all information about that number.
     /// </summary>
-   public class mReturnDetails
+    public static class mReturnDetails
     {
         /// <summary>
         /// Enterd Number.
         /// </summary>
-        protected static string _SRNumber { get; set; }
+        private static String _SRNumber { get; set; }
+
+        //list of RMA Information.
+        public static List<RMAInfo> lsRMAInformation = new List<RMAInfo>();
 
         /// <summary>
-        /// Paramerised constructor for calss
+        /// Entered Number Type.
+        /// if its PO number then lsRMAInformation will not be null of this class.
         /// </summary>
         /// <param name="SRNumber">
-        /// String Enterd number for 
+        /// String SRNumber.
         /// </param>
-         public mReturnDetails(String SRNumber)
+        /// <returns>
+        /// enum of NumberType.
+        /// </returns>
+        public static NumberType EnteredNumberType()
         {
-            _SRNumber = SRNumber;
+            //Sage Operations class that perform get operations on the sage.
+            cmdSageOperations Sage = new cmdSageOperations();
+
+            NumberType _numberType = new NumberType();
+            try
+            {
+                _numberType = NumberType.UnDefined;
+
+                if (_SRNumber.ToUpper().Contains("SR"))
+                    _numberType = NumberType.SRNumber;
+               else if (_SRNumber.ToUpper().Contains("SH"))
+                    _numberType = NumberType.ShipmentNumber;
+               else if (_SRNumber.ToUpper().Contains("SO"))
+                    _numberType = NumberType.OrderNumber;
+                else if (_SRNumber.ToUpper().Contains("DOM"))
+                    _numberType = NumberType.VendorNumber;
+                else
+                {
+                    lsRMAInformation = Sage.GetRMAInfoByPONumber(_SRNumber);
+                    if (lsRMAInformation.Count() > 0)
+                        _numberType = NumberType.PONumber;
+                }
+            }
+            catch (Exception)
+            {}
+
+            return _numberType;
+ 
         }
 
         /// <summary>
         /// Scanned Number is valid or not. 
-        /// this is checked in x3v6 database 
+        /// this is checked in x3v6 database
+        /// lsRMAInformation object is filled if the Number is valid.s;;
         /// also you can add user validation to ented number validate.
         /// </summary>
         /// <param name="SRNumber">
@@ -39,7 +76,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Boolean value true if valid enterd number else false.
         /// </returns>
-        protected Boolean IsValidNumberEntred(String SRNumber)
+        public static Boolean IsValidNumberEntred(this String SRNumber)
         {
             Boolean _isNumberValid = false;
 
@@ -53,7 +90,28 @@ namespace KrausRGA.Models
             return _isNumberValid;
         }
 
-       
-      
+        /// <summary>
+        /// Get RMA
+        /// </summary>
+        /// <param name="SRNumber">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
+        public static List<RMAInfo> GetRMAInfo(this String SRNumber)
+        {
+            List<RMAInfo> lsRMAinfo = new List<RMAInfo>();
+            try
+            {
+
+            }
+            catch (Exception)
+            { }
+            return lsRMAinfo;
+        }
+
+
+
     }
 }
