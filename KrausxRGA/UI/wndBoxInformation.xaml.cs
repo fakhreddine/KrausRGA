@@ -67,12 +67,6 @@ namespace KrausRGA.UI
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
             if (e.Key == Key.Enter)
             {
-                Models.mReturnDetails mReturn = new Models.mReturnDetails(txtLogin.Text);
-
-                Views.NumberType EnumT = mReturn.EnumNumberType;
-                Boolean ValidEntered = mReturn.IsValidNumber;
-                List<RMAInfo> lsRMAInfo = mReturn.lsRMAInformation;
-                
                 hideButtons(System.Windows.Visibility.Visible);
             }
         }

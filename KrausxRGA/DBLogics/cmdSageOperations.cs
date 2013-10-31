@@ -336,7 +336,7 @@ namespace KrausRGA.DBLogics
                                                                                     LEFT JOIN PRODUCTION.BPCUSTOMER bpc ON sr.BPCORD_0 = bpc.BPCNUM_0
                                                                                     LEFT JOIN PRODUCTION.ITMMASTER itm
                                                                                     ON itm.ITMREF_0 = srd.ITMREF_0
-                                                                                    WHERE sr.SDHNUM_0 ='" + ShipmentNumber + "';").ToList();
+                                                                                    WHERE srd.SDHNUM_0 ='" + ShipmentNumber + "';").ToList();
                if (RMAdetailsInfo.Count() > 0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)

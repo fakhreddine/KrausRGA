@@ -14,10 +14,7 @@ namespace KrausRGA.Models
     /// </summary>
     public class mReturnDetails
     {  
-        /// <summary>
-        /// Sage Operations class that perform get operations on the sage.
-        /// </summary>
-        private cmdSageOperations Sage = new cmdSageOperations();
+       
 
         #region Class Contructor
 
@@ -83,6 +80,8 @@ namespace KrausRGA.Models
         /// </returns>
         public NumberType GetEnteredNumberType(String Number)
         {
+            cmdSageOperations Sage = new cmdSageOperations();
+
             NumberType _numberType = new NumberType();
             try
             {
@@ -124,6 +123,8 @@ namespace KrausRGA.Models
         /// </returns>
         public Boolean GetIsValidNumberEntred(String Number, NumberType enumNumberType)
         {
+            cmdSageOperations Sage = new cmdSageOperations();
+
             Boolean _isNumberValid = false;
 
             try
