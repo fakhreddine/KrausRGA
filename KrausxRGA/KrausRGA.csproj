@@ -111,12 +111,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBLogics\cmdSageOperations.cs" />
+    <Compile Include="DBLogics\cmdUser.cs" />
+    <Compile Include="EntityModel\RMASYTEM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RMASYTEM.edmx</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\x3v6.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>x3v6.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\mReturnDetails.cs" />
+    <Compile Include="Models\mUser.cs" />
     <Compile Include="UI\wndBoxInformation.xaml.cs">
       <DependentUpon>wndBoxInformation.xaml</DependentUpon>
     </Compile>
@@ -135,11 +142,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EntityModel\ShippingManager.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShippingManager.edmx</DependentUpon>
     </Compile>
     <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -175,12 +177,12 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="EntityModel\ShippingManager.edmx">
+    <EntityDeploy Include="EntityModel\RMASYTEM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShippingManager.Designer.cs</LastGenOutput>
+      <LastGenOutput>RMASYTEM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="EntityModel\ShippingManager.edmx.diagram">
-      <DependentUpon>ShippingManager.edmx</DependentUpon>
+    <None Include="EntityModel\RMASYTEM.edmx.diagram">
+      <DependentUpon>RMASYTEM.edmx</DependentUpon>
     </None>
     <EntityDeploy Include="EntityModel\x3v6.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
