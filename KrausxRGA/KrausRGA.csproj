@@ -132,9 +132,8 @@
     </Compile>
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\Image.cs" />
-    <Compile Include="Views\NumberType.cs" />
+    <Compile Include="Views\eNumberType.cs" />
     <Compile Include="Views\RMAInfo.cs" />
-    <Compile Include="Views\SReturn.cs" />
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

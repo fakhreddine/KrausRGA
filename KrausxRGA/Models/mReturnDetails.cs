@@ -51,7 +51,7 @@ namespace KrausRGA.Models
         /// <summary>
         /// Type Of Entred Number. 
         /// </summary>
-        public NumberType EnumNumberType { get; protected set; }
+        public eNumberType EnumNumberType { get; protected set; }
 
         /// <summary>
         /// Entered Number Is valid Or Not.
@@ -77,28 +77,28 @@ namespace KrausRGA.Models
         /// <returns>
         /// enum of NumberType.
         /// </returns>
-        public NumberType GetEnteredNumberType(String Number)
+        public eNumberType GetEnteredNumberType(String Number)
         {
             cmdSageOperations Sage = new cmdSageOperations();
 
-            NumberType _numberType = new NumberType();
+            eNumberType _numberType = new eNumberType();
             try
             {
-                _numberType = NumberType.UnIdefined;
+                _numberType = eNumberType.UnIdefined;
 
                 if (Number.ToUpper().Contains("SR"))
-                    _numberType = NumberType.SRNumber;
+                    _numberType = eNumberType.SRNumber;
                 else if (Number.ToUpper().Contains("SH"))
-                    _numberType = NumberType.ShipmentNumber;
+                    _numberType = eNumberType.ShipmentNumber;
                 else if (Number.ToUpper().Contains("SO"))
-                    _numberType = NumberType.OrderNumber;
+                    _numberType = eNumberType.OrderNumber;
                 else if (Number.ToUpper().Contains("DOM"))
-                    _numberType = NumberType.VendorNumber;
+                    _numberType = eNumberType.VendorNumber;
                 else
                 {
                     lsRMAInformation = Sage.GetRMAInfoByPONumber(Number);
                     if (lsRMAInformation.Count() > 0)
-                        _numberType = NumberType.PONumber;
+                        _numberType = eNumberType.PONumber;
                 }
             }
             catch (Exception)
@@ -120,7 +120,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Boolean value true if valid enterd number else false.
         /// </returns>
-        public Boolean GetIsValidNumberEntred(String Number, NumberType enumNumberType)
+        public Boolean GetIsValidNumberEntred(String Number, eNumberType enumNumberType)
         {
             cmdSageOperations Sage = new cmdSageOperations();
 
@@ -131,28 +131,28 @@ namespace KrausRGA.Models
                 switch (enumNumberType)
                 {
                     //Order Number Case.
-                    case NumberType.OrderNumber:
+                    case eNumberType.OrderNumber:
                         lsRMAInformation = Sage.GetRMAInfoBySONumber(Number);
                         if (lsRMAInformation.Count() > 0)
                             _isNumberValid = true;
                         break;
 
                     //SR Number Case.
-                    case NumberType.SRNumber:
+                    case eNumberType.SRNumber:
                         lsRMAInformation = Sage.GetRMAInfoBySRNumber(Number);
                         if (lsRMAInformation.Count() > 0)
                             _isNumberValid = true;
                         break;
 
                     //Shipment Number case.
-                    case NumberType.ShipmentNumber:
+                    case eNumberType.ShipmentNumber:
                         lsRMAInformation = Sage.GetRMAInfoByShipmentNumber(Number);
                         if (lsRMAInformation.Count() > 0)
                             _isNumberValid = true;
                         break;
 
                     //PO Number Case. no need to set lsRMAInformation. is set when PO Number validation check
-                    case NumberType.PONumber:
+                    case eNumberType.PONumber:
                         _isNumberValid = true;
                         break;
 

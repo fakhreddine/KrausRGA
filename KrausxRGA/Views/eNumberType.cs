@@ -9,7 +9,7 @@ namespace KrausRGA.Views
     /// <summary>
     /// This enum defines the Type of entered Number.
     /// </summary>
-    public enum NumberType
+    public enum eNumberType
     {
         UnIdefined =0,
         SRNumber = 1,
