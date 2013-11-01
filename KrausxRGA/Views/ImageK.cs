@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KrausRGA.Views
 {
-   public class Image
+   public class ImageK
     {
        public String ImageName { get; set; }
        public String ImagePath { get; set; }

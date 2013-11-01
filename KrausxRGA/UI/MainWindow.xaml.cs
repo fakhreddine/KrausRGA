@@ -26,7 +26,7 @@ namespace KrausRGA
     {
         public MainWindow()
         {
-            InitializeComponent();                    
+            InitializeComponent();
 
             // Bind the Video and Audio device properties of the
             // Webcam control to the SelectedValue property of 
@@ -61,7 +61,7 @@ namespace KrausRGA
 
             WebCamCtrl.ImageDirectory = imgPath;
             WebCamCtrl.PictureFormat = ImageFormat.Jpeg;
-            
+
             WebCamCtrl.FrameRate = 30;
             WebCamCtrl.FrameSize = new System.Drawing.Size(320, 240);
 
@@ -72,6 +72,13 @@ namespace KrausRGA
             AudDvcsComboBox.SelectedIndex = 0;
         }
 
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Display webcam video on control.
+            bdrStop.Visibility = System.Windows.Visibility.Hidden;
+            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
+        }
         private void FindDevices()
         {
             var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
@@ -81,8 +88,8 @@ namespace KrausRGA
             int i = 0;
             foreach (EncoderDevice dvc in vidDevices)
             {
-                if (i==CameraNumber)
-                VidDvcsComboBox.Items.Add(dvc.Name);
+                if (i == CameraNumber)
+                    VidDvcsComboBox.Items.Add(dvc.Name);
                 i++;
             }
 
@@ -124,22 +131,15 @@ namespace KrausRGA
             sclPh.ScrollToRightEnd();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Display webcam video on control.
-            bdrStop.Visibility = System.Windows.Visibility.Hidden;
-            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
-        }
-
         private void btnStartCapture_Click(object sender, RoutedEventArgs e)
         {
-            
+
             bdrCapture.Visibility = System.Windows.Visibility.Visible;
             bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
             bdrStop.Visibility = System.Windows.Visibility.Visible;
 
-            
-            WebCamCtrl.StartCapture(); 
+
+            WebCamCtrl.StartCapture();
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
@@ -150,7 +150,7 @@ namespace KrausRGA
             bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
 
-          
+
         }
 
         private void btnOpenCamera_Click(object sender, RoutedEventArgs e)
@@ -180,13 +180,13 @@ namespace KrausRGA
         {
             try
             {
-                while (stackPacnel.Children.Count>0)
+                while (stackPacnel.Children.Count > 0)
                 {
-                    stackPacnel.Children.RemoveAt(stackPacnel.Children.Count-1);
+                    stackPacnel.Children.RemoveAt(stackPacnel.Children.Count - 1);
                 }
             }
             catch (Exception)
-            {}
+            { }
         }
     }
 }

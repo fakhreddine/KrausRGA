@@ -15,6 +15,6 @@ namespace KrausRGA.Views
         public String SKUName { get; set; }
         public String ProductName { get; set; }
         public int Quantity { get; set; }
-        public Image[] Images { get; set; }
+        public ImageK[] Images { get; set; }
     }
 }

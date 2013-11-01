@@ -22,7 +22,7 @@ namespace KrausRGA.UI
     /// </summary>
     public partial class wndBoxInformation : Window
     {
-        mReturnDetails mReturn;
+        mReturnDetails _mReturn;
 
         public wndBoxInformation()
         {
@@ -91,10 +91,10 @@ namespace KrausRGA.UI
                 //check Enter not pressed with blank Value.
                 if (txtScan.Text.Trim() != "")
                 {
-                    clGlobal.mReturn = mReturn;
-                  mReturn = new mReturnDetails(txtScan.Text);
-
-                  if (mReturn.IsValidNumber)
+                    
+                  _mReturn = new mReturnDetails(txtScan.Text);
+                  clGlobal.mReturn = _mReturn;
+                  if (_mReturn.IsValidNumber)
                     {
                         this.Dispatcher.Invoke(new Action(() =>
                             {

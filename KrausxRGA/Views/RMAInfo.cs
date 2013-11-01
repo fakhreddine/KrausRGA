@@ -21,7 +21,7 @@ namespace KrausRGA.Views
         public String VendorNumber { get; set; }
         public String VendorName { get; set; }
         public String SKUNumber { get; set; }
-        public String PeoductName { get; set; }
+        public String ProductName { get; set; }
         public int DeliveredQty { get; set; }
         public int ExpectedQty { get; set; }
         public int ReturnedQty { get; set; }

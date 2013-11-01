@@ -1,7 +1,9 @@
 ﻿<Window x:Class="KrausRGA.UI.wndSrNumberInfo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       Title="Kraus GRA System" Height="800" Width="1400" WindowState="Maximized">
+        xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
+       Title="Kraus GRA System" Height="800" Width="1400" WindowState="Maximized"
+       Loaded="Window_Loaded" >
 
     <Viewbox >
         <Grid>
@@ -31,7 +33,7 @@
                                                 <Label Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="174" Canvas.Top="71" Width="254" Height="33"/>
 
                                                 <Label Name="lblcRMARewDate" Content="RMA Rewuest Date : " Style="{StaticResource lblConstant}" Canvas.Left="499" Canvas.Top="71" Width="193"/>
-                                                <Label Name="lblRMARewDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="697" Canvas.Top="71" Width="254" Height="33"/>
+                                                <Label Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="697" Canvas.Top="71" Width="254" Height="33"/>
 
                                                 <Label Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="164" Canvas.Left="11"/>
                                                 <Label Name="lblVendorNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="180" Canvas.Top="123" Width="254" Height="33"/>
@@ -114,13 +116,15 @@
                                     		AutoGenerateColumns="False" 
                                     		FontSize="17" 
                                     		Background="#FFE6E6E6" 
-                                    		SelectionUnit="Cell" 
+                                    		SelectionUnit="FullRow" 
                                     		BorderThickness="1" 
                                     		Cursor="Hand"   
                                     		BorderBrush="{x:Null}" 
                                     		HorizontalGridLinesBrush="#FF575757" 
                                     		VerticalGridLinesBrush="Gray"
-                                    		Height="545" >
+                                    		Height="545"  
+                                                   
+                                                   >
 
                                             <DataGrid.Resources>
                                                 <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
@@ -130,17 +134,26 @@
                                             </DataGrid.Resources>
 
                                             <DataGrid.Columns>
-                                                <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" Header="Item" Width="50"  >
+                                                <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="50"  >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
-                                                            <StackPanel >
-                                                                <CheckBox x:Name="chkIsItemPresent" Content=""/>
+                                                            <StackPanel VerticalAlignment="Center">
+                                                                <CheckBox x:Name="chkIsItemPresent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
+                                                                    <CheckBox.RenderTransform>
+                                                                        <TransformGroup>
+                                                                            <ScaleTransform ScaleX="3" ScaleY="3"/>
+                                                                            <SkewTransform/>
+                                                                            <RotateTransform/>
+                                                                            <TranslateTransform/>
+                                                                        </TransformGroup>
+                                                                    </CheckBox.RenderTransform>
+                                                                </CheckBox>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
                                                 <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-                                    				Binding="{Binding SKU}" 
+                                    				Binding="{Binding SKUNumber}" 
                                     				Header="SKU"  
                                     				Width="180" 
                                     				IsReadOnly="True" />
@@ -158,7 +171,7 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <StackPanel x:Name="spQty1" Width="150">
-                                                                <TextBlock x:Name="tbQty" TextAlignment="Center" Width="150" Text="0" FontSize="20"/>
+                                                                <TextBlock x:Name="tbQty" TextAlignment="Center" Width="150" Text="{Binding ReturnedQty}" FontSize="20"/>
                                                                 <StackPanel x:Name="spQty2" Orientation="Horizontal">
                                                                     <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="75" Height="40" FontSize="30" Foreground="White" Background="#FF464646" />
                                                                     <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="75" Height="40" FontSize="30" Foreground="White" Background="#FF464646"/>
@@ -170,12 +183,14 @@
 
                                                 <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
                                     				Header="Images" 
-                                    				Width="*"  >
+                                    				Width="*" >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
-                                                            <StackPanel >
-                                                                <Image x:Name="ImgSKU"  />
-                                                            </StackPanel>
+                                                            <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
+                                                                <StackPanel Background="#FFA4A4A4"  >
+                                                                    <Image x:Name="ImgSKU" />
+                                                                </StackPanel>
+                                                            </ContentControl>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
@@ -193,6 +208,167 @@
                                     			OpacityMask="Black" />
                                         </Border>
 
+                                        <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="291" >
+                                            <Border.Style>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="Visibility" Value="Hidden">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="0"  To="-1500"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                        </Trigger>
+                                                        <Trigger Property="Visibility" Value="Visible">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.8" From="-1500"  To="0"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <Canvas x:Name="cnCamera" Height="244" Width="1310" Visibility="Visible"  Background="#B2323232" >
+                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="232" Canvas.Left="120" Canvas.Top="8" Width="286"/>
+                                                <Border x:Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="24" Width="88" CornerRadius="10" Canvas.Left="-147">
+                                                    <Border.Style>
+                                                        <Style TargetType="{x:Type Border}">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="Visibility" Value="Hidden">
+                                                                    <Trigger.EnterActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.EnterActions>
+                                                                </Trigger>
+                                                                <Trigger Property="Visibility" Value="Visible">
+                                                                    <Trigger.EnterActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.EnterActions>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <Canvas Margin="0,0,-10,-10"  >
+                                                        <Button x:Name="btnStop" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Height="71" Width="88" Click="btnStop_Click">
+                                                            <Button.Background>
+                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/Stopicon.png"/>
+                                                            </Button.Background>
+                                                            <Button.Foreground>
+                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/Stopicon.png"/>
+                                                            </Button.Foreground>
+                                                        </Button>
+                                                        <TextBlock x:Name="tbkStop" Text="Stop Camera" HorizontalAlignment="Center" Height="19" Width="88" Canvas.Top="62" Foreground="White" FontSize="15"/>
+                                                    </Canvas>
+                                                </Border>
+                                                <Canvas Height="228" Width="112" Canvas.Top="-2">
+                                                    <Border x:Name="bdrCapture" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="71" Canvas.Top="144" Width="78" CornerRadius="10" Canvas.Left="-124">
+                                                        <Border.Style>
+                                                            <Style TargetType="{x:Type Border}">
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="Visibility" Value="Hidden">
+                                                                        <Trigger.EnterActions>
+                                                                            <BeginStoryboard>
+                                                                                <Storyboard>
+                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
+                                                                                </Storyboard>
+                                                                            </BeginStoryboard>
+                                                                        </Trigger.EnterActions>
+                                                                    </Trigger>
+                                                                    <Trigger Property="Visibility" Value="Visible">
+                                                                        <Trigger.EnterActions>
+                                                                            <BeginStoryboard>
+                                                                                <Storyboard>
+                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
+                                                                                </Storyboard>
+                                                                            </BeginStoryboard>
+                                                                        </Trigger.EnterActions>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Border.Style>
+                                                        <Canvas >
+                                                            <ComboBox Height="22" HorizontalAlignment="Left" Margin="104,269,0,0"
+                          x:Name="VidDvcsComboBox" VerticalAlignment="Top" Width="210" Visibility="Hidden" />
+                                                            <ComboBox Visibility="Hidden" Height="23" HorizontalAlignment="Left" Margin="105,302,0,0"
+                          x:Name="AudDvcsComboBox" VerticalAlignment="Top" Width="209" />
+                                                            <Button x:Name="btnCapture" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}"  BorderThickness="0" Height="60" Width="78" Click="SnapshotButton_Click" >
+                                                                <Button.Background>
+                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconcamera.png"/>
+                                                                </Button.Background>
+                                                                <Button.Foreground>
+                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconcamera.png"/>
+                                                                </Button.Foreground>
+                                                            </Button>
+                                                            <TextBlock x:Name="tbkCapture" Text="Capture" TextAlignment="Center" Height="16" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White" FontSize="15"/>
+                                                        </Canvas>
+                                                    </Border>
+                                                    <Border x:Name="bdrStartCapture"  Visibility="Visible" BorderThickness="0" Height="71" Canvas.Top="30" Width="78" CornerRadius="10" Canvas.Left="10">
+                                                        <Border.Style>
+                                                            <Style TargetType="{x:Type Border}">
+                                                                <Style.Triggers>
+                                                                    <Trigger Property="Visibility" Value="Hidden">
+                                                                        <Trigger.EnterActions>
+                                                                            <BeginStoryboard>
+                                                                                <Storyboard>
+                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
+                                                                                </Storyboard>
+                                                                            </BeginStoryboard>
+                                                                        </Trigger.EnterActions>
+                                                                    </Trigger>
+                                                                    <Trigger Property="Visibility" Value="Visible">
+                                                                        <Trigger.EnterActions>
+                                                                            <BeginStoryboard>
+                                                                                <Storyboard>
+                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
+                                                                                </Storyboard>
+                                                                            </BeginStoryboard>
+                                                                        </Trigger.EnterActions>
+                                                                    </Trigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Border.Style>
+                                                        <Canvas Margin="2,12,-9,-17" >
+                                                            <Button x:Name="btnStartCapture" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Height="60" Width="78" Click="btnStartCapture_Click"  >
+                                                                <Button.Background>
+                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconplay.png"/>
+                                                                </Button.Background>
+                                                                <Button.Foreground>
+                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconplay.png"/>
+                                                                </Button.Foreground>
+                                                            </Button>
+                                                            <TextBlock x:Name="tbkStartCapture" Text="Start Camera" HorizontalAlignment="Center" Height="20" Width="85" Canvas.Top="56" Foreground="White" FontSize="15"/>
+                                                        </Canvas>
+                                                    </Border>
+                                                </Canvas>
+                                                <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="829" >
+                                                    <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
+                                                </ScrollViewer>
+                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="1155" 
+        				Canvas.Top="93" Width="246" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
+        				HorizontalAlignment="Right" FontSize="17" FontWeight="Bold" Click="brnCloseCamera_Click">
+                                                    <Button.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform/>
+                                                            <SkewTransform/>
+                                                            <RotateTransform Angle="89.854"/>
+                                                            <TranslateTransform/>
+                                                        </TransformGroup>
+                                                    </Button.RenderTransform>
+                                                </Button>
+                                            </Canvas>
+                                        </Border>
                                     </Canvas>
                                 </Border>
                             </TabItem>
