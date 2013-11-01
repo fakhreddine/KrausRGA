@@ -129,7 +129,34 @@ namespace KrausRGA.DBLogics
            {}
            return _lsReturn;
        }
-       
+
+       /// <summary>
+       /// Gives user information from user master table
+       /// User Name (Login Name )and its password.
+       /// </summary>
+       /// <param name="UserName">
+       /// String UserName (Ligin Name Not Name)
+       /// </param>
+       /// <param name="Password">
+       /// String Password .
+       /// </param>
+       /// <returns>
+       /// User class object with information yield null.
+       /// </returns>
+       public User GetUserByUserNamePassword(String UserName, String Password)
+       {
+           User _userReturn = new User();
+
+           try
+           {
+               _userReturn = entRMADB.Users.FirstOrDefault(user => user.UserName == UserName && user.UserPassword == Password);
+           }
+           catch (Exception)
+           {}
+
+           return _userReturn;
+       }
+
         #endregion
 
     }

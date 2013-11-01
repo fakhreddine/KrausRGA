@@ -12,7 +12,18 @@ namespace KrausRGA.Models
    public class mUser
     {
 
-       
+       public Boolean IsValidUser(String UserName)
+       {
+           Boolean _FlagReturn = false;
+           try
+           {
+
+           }
+           catch (Exception)
+           {}
+           return _FlagReturn;
+       }
+
 
     }
 }

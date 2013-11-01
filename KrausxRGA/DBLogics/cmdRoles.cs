@@ -7,6 +7,10 @@ using KrausRGA.EntityModel;
 
 namespace KrausRGA.DBLogics
 {
+    /// <summary>
+    /// Avinash: 1Nov2013
+    /// Role information get set functions for database.
+    /// </summary>
    public class cmdRoles
     {
        /// <summary>
