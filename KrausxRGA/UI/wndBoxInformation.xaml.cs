@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using KrausRGA.Views;
+using KrausRGA.Models;
 
 namespace KrausRGA.UI
 {
@@ -21,10 +22,13 @@ namespace KrausRGA.UI
     /// </summary>
     public partial class wndBoxInformation : Window
     {
+        mReturnDetails mReturn;
+
         public wndBoxInformation()
         {
             InitializeComponent();
 
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
 
         #region Events
@@ -84,14 +88,28 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
+                //check Enter not pressed with blank Value.
+                if (txtScan.Text.Trim() != "")
+                {
+                    clGlobal.mReturn = mReturn;
+                  mReturn = new mReturnDetails(txtScan.Text);
 
-                this.Dispatcher.Invoke(new Action(() =>
+                  if (mReturn.IsValidNumber)
                     {
-                        MainWindow main = new MainWindow();
-                        main.Show();
+                        this.Dispatcher.Invoke(new Action(() =>
+                            {
+                                wndSrNumberInfo main = new wndSrNumberInfo();
+                                main.Show();
 
-                    }));
-                this.Close();
+                            }));
+                        this.Close();
+                    }
+                    else
+                    {
+                        ErrorMsg("Invali Number. Please check the number.");
+                        txtScan.Text = "";
+                    }
+                }
             }
         }
 
@@ -116,6 +134,14 @@ namespace KrausRGA.UI
                 }));
                 this.Close();
             }
+        }
+
+
+        private void ErrorMsg(string Msg)
+        {
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            bdrMsg.Visibility = System.Windows.Visibility.Visible;
+            txtError.Text = Msg;
         }
     }
 

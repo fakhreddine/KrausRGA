@@ -26,8 +26,12 @@ namespace KrausRGA.UI
 
         private void bdrButtonTemp_Loaded(object sender, RoutedEventArgs e)
         {
+
+
+
+            //Remove this Button from UI.
             btnTemp.Focus();
-            //btnTemp.Visibility = System.Windows.Visibility.Hidden;
+           
         }
     }
 }

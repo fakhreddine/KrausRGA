@@ -7,7 +7,7 @@
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="0,0,0,0" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" Background="#FFE3E9EA" >
-                   
+
                     <Canvas x:Name="cnTitle" Height="100" Width="1400">
                         <Canvas.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -51,7 +51,7 @@
                             <TextBlock Name="tbScanText" Text="Please Scan Barcode" FontSize="20" Canvas.Left="188" Canvas.Top="71" />
                             <TextBlock Name="tbTitleScan" Style="{StaticResource tbFormTitle}"  Text="Scan" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
                             <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10" Background="White">
-                                <TextBox Name="txtScan" TextWrapping="Wrap" Text="Press Enter" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtScan_KeyDown"/>
+                                <TextBox Name="txtScan" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtScan_KeyDown"/>
                             </Border>
                         </Canvas>
                     </Border>
@@ -61,11 +61,43 @@
                             <TextBlock Name="tbsrScanText" Text="Please Enter SR Number" FontSize="20" Canvas.Left="188" Canvas.Top="71" />
                             <TextBlock Name="tbsrTitleScan" Style="{StaticResource tbFormTitle}"  Text="SR Number" Height="52" Width="264" Canvas.Left="8" Canvas.Top="8"/>
                             <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10" Background="White">
-                                <TextBox Name="txtsrScan" TextWrapping="Wrap" Text="Press Enter" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtsrScan_KeyDown" />
+                                <TextBox Name="txtsrScan" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtsrScan_KeyDown" />
                             </Border>
                         </Canvas>
                     </Border>
-                    
+                    <Border BorderThickness="1" Height="160" Canvas.Top="617" Width="1054" Canvas.Left="346">
+                        <Canvas>
+                            <Border Name="bdrMsg" BorderThickness="1" Height="27" Canvas.Left="0" Canvas.Top="131" Width="1052" Background="#E1007ACC">
+                                <Border.Style >
+                                    <Style TargetType="{x:Type Border}">
+                                        <Style.Triggers>
+                                            <Trigger Property="Visibility" Value="Visible">
+                                                <Trigger.EnterActions >
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation 
+                                                                Storyboard.TargetProperty="(Canvas.Left)" 
+                                                                From="2000" 
+                                                                To="0"
+                                                                Duration="0:0:1">
+                                                                <DoubleAnimation.EasingFunction>
+                                                                    <BounceEase Bounces="1"
+                                                                                EasingMode="EaseOut" 
+                                                                                Bounciness="10" />
+                                                                </DoubleAnimation.EasingFunction>
+                                                            </DoubleAnimation>
+
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.EnterActions>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock Name="txtError" Style="{StaticResource ScrollTextBlockKeyStyle}" TextWrapping="Wrap" Text="sdfasdf" Margin="9,0,16,2"/>
+                            </Border>
+                        </Canvas>
+                    </Border>
                 </Canvas>
             </Border>
         </Grid>

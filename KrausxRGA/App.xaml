@@ -31,6 +31,15 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="TextAlignment" Value="Left"/>
         </Style>
+
+        <Style x:Key="ScrollTextBlockKeyStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
         <Style x:Key="TxtMain" TargetType="TextBox">
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontFamily" Value="Arial"/>

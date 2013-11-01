@@ -132,6 +132,7 @@
       <DependentUpon>wndSrNumberInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Box.cs" />
+    <Compile Include="Views\clGlobal.cs" />
     <Compile Include="Views\Image.cs" />
     <Compile Include="Views\eNumberType.cs" />
     <Compile Include="Views\RMAInfo.cs" />
