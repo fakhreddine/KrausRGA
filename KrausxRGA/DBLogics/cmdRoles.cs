@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using KrausRGA.Models;
+using KrausRGA.EntityModel;
+
+namespace KrausRGA.DBLogics
+{
+   public class cmdRoles
+    {
+       /// <summary>
+       /// RMA Database ovbject.
+       /// </summary>
+       RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+
+        #region Get fucntions of Role class.
+
+       /// <summary>
+       /// Gives the whole table information of user.
+       /// </summary>
+       /// <returns>
+       /// List of user onformation
+       /// </returns>
+       public List<Role> GetRoles()
+       {
+           List<Role> _lsRuturn = new List<Role>();
+
+           try
+           {
+               var Rolesinfo = from roles in entRMA.Roles
+                               select roles;
+               foreach (var roleitem in Rolesinfo)
+               {
+                   Role roles = new Role();
+                   roles = (Role)Rolesinfo;
+                   _lsRuturn.Add(roles);
+               }
+           }
+           catch (Exception)
+           {}
+
+           return _lsRuturn;
+       }
+
+       /// <summary>
+       /// Gives the role information filtred by RoleID
+       /// </summary>
+       /// <param name="RoleID">
+       /// String RoleID.
+       /// </param>
+       /// <returns>
+       /// Role Class Object with filtred RoleID Information
+       /// else Null.
+       /// </returns>
+       public Role GetRole(Guid RoleID)
+       {
+           Role role = new Role();
+           try
+           {
+               role = entRMA.Roles.FirstOrDefault(rol => rol.RoleId == RoleID);
+           }
+           catch (Exception)
+           { }
+           return role;
+       }
+
+        #endregion
+
+    }
+}
