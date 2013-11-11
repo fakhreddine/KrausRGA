@@ -49,7 +49,7 @@ namespace KrausRGA.Models
           {
               User user = new User();
               user = _cuser.GetUserByUserNamePassword(UserName, Password);
-
+              Boolean i = false;
               if (user != null)
               {
                   UserInfo = user;
