@@ -37,6 +37,12 @@ namespace KrausRGA.UI
         {
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
+
+            //If User is alrady logged then hide the login screen.
+            if (clGlobal.IsUserlogged)
+            {
+                hideButtons(System.Windows.Visibility.Visible);
+            }
         }
         
         #endregion
@@ -72,6 +78,10 @@ namespace KrausRGA.UI
             if (e.Key == Key.Enter)
             {
                 hideButtons(System.Windows.Visibility.Visible);
+              
+                //Set UserLogged flag true.
+                clGlobal.IsUserlogged = true;
+
             }
         }
 
@@ -98,6 +108,7 @@ namespace KrausRGA.UI
                     {
                         this.Dispatcher.Invoke(new Action(() =>
                             {
+                              
                                 wndSrNumberInfo main = new wndSrNumberInfo();
                                 main.Show();
 
@@ -110,39 +121,51 @@ namespace KrausRGA.UI
                         txtScan.Text = "";
                     }
                 }
-            }
-        }
-
-        private void btnPONumber_Click(object sender, RoutedEventArgs e)
-        {
-            bdrScan.Visibility = System.Windows.Visibility.Hidden;
-            bdrSrNumber.Visibility = System.Windows.Visibility.Hidden;
-            bdrSrNumber.Visibility = System.Windows.Visibility.Visible;
-            txtsrScan.Focus();
-        }
-
-        private void txtsrScan_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-
-                this.Dispatcher.Invoke(new Action(() =>
+                else
                 {
-                    wndSrNumberInfo main = new wndSrNumberInfo();
-                    main.Show();
-
-                }));
-                this.Close();
+                    txtScan.Text = "";
+                }
             }
         }
 
 
+        #region Error message strip functions.
+
+        /// <summary>
+        /// background color for message is default. light blue.
+        /// </summary>
+        /// <param name="Msg">
+        /// String Message to be show.
+        /// </param>
         private void ErrorMsg(string Msg)
         {
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
             bdrMsg.Visibility = System.Windows.Visibility.Visible;
+            bdrMsg.Background = new SolidColorBrush(Color.FromArgb(88, 0, 122, 204));
             txtError.Text = Msg;
         }
+
+        /// <summary>
+        /// overload for Error message with color. 
+        /// sets color for backGround.
+        /// </summary>
+        /// <param name="Msg">
+        /// String message to show.
+        /// </param>
+        /// <param name="BgColor">
+        /// Color for Background.
+        /// </param>
+        private void ErrorMsg(string Msg, Color BgColor)
+        {
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            bdrMsg.Visibility = System.Windows.Visibility.Visible;
+            bdrMsg.Background = new SolidColorBrush(BgColor);
+            txtError.Text = Msg;
+        }
+
+        #endregion
+
+        
     }
 
 }
