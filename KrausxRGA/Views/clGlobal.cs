@@ -6,12 +6,15 @@ using System.Text;
 
 namespace KrausRGA.Views
 {
-   public static class clGlobal
+    public static class clGlobal
     {
         /// return model object.
-       public static mReturnDetails mReturn; 
+        public static mReturnDetails mReturn;
 
-       //user Logged in or not.
-       public static Boolean IsUserlogged = false;
+        //user Logged in or not.
+        public static Boolean IsUserlogged = false;
+
+        //User information maintain 
+        public static mUser mCurrentUser;
     }
 }

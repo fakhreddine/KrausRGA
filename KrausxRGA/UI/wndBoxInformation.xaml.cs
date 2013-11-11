@@ -23,7 +23,7 @@ namespace KrausRGA.UI
     public partial class wndBoxInformation : Window
     {
         mReturnDetails _mReturn;
-
+        mUser _mUser;
         public wndBoxInformation()
         {
             InitializeComponent();
@@ -42,6 +42,12 @@ namespace KrausRGA.UI
             if (clGlobal.IsUserlogged)
             {
                 hideButtons(System.Windows.Visibility.Visible);
+                _mUser = clGlobal.mCurrentUser;
+            }
+            else
+            {
+                //If no user is logged in then assign new user to the model
+                _mUser = new mUser();
             }
         }
         
@@ -75,14 +81,37 @@ namespace KrausRGA.UI
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter ) 
             {
-                hideButtons(System.Windows.Visibility.Visible);
-              
-                //Set UserLogged flag true.
-                clGlobal.IsUserlogged = true;
+                if (txtLogin.Text.Trim()!="")
+                {
+                    if (_mUser.IsValidUser(txtLogin.Text, "2wvcDW8j"))
+                    {
+                        if (_mUser.IsPermitedTo(ePermissione.Login))
+                        {
+                            hideButtons(System.Windows.Visibility.Visible);
 
+                            //Set UserLogged flag true.
+                            clGlobal.IsUserlogged = true;
+
+                            //Manage Current User information.
+                            clGlobal.mCurrentUser = _mUser;
+                            ErrorMsg("Welcome " + _mUser.UserInfo.UserFullName.ToString(),Color.FromRgb(84,185,0));
+                        }
+                        else
+                        {
+                            ErrorMsg("You are not permitted to login.", Color.FromRgb(185, 84, 0));
+                            txtLogin.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        ErrorMsg("Invalid user information.", Color.FromRgb(185, 84, 0));
+                        txtLogin.Text = "";
+                    } 
+                }
             }
+               
         }
 
         private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
@@ -98,17 +127,15 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
-                //check Enter not pressed with blank Value.
                 if (txtScan.Text.Trim() != "")
                 {
-                    
-                  _mReturn = new mReturnDetails(txtScan.Text);
-                  clGlobal.mReturn = _mReturn;
-                  if (_mReturn.IsValidNumber)
+                    _mReturn = new mReturnDetails(txtScan.Text);
+                    clGlobal.mReturn = _mReturn;
+                    if (_mReturn.IsValidNumber)
                     {
                         this.Dispatcher.Invoke(new Action(() =>
                             {
-                              
+
                                 wndSrNumberInfo main = new wndSrNumberInfo();
                                 main.Show();
 
@@ -117,7 +144,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        ErrorMsg("Invali Number. Please check the number.");
+                        ErrorMsg("Invalid Number. Please check the number.",Color.FromRgb(185,84,0));
                         txtScan.Text = "";
                     }
                 }
@@ -127,8 +154,6 @@ namespace KrausRGA.UI
                 }
             }
         }
-
-
         #region Error message strip functions.
 
         /// <summary>
