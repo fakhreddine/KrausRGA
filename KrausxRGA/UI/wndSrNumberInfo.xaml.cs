@@ -18,6 +18,7 @@ using System.IO;
 using WebcamControl;
 using System.Drawing.Imaging;
 using Microsoft.Expression.Encoder.Devices;
+using System.Windows.Controls.Primitives;
 
 namespace KrausRGA.UI
 {
@@ -28,6 +29,10 @@ namespace KrausRGA.UI
     {
         mReturnDetails _mReturn = clGlobal.mReturn;
         List<RMAInfo> _lsRMAInfo = new List<RMAInfo>();
+
+        //Stack Panel in row assigned to this and used in Images captured add.
+        StackPanel spRowImages;
+
         public wndSrNumberInfo()
         {
             InitializeComponent();
@@ -113,6 +118,11 @@ namespace KrausRGA.UI
                 if (row.IsSelected)
                 {
                     Rone = row;
+                    //ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(Rone) as ContentPresenter;
+                    //DataTemplate Dt = cp.ContentTemplate;
+                    //StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
+                    //spRowImages = spProductIMages;
+
                 }
             }
         }
@@ -177,13 +187,17 @@ namespace KrausRGA.UI
                 System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight(bmp.Width, bmp.Height));
 
             Image img = new Image();
-            img.Height = 165;
-            img.Width = 200;
-            img.Stretch = Stretch.Fill;
+            img.Height = 60;
+            img.Width = 75;
+            img.Stretch = Stretch.Uniform;
             img.Name = "KrausRGA" + DateTime.Now.ToString("hhmmsstt");
             img.Source = bs;
-            img.Margin = new Thickness(2.0);
-            spPhotos.Children.Add(img);
+            img.Margin = new Thickness(1.0);
+           // _addToStackPanel(spPhotos,img);
+
+            //Images added to the Row.
+            _addToStackPanel(spRowImages, img);
+
             img.Focus();
             sclPh.ScrollToRightEnd();
         }
@@ -245,6 +259,46 @@ namespace KrausRGA.UI
             catch (Exception)
             { }
         }
+
+        /// <summary>
+        /// Add child to the stackPanel
+        /// </summary>
+        /// <param name="StackPanelName">
+        /// StackPanel Name on which controls you want to add.
+        /// </param>
+        /// <param name="CapImage">
+        /// Image Image name you want to add to the Stackpanel
+        /// </param>
+        protected void _addToStackPanel(StackPanel StackPanelName, Image CapImage)
+        {
+            try
+            {
+                StackPanelName.Children.Add(CapImage);
+            }
+            catch (Exception)
+            { }
+        }
+
         #endregion
+
+
+        private void dgPackageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           int selectedIndex = dgPackageInfo.SelectedIndex;
+           if (selectedIndex!=-1)
+           {
+               foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+               {
+                   if (row.IsSelected)
+                   {
+                       ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                       DataTemplate Dt = cp.ContentTemplate;
+                       StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
+                       spRowImages = spProductIMages;
+
+                   }
+               }
+           }
+        }
     }
 }
