@@ -25,7 +25,7 @@ namespace KrausRGA.UI
     /// <summary>
     /// Interaction logic for wndSrNumberInfo.xaml
     /// </summary>
-    public partial class wndSrNumberInfo : Window 
+    public partial class wndSrNumberInfo : Window
     {
         mReturnDetails _mReturn = clGlobal.mReturn;
         List<RMAInfo> _lsRMAInfo = new List<RMAInfo>();
@@ -87,7 +87,7 @@ namespace KrausRGA.UI
 
             //Remove this Button from UI.
             btnTemp.Focus();
-           
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -97,16 +97,26 @@ namespace KrausRGA.UI
             bdrCapture.Visibility = System.Windows.Visibility.Hidden;
 
             _lsRMAInfo = _mReturn.lsRMAInformation;
-            
+
             //Set all vaues.
             lblRMANumber.Content = _mReturn.EnteredNumber;
             tbCustomerName.Text = _lsRMAInfo[0].CustomerName1;
             lblRMAReqDate.Content = _lsRMAInfo[0].ReturnDate.ToString("MMM dd, yyyy");
+            lblVendorNumber.Content = _lsRMAInfo[0].VendorNumber.ToString();
+            lblVendorName.Content = _lsRMAInfo[0].VendorName;
+            lblPoNumber.Content = _lsRMAInfo[0].PONumber.ToString();
+            lblCustomerAddress.Content = _lsRMAInfo[0].CustomerName1;
+            lblCustCity.Content = _lsRMAInfo[0].City;
+            lblState.Content = _lsRMAInfo[0].State;
+            lblZipCode.Content = _lsRMAInfo[0].ZipCode;
+            lblCountry.Content = _lsRMAInfo[0].Country;
 
             dgPackageInfo.ItemsSource = _lsRMAInfo;
 
         }
 
+
+        #region Data Grid Events.
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             bdrCamera.Visibility = System.Windows.Visibility.Visible;
@@ -127,6 +137,29 @@ namespace KrausRGA.UI
             }
         }
 
+        private void dgPackageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedIndex = dgPackageInfo.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+                {
+                    if (row.IsSelected)
+                    {
+                        ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                        DataTemplate Dt = cp.ContentTemplate;
+                        StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
+                        spRowImages = spProductIMages;
+
+                    }
+                }
+            }
+        }
+        #endregion
+
+
+
+
 
         /// <summary>
         /// This is to all return DataGridRows Object
@@ -146,7 +179,7 @@ namespace KrausRGA.UI
 
 
         #region Web cam Methods
-          private void FindDevices()
+        private void FindDevices()
         {
             var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
             var audDevices = EncoderDevices.FindDevices(EncoderDeviceType.Audio);
@@ -193,7 +226,7 @@ namespace KrausRGA.UI
             img.Name = "KrausRGA" + DateTime.Now.ToString("hhmmsstt");
             img.Source = bs;
             img.Margin = new Thickness(1.0);
-           // _addToStackPanel(spPhotos,img);
+            // _addToStackPanel(spPhotos,img);
 
             //Images added to the Row.
             _addToStackPanel(spRowImages, img);
@@ -280,25 +313,5 @@ namespace KrausRGA.UI
         }
 
         #endregion
-
-
-        private void dgPackageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           int selectedIndex = dgPackageInfo.SelectedIndex;
-           if (selectedIndex!=-1)
-           {
-               foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
-               {
-                   if (row.IsSelected)
-                   {
-                       ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                       DataTemplate Dt = cp.ContentTemplate;
-                       StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
-                       spRowImages = spProductIMages;
-
-                   }
-               }
-           }
-        }
     }
 }

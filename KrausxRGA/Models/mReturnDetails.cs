@@ -180,6 +180,8 @@ namespace KrausRGA.Models
             return (mReturnDetails)this.MemberwiseClone();
         }
 
+
+
         #endregion
     }
 }

@@ -206,7 +206,7 @@
                                     			OpacityMask="Black" />
                                         </Border>
 
-                                        <Border x:Name="bdrCamera" Visibility="Visible" Canvas.Top="291" >
+                                        <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="150" Canvas.Left="10" >
                                             <Border.Style>
                                                 <Style TargetType="{x:Type Border}">
                                                     <Style.Triggers>
@@ -223,7 +223,7 @@
                                                             <Trigger.EnterActions>
                                                                 <BeginStoryboard>
                                                                     <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.8" From="-1500"  To="0"/>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.8" From="-1500"  To="10"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
                                                             </Trigger.EnterActions>
@@ -231,7 +231,7 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-                                            <Canvas x:Name="cnCamera" Height="244" Width="1310" Visibility="Visible"  Background="#B2323232" >
+                                            <Canvas x:Name="cnCamera" Height="244" Width="412" Visibility="Visible"  Background="#B2323232" >
                                                 <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="220" Canvas.Left="126" Canvas.Top="12" Width="272"/>
                                                 <Border x:Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="24" Width="88" CornerRadius="10" Canvas.Left="-147">
                                                     <Border.Style>
@@ -271,7 +271,7 @@
                                                     </Canvas>
                                                 </Border>
                                                 <Canvas Height="228" Width="112" Canvas.Top="-2">
-                                                    <Border x:Name="bdrCapture" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="71" Canvas.Top="144" Width="78" CornerRadius="10" Canvas.Left="-124">
+                                                    <Border x:Name="bdrCapture" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="144" Width="83" CornerRadius="10" Canvas.Left="-124">
                                                         <Border.Style>
                                                             <Style TargetType="{x:Type Border}">
                                                                 <Style.Triggers>
@@ -309,7 +309,7 @@
                                                                     <ImageBrush ImageSource="/KrausRGA;component/Images/iconcamera.png"/>
                                                                 </Button.Foreground>
                                                             </Button>
-                                                            <TextBlock x:Name="tbkCapture" Text="Capture" TextAlignment="Center" Height="15" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White" FontSize="15"/>
+                                                            <TextBlock x:Name="tbkCapture" Text="Capture" TextAlignment="Center" Height="25" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White" FontSize="15"/>
                                                         </Canvas>
                                                     </Border>
                                                     <Border x:Name="bdrStartCapture"  Visibility="Visible" BorderThickness="0" Height="71" Canvas.Top="30" Width="78" CornerRadius="10" Canvas.Left="10">
@@ -350,11 +350,11 @@
                                                         </Canvas>
                                                     </Border>
                                                 </Canvas>
-                                                <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="829" >
+                                                <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="32" >
                                                     <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
                                                 </ScrollViewer>
-                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="1155" 
-        				Canvas.Top="93" Width="246" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
+                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="320" 
+        				Canvas.Top="89" Width="246" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
         				HorizontalAlignment="Right" FontSize="17" FontWeight="Bold" Click="brnCloseCamera_Click">
                                                     <Button.RenderTransform>
                                                         <TransformGroup>
