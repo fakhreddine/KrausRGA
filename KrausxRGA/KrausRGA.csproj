@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\clGlobal.cs" />
+    <Compile Include="Views\ePermissione.cs" />
     <Compile Include="Views\ImageK.cs" />
     <Compile Include="Views\eNumberType.cs" />
     <Compile Include="Views\RMAInfo.cs" />

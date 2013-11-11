@@ -141,7 +141,7 @@ namespace KrausRGA.UI
         {
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
             bdrMsg.Visibility = System.Windows.Visibility.Visible;
-            bdrMsg.Background = new SolidColorBrush(Color.FromArgb(88, 0, 122, 204));
+            bdrMsg.Background = new SolidColorBrush(Color.FromRgb( 0, 122, 204));
             txtError.Text = Msg;
         }
 

@@ -29,16 +29,16 @@
                                                     <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="30" Foreground="White" Margin="10,6,1191,0"/>
                                                 </Border>
                                                 <Label Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="71" Width="143" Canvas.Left="31"/>
-                                                <Label Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="174" Canvas.Top="71" Width="254" Height="33"/>
+                                                <Label Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="174" Canvas.Top="71" Width="211" Height="33"/>
 
-                                                <Label Name="lblcRMARewDate" Content="RMA Rewuest Date : " Style="{StaticResource lblConstant}" Canvas.Left="499" Canvas.Top="71" Width="193"/>
-                                                <Label Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="697" Canvas.Top="71" Width="254" Height="33"/>
+                                                <Label Name="lblcRMARewDate" Content="RMA Rewuest Date : " Style="{StaticResource lblConstant}" Canvas.Left="385" Canvas.Top="71" Width="193"/>
+                                                <Label Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="583" Canvas.Top="71" Width="361" Height="33"/>
 
                                                 <Label Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="164" Canvas.Left="11"/>
-                                                <Label Name="lblVendorNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="180" Canvas.Top="123" Width="254" Height="33"/>
+                                                <Label Name="lblVendorNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="180" Canvas.Top="123" Width="205" Height="33"/>
 
-                                                <Label Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="147" Canvas.Left="551"/>
-                                                <Label Name="lblVendorName" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="697" Canvas.Top="121" Width="254" Height="33"/>
+                                                <Label Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="147" Canvas.Left="437"/>
+                                                <Label Name="lblVendorName" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="583" Canvas.Top="121" Width="361" Height="33"/>
 
                                                 <Label Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="71" Width="127" Canvas.Left="956"/>
                                                 <ComboBox Name="cmbRMAStatus" Height="32" Width="258" Canvas.Left="1088" Canvas.Top="72"/>
