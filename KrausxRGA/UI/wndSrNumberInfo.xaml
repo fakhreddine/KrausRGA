@@ -4,7 +4,6 @@
         xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
        Title="Kraus GRA System" Height="800" Width="1400" WindowState="Maximized"
        Loaded="Window_Loaded" >
-
     <Viewbox >
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
@@ -67,11 +66,9 @@
                                                 </Label>
 
                                                 <Label Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="111" Width="187" Canvas.Left="439"/>
-                                                <Label Name="lblCustomerAddress"  Style="{StaticResource lblVeriable}" Canvas.Left="439" Canvas.Top="143" Width="347" Height="64">
-                                                    <Label.Content>
-                                                        <TextBlock Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="337" Height="64" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
-                                                    </Label.Content>
-                                                </Label>
+                                                <TextBlock Name="lblCustomerAddress" Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="337" Height="64" 
+                                                           ScrollViewer.HorizontalScrollBarVisibility="Auto" Canvas.Left="439" Canvas.Top="149"
+                                                           Foreground="Black" FontSize="22" FontWeight="Bold"/>
 
                                                 <Label Name="lblcTrackingNumber" Content="Tracking Number : " Style="{StaticResource lblConstant}" Canvas.Top="111" Width="184" Canvas.Left="-3"/>
                                                 <Label Name="lblTrackingNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="173" Canvas.Top="111" Width="261" Height="33"/>
@@ -87,11 +84,8 @@
 
                                                 <Label Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="187" Width="163" Canvas.Left="929"/>
                                                 <Label Name="lblCountry" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="1092" Canvas.Top="185" Width="254" Height="33"/>
-
-
                                             </Canvas>
                                         </Border>
-
                                     </Canvas>
                                 </Border>
                             </TabItem>
@@ -198,12 +192,15 @@
                                         <!-- Grid Finish-->
                                         <Border x:Name="bdrButton" Height="62" Width="249" Canvas.Left="1093" Canvas.Top="553">
                                             <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                                    			Content="Save" 
+                                                    Name="btnHome"
+                                    			Content="Home" 
                                     			Width="249" 
                                     			Height="62" 
                                     			Background="#FF464343" 
                                     			Foreground="#FFF9F9F9" 
-                                    			OpacityMask="Black" />
+                                    			OpacityMask="Black" VerticalAlignment="Bottom"
+                                                    Click="btnHome_Click"
+                                                    />
                                         </Border>
 
                                         <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="150" Canvas.Left="10" >
@@ -354,7 +351,7 @@
                                                     <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
                                                 </ScrollViewer>
                                                 <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="320" 
-        				Canvas.Top="89" Width="246" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
+        				Canvas.Top="90" Width="246" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
         				HorizontalAlignment="Right" FontSize="17" FontWeight="Bold" Click="brnCloseCamera_Click">
                                                     <Button.RenderTransform>
                                                         <TransformGroup>
@@ -372,11 +369,8 @@
                             </TabItem>
                         </TabControl>
                     </Canvas>
-
                 </Canvas>
             </Border>
-
-
         </Grid>
     </Viewbox>
 </Window>

@@ -11,5 +11,7 @@ namespace KrausRGA.Views
         /// return model object.
        public static mReturnDetails mReturn; 
 
+       //user Logged in or not.
+       public static Boolean IsUserlogged = false;
     }
 }

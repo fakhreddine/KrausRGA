@@ -105,7 +105,7 @@ namespace KrausRGA.UI
             lblVendorNumber.Content = _lsRMAInfo[0].VendorNumber.ToString();
             lblVendorName.Content = _lsRMAInfo[0].VendorName;
             lblPoNumber.Content = _lsRMAInfo[0].PONumber.ToString();
-            lblCustomerAddress.Content = _lsRMAInfo[0].CustomerName1;
+            lblCustomerAddress.Text = _lsRMAInfo[0].Address1;
             lblCustCity.Content = _lsRMAInfo[0].City;
             lblState.Content = _lsRMAInfo[0].State;
             lblZipCode.Content = _lsRMAInfo[0].ZipCode;
@@ -313,5 +313,13 @@ namespace KrausRGA.UI
         }
 
         #endregion
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            wndBoxInformation wndBoxInformation = new wndBoxInformation();
+            wndBoxInformation.ShowDialog();
+        }
+
+       
     }
 }
