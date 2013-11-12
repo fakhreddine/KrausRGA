@@ -178,14 +178,37 @@
 
                                                 <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
                                     				Header="Images" 
-                                    				Width="*" >
+                                    				Width="500" >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
+                                                            <ScrollViewer Name="svScrollImages" Width="500" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" CanContentScroll="True">
                                                             <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
-                                                                <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Auto"  Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
+                                                                <StackPanel Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
+                                                            </ContentControl>
+                                                            </ScrollViewer>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                
+                                                <DataGridTemplateColumn Header="Item Status" 
+                                                                        HeaderStyle="{StaticResource HeaderStyleKey }"
+                                                                        Width="*"
+                                                                        >
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <ContentControl>
+                                                                <ComboBox Name="cmbItemStatus" VerticalContentAlignment="Center" FontSize="20" Height="50" >
+                                                                    <ComboBoxItem Name="citem1">--Select--</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem2">Bad</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem3">Ok</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem4">Good</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem5">Excellent</ComboBoxItem>
+                                                                    
+                                                                </ComboBox>
                                                             </ContentControl>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
+                                                    
                                                 </DataGridTemplateColumn>
                                             </DataGrid.Columns>
 

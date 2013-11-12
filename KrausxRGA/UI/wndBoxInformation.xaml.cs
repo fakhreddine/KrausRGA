@@ -44,12 +44,14 @@ namespace KrausRGA.UI
             {
                 hideButtons(System.Windows.Visibility.Visible);
                 _mUser = clGlobal.mCurrentUser;
+                btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
             }
             else
             {
                 //If no user is logged in then assign new user to the model
                 _mUser = new mUser();
             }
+           
         }
 
         #endregion
@@ -91,7 +93,7 @@ namespace KrausRGA.UI
                         if (_mUser.IsPermitedTo(ePermissione.Login))
                         {
                             hideButtons(System.Windows.Visibility.Visible);
-
+                            btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
 
