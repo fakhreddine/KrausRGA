@@ -33,6 +33,8 @@ namespace KrausRGA.UI
 
         //Stack Panel in row assigned to this and used in Images captured add.
         StackPanel spRowImages;
+        //Scroll Viewer from selected Row;
+        ScrollViewer SvImagesScroll;
 
         public wndSrNumberInfo()
         {
@@ -165,7 +167,8 @@ namespace KrausRGA.UI
                         DataTemplate Dt = cp.ContentTemplate;
                         StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
                         spRowImages = spProductIMages;
-
+                        ScrollViewer SvImages = (ScrollViewer)Dt.FindName("svScrollImages", cp);
+                        SvImagesScroll = SvImages;
                     }
                 }
             }
@@ -226,7 +229,7 @@ namespace KrausRGA.UI
 
             //Images added to the Row.
             _addToStackPanel(spRowImages, img);
-
+          
             img.Focus();
             sclPh.ScrollToRightEnd();
         }
@@ -303,6 +306,7 @@ namespace KrausRGA.UI
             try
             {
                 StackPanelName.Children.Add(CapImage);
+                SvImagesScroll.ScrollToRightEnd();
             }
             catch (Exception)
             { }

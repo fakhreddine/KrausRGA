@@ -178,10 +178,10 @@
 
                                                 <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
                                     				Header="Images" 
-                                    				Width="500" >
+                                    				Width="600" >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
-                                                            <ScrollViewer Name="svScrollImages" Width="500" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" CanContentScroll="True">
+                                                            <ScrollViewer Name="svScrollImages" Width="600" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
                                                             <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
                                                                 <StackPanel Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
                                                             </ContentControl>
@@ -197,7 +197,7 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <ContentControl>
-                                                                <ComboBox Name="cmbItemStatus" VerticalContentAlignment="Center" FontSize="20" Height="50" >
+                                                                <ComboBox Name="cmbItemStatus" VerticalContentAlignment="Center" FontSize="20" Height="50" SelectedIndex="0" SelectedValue="0">
                                                                     <ComboBoxItem Name="citem1">--Select--</ComboBoxItem>
                                                                     <ComboBoxItem Name="citem2">Bad</ComboBoxItem>
                                                                     <ComboBoxItem Name="citem3">Ok</ComboBoxItem>
