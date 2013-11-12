@@ -36,7 +36,11 @@ namespace KrausRGA.UI
         public wndSrNumberInfo()
         {
             InitializeComponent();
+
+            #region User Region.
+
             FillRMAStausAndDecision();
+
             // Bind the Video and Audio device properties of the
             // Webcam control to the SelectedValue property of 
             // the necessary ComboBox.
@@ -78,7 +82,8 @@ namespace KrausRGA.UI
             FindDevices();
 
             VidDvcsComboBox.SelectedIndex = 0;
-            AudDvcsComboBox.SelectedIndex =0;
+            AudDvcsComboBox.SelectedIndex = 0;
+            #endregion
         }
 
         private void bdrButtonTemp_Loaded(object sender, RoutedEventArgs e)
@@ -116,7 +121,14 @@ namespace KrausRGA.UI
 
         }
 
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            wndBoxInformation wndBoxInformation = new wndBoxInformation();
+            wndBoxInformation.ShowDialog();
+        }
+
         #region Data Grid Events.
+
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             bdrCamera.Visibility = System.Windows.Visibility.Visible;
@@ -155,9 +167,11 @@ namespace KrausRGA.UI
                 }
             }
         }
+
         #endregion
 
         #region Web cam Methods
+
         private void FindDevices()
         {
             var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
@@ -199,9 +213,9 @@ namespace KrausRGA.UI
                 System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight(bmp.Width, bmp.Height));
 
             Image img = new Image();
-            img.Height = 60;
-            img.Width = 75;
-            img.Stretch = Stretch.Uniform;
+            img.Height = 62;
+            img.Width = 74;
+            img.Stretch = Stretch.Fill;
             img.Name = "KrausRGA" + DateTime.Now.ToString("hhmmsstt");
             img.Source = bs;
             img.Margin = new Thickness(1.0);
@@ -292,12 +306,6 @@ namespace KrausRGA.UI
         }
 
         #endregion
-
-        private void btnHome_Click(object sender, RoutedEventArgs e)
-        {
-            wndBoxInformation wndBoxInformation = new wndBoxInformation();
-            wndBoxInformation.ShowDialog();
-        }
 
         #region Functions.
 

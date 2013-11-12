@@ -20,7 +20,7 @@
                     </Canvas>
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
                         <TabControl Height="677" Width="1400" BorderBrush="#FF405EB8" Margin="2,2,2,2">
-                            <TabItem Header="RMA Details" Height="40" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
+                            <TabItem Header="RMA Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
                                 <Border Name="bdrmain" >
                                     <Canvas Name="cvsTb1main" Margin="0,0,0,0">
                                         <Border Height="174" Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
@@ -90,7 +90,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Details" Height="40" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
+                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
                                 <Border Name="bdrmain2" >
                                     <Canvas Name="cvsTb1main2" Margin="0,0,0,0">
                                         <!-- Grid View-->
@@ -229,8 +229,8 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-                                            <Canvas x:Name="cnCamera" Height="244" Width="427" Visibility="Visible"  Background="#B2323232" >
-                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="244" Canvas.Left="117" Width="294"/>
+                                            <Canvas x:Name="cnCamera" Height="244" Width="463" Visibility="Visible"  Background="#B2323232" >
+                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="220" Canvas.Left="119" Width="302" Canvas.Top="12"/>
                                                 <Border x:Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="24" Width="88" CornerRadius="10" Canvas.Left="-147">
                                                     <Border.Style>
                                                         <Style TargetType="{x:Type Border}">
@@ -351,8 +351,8 @@
                                                 <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="32" >
                                                     <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
                                                 </ScrollViewer>
-                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="334" 
-        				Canvas.Top="90" Width="246" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
+                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="371" 
+        				Canvas.Top="90" Width="247" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
         				HorizontalAlignment="Right" FontSize="17" FontWeight="Bold" Click="brnCloseCamera_Click">
                                                     <Button.RenderTransform>
                                                         <TransformGroup>
@@ -368,7 +368,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Reason" Height="40" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top">
+                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top">
                                 <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="10,10,20,196" >
                                     <Canvas Margin="0,0,0,0">
                                         <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
