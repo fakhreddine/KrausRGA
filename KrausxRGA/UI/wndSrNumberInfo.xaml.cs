@@ -22,6 +22,7 @@ using System.Windows.Controls.Primitives;
 
 namespace KrausRGA.UI
 {
+   
     /// <summary>
     /// Interaction logic for wndSrNumberInfo.xaml
     /// </summary>
@@ -124,7 +125,9 @@ namespace KrausRGA.UI
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             wndBoxInformation wndBoxInformation = new wndBoxInformation();
-            wndBoxInformation.ShowDialog();
+           
+            wndBoxInformation.Show();
+            this.Close();
         }
 
         #region Data Grid Events.
@@ -334,5 +337,4 @@ namespace KrausRGA.UI
         #endregion
 
     }
-
 }

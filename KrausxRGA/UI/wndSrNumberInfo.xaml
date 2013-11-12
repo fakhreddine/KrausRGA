@@ -31,7 +31,7 @@
                                                 <Label Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="67" Width="143" Canvas.Left="31"/>
                                                 <Label Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="174" Canvas.Top="67" Width="211" Height="33"/>
 
-                                                <Label Name="lblcRMARewDate" Content="RMA Rewuest Date : " Style="{StaticResource lblConstant}" Canvas.Left="385" Canvas.Top="67" Width="193"/>
+                                                <Label Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="385" Canvas.Top="67" Width="193"/>
                                                 <Label Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="583" Canvas.Top="67" Width="361" Height="33"/>
 
                                                 <Label Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="164" Canvas.Left="11"/>
@@ -190,20 +190,7 @@
                                             </DataGrid.Columns>
 
                                         </DataGrid>
-                                        <!-- Grid Finish-->
-                                        <Border x:Name="bdrButton" Height="62" Width="249" Canvas.Left="1093" Canvas.Top="553">
-                                            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                                                    Name="btnHome"
-                                    			Content="Home" 
-                                    			Width="249" 
-                                    			Height="62" 
-                                    			Background="#FF464343" 
-                                    			Foreground="#FFF9F9F9" 
-                                    			OpacityMask="Black" VerticalAlignment="Bottom"
-                                                    Click="btnHome_Click"
-                                                    />
-                                        </Border>
-
+                                        
                                         <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="150" Canvas.Left="10" >
                                             <Border.Style>
                                                 <Style TargetType="{x:Type Border}">
@@ -369,13 +356,46 @@
                                 </Border>
                             </TabItem>
                             <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top">
-                                <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="10,10,20,196" >
-                                    <Canvas Margin="0,0,0,0">
-                                        <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
-                                            <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="30" Foreground="White" Margin="10,6,1062,0"/>
-                                        </Border>
-                                    </Canvas>
-                                </Border>
+                                <Canvas>
+                                    <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="20" BorderThickness="2,0,2,2" Height="296" >
+                                        <Canvas Margin="0,0,0,0">
+                                            <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
+                                                <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="30" Foreground="White" Margin="10,6,1062,0"/>
+                                            </Border>
+                                            <CheckBox Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" />
+
+                                            <CheckBox Name="cbrWrong" Style="{StaticResource cbStyleKey}" Content="Received wrong item." Canvas.Left="41" Canvas.Top="153" />
+
+                                            <CheckBox Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237" />
+
+                                            <CheckBox Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74" />
+
+                                            <CheckBox Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" />
+
+                                            <CheckBox Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" />
+                                        </Canvas>
+                                    </Border>
+                                    <Border Width="1360" CornerRadius="10" Canvas.Top="311" BorderBrush="#FF787878" Canvas.Left="20" BorderThickness="2,0,2,2" Height="229" >
+                                        <Canvas Margin="0,0,0,0">
+                                            <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
+                                                <TextBlock TextWrapping="Wrap" Text="Other Reason" FontSize="30" Foreground="White" Margin="10,4,1153,6"/>
+                                            </Border>
+                                            <TextBox Name="txtOtherReason" Height="174" Width="1356" Canvas.Top="53" TextWrapping="WrapWithOverflow" />
+                                        </Canvas>
+                                    </Border>
+                                    <Border x:Name="bdrButton" Height="62" Width="249" Canvas.Left="1093" Canvas.Top="553">
+                                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                                    Name="btnHome"
+                                    			Content="Home" 
+                                    			Width="249" 
+                                    			Height="62" 
+                                    			Background="#FF464343" 
+                                    			Foreground="#FFF9F9F9" 
+                                    			OpacityMask="Black" VerticalAlignment="Bottom"
+                                                    Click="btnHome_Click"
+                                                    />
+                                    </Border>
+                                </Canvas>
                             </TabItem>
                         </TabControl>
                     </Canvas>

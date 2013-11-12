@@ -16,6 +16,21 @@
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <Style x:Key="cbStyleKey" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="3" ScaleY="3"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
 <!-- ____________________________________-->
         
         
@@ -31,7 +46,6 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="TextAlignment" Value="Left"/>
         </Style>
-
         <Style x:Key="ScrollTextBlockKeyStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Arial"/>
@@ -39,7 +53,6 @@
             <Setter Property="TextAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-
         <Style x:Key="TxtMain" TargetType="TextBox">
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontFamily" Value="Arial"/>

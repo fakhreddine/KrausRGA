@@ -17,13 +17,14 @@ using KrausRGA.Models;
 namespace KrausRGA.UI
 {
     /// <summary>
-    /// Avi: 11 Oct 2013. KrausGra.
+    /// Avi: 11 Oct 2013. KrausRGA.
     /// Interaction logic for wndBoxInformation.xaml
     /// </summary>
     public partial class wndBoxInformation : Window
     {
         mReturnDetails _mReturn;
         mUser _mUser;
+
         public wndBoxInformation()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace KrausRGA.UI
         }
 
         #region Events
-        
+
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
             //Hide Button Window and show Login Window
@@ -50,7 +51,7 @@ namespace KrausRGA.UI
                 _mUser = new mUser();
             }
         }
-        
+
         #endregion
 
         #region private Functions.
@@ -81,9 +82,9 @@ namespace KrausRGA.UI
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
-            if (e.Key == Key.Enter ) 
+            if (e.Key == Key.Enter)
             {
-                if (txtLogin.Text.Trim()!="")
+                if (txtLogin.Text.Trim() != "")
                 {
                     if (_mUser.IsValidUser(txtLogin.Text, "2wvcDW8j"))
                     {
@@ -96,7 +97,7 @@ namespace KrausRGA.UI
 
                             //Manage Current User information.
                             clGlobal.mCurrentUser = _mUser;
-                            ErrorMsg("Welcome " + _mUser.UserInfo.UserFullName.ToString(),Color.FromRgb(84,185,0));
+                            ErrorMsg("Welcome " + _mUser.UserInfo.UserFullName.ToString(), Color.FromRgb(84, 185, 0));
                         }
                         else
                         {
@@ -108,10 +109,10 @@ namespace KrausRGA.UI
                     {
                         ErrorMsg("Invalid user information.", Color.FromRgb(185, 84, 0));
                         txtLogin.Text = "";
-                    } 
+                    }
                 }
             }
-               
+
         }
 
         private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
@@ -135,7 +136,6 @@ namespace KrausRGA.UI
                     {
                         this.Dispatcher.Invoke(new Action(() =>
                             {
-
                                 wndSrNumberInfo main = new wndSrNumberInfo();
                                 main.Show();
 
@@ -144,7 +144,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        ErrorMsg("Invalid Number. Please check the number.",Color.FromRgb(185,84,0));
+                        ErrorMsg("Invalid Number. Please check the number.", Color.FromRgb(185, 84, 0));
                         txtScan.Text = "";
                     }
                 }
@@ -154,8 +154,8 @@ namespace KrausRGA.UI
                 }
             }
         }
-       
-         #region Error message strip functions.
+
+        #region Error message strip functions.
 
         /// <summary>
         /// background color for message is default. light blue.
@@ -167,7 +167,7 @@ namespace KrausRGA.UI
         {
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
             bdrMsg.Visibility = System.Windows.Visibility.Visible;
-            bdrMsg.Background = new SolidColorBrush(Color.FromRgb( 0, 122, 204));
+            bdrMsg.Background = new SolidColorBrush(Color.FromRgb(0, 122, 204));
             txtError.Text = Msg;
         }
 
@@ -191,7 +191,6 @@ namespace KrausRGA.UI
 
         #endregion
 
-        
     }
 
 }
