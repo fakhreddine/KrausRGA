@@ -154,7 +154,8 @@ namespace KrausRGA.UI
                 }
             }
         }
-        #region Error message strip functions.
+       
+         #region Error message strip functions.
 
         /// <summary>
         /// background color for message is default. light blue.

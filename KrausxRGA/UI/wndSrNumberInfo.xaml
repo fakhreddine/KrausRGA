@@ -367,6 +367,15 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
+                            <TabItem Header="Return Reason" Height="40" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top">
+                                <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="10,10,20,196" >
+                                    <Canvas Margin="0,0,0,0">
+                                        <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
+                                            <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="30" Foreground="White" Margin="10,6,1062,0"/>
+                                        </Border>
+                                    </Canvas>
+                                </Border>
+                            </TabItem>
                         </TabControl>
                     </Canvas>
                 </Canvas>
