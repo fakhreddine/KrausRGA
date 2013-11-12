@@ -90,7 +90,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
+                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="-7,0,7,0">
                                 <Border Name="bdrmain2" >
                                     <Canvas Name="cvsTb1main2" Margin="0,0,0,0">
                                         <!-- Grid View-->
@@ -199,10 +199,10 @@
                                                             <ContentControl>
                                                                 <ComboBox Name="cmbItemStatus" VerticalContentAlignment="Center" FontSize="20" Height="50" SelectedIndex="0" SelectedValue="0">
                                                                     <ComboBoxItem Name="citem1">--Select--</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem2">Bad</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem3">Ok</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem4">Good</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem5">Excellent</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem2">Total Damaged</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem3">Broken</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem4">Scratched</ComboBoxItem>
+                                                                    <ComboBoxItem Name="citem5">Good</ComboBoxItem>
                                                                     
                                                                 </ComboBox>
                                                             </ContentControl>
