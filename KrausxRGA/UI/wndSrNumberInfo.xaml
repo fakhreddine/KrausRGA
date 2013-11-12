@@ -28,11 +28,11 @@
                                                 <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
                                                     <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="30" Foreground="White" Margin="10,6,1191,0"/>
                                                 </Border>
-                                                <Label Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="71" Width="143" Canvas.Left="31"/>
-                                                <Label Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="174" Canvas.Top="71" Width="211" Height="33"/>
+                                                <Label Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="67" Width="143" Canvas.Left="31"/>
+                                                <Label Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="174" Canvas.Top="67" Width="211" Height="33"/>
 
-                                                <Label Name="lblcRMARewDate" Content="RMA Rewuest Date : " Style="{StaticResource lblConstant}" Canvas.Left="385" Canvas.Top="71" Width="193"/>
-                                                <Label Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="583" Canvas.Top="71" Width="361" Height="33"/>
+                                                <Label Name="lblcRMARewDate" Content="RMA Rewuest Date : " Style="{StaticResource lblConstant}" Canvas.Left="385" Canvas.Top="67" Width="193"/>
+                                                <Label Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="583" Canvas.Top="67" Width="361" Height="33"/>
 
                                                 <Label Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="164" Canvas.Left="11"/>
                                                 <Label Name="lblVendorNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="180" Canvas.Top="123" Width="205" Height="33"/>
@@ -40,12 +40,13 @@
                                                 <Label Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="147" Canvas.Left="437"/>
                                                 <Label Name="lblVendorName" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="583" Canvas.Top="121" Width="361" Height="33"/>
 
-                                                <Label Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="71" Width="127" Canvas.Left="956"/>
-                                                <ComboBox Name="cmbRMAStatus" Height="32" Width="258" Canvas.Left="1088" Canvas.Top="72"/>
-
+                                                <Label Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="67" Width="127" Canvas.Left="956"/>
+                                                <ComboBox Name="cmbRMAStatus" Height="46" Width="258" Canvas.Left="1088" Canvas.Top="62" 
+                                                          ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="-1" SelectedValue="-1"/>
 
                                                 <Label Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="97" Canvas.Left="986"/>
-                                                <ComboBox Name="cmbRMADecision" Height="32" Width="258" Canvas.Left="1088" Canvas.Top="122"/>
+                                                <ComboBox Name="cmbRMADecision" Height="46" Width="258" Canvas.Left="1088" Canvas.Top="117" 
+                                                          ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="-1" SelectedValue="-1" />
 
                                             </Canvas>
                                         </Border>
@@ -228,8 +229,8 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-                                            <Canvas x:Name="cnCamera" Height="244" Width="412" Visibility="Visible"  Background="#B2323232" >
-                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="220" Canvas.Left="126" Canvas.Top="12" Width="272"/>
+                                            <Canvas x:Name="cnCamera" Height="244" Width="427" Visibility="Visible"  Background="#B2323232" >
+                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="244" Canvas.Left="117" Width="294"/>
                                                 <Border x:Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="24" Width="88" CornerRadius="10" Canvas.Left="-147">
                                                     <Border.Style>
                                                         <Style TargetType="{x:Type Border}">
@@ -350,7 +351,7 @@
                                                 <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="32" >
                                                     <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
                                                 </ScrollViewer>
-                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="320" 
+                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="334" 
         				Canvas.Top="90" Width="246" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
         				HorizontalAlignment="Right" FontSize="17" FontWeight="Bold" Click="brnCloseCamera_Click">
                                                     <Button.RenderTransform>

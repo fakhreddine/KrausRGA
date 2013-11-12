@@ -13,7 +13,7 @@ namespace KrausRGA.Models
     /// also all information about that number.
     /// class properties are Auto-set when Constructor is called.
     /// </summary>
-    public class mReturnDetails
+    public class mReturnDetails 
     {
         #region Class Contructors
 
@@ -180,8 +180,51 @@ namespace KrausRGA.Models
             return (mReturnDetails)this.MemberwiseClone();
         }
 
+        /// <summary>
+        /// Temparary function 
+        /// to fill combo box RMA Status and RMA Decision.
+        /// </summary>
+        /// <returns>
+        /// list Status.
+        /// </returns>
+        public List<RAMStatus> GetRMAStatusList()
+        {
+            List<RAMStatus> lsReturn = new List<RAMStatus>();
+            try
+            {
+                RAMStatus ram2 = new RAMStatus();
+                ram2.ID = -1;
+                ram2.Status = "-- Select --";
 
+                RAMStatus ram = new RAMStatus();
+                ram.ID = 0;
+                ram.Status = "Approved";
+
+                RAMStatus ram1 = new RAMStatus();
+                ram1.ID = 1;
+                ram1.Status = "Pending";
+
+                RAMStatus ram3 = new RAMStatus();
+                ram3.ID = 1;
+                ram3.Status = "Canceled";
+
+                lsReturn.Add(ram2);
+                lsReturn.Add(ram);
+                lsReturn.Add(ram1);
+                lsReturn.Add(ram3);
+
+            }
+            catch (Exception)
+            { }
+            return lsReturn;
+        }
 
         #endregion
+    }
+
+    public class RAMStatus
+    {
+        public int ID { get; set; }
+        public String Status { get; set; }
     }
 }

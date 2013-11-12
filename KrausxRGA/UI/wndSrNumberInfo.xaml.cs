@@ -36,6 +36,7 @@ namespace KrausRGA.UI
         public wndSrNumberInfo()
         {
             InitializeComponent();
+            FillRMAStausAndDecision();
             // Bind the Video and Audio device properties of the
             // Webcam control to the SelectedValue property of 
             // the necessary ComboBox.
@@ -77,7 +78,7 @@ namespace KrausRGA.UI
             FindDevices();
 
             VidDvcsComboBox.SelectedIndex = 0;
-            AudDvcsComboBox.SelectedIndex = 0;
+            AudDvcsComboBox.SelectedIndex =0;
         }
 
         private void bdrButtonTemp_Loaded(object sender, RoutedEventArgs e)
@@ -114,7 +115,6 @@ namespace KrausRGA.UI
             dgPackageInfo.ItemsSource = _lsRMAInfo;
 
         }
-
 
         #region Data Grid Events.
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -156,27 +156,6 @@ namespace KrausRGA.UI
             }
         }
         #endregion
-
-
-
-
-
-        /// <summary>
-        /// This is to all return DataGridRows Object
-        /// </summary>
-        /// <param name="grid"> Grid View object</param>
-        /// <returns>DataGridRow</returns>
-        public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
-        {
-            var itemsSource = grid.ItemsSource as IEnumerable;
-            if (null == itemsSource) yield return null;
-            foreach (var item in itemsSource)
-            {
-                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                if (null != row) yield return row;
-            }
-        }
-
 
         #region Web cam Methods
         private void FindDevices()
@@ -320,6 +299,32 @@ namespace KrausRGA.UI
             wndBoxInformation.ShowDialog();
         }
 
-       
+        #region Functions.
+
+        /// <summary>
+        /// This is to all return DataGridRows Object
+        /// </summary>
+        /// <param name="grid"> Grid View object</param>
+        /// <returns>DataGridRow</returns>
+        public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
+        {
+            var itemsSource = grid.ItemsSource as IEnumerable;
+            if (null == itemsSource) yield return null;
+            foreach (var item in itemsSource)
+            {
+                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                if (null != row) yield return row;
+            }
+        }
+
+        public void FillRMAStausAndDecision()
+        {
+            cmbRMADecision.ItemsSource = _mReturn.GetRMAStatusList();
+            cmbRMAStatus.ItemsSource = _mReturn.GetRMAStatusList();
+        }
+
+        #endregion
+
     }
+
 }
