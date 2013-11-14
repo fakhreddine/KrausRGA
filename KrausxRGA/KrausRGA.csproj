@@ -127,6 +127,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>x3v6.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ErrorLogger\ErrorLogger.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mUser.cs" />
     <Compile Include="UI\wndBoxInformation.xaml.cs">

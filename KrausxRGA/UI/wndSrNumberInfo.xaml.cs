@@ -28,13 +28,17 @@ namespace KrausRGA.UI
     /// </summary>
     public partial class wndSrNumberInfo : Window
     {
+        #region Declarations.
+
         mReturnDetails _mReturn = clGlobal.mReturn;
         List<RMAInfo> _lsRMAInfo = new List<RMAInfo>();
 
         //Stack Panel in row assigned to this and used in Images captured add.
         StackPanel spRowImages;
         //Scroll Viewer from selected Row;
-        ScrollViewer SvImagesScroll;
+        ScrollViewer SvImagesScroll; 
+        
+        #endregion
 
         public wndSrNumberInfo()
         {
@@ -86,14 +90,12 @@ namespace KrausRGA.UI
 
             VidDvcsComboBox.SelectedIndex = 0;
             AudDvcsComboBox.SelectedIndex = 0;
+
             #endregion
         }
 
         private void bdrButtonTemp_Loaded(object sender, RoutedEventArgs e)
         {
-
-
-
             //Remove this Button from UI.
             btnTemp.Focus();
 
@@ -237,6 +239,8 @@ namespace KrausRGA.UI
             sclPh.ScrollToRightEnd();
         }
 
+        #region Zoom Images.
+        
         void img_MouseEnter(object sender, MouseEventArgs e)
         {
             Image img = (Image)sender;
@@ -249,16 +253,14 @@ namespace KrausRGA.UI
             imgZoom.Source = null;
             bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
         }
-        
+
+        #endregion
 
         private void btnStartCapture_Click(object sender, RoutedEventArgs e)
         {
-
             bdrCapture.Visibility = System.Windows.Visibility.Visible;
             bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
             bdrStop.Visibility = System.Windows.Visibility.Visible;
-
-
             WebCamCtrl.StartCapture();
         }
 
@@ -269,7 +271,6 @@ namespace KrausRGA.UI
             bdrCapture.Visibility = System.Windows.Visibility.Hidden;
             bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
-
 
         }
 
@@ -348,6 +349,7 @@ namespace KrausRGA.UI
                 if (null != row) yield return row;
             }
         }
+
 
         public void FillRMAStausAndDecision()
         {
