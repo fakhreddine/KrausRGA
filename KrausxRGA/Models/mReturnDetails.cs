@@ -365,15 +365,41 @@ namespace KrausRGA.Models
             return _ReturnID;
         }
 
-        public Guid SetReturnedImages(Guid ReturnDetailID, String ImagePath)
+        /// <summary>
+        /// Insert new record into ReturnImages table.
+        /// </summary>
+        /// <param name="ReturnDetailID">
+        /// Guid ReturnDetail Table ID.
+        /// </param>
+        /// <param name="ImagePath">
+        /// String Image Path.
+        /// </param>
+        /// <param name="CreatedBy">
+        /// Guid Created By UserID.
+        /// </param>
+        /// <returns>
+        /// Guid of ReturnImageID New inserted Record id. 
+        /// </returns>
+        public Guid SetReturnedImages(Guid ReturnDetailID, String ImagePath, Guid CreatedBy)
         {
             Guid _ReturnID = Guid.Empty;
             try
             {
+                ReturnImage RtnImages = new ReturnImage();
+
+                RtnImages.ReturnImageID = Guid.NewGuid();
+                RtnImages.ReturnDetailID = ReturnDetailID;
+                RtnImages.SKUImagePath = ImagePath;
+                RtnImages.CreatedBy = CreatedBy;
+                RtnImages.CreatedDate = DateTime.UtcNow;
+                RtnImages.UpadatedBy = null;
+                RtnImages.UpadatedDate = null;
+
+                if (cRtnImages.UpsertReturnImage(RtnImages)) _ReturnID = RtnImages.ReturnImageID;
 
             }
             catch (Exception)
-            {}
+            { }
             return _ReturnID;
         }
 
