@@ -20,7 +20,7 @@ namespace KrausRGA.DBLogics
         #endregion
 
         #region GetMethods.
-        
+
 
 
         #endregion

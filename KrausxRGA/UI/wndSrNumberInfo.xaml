@@ -182,14 +182,14 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
                                                             <ScrollViewer Name="svScrollImages" Width="600" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
-                                                            <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
-                                                                <StackPanel Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
-                                                            </ContentControl>
+                                                                <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
+                                                                    <StackPanel Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
+                                                                </ContentControl>
                                                             </ScrollViewer>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
-                                                
+
                                                 <DataGridTemplateColumn Header="Item Status" 
                                                                         HeaderStyle="{StaticResource HeaderStyleKey }"
                                                                         Width="*"
@@ -203,17 +203,17 @@
                                                                     <ComboBoxItem Name="citem3">Broken</ComboBoxItem>
                                                                     <ComboBoxItem Name="citem4">Scratched</ComboBoxItem>
                                                                     <ComboBoxItem Name="citem5">Good</ComboBoxItem>
-                                                                    
+
                                                                 </ComboBox>
                                                             </ContentControl>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
-                                                    
+
                                                 </DataGridTemplateColumn>
                                             </DataGrid.Columns>
 
                                         </DataGrid>
-                                        
+
                                         <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="150" Canvas.Left="10" >
                                             <Border.Style>
                                                 <Style TargetType="{x:Type Border}">
@@ -374,6 +374,11 @@
                                                     </Button.RenderTransform>
                                                 </Button>
                                             </Canvas>
+                                        </Border>
+                                        <Border Name="bdrZoomImage" Canvas.Left="473" Canvas.Top="242" BorderThickness="2" Visibility="Hidden" CornerRadius="5" BorderBrush="#FF9B20E2">
+                                            <Image Height="369" Canvas.Left="417" Stretch="Fill"  Canvas.Top="130"
+                                                   Width="524" Name="imgZoom" Visibility="Visible" 
+                                                   MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
                                     </Canvas>
                                 </Border>

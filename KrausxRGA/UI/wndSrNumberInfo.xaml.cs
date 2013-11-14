@@ -219,6 +219,9 @@ namespace KrausRGA.UI
                 System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight(bmp.Width, bmp.Height));
 
             Image img = new Image();
+            //Zoom image.
+            img.MouseEnter += img_MouseEnter;
+
             img.Height = 62;
             img.Width = 74;
             img.Stretch = Stretch.Fill;
@@ -233,6 +236,20 @@ namespace KrausRGA.UI
             img.Focus();
             sclPh.ScrollToRightEnd();
         }
+
+        void img_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Image img = (Image)sender;
+            bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
+            imgZoom.Source = img.Source;
+        }
+
+        private void imgZoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            imgZoom.Source = null;
+            bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
+        }
+        
 
         private void btnStartCapture_Click(object sender, RoutedEventArgs e)
         {
@@ -339,6 +356,8 @@ namespace KrausRGA.UI
         }
 
         #endregion
+
+       
 
     }
 }
