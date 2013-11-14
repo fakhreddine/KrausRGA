@@ -16,7 +16,7 @@ namespace KrausRGA.Views
         public String OrderNumber { get; set; }
         public String PONumber { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime DeliveryDaTe { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public String VendorNumber { get; set; }
         public String VendorName { get; set; }
