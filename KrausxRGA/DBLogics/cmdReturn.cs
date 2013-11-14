@@ -58,7 +58,7 @@ namespace KrausRGA.DBLogics
             Return _returnObj = new Return();
             try
             {
-                _returnObj = entRMA.Returns.SingleOrDefault(ret => ret.ReturnID == ReturnID);
+                _returnObj = entRMA.Returns.SingleOrDefault(ret => ret.ReturnID == ReturnID );
             }
             catch (Exception)
             {}
@@ -105,9 +105,10 @@ namespace KrausRGA.DBLogics
             Boolean _returnFlag = false;
             try
             {
-                Return _returnTbl = entRMA.Returns.SingleOrDefault(rtn => rtn.ReturnID == ObjReturnTbl.ReturnID);
+                Return _returnTbl = new Return();
+                _returnTbl = entRMA.Returns.SingleOrDefault(rtn => rtn.ReturnID == ObjReturnTbl.ReturnID);
                 //Insert new record if not persernt perviously
-                if (_returnTbl==null )
+                if (_returnTbl == null)
                 {
                     entRMA.AddToReturns(ObjReturnTbl);
                 }
@@ -119,7 +120,7 @@ namespace KrausRGA.DBLogics
                 _returnFlag = true;
             }
             catch (Exception)
-            {}
+            { }
             return _returnFlag;
         }
 
