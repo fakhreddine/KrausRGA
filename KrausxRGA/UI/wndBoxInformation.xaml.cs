@@ -132,7 +132,7 @@ namespace KrausRGA.UI
             {
                 if (txtScan.Text.Trim() != "")
                 {
-                    _mReturn = new mReturnDetails(txtScan.Text);
+                    _mReturn = new mReturnDetails(txtScan.Text.ToUpper());
                     clGlobal.mReturn = _mReturn;
                     if (_mReturn.IsValidNumber)
                     {

@@ -113,6 +113,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DBLogics\cmdReturn.cs" />
     <Compile Include="DBLogics\cmdRoles.cs" />
     <Compile Include="DBLogics\cmdSageOperations.cs" />
     <Compile Include="DBLogics\cmdUser.cs" />
