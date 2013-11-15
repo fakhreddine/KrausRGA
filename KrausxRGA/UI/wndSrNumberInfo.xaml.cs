@@ -126,15 +126,7 @@ namespace KrausRGA.UI
 
         }
 
-        private void btnHome_Click(object sender, RoutedEventArgs e)
-        {
-            wndBoxInformation wndBoxInformation = new wndBoxInformation();
-           
-            wndBoxInformation.Show();
-            this.Close();
-        }
-
-        #region Data Grid Events.
+       #region Data Grid Events.
 
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -359,6 +351,49 @@ namespace KrausRGA.UI
 
         #endregion
 
+        private void btnHomeDone_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
+            Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
+            //Save to RMA Master Table.
+            Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
+
+
+           //Create New instance of home screen and close this screen.
+           //wndBoxInformation wndBoxInformation = new wndBoxInformation();
+           //wndBoxInformation.Show();
+           //this.Close();
+        }
+
+        /// <summary>
+        /// check the Checked chekboxes from return reason tab
+        /// and combine strings of checked checkboxes.
+        /// Default includes Other reason.
+        /// </summary>
+        /// <returns>
+        /// String Return Reason.
+        /// </returns>
+        private String ReturnReasons()
+        {
+            String _ReturnReason = "";
+            CheckBox cbk = new CheckBox();
+            foreach (var  cbk2 in cvCheckboxHolder.Children)
+            {
+                if (cbk2.GetType() == cbk.GetType() )
+                {
+                    cbk = (CheckBox)cbk2;
+                    if (cbk.IsChecked == true)
+                    {
+                        _ReturnReason += cbk.Content.ToString() + " ";
+                    } 
+                }
+            }
+            _ReturnReason += txtOtherReason.Text;
+
+            return _ReturnReason;
+
+        }
        
 
     }

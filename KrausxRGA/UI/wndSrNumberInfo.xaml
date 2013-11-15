@@ -387,7 +387,7 @@
                             <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top">
                                 <Canvas>
                                     <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="20" BorderThickness="2,0,2,2" Height="296" >
-                                        <Canvas Margin="0,0,0,0">
+                                        <Canvas Name="cvCheckboxHolder" Margin="0,0,0,0">
                                             <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
                                                 <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="30" Foreground="White" Margin="10,6,1062,0"/>
                                             </Border>
@@ -412,16 +412,16 @@
                                             <TextBox Name="txtOtherReason" Height="174" Width="1356" Canvas.Top="53" TextWrapping="WrapWithOverflow" />
                                         </Canvas>
                                     </Border>
-                                    <Border x:Name="bdrButton" Height="62" Width="249" Canvas.Left="1093" Canvas.Top="553">
+                                    <Border x:Name="bdrButtonSave" Height="62" Width="249" Canvas.Left="1114" Canvas.Top="549">
                                         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                                                    Name="btnHome"
-                                    			Content="Home" 
+                                                    Name="btnHomeDone"
+                                    			Content="Done" 
                                     			Width="249" 
                                     			Height="62" 
                                     			Background="#FF464343" 
                                     			Foreground="#FFF9F9F9" 
                                     			OpacityMask="Black" VerticalAlignment="Bottom"
-                                                    Click="btnHome_Click"
+                                                    Click="btnHomeDone_Click"
                                                     />
                                     </Border>
                                 </Canvas>
