@@ -86,7 +86,6 @@ namespace KrausRGA.DBLogics
             return _returnTableObj;
         }
 
-
         #endregion
 
         #region Set Methods.

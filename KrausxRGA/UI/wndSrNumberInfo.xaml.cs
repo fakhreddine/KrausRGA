@@ -22,7 +22,7 @@ using System.Windows.Controls.Primitives;
 
 namespace KrausRGA.UI
 {
-   
+
     /// <summary>
     /// Interaction logic for wndSrNumberInfo.xaml
     /// </summary>
@@ -36,8 +36,8 @@ namespace KrausRGA.UI
         //Stack Panel in row assigned to this and used in Images captured add.
         StackPanel spRowImages;
         //Scroll Viewer from selected Row;
-        ScrollViewer SvImagesScroll; 
-        
+        ScrollViewer SvImagesScroll;
+
         #endregion
 
         public wndSrNumberInfo()
@@ -68,7 +68,7 @@ namespace KrausRGA.UI
             }
 
             // Create directory for saving image files.
-            string imgPath = @"C:\WebcamSnapshots";
+            string imgPath = @"C:\SKUReturned";
 
             if (Directory.Exists(imgPath) == false)
             {
@@ -126,7 +126,7 @@ namespace KrausRGA.UI
 
         }
 
-       #region Data Grid Events.
+        #region Data Grid Events.
 
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -195,44 +195,46 @@ namespace KrausRGA.UI
 
         private void SnapshotButton_Click(object sender, RoutedEventArgs e)
         {
-            // Take snapshot of webcam image.
-            WebCamCtrl.TakeSnapshot();
+            try
+            {
+                // Take snapshot of webcam image.
+                WebCamCtrl.TakeSnapshot();
 
-            int panelWidth = Convert.ToInt32(WebCamCtrl.ActualWidth);
-            int panelHeight = Convert.ToInt32(WebCamCtrl.ActualHeight);
+                int panelWidth = Convert.ToInt32(WebCamCtrl.ActualWidth);
+                int panelHeight = Convert.ToInt32(WebCamCtrl.ActualHeight);
 
+                var DirInfo = new DirectoryInfo(@"C:\SKUReturned");
+                String ImageName = (from f in DirInfo.GetFiles()
+                                    orderby f.LastWriteTime descending
+                                    select f).First().Name.ToString();
+                String ReNamed =DateTime.Now.ToString("ddMMMyyyy_hh_mm_tt");
+                File.Move(@"C:\SKUReturned\" + ImageName, @"C:\SKUReturned\" + "KRAUSGRA" + ReNamed+".jpeg");
+                BitmapSource bs = new BitmapImage(new Uri(@"C:\SKUReturned\" + "KRAUSGRA" + ReNamed + ".jpeg"));
 
-            Point pt = WebCamCtrl.TranslatePoint(new Point(0, 0), WebCamCtrl);
-            Point pnlPnt = WebCamCtrl.PointToScreen(pt);
-            System.Drawing.Point pnl = new System.Drawing.Point(Convert.ToInt32(pnlPnt.X), Convert.ToInt32(pnlPnt.Y));
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(panelWidth, panelHeight);
-            System.Drawing.Graphics gcs = System.Drawing.Graphics.FromImage(bmp);
-            gcs.CopyFromScreen(pnl, System.Drawing.Point.Empty, new System.Drawing.Size(panelWidth, panelHeight));
+                Image img = new Image();
+                //Zoom image.
+                img.MouseEnter += img_MouseEnter;
 
-            BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero,
-                System.Windows.Int32Rect.Empty, BitmapSizeOptions.FromWidthAndHeight(bmp.Width, bmp.Height));
+                img.Height = 62;
+                img.Width = 74;
+                img.Stretch = Stretch.Fill;
+                img.Name = "KRAUSGRA" + ReNamed + ".jpeg";
+                img.Source = bs;
+                img.Margin = new Thickness(1.0);
+                // _addToStackPanel(spPhotos,img);
 
-            Image img = new Image();
-            //Zoom image.
-            img.MouseEnter += img_MouseEnter;
+                //Images added to the Row.
+                _addToStackPanel(spRowImages, img);
 
-            img.Height = 62;
-            img.Width = 74;
-            img.Stretch = Stretch.Fill;
-            img.Name = "KrausRGA" + DateTime.Now.ToString("hhmmsstt");
-            img.Source = bs;
-            img.Margin = new Thickness(1.0);
-            // _addToStackPanel(spPhotos,img);
-
-            //Images added to the Row.
-            _addToStackPanel(spRowImages, img);
-          
-            img.Focus();
-            sclPh.ScrollToRightEnd();
+                img.Focus();
+                sclPh.ScrollToRightEnd();
+            }
+            catch (Exception)
+            { }
         }
 
         #region Zoom Images.
-        
+
         void img_MouseEnter(object sender, MouseEventArgs e)
         {
             Image img = (Image)sender;
@@ -349,23 +351,6 @@ namespace KrausRGA.UI
             cmbRMAStatus.ItemsSource = _mReturn.GetRMAStatusList();
         }
 
-        #endregion
-
-        private void btnHomeDone_Click(object sender, RoutedEventArgs e)
-        {
-            
-            Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
-            Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
-            //Save to RMA Master Table.
-            Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
-
-
-           //Create New instance of home screen and close this screen.
-           //wndBoxInformation wndBoxInformation = new wndBoxInformation();
-           //wndBoxInformation.Show();
-           //this.Close();
-        }
-
         /// <summary>
         /// check the Checked chekboxes from return reason tab
         /// and combine strings of checked checkboxes.
@@ -378,15 +363,15 @@ namespace KrausRGA.UI
         {
             String _ReturnReason = "";
             CheckBox cbk = new CheckBox();
-            foreach (var  cbk2 in cvCheckboxHolder.Children)
+            foreach (var cbk2 in cvCheckboxHolder.Children) //For each Control in the Canvas.
             {
-                if (cbk2.GetType() == cbk.GetType() )
+                if (cbk2.GetType() == cbk.GetType())//If control is type of checkbox.
                 {
                     cbk = (CheckBox)cbk2;
-                    if (cbk.IsChecked == true)
+                    if (cbk.IsChecked == true) //if checkbox is checked.
                     {
                         _ReturnReason += cbk.Content.ToString() + " ";
-                    } 
+                    }
                 }
             }
             _ReturnReason += txtOtherReason.Text;
@@ -394,7 +379,69 @@ namespace KrausRGA.UI
             return _ReturnReason;
 
         }
-       
 
+        #endregion
+
+        private void btnHomeDone_Click(object sender, RoutedEventArgs e)
+        {
+
+            Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
+            Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
+
+            //Save to RMA Master Table.
+            Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
+
+            foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+            {
+                //CheckBOx item Peresent
+                ContentPresenter CntPersenter = dgPackageInfo.Columns[0].GetCellContent(row) as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                CheckBox cbkItemPersent = (CheckBox)DataTemp.FindName("chkIsItemPresent", CntPersenter);
+
+                // If item present in the return 
+                if (cbkItemPersent.IsChecked == true)
+                {
+
+                    // item SKUNumber
+                    TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
+                    //Product Name.
+                    TextBlock ProcutName = dgPackageInfo.Columns[2].GetCellContent(row) as TextBlock;
+
+                    //item Returned Quantity.
+                    ContentPresenter CntQuantity = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
+                    DataTemplate DtQty = CntQuantity.ContentTemplate;
+                    TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
+
+                    //Images Stack Panel.
+                    ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                    DataTemplate DtImages = CntImag.ContentTemplate;
+                    StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                    //item Status.
+                    ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                    DataTemplate DtStatus = CntStatus.ContentTemplate;
+                    ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
+                    int SelectedStatus =Convert.ToInt32( cmbStatus.SelectedIndex.ToString());
+                    //Views.eStatus PStatus = (eStatus)Enum.Parse(typeof(eStatus), SelectedVal, true);
+
+                    //Returned RMA Information.
+                    RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
+                    int DeliveredQty = rmaInfo.DeliveredQty;
+                    int ExpectedQty = rmaInfo.ExpectedQty;
+
+                    //Set returned details table.
+                    Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
+
+                    //Save Images info Table.
+                    foreach (Image imageCaptured in SpImages.Children)
+                    {
+                        String NameImage = imageCaptured.Name.ToString();
+                        
+                    }
+
+                }
+            }
+        }
     }
 }

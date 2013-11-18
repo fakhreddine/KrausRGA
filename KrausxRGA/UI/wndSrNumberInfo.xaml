@@ -203,7 +203,6 @@
                                                                     <ComboBoxItem Name="citem3">Broken</ComboBoxItem>
                                                                     <ComboBoxItem Name="citem4">Scratched</ComboBoxItem>
                                                                     <ComboBoxItem Name="citem5">Good</ComboBoxItem>
-
                                                                 </ComboBox>
                                                             </ContentControl>
                                                         </DataTemplate>

@@ -99,7 +99,6 @@
                             </Border>
                         </Canvas>
                     </Border>
-                    <TextBlock Name="txt" Canvas.Left="835" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="170"/>
 
                 </Canvas>
             </Border>
