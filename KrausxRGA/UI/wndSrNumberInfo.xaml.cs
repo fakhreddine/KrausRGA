@@ -210,7 +210,7 @@ namespace KrausRGA.UI
                 String ReNamed =DateTime.Now.ToString("ddMMMyyyy_hh_mm_tt");
                 File.Move(@"C:\SKUReturned\" + ImageName, @"C:\SKUReturned\" + "KRAUSGRA" + ReNamed+".jpeg");
                 BitmapSource bs = new BitmapImage(new Uri(@"C:\SKUReturned\" + "KRAUSGRA" + ReNamed + ".jpeg"));
-
+                String S = "Avinash";
                 Image img = new Image();
                 //Zoom image.
                 img.MouseEnter += img_MouseEnter;
