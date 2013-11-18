@@ -134,7 +134,7 @@ namespace KrausRGA.Models
         /// <summary>
         /// Scanned Number is valid or not. 
         /// this is checked in x3v6 database
-        /// lsRMAInformation object is filled if the Number is valid.s;;
+        /// lsRMAInformation object is filled if the Number is valid.
         /// also you can add user validation to ented number validate.
         /// </summary>
         /// <param name="Number">

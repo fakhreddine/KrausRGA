@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RMASYSTEMModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="RMASYSTEMModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="RMASYSTEMModelStoreContainer">
           <EntitySet Name="Audit" EntityType="RMASYSTEMModel.Store.Audit" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="Return" EntityType="RMASYSTEMModel.Store.Return" store:Type="Tables" Schema="DEVELOPER" />
@@ -12,6 +12,13 @@
           <EntitySet Name="ReturnImages" EntityType="RMASYSTEMModel.Store.ReturnImages" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="Roles" EntityType="RMASYSTEMModel.Store.Roles" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="User" EntityType="RMASYSTEMModel.Store.User" store:Type="Tables" Schema="DEVELOPER" />
+          <EntitySet Name="TestJoin" EntityType="RMASYSTEMModel.Store.TestJoin" store:Type="Views" store:Schema="DEVELOPER" store:Name="TestJoin">
+            <DefiningQuery>SELECT 
+      [TestJoin].[ReturnID] AS [ReturnID], 
+      [TestJoin].[SKUNumber] AS [SKUNumber], 
+      [TestJoin].[ProductName] AS [ProductName]
+      FROM [DEVELOPER].[TestJoin] AS [TestJoin]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_ReturnDetail_Return" Association="RMASYSTEMModel.Store.FK_ReturnDetail_Return">
             <End Role="Return" EntitySet="Return" />
             <End Role="ReturnDetail" EntitySet="ReturnDetail" />
@@ -62,7 +69,7 @@
           <Property Name="City" Type="varchar(max)" />
           <Property Name="State" Type="varchar(max)" />
           <Property Name="Country" Type="varchar(max)" />
-          <Property Name="ReturnReason" Type="varchar(max)" />
+          <Property Name="ReturnReason" Type="nvarchar(max)" />
           <Property Name="RMAStatus" Type="tinyint" />
           <Property Name="Decision" Type="tinyint" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
@@ -127,6 +134,17 @@
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="Updatedby" Type="uniqueidentifier" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'RMASYSTEM.DEVELOPER.TestJoin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TestJoin">
+          <Key>
+            <PropertyRef Name="ReturnID" />
+          </Key>
+          <Property Name="ReturnID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SKUNumber" Type="varchar(max)" />
+          <Property Name="ProductName" Type="varchar(max)" />
+        </EntityType>
         <Association Name="FK_ReturnDetail_Return">
           <End Role="Return" Type="RMASYSTEMModel.Store.Return" Multiplicity="1" />
           <End Role="ReturnDetail" Type="RMASYSTEMModel.Store.ReturnDetail" Multiplicity="*" />
@@ -175,8 +193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RMASYSTEMModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -203,6 +220,7 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="TestJoins" EntityType="RMASYSTEMModel.TestJoin" />
         </EntityContainer>
         <EntityType Name="Audit">
           <Key>
@@ -238,7 +256,7 @@
           <Property Name="City" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="State" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Country" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ReturnReason" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ReturnReason" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="RMAStatus" Type="Byte" />
           <Property Name="Decision" Type="Byte" />
           <Property Name="CreatedBy" Type="Guid" />
@@ -358,6 +376,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TestJoin">
+          <Key>
+            <PropertyRef Name="ReturnID" />
+          </Key>
+          <Property Type="Guid" Name="ReturnID" Nullable="false" />
+          <Property Type="String" Name="SKUNumber" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ProductName" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -465,6 +491,15 @@
                 <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Updatedby" ColumnName="Updatedby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestJoins">
+            <EntityTypeMapping TypeName="RMASYSTEMModel.TestJoin">
+              <MappingFragment StoreEntitySet="TestJoin">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="SKUNumber" ColumnName="SKUNumber" />
+                <ScalarProperty Name="ReturnID" ColumnName="ReturnID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

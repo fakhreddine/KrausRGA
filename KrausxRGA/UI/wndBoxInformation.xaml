@@ -87,7 +87,6 @@
                                                                                 Bounciness="10" />
                                                                 </DoubleAnimation.EasingFunction>
                                                             </DoubleAnimation>
-
                                                         </Storyboard>
                                                     </BeginStoryboard>
                                                 </Trigger.EnterActions>

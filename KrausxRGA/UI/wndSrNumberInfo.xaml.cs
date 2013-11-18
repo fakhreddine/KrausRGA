@@ -207,10 +207,10 @@ namespace KrausRGA.UI
                 String ImageName = (from f in DirInfo.GetFiles()
                                     orderby f.LastWriteTime descending
                                     select f).First().Name.ToString();
-                String ReNamed =DateTime.Now.ToString("ddMMMyyyy_hh_mm_tt");
+                String ReNamed =DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
                 File.Move(@"C:\SKUReturned\" + ImageName, @"C:\SKUReturned\" + "KRAUSGRA" + ReNamed+".jpeg");
                 BitmapSource bs = new BitmapImage(new Uri(@"C:\SKUReturned\" + "KRAUSGRA" + ReNamed + ".jpeg"));
-                String S = "Avinash";
+
                 Image img = new Image();
                 //Zoom image.
                 img.MouseEnter += img_MouseEnter;
@@ -218,7 +218,7 @@ namespace KrausRGA.UI
                 img.Height = 62;
                 img.Width = 74;
                 img.Stretch = Stretch.Fill;
-                img.Name = "KRAUSGRA" + ReNamed + ".jpeg";
+                img.Name = "KRAUSGRA" + ReNamed ;
                 img.Source = bs;
                 img.Margin = new Thickness(1.0);
                 // _addToStackPanel(spPhotos,img);
@@ -418,11 +418,11 @@ namespace KrausRGA.UI
                     DataTemplate DtImages = CntImag.ContentTemplate;
                     StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
-                    //item Status.
+                    //item Status.k
                     ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
                     DataTemplate DtStatus = CntStatus.ContentTemplate;
                     ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
-                    int SelectedStatus =Convert.ToInt32( cmbStatus.SelectedIndex.ToString());
+                    int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
                     //Views.eStatus PStatus = (eStatus)Enum.Parse(typeof(eStatus), SelectedVal, true);
 
                     //Returned RMA Information.
@@ -436,12 +436,19 @@ namespace KrausRGA.UI
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
                     {
-                        String NameImage = imageCaptured.Name.ToString();
-                        
-                    }
+                        String NameImage ="C:\\SKUReturned\\"+ imageCaptured.Name.ToString() +".jpeg";
 
+                        //Set Images table from model.
+                        Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
+                    }
                 }
+
             }
+
+            wndBoxInformation wndBox = new wndBoxInformation();
+            clGlobal.IsUserlogged = true;
+            wndBox.Show();
+            this.Close();
         }
     }
 }

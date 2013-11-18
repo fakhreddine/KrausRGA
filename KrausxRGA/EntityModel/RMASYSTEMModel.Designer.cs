@@ -169,6 +169,22 @@ namespace KrausRGA.EntityModel
             }
         }
         private ObjectSet<User> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TestJoin> TestJoins
+        {
+            get
+            {
+                if ((_TestJoins == null))
+                {
+                    _TestJoins = base.CreateObjectSet<TestJoin>("TestJoins");
+                }
+                return _TestJoins;
+            }
+        }
+        private ObjectSet<TestJoin> _TestJoins;
 
         #endregion
 
@@ -220,6 +236,14 @@ namespace KrausRGA.EntityModel
         public void AddToUsers(User user)
         {
             base.AddObject("Users", user);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TestJoins EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTestJoins(TestJoin testJoin)
+        {
+            base.AddObject("TestJoins", testJoin);
         }
 
         #endregion
@@ -1967,6 +1991,111 @@ namespace KrausRGA.EntityModel
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RMASYSTEMModel", Name="TestJoin")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TestJoin : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TestJoin object.
+        /// </summary>
+        /// <param name="returnID">Initial value of the ReturnID property.</param>
+        public static TestJoin CreateTestJoin(global::System.Guid returnID)
+        {
+            TestJoin testJoin = new TestJoin();
+            testJoin.ReturnID = returnID;
+            return testJoin;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid ReturnID
+        {
+            get
+            {
+                return _ReturnID;
+            }
+            set
+            {
+                if (_ReturnID != value)
+                {
+                    OnReturnIDChanging(value);
+                    ReportPropertyChanging("ReturnID");
+                    _ReturnID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ReturnID");
+                    OnReturnIDChanged();
+                }
+            }
+        }
+        private global::System.Guid _ReturnID;
+        partial void OnReturnIDChanging(global::System.Guid value);
+        partial void OnReturnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SKUNumber
+        {
+            get
+            {
+                return _SKUNumber;
+            }
+            set
+            {
+                OnSKUNumberChanging(value);
+                ReportPropertyChanging("SKUNumber");
+                _SKUNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SKUNumber");
+                OnSKUNumberChanged();
+            }
+        }
+        private global::System.String _SKUNumber;
+        partial void OnSKUNumberChanging(global::System.String value);
+        partial void OnSKUNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProductName
+        {
+            get
+            {
+                return _ProductName;
+            }
+            set
+            {
+                OnProductNameChanging(value);
+                ReportPropertyChanging("ProductName");
+                _ProductName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProductName");
+                OnProductNameChanged();
+            }
+        }
+        private global::System.String _ProductName;
+        partial void OnProductNameChanging(global::System.String value);
+        partial void OnProductNameChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8bf1f88305f34eb39b461c46fb066f2f" Name="Diagram1">
+      <Diagram DiagramId="8bf1f88305f34eb39b461c46fb066f2f" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="RMASYSTEMModel.Audit" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RMASYSTEMModel.Return" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RMASYSTEMModel.ReturnDetail" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
@@ -15,6 +15,7 @@
         <AssociationConnector Association="RMASYSTEMModel.FK_ReturnDetail_Return" ManuallyRouted="false" />
         <AssociationConnector Association="RMASYSTEMModel.FK_ReturnImages_ReturnDetail" ManuallyRouted="false" />
         <AssociationConnector Association="RMASYSTEMModel.FK_User_Roles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.TestJoin" Width="1.5" PointX="2.1928052241880471" PointY="8.50072086253237" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

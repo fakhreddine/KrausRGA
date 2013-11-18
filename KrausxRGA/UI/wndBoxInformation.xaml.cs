@@ -43,6 +43,7 @@ namespace KrausRGA.UI
             //If User is alrady logged then hide the login screen.
             if (clGlobal.IsUserlogged)
             {
+                
                 hideButtons(System.Windows.Visibility.Visible);
                 _mUser = clGlobal.mCurrentUser;
                 btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
