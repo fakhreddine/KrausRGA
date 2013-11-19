@@ -96,6 +96,7 @@ namespace KrausRGA.UI
                         if (_mUser.IsPermitedTo(ePermissione.Login))
                         {
                             hideButtons(System.Windows.Visibility.Visible);
+
                             btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
@@ -148,10 +149,10 @@ namespace KrausRGA.UI
                             this.Dispatcher.Invoke(new Action(() =>
                                 {
                                     //Create new instance of window.
-                                    wndSrNumberInfo wndmain = new wndSrNumberInfo();
+                                    wndSrNumberInfo wndMain = new wndSrNumberInfo();
 
                                     //opens new window.
-                                    wndmain.Show();
+                                    wndMain.Show();
                                 }));
 
                             //close this screen.

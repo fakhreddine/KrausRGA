@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
        Title="Kraus GRA System" Height="800" Width="1400" WindowState="Maximized"
-       Loaded="Window_Loaded" >
+       Loaded="Window_Loaded" Icon="/KrausRGA;component/Images/RGAICO.ico" >
     <Viewbox >
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="1,1,1,1" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" Background="#FFE3E9EA" >
-                    <Canvas x:Name="cnTitle" Height="100" Width="1400">
+                    <Canvas x:Name="cnTitle" Height="95" Width="1400">
                         <Canvas.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF46C0E4" Offset="0.012"/>
@@ -90,7 +90,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="-7,0,7,0">
+                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" >
                                 <Border Name="bdrmain2" >
                                     <Canvas Name="cvsTb1main2" Margin="0,0,0,0">
                                         <!-- Grid View-->
@@ -383,7 +383,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top">
+                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top" Margin="11,0,-11,0"> 
                                 <Canvas>
                                     <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="20" BorderThickness="2,0,2,2" Height="296" >
                                         <Canvas Name="cvCheckboxHolder" Margin="0,0,0,0">
