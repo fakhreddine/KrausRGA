@@ -538,6 +538,11 @@ namespace KrausRGA.UI
 
         }
 
+        private void chkIsItemPresent_Checked(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
         
     }
 }
