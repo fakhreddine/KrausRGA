@@ -48,8 +48,6 @@ namespace KrausRGA.UI
         {
             InitializeComponent();
 
-            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-
             #region User Region.
 
             FillRMAStausAndDecision();
@@ -457,44 +455,6 @@ namespace KrausRGA.UI
             this.Close();
         }
 
-<<<<<<< HEAD
-       
-
-        private void tbrgzdetail_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-                  
-                if (cmbRMAStatus.SelectedIndex==0 && cmbRMADecision.SelectedIndex==0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                   ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));   
-                }
-                else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                    ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));   
-                }
-                else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                    ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));   
-                }
-                else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex != 0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                }
-            
-            
-        }
-
-
-        private void ErrorMsg(string Msg, Color BgColor)
-        {
-            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-            bdrMsg.Visibility = System.Windows.Visibility.Visible;
-            bdrMsg.Background = new SolidColorBrush(BgColor);
-            txtError.Text = Msg;
-=======
-
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -528,7 +488,7 @@ namespace KrausRGA.UI
             {
                 foreach (TextBlock t in Sp2.Children)
                 {
-                    if (Convert.ToInt32(t.Text)>0)
+                    if (Convert.ToInt32(t.Text)>=0)
                     {
                         t.Text = (Convert.ToInt32(t.Text) + 1).ToString();
                     }
@@ -537,7 +497,8 @@ namespace KrausRGA.UI
             }
             catch (Exception)
             {}
->>>>>>> b5d909814262dbf66ebc747550e4f8e8bc91b73c
         }
+
+        
     }
 }
