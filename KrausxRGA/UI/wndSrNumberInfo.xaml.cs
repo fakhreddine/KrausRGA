@@ -38,6 +38,10 @@ namespace KrausRGA.UI
         //Scroll Viewer from selected Row;
         ScrollViewer SvImagesScroll;
 
+        //WEB cam frame height width.
+        int Wheight = 530;
+        int Wwidth = 400;
+
         #endregion
 
         public wndSrNumberInfo()
@@ -82,8 +86,8 @@ namespace KrausRGA.UI
             WebCamCtrl.ImageDirectory = imgPath;
             WebCamCtrl.PictureFormat = ImageFormat.Jpeg;
 
-            WebCamCtrl.FrameRate = 30;
-            WebCamCtrl.FrameSize = new System.Drawing.Size(320, 240);
+            WebCamCtrl.FrameRate = 20;
+            WebCamCtrl.FrameSize = new System.Drawing.Size(Wheight, Wwidth);
 
             // Find a/v devices connected to the machine.
             FindDevices();
@@ -449,6 +453,51 @@ namespace KrausRGA.UI
             clGlobal.IsUserlogged = true;
             wndBox.Show();
             this.Close();
+        }
+
+
+        private void btnMinus_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //create object stack panel where Button Belongs to
+                StackPanel sp = (StackPanel)(sender as Control).Parent;
+                StackPanel sp2 = (StackPanel)sp.Parent;
+                try
+                {
+                       foreach (TextBlock t in sp2.Children)
+                        {
+                            if (Convert.ToInt32(t.Text) > 0)
+                            {
+                                t.Text = (Convert.ToInt32(t.Text) - 1).ToString();
+                            }
+                            break;
+                        }
+                }
+                catch (Exception)
+                { }
+            }
+            catch (Exception)
+            { }
+        }
+
+        private void btnPluse_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanel Sp = (StackPanel)(sender as Control).Parent;
+            StackPanel Sp2 = (StackPanel)Sp.Parent;
+            try
+            {
+                foreach (TextBlock t in Sp2.Children)
+                {
+                    if (Convert.ToInt32(t.Text)>0)
+                    {
+                        t.Text = (Convert.ToInt32(t.Text) + 1).ToString();
+                    }
+                    break;
+                }
+            }
+            catch (Exception)
+            {}
         }
     }
 }
