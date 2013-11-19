@@ -48,8 +48,6 @@ namespace KrausRGA.UI
         {
             InitializeComponent();
 
-            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-
             #region User Region.
 
             FillRMAStausAndDecision();
@@ -456,6 +454,7 @@ namespace KrausRGA.UI
             wndBox.Show();
             this.Close();
         }
+
   
 
         private void tbrgzdetail_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -493,6 +492,7 @@ namespace KrausRGA.UI
             txtError.Text = Msg;
         }
 
+
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -526,7 +526,7 @@ namespace KrausRGA.UI
             {
                 foreach (TextBlock t in Sp2.Children)
                 {
-                    if (Convert.ToInt32(t.Text)>0)
+                    if (Convert.ToInt32(t.Text)>=0)
                     {
                         t.Text = (Convert.ToInt32(t.Text) + 1).ToString();
                     }
@@ -535,7 +535,9 @@ namespace KrausRGA.UI
             }
             catch (Exception)
             {}
-        
+
         }
+
+        
     }
 }
