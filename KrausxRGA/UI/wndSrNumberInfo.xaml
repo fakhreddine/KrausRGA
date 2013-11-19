@@ -134,7 +134,7 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
                                                             <StackPanel VerticalAlignment="Center">
-                                                                <CheckBox x:Name="chkIsItemPresent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="chkIsItemPresent_Checked" >
+                                                                <CheckBox x:Name="chkIsItemPresent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="chkIsItemPresent_Checked" Unchecked="chkIsItemPresent_Unchecked" >
                                                                     <CheckBox.RenderTransform>
                                                                         <TransformGroup>
                                                                             <ScaleTransform ScaleX="3" ScaleY="3"/>

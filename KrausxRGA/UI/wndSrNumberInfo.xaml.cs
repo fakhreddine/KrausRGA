@@ -211,8 +211,8 @@ namespace KrausRGA.UI
                 String ImageName = (from f in DirInfo.GetFiles()
                                     orderby f.LastWriteTime descending
                                     select f).First().Name.ToString();
-                String ReNamed =DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
-                File.Move(@"C:\SKUReturned\" + ImageName, @"C:\SKUReturned\" + "KRAUSGRA" + ReNamed+".jpeg");
+                String ReNamed = DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
+                File.Move(@"C:\SKUReturned\" + ImageName, @"C:\SKUReturned\" + "KRAUSGRA" + ReNamed + ".jpeg");
                 BitmapSource bs = new BitmapImage(new Uri(@"C:\SKUReturned\" + "KRAUSGRA" + ReNamed + ".jpeg"));
 
                 Image img = new Image();
@@ -222,7 +222,7 @@ namespace KrausRGA.UI
                 img.Height = 62;
                 img.Width = 74;
                 img.Stretch = Stretch.Fill;
-                img.Name = "KRAUSGRA" + ReNamed ;
+                img.Name = "KRAUSGRA" + ReNamed;
                 img.Source = bs;
                 img.Margin = new Thickness(1.0);
                 // _addToStackPanel(spPhotos,img);
@@ -440,7 +440,7 @@ namespace KrausRGA.UI
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
                     {
-                        String NameImage ="C:\\SKUReturned\\"+ imageCaptured.Name.ToString() +".jpeg";
+                        String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
 
                         //Set Images table from model.
                         Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
@@ -455,32 +455,32 @@ namespace KrausRGA.UI
             this.Close();
         }
 
-  
+
 
         private void tbrgzdetail_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-                  
-                if (cmbRMAStatus.SelectedIndex==0 && cmbRMADecision.SelectedIndex==0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                   ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));   
-                }
-                else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                    ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));   
-                }
-                else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                    ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));   
-                }
-                else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex != 0)
-                {
-                    bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                }
-            
-            
+
+            if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex == 0)
+            {
+                bdrMsg.Visibility = System.Windows.Visibility.Visible;
+                ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));
+            }
+            else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
+            {
+                bdrMsg.Visibility = System.Windows.Visibility.Visible;
+                ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));
+            }
+            else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
+            {
+                bdrMsg.Visibility = System.Windows.Visibility.Visible;
+                ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));
+            }
+            else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex != 0)
+            {
+                bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            }
+
+
         }
 
 
@@ -502,14 +502,14 @@ namespace KrausRGA.UI
                 StackPanel sp2 = (StackPanel)sp.Parent;
                 try
                 {
-                       foreach (TextBlock t in sp2.Children)
+                    foreach (TextBlock t in sp2.Children)
+                    {
+                        if (Convert.ToInt32(t.Text) > 0)
                         {
-                            if (Convert.ToInt32(t.Text) > 0)
-                            {
-                                t.Text = (Convert.ToInt32(t.Text) - 1).ToString();
-                            }
-                            break;
+                            t.Text = (Convert.ToInt32(t.Text) - 1).ToString();
                         }
+                        break;
+                    }
                 }
                 catch (Exception)
                 { }
@@ -526,7 +526,7 @@ namespace KrausRGA.UI
             {
                 foreach (TextBlock t in Sp2.Children)
                 {
-                    if (Convert.ToInt32(t.Text)>=0)
+                    if (Convert.ToInt32(t.Text) >= 0)
                     {
                         t.Text = (Convert.ToInt32(t.Text) + 1).ToString();
                     }
@@ -534,15 +534,23 @@ namespace KrausRGA.UI
                 }
             }
             catch (Exception)
-            {}
+            { }
 
         }
 
         private void chkIsItemPresent_Checked(object sender, RoutedEventArgs e)
         {
-           
+            CheckBox cbk = (CheckBox)e.Source;
+            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            row.Background = new SolidColorBrush(Color.FromArgb(100, 117, 162, 97));
         }
 
-        
+        private void chkIsItemPresent_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox cbk = (CheckBox)e.Source;
+            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            row.Background = new SolidColorBrush(Color.FromArgb(100, 195, 145, 117));
+        }
+
     }
 }

@@ -22,7 +22,7 @@
             			ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             			CanUserAddRows="False"    AutoGenerateColumns="False" FontSize="17" Canvas.Top="136" Background="#FFE6E6E6"
             			SelectionUnit="Cell" BorderThickness="1" Cursor="Hand"   
-            			BorderBrush="{x:Null}"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="383" Margin="0,0,0,-4" >
+            			BorderBrush="{x:Null}"  HorizontalGridLinesBrush="#FF575757" VerticalGridLinesBrush="Gray" Height="383" Margin="-10,0,10,-4" >
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn Header="Item" Width="50"  >
                                     <DataGridTemplateColumn.CellTemplate>
@@ -99,7 +99,7 @@
                             <Label Name="lblSHNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="189" Canvas.Top="75" Width="201"/>
 
                             <Label Name="lblCPCKNo" Content="Packing Number : " Style="{StaticResource lblConstant}" Canvas.Left="9" Canvas.Top="110"/>
-                            <Label Name="lblPCKNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="184" Canvas.Top="108" Width="206"/>
+                            <Label Name="lblPCKNo" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="184" Canvas.Top="108" Width="206" Background="#FF79A261"/>
 
                             <Label Name="lblCPackingDate" Content="Packing Date : " Style="{StaticResource lblConstant}" Canvas.Left="417" Canvas.Top="149"/>
                             <Label Name="lblPackingDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="551" Width="352" Canvas.Top="149"/>
@@ -162,7 +162,7 @@
                     <Image x:Name="imgLogo" Height="80" Canvas.Left="1" Canvas.Top="10" Width="211" Stretch="Fill" Cursor="None" Source="/KrausRGA;component/Images/logo.png"/>
                     <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="GRA Manager" Canvas.Top="27" Height="45" Width="193" FontSize="30" Foreground="White"/>
                 </Canvas>
-                <Border x:Name="bdrCamera" Visibility="Visible" Canvas.Top="291" >
+                <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="291" >
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
