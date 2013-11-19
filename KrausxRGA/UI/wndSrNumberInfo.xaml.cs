@@ -456,9 +456,7 @@ namespace KrausRGA.UI
             wndBox.Show();
             this.Close();
         }
-
-<<<<<<< HEAD
-       
+  
 
         private void tbrgzdetail_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
@@ -493,7 +491,7 @@ namespace KrausRGA.UI
             bdrMsg.Visibility = System.Windows.Visibility.Visible;
             bdrMsg.Background = new SolidColorBrush(BgColor);
             txtError.Text = Msg;
-=======
+        }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
@@ -537,7 +535,7 @@ namespace KrausRGA.UI
             }
             catch (Exception)
             {}
->>>>>>> b5d909814262dbf66ebc747550e4f8e8bc91b73c
+        
         }
     }
 }
