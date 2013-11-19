@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using KrausRGA.Views;
 using KrausRGA.Models;
+using System.Threading;
 
 namespace KrausRGA.UI
 {
@@ -95,6 +96,7 @@ namespace KrausRGA.UI
                         if (_mUser.IsPermitedTo(ePermissione.Login))
                         {
                             hideButtons(System.Windows.Visibility.Visible);
+
                             btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
@@ -124,7 +126,6 @@ namespace KrausRGA.UI
             bdrSrNumber.Visibility = System.Windows.Visibility.Hidden;
             bdrScan.Visibility = System.Windows.Visibility.Hidden;
             bdrScan.Visibility = System.Windows.Visibility.Visible;
-
             txtScan.Focus();
         }
 
@@ -132,19 +133,36 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
-                if (txtScan.Text.Trim() != "")
+                if (txtScan.Text.Trim() != "") //if clear text box.
                 {
-                    _mReturn = new mReturnDetails(txtScan.Text.ToUpper());
-                    clGlobal.mReturn = _mReturn;
-                    if (_mReturn.IsValidNumber)
-                    {
-                        this.Dispatcher.Invoke(new Action(() =>
-                            {
-                                wndSrNumberInfo main = new wndSrNumberInfo();
-                                main.Show();
 
-                            }));
-                        this.Close();
+                    //call constructor of Return Model.
+                    _mReturn = new mReturnDetails(txtScan.Text.ToUpper());
+
+                    //keeps deep copy throughout project to access.
+                    clGlobal.mReturn = _mReturn;
+
+                    if (_mReturn.IsValidNumber) //Is number valid or not.
+                    {
+                        if (!_mReturn.IsAlreadySaved) //Is number already saved in database.
+                        {
+                            this.Dispatcher.Invoke(new Action(() =>
+                                {
+                                    //Create new instance of window.
+                                    wndSrNumberInfo wndMain = new wndSrNumberInfo();
+
+                                    //opens new window.
+                                    wndMain.Show();
+                                }));
+
+                            //close this screen.
+                            this.Close();
+                        }
+                        else
+                        {
+                            ErrorMsg(_mReturn.EnteredNumber + " is already saved.", Color.FromRgb(185, 84, 0));
+                            txtScan.Text = "";
+                        }
                     }
                     else
                     {

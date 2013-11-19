@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
        Title="Kraus GRA System" Height="800" Width="1400" WindowState="Maximized"
-       Loaded="Window_Loaded" >
+       Loaded="Window_Loaded" Icon="/KrausRGA;component/Images/RGAICO.ico" >
     <Viewbox >
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="1,1,1,1" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" Background="#FFE3E9EA" >
-                    <Canvas x:Name="cnTitle" Height="100" Width="1400">
+                    <Canvas x:Name="cnTitle" Height="95" Width="1400">
                         <Canvas.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF46C0E4" Offset="0.012"/>
@@ -91,7 +91,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="-7,0,7,0">
+                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="6,0,-6,0" >
                                 <Border Name="bdrmain2" >
                                     <Canvas Name="cvsTb1main2" Margin="0,0,0,0">
                                         <!-- Grid View-->
@@ -169,8 +169,14 @@
                                                             <StackPanel x:Name="spQty1" Width="150">
                                                                 <TextBlock x:Name="tbQty" TextAlignment="Center" Width="150" Text="{Binding ReturnedQty}" FontSize="20"/>
                                                                 <StackPanel x:Name="spQty2" Orientation="Horizontal">
-                                                                    <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="75" Height="40" FontSize="30" Foreground="White" Background="#FF464646" />
-                                                                    <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="75" Height="40" FontSize="30" Foreground="White" Background="#FF464646"/>
+                                                                    <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                                                            Width="75" Height="40" FontSize="30"
+                                                                            Foreground="White" Background="#FF464646" 
+                                                                           Click="btnMinus_Click" />
+                                                                    <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                                                                            Width="75" Height="40" 
+                                                                            FontSize="30" Foreground="White" Background="#FF464646"
+                                                                           Click="btnPluse_Click" />
                                                                 </StackPanel>
                                                             </StackPanel>
                                                         </DataTemplate>
@@ -214,7 +220,7 @@
 
                                         </DataGrid>
 
-                                        <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="150" Canvas.Left="10" >
+                                        <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="77" Height="349" Width="504" >
                                             <Border.Style>
                                                 <Style TargetType="{x:Type Border}">
                                                     <Style.Triggers>
@@ -239,8 +245,8 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-                                            <Canvas x:Name="cnCamera" Height="244" Width="463" Visibility="Visible"  Background="#B2323232" >
-                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="220" Canvas.Left="119" Width="302" Canvas.Top="12"/>
+                                            <Canvas x:Name="cnCamera" Visibility="Visible"  Background="#B2323232" Margin="0,0,-152,-93" >
+                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="390" Canvas.Left="119" Width="500" Canvas.Top="12"/>
                                                 <Border x:Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="24" Width="88" CornerRadius="10" Canvas.Left="-147">
                                                     <Border.Style>
                                                         <Style TargetType="{x:Type Border}">
@@ -361,9 +367,9 @@
                                                 <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="32" >
                                                     <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
                                                 </ScrollViewer>
-                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="371" 
-        				Canvas.Top="90" Width="247" Height="62" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
-        				HorizontalAlignment="Right" FontSize="17" FontWeight="Bold" Click="brnCloseCamera_Click">
+                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="488" 
+        				Canvas.Top="166" Width="440" Height="108" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
+        				HorizontalAlignment="Right" FontSize="30" FontWeight="Bold" Click="brnCloseCamera_Click">
                                                     <Button.RenderTransform>
                                                         <TransformGroup>
                                                             <ScaleTransform/>
@@ -384,7 +390,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top">
+                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top" Margin="11,0,-11,0">
                                 <Canvas>
                                     <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="20" BorderThickness="2,0,2,2" Height="296" >
                                         <Canvas Name="cvCheckboxHolder" Margin="0,0,0,0">

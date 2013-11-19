@@ -62,6 +62,9 @@ namespace KrausRGA.Models
             //Find valid Number or not.
             IsValidNumber = GetIsValidNumberEntred(EnteredNumber, EnumNumberType);
 
+            //Check that SR Number is persent in database.
+            IsAlreadySaved = IsNumberAlreadyPresent(EnteredNumber);
+
         }
 
         #endregion
@@ -87,6 +90,11 @@ namespace KrausRGA.Models
         /// List Of information of RMA details.
         /// </summary>
         public List<RMAInfo> lsRMAInformation { get; protected set; }
+
+        /// <summary>
+        /// Check that number is already saved in database.
+        /// </summary>
+        public Boolean IsAlreadySaved { get; protected set; }
 
         #endregion
 
@@ -241,6 +249,29 @@ namespace KrausRGA.Models
             return lsReturn;
         }
 
+        /// <summary>
+        /// Check that SRnumber is already saved in databse or not.
+        /// </summary>
+        /// <param name="SRnumber">
+        /// String SR Number
+        /// </param>
+        /// <returns>
+        /// Boolean Value True is present else false.
+        /// </returns>
+        public Boolean IsNumberAlreadyPresent(String SRnumber)
+        {
+            Boolean _return = false;
+            //RMA databse Object.
+            RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+            try
+            {
+                String Anyvalue = entRMA.Returns.SingleOrDefault(rma => rma.RMANumber == SRnumber).RMANumber;
+                if (Anyvalue == SRnumber) _return = true;
+            }
+            catch (Exception)
+            {}
+            return _return;
+        }
         #endregion
 
         #region Set Methods of Database.
