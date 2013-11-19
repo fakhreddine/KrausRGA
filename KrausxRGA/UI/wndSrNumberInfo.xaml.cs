@@ -44,6 +44,8 @@ namespace KrausRGA.UI
         {
             InitializeComponent();
 
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+
             #region User Region.
 
             FillRMAStausAndDecision();
@@ -449,6 +451,43 @@ namespace KrausRGA.UI
             clGlobal.IsUserlogged = true;
             wndBox.Show();
             this.Close();
+        }
+
+       
+
+        private void tbrgzdetail_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+                  
+                if (cmbRMAStatus.SelectedIndex==0 && cmbRMADecision.SelectedIndex==0)
+                {
+                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
+                   ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));   
+                }
+                else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
+                {
+                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
+                    ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));   
+                }
+                else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
+                {
+                    bdrMsg.Visibility = System.Windows.Visibility.Visible;
+                    ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));   
+                }
+                else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex != 0)
+                {
+                    bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+                }
+            
+            
+        }
+
+
+        private void ErrorMsg(string Msg, Color BgColor)
+        {
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            bdrMsg.Visibility = System.Windows.Visibility.Visible;
+            bdrMsg.Background = new SolidColorBrush(BgColor);
+            txtError.Text = Msg;
         }
     }
 }

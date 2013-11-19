@@ -68,7 +68,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>RGAICO.ico</ApplicationIcon>
@@ -102,7 +102,7 @@
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WebcamControl, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\v2.1\WebcamControl.dll</HintPath>
+      <HintPath>..\..\..\Users\Shriram\Desktop\WebcamControl.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
