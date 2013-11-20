@@ -6,7 +6,7 @@
     <Viewbox >
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
-                <Canvas Margin="0,0,0,0" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" Background="#FFE3E9EA" >
+                <Canvas Margin="-2,-8,2,8" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" Background="#FFE3E9EA" >
 
                     <Canvas x:Name="cnTitle" Height="100" Width="1400">
                         <Canvas.Background>
@@ -65,7 +65,7 @@
                             </Border>
                         </Canvas>
                     </Border>
-                   
+
                     <Border BorderThickness="1" Height="160" Canvas.Top="617" Width="1054" Canvas.Left="346">
                         <Canvas>
                             <Border Name="bdrMsg" BorderThickness="1" Height="27" Canvas.Left="0" Canvas.Top="131" Width="1052" Background="#E1007ACC">
@@ -98,7 +98,16 @@
                             </Border>
                         </Canvas>
                     </Border>
-
+                    <!--<Button x:Name="btnTest_Copy" Content="Button" Canvas.Left="1167" Canvas.Top="118" Width="75" Click="Button_Click" Height="47" BorderBrush="#FF214D08" Foreground="#FF214D08">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFCADAC1" Offset="0"/>
+                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                <GradientStop Color="#FF4E9E20" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
                 </Canvas>
             </Border>
         </Grid>

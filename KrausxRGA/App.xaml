@@ -121,5 +121,26 @@
         
         <!-- Tab Control Styles-->
             <!-- __________________________ -->
+
+
+        <Style TargetType="Button" x:Key="TransparentButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="1" BorderBrush="Black" CornerRadius="50" Background="AliceBlue">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                <Setter TargetName="border" Property="Background" Value="Green"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+       
     </Application.Resources>
 </Application>

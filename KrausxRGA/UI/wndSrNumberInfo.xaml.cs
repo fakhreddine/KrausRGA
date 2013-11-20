@@ -386,12 +386,9 @@ namespace KrausRGA.UI
 
         #endregion
 
-        int flag;
-
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
             //Validation for RMA status and RMA decision
-
             if (cmbRMAStatus.SelectedIndex == 0 || cmbRMADecision.SelectedIndex == 0)
             {
                 bdrMsg.Visibility = System.Windows.Visibility.Visible;
@@ -448,7 +445,7 @@ namespace KrausRGA.UI
 
                         //Set returned details table.
                         Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
-
+                        
                         //Save Images info Table.
                         foreach (Image imageCaptured in SpImages.Children)
                         {
@@ -535,6 +532,21 @@ namespace KrausRGA.UI
             CheckBox cbk = (CheckBox)e.Source;
             DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
             row.Background = new SolidColorBrush(Color.FromArgb(100, 195, 145, 117));
+        }
+
+        private void btnRed_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnRed = (Button)e.Source;
+            Canvas SpButtons = (Canvas)btnRed.Parent;
+            Button btnGreen = SpButtons.FindName("btnGreen") as Button;
+            btnGreen.Visibility = System.Windows.Visibility.Visible;
+            btnRed.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void btnGreen_Loaded(object sender, RoutedEventArgs e)
+        {
+            Button btnGreen = (Button)e.Source;
+            btnGreen.Visibility = System.Windows.Visibility.Hidden;
         }
 
     }

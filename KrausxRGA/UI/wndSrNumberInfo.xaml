@@ -19,7 +19,7 @@
                         <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="RGA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30" Foreground="White"/>
                     </Canvas>
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
-                        <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Left="10" Canvas.Top="10" 
+                        <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Top="2" 
                                    >
                             <TabItem Header="RMA Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
                                 <Border Name="bdrmain" >
@@ -133,18 +133,29 @@
                                                 <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="50"  >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
-                                                            <StackPanel VerticalAlignment="Center">
-                                                                <CheckBox x:Name="chkIsItemPresent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Checked="chkIsItemPresent_Checked" Unchecked="chkIsItemPresent_Unchecked" >
-                                                                    <CheckBox.RenderTransform>
-                                                                        <TransformGroup>
-                                                                            <ScaleTransform ScaleX="3" ScaleY="3"/>
-                                                                            <SkewTransform/>
-                                                                            <RotateTransform/>
-                                                                            <TranslateTransform/>
-                                                                        </TransformGroup>
-                                                                    </CheckBox.RenderTransform>
-                                                                </CheckBox>
-                                                            </StackPanel>
+                                                                <Canvas Name="cvButtons" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                                    <Button Name="btnRed" Width="45" Height="40" BorderBrush="#FFB44C2D" Foreground="#FFD11F1F" Click="btnRed_Click">
+                                                                        <Button.Background>
+                                                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                                                <GradientStop Color="#FFD8D5D5" Offset="0"/>
+                                                                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                                                                <GradientStop Color="#FFB86969" Offset="1"/>
+                                                                            </LinearGradientBrush>
+                                                                        </Button.Background>
+                                                                    </Button >
+                                                                    <Button Name="btnGreen" Visibility="Visible" Width="45" Height="40"  BorderBrush="#FF214D08" Foreground="#FF214D08"
+                                                                           Loaded="btnGreen_Loaded" >
+                                                                        <Button.Background>
+                                                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                                                <GradientStop Color="#FFCADAC1" Offset="0"/>
+                                                                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                                                                <GradientStop Color="#FF4E9E20" Offset="1"/>
+                                                                            </LinearGradientBrush>
+                                                                        </Button.Background>
+                                                                    </Button>
+                                                                </Canvas>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
@@ -390,7 +401,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top" Margin="11,0,-11,0">
+                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top" Margin="14,0,-14,0">
                                 <Canvas>
                                     <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="20" BorderThickness="2,0,2,2" Height="296" >
                                         <Canvas Name="cvCheckboxHolder" Margin="0,0,0,0">
