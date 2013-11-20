@@ -392,30 +392,15 @@ namespace KrausRGA.UI
         {
             //Validation for RMA status and RMA decision
 
-            if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex == 0)
+            if (cmbRMAStatus.SelectedIndex == 0 || cmbRMADecision.SelectedIndex == 0)
             {
                 bdrMsg.Visibility = System.Windows.Visibility.Visible;
                 ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));
             }
-            else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
+            else
             {
-                bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));
-            }
-            else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
-            {
-                bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));
-            }
-            else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex != 0)
-            {
-
-
 
                 bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-
-
-
 
                 Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
                 Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
@@ -455,51 +440,31 @@ namespace KrausRGA.UI
                         DataTemplate DtStatus = CntStatus.ContentTemplate;
                         ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
                         int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
-                        //Views.eStatus PStatus = (eStatus)Enum.Parse(typeof(eStatus), SelectedVal, true);
 
+                        //Returned RMA Information.
+                        RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
+                        int DeliveredQty = rmaInfo.DeliveredQty;
+                        int ExpectedQty = rmaInfo.ExpectedQty;
 
-                        //if (cmbStatus.SelectedIndex != 0)
-                        //{
-                            //ErrorMsg("Please select the Item Status.", Color.FromRgb(185, 84, 0));
+                        //Set returned details table.
+                        Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
 
+                        //Save Images info Table.
+                        foreach (Image imageCaptured in SpImages.Children)
+                        {
+                            String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
 
+                            //Set Images table from model.
+                            Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
+                        }
 
-                            //Returned RMA Information.
-                            RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
-                            int DeliveredQty = rmaInfo.DeliveredQty;
-                            int ExpectedQty = rmaInfo.ExpectedQty;
-
-                            //Set returned details table.
-                            Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
-
-                            //Save Images info Table.
-                            foreach (Image imageCaptured in SpImages.Children)
-                            {
-                                String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
-
-                                //Set Images table from model.
-                                Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                            }
-
-                            wndBoxInformation wndBox = new wndBoxInformation();
-                            clGlobal.IsUserlogged = true;
-                            wndBox.Show();
-                            this.Close();
-
-                        //}
-                        //else
-                        //{
-                        //    ErrorMsg("Please select the Item Status.", Color.FromRgb(185, 84, 0));
-                        //}
+                        wndBoxInformation wndBox = new wndBoxInformation();
+                        clGlobal.IsUserlogged = true;
+                        wndBox.Show();
+                        this.Close();
                     }
-                    
                 }
-
-                
-
-           }
-
-          
+            }
         }
 
                    
