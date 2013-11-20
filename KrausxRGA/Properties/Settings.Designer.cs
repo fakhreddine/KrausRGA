@@ -31,5 +31,14 @@ namespace KrausRGA.Properties {
                 return ((int)(this["CameraNumber"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\SKUReturned")]
+        public string DrivePath {
+            get {
+                return ((string)(this["DrivePath"]));
+            }
+        }
     }
 }
