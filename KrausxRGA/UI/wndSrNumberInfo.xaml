@@ -451,7 +451,7 @@
                                             <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
                                                 <TextBlock TextWrapping="Wrap" Text="Other Reason" FontSize="30" Foreground="White" Margin="10,4,1153,6"/>
                                             </Border>
-                                            <TextBox Name="txtOtherReason" Height="174" Width="1356" Canvas.Top="53" TextWrapping="WrapWithOverflow" />
+                                            <TextBox Name="txtOtherReason" Height="49" Width="1356" Canvas.Top="53" TextWrapping="WrapWithOverflow" />
                                         </Canvas>
                                     </Border>
                                     <Border x:Name="bdrButtonSave" Height="62" Width="249" Canvas.Left="1114" Canvas.Top="549">

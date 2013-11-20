@@ -72,7 +72,7 @@ namespace KrausRGA.UI
             }
 
             // Create directory for saving image files.
-            string imgPath = @"C:\SKUReturned";
+            string imgPath = KrausRGA.Properties.Settings.Default.DrivePath;
 
             if (Directory.Exists(imgPath) == false)
             {
