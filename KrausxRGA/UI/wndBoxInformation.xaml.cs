@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using KrausRGA.Views;
 using KrausRGA.Models;
 using System.Threading;
+using System.Windows.Media.Effects;
 
 namespace KrausRGA.UI
 {
@@ -212,6 +213,7 @@ namespace KrausRGA.UI
         }
 
         #endregion
+
 
     }
 

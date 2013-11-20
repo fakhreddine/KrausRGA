@@ -386,35 +386,23 @@ namespace KrausRGA.UI
 
         #endregion
 
-        int flag;
-
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
             //Validation for RMA status and RMA decision
 
 
             if (cmbRMAStatus.forcombobox() || cmbRMADecision.forcombobox())
+
             {
                 bdrMsg.Visibility = System.Windows.Visibility.Visible;
                 ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));
             }
-            //if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex == 0)
-            //{
-            //    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-            //    ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));
-            //}
-            //else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
-            //{
-            //    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-            //    ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));
-            //}
-            //else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
-            //{
-            //    bdrMsg.Visibility = System.Windows.Visibility.Visible;
-            //    ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));
-            //}
-            else 
+
+
+            else
             {
+
+
                 bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
                 Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
@@ -455,45 +443,36 @@ namespace KrausRGA.UI
                         DataTemplate DtStatus = CntStatus.ContentTemplate;
                         ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
                         int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
-                        //Views.eStatus PStatus = (eStatus)Enum.Parse(typeof(eStatus), SelectedVal, true);
-                        if (dgPackageInfo.gridrow())
+
+
+                        //Returned RMA Information.
+                        RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
+                        int DeliveredQty = rmaInfo.DeliveredQty;
+                        int ExpectedQty = rmaInfo.ExpectedQty;
+
+                        //Set returned details table.
+                        Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
+                        
+                        //Save Images info Table.
+                        foreach (Image imageCaptured in SpImages.Children)
                         {
-                            bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                            ErrorMsg("Please fill the All Information.", Color.FromRgb(185, 84, 0));
-                        }
-                        else
-                        {
-                            //Returned RMA Information.
-                            RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
-                            int DeliveredQty = rmaInfo.DeliveredQty;
-                            int ExpectedQty = rmaInfo.ExpectedQty;
+                            String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
 
-                            //Set returned details table.
-                            Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
-
-                            //Save Images info Table.
-                            foreach (Image imageCaptured in SpImages.Children)
-                            {
-                                String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
-
-                                //Set Images table from model.
-                                Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                            }
-
-                            wndBoxInformation wndBox = new wndBoxInformation();
-                            clGlobal.IsUserlogged = true;
-                            wndBox.Show();
-                            this.Close();
+                            //Set Images table from model.
+                            Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
                         }
 
+                        wndBoxInformation wndBox = new wndBoxInformation();
+                        clGlobal.IsUserlogged = true;
+                        wndBox.Show();
+                        this.Close();
                     }
-
                 }
-
-
             }
-          
+            
         }
+
+        
 
                    
 
@@ -563,6 +542,21 @@ namespace KrausRGA.UI
             CheckBox cbk = (CheckBox)e.Source;
             DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
             row.Background = new SolidColorBrush(Color.FromArgb(100, 195, 145, 117));
+        }
+
+        private void btnRed_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnRed = (Button)e.Source;
+            Canvas SpButtons = (Canvas)btnRed.Parent;
+            Button btnGreen = SpButtons.FindName("btnGreen") as Button;
+            btnGreen.Visibility = System.Windows.Visibility.Visible;
+            btnRed.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void btnGreen_Loaded(object sender, RoutedEventArgs e)
+        {
+            Button btnGreen = (Button)e.Source;
+            btnGreen.Visibility = System.Windows.Visibility.Hidden;
         }
 
     }
