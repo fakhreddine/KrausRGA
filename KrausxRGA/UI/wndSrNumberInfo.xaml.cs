@@ -392,30 +392,30 @@ namespace KrausRGA.UI
         {
             //Validation for RMA status and RMA decision
 
-            if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex == 0)
+
+            if (cmbRMAStatus.forcombobox() || cmbRMADecision.forcombobox())
             {
                 bdrMsg.Visibility = System.Windows.Visibility.Visible;
                 ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));
             }
-            else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
+            //if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex == 0)
+            //{
+            //    bdrMsg.Visibility = System.Windows.Visibility.Visible;
+            //    ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));
+            //}
+            //else if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex != 0)
+            //{
+            //    bdrMsg.Visibility = System.Windows.Visibility.Visible;
+            //    ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));
+            //}
+            //else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
+            //{
+            //    bdrMsg.Visibility = System.Windows.Visibility.Visible;
+            //    ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));
+            //}
+            else 
             {
-                bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                ErrorMsg("Please select the RMA Status.", Color.FromRgb(185, 84, 0));
-            }
-            else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex == 0)
-            {
-                bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                ErrorMsg("Please select the RMA Decision.", Color.FromRgb(185, 84, 0));
-            }
-            else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex != 0)
-            {
-
-
-
                 bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-
-
-
 
                 Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
                 Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
@@ -456,14 +456,13 @@ namespace KrausRGA.UI
                         ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
                         int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
                         //Views.eStatus PStatus = (eStatus)Enum.Parse(typeof(eStatus), SelectedVal, true);
-
-
-                        //if (cmbStatus.SelectedIndex != 0)
-                        //{
-                            //ErrorMsg("Please select the Item Status.", Color.FromRgb(185, 84, 0));
-
-
-
+                        if (dgPackageInfo.gridrow())
+                        {
+                            bdrMsg.Visibility = System.Windows.Visibility.Visible;
+                            ErrorMsg("Please fill the All Information.", Color.FromRgb(185, 84, 0));
+                        }
+                        else
+                        {
                             //Returned RMA Information.
                             RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
                             int DeliveredQty = rmaInfo.DeliveredQty;
@@ -485,20 +484,14 @@ namespace KrausRGA.UI
                             clGlobal.IsUserlogged = true;
                             wndBox.Show();
                             this.Close();
+                        }
 
-                        //}
-                        //else
-                        //{
-                        //    ErrorMsg("Please select the Item Status.", Color.FromRgb(185, 84, 0));
-                        //}
                     }
-                    
+
                 }
 
-                
 
-           }
-
+            }
           
         }
 

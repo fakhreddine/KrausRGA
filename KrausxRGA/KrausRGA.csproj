@@ -113,6 +113,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DBLogics\cmdAudit.cs" />
     <Compile Include="DBLogics\cmdReturn.cs" />
     <Compile Include="DBLogics\cmdReturnDetail.cs" />
     <Compile Include="DBLogics\cmdReturnImages.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Views\ImageK.cs" />
     <Compile Include="Views\eNumberType.cs" />
     <Compile Include="Views\RMAInfo.cs" />
+    <Compile Include="Views\Validation.cs" />
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
