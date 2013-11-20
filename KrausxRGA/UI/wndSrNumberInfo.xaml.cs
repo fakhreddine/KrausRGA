@@ -559,5 +559,26 @@ namespace KrausRGA.UI
             btnGreen.Visibility = System.Windows.Visibility.Hidden;
         }
 
+        private void btnGreen_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button btnGreen = (Button)e.Source;
+            Canvas SpButtons = (Canvas)btnGreen.Parent;
+            Button btnRed = SpButtons.FindName("btnRed") as Button;
+            btnGreen.Visibility = System.Windows.Visibility.Hidden;
+            btnRed.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+            
+        }
+
     }
 }

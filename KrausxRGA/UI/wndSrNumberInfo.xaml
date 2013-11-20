@@ -133,29 +133,29 @@
                                                 <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="50"  >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
-                                                                <Canvas Name="cvButtons" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                                    <Button Name="btnRed" Width="45" Height="40" BorderBrush="#FFB44C2D" Foreground="#FFD11F1F" Click="btnRed_Click">
-                                                                        <Button.Background>
-                                                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                                                                <GradientStop Color="#FFD8D5D5" Offset="0"/>
-                                                                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                                                                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                                                                                <GradientStop Color="#FFB86969" Offset="1"/>
-                                                                            </LinearGradientBrush>
-                                                                        </Button.Background>
-                                                                    </Button >
-                                                                    <Button Name="btnGreen" Visibility="Visible" Width="45" Height="40"  BorderBrush="#FF214D08" Foreground="#FF214D08"
-                                                                           Loaded="btnGreen_Loaded" >
-                                                                        <Button.Background>
-                                                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                                                                <GradientStop Color="#FFCADAC1" Offset="0"/>
-                                                                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                                                                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                                                                                <GradientStop Color="#FF4E9E20" Offset="1"/>
-                                                                            </LinearGradientBrush>
-                                                                        </Button.Background>
-                                                                    </Button>
-                                                                </Canvas>
+                                                            <Canvas Name="cvButtons">
+                                                                <Button Name="btnRed" Width="45" Height="70" BorderBrush="#FFB44C2D" Foreground="#FFD11F1F" Click="btnRed_Click">
+                                                                    <Button.Background>
+                                                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                                            <GradientStop Color="#FFD8D5D5" Offset="0"/>
+                                                                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                                            <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                                                            <GradientStop Color="#FFB86969" Offset="1"/>
+                                                                        </LinearGradientBrush>
+                                                                    </Button.Background>
+                                                                </Button >
+                                                                <Button Name="btnGreen" Visibility="Visible" Width="45" Height="70"  BorderBrush="#FF214D08" Foreground="#FF214D08"
+                                                                           Loaded="btnGreen_Loaded" Click="btnGreen_Click" >
+                                                                    <Button.Background>
+                                                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                                            <GradientStop Color="#FFCADAC1" Offset="0"/>
+                                                                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                                            <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                                                            <GradientStop Color="#FF4E9E20" Offset="1"/>
+                                                                        </LinearGradientBrush>
+                                                                    </Button.Background>
+                                                                </Button>
+                                                            </Canvas>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
@@ -214,14 +214,8 @@
                                                                         >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <ContentControl>
-                                                                <ComboBox Name="cmbItemStatus" VerticalContentAlignment="Center" FontSize="20" Height="50" SelectedIndex="0" SelectedValue="0">
-                                                                    <ComboBoxItem Name="citem1">--Select--</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem2">Total Damaged</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem3">Broken</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem4">Scratched</ComboBoxItem>
-                                                                    <ComboBoxItem Name="citem5">Good</ComboBoxItem>
-                                                                </ComboBox>
+                                                            <ContentControl Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
+                                                                <TextBlock Name="tbItemStatus" Text="10% Ok"/>
                                                             </ContentControl>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -398,6 +392,28 @@
                                                    Width="524" Name="imgZoom" Visibility="Visible" 
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
+                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="320" Canvas.Left="933" Canvas.Top="145" Width="427" OpacityMask="#FF535252" Background="#CC406B83">
+                                            <Canvas.Style>
+                                                <Style TargetType="Canvas">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsVisible" Value="true">
+                                                            <Trigger.EnterActions >
+                                                                <BeginStoryboard >
+                                                                    <Storyboard >
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" 
+                                                                                         From="1500" 
+                                                                                         To="950" 
+                                                                                         Duration="0:0:0.1"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Canvas.Style>
+                                            <TextBlock Name="tbTitle" Text="Select Item Status Point." Foreground="#FFF9F9F9" Canvas.Left="44" Canvas.Top="2"/>
+                                            <Button Content="Close" Canvas.Left="-99" Canvas.Top="-1" Width="94" Click="Button_Click"/>
+                                        </Canvas>
                                     </Canvas>
                                 </Border>
                             </TabItem>
@@ -481,13 +497,13 @@
 
                 </Canvas>
             </Border>
-            
-           
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
         </Grid>
     </Viewbox>
 </Window>
