@@ -19,8 +19,8 @@
                         <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="RGA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30" Foreground="White"/>
                     </Canvas>
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
-                        <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Margin="2,2,2,2" 
-                                    SelectionChanged="tbrgzdetail_SelectionChanged_1">
+                        <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Left="10" Canvas.Top="10" 
+                                   >
                             <TabItem Header="RMA Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
                                 <Border Name="bdrmain" >
                                     <Canvas Name="cvsTb1main" Margin="0,0,0,0">
@@ -91,7 +91,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="6,0,-6,0" >
+                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="9,0,-9,0" >
                                 <Border Name="bdrmain2" >
                                     <Canvas Name="cvsTb1main2" Margin="0,0,0,0">
                                         <!-- Grid View-->
@@ -436,7 +436,7 @@
                     </Canvas>
                     <Border BorderThickness="1" Height="82" Canvas.Top="695" Width="1050" Canvas.Left="5">
                         <Canvas>
-                            <Border Name="bdrMsg" BorderThickness="1" Height="27" Canvas.Left="0" Canvas.Top="53" Width="1048" Background="#E1007ACC">
+                            <Border Name="bdrMsg" Visibility="Hidden" BorderThickness="1" Height="27" Canvas.Left="0" Canvas.Top="53" Width="1048" Background="#E1007ACC">
                                 <Border.Style >
                                     <Style TargetType="{x:Type Border}">
                                         <Style.Triggers>

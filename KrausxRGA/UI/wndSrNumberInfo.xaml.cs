@@ -386,79 +386,11 @@ namespace KrausRGA.UI
 
         #endregion
 
+        int flag;
+
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
-
-            Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
-            Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
-
-            //Save to RMA Master Table.
-            Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
-
-            foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
-            {
-                //CheckBOx item Peresent
-                ContentPresenter CntPersenter = dgPackageInfo.Columns[0].GetCellContent(row) as ContentPresenter;
-                DataTemplate DataTemp = CntPersenter.ContentTemplate;
-                CheckBox cbkItemPersent = (CheckBox)DataTemp.FindName("chkIsItemPresent", CntPersenter);
-
-                // If item present in the return 
-                if (cbkItemPersent.IsChecked == true)
-                {
-
-                    // item SKUNumber
-                    TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-
-                    //Product Name.
-                    TextBlock ProcutName = dgPackageInfo.Columns[2].GetCellContent(row) as TextBlock;
-
-                    //item Returned Quantity.
-                    ContentPresenter CntQuantity = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
-                    DataTemplate DtQty = CntQuantity.ContentTemplate;
-                    TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
-
-                    //Images Stack Panel.
-                    ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                    DataTemplate DtImages = CntImag.ContentTemplate;
-                    StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
-
-                    //item Status.k
-                    ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
-                    DataTemplate DtStatus = CntStatus.ContentTemplate;
-                    ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
-                    int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
-                    //Views.eStatus PStatus = (eStatus)Enum.Parse(typeof(eStatus), SelectedVal, true);
-
-                    //Returned RMA Information.
-                    RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
-                    int DeliveredQty = rmaInfo.DeliveredQty;
-                    int ExpectedQty = rmaInfo.ExpectedQty;
-
-                    //Set returned details table.
-                    Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
-
-                    //Save Images info Table.
-                    foreach (Image imageCaptured in SpImages.Children)
-                    {
-                        String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
-
-                        //Set Images table from model.
-                        Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                    }
-                }
-
-            }
-
-            wndBoxInformation wndBox = new wndBoxInformation();
-            clGlobal.IsUserlogged = true;
-            wndBox.Show();
-            this.Close();
-        }
-
-
-
-        private void tbrgzdetail_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
+            //Validation for RMA status and RMA decision
 
             if (cmbRMAStatus.SelectedIndex == 0 && cmbRMADecision.SelectedIndex == 0)
             {
@@ -477,12 +409,100 @@ namespace KrausRGA.UI
             }
             else if (cmbRMAStatus.SelectedIndex != 0 && cmbRMADecision.SelectedIndex != 0)
             {
+
+
+
                 bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-            }
 
 
+
+
+                Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
+                Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
+
+                //Save to RMA Master Table.
+                Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
+
+                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+                {
+                    //CheckBOx item Peresent
+                    ContentPresenter CntPersenter = dgPackageInfo.Columns[0].GetCellContent(row) as ContentPresenter;
+                    DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                    CheckBox cbkItemPersent = (CheckBox)DataTemp.FindName("chkIsItemPresent", CntPersenter);
+
+                    // If item present in the return 
+                    if (cbkItemPersent.IsChecked == true)
+                    {
+
+                        // item SKUNumber
+                        TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
+                        //Product Name.
+                        TextBlock ProcutName = dgPackageInfo.Columns[2].GetCellContent(row) as TextBlock;
+
+                        //item Returned Quantity.
+                        ContentPresenter CntQuantity = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
+                        DataTemplate DtQty = CntQuantity.ContentTemplate;
+                        TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
+
+                        //Images Stack Panel.
+                        ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                        DataTemplate DtImages = CntImag.ContentTemplate;
+                        StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                        //item Status.k
+                        ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                        DataTemplate DtStatus = CntStatus.ContentTemplate;
+                        ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
+                        int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
+                        //Views.eStatus PStatus = (eStatus)Enum.Parse(typeof(eStatus), SelectedVal, true);
+
+
+                        //if (cmbStatus.SelectedIndex != 0)
+                        //{
+                            //ErrorMsg("Please select the Item Status.", Color.FromRgb(185, 84, 0));
+
+
+
+                            //Returned RMA Information.
+                            RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
+                            int DeliveredQty = rmaInfo.DeliveredQty;
+                            int ExpectedQty = rmaInfo.ExpectedQty;
+
+                            //Set returned details table.
+                            Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
+
+                            //Save Images info Table.
+                            foreach (Image imageCaptured in SpImages.Children)
+                            {
+                                String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
+
+                                //Set Images table from model.
+                                Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
+                            }
+
+                            wndBoxInformation wndBox = new wndBoxInformation();
+                            clGlobal.IsUserlogged = true;
+                            wndBox.Show();
+                            this.Close();
+
+                        //}
+                        //else
+                        //{
+                        //    ErrorMsg("Please select the Item Status.", Color.FromRgb(185, 84, 0));
+                        //}
+                    }
+                    
+                }
+
+                
+
+           }
+
+          
         }
 
+                   
 
         private void ErrorMsg(string Msg, Color BgColor)
         {
