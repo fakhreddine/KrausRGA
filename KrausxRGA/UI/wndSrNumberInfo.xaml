@@ -392,7 +392,7 @@
                                                    Width="524" Name="imgZoom" Visibility="Visible" 
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
-                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="320" Canvas.Left="933" Canvas.Top="145" Width="427" OpacityMask="#FF535252" Background="#CC406B83">
+                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="320" Canvas.Left="937" Canvas.Top="145" Width="427" OpacityMask="#FF535252" Background="#CC406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
                                                     <Style.Triggers>
@@ -412,7 +412,18 @@
                                                 </Style>
                                             </Canvas.Style>
                                             <TextBlock Name="tbTitle" Text="Select Item Status Point." Foreground="#FFF9F9F9" Canvas.Left="44" Canvas.Top="2"/>
-                                            <Button Content="Close" Canvas.Left="-99" Canvas.Top="-1" Width="94" Click="Button_Click"/>
+
+                                            <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-205" Width="322" Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="116" Background="#FFE07D1A" >
+                                                <Button.RenderTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform/>
+                                                        <SkewTransform/>
+                                                        <RotateTransform Angle="90"/>
+                                                        <TranslateTransform/>
+                                                    </TransformGroup>
+                                                </Button.RenderTransform>
+                                            </Button>
+
                                         </Canvas>
                                     </Canvas>
                                 </Border>
