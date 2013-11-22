@@ -393,7 +393,7 @@
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
 
-                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="320" Canvas.Left="937" Canvas.Top="145" Width="427" OpacityMask="#FF535252" Background="#CC406B83">
+                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="388" Canvas.Left="937" Canvas.Top="77" Width="427" OpacityMask="#FF535252" Background="#CC406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
                                                     <Style.Triggers>
@@ -412,9 +412,10 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Canvas.Style>
-                                            <TextBlock Name="tbTitle" Text="Select Item Status Point." Foreground="#FFF9F9F9" Canvas.Left="44" Canvas.Top="2"/>
+                                            <TextBlock Name="tbTitle" Text="Select Item Status." Foreground="#FFF9F9F9" Canvas.Left="44" Canvas.Top="2"/>
 
-                                            <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-205" Width="322" Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="116" Background="#FFE07D1A" >
+                                            <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-239" Width="390"
+                                                    Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="150" Background="#FFE07D1A" >
                                                 <Button.RenderTransform>
                                                     <TransformGroup>
                                                         <ScaleTransform/>
@@ -424,6 +425,14 @@
                                                     </TransformGroup>
                                                 </Button.RenderTransform>
                                             </Button>
+                                            <RadioButton Name="rbtnTotalDamaged"
+                                                         Content="Total Damaged." 
+                                                         Style="{StaticResource RbtnStyleKey}" 
+                                                         Canvas.Left="16" Canvas.Top="58" Width="109"/>
+                                            <RadioButton Name="rbtnDamaged10"
+                                                         Content="Item 10% Damaged." 
+                                                         Style="{StaticResource RbtnStyleKey}" 
+                                                         Canvas.Left="19" Canvas.Top="109" Width="109"/>
 
                                         </Canvas>
                                     </Canvas>
