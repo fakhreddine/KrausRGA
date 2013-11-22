@@ -27,5 +27,27 @@ namespace KrausRGA.Views
             else
                 return parent != null ? FindParent<T>(parent) : null;
         }
+
+        /// <summary>
+        /// Make Border as checked.
+        /// </summary>
+        /// <param name="Bdr">
+        /// Border object.
+        /// </param>
+        public static void Inside(this Border Bdr)
+        {
+            Bdr.BorderThickness = new Thickness(2, 2, 4, 4);
+        }
+
+        /// <summary>
+        /// Make Border as realesed from click.
+        /// </summary>
+        /// <param name="Bdr">
+        /// Border Realesed.
+        /// </param>
+        public static void Outside(this Border Bdr)
+        {
+            Bdr.BorderThickness = new Thickness(1, 1, 1, 1);
+        }
     }
 }
