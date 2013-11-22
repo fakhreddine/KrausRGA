@@ -392,8 +392,7 @@
                                                    Width="524" Name="imgZoom" Visibility="Visible" 
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
-<<<<<<< HEAD
-=======
+
                                         <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="320" Canvas.Left="937" Canvas.Top="145" Width="427" OpacityMask="#FF535252" Background="#CC406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
@@ -427,7 +426,6 @@
                                             </Button>
 
                                         </Canvas>
->>>>>>> bd273b8e47934a673b5374f3decb6daefe59e5fb
                                     </Canvas>
                                 </Border>
                             </TabItem>
@@ -439,11 +437,7 @@
                                                 <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="30" Foreground="White" Margin="10,6,1062,0"/>
                                             </Border>
 
-<<<<<<< HEAD
-                                            <CheckBox Name="cbrWrong" Style="{StaticResource cbStyleKey}" Content="Received wrong item." Canvas.Left="41" Canvas.Top="153" />
-
-                                            <CheckBox Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237" />
-=======
+                                           
                                             <Border Name="bdrDamaged" Canvas.Left="36" Canvas.Top="79" Height="44" Width="392"
                                                      BorderBrush="Black" BorderThickness="1,1,3,3" 
                                                      CornerRadius="3">
@@ -457,7 +451,6 @@
                                                 </Border.Background>
                                                 <CheckBox Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="1,0,259,26" />
                                             </Border>
->>>>>>> bd273b8e47934a673b5374f3decb6daefe59e5fb
 
                                             <Border Name="bdrDuplicate" Canvas.Left="36" Canvas.Top="227" Height="43" Width="392"
                                                      BorderBrush="Black" BorderThickness="1,1,3,3" 
@@ -499,10 +492,6 @@
                                                 </Border.Background>
                                                 <CheckBox Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="2,1,384,26" />
                                             </Border>
-
-<<<<<<< HEAD
-                                            <CheckBox Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" />
-=======
                                             <Border Name="bdrSatisfied" Canvas.Left="453" Canvas.Top="230" Height="40" Width="579"
                                                     BorderBrush="Black" BorderThickness="1,1,3,3" 
                                                      CornerRadius="3">
@@ -515,6 +504,7 @@
                                                     </LinearGradientBrush>
                                                 </Border.Background>
                                                 <CheckBox Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="2,0,383,24" />
+
                                             </Border>
                                             <Border Name="bdrRecivedWrong" Canvas.Left="36" Canvas.Top="153" Height="46" Width="392"
                                                     BorderBrush="Black" BorderThickness="1,1,3,3" 
@@ -531,8 +521,9 @@
                                                           Content="Received wrong item." Margin="0,1,260,27" 
                                                           Checked="cbrWrong_Checked" 
                                                           Unchecked="cbrWrong_Unchecked"/>
+
                                             </Border>
->>>>>>> bd273b8e47934a673b5374f3decb6daefe59e5fb
+                                           
                                         </Canvas>
                                     </Border>
 
@@ -541,12 +532,10 @@
                                             <Border Height="52" Width="1363" Background="#FF787878" Canvas.Top="1" Canvas.Left="-3">
                                                 <TextBlock TextWrapping="Wrap" Text="Other Reason" FontSize="30" Foreground="White" Margin="10,4,1153,6"/>
                                             </Border>
-<<<<<<< HEAD
-                                            <TextBox Name="txtOtherReason" Height="174" Width="1356" Canvas.Top="53" TextWrapping="WrapWithOverflow" />
-=======
+
                                             <TextBox Name="txtOtherReason" Height="49" Width="1356" Canvas.Top="53" TextWrapping="WrapWithOverflow" />
                                             <ComboBox Name="cmbOtherReason" Canvas.Left="2" Canvas.Top="102" Width="1354" Height="55"/>
->>>>>>> bd273b8e47934a673b5374f3decb6daefe59e5fb
+
                                         </Canvas>
                                     </Border>
                                     <Border x:Name="bdrButtonSave" Height="62" Width="249" Canvas.Left="1114" Canvas.Top="549">
@@ -601,12 +590,6 @@
 
                 </Canvas>
             </Border>
-
-
-
-
-
-
 
         </Grid>
     </Viewbox>
