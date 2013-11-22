@@ -577,7 +577,16 @@ namespace KrausRGA.UI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
-            
+        }
+
+        private void cbrWrong_Checked(object sender, RoutedEventArgs e)
+        {
+            bdrRecivedWrong.Inside();
+        }
+
+        private void cbrWrong_Unchecked(object sender, RoutedEventArgs e)
+        {
+            bdrRecivedWrong.Outside();
         }
 
     }
