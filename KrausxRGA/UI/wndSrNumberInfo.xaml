@@ -425,15 +425,6 @@
                                                     </TransformGroup>
                                                 </Button.RenderTransform>
                                             </Button>
-                                            <RadioButton Name="rbtnTotalDamaged"
-                                                         Content="Total Damaged." 
-                                                         Style="{StaticResource RbtnStyleKey}" 
-                                                         Canvas.Left="16" Canvas.Top="58" Width="109"/>
-                                            <RadioButton Name="rbtnDamaged10"
-                                                         Content="Item 10% Damaged." 
-                                                         Style="{StaticResource RbtnStyleKey}" 
-                                                         Canvas.Left="19" Canvas.Top="109" Width="109"/>
-
                                         </Canvas>
                                     </Canvas>
                                 </Border>
@@ -553,11 +544,8 @@
                             </Border>
                         </Canvas>
                     </Border>
-
-
                 </Canvas>
             </Border>
-
         </Grid>
     </Viewbox>
 </Window>
