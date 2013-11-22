@@ -439,7 +439,7 @@
 
                                            
                                             <Border Name="bdrDamaged" Canvas.Left="36" Canvas.Top="79" Height="44" Width="392"
-                                                     BorderBrush="Black" BorderThickness="1,1,3,3" 
+                                                     BorderBrush="Black" BorderThickness="1,1,1,1" 
                                                      CornerRadius="3">
                                                 <Border.Background>
                                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -449,11 +449,12 @@
                                                         <GradientStop Color="#FFF9F7F7" Offset="0.409"/>
                                                     </LinearGradientBrush>
                                                 </Border.Background>
-                                                <CheckBox Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="1,0,259,26" />
+                                                <CheckBox Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="1,0,259,26" 
+                                                         Checked="cbrDamaged_Checked" Unchecked="cbrDamaged_Unchecked"/>
                                             </Border>
 
                                             <Border Name="bdrDuplicate" Canvas.Left="36" Canvas.Top="227" Height="43" Width="392"
-                                                     BorderBrush="Black" BorderThickness="1,1,3,3" 
+                                                     BorderBrush="Black" BorderThickness="1,1,1,1" 
                                                      CornerRadius="3">
                                                 <Border.Background>
                                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -463,10 +464,11 @@
                                                         <GradientStop Color="#FFF9F7F7" Offset="0.409"/>
                                                     </LinearGradientBrush>
                                                 </Border.Background>
-                                                <CheckBox Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237" Margin="0,2,260,25" />
+                                                <CheckBox Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237" Margin="0,2,260,25" 
+                                                         Checked="cbrDuplicate_Checked" Unchecked="cbrDuplicate_Unchecked"/>
                                             </Border>
                                             <Border Name="bdrIcorrectOrder" Canvas.Left="453" Canvas.Top="79" Height="44" Width="579"
-                                                     BorderBrush="Black" BorderThickness="1,1,3,3" 
+                                                     BorderBrush="Black" BorderThickness="1,1,1,1" 
                                                      CornerRadius="3">
                                                 <Border.Background>
                                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -476,11 +478,12 @@
                                                         <GradientStop Color="#FFF9F7F7" Offset="0.409"/>
                                                     </LinearGradientBrush>
                                                 </Border.Background>
-                                                <CheckBox Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74" Margin="2,2,384,25" />
+                                                <CheckBox Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74" Margin="2,2,384,25" 
+                                                         Checked="cbrIncorrectOrder_Checked" Unchecked="cbrIncorrectOrder_Unchecked"/>
                                             </Border>
 
                                             <Border Name="bdrDisplayedDiff" Canvas.Left="453" Canvas.Top="155" Height="44" Width="579"
-                                                    BorderBrush="Black" BorderThickness="1,1,3,3" 
+                                                    BorderBrush="Black" BorderThickness="1,1,1,1" 
                                                      CornerRadius="3">
                                                 <Border.Background>
                                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -490,10 +493,11 @@
                                                         <GradientStop Color="#FFF9F7F7" Offset="0.409"/>
                                                     </LinearGradientBrush>
                                                 </Border.Background>
-                                                <CheckBox Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="2,1,384,26" />
+                                                <CheckBox Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="2,1,384,26" 
+                                                         Checked="cbrDisplayedDiff_Checked" Unchecked="cbrDisplayedDiff_Unchecked"/>
                                             </Border>
                                             <Border Name="bdrSatisfied" Canvas.Left="453" Canvas.Top="230" Height="40" Width="579"
-                                                    BorderBrush="Black" BorderThickness="1,1,3,3" 
+                                                    BorderBrush="Black" BorderThickness="1,1,1,1" 
                                                      CornerRadius="3">
                                                 <Border.Background>
                                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -503,11 +507,12 @@
                                                         <GradientStop Color="#FFF9F7F7" Offset="0.409"/>
                                                     </LinearGradientBrush>
                                                 </Border.Background>
-                                                <CheckBox Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="2,0,383,24" />
+                                                <CheckBox Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="2,0,383,24" 
+                                                         Checked="cbrSatisfied_Checked" Unchecked="cbrSatisfied_Unchecked" />
 
                                             </Border>
                                             <Border Name="bdrRecivedWrong" Canvas.Left="36" Canvas.Top="153" Height="46" Width="392"
-                                                    BorderBrush="Black" BorderThickness="1,1,3,3" 
+                                                    BorderBrush="Black" BorderThickness="1,1,1,1" 
                                                      CornerRadius="3">
                                                 <Border.Background>
                                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
