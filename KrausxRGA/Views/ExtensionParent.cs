@@ -37,6 +37,7 @@ namespace KrausRGA.Views
         public static void Inside(this Border Bdr)
         {
             Bdr.BorderThickness = new Thickness(2, 2, 4, 4);
+            Bdr.Background = new SolidColorBrush(Color.FromArgb(100, 129, 129, 129));
         }
 
         /// <summary>
@@ -48,6 +49,7 @@ namespace KrausRGA.Views
         public static void Outside(this Border Bdr)
         {
             Bdr.BorderThickness = new Thickness(1, 1, 1, 1);
+            Bdr.Background = new SolidColorBrush(Color.FromArgb(100, 199, 199, 199));
         }
     }
 }

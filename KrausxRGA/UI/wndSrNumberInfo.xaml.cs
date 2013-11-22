@@ -609,5 +609,55 @@ namespace KrausRGA.UI
                 txtOtherReason.Text= s.Reason1.ToString();
             }
         }
+        private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
+        {
+            bdrDamaged.Inside();
+        }
+
+        private void cbrDamaged_Unchecked(object sender, RoutedEventArgs e)
+        {
+            bdrDamaged.Outside();
+        }
+
+        private void cbrDuplicate_Checked(object sender, RoutedEventArgs e)
+        {
+            bdrDuplicate.Inside();
+        }
+
+        private void cbrDuplicate_Unchecked(object sender, RoutedEventArgs e)
+        {
+            bdrDuplicate.Outside();
+        }
+
+        private void cbrIncorrectOrder_Checked(object sender, RoutedEventArgs e)
+        {
+            bdrIcorrectOrder.Inside();
+        }
+
+        private void cbrIncorrectOrder_Unchecked(object sender, RoutedEventArgs e)
+        {
+            bdrIcorrectOrder.Outside();
+        }
+
+        private void cbrDisplayedDiff_Checked(object sender, RoutedEventArgs e)
+        {
+            bdrDisplayedDiff.Inside();
+        }
+
+        private void cbrDisplayedDiff_Unchecked(object sender, RoutedEventArgs e)
+        {
+            bdrDisplayedDiff.Outside();
+        }
+
+        private void cbrSatisfied_Checked(object sender, RoutedEventArgs e)
+        {
+            bdrSatisfied.Inside();
+        }
+
+        private void cbrSatisfied_Unchecked(object sender, RoutedEventArgs e)
+        {
+            bdrSatisfied.Outside();
+        }
+
     }
 }
