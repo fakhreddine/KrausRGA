@@ -141,6 +141,19 @@
             </Setter>
         </Style>
 
+        <Style TargetType="RadioButton" x:Key="RbtnStyleKey">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="RenderTransform">
+               <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
        
     </Application.Resources>
 </Application>
