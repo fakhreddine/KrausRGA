@@ -185,6 +185,22 @@ namespace KrausRGA.EntityModel
             }
         }
         private ObjectSet<TestJoin> _TestJoins;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Reason> Reasons
+        {
+            get
+            {
+                if ((_Reasons == null))
+                {
+                    _Reasons = base.CreateObjectSet<Reason>("Reasons");
+                }
+                return _Reasons;
+            }
+        }
+        private ObjectSet<Reason> _Reasons;
 
         #endregion
 
@@ -244,6 +260,14 @@ namespace KrausRGA.EntityModel
         public void AddToTestJoins(TestJoin testJoin)
         {
             base.AddObject("TestJoins", testJoin);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Reasons EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToReasons(Reason reason)
+        {
+            base.AddObject("Reasons", reason);
         }
 
         #endregion
@@ -449,6 +473,87 @@ namespace KrausRGA.EntityModel
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RMASYSTEMModel", Name="Reason")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Reason : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Reason object.
+        /// </summary>
+        /// <param name="reasonID">Initial value of the ReasonID property.</param>
+        public static Reason CreateReason(global::System.Int32 reasonID)
+        {
+            Reason reason = new Reason();
+            reason.ReasonID = reasonID;
+            return reason;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ReasonID
+        {
+            get
+            {
+                return _ReasonID;
+            }
+            set
+            {
+                if (_ReasonID != value)
+                {
+                    OnReasonIDChanging(value);
+                    ReportPropertyChanging("ReasonID");
+                    _ReasonID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ReasonID");
+                    OnReasonIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ReasonID;
+        partial void OnReasonIDChanging(global::System.Int32 value);
+        partial void OnReasonIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Reason1
+        {
+            get
+            {
+                return _Reason1;
+            }
+            set
+            {
+                OnReason1Changing(value);
+                ReportPropertyChanging("Reason1");
+                _Reason1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Reason1");
+                OnReason1Changed();
+            }
+        }
+        private global::System.String _Reason1;
+        partial void OnReason1Changing(global::System.String value);
+        partial void OnReason1Changed();
+
+        #endregion
+
+    
     }
     
     /// <summary>

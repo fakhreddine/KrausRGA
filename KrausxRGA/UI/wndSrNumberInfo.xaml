@@ -534,7 +534,7 @@
                                             </Border>
 
                                             <TextBox Name="txtOtherReason" Height="49" Width="1356" Canvas.Top="53" TextWrapping="WrapWithOverflow" />
-                                            <ComboBox Name="cmbOtherReason" Canvas.Left="2" Canvas.Top="102" Width="1354" Height="55"/>
+                                            <ComboBox Name="cmbOtherReason" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID"  Canvas.Left="2" Canvas.Top="102" Width="1354" Height="55" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbOtherReason_SelectionChanged"/>
 
                                         </Canvas>
                                     </Border>

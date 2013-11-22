@@ -7,6 +7,7 @@
     <Schema Namespace="RMASYSTEMModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="RMASYSTEMModelStoreContainer">
           <EntitySet Name="Audit" EntityType="RMASYSTEMModel.Store.Audit" store:Type="Tables" Schema="DEVELOPER" />
+          <EntitySet Name="Reasons" EntityType="RMASYSTEMModel.Store.Reasons" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="Return" EntityType="RMASYSTEMModel.Store.Return" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="ReturnDetail" EntityType="RMASYSTEMModel.Store.ReturnDetail" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="ReturnImages" EntityType="RMASYSTEMModel.Store.ReturnImages" store:Type="Tables" Schema="DEVELOPER" />
@@ -45,6 +46,13 @@
           <Property Name="ActionType" Type="varchar(max)" />
           <Property Name="ActionTime" Type="datetime" />
           <Property Name="ActionValue" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reasons">
+          <Key>
+            <PropertyRef Name="ReasonID" />
+          </Key>
+          <Property Name="ReasonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Return">
           <Key>
@@ -221,6 +229,7 @@
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="TestJoins" EntityType="RMASYSTEMModel.TestJoin" />
+          <EntitySet Name="Reasons" EntityType="RMASYSTEMModel.Reason" />
         </EntityContainer>
         <EntityType Name="Audit">
           <Key>
@@ -384,6 +393,13 @@
           <Property Type="String" Name="SKUNumber" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ProductName" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Reason">
+          <Key>
+            <PropertyRef Name="ReasonID" />
+          </Key>
+          <Property Type="Int32" Name="ReasonID" Nullable="false" />
+          <Property Type="String" Name="Reason1" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -500,6 +516,14 @@
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="SKUNumber" ColumnName="SKUNumber" />
                 <ScalarProperty Name="ReturnID" ColumnName="ReturnID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reasons">
+            <EntityTypeMapping TypeName="RMASYSTEMModel.Reason">
+              <MappingFragment StoreEntitySet="Reasons">
+                <ScalarProperty Name="Reason1" ColumnName="Reason" />
+                <ScalarProperty Name="ReasonID" ColumnName="ReasonID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

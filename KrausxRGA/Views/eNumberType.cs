@@ -16,6 +16,7 @@ namespace KrausRGA.Views
         OrderNumber=2,
         PONumber,
         ShipmentNumber,
-        VendorNumber 
+        VendorNumber,
+        reasonID=0,
     }
 }

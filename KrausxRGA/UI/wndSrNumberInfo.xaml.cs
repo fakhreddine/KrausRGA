@@ -19,6 +19,7 @@ using WebcamControl;
 using System.Drawing.Imaging;
 using Microsoft.Expression.Encoder.Devices;
 using System.Windows.Controls.Primitives;
+using KrausRGA.EntityModel;
 
 namespace KrausRGA.UI
 {
@@ -31,6 +32,7 @@ namespace KrausRGA.UI
         #region Declarations.
 
         mReturnDetails _mReturn = clGlobal.mReturn;
+
         List<RMAInfo> _lsRMAInfo = new List<RMAInfo>();
 
         //Stack Panel in row assigned to this and used in Images captured add.
@@ -107,6 +109,20 @@ namespace KrausRGA.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //fill OtherReason ComboBox
+            List<Reason> lsReturn = _mReturn.GetReasons();
+
+            Reason re = new Reason();
+            re.ReasonID = 0;
+            re.Reason1 = "--Select--";
+
+            lsReturn.Insert(0,re);
+            //lsReturn.Insert(0, "--Select--");
+
+           //lsReturn.Insert(0,"--Select--");
+
+            cmbOtherReason.ItemsSource = lsReturn;
+
             // Display webcam video on control.
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
             bdrCapture.Visibility = System.Windows.Visibility.Hidden;
@@ -388,20 +404,12 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
-            //Validation for RMA status and RMA decision
 
-
-            if (cmbRMAStatus.forcombobox() || cmbRMADecision.forcombobox())
-
-            {
-                bdrMsg.Visibility = System.Windows.Visibility.Visible;
-                ErrorMsg("Please select the RMA Status and RMA Decision.", Color.FromRgb(185, 84, 0));
-            }
-
-
-            else
-            {
-
+                if (cmbOtherReason.forcombobox())
+                {
+                    int reasonID = _mReturn.SetReasons(txtOtherReason.Text);    
+                }
+                txtOtherReason.Text = "";
 
                 bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
@@ -468,7 +476,7 @@ namespace KrausRGA.UI
                         this.Close();
                     }
                 }
-            }
+            
             
         }
 
@@ -589,5 +597,17 @@ namespace KrausRGA.UI
             bdrRecivedWrong.Outside();
         }
 
+        private void cmbOtherReason_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbOtherReason.SelectedIndex == 0)
+            {
+                txtOtherReason.Text = "";
+            }
+            else
+            {
+                Reason s = (Reason)cmbOtherReason.SelectedItem;
+                txtOtherReason.Text= s.Reason1.ToString();
+            }
+        }
     }
 }

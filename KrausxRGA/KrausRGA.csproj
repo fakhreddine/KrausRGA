@@ -114,6 +114,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBLogics\cmdAudit.cs" />
+    <Compile Include="DBLogics\cmdReasons.cs" />
     <Compile Include="DBLogics\cmdReturn.cs" />
     <Compile Include="DBLogics\cmdReturnDetail.cs" />
     <Compile Include="DBLogics\cmdReturnImages.cs" />

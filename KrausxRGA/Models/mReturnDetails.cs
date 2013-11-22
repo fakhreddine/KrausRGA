@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using KrausRGA.Views;
 using KrausRGA.EntityModel;
+using KrausRGA.DBLogics;
 
 namespace KrausRGA.Models
 {
@@ -36,6 +37,11 @@ namespace KrausRGA.Models
         /// RetutnImages Table Command class Object.
         /// </summary>
         protected DBLogics.cmdReturnImages cRtnImages = new DBLogics.cmdReturnImages();
+
+        /// <summary>
+        /// Reasons Table Command Object.
+        /// </summary>
+        protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
 
 
         #endregion
@@ -224,7 +230,7 @@ namespace KrausRGA.Models
             {
                 RAMStatus ram2 = new RAMStatus();
                 ram2.ID = -1;
-                ram2.Status = "-- Select --";
+                ram2.Status = "New";
 
                 RAMStatus ram = new RAMStatus();
                 ram.ID = 0;
@@ -435,6 +441,43 @@ namespace KrausRGA.Models
         }
 
         #endregion
+
+        public int SetReasons(string Reasons)
+        {
+            int _reasonID=0;
+
+            try
+            {
+                Reason ReasonTable = new Reason();
+
+                ReasonTable.Reason1 = Reasons;
+
+                if (cRtnreasons.InsertReasons(ReasonTable)) _reasonID = ReasonTable.ReasonID;
+            }
+            catch (Exception)
+            {
+                
+            }
+            return _reasonID;
+        }
+
+        public List<Reason> GetReasons()
+        {
+            List<Reason> reasonList = new List<Reason>();
+
+            try
+            {
+               reasonList= cRtnreasons.GetReasons();
+            }
+            catch (Exception)
+            {
+                
+            }
+
+            return reasonList;
+        }
+
+
     }
 
     public class RAMStatus

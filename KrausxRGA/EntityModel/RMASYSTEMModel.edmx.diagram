@@ -16,6 +16,7 @@
         <AssociationConnector Association="RMASYSTEMModel.FK_ReturnImages_ReturnDetail" ManuallyRouted="false" />
         <AssociationConnector Association="RMASYSTEMModel.FK_User_Roles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="RMASYSTEMModel.TestJoin" Width="1.5" PointX="2.1928052241880471" PointY="8.50072086253237" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.Reason" Width="1.5" PointX="8.125" PointY="10.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
