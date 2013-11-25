@@ -113,15 +113,18 @@ namespace KrausRGA.UI
             List<Reason> lsReturn = _mReturn.GetReasons();
 
             Reason re = new Reason();
-            re.ReasonID = 0;
+            re.ReasonID = Guid.NewGuid();
             re.Reason1 = "--Select--";
 
-            lsReturn.Insert(0,re);
+            lsReturn.Insert(0, re);
             //lsReturn.Insert(0, "--Select--");
 
-           //lsReturn.Insert(0,"--Select--");
+            //lsReturn.Insert(0,"--Select--");
 
             cmbOtherReason.ItemsSource = lsReturn;
+
+            List<Reason> lsReturn1 = _mReturn.GetReasons();
+            dgReasons.ItemsSource = lsReturn1;
 
             // Display webcam video on control.
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
@@ -404,85 +407,84 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
+            //Check the Reason Combo Select or not
+            if (cmbOtherReason.forcombobox())
+            {
+                Guid reasonID = _mReturn.SetReasons(txtOtherReason.Text);
+            }
+            txtOtherReason.Text = "";
+            txtItemReason.Text = "";
 
-                if (cmbOtherReason.forcombobox())
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+
+            Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
+            Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
+
+            //Save to RMA Master Table.
+            Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
+
+            foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+            {
+                //CheckBOx item Peresent
+                ContentPresenter CntPersenter = dgPackageInfo.Columns[0].GetCellContent(row) as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                CheckBox cbkItemPersent = (CheckBox)DataTemp.FindName("chkIsItemPresent", CntPersenter);
+
+                // If item present in the return 
+                // item SKUNumber
+                TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
+                //Product Name.
+                TextBlock ProcutName = dgPackageInfo.Columns[2].GetCellContent(row) as TextBlock;
+
+                //item Returned Quantity.
+                ContentPresenter CntQuantity = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
+                DataTemplate DtQty = CntQuantity.ContentTemplate;
+                TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
+
+                //Images Stack Panel.
+                ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                DataTemplate DtImages = CntImag.ContentTemplate;
+                StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                //item Status.k
+                ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                DataTemplate DtStatus = CntStatus.ContentTemplate;
+                ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
+                //   int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
+
+
+                //Returned RMA Information.
+                RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
+                int DeliveredQty = rmaInfo.DeliveredQty;
+                int ExpectedQty = rmaInfo.ExpectedQty;
+                string tck = rmaInfo.TCLCOD_0;
+
+                //Set returned details table.
+                Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID);
+
+                //Save Images info Table.
+                foreach (Image imageCaptured in SpImages.Children)
                 {
-                    int reasonID = _mReturn.SetReasons(txtOtherReason.Text);    
+                    String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpeg";
+
+                    //Set Images table from model.
+                    Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
                 }
-                txtOtherReason.Text = "";
-
-                bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-
-                Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
-                Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
-
-                //Save to RMA Master Table.
-                Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
-
-                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
-                {
-                    //CheckBOx item Peresent
-                    ContentPresenter CntPersenter = dgPackageInfo.Columns[0].GetCellContent(row) as ContentPresenter;
-                    DataTemplate DataTemp = CntPersenter.ContentTemplate;
-                    CheckBox cbkItemPersent = (CheckBox)DataTemp.FindName("chkIsItemPresent", CntPersenter);
-
-                    // If item present in the return 
-                    if (cbkItemPersent.IsChecked == true)
-                    {
-
-                        // item SKUNumber
-                        TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-
-                        //Product Name.
-                        TextBlock ProcutName = dgPackageInfo.Columns[2].GetCellContent(row) as TextBlock;
-
-                        //item Returned Quantity.
-                        ContentPresenter CntQuantity = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
-                        DataTemplate DtQty = CntQuantity.ContentTemplate;
-                        TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
-
-                        //Images Stack Panel.
-                        ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                        DataTemplate DtImages = CntImag.ContentTemplate;
-                        StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
-
-                        //item Status.k
-                        ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
-                        DataTemplate DtStatus = CntStatus.ContentTemplate;
-                        ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
-                        int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
 
 
-                        //Returned RMA Information.
-                        RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
-                        int DeliveredQty = rmaInfo.DeliveredQty;
-                        int ExpectedQty = rmaInfo.ExpectedQty;
 
-                        //Set returned details table.
-                        Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), SelectedStatus, clGlobal.mCurrentUser.UserInfo.UserID);
-                        
-                        //Save Images info Table.
-                        foreach (Image imageCaptured in SpImages.Children)
-                        {
-                            String NameImage = "C:\\SKUReturned\\" + imageCaptured.Name.ToString() + ".jpeg";
+            }
 
-                            //Set Images table from model.
-                            Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                        }
+            wndBoxInformation wndBox = new wndBoxInformation();
+            clGlobal.IsUserlogged = true;
+            this.Close();
+            wndBox.Show();
 
-                        wndBoxInformation wndBox = new wndBoxInformation();
-                        clGlobal.IsUserlogged = true;
-                        wndBox.Show();
-                        this.Close();
-                    }
-                }
-            
-            
         }
 
-        
 
-                   
+
 
         private void ErrorMsg(string Msg, Color BgColor)
         {
@@ -606,7 +608,7 @@ namespace KrausRGA.UI
             else
             {
                 Reason s = (Reason)cmbOtherReason.SelectedItem;
-                txtOtherReason.Text= s.Reason1.ToString();
+                txtOtherReason.Text = s.Reason1.ToString();
             }
         }
         private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
@@ -659,5 +661,40 @@ namespace KrausRGA.UI
             bdrSatisfied.Outside();
         }
 
+        private void dgReasons_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgReasons.Columns[2].Visibility = Visibility.Hidden;
+        }
+
+        private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock cbk = (TextBlock)e.Source;
+            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            row.Background = new SolidColorBrush(Color.FromArgb(100, 117, 162, 97));
+            ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
+            DataTemplate Dt = cp.ContentTemplate;
+            CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
+            if (ch.IsChecked == true)
+                ch.IsChecked = false;
+            else ch.IsChecked = true;
+        }
+
+      
+
+        private void txtItemReason_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key==Key.Enter)
+            {
+                Guid reasonID = _mReturn.SetReasons(txtItemReason.Text);
+                List<Reason> lsReturn1 = _mReturn.GetReasons();
+                dgReasons.ItemsSource = lsReturn1;
+                txtItemReason.Text = "";
+            }
+        }
+
+        private void txtItemReason_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtItemReason.Text = "";
+        }
     }
 }

@@ -229,19 +229,19 @@ namespace KrausRGA.Models
             try
             {
                 RAMStatus ram2 = new RAMStatus();
-                ram2.ID = -1;
+                ram2.ID = 0;
                 ram2.Status = "New";
 
                 RAMStatus ram = new RAMStatus();
-                ram.ID = 0;
+                ram.ID = 1;
                 ram.Status = "Approved";
 
                 RAMStatus ram1 = new RAMStatus();
-                ram1.ID = 1;
+                ram1.ID = 2;
                 ram1.Status = "Pending";
 
                 RAMStatus ram3 = new RAMStatus();
-                ram3.ID = 1;
+                ram3.ID = 3;
                 ram3.Status = "Canceled";
 
                 lsReturn.Add(ram2);
@@ -373,7 +373,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guild new ReturnDetailID
         /// </returns>
-        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, int ProductStatus,Guid CreatedBy)
+        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty,int ReturnQty,string TK, Guid CreatedBy)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -386,8 +386,9 @@ namespace KrausRGA.Models
                 TblReturnDetails.ProductName = ProductName;
                 TblReturnDetails.DeliveredQty = DeliveredQty;
                 TblReturnDetails.ExpectedQty = ExpectedQty;
+                TblReturnDetails.TCLCOD_0 = TK;
                 TblReturnDetails.ReturnQty = ReturnQty;
-                TblReturnDetails.ProductStatus = ProductStatus;
+              //  TblReturnDetails.ProductStatus = ProductStatus;
                 TblReturnDetails.CreatedBy = CreatedBy;
                 TblReturnDetails.CreatedDate = DateTime.UtcNow;
                 TblReturnDetails.UpdatedBy = null;
@@ -442,17 +443,19 @@ namespace KrausRGA.Models
 
         #endregion
 
-        public int SetReasons(string Reasons)
+        public Guid SetReasons(string Reasons)
         {
-            int _reasonID=0;
+            Guid _reasonID = Guid.Empty;
 
             try
             {
                 Reason ReasonTable = new Reason();
 
+                ReasonTable.ReasonID = Guid.NewGuid();
                 ReasonTable.Reason1 = Reasons;
 
                 if (cRtnreasons.InsertReasons(ReasonTable)) _reasonID = ReasonTable.ReasonID;
+                // cRtnreasons.InsertReasons(ReasonTable);
             }
             catch (Exception)
             {

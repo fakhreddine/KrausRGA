@@ -28,13 +28,6 @@ namespace KrausRGA.DBLogics
             {
                 _Reasons = (from reson in rma.Reasons
                             select reson).ToList();
-
-              //  r.Insert(0, new { ReasonID = 0, Reason1 = "--Select--" });new {reson.ReasonID,reson.Reason1 }
-
-                //_Reasons.Insert(0,"--Select--");
-
-               // _Reasons = r.ToList();
-                
             }
             catch (Exception)
             {
@@ -56,11 +49,9 @@ namespace KrausRGA.DBLogics
             Boolean status = false;
             try
             {
-               
-                    rma.AddToReasons(reasonID);
+                rma.AddToReasons(reasonID);
                 rma.SaveChanges();
                 status = true;
-
             }
             catch (Exception)
             {

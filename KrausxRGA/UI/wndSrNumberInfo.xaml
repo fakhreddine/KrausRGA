@@ -21,7 +21,7 @@
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
                         <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Top="2" 
                                    >
-                            <TabItem Header="RMA Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2">
+                            <TabItem Header="RMA Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="10,0,-10,0">
                                 <Border Name="bdrmain" >
                                     <Canvas Name="cvsTb1main" Margin="0,0,0,0">
                                         <Border Height="174" Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
@@ -43,11 +43,11 @@
 
                                                 <Label Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="67" Width="127" Canvas.Left="956"/>
                                                 <ComboBox Name="cmbRMAStatus" Height="46" Width="258" Canvas.Left="1088" Canvas.Top="62" 
-                                                          ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="-1" SelectedValue="-1"/>
+                                                          ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1"/>
 
                                                 <Label Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="123" Width="97" Canvas.Left="986"/>
                                                 <ComboBox Name="cmbRMADecision" Height="46" Width="258" Canvas.Left="1088" Canvas.Top="117" 
-                                                          ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="-1" SelectedValue="-1" />
+                                                          ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" />
 
                                             </Canvas>
                                         </Border>
@@ -119,7 +119,7 @@
                                     		HorizontalGridLinesBrush="#FF575757" 
                                     		VerticalGridLinesBrush="Gray"
                                     		Height="545"  
-                                                   SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged"
+                                                   SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Left="10" GridLinesVisibility="None"
                                                    >
 
                                             <DataGrid.Resources>
@@ -393,7 +393,7 @@
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
 
-                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="388" Canvas.Left="937" Canvas.Top="77" Width="427" OpacityMask="#FF535252" Background="#CC406B83">
+                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
                                                     <Style.Triggers>
@@ -403,7 +403,7 @@
                                                                     <Storyboard >
                                                                         <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" 
                                                                                          From="1500" 
-                                                                                         To="950" 
+                                                                                         To="470" 
                                                                                          Duration="0:0:0.1"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
@@ -412,10 +412,10 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Canvas.Style>
-                                            <TextBlock Name="tbTitle" Text="Select Item Status." Foreground="#FFF9F9F9" Canvas.Left="44" Canvas.Top="2"/>
+                                            <TextBlock Name="tbTitle" Text="Select Reasons" Foreground="#FFF9F9F9" Canvas.Left="44" Canvas.Top="2"/>
 
-                                            <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-239" Width="390"
-                                                    Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="150" Background="#FFE07D1A" >
+                                            <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-294" Width="504"
+                                                    Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="205" Background="#FFE07D1A" >
                                                 <Button.RenderTransform>
                                                     <TransformGroup>
                                                         <ScaleTransform/>
@@ -425,6 +425,42 @@
                                                     </TransformGroup>
                                                 </Button.RenderTransform>
                                             </Button>
+                                            <ScrollViewer  Canvas.Top="47" Width="950" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >
+                                                    <DataGrid Height="406" Name="dgReasons"
+                                                              ItemsSource="{Binding}" 
+                                                              AutoGenerateColumns="False"
+                                                              CanUserAddRows="False"
+                                                              HeadersVisibility="None"
+                                                              HorizontalGridLinesBrush="{x:Null}" VerticalGridLinesBrush="{x:Null}" 
+                                                              Loaded="dgReasons_Loaded" Background="#FFB8B8B8" Width="947" >
+                                                <DataGrid.Columns >
+                                                            <DataGridTemplateColumn Header="" Width="50">
+                                                                <DataGridTemplateColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <Canvas Name="cvReasons">
+                                                                                <CheckBox Name="cbReasons" Style="{StaticResource cbStyleKey}" Content="" Margin="0,0,0,0" />
+                                                                        </Canvas>
+                                                                    </DataTemplate>
+                                                                </DataGridTemplateColumn.CellTemplate>
+                                                            </DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn Header="Reasons" Width="*">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <ContentControl Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1">
+                                                                    <TextBlock Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow"/>
+                                                                </ContentControl>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                    <DataGridTextColumn  
+                                    				Binding="{Binding ReasonID}"
+                                    				Header="ReasonID"  
+                                    				Width="1" 
+                                    				IsReadOnly="True" />
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                            </ScrollViewer>
+                                            <TextBox Height="47" Name="txtItemReason" TextWrapping="Wrap" Text="Add Reason" Canvas.Top="451" Width="946" Canvas.Left="4" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
                                         </Canvas>
                                     </Canvas>
                                 </Border>
