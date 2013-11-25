@@ -34,5 +34,6 @@ namespace KrausRGA.Views
         public String City { get; set; }
         public String State { get; set; }
         public String Country { get; set; }
+        public string TCLCOD_0 { get;set; }
     }
 }
