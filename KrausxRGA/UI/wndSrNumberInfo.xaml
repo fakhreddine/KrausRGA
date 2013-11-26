@@ -144,8 +144,8 @@
                                                                         </LinearGradientBrush>
                                                                     </Button.Background>
                                                                 </Button >
-                                                                <Button Name="btnGreen" Visibility="Visible" Width="45" Height="70"  BorderBrush="#FF214D08" Foreground="#FF214D08"
-                                                                           Loaded="btnGreen_Loaded" Click="btnGreen_Click" >
+                                                                <Button Name="btnGreen" Visibility="Hidden" Width="45" Height="70"  BorderBrush="#FF214D08" Foreground="#FF214D08"
+                                                                          Click="btnGreen_Click" >
                                                                     <Button.Background>
                                                                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                                                             <GradientStop Color="#FFCADAC1" Offset="0"/>
@@ -215,7 +215,7 @@
                                                         <DataTemplate>
                                                             <ContentControl Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
                                                                 <Canvas Name="cvItemReasons" >
-                                                                    <TextBlock Name="txtCheckedCount" Text="4 Reasons" Margin="0,0,0,0" Height="70" Width="120" />
+                                                                    <TextBlock Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="70" Width="120" />
                                                                     <TextBlock Name="txtReasosnsGuid" Visibility="Hidden" />
                                                                 </Canvas>
                                                             </ContentControl>
@@ -395,7 +395,7 @@
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
 
-                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
+                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
                                                     <Style.Triggers>
@@ -428,42 +428,42 @@
                                                 </Button.RenderTransform>
                                             </Button>
                                             <ScrollViewer  Canvas.Top="47" Width="950" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >
-                                                    <DataGrid Height="406" Name="dgReasons"
+                                                <DataGrid Height="406" Name="dgReasons"
                                                               ItemsSource="{Binding}" 
                                                               AutoGenerateColumns="False"
                                                               CanUserAddRows="False"
                                                               HeadersVisibility="None"
                                                               HorizontalGridLinesBrush="{x:Null}" VerticalGridLinesBrush="{x:Null}" 
                                                               Loaded="dgReasons_Loaded" Background="#FFB8B8B8" Width="947" GridLinesVisibility="None" >
-                                                <DataGrid.Columns >
-                                                            <DataGridTemplateColumn Header="" Width="50">
-                                                                <DataGridTemplateColumn.CellTemplate>
-                                                                    <DataTemplate>
-                                                                        <Canvas Name="cvReasons">
-                                                                                <CheckBox Name="cbReasons" Style="{StaticResource cbStyleKey}" Content="" Margin="0,0,0,0" />
-                                                                        </Canvas>
-                                                                    </DataTemplate>
-                                                                </DataGridTemplateColumn.CellTemplate>
-                                                            </DataGridTemplateColumn>
-                                                    <DataGridTemplateColumn Header="Reasons" Width="*">
-                                                        <DataGridTemplateColumn.CellTemplate>
-                                                            <DataTemplate>
-                                                                <ContentControl Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1">
-                                                                    <TextBlock Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow"/>
-                                                                </ContentControl>
-                                                            </DataTemplate>
-                                                        </DataGridTemplateColumn.CellTemplate>
-                                                    </DataGridTemplateColumn>
-                                                    <DataGridTextColumn  
+                                                    <DataGrid.Columns >
+                                                        <DataGridTemplateColumn Header="" Width="50">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <Canvas Name="cvReasons">
+                                                                        <CheckBox Name="cbReasons" Style="{StaticResource cbStyleKey}" Content="" Margin="0,0,0,0" />
+                                                                    </Canvas>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTemplateColumn Header="Reasons" Width="*">
+                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <ContentControl Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1">
+                                                                        <TextBlock Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow"/>
+                                                                    </ContentControl>
+                                                                </DataTemplate>
+                                                            </DataGridTemplateColumn.CellTemplate>
+                                                        </DataGridTemplateColumn>
+                                                        <DataGridTextColumn  
                                     				Binding="{Binding ReasonID}"
                                     				Header=""  
                                     				Width="0"
                                                         Foreground="#FFB8B8B8"
-                                    				IsReadOnly="True" />
-                                                </DataGrid.Columns>
-                                            </DataGrid>
+                                    				IsReadOnly="True"/>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
                                             </ScrollViewer>
-                                            <TextBox Height="47" Name="txtItemReason" TextWrapping="Wrap" Text="Please type other Reason" Canvas.Top="451" Width="946" Canvas.Left="4" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
+                                            <TextBox Height="49" Name="txtItemReason" TextWrapping="Wrap" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
                                             <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
                                         </Canvas>
                                     </Canvas>
