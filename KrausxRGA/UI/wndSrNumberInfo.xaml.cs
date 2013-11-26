@@ -480,6 +480,7 @@ namespace KrausRGA.UI
             bdrMsg.Background = new SolidColorBrush(BgColor);
             txtError.Text = Msg;
         }
+        
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -504,6 +505,7 @@ namespace KrausRGA.UI
             catch (Exception)
             { }
         }
+        
         private void btnPluse_Click(object sender, RoutedEventArgs e)
         {
             StackPanel Sp = (StackPanel)(sender as Control).Parent;
@@ -674,11 +676,6 @@ namespace KrausRGA.UI
         private void cbrSatisfied_Unchecked(object sender, RoutedEventArgs e)
         {
             bdrSatisfied.Outside();
-        }
-
-        private void dgReasons_Loaded(object sender, RoutedEventArgs e)
-        {
-            //dgReasons.Columns[2].Visibility = Visibility.Hidden;
         }
 
         #endregion

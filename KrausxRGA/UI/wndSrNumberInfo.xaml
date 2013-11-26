@@ -434,7 +434,7 @@
                                                               CanUserAddRows="False"
                                                               HeadersVisibility="None"
                                                               HorizontalGridLinesBrush="{x:Null}" VerticalGridLinesBrush="{x:Null}" 
-                                                              Loaded="dgReasons_Loaded" Background="#FFB8B8B8" Width="947" GridLinesVisibility="None" >
+                                                               Background="#FFB8B8B8" Width="947" GridLinesVisibility="None" >
                                                     <DataGrid.Columns >
                                                         <DataGridTemplateColumn Header="" Width="50">
                                                             <DataGridTemplateColumn.CellTemplate>
