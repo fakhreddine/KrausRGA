@@ -151,21 +151,6 @@ namespace KrausRGA.UI
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             bdrCamera.Visibility = System.Windows.Visibility.Visible;
-
-            DataGridRow Rone = new DataGridRow();
-            var v = dgPackageInfo.SelectedIndex;
-            foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
-            {
-                if (row.IsSelected)
-                {
-                    Rone = row;
-                    //ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(Rone) as ContentPresenter;
-                    //DataTemplate Dt = cp.ContentTemplate;
-                    //StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
-                    //spRowImages = spProductIMages;
-
-                }
-            }
         }
 
         private void dgPackageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -570,6 +555,8 @@ namespace KrausRGA.UI
             cvItemStatus.Visibility = System.Windows.Visibility.Visible;
 
             TextBlock cbk = (TextBlock)e.Source;
+            Canvas cs = cbk.Parent as Canvas;
+            TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
             DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
             TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
             txtSKUname.Text = tbSKUName.Text.ToString();
@@ -579,6 +566,26 @@ namespace KrausRGA.UI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+
+            int selectedIndex = dgPackageInfo.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+                {
+                    if (row.IsSelected)
+                    {
+                        ContentPresenter cp = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                        DataTemplate Dt = cp.ContentTemplate;
+                        TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid",cp);
+
+                        foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
+                        {
+                            string RGuid = GetGuidChecked(RowReason);
+                            if (RGuid != "") txtReturnGuid.Text += "#" + RGuid;
+                        }
+                    }
+                }
+            }
         }
 
         private void cbrWrong_Checked(object sender, RoutedEventArgs e)
@@ -603,6 +610,7 @@ namespace KrausRGA.UI
                 txtOtherReason.Text = s.Reason1.ToString();
             }
         }
+       
         private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
         {
             bdrDamaged.Inside();
@@ -655,7 +663,7 @@ namespace KrausRGA.UI
 
         private void dgReasons_Loaded(object sender, RoutedEventArgs e)
         {
-            dgReasons.Columns[2].Visibility = Visibility.Hidden;
+            //dgReasons.Columns[2].Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -693,10 +701,35 @@ namespace KrausRGA.UI
             txtItemReason.Text = "";
         }
 
-
         public void FilldgReasons(String SKUName)
         {
             dgReasons.ItemsSource = _mReturn.GetReasons(SKUName);
+        }
+
+        /// <summary>
+        /// Find Guid from row.
+        /// </summary>
+        /// <param name="Row">
+        /// dgReasons Row object.
+        /// </param>
+        /// <returns>
+        /// string Guid.
+        /// </returns>
+        public String GetGuidChecked(DataGridRow Row)
+        {
+            String _return = "";
+            try
+            {
+                ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
+                DataTemplate chkDt = chkCp.ContentTemplate;
+                CheckBox chkIsChecked = chkDt.FindName("cbReasons", chkCp) as CheckBox;
+                TextBlock ResonGuid = dgReasons.Columns[2].GetCellContent(Row) as TextBlock;
+                if (chkIsChecked.IsChecked == true) _return = ResonGuid.Text.ToString();
+            }
+            catch (Exception)
+            {
+            }
+            return _return;
         }
     }
 }

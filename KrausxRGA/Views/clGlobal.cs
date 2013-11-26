@@ -1,6 +1,8 @@
-﻿using KrausRGA.Models;
+﻿using KrausRGA.EntityModel;
+using KrausRGA.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -16,5 +18,7 @@ namespace KrausRGA.Views
 
         //User information maintain 
         public static mUser mCurrentUser;
+
+
     }
 }

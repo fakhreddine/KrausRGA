@@ -210,12 +210,14 @@
 
                                                 <DataGridTemplateColumn Header="Item Status" 
                                                                         HeaderStyle="{StaticResource HeaderStyleKey }"
-                                                                        Width="*"
-                                                                        >
+                                                                        Width="*" >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <ContentControl Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
-                                                                <TextBlock Name="tbItemStatus" Text="10% Ok"/>
+                                                                <Canvas Name="cvItemReasons" >
+                                                                    <TextBlock Name="txtCheckedCount" Text="4 Reasons" Margin="0,0,0,0" Height="70" Width="120" />
+                                                                    <TextBlock Name="txtReasosnsGuid" Visibility="Hidden" />
+                                                                </Canvas>
                                                             </ContentControl>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -454,8 +456,9 @@
                                                     </DataGridTemplateColumn>
                                                     <DataGridTextColumn  
                                     				Binding="{Binding ReasonID}"
-                                    				Header="ReasonID"  
-                                    				Width="1" 
+                                    				Header=""  
+                                    				Width="0"
+                                                        Foreground="#FFB8B8B8"
                                     				IsReadOnly="True" />
                                                 </DataGrid.Columns>
                                             </DataGrid>
