@@ -43,6 +43,15 @@ namespace KrausRGA.Models
         /// </summary>
         protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
 
+        /// <summary>
+        /// Reasoncategory table Command Object
+        /// </summary>
+        protected DBLogics.cmdReasonCategory crtReasonCategory = new DBLogics.cmdReasonCategory();
+
+        /// <summary>
+        /// Transaction table Command object 
+        /// </summary>
+        protected DBLogics.cmdSKUReasons crtTransaction = new DBLogics.cmdSKUReasons();
 
         #endregion
 
@@ -463,6 +472,44 @@ namespace KrausRGA.Models
             return _reasonID;
         }
 
+        public Guid SetReasonCategories(Guid ReasonID, string SKUName)
+        {
+            Guid _reasonCatID = Guid.Empty;
+            try
+            {
+                String categoryName = lsRMAInformation.FirstOrDefault(Sk => Sk.SKUNumber == SKUName).TCLCOD_0;
+                ReasonCategory reasonCat = new ReasonCategory();
+                reasonCat.ReasonCatID = Guid.NewGuid();
+                reasonCat.ReasonID = ReasonID;
+                reasonCat.CategoryName = categoryName;
+
+                if (crtReasonCategory.SetReasonCategory(reasonCat)) _reasonCatID = reasonCat.ReasonCatID;
+            }
+            catch (Exception)
+            {
+                
+            }
+            return _reasonCatID;
+        
+        }
+        public Guid SetTransaction(Guid ReasonID, Guid ReturnDetailID)
+        {
+            Guid _transationID = Guid.Empty;
+            try
+            {
+                SKUReason tra = new SKUReason();
+                tra.SKUReasonID=Guid.NewGuid();
+                tra.ReasonID = ReasonID;
+                tra.ReturnDetailID = ReturnDetailID;
+
+                if(crtTransaction.SetTransaction(tra)) _transationID= tra.SKUReasonID;
+            }
+            catch (Exception)
+            {
+
+            }
+        return _transationID;
+        }
         public List<Reason> GetReasons()
         {
             List<Reason> reasonList = new List<Reason>();
@@ -501,11 +548,9 @@ namespace KrausRGA.Models
             catch (Exception)
             {}
             return _lsReasons;
- 
         }
-
-
     }
+
 
     public class RAMStatus
     {

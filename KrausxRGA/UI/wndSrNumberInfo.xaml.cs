@@ -404,7 +404,7 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
-            //Check the Reason Combo Select or not
+            //Check the ReasonCombo Select or not
             if (cmbOtherReason.forcombobox())
             {
                 Guid reasonID = _mReturn.SetReasons(txtOtherReason.Text);
@@ -450,7 +450,6 @@ namespace KrausRGA.UI
                 ComboBox cmbStatus = (ComboBox)DtStatus.FindName("cmbItemStatus", CntStatus);
                 //   int SelectedStatus = Convert.ToInt32(cmbStatus.SelectedIndex.ToString());
 
-
                 //Returned RMA Information.
                 RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text && xrm.ProductName == ProcutName.Text);
                 int DeliveredQty = rmaInfo.DeliveredQty;
@@ -468,20 +467,12 @@ namespace KrausRGA.UI
                     //Set Images table from model.
                     Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
                 }
-
-
-
             }
-
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
             this.Close();
             wndBox.Show();
-
         }
-
-
-
 
         private void ErrorMsg(string Msg, Color BgColor)
         {
@@ -490,8 +481,6 @@ namespace KrausRGA.UI
             bdrMsg.Background = new SolidColorBrush(BgColor);
             txtError.Text = Msg;
         }
-
-
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -516,7 +505,6 @@ namespace KrausRGA.UI
             catch (Exception)
             { }
         }
-
         private void btnPluse_Click(object sender, RoutedEventArgs e)
         {
             StackPanel Sp = (StackPanel)(sender as Control).Parent;
@@ -568,7 +556,6 @@ namespace KrausRGA.UI
 
         private void btnGreen_Click(object sender, RoutedEventArgs e)
         {
-
             Button btnGreen = (Button)e.Source;
             Canvas SpButtons = (Canvas)btnGreen.Parent;
             Button btnRed = SpButtons.FindName("btnRed") as Button;
@@ -585,6 +572,7 @@ namespace KrausRGA.UI
             TextBlock cbk = (TextBlock)e.Source;
             DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
             TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+            txtSKUname.Text = tbSKUName.Text.ToString();
             FilldgReasons(tbSKUName.Text.ToString());
         }
 
@@ -683,21 +671,20 @@ namespace KrausRGA.UI
             if (ch.IsChecked == true)
                 ch.IsChecked = false;
             else ch.IsChecked = true;
-
-
-
-
         }
-
-      
 
         private void txtItemReason_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key==Key.Enter)
             {
-                Guid reasonID = _mReturn.SetReasons(txtItemReason.Text);
-                dgReasons.ItemsSource = _mReturn.GetReasons();
-                txtItemReason.Text = "";
+                if (txtItemReason.Text != "Please type other Reason")
+                {
+                    Guid reasonID = _mReturn.SetReasons(txtItemReason.Text);
+                    Guid ReasoncatID = _mReturn.SetReasonCategories(reasonID, txtSKUname.Text);
+                    FilldgReasons(txtSKUname.Text.ToString());
+                    txtItemReason.Text = "";
+                    txtItemReason.Text = "Please type other Reason";
+                }
             }
         }
 

@@ -114,12 +114,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBLogics\cmdAudit.cs" />
+    <Compile Include="DBLogics\cmdReasonCategory.cs" />
     <Compile Include="DBLogics\cmdReasons.cs" />
     <Compile Include="DBLogics\cmdReturn.cs" />
     <Compile Include="DBLogics\cmdReturnDetail.cs" />
     <Compile Include="DBLogics\cmdReturnImages.cs" />
     <Compile Include="DBLogics\cmdRoles.cs" />
     <Compile Include="DBLogics\cmdSageOperations.cs" />
+    <Compile Include="DBLogics\cmdSKUReasons.cs" />
     <Compile Include="DBLogics\cmdUser.cs" />
     <Compile Include="EntityModel\RMASYSTEMModel.Designer.cs">
       <AutoGen>True</AutoGen>

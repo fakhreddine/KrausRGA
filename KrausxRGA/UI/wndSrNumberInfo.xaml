@@ -393,7 +393,7 @@
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
 
-                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
+                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
                                                     <Style.Triggers>
@@ -460,7 +460,8 @@
                                                 </DataGrid.Columns>
                                             </DataGrid>
                                             </ScrollViewer>
-                                            <TextBox Height="47" Name="txtItemReason" TextWrapping="Wrap" Text="Add Reason" Canvas.Top="451" Width="946" Canvas.Left="4" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
+                                            <TextBox Height="47" Name="txtItemReason" TextWrapping="Wrap" Text="Please type other Reason" Canvas.Top="451" Width="946" Canvas.Left="4" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
+                                            <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
                                         </Canvas>
                                     </Canvas>
                                 </Border>
@@ -541,7 +542,7 @@
                                     			Background="#FF464343" 
                                     			Foreground="#FFF9F9F9" 
                                     			OpacityMask="Black" VerticalAlignment="Bottom"
-                                                    Click="btnHomeDone_Click"
+                                                    Click="btnHomeDone_Click" HorizontalAlignment="Right"
                                                     />
                                     </Border>
                                 </Canvas>

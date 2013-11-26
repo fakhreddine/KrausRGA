@@ -13,6 +13,7 @@
           <EntitySet Name="ReturnDetail" EntityType="RMASYSTEMModel.Store.ReturnDetail" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="ReturnImages" EntityType="RMASYSTEMModel.Store.ReturnImages" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="Roles" EntityType="RMASYSTEMModel.Store.Roles" store:Type="Tables" Schema="DEVELOPER" />
+          <EntitySet Name="SKUReasons" EntityType="RMASYSTEMModel.Store.SKUReasons" store:Type="Tables" Schema="DEVELOPER" />
           <EntitySet Name="User" EntityType="RMASYSTEMModel.Store.User" store:Type="Tables" Schema="DEVELOPER" />
           <AssociationSet Name="FK_ReasonCatagory_Reasons" Association="RMASYSTEMModel.Store.FK_ReasonCatagory_Reasons">
             <End Role="Reasons" EntitySet="Reasons" />
@@ -25,6 +26,14 @@
           <AssociationSet Name="FK_ReturnImages_ReturnDetail" Association="RMASYSTEMModel.Store.FK_ReturnImages_ReturnDetail">
             <End Role="ReturnDetail" EntitySet="ReturnDetail" />
             <End Role="ReturnImages" EntitySet="ReturnImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Reasons" Association="RMASYSTEMModel.Store.FK_Transaction_Reasons">
+            <End Role="Reasons" EntitySet="Reasons" />
+            <End Role="SKUReasons" EntitySet="SKUReasons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ReturnDetail" Association="RMASYSTEMModel.Store.FK_Transaction_ReturnDetail">
+            <End Role="ReturnDetail" EntitySet="ReturnDetail" />
+            <End Role="SKUReasons" EntitySet="SKUReasons" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Roles" Association="RMASYSTEMModel.Store.FK_User_Roles">
             <End Role="Roles" EntitySet="Roles" />
@@ -133,6 +142,14 @@
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="Updatedby" Type="uniqueidentifier" />
         </EntityType>
+        <EntityType Name="SKUReasons">
+          <Key>
+            <PropertyRef Name="SKUReasonID" />
+          </Key>
+          <Property Name="SKUReasonID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReasonID" Type="uniqueidentifier" />
+          <Property Name="ReturnDetailID" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -185,6 +202,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transaction_Reasons">
+          <End Role="Reasons" Type="RMASYSTEMModel.Store.Reasons" Multiplicity="0..1" />
+          <End Role="SKUReasons" Type="RMASYSTEMModel.Store.SKUReasons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reasons">
+              <PropertyRef Name="ReasonID" />
+            </Principal>
+            <Dependent Role="SKUReasons">
+              <PropertyRef Name="ReasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ReturnDetail">
+          <End Role="ReturnDetail" Type="RMASYSTEMModel.Store.ReturnDetail" Multiplicity="0..1" />
+          <End Role="SKUReasons" Type="RMASYSTEMModel.Store.SKUReasons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnDetail">
+              <PropertyRef Name="ReturnDetailID" />
+            </Principal>
+            <Dependent Role="SKUReasons">
+              <PropertyRef Name="ReturnDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Roles">
           <End Role="Roles" Type="RMASYSTEMModel.Store.Roles" Multiplicity="1" />
           <End Role="User" Type="RMASYSTEMModel.Store.User" Multiplicity="*" />
@@ -221,6 +262,7 @@
           <EntitySet Name="ReturnDetails" EntityType="RMASYSTEMModel.ReturnDetail" />
           <EntitySet Name="ReturnImages" EntityType="RMASYSTEMModel.ReturnImage" />
           <EntitySet Name="Roles" EntityType="RMASYSTEMModel.Role" />
+          <EntitySet Name="SKUReasons" EntityType="RMASYSTEMModel.SKUReason" />
           <EntitySet Name="Users" EntityType="RMASYSTEMModel.User" />
           <AssociationSet Name="FK_UserLogs_User" Association="RMASYSTEMModel.FK_UserLogs_User">
             <End Role="User" EntitySet="Users" />
@@ -230,6 +272,10 @@
             <End Role="Reason" EntitySet="Reasons" />
             <End Role="ReasonCategory" EntitySet="ReasonCategories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Reasons" Association="RMASYSTEMModel.FK_Transaction_Reasons">
+            <End Role="Reason" EntitySet="Reasons" />
+            <End Role="SKUReason" EntitySet="SKUReasons" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReturnDetail_Return" Association="RMASYSTEMModel.FK_ReturnDetail_Return">
             <End Role="Return" EntitySet="Returns" />
             <End Role="ReturnDetail" EntitySet="ReturnDetails" />
@@ -237,6 +283,10 @@
           <AssociationSet Name="FK_ReturnImages_ReturnDetail" Association="RMASYSTEMModel.FK_ReturnImages_ReturnDetail">
             <End Role="ReturnDetail" EntitySet="ReturnDetails" />
             <End Role="ReturnImage" EntitySet="ReturnImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ReturnDetail" Association="RMASYSTEMModel.FK_Transaction_ReturnDetail">
+            <End Role="ReturnDetail" EntitySet="ReturnDetails" />
+            <End Role="SKUReason" EntitySet="SKUReasons" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Roles" Association="RMASYSTEMModel.FK_User_Roles">
             <End Role="Role" EntitySet="Roles" />
@@ -270,6 +320,7 @@
           <Property Type="Guid" Name="ReasonID" Nullable="false" />
           <Property Type="String" Name="Reason1" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ReasonCategories" Relationship="RMASYSTEMModel.FK_ReasonCatagory_Reasons" FromRole="Reason" ToRole="ReasonCategory" />
+          <NavigationProperty Name="SKUReasons" Relationship="RMASYSTEMModel.FK_Transaction_Reasons" FromRole="Reason" ToRole="SKUReason" />
         </EntityType>
         <EntityType Name="Return">
           <Key>
@@ -322,6 +373,7 @@
           <Property Type="DateTime" Name="UpadatedDate" Precision="3" />
           <NavigationProperty Name="Return" Relationship="RMASYSTEMModel.FK_ReturnDetail_Return" FromRole="ReturnDetail" ToRole="Return" />
           <NavigationProperty Name="ReturnImages" Relationship="RMASYSTEMModel.FK_ReturnImages_ReturnDetail" FromRole="ReturnDetail" ToRole="ReturnImage" />
+          <NavigationProperty Name="SKUReasons" Relationship="RMASYSTEMModel.FK_Transaction_ReturnDetail" FromRole="ReturnDetail" ToRole="SKUReason" />
         </EntityType>
         <EntityType Name="ReturnImage">
           <Key>
@@ -348,6 +400,16 @@
           <Property Type="Guid" Name="CreatedBy" />
           <Property Type="Guid" Name="Updatedby" />
           <NavigationProperty Name="Users" Relationship="RMASYSTEMModel.FK_User_Roles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SKUReason">
+          <Key>
+            <PropertyRef Name="SKUReasonID" />
+          </Key>
+          <Property Type="Guid" Name="SKUReasonID" Nullable="false" />
+          <Property Type="Guid" Name="ReasonID" />
+          <Property Type="Guid" Name="ReturnDetailID" />
+          <NavigationProperty Name="Reason" Relationship="RMASYSTEMModel.FK_Transaction_Reasons" FromRole="SKUReason" ToRole="Reason" />
+          <NavigationProperty Name="ReturnDetail" Relationship="RMASYSTEMModel.FK_Transaction_ReturnDetail" FromRole="SKUReason" ToRole="ReturnDetail" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -391,6 +453,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transaction_Reasons">
+          <End Type="RMASYSTEMModel.Reason" Role="Reason" Multiplicity="0..1" />
+          <End Type="RMASYSTEMModel.SKUReason" Role="SKUReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reason">
+              <PropertyRef Name="ReasonID" />
+            </Principal>
+            <Dependent Role="SKUReason">
+              <PropertyRef Name="ReasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReturnDetail_Return">
           <End Type="RMASYSTEMModel.Return" Role="Return" Multiplicity="1" />
           <End Type="RMASYSTEMModel.ReturnDetail" Role="ReturnDetail" Multiplicity="*" />
@@ -411,6 +485,18 @@
               <PropertyRef Name="ReturnDetailID" />
             </Principal>
             <Dependent Role="ReturnImage">
+              <PropertyRef Name="ReturnDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ReturnDetail">
+          <End Type="RMASYSTEMModel.ReturnDetail" Role="ReturnDetail" Multiplicity="0..1" />
+          <End Type="RMASYSTEMModel.SKUReason" Role="SKUReason" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReturnDetail">
+              <PropertyRef Name="ReturnDetailID" />
+            </Principal>
+            <Dependent Role="SKUReason">
               <PropertyRef Name="ReturnDetailID" />
             </Dependent>
           </ReferentialConstraint>
@@ -535,6 +621,15 @@
                 <ScalarProperty Name="Action" ColumnName="Action" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SKUReasons">
+            <EntityTypeMapping TypeName="RMASYSTEMModel.SKUReason">
+              <MappingFragment StoreEntitySet="SKUReasons">
+                <ScalarProperty Name="ReturnDetailID" ColumnName="ReturnDetailID" />
+                <ScalarProperty Name="ReasonID" ColumnName="ReasonID" />
+                <ScalarProperty Name="SKUReasonID" ColumnName="SKUReasonID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
