@@ -41,7 +41,7 @@
                             <TextBlock Name="tbLoginText" Text="Please scan your badge" FontSize="20" Canvas.Left="188" Canvas.Top="71" />
                             <TextBlock Name="tbTitleLogin" Style="{StaticResource tbFormTitle}"  Text="Login" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
                             <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10" Background="White">
-                                <TextBox Name="txtLogin" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtLogin_KeyDown"/>
+                                <TextBox Name="txtLogin" TextWrapping="Wrap" Text="admin" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtLogin_KeyDown"/>
                             </Border>
                         </Canvas>
                     </Border>
@@ -51,7 +51,7 @@
                             <TextBlock Name="tbScanText" Text="Please Scan Barcode" FontSize="20" Canvas.Left="188" Canvas.Top="71" />
                             <TextBlock Name="tbTitleScan" Style="{StaticResource tbFormTitle}"  Text="Scan" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
                             <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10" Background="White">
-                                <TextBox Name="txtScan" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtScan_KeyDown"/>
+                                <TextBox Name="txtScan" TextWrapping="Wrap" Text="SR0015" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtScan_KeyDown"/>
                             </Border>
                         </Canvas>
                     </Border>

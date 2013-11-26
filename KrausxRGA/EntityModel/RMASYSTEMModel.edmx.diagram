@@ -4,16 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8bf1f88305f34eb39b461c46fb066f2f" Name="Diagram1" ZoomLevel="93">
-        <EntityTypeShape EntityType="RMASYSTEMModel.Audit" Width="1.5" PointX="7.1303005791876011" PointY="24.19691694909563" />
-        <EntityTypeShape EntityType="RMASYSTEMModel.ReasonCatagory" Width="1.5" PointX="0.66443198950236293" PointY="26.4688488964312" />
-        <EntityTypeShape EntityType="RMASYSTEMModel.Reason" Width="1.5" PointX="11.092482128689291" PointY="7.5605261361042624" />
-        <EntityTypeShape EntityType="RMASYSTEMModel.Return" Width="1.5" PointX="11.345889636942134" PointY="8.4967316279638236" />
-        <EntityTypeShape EntityType="RMASYSTEMModel.ReturnDetail" Width="1.5" PointX="11.475636452192273" PointY="15.188137493649561" />
-        <EntityTypeShape EntityType="RMASYSTEMModel.ReturnImage" Width="1.5" PointX="1.1113001206476707" PointY="21.198203782177625" />
-        <EntityTypeShape EntityType="RMASYSTEMModel.Role" Width="1.5" PointX="6.4140160691058341" PointY="15.975784607220341" />
-        <EntityTypeShape EntityType="RMASYSTEMModel.User" Width="1.5" PointX="10.420296996096287" PointY="4.0695816446419721" />
+      <Diagram DiagramId="8bf1f88305f34eb39b461c46fb066f2f" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="RMASYSTEMModel.Audit" Width="1.5" PointX="8.875" PointY="21.875" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.ReasonCategory" Width="1.5" PointX="8.875" PointY="11.5" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.Reason" Width="1.5" PointX="7.375" PointY="14.5" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.Return" Width="1.5" PointX="15" PointY="24.5" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.ReturnDetail" Width="1.5" PointX="4" PointY="17.625" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.ReturnImage" Width="1.5" PointX="6.5910786886657959" PointY="2.8380484743220959" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.Role" Width="1.5" PointX="7.125" PointY="5.375" />
+        <EntityTypeShape EntityType="RMASYSTEMModel.User" Width="1.5" PointX="10.86464567243338" PointY="10.249543939833316" />
         <AssociationConnector Association="RMASYSTEMModel.FK_UserLogs_User" />
+        <AssociationConnector Association="RMASYSTEMModel.FK_ReasonCatagory_Reasons" />
         <AssociationConnector Association="RMASYSTEMModel.FK_ReturnDetail_Return" />
         <AssociationConnector Association="RMASYSTEMModel.FK_ReturnImages_ReturnDetail" />
         <AssociationConnector Association="RMASYSTEMModel.FK_User_Roles" />

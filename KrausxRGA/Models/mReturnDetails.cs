@@ -455,7 +455,6 @@ namespace KrausRGA.Models
                 ReasonTable.Reason1 = Reasons;
 
                 if (cRtnreasons.InsertReasons(ReasonTable)) _reasonID = ReasonTable.ReasonID;
-                // cRtnreasons.InsertReasons(ReasonTable);
             }
             catch (Exception)
             {
@@ -478,6 +477,31 @@ namespace KrausRGA.Models
             }
 
             return reasonList;
+        }
+
+
+        /// <summary>
+        /// Gives the Reaturn reasons of product by its category.
+        /// </summary>
+        /// <param name="SKUName">
+        /// string SKU number.
+        /// </param>
+        /// <returns>
+        /// List of Reasons table.
+        /// </returns>
+        public List<Reason> GetReasons(String SKUName)
+        {
+            List<Reason> _lsReasons = new List<Reason>();
+            try
+            {
+                //find category of product.
+                String CategoryOFSKU = lsRMAInformation.FirstOrDefault(Sk => Sk.SKUNumber == SKUName).TCLCOD_0;
+                _lsReasons = cRtnreasons.GetReasons(CategoryOFSKU);
+            }
+            catch (Exception)
+            {}
+            return _lsReasons;
+ 
         }
 
 

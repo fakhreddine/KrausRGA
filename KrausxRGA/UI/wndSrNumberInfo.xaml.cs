@@ -123,9 +123,6 @@ namespace KrausRGA.UI
 
             cmbOtherReason.ItemsSource = lsReturn;
 
-            List<Reason> lsReturn1 = _mReturn.GetReasons();
-            dgReasons.ItemsSource = lsReturn1;
-
             // Display webcam video on control.
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
             bdrCapture.Visibility = System.Windows.Visibility.Hidden;
@@ -579,9 +576,16 @@ namespace KrausRGA.UI
             btnRed.Visibility = System.Windows.Visibility.Visible;
         }
 
+        #region CheckBox Toggel.
+
         private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+
+            TextBlock cbk = (TextBlock)e.Source;
+            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+            FilldgReasons(tbSKUName.Text.ToString());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -666,6 +670,8 @@ namespace KrausRGA.UI
             dgReasons.Columns[2].Visibility = Visibility.Hidden;
         }
 
+        #endregion
+
         private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
             TextBlock cbk = (TextBlock)e.Source;
@@ -677,6 +683,10 @@ namespace KrausRGA.UI
             if (ch.IsChecked == true)
                 ch.IsChecked = false;
             else ch.IsChecked = true;
+
+
+
+
         }
 
       
@@ -686,8 +696,7 @@ namespace KrausRGA.UI
             if (e.Key==Key.Enter)
             {
                 Guid reasonID = _mReturn.SetReasons(txtItemReason.Text);
-                List<Reason> lsReturn1 = _mReturn.GetReasons();
-                dgReasons.ItemsSource = lsReturn1;
+                dgReasons.ItemsSource = _mReturn.GetReasons();
                 txtItemReason.Text = "";
             }
         }
@@ -695,6 +704,12 @@ namespace KrausRGA.UI
         private void txtItemReason_GotFocus(object sender, RoutedEventArgs e)
         {
             txtItemReason.Text = "";
+        }
+
+
+        public void FilldgReasons(String SKUName)
+        {
+            dgReasons.ItemsSource = _mReturn.GetReasons(SKUName);
         }
     }
 }

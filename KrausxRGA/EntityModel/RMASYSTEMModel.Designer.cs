@@ -20,6 +20,7 @@ using System.Xml.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("RMASYSTEMModel", "FK_UserLogs_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(KrausRGA.EntityModel.User), "Audit", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(KrausRGA.EntityModel.Audit), true)]
+[assembly: EdmRelationshipAttribute("RMASYSTEMModel", "FK_ReasonCatagory_Reasons", "Reason", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(KrausRGA.EntityModel.Reason), "ReasonCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(KrausRGA.EntityModel.ReasonCategory), true)]
 [assembly: EdmRelationshipAttribute("RMASYSTEMModel", "FK_ReturnDetail_Return", "Return", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(KrausRGA.EntityModel.Return), "ReturnDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(KrausRGA.EntityModel.ReturnDetail), true)]
 [assembly: EdmRelationshipAttribute("RMASYSTEMModel", "FK_ReturnImages_ReturnDetail", "ReturnDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(KrausRGA.EntityModel.ReturnDetail), "ReturnImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(KrausRGA.EntityModel.ReturnImage), true)]
 [assembly: EdmRelationshipAttribute("RMASYSTEMModel", "FK_User_Roles", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(KrausRGA.EntityModel.Role), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(KrausRGA.EntityModel.User), true)]
@@ -93,18 +94,18 @@ namespace KrausRGA.EntityModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ReasonCatagory> ReasonCatagories
+        public ObjectSet<ReasonCategory> ReasonCategories
         {
             get
             {
-                if ((_ReasonCatagories == null))
+                if ((_ReasonCategories == null))
                 {
-                    _ReasonCatagories = base.CreateObjectSet<ReasonCatagory>("ReasonCatagories");
+                    _ReasonCategories = base.CreateObjectSet<ReasonCategory>("ReasonCategories");
                 }
-                return _ReasonCatagories;
+                return _ReasonCategories;
             }
         }
-        private ObjectSet<ReasonCatagory> _ReasonCatagories;
+        private ObjectSet<ReasonCategory> _ReasonCategories;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -215,11 +216,11 @@ namespace KrausRGA.EntityModel
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ReasonCatagories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the ReasonCategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToReasonCatagories(ReasonCatagory reasonCatagory)
+        public void AddToReasonCategories(ReasonCategory reasonCategory)
         {
-            base.AddObject("ReasonCatagories", reasonCatagory);
+            base.AddObject("ReasonCategories", reasonCategory);
         }
     
         /// <summary>
@@ -554,27 +555,55 @@ namespace KrausRGA.EntityModel
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RMASYSTEMModel", "FK_ReasonCatagory_Reasons", "ReasonCategory")]
+        public EntityCollection<ReasonCategory> ReasonCategories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReasonCategory>("RMASYSTEMModel.FK_ReasonCatagory_Reasons", "ReasonCategory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReasonCategory>("RMASYSTEMModel.FK_ReasonCatagory_Reasons", "ReasonCategory", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RMASYSTEMModel", Name="ReasonCatagory")]
+    [EdmEntityTypeAttribute(NamespaceName="RMASYSTEMModel", Name="ReasonCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ReasonCatagory : EntityObject
+    public partial class ReasonCategory : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new ReasonCatagory object.
+        /// Create a new ReasonCategory object.
         /// </summary>
         /// <param name="reasonCatID">Initial value of the ReasonCatID property.</param>
-        public static ReasonCatagory CreateReasonCatagory(global::System.Guid reasonCatID)
+        /// <param name="reasonID">Initial value of the ReasonID property.</param>
+        public static ReasonCategory CreateReasonCategory(global::System.Guid reasonCatID, global::System.Guid reasonID)
         {
-            ReasonCatagory reasonCatagory = new ReasonCatagory();
-            reasonCatagory.ReasonCatID = reasonCatID;
-            return reasonCatagory;
+            ReasonCategory reasonCategory = new ReasonCategory();
+            reasonCategory.ReasonCatID = reasonCatID;
+            reasonCategory.ReasonID = reasonID;
+            return reasonCategory;
         }
 
         #endregion
@@ -611,9 +640,9 @@ namespace KrausRGA.EntityModel
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ReasonID
+        public global::System.Guid ReasonID
         {
             get
             {
@@ -628,8 +657,8 @@ namespace KrausRGA.EntityModel
                 OnReasonIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _ReasonID;
-        partial void OnReasonIDChanging(Nullable<global::System.Int32> value);
+        private global::System.Guid _ReasonID;
+        partial void OnReasonIDChanging(global::System.Guid value);
         partial void OnReasonIDChanged();
     
         /// <summary>
@@ -637,28 +666,70 @@ namespace KrausRGA.EntityModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CatagoryName
+        public global::System.String CategoryName
         {
             get
             {
-                return _CatagoryName;
+                return _CategoryName;
             }
             set
             {
-                OnCatagoryNameChanging(value);
-                ReportPropertyChanging("CatagoryName");
-                _CatagoryName = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("CatagoryName");
-                OnCatagoryNameChanged();
+                OnCategoryNameChanging(value);
+                ReportPropertyChanging("CategoryName");
+                _CategoryName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CategoryName");
+                OnCategoryNameChanged();
             }
         }
-        private global::System.String _CatagoryName;
-        partial void OnCatagoryNameChanging(global::System.String value);
-        partial void OnCatagoryNameChanged();
+        private global::System.String _CategoryName;
+        partial void OnCategoryNameChanging(global::System.String value);
+        partial void OnCategoryNameChanged();
 
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RMASYSTEMModel", "FK_ReasonCatagory_Reasons", "Reason")]
+        public Reason Reason
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reason>("RMASYSTEMModel.FK_ReasonCatagory_Reasons", "Reason").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reason>("RMASYSTEMModel.FK_ReasonCatagory_Reasons", "Reason").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Reason> ReasonReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reason>("RMASYSTEMModel.FK_ReasonCatagory_Reasons", "Reason");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Reason>("RMASYSTEMModel.FK_ReasonCatagory_Reasons", "Reason", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
