@@ -1455,7 +1455,6 @@ namespace KrausRGA.GetRMAServiceRef {
     public partial class GetClient : System.ServiceModel.ClientBase<KrausRGA.GetRMAServiceRef.IGet>, KrausRGA.GetRMAServiceRef.IGet {
         
         public GetClient() {
-         
         }
         
         public GetClient(string endpointConfigurationName) : 
