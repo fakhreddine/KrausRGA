@@ -9,7 +9,8 @@ namespace KrausRGA.DBLogics
    public class cmdReasonCategory
     {
        //create Entity Object
-       RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+     //  RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+       
        /// <summary>
        /// Insert the Reason category in to the Reason category Table
        /// </summary>
@@ -21,18 +22,19 @@ namespace KrausRGA.DBLogics
        /// </returns>
        public Boolean SetReasonCategory(ReasonCategory ReasonCat)
        {
-           Boolean _status = false;
+           Boolean _return = false;
            try
            {
-               entRMA.AddToReasonCategories(ReasonCat);
-               entRMA.SaveChanges();
-               _status = true;
+              _return = cmd.entSave.ReasonCategory(ReasonCat.ConvertToSaveDTO(ReasonCat));
+              // entRMA.AddToReasonCategories(ReasonCat);
+               //entRMA.SaveChanges();
+               
            }
            catch (Exception)
            {
                
            }
-           return _status;
+           return _return;
        
        }
     }

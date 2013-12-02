@@ -17,7 +17,7 @@ namespace KrausRGA.DBLogics
         #region Declarations.
 
         //RMA system database Object.
-        RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+        //RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
 
         #endregion
 
@@ -35,8 +35,11 @@ namespace KrausRGA.DBLogics
             List<Return> _lsReturn = new List<Return>();
             try
             {
-                _lsReturn = (from XReturnTbl in entRMA.Returns
-                             select XReturnTbl).ToList();
+                var TemoRtn = cmd.entGet.ReturnAll().ToList();
+                foreach (var Rtnitem in TemoRtn)
+                {
+                    _lsReturn.Add(new Return(Rtnitem));
+                }
             }
             catch (Exception)
             {}
@@ -58,7 +61,7 @@ namespace KrausRGA.DBLogics
             Return _returnObj = new Return();
             try
             {
-                _returnObj = entRMA.Returns.SingleOrDefault(ret => ret.ReturnID == ReturnID );
+                _returnObj = new Return(cmd.entGet.ReturnByReturnID(ReturnID));
             }
             catch (Exception)
             {}
@@ -79,7 +82,7 @@ namespace KrausRGA.DBLogics
             Return _returnTableObj = new Return();
             try
             {
-                _returnTableObj = entRMA.Returns.SingleOrDefault(Ret => Ret.RMANumber == RMANumber);
+                _returnTableObj = new Return(cmd.entGet.ReturnByRMANumber(RMANumber));
             }
             catch (Exception)
             { }
@@ -104,19 +107,7 @@ namespace KrausRGA.DBLogics
             Boolean _returnFlag = false;
             try
             {
-                Return _returnTbl = new Return();
-                _returnTbl = entRMA.Returns.SingleOrDefault(rtn => rtn.ReturnID == ObjReturnTbl.ReturnID);
-                //Insert new record if not persernt perviously
-                if (_returnTbl == null)
-                {
-                    entRMA.AddToReturns(ObjReturnTbl);
-                }
-                else // Update existing record if present.
-                {
-                    _returnTbl = ObjReturnTbl;
-                }
-                entRMA.SaveChanges();
-                _returnFlag = true;
+                _returnFlag = cmd.entSave.Return(ObjReturnTbl.CopyToSaveDTO(ObjReturnTbl));
             }
             catch (Exception)
             { }
