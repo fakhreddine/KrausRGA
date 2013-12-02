@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Save" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISave_ReasonCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonCategory" />
+  </wsdl:message>
+  <wsdl:message name="ISave_ReasonCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISave_Reasons_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reasons" />
+  </wsdl:message>
+  <wsdl:message name="ISave_Reasons_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISave_Return_InputMessage">
+    <wsdl:part name="parameters" element="tns:Return" />
+  </wsdl:message>
+  <wsdl:message name="ISave_Return_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISave_ReturnDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnDetails" />
+  </wsdl:message>
+  <wsdl:message name="ISave_ReturnDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISave_ReturnImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnImages" />
+  </wsdl:message>
+  <wsdl:message name="ISave_ReturnImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnImagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISave_SKUReasons_InputMessage">
+    <wsdl:part name="parameters" element="tns:SKUReasons" />
+  </wsdl:message>
+  <wsdl:message name="ISave_SKUReasons_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SKUReasonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISave_User_InputMessage">
+    <wsdl:part name="parameters" element="tns:User" />
+  </wsdl:message>
+  <wsdl:message name="ISave_User_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISave">
+    <wsdl:operation name="ReasonCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReasonCategory" message="tns:ISave_ReasonCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReasonCategoryResponse" message="tns:ISave_ReasonCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reasons">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/Reasons" message="tns:ISave_Reasons_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReasonsResponse" message="tns:ISave_Reasons_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Return">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/Return" message="tns:ISave_Return_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReturnResponse" message="tns:ISave_Return_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReturnDetails" message="tns:ISave_ReturnDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReturnDetailsResponse" message="tns:ISave_ReturnDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReturnImages" message="tns:ISave_ReturnImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReturnImagesResponse" message="tns:ISave_ReturnImages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SKUReasons">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/SKUReasons" message="tns:ISave_SKUReasons_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/SKUReasonsResponse" message="tns:ISave_SKUReasons_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="User">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/User" message="tns:ISave_User_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/UserResponse" message="tns:ISave_User_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISave" type="tns:ISave">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReasonCategory">
+      <soap:operation soapAction="http://tempuri.org/ISave/ReasonCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reasons">
+      <soap:operation soapAction="http://tempuri.org/ISave/Reasons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return">
+      <soap:operation soapAction="http://tempuri.org/ISave/Return" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnDetails">
+      <soap:operation soapAction="http://tempuri.org/ISave/ReturnDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnImages">
+      <soap:operation soapAction="http://tempuri.org/ISave/ReturnImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SKUReasons">
+      <soap:operation soapAction="http://tempuri.org/ISave/SKUReasons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User">
+      <soap:operation soapAction="http://tempuri.org/ISave/User" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Save">
+    <wsdl:port name="BasicHttpBinding_ISave" binding="tns:BasicHttpBinding_ISave">
+      <soap:address location="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc/SOA" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

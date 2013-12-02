@@ -114,6 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DBLogics\cmd.cs" />
     <Compile Include="DBLogics\cmdAudit.cs" />
     <Compile Include="DBLogics\cmdReasonCategory.cs" />
     <Compile Include="DBLogics\cmdReasons.cs" />
@@ -137,6 +138,16 @@
     <Compile Include="ErrorLogger\ErrorLogger.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mUser.cs" />
+    <Compile Include="Service References\GetRMAServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SaveRMAServiceRefer\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UI\wndBoxInformation.xaml.cs">
       <DependentUpon>wndBoxInformation.xaml</DependentUpon>
     </Compile>
@@ -213,6 +224,35 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\GetRMAServiceRef\Get.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonsDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReturnDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\Save.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Camera Folder.png" />
@@ -261,6 +301,40 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GetRMAServiceRef\" />
+    <WCFMetadataStorage Include="Service References\SaveRMAServiceRefer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SaveRMAServiceRefer\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SaveRMAServiceRefer\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SaveRMAServiceRefer\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GetRMAServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GetRMAServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GetRMAServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

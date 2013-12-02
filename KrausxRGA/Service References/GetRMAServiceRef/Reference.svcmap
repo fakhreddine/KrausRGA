@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4ca63d6e-31a9-4372-aa2c-de0554279abb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="KrausWarehouseServices.disco" MetadataType="Disco" ID="1adfd7b7-6a13-4012-9bff-4049f648ba94" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc?disco" />
+    <MetadataFile FileName="KrausWarehouseServices.xsd" MetadataType="Schema" ID="a03b1cd3-2119-42f3-8612-9687ba946f0f" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc?xsd=xsd0" />
+    <MetadataFile FileName="Get.wsdl" MetadataType="Wsdl" ID="585dc506-8a47-4cfb-84ad-5f11dcd12ef4" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc?wsdl" />
+    <MetadataFile FileName="KrausWarehouseServices1.xsd" MetadataType="Schema" ID="d46528f7-e65c-43a1-b487-4428e68856b0" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc?xsd=xsd1" />
+    <MetadataFile FileName="KrausWarehouseServices2.xsd" MetadataType="Schema" ID="c97f0c2c-a2a6-40d8-a116-81e3bb171093" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

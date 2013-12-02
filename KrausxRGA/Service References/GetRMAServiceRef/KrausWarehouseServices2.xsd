@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfUserDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDTO" nillable="true" type="tns:UserDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDTO" nillable="true" type="tns:ArrayOfUserDTO" />
+  <xs:complexType name="UserDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RoleId" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Updatedby" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserFullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserJoiningDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserPassword" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDTO" nillable="true" type="tns:UserDTO" />
+  <xs:complexType name="ArrayOfReturnDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnDTO" nillable="true" type="tns:ReturnDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReturnDTO" nillable="true" type="tns:ArrayOfReturnDTO" />
+  <xs:complexType name="ReturnDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatesDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CustomerName1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Decision" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="DeliveryDat" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PONumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RMANumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RMAStatus" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="ReturnDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReturnID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShipmentNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpdatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VendoeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReturnDTO" nillable="true" type="tns:ReturnDTO" />
+  <xs:complexType name="ArrayOfReasonsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReasonsDTO" nillable="true" type="tns:ReasonsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReasonsDTO" nillable="true" type="tns:ArrayOfReasonsDTO" />
+  <xs:complexType name="ReasonsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReasonID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReasonsDTO" nillable="true" type="tns:ReasonsDTO" />
+</xs:schema>
