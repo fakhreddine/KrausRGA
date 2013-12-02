@@ -23,8 +23,10 @@ namespace KrausRGA.DBLogics
        /// <summary>
        /// Get Service object.
        /// </summary>
+
        public static GetRMAServiceRef.GetClient entGet;
 
        
+
     }
 }
