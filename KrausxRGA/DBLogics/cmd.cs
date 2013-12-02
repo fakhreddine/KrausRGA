@@ -20,8 +20,5 @@ namespace KrausRGA.DBLogics
        /// Get Service object.
        /// </summary>
       public static GetRMAServiceRef.GetClient entGet = new GetRMAServiceRef.GetClient(KrausRGA.Properties.Settings.Default.GetServicePath.ToString());
-
-      
-       
     }
 }
