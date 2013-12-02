@@ -16,7 +16,7 @@ namespace KrausRGA.DBLogics
        /// <summary>
        /// RMA Database ovbject.
        /// </summary>
-       RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+      // RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
 
         #region Get fucntions of Role class.
 
@@ -32,12 +32,11 @@ namespace KrausRGA.DBLogics
 
            try
            {
-               var Rolesinfo = from roles in entRMA.Roles
-                               select roles;
+               var Rolesinfo = cmd.entGet.RoleAll();
                foreach (var roleitem in Rolesinfo)
                {
-                   Role roles = new Role();
-                   roles = (Role)Rolesinfo;
+                   Role roles = new Role(roleitem);
+                   //roles = (Role)Rolesinfo;
                    _lsRuturn.Add(roles);
                }
            }
@@ -62,7 +61,7 @@ namespace KrausRGA.DBLogics
            Role role = new Role();
            try
            {
-               role = entRMA.Roles.FirstOrDefault(rol => rol.RoleId == RoleID);
+               role = new Role(cmd.entGet.RoleByRoleID(RoleID));
            }
            catch (Exception)
            { }
