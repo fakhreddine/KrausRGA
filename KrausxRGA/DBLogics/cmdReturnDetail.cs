@@ -9,7 +9,7 @@ namespace KrausRGA.DBLogics
    public class cmdReturnDetail
     {
        //Entity RGA System database object.
-       RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+      // RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
 
         #region Get methods.
 
@@ -34,19 +34,7 @@ namespace KrausRGA.DBLogics
            Boolean _returnFlag = false;
            try
            {
-               ReturnDetail rDetails = new ReturnDetail();
-               rDetails = entRMA.ReturnDetails.SingleOrDefault(ret => ret.ReturnID == ReturnDetailsObj.ReturnDetailID);
-               //Save new record in database if pervious is not persent with same id.
-               if (rDetails ==null)
-               {
-                   entRMA.AddToReturnDetails(ReturnDetailsObj);
-               }
-               else //Update existing record with same id.
-               {
-                   rDetails = ReturnDetailsObj;
-               }
-               entRMA.SaveChanges();
-               _returnFlag = true;
+               _returnFlag = cmd.entSave.ReturnDetails(ReturnDetailsObj.ConvertToSaveDTO(ReturnDetailsObj));
            }
            catch (Exception)
            {}

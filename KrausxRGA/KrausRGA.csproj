@@ -130,6 +130,7 @@
     <Compile Include="EntityModel\Reason.cs" />
     <Compile Include="EntityModel\ReasonCategory.cs" />
     <Compile Include="EntityModel\Return.cs" />
+    <Compile Include="EntityModel\ReturnDetail.cs" />
     <Compile Include="EntityModel\x3v6.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
