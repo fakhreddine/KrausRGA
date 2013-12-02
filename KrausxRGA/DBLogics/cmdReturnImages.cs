@@ -11,7 +11,7 @@ namespace KrausRGA.DBLogics
         #region Declarations.
 
         //RMASYSTEM Database entity object.
-        RMASYSTEMEntities entRMA = new RMASYSTEMEntities(); 
+      //  RMASYSTEMEntities entRMA = new RMASYSTEMEntities(); 
         
         #endregion
 
@@ -37,20 +37,7 @@ namespace KrausRGA.DBLogics
             Boolean _returnFlag = false;
             try
             {
-                ReturnImage Images = new ReturnImage();
-                Images = entRMA.ReturnImages.SingleOrDefault(rImag => rImag.ReturnImageID == ReturnImageObj.ReturnImageID);
-                
-                //If record not present in database then insert new record.
-                if (Images==null)
-                {
-                    entRMA.AddToReturnImages(ReturnImageObj);
-                }
-                else //If record persernt in database then update that record.
-                {
-                    Images = ReturnImageObj;
-                }
-                entRMA.SaveChanges();
-                _returnFlag = true;
+                _returnFlag = cmd.entSave.ReturnImages(ReturnImageObj.CopyToSaveDTO(ReturnImageObj));
             }
             catch (Exception)
             {}
