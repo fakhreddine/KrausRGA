@@ -113,6 +113,7 @@ namespace KrausRGA.DBLogics
            List<User> _lsReturn = new List<User>();
            try
            {
+             
                var userInfo = cmd.entGet.UserByRoleID(RoleID);
 
                foreach (var useritem in userInfo)
@@ -145,7 +146,7 @@ namespace KrausRGA.DBLogics
            try
            {
                var username = cmd.entGet.UserByUserName(UserName);
-               if (username!=null)
+               if (username.UserName !=null)
                {
                    if (username.UserPassword == Password) _userReturn = new User(username);
                }

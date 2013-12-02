@@ -10,8 +10,8 @@ namespace KrausRGA.EntityModel
        /// <summary>
        /// blank Constructor.
        /// </summary>
-       public User()
-       {
+       public User() {
+
        }
 
      

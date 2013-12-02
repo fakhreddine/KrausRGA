@@ -49,7 +49,7 @@ namespace KrausRGA.Models
           {
               User user = new User();
               user = _cuser.GetUserByUserNamePassword(UserName, Password);
-              if (user != null)
+              if (user.UserName != null)
               {
                   UserInfo = user;
                   _FlagReturn = true;
@@ -92,12 +92,13 @@ namespace KrausRGA.Models
 
        public mUser()
        {
-          
+           cmd.entGet = new GetRMAServiceRef.GetClient();
+           cmd.entSave = new SaveRMAServiceRefer.SaveClient();
+           cmd.entGet.Endpoint.Address = new System.ServiceModel.EndpointAddress(KrausRGA.Properties.Settings.Default.GetServicePath.ToString());
+           cmd.entSave.Endpoint.Address = new System.ServiceModel.EndpointAddress(KrausRGA.Properties.Settings.Default.SetServicePath.ToString());
+
        }
       #endregion
-
-      
-
 
     }
 }
