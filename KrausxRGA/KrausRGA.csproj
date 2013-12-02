@@ -128,15 +128,12 @@
     <Compile Include="EntityModel\Audit.cs" />
     <Compile Include="EntityModel\Role.cs" />
     <Compile Include="EntityModel\SKUReason.cs" />
+    <Compile Include="EntityModel\ReturnImage.cs" />
     <Compile Include="EntityModel\User.cs" />
     <Compile Include="EntityModel\Reason.cs" />
     <Compile Include="EntityModel\ReasonCategory.cs" />
     <Compile Include="EntityModel\Return.cs" />
-    <Compile Include="EntityModel\x3v6.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>x3v6.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="EntityModel\ReturnDetail.cs" />
     <Compile Include="ErrorLogger\ErrorLogger.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mUser.cs" />
@@ -206,13 +203,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="EntityModel\x3v6.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>x3v6.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="EntityModel\x3v6.edmx.diagram">
-      <DependentUpon>x3v6.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -227,6 +217,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReturnDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.RMAInfoDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.RoleDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
