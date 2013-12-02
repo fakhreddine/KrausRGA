@@ -94,9 +94,10 @@ namespace KrausRGA.Models
        {
            cmd.entGet = new GetRMAServiceRef.GetClient();
            cmd.entSave = new SaveRMAServiceRefer.SaveClient();
-           cmd.entGet.Endpoint.Address = new System.ServiceModel.EndpointAddress(KrausRGA.Properties.Settings.Default.GetServicePath.ToString());
-           cmd.entSave.Endpoint.Address = new System.ServiceModel.EndpointAddress(KrausRGA.Properties.Settings.Default.SetServicePath.ToString());
-
+           cmd.entGet.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(KrausRGA.Properties.Settings.Default.GetServicePath.ToString()), cmd.entGet.Endpoint.Address.Identity, cmd.entGet.Endpoint.Address.Headers);
+           cmd.entGet.Open();
+           cmd.entSave.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(KrausRGA.Properties.Settings.Default.SetServicePath.ToString()), cmd.entGet.Endpoint.Address.Identity, cmd.entGet.Endpoint.Address.Headers);
+           cmd.entSave.Open();
        }
       #endregion
 
