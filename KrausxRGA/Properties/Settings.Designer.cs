@@ -40,5 +40,23 @@ namespace KrausRGA.Properties {
                 return ((string)(this["DrivePath"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc")]
+        public string GetServicePath {
+            get {
+                return ((string)(this["GetServicePath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc")]
+        public string SetServicePath {
+            get {
+                return ((string)(this["SetServicePath"]));
+            }
+        }
     }
 }

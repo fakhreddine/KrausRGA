@@ -8,5 +8,11 @@
     <Setting Name="DrivePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\\SKUReturned</Value>
     </Setting>
+    <Setting Name="GetServicePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc</Value>
+    </Setting>
+    <Setting Name="SetServicePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
