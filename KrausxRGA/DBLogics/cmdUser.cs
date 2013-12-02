@@ -18,7 +18,6 @@ namespace KrausRGA.DBLogics
        /// RMASYSTEM database object.
        /// </summary>
        RMASYSTEMEntities entRMADB = new RMASYSTEMEntities();
-
         #region Get Operation for User Table.
 
        /// <summary>
@@ -30,6 +29,9 @@ namespace KrausRGA.DBLogics
        /// </returns>
        public List<User> GetUserTbl()
        {
+         
+
+
            //Return list object.
            List<User> _lsUserReturn = new List<User>();
            try
@@ -149,7 +151,7 @@ namespace KrausRGA.DBLogics
 
            try
            {
-               _userReturn = entRMADB.Users.FirstOrDefault(user => user.UserName == UserName && user.UserPassword == Password);
+              _userReturn = entRMADB.Users.FirstOrDefault(user => user.UserName == UserName && user.UserPassword == Password);
            }
            catch (Exception)
            {}

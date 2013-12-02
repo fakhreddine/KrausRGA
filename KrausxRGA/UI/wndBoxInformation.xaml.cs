@@ -38,7 +38,6 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
-            
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
 
