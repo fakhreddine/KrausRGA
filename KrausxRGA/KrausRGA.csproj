@@ -126,11 +126,11 @@
     <Compile Include="DBLogics\cmdSKUReasons.cs" />
     <Compile Include="DBLogics\cmdUser.cs" />
     <Compile Include="EntityModel\Audit.cs" />
+    <Compile Include="EntityModel\SKUReason.cs" />
     <Compile Include="EntityModel\User.cs" />
     <Compile Include="EntityModel\Reason.cs" />
     <Compile Include="EntityModel\ReasonCategory.cs" />
     <Compile Include="EntityModel\Return.cs" />
-    <Compile Include="EntityModel\ReturnDetail.cs" />
     <Compile Include="EntityModel\x3v6.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
