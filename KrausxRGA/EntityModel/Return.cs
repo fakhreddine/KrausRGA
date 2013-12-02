@@ -14,7 +14,7 @@ namespace KrausRGA.EntityModel
         public string OrderNumber { get; set; }
         public string PONumber { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime DeliveryDat { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public string VendorNumber { get; set; }
         public string VendoeName { get; set; }
@@ -32,7 +32,7 @@ namespace KrausRGA.EntityModel
         public byte? Decision { get; set; }
         public Guid? CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
-        public DateTime CreatesDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
         public Return()
@@ -46,7 +46,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.OrderNumber != null) this.OrderNumber = _ReturnDTO.OrderNumber;
             if (_ReturnDTO.PONumber != null) this.PONumber = _ReturnDTO.PONumber;
             if (_ReturnDTO.OrderDate != null) this.OrderDate = (DateTime)_ReturnDTO.OrderDate;
-            if (_ReturnDTO.DeliveryDat != null) this.DeliveryDat = (DateTime)_ReturnDTO.DeliveryDat;
+            if (_ReturnDTO.DeliveryDat != null) this.DeliveryDate = (DateTime)_ReturnDTO.DeliveryDat;
             if (_ReturnDTO.ReturnDate != null) this.ReturnDate = (DateTime)_ReturnDTO.ReturnDate;
             if (_ReturnDTO.ReturnDate != null) this.VendorNumber = _ReturnDTO.VendorNumber;
             if (_ReturnDTO.VendoeName != null) this.VendoeName = _ReturnDTO.VendoeName;
@@ -64,7 +64,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.Decision != null) this.Decision = _ReturnDTO.Decision;
             if (_ReturnDTO.CreatedBy != null) this.CreatedBy = _ReturnDTO.CreatedBy;
             if (_ReturnDTO.UpdatedBy != null) this.UpdatedBy = _ReturnDTO.UpdatedBy;
-            if (_ReturnDTO.CreatesDate != null) this.CreatesDate = (DateTime)_ReturnDTO.CreatesDate;
+            if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;
             if (_ReturnDTO.UpdatedDate != null) this.UpdatedDate = (DateTime)_ReturnDTO.UpdatedDate;
         }
 
@@ -76,7 +76,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.OrderNumber != null) this.OrderNumber = _ReturnDTO.OrderNumber;
             if (_ReturnDTO.PONumber != null) this.PONumber = _ReturnDTO.PONumber;
             if (_ReturnDTO.OrderDate != null) this.OrderDate = (DateTime)_ReturnDTO.OrderDate;
-            if (_ReturnDTO.DeliveryDat != null) this.DeliveryDat = (DateTime)_ReturnDTO.DeliveryDat;
+            if (_ReturnDTO.DeliveryDat != null) this.DeliveryDate = (DateTime)_ReturnDTO.DeliveryDat;
             if (_ReturnDTO.ReturnDate != null) this.ReturnDate = (DateTime)_ReturnDTO.ReturnDate;
             if (_ReturnDTO.ReturnDate != null) this.VendorNumber = _ReturnDTO.VendorNumber;
             if (_ReturnDTO.VendoeName != null) this.VendoeName = _ReturnDTO.VendoeName;
@@ -94,7 +94,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.Decision != null) this.Decision = _ReturnDTO.Decision;
             if (_ReturnDTO.CreatedBy != null) this.CreatedBy = _ReturnDTO.CreatedBy;
             if (_ReturnDTO.UpdatedBy != null) this.UpdatedBy = _ReturnDTO.UpdatedBy;
-            if (_ReturnDTO.CreatesDate != null) this.CreatesDate = (DateTime)_ReturnDTO.CreatesDate;
+            if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;
             if (_ReturnDTO.UpdatedDate != null) this.UpdatedDate = (DateTime)_ReturnDTO.UpdatedDate;
         }
 
@@ -107,7 +107,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.OrderNumber != null) _return.OrderNumber = _ReturnTbl.OrderNumber;
             if (_ReturnTbl.PONumber != null) _return.PONumber = _ReturnTbl.PONumber;
             if (_ReturnTbl.OrderDate != null) _return.OrderDate = (DateTime)_ReturnTbl.OrderDate;
-            if (_ReturnTbl.DeliveryDat != null) _return.DeliveryDat = (DateTime)_ReturnTbl.DeliveryDat;
+            if (_ReturnTbl.DeliveryDate != null) _return.DeliveryDat = (DateTime)_ReturnTbl.DeliveryDate;
             if (_ReturnTbl.ReturnDate != null) _return.ReturnDate = (DateTime)_ReturnTbl.ReturnDate;
             if (_ReturnTbl.ReturnDate != null) _return.VendorNumber = _ReturnTbl.VendorNumber;
             if (_ReturnTbl.VendoeName != null) _return.VendoeName = _ReturnTbl.VendoeName;
@@ -125,7 +125,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.Decision != null) _return.Decision = _ReturnTbl.Decision;
             if (_ReturnTbl.CreatedBy != null) _return.CreatedBy = _ReturnTbl.CreatedBy;
             if (_ReturnTbl.UpdatedBy != null) _return.UpdatedBy = _ReturnTbl.UpdatedBy;
-            if (_ReturnTbl.CreatesDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatesDate;
+            if (_ReturnTbl.CreatedDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatedDate;
             if (_ReturnTbl.UpdatedDate != null) _return.UpdatedDate = (DateTime)_ReturnTbl.UpdatedDate;
             return _return;
         }
@@ -139,7 +139,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.OrderNumber != null) _return.OrderNumber = _ReturnTbl.OrderNumber;
             if (_ReturnTbl.PONumber != null) _return.PONumber = _ReturnTbl.PONumber;
             if (_ReturnTbl.OrderDate != null) _return.OrderDate = (DateTime)_ReturnTbl.OrderDate;
-            if (_ReturnTbl.DeliveryDat != null) _return.DeliveryDat = (DateTime)_ReturnTbl.DeliveryDat;
+            if (_ReturnTbl.DeliveryDate != null) _return.DeliveryDat = (DateTime)_ReturnTbl.DeliveryDate;
             if (_ReturnTbl.ReturnDate != null) _return.ReturnDate = (DateTime)_ReturnTbl.ReturnDate;
             if (_ReturnTbl.ReturnDate != null) _return.VendorNumber = _ReturnTbl.VendorNumber;
             if (_ReturnTbl.VendoeName != null) _return.VendoeName = _ReturnTbl.VendoeName;
@@ -157,7 +157,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.Decision != null) _return.Decision = _ReturnTbl.Decision;
             if (_ReturnTbl.CreatedBy != null) _return.CreatedBy = _ReturnTbl.CreatedBy;
             if (_ReturnTbl.UpdatedBy != null) _return.UpdatedBy = _ReturnTbl.UpdatedBy;
-            if (_ReturnTbl.CreatesDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatesDate;
+            if (_ReturnTbl.CreatedDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatedDate;
             if (_ReturnTbl.UpdatedDate != null) _return.UpdatedDate = (DateTime)_ReturnTbl.UpdatedDate;
             return _return;
         }

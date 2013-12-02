@@ -78,11 +78,11 @@ namespace KrausRGA.Models
                    if (UserInfo.UserName != "" || UserInfo.UserName != null)
                    {
                        //check that given enum type is persent int the action allowed to do for user.
-                       if (UserInfo.Role.Action.Contains(IsPermission.ToString()))
-                       {
+                       //if (UserInfo.Role.Action.Contains(IsPermission.ToString()))
+                      // {
                            //set rerutn value falg to true if its found.
                            _return = true;
-                       }
+                       //}
                    }
                }
                catch (Exception)

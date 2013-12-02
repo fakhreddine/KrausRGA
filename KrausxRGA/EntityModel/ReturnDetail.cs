@@ -29,10 +29,10 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.SKUNumber != null) this.SKUNumber = _ReturnDetails.SKUNumber;
             if (_ReturnDetails.ProductName != null) this.ProductName = _ReturnDetails.ProductName;
             if (_ReturnDetails.TCLCOD_0 != null) this.TCLCOD_0 = _ReturnDetails.TCLCOD_0;
-            if (_ReturnDetails.DeliveredQty != null) this.DeliveredQty = (int)_ReturnDetails.DeliveredQty;
-            if (_ReturnDetails.ExpectedQty != null) this.ExpectedQty = (int)_ReturnDetails.ExpectedQty;
-            if (_ReturnDetails.ReturnQty != null) this.ReturnQty = (int)_ReturnDetails.ReturnQty;
-            if (_ReturnDetails.ProductStatus != null) this.ProductStatus = (int)_ReturnDetails.ProductStatus;
+            this.DeliveredQty = (int)_ReturnDetails.DeliveredQty;
+            this.ExpectedQty = (int)_ReturnDetails.ExpectedQty;
+            this.ReturnQty = (int)_ReturnDetails.ReturnQty;
+            this.ProductStatus = (int)_ReturnDetails.ProductStatus;
             if (_ReturnDetails.CreatedBy != Guid.Empty) this.CreatedBy = (Guid)_ReturnDetails.CreatedBy;
             if (_ReturnDetails.UpdatedBy != Guid.Empty) this.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
             if (_ReturnDetails.CreatedDate != null) this.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
@@ -48,16 +48,16 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.SKUNumber != null) _return.SKUNumber = _ReturnDetails.SKUNumber;
             if (_ReturnDetails.ProductName != null) _return.ProductName = _ReturnDetails.ProductName;
             if (_ReturnDetails.TCLCOD_0 != null) _return.TCLCOD_0 = _ReturnDetails.TCLCOD_0;
-            if (_ReturnDetails.DeliveredQty != null) _return.DeliveredQty = (int)_ReturnDetails.DeliveredQty;
-            if (_ReturnDetails.ExpectedQty != null) _return.ExpectedQty = (int)_ReturnDetails.ExpectedQty;
-            if (_ReturnDetails.ReturnQty != null) _return.ReturnQty = (int)_ReturnDetails.ReturnQty;
-            if (_ReturnDetails.ProductStatus != null) _return.ProductStatus = (int)_ReturnDetails.ProductStatus;
+            _return.DeliveredQty = (int)_ReturnDetails.DeliveredQty;
+            _return.ExpectedQty = (int)_ReturnDetails.ExpectedQty;
+            _return.ReturnQty = (int)_ReturnDetails.ReturnQty;
+            _return.ProductStatus = (int)_ReturnDetails.ProductStatus;
             if (_ReturnDetails.CreatedBy != Guid.Empty) _return.CreatedBy = (Guid)_ReturnDetails.CreatedBy;
             if (_ReturnDetails.UpdatedBy != Guid.Empty) _return.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
             if (_ReturnDetails.CreatedDate != null) _return.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
             if (_ReturnDetails.UpadatedDate != null) _return.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
             return _return;
- 
+
         }
         public ReturnDetail()
         {

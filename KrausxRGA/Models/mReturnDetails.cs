@@ -277,10 +277,9 @@ namespace KrausRGA.Models
         {
             Boolean _return = false;
             //RMA databse Object.
-            RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
             try
             {
-                String Anyvalue = entRMA.Returns.SingleOrDefault(rma => rma.RMANumber == SRnumber).RMANumber;
+                String Anyvalue = cmd.entGet.ReturnByRMANumber(SRnumber).RMANumber;
                 if (Anyvalue == SRnumber) _return = true;
             }
             catch (Exception)
@@ -340,8 +339,6 @@ namespace KrausRGA.Models
                 TblRerutn.Decision = Decision;
                 TblRerutn.CreatedBy = CreatedBy;
                 TblRerutn.CreatedDate = DateTime.UtcNow;
-                TblRerutn.UpdatedBy = null;
-                TblRerutn.UpdatedDate = null;
 
                 //On success of transaction it returns id.
                 if (cReturnTbl.UpsertReturnTbl(TblRerutn)) _returnID = TblRerutn.ReturnID;
@@ -400,8 +397,6 @@ namespace KrausRGA.Models
               //  TblReturnDetails.ProductStatus = ProductStatus;
                 TblReturnDetails.CreatedBy = CreatedBy;
                 TblReturnDetails.CreatedDate = DateTime.UtcNow;
-                TblReturnDetails.UpdatedBy = null;
-                TblReturnDetails.UpadatedDate = null;
                 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
@@ -439,8 +434,6 @@ namespace KrausRGA.Models
                 RtnImages.SKUImagePath = ImagePath;
                 RtnImages.CreatedBy = CreatedBy;
                 RtnImages.CreatedDate = DateTime.UtcNow;
-                RtnImages.UpadatedBy = null;
-                RtnImages.UpadatedDate = null;
 
                 if (cRtnImages.UpsertReturnImage(RtnImages)) _ReturnID = RtnImages.ReturnImageID;
 
