@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 
 namespace KrausRGA.DBLogics
@@ -11,17 +12,19 @@ namespace KrausRGA.DBLogics
     /// </summary>
    public class  cmd
     {
+       
        /// <summary>
        /// Save service object.
        /// </summary>
-      public static SaveRMAServiceRefer.SaveClient entSave = new SaveRMAServiceRefer.SaveClient(KrausRGA.Properties.Settings.Default.SetServicePath.ToString());
+       public static SaveRMAServiceRefer.SaveClient entSave;
 
+      
+       
        /// <summary>
        /// Get Service object.
        /// </summary>
-      public static GetRMAServiceRef.GetClient entGet = new GetRMAServiceRef.GetClient(KrausRGA.Properties.Settings.Default.GetServicePath.ToString());
+       public static GetRMAServiceRef.GetClient entGet;
 
-      
        
     }
 }

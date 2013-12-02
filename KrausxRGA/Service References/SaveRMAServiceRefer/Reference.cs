@@ -1403,6 +1403,7 @@ namespace KrausRGA.SaveRMAServiceRefer {
     public partial class SaveClient : System.ServiceModel.ClientBase<KrausRGA.SaveRMAServiceRefer.ISave>, KrausRGA.SaveRMAServiceRefer.ISave {
         
         public SaveClient() {
+         
         }
         
         public SaveClient(string endpointConfigurationName) : 
