@@ -79,6 +79,42 @@
   <wsdl:message name="IGet_AuditAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:AuditAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoByShippingNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoByShippingNumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoByShippingNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoByShippingNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoBySONumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoBySONumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoBySONumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoBySONumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoByPONumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoByPONumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoByPONumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoByPONumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoBySRNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoBySRNumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RMAInfoBySRNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RMAInfoBySRNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RoleAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:RoleAll" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RoleAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RoleAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RoleByRoleID_InputMessage">
+    <wsdl:part name="parameters" element="tns:RoleByRoleID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_RoleByRoleID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RoleByRoleIDResponse" />
+  </wsdl:message>
   <wsdl:portType name="IGet">
     <wsdl:operation name="xGet">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/xGet" message="tns:IGet_xGet_InputMessage" />
@@ -127,6 +163,30 @@
     <wsdl:operation name="AuditAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/AuditAll" message="tns:IGet_AuditAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/AuditAllResponse" message="tns:IGet_AuditAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoByShippingNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/RMAInfoByShippingNumber" message="tns:IGet_RMAInfoByShippingNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/RMAInfoByShippingNumberResponse" message="tns:IGet_RMAInfoByShippingNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoBySONumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/RMAInfoBySONumber" message="tns:IGet_RMAInfoBySONumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/RMAInfoBySONumberResponse" message="tns:IGet_RMAInfoBySONumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoByPONumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/RMAInfoByPONumber" message="tns:IGet_RMAInfoByPONumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/RMAInfoByPONumberResponse" message="tns:IGet_RMAInfoByPONumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoBySRNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/RMAInfoBySRNumber" message="tns:IGet_RMAInfoBySRNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/RMAInfoBySRNumberResponse" message="tns:IGet_RMAInfoBySRNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RoleAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/RoleAll" message="tns:IGet_RoleAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/RoleAllResponse" message="tns:IGet_RoleAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RoleByRoleID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/RoleByRoleID" message="tns:IGet_RoleByRoleID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/RoleByRoleIDResponse" message="tns:IGet_RoleByRoleID_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGet" type="tns:IGet">
@@ -232,6 +292,60 @@
     </wsdl:operation>
     <wsdl:operation name="AuditAll">
       <soap:operation soapAction="http://tempuri.org/IGet/AuditAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoByShippingNumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/RMAInfoByShippingNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoBySONumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/RMAInfoBySONumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoByPONumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/RMAInfoByPONumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RMAInfoBySRNumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/RMAInfoBySRNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RoleAll">
+      <soap:operation soapAction="http://tempuri.org/IGet/RoleAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RoleByRoleID">
+      <soap:operation soapAction="http://tempuri.org/IGet/RoleByRoleID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
