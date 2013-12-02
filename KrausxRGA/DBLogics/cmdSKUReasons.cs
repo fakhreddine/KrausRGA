@@ -9,16 +9,14 @@ namespace KrausRGA.DBLogics
    public class cmdSKUReasons
     {
        //create object of the RMASystemEntity
-       RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+      // RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
 
        public Boolean SetTransaction(SKUReason Trans)
        {
            Boolean _status = false;
            try
            {
-               entRMA.AddToSKUReasons(Trans);
-               entRMA.SaveChanges();
-               _status = true;
+               _status = cmd.entSave.SKUReasons(Trans.CopyToSaveDTO(Trans));
            }
            catch (Exception)
            {
