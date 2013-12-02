@@ -134,7 +134,7 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
                                                             <Canvas Name="cvButtons">
-                                                                <Button Name="btnRed" Width="45" Height="70" BorderBrush="#FFB44C2D" Foreground="#FFD11F1F" Click="btnRed_Click">
+                                                                <Button Name="btnRed" Width="45" Height="65" BorderBrush="#FFB44C2D" Foreground="#FFD11F1F" Click="btnRed_Click">
                                                                     <Button.Background>
                                                                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                                                             <GradientStop Color="#FFD8D5D5" Offset="0"/>

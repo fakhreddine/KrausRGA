@@ -18,7 +18,7 @@ namespace KrausRGA.Views
        /// <returns></returns>
        public static Boolean forcombobox(this ComboBox cm)
        {
-           return cm.SelectedIndex == 0 ? true : false;
+           return cm.SelectedIndex != 0 ? true : false;
        }
 
        //public static Boolean gridrow(this DataGrid dg)

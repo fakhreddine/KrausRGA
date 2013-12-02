@@ -389,7 +389,32 @@ namespace KrausRGA.UI
             return _ReturnReason;
 
         }
-
+        
+        /// <summary>
+        /// Find Guid from row.
+        /// </summary>
+        /// <param name="Row">
+        /// dgReasons Row object.
+        /// </param>
+        /// <returns>
+        /// string Guid.
+        /// </returns>
+        public String GetGuidChecked(DataGridRow Row)
+        {
+            String _return = "";
+            try
+            {
+                ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
+                DataTemplate chkDt = chkCp.ContentTemplate;
+                CheckBox chkIsChecked = chkDt.FindName("cbReasons", chkCp) as CheckBox;
+                TextBlock ResonGuid = dgReasons.Columns[2].GetCellContent(Row) as TextBlock;
+                if (chkIsChecked.IsChecked == true) _return = ResonGuid.Text.ToString();
+            }
+            catch (Exception)
+            {
+            }
+            return _return;
+        }
         #endregion
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
@@ -718,30 +743,6 @@ namespace KrausRGA.UI
             dgReasons.ItemsSource = _mReturn.GetReasons(SKUName);
         }
 
-        /// <summary>
-        /// Find Guid from row.
-        /// </summary>
-        /// <param name="Row">
-        /// dgReasons Row object.
-        /// </param>
-        /// <returns>
-        /// string Guid.
-        /// </returns>
-        public String GetGuidChecked(DataGridRow Row)
-        {
-            String _return = "";
-            try
-            {
-                ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
-                DataTemplate chkDt = chkCp.ContentTemplate;
-                CheckBox chkIsChecked = chkDt.FindName("cbReasons", chkCp) as CheckBox;
-                TextBlock ResonGuid = dgReasons.Columns[2].GetCellContent(Row) as TextBlock;
-                if (chkIsChecked.IsChecked == true) _return = ResonGuid.Text.ToString();
-            }
-            catch (Exception)
-            {
-            }
-            return _return;
-        }
+       
     }
 }
