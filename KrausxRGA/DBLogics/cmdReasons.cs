@@ -16,7 +16,7 @@ namespace KrausRGA.DBLogics
         /// <summary>
         /// Create object of Entity RMAAYSTEMEntities 
         /// </summary>
-        RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
+      //  RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
 
       
       /// <summary>
@@ -28,8 +28,11 @@ namespace KrausRGA.DBLogics
            List<Reason> _Reasons=new List<Reason>();
             try
             {
-                _Reasons = (from reson in entRMA.Reasons
-                            select reson).ToList();
+                var resn = cmd.entGet.ReasonsAll().ToList();
+                foreach (var Resnitem in resn)
+                {
+                    _Reasons.Add(new Reason(Resnitem));
+                }
             }
             catch (Exception)
             {}
@@ -54,11 +57,11 @@ namespace KrausRGA.DBLogics
             {
                 String _category = CategoryName.ToUpper();
 
-               _lsReturn = (from RCategory in entRMA.ReasonCategories
-                                   join Rsn in entRMA.Reasons
-                                   on RCategory.ReasonID equals Rsn.ReasonID
-                                   where RCategory.CategoryName == _category
-                                   select Rsn).ToList();
+                var Resns = cmd.entGet.ReasonByCategoryName(_category);
+                foreach (var Rsnitem in Resns)
+                {
+                    _lsReturn.Add(new Reason(Rsnitem));
+                }
 
             }
             catch (Exception)
@@ -71,19 +74,18 @@ namespace KrausRGA.DBLogics
         /// this function is for Insert the reasons in to the Reason Table and Update 
         /// the Records of Reason Table.....
         /// </summary>
-        /// <param name="reasonID">
+        /// <param name="reasonTbl">
         /// </param>
         /// <returns>
         /// 
         /// </returns>
-        public Boolean InsertReasons(Reason reasonID)
+        public Boolean InsertReasons(Reason reasonTbl)
         {
             Boolean status = false;
             try
             {
-                entRMA.AddToReasons(reasonID);
-                entRMA.SaveChanges();
-                status = true;
+                status = cmd.entSave.Reasons(reasonTbl.CopyToSaveDTO(reasonTbl));
+
             }
             catch (Exception)
             {}
