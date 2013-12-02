@@ -339,6 +339,8 @@ namespace KrausRGA.Models
                 TblRerutn.Decision = Decision;
                 TblRerutn.CreatedBy = CreatedBy;
                 TblRerutn.CreatedDate = DateTime.UtcNow;
+                TblRerutn.UpdatedBy = null;
+                TblRerutn.UpdatedDate = DateTime.Now;
 
                 //On success of transaction it returns id.
                 if (cReturnTbl.UpsertReturnTbl(TblRerutn)) _returnID = TblRerutn.ReturnID;
