@@ -16,8 +16,7 @@ namespace KrausRGA.DBLogics
     {
         #region declaration
         //RMAsystem Database object
-        RMASYSTEMEntities RMA = new RMASYSTEMEntities();
-
+       // RMASYSTEMEntities RMA = new RMASYSTEMEntities();
         #endregion
 
         /// <summary>
@@ -26,17 +25,22 @@ namespace KrausRGA.DBLogics
         /// <returns></returns>
         public List<Audit> GetAudit()
         {
-            List<Audit> _audit = new List<Audit>();
+            List<Audit> _lsReturn = new List<Audit>();
             try
             {
-                _audit = (from auditdetail in RMA.Audits
+                var adt = (from auditdetail in cmd.entGet.AuditAll()
                           select auditdetail).ToList();
+                foreach (var Aitem in adt)
+                {
+                    Audit _audit = new Audit(Aitem);
+                    _lsReturn.Add(_audit);
+                }
             }
             catch (Exception)
             {
                 throw;
             }
-            return _audit;
+            return _lsReturn;
         }
 
         /// <summary>
@@ -49,7 +53,7 @@ namespace KrausRGA.DBLogics
             Audit AuditUser = new Audit();
             try
             {
-                AuditUser = RMA.Audits.SingleOrDefault(aud => aud.UserID == UserID);
+                AuditUser =new Audit( cmd.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
             }
             catch (Exception)
             {
@@ -63,24 +67,12 @@ namespace KrausRGA.DBLogics
         /// </summary>
         /// <param name="userlog"></param>
         /// <returns></returns>
-        public Boolean UsertofAudit(Audit userlog)
+        public Boolean UpsertofAudit(Audit userlog)
         {
             Boolean _returnflag = false;
             try
             {
-                Audit aud = new Audit();
-                aud = RMA.Audits.SingleOrDefault(us => us.UserLogID==userlog.UserLogID);
-                //insert the new record if not present
-                if (aud == null)
-                {
-                    RMA.AddToAudits(userlog);
-                }
-                else //updating Existing Record
-                {
-                    aud = userlog;
-                }
-                RMA.SaveChanges();
-                _returnflag = true;
+                _returnflag = cmd.entSave.UpsertAudit(userlog.ConvertTOSaveDTO(userlog));
             }
             catch (Exception)
             {

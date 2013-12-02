@@ -49,6 +49,12 @@
   <wsdl:message name="ISave_User_OutputMessage">
     <wsdl:part name="parameters" element="tns:UserResponse" />
   </wsdl:message>
+  <wsdl:message name="ISave_UpsertAudit_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpsertAudit" />
+  </wsdl:message>
+  <wsdl:message name="ISave_UpsertAudit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpsertAuditResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISave">
     <wsdl:operation name="ReasonCategory">
       <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReasonCategory" message="tns:ISave_ReasonCategory_InputMessage" />
@@ -77,6 +83,10 @@
     <wsdl:operation name="User">
       <wsdl:input wsaw:Action="http://tempuri.org/ISave/User" message="tns:ISave_User_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISave/UserResponse" message="tns:ISave_User_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpsertAudit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/UpsertAudit" message="tns:ISave_UpsertAudit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/UpsertAuditResponse" message="tns:ISave_UpsertAudit_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISave" type="tns:ISave">
@@ -137,6 +147,15 @@
     </wsdl:operation>
     <wsdl:operation name="User">
       <soap:operation soapAction="http://tempuri.org/ISave/User" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpsertAudit">
+      <soap:operation soapAction="http://tempuri.org/ISave/UpsertAudit" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

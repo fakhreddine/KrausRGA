@@ -73,4 +73,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReasonsDTO" nillable="true" type="tns:ReasonsDTO" />
+  <xs:complexType name="ArrayOfAuditDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuditDTO" nillable="true" type="tns:AuditDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAuditDTO" nillable="true" type="tns:ArrayOfAuditDTO" />
+  <xs:complexType name="AuditDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActionTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ActionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ActionValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserLogID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuditDTO" nillable="true" type="tns:AuditDTO" />
 </xs:schema>

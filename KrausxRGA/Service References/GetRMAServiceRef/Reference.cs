@@ -724,6 +724,115 @@ namespace KrausRGA.GetRMAServiceRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AuditDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.SerializableAttribute()]
+    public partial class AuditDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ActionTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ActionTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ActionValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid UserIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid UserLogIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ActionTime {
+            get {
+                return this.ActionTimeField;
+            }
+            set {
+                if ((this.ActionTimeField.Equals(value) != true)) {
+                    this.ActionTimeField = value;
+                    this.RaisePropertyChanged("ActionTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ActionType {
+            get {
+                return this.ActionTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ActionTypeField, value) != true)) {
+                    this.ActionTypeField = value;
+                    this.RaisePropertyChanged("ActionType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ActionValue {
+            get {
+                return this.ActionValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ActionValueField, value) != true)) {
+                    this.ActionValueField = value;
+                    this.RaisePropertyChanged("ActionValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid UserID {
+            get {
+                return this.UserIDField;
+            }
+            set {
+                if ((this.UserIDField.Equals(value) != true)) {
+                    this.UserIDField = value;
+                    this.RaisePropertyChanged("UserID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid UserLogID {
+            get {
+                return this.UserLogIDField;
+            }
+            set {
+                if ((this.UserLogIDField.Equals(value) != true)) {
+                    this.UserLogIDField = value;
+                    this.RaisePropertyChanged("UserLogID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GetRMAServiceRef.IGet")]
     public interface IGet {
@@ -760,6 +869,9 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReasonByCategoryName", ReplyAction="http://tempuri.org/IGet/ReasonByCategoryNameResponse")]
         KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonByCategoryName(string CategoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/AuditAll", ReplyAction="http://tempuri.org/IGet/AuditAllResponse")]
+        KrausRGA.GetRMAServiceRef.AuditDTO[] AuditAll();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -831,6 +943,10 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonByCategoryName(string CategoryName) {
             return base.Channel.ReasonByCategoryName(CategoryName);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.AuditDTO[] AuditAll() {
+            return base.Channel.AuditAll();
         }
     }
 }

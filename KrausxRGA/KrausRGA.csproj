@@ -125,11 +125,7 @@
     <Compile Include="DBLogics\cmdSageOperations.cs" />
     <Compile Include="DBLogics\cmdSKUReasons.cs" />
     <Compile Include="DBLogics\cmdUser.cs" />
-    <Compile Include="EntityModel\RMASYSTEMModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RMASYSTEMModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="EntityModel\Audit.cs" />
     <Compile Include="EntityModel\x3v6.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -208,13 +204,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>x3v6.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <EntityDeploy Include="EntityModel\RMASYSTEMModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RMASYSTEMModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="EntityModel\RMASYSTEMModel.edmx.diagram">
-      <DependentUpon>RMASYSTEMModel.edmx</DependentUpon>
-    </None>
     <None Include="EntityModel\x3v6.edmx.diagram">
       <DependentUpon>x3v6.edmx</DependentUpon>
     </None>
@@ -225,6 +214,9 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Service References\GetRMAServiceRef\Get.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.AuditDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonsDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
