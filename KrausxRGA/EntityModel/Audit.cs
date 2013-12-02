@@ -70,6 +70,7 @@ namespace KrausRGA.EntityModel
             return _DTO;
         }
 
+        
         /// <summary>
         /// Convert Audit class object to GetRMAServiceRef.AuditDTO
         /// </summary>
