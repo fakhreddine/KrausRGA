@@ -127,6 +127,7 @@
     <Compile Include="DBLogics\cmdUser.cs" />
     <Compile Include="EntityModel\Audit.cs" />
     <Compile Include="EntityModel\SKUReason.cs" />
+    <Compile Include="EntityModel\ReturnImage.cs" />
     <Compile Include="EntityModel\User.cs" />
     <Compile Include="EntityModel\Reason.cs" />
     <Compile Include="EntityModel\ReasonCategory.cs" />
