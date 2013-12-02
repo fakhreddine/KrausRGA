@@ -17,7 +17,7 @@ namespace KrausRGA.DBLogics
        /// <summary>
        /// RMASYSTEM database object.
        /// </summary>
-       RMASYSTEMEntities entRMADB = new RMASYSTEMEntities();
+      // RMASYSTEMEntities entRMADB = new RMASYSTEMEntities();
         #region Get Operation for User Table.
 
        /// <summary>
@@ -37,14 +37,13 @@ namespace KrausRGA.DBLogics
            try
            {
                //Select all users from Database.
-               var UserList = from ent in entRMADB.Users
+               var UserList = from ent in cmd.entGet.UserAll()
                                select ent;
 
                //Add each user information to the return list.
                foreach (var Useritem in UserList)
                {
-                   User user = new User();
-                   user = (User)Useritem;
+                   User user = new User(Useritem);
                    _lsUserReturn.Add(user);
                }
 
@@ -69,7 +68,7 @@ namespace KrausRGA.DBLogics
            User _lsUserReturn = new User();
            try
            {
-               _lsUserReturn = entRMADB.Users.FirstOrDefault(i=>i.UserID == Userid);
+               _lsUserReturn =new User(cmd.entGet.UserAll().FirstOrDefault(i=>i.UserID == Userid));
            }
            catch (Exception)
            {}
@@ -93,7 +92,7 @@ namespace KrausRGA.DBLogics
            User _return = new User();
            try
            {
-               _return = entRMADB.Users.FirstOrDefault(user => user.UserName == LoginUserName);
+               _return =new User(cmd.entGet.UserByUserName(LoginUserName));//.Users.FirstOrDefault(user => user.UserName == LoginUserName);
            }
            catch (Exception)
            {}
@@ -114,17 +113,11 @@ namespace KrausRGA.DBLogics
            List<User> _lsReturn = new List<User>();
            try
            {
-               var userInfo = from user in entRMADB.Users
-                              where user.RoleId == RoleID
-                              select user;
+               var userInfo = cmd.entGet.UserByRoleID(RoleID);
 
                foreach (var useritem in userInfo)
                {
-                   User _user = new User();
-                   _user = (User)useritem;
-
-                   //Add to return list.
-                   _lsReturn.Add(_user);
+                   _lsReturn.Add(new User(useritem));
                }
            }
            catch (Exception)
@@ -151,7 +144,11 @@ namespace KrausRGA.DBLogics
 
            try
            {
-              _userReturn = entRMADB.Users.FirstOrDefault(user => user.UserName == UserName && user.UserPassword == Password);
+               var username = cmd.entGet.UserByUserName(UserName);
+               if (username!=null)
+               {
+                   if (username.UserPassword == Password) _userReturn = new User(username);
+               }
            }
            catch (Exception)
            {}
