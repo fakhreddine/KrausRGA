@@ -396,9 +396,11 @@ namespace KrausRGA.Models
                 TblReturnDetails.ExpectedQty = ExpectedQty;
                 TblReturnDetails.TCLCOD_0 = TK;
                 TblReturnDetails.ReturnQty = ReturnQty;
-              //  TblReturnDetails.ProductStatus = ProductStatus;
+                TblReturnDetails.ProductStatus = 0;
                 TblReturnDetails.CreatedBy = CreatedBy;
                 TblReturnDetails.CreatedDate = DateTime.UtcNow;
+                TblReturnDetails.UpadatedDate = DateTime.UtcNow;
+                TblReturnDetails.UpdatedBy = CreatedBy;
                 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
@@ -436,7 +438,8 @@ namespace KrausRGA.Models
                 RtnImages.SKUImagePath = ImagePath;
                 RtnImages.CreatedBy = CreatedBy;
                 RtnImages.CreatedDate = DateTime.UtcNow;
-
+                RtnImages.UpadatedBy = CreatedBy;
+                RtnImages.UpadatedDate = DateTime.UtcNow;
                 if (cRtnImages.UpsertReturnImage(RtnImages)) _ReturnID = RtnImages.ReturnImageID;
 
             }

@@ -17,13 +17,10 @@ namespace KrausRGA.DBLogics
        /// Save service object.
        /// </summary>
        public static SaveRMAServiceRefer.SaveClient entSave;
-
-      
        
        /// <summary>
        /// Get Service object.
        /// </summary>
-
        public static GetRMAServiceRef.GetClient entGet;
 
        

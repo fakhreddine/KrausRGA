@@ -53,12 +53,9 @@ namespace KrausRGA.DBLogics
             Audit AuditUser = new Audit();
             try
             {
-                AuditUser =new Audit( cmd.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
+                AuditUser = new Audit(cmd.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            catch (Exception) { }
             return AuditUser;
         }
         /// <summary>
@@ -75,9 +72,7 @@ namespace KrausRGA.DBLogics
                 _returnflag = cmd.entSave.UpsertAudit(userlog.ConvertTOSaveDTO(userlog));
             }
             catch (Exception)
-            {
-                throw;
-            }
+            {}
             return _returnflag;
         }
        
