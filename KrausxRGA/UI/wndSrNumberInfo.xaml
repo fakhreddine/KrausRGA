@@ -19,8 +19,7 @@
                         <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="RGA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30" Foreground="White"/>
                     </Canvas>
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
-                        <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Top="2" 
-                                   >
+                        <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Top="2">
                             <TabItem Header="RMA Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="10,0,-10,0">
                                 <Border Name="bdrmain" >
                                     <Canvas Name="cvsTb1main" Margin="0,0,0,0">
@@ -395,7 +394,7 @@
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
 
-                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
+                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
                                                     <Style.Triggers>
