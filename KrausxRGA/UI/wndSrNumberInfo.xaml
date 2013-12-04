@@ -91,7 +91,7 @@
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="9,0,-9,0" >
+                            <TabItem Header="Return Details" Height="50" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="16,0,-16,0" >
                                 <Border Name="bdrmain2" >
                                     <Canvas Name="cvsTb1main2" Margin="0,0,0,0">
                                         <!-- Grid View-->
@@ -395,7 +395,7 @@
                                                    MouseLeftButtonDown="imgZoom_MouseLeftButtonDown"/>
                                         </Border>
 
-                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
+                                        <Canvas x:Name="cvItemStatus" Visibility="Visible" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
                                             <Canvas.Style>
                                                 <Style TargetType="Canvas">
                                                     <Style.Triggers>
@@ -428,28 +428,43 @@
                                                 </Button.RenderTransform>
                                             </Button>
                                             <ScrollViewer  Canvas.Top="47" Width="950" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >
-                                                <DataGrid Height="406" Name="dgReasons"
+                                                <DataGrid Height="453" Name="dgReasons"
                                                               ItemsSource="{Binding}" 
                                                               AutoGenerateColumns="False"
                                                               CanUserAddRows="False"
                                                               HeadersVisibility="None"
-                                                              HorizontalGridLinesBrush="{x:Null}" VerticalGridLinesBrush="{x:Null}" 
-                                                               Background="#FFB8B8B8" Width="947" GridLinesVisibility="None" >
+                                                          HorizontalGridLinesBrush="#FF272626" VerticalGridLinesBrush="{x:Null}" 
+                                                               Background="#FFE6E6E6" Width="946" GridLinesVisibility="None" RowHeight="60"
+                                                          >
                                                     <DataGrid.Columns >
-                                                        <DataGridTemplateColumn Header="" Width="50">
+                                                        <DataGridTemplateColumn Header="" Width="50"  >
+                                                            <DataGridTemplateColumn.CellStyle>
+                                                                <Style TargetType="DataGridCell">
+                                                                    <Setter Property="Margin" Value="5,5,0,5"/>
+                                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                                </Style>
+                                                            </DataGridTemplateColumn.CellStyle>
                                                             <DataGridTemplateColumn.CellTemplate>
                                                                 <DataTemplate>
-                                                                    <Canvas Name="cvReasons">
-                                                                        <CheckBox Name="cbReasons" Style="{StaticResource cbStyleKey}" Content="" Margin="0,0,0,0" />
+                                                                    <Canvas Name="cvReasons" Background="#FF787878" >
+                                                                        <CheckBox Name="cbReasons" Style="{StaticResource cbStyleKey}" Content="" Canvas.Top="4" Canvas.Left="2" />
                                                                     </Canvas>
                                                                 </DataTemplate>
                                                             </DataGridTemplateColumn.CellTemplate>
                                                         </DataGridTemplateColumn>
                                                         <DataGridTemplateColumn Header="Reasons" Width="*">
+                                                            <DataGridTemplateColumn.CellStyle>
+                                                                <Style TargetType="DataGridCell">
+                                                                    <Setter Property="Margin" Value="-4,5,5,5"/>
+                                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                                </Style>
+                                                            </DataGridTemplateColumn.CellStyle>
                                                             <DataGridTemplateColumn.CellTemplate>
                                                                 <DataTemplate>
-                                                                    <ContentControl Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1">
-                                                                        <TextBlock Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow"/>
+                                                                    <ContentControl Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1"  >
+                                                                        <Border BorderBrush="#FF0F0F0F" BorderThickness="0,1,1,1" Background="#FF919191" CornerRadius="3" >
+                                                                            <TextBlock Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="7,0,0,0"  />
+                                                                        </Border>
                                                                     </ContentControl>
                                                                 </DataTemplate>
                                                             </DataGridTemplateColumn.CellTemplate>
@@ -463,13 +478,13 @@
                                                     </DataGrid.Columns>
                                                 </DataGrid>
                                             </ScrollViewer>
-                                            <TextBox Height="49" Name="txtItemReason" TextWrapping="Wrap" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
+                                            <TextBox Height="49" Name="txtItemReason" TextWrapping="Wrap" Visibility="Hidden" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
                                             <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
                                         </Canvas>
                                     </Canvas>
                                 </Border>
                             </TabItem>
-                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top" Margin="14,0,-14,0">
+                            <TabItem Header="Return Reason" Height="50" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top" Margin="22,0,-22,0">
                                 <Canvas>
                                     <Border Width="1360" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Height="296" >
                                         <Canvas Name="cvCheckboxHolder" Margin="0,0,0,0">

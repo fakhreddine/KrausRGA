@@ -707,15 +707,26 @@ namespace KrausRGA.UI
 
         private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            TextBlock cbk = (TextBlock)e.Source;
-            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
-            row.Background = new SolidColorBrush(Color.FromArgb(100, 117, 162, 97));
-            ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
-            DataTemplate Dt = cp.ContentTemplate;
-            CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
-            if (ch.IsChecked == true)
-                ch.IsChecked = false;
-            else ch.IsChecked = true;
+            try
+            {
+                TextBlock cbk = (TextBlock)e.Source;
+                Border bdr = (Border)cbk.Parent;
+                DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+                ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
+                DataTemplate Dt = cp.ContentTemplate;
+                CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
+
+                if (ch.IsChecked == true)
+                {
+                    ch.IsChecked = false;
+                }
+                else
+                {
+                    ch.IsChecked = true;
+                }
+            }
+            catch { }
+
         }
 
         private void txtItemReason_KeyDown(object sender, KeyEventArgs e)
