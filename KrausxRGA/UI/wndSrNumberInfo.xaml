@@ -7,16 +7,25 @@
     <Viewbox >
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
-                <Canvas Margin="1,1,1,1" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" Background="#FFE3E9EA" >
-                    <Canvas x:Name="cnTitle" Height="95" Width="1400">
+                <Canvas Margin="1,2,-1,-2" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" >
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="/KrausRGA;component/Images/white.jpg"/>
+                    </Canvas.Background>
+
+                    <Canvas x:Name="cnTitle" Height="100" Width="1400" Canvas.Left="2">
                         <Canvas.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF46C0E4" Offset="0.012"/>
+                                <GradientStop Color="#FF308AA4" Offset="0.54"/>
                                 <GradientStop Color="#FF686868" Offset="0.988"/>
+                                <GradientStop Color="#FF686868"/>
                             </LinearGradientBrush>
                         </Canvas.Background>
-                        <Image x:Name="imgLogo" Height="80" Canvas.Left="1" Canvas.Top="10" Width="211" Stretch="Fill" Cursor="None" Source="/KrausRGA;component/Images/logo.png"/>
-                        <TextBlock x:Name="tbProjectTitle" Canvas.Left="335" TextWrapping="Wrap" Text="RGA Manager" Canvas.Top="27" Height="46" Width="424" FontSize="30" Foreground="White"/>
+                        <Image x:Name="imgLogo" Height="63" Canvas.Left="5" Canvas.Top="20" Width="175" Stretch="None" Cursor="None" Source="/KrausRGA;component/Images/logo.png"/>
+                        <TextBlock x:Name="tbProjectTitle" Canvas.Left="334" TextWrapping="Wrap" Text="RGA Manager" Canvas.Top="17" Height="73" Width="424" FontSize="50" Foreground="White" FontWeight="Bold">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#FF363636" BlurRadius="15"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
                     </Canvas>
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
                         <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Top="2">
@@ -143,7 +152,7 @@
                                                                         </LinearGradientBrush>
                                                                     </Button.Background>
                                                                 </Button >
-                                                                <Button Name="btnGreen" Visibility="Hidden" Width="45" Height="70"  BorderBrush="#FF214D08" Foreground="#FF214D08"
+                                                                <Button Name="btnGreen" Visibility="Hidden" Width="45" Height="65"  BorderBrush="#FF214D08" Foreground="#FF214D08"
                                                                           Click="btnGreen_Click" >
                                                                     <Button.Background>
                                                                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -220,10 +229,8 @@
                                                             </ContentControl>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
-
                                                 </DataGridTemplateColumn>
                                             </DataGrid.Columns>
-
                                         </DataGrid>
 
                                         <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="77" Height="349" Width="504" >

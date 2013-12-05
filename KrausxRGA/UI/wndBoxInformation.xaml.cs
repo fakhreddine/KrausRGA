@@ -15,6 +15,7 @@ using KrausRGA.Views;
 using KrausRGA.Models;
 using System.Threading;
 using System.Windows.Media.Effects;
+using System.Windows.Threading;
 
 namespace KrausRGA.UI
 {
@@ -26,7 +27,9 @@ namespace KrausRGA.UI
     {
         mReturnDetails _mReturn;
         mUser _mUser;
-
+        DispatcherTimer dsptSacnner;
+        int ProcessBarValue = 0;
+        
         public wndBoxInformation()
         {
             InitializeComponent();
@@ -86,6 +89,7 @@ namespace KrausRGA.UI
 
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
+                   
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
             if (e.Key == Key.Enter)
             {
@@ -133,6 +137,9 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
+                this.Dispatcher.Invoke(new Action(() => {
+                    ScannProgressBarStart();
+               }));
                 if (txtScan.Text.Trim() != "") //if clear text box.
                 {
 
@@ -174,6 +181,26 @@ namespace KrausRGA.UI
                 {
                     txtScan.Text = "";
                 }
+            }
+        }
+
+        public void ScannProgressBarStart()
+        {
+            dsptSacnner = new DispatcherTimer();
+            dsptSacnner.Tick +=dsptSacnner_Tick;
+            dsptSacnner.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            dsptSacnner.Start();
+        }
+
+        private void dsptSacnner_Tick(object sender, EventArgs e)
+        {
+            ProcessBarValue = ProcessBarValue + 1;
+            pbrScanner.Value = ProcessBarValue;
+            if (ProcessBarValue >100)
+            {
+                dsptSacnner.Stop();
+                pbrScanner.Value = 0;
+                ProcessBarValue = 0;
             }
         }
 
