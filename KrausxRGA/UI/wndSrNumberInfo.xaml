@@ -142,12 +142,12 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
                                                             <Canvas Name="cvButtons" Background="White">
-                                                                <Button Name="btnRed" Width="45" Height="65" BorderBrush="#FFB44C2D" Foreground="#FFD11F1F" Click="btnRed_Click">
+                                                                <Button Name="btnRed" Width="45" Height="65" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
                                                                     <Button.Background>
                                                                         <ImageBrush ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                     </Button.Background>
                                                                 </Button >
-                                                                <Button Name="btnGreen" Visibility="Hidden" Width="45" Height="65"  BorderBrush="#FF214D08" Foreground="#FF214D08"
+                                                                <Button Name="btnGreen" Visibility="Hidden" Width="45" Height="65"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                                                           Click="btnGreen_Click" >
                                                                     <Button.Background>
                                                                         <ImageBrush ImageSource="/KrausRGA;component/Images/Checked .png"/>
