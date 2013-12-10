@@ -21,11 +21,11 @@
     <MetadataSource Address="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="KrausWarehouseServices.xsd" MetadataType="Schema" ID="769ef078-368d-485c-be9b-ab1d2145d4cb" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd1" />
-    <MetadataFile FileName="KrausWarehouseServices.disco" MetadataType="Disco" ID="ee3ce4b7-25f6-4840-8350-40143e258a97" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?disco" />
-    <MetadataFile FileName="KrausWarehouseServices1.xsd" MetadataType="Schema" ID="0ee19202-addd-4b8e-9766-7d4c47a50194" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd2" />
-    <MetadataFile FileName="Save.wsdl" MetadataType="Wsdl" ID="ab1c3f6c-8881-4438-80c3-5e5c8453e888" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?wsdl" />
-    <MetadataFile FileName="KrausWarehouseServices2.xsd" MetadataType="Schema" ID="22af7481-312f-4857-b42d-b1016c7fcfb7" SourceId="1" SourceUrl="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd0" />
+    <MetadataFile FileName="KrausWarehouseServices3.xsd" MetadataType="Schema" ID="418b834f-b497-44bc-bfab-f143956d739f" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd2" />
+    <MetadataFile FileName="KrausWarehouseServices31.xsd" MetadataType="Schema" ID="69526e46-e463-48b6-816a-78b0b780ad9f" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd1" />
+    <MetadataFile FileName="Save1.wsdl" MetadataType="Wsdl" ID="5151c45e-843e-45cb-a55a-9e02c6dd4a53" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc?wsdl" />
+    <MetadataFile FileName="KrausWarehouseServices32.xsd" MetadataType="Schema" ID="e53f9cd3-ac36-414f-a87e-09138ed8e808" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd0" />
+    <MetadataFile FileName="KrausWarehouseServices1.disco" MetadataType="Disco" ID="54948cdb-07ee-4776-9547-597359fa5125" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

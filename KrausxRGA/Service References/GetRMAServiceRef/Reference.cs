@@ -1391,8 +1391,8 @@ namespace KrausRGA.GetRMAServiceRef {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GetRMAServiceRef.IGet")]
     public interface IGet {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/xGet", ReplyAction="http://tempuri.org/IGet/xGetResponse")]
-        KrausRGA.GetRMAServiceRef.UserDTO[] xGet(string EnumGetTypeString, string Parameters);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/XMLUserGet", ReplyAction="http://tempuri.org/IGet/XMLUserGetResponse")]
+        KrausRGA.GetRMAServiceRef.UserDTO[] XMLUserGet(string EnumGetTypeString, string Parameters);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/UserAll", ReplyAction="http://tempuri.org/IGet/UserAllResponse")]
         KrausRGA.GetRMAServiceRef.UserDTO[] UserAll();
@@ -1405,6 +1405,9 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/UserByUserName", ReplyAction="http://tempuri.org/IGet/UserByUserNameResponse")]
         KrausRGA.GetRMAServiceRef.UserDTO UserByUserName(string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/XMLReturnGet", ReplyAction="http://tempuri.org/IGet/XMLReturnGetResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] XMLReturnGet(string ID, string value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnAll", ReplyAction="http://tempuri.org/IGet/ReturnAllResponse")]
         KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnAll();
@@ -1473,8 +1476,8 @@ namespace KrausRGA.GetRMAServiceRef {
                 base(binding, remoteAddress) {
         }
         
-        public KrausRGA.GetRMAServiceRef.UserDTO[] xGet(string EnumGetTypeString, string Parameters) {
-            return base.Channel.xGet(EnumGetTypeString, Parameters);
+        public KrausRGA.GetRMAServiceRef.UserDTO[] XMLUserGet(string EnumGetTypeString, string Parameters) {
+            return base.Channel.XMLUserGet(EnumGetTypeString, Parameters);
         }
         
         public KrausRGA.GetRMAServiceRef.UserDTO[] UserAll() {
@@ -1491,6 +1494,10 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public KrausRGA.GetRMAServiceRef.UserDTO UserByUserName(string UserName) {
             return base.Channel.UserByUserName(UserName);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] XMLReturnGet(string ID, string value) {
+            return base.Channel.XMLReturnGet(ID, value);
         }
         
         public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnAll() {

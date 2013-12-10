@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="qvlXaBCj+kEnD10vChwunjUQFM8=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="MQnlN7I2n2WkElrEHC71a9m7StI=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IGet">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IGet" contract="GetRMAServiceRef.IGet" bindingType="basicHttpBinding" address="http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc/SOA" bindingConfiguration="BasicHttpBinding_IGet">
+    <endpoint name="BasicHttpBinding_IGet" contract="GetRMAServiceRef.IGet" bindingType="basicHttpBinding" address="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/SOA" bindingConfiguration="BasicHttpBinding_IGet">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://shiva5-pc/KrausWarehouseServices.Service.RMA.Get.svc/SOA</serializedValue>
+          <serializedValue>http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/SOA</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -209,7 +209,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\GetRMAServiceRef\Get.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\Get1.wsdl" />
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.AuditDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -228,25 +228,19 @@
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices1.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices2.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices32.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices32.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SaveRMAServiceRefer\Save.wsdl" />
+    <None Include="Service References\SaveRMAServiceRefer\Save1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Camera Folder.png" />
@@ -301,22 +295,22 @@
     <WCFMetadataStorage Include="Service References\SaveRMAServiceRefer\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\SaveRMAServiceRefer\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\SaveRMAServiceRefer\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices31.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SaveRMAServiceRefer\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\GetRMAServiceRef\configuration91.svcinfo" />
@@ -329,6 +323,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

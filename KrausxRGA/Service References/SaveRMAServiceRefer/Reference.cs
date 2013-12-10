@@ -1388,7 +1388,7 @@ namespace KrausRGA.SaveRMAServiceRefer {
         bool SKUReasons(KrausRGA.SaveRMAServiceRefer.SKUReasonsDTO SKU);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/User", ReplyAction="http://tempuri.org/ISave/UserResponse")]
-        void User([System.ServiceModel.MessageParameterAttribute(Name="user")] KrausRGA.SaveRMAServiceRefer.UserDTO user1);
+        bool User([System.ServiceModel.MessageParameterAttribute(Name="user")] KrausRGA.SaveRMAServiceRefer.UserDTO user1);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/UpsertAudit", ReplyAction="http://tempuri.org/ISave/UpsertAuditResponse")]
         bool UpsertAudit(KrausRGA.SaveRMAServiceRefer.AuditDTO audit);
@@ -1445,8 +1445,8 @@ namespace KrausRGA.SaveRMAServiceRefer {
             return base.Channel.SKUReasons(SKU);
         }
         
-        public void User(KrausRGA.SaveRMAServiceRefer.UserDTO user1) {
-            base.Channel.User(user1);
+        public bool User(KrausRGA.SaveRMAServiceRefer.UserDTO user1) {
+            return base.Channel.User(user1);
         }
         
         public bool UpsertAudit(KrausRGA.SaveRMAServiceRefer.AuditDTO audit) {
