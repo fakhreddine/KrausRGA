@@ -150,7 +150,19 @@ namespace KrausRGA.UI
 
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            bdrCamera.Visibility = System.Windows.Visibility.Visible;
+            ContentControl cnt = (ContentControl)sender;
+            DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+            
+
+            if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
+            {
+                bdrCamera.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            }
         }
 
         private void dgPackageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -340,13 +352,13 @@ namespace KrausRGA.UI
         /// <returns>DataGridRow</returns>
         public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
         {
-            var itemsSource = grid.ItemsSource as IEnumerable;
-            if (null == itemsSource) yield return null;
-            foreach (var item in itemsSource)
-            {
-                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                if (null != row) yield return row;
-            }
+                var itemsSource = grid.ItemsSource as IEnumerable;
+                if (null == itemsSource) yield return null;
+                foreach (var item in itemsSource)
+                {
+                    var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                    if (null != row) yield return row;
+                }
         }
 
 
@@ -513,19 +525,27 @@ namespace KrausRGA.UI
                 //create object stack panel where Button Belongs to
                 StackPanel sp = (StackPanel)(sender as Control).Parent;
                 StackPanel sp2 = (StackPanel)sp.Parent;
-                try
+                DataGridRow row = (DataGridRow)sp2.FindParent<DataGridRow>();
+                if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
                 {
-                    foreach (TextBlock t in sp2.Children)
+                    try
                     {
-                        if (Convert.ToInt32(t.Text) > 0)
+                        foreach (TextBlock t in sp2.Children)
                         {
-                            t.Text = (Convert.ToInt32(t.Text) - 1).ToString();
+                            if (Convert.ToInt32(t.Text) > 0)
+                            {
+                                t.Text = (Convert.ToInt32(t.Text) - 1).ToString();
+                            }
+                            break;
                         }
-                        break;
                     }
+                    catch (Exception)
+                    { }
                 }
-                catch (Exception)
-                { }
+                else
+                {
+                    ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+                }
             }
             catch (Exception)
             { }
@@ -535,20 +555,27 @@ namespace KrausRGA.UI
         {
             StackPanel Sp = (StackPanel)(sender as Control).Parent;
             StackPanel Sp2 = (StackPanel)Sp.Parent;
-            try
+            DataGridRow row = (DataGridRow)Sp2.FindParent<DataGridRow>();
+            if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
             {
-                foreach (TextBlock t in Sp2.Children)
+                try
                 {
-                    if (Convert.ToInt32(t.Text) >= 0)
+                    foreach (TextBlock t in Sp2.Children)
                     {
-                        t.Text = (Convert.ToInt32(t.Text) + 1).ToString();
+                        if (Convert.ToInt32(t.Text) >= 0)
+                        {
+                            t.Text = (Convert.ToInt32(t.Text) + 1).ToString();
+                        }
+                        break;
                     }
-                    break;
                 }
+                catch (Exception)
+                { }
             }
-            catch (Exception)
-            { }
-
+            else
+            {
+                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            }
         }
 
         private void chkIsItemPresent_Checked(object sender, RoutedEventArgs e)
@@ -572,6 +599,10 @@ namespace KrausRGA.UI
             Button btnGreen = SpButtons.FindName("btnGreen") as Button;
             btnGreen.Visibility = System.Windows.Visibility.Visible;
             btnRed.Visibility = System.Windows.Visibility.Hidden;
+
+            DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+            _mReturn.GreenRowsNumber.Add(row.GetIndex());
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void btnGreen_Click(object sender, RoutedEventArgs e)
@@ -581,21 +612,34 @@ namespace KrausRGA.UI
             Button btnRed = SpButtons.FindName("btnRed") as Button;
             btnGreen.Visibility = System.Windows.Visibility.Hidden;
             btnRed.Visibility = System.Windows.Visibility.Visible;
+            
+            DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+            _mReturn.GreenRowsNumber.Remove(row.GetIndex());
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
 
         #region CheckBox Toggel.
 
         private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+           
 
             TextBlock cbk = (TextBlock)e.Source;
             Canvas cs = cbk.Parent as Canvas;
             TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
             DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
-            TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-            txtSKUname.Text = tbSKUName.Text.ToString();
-            FilldgReasons(tbSKUName.Text.ToString());
+
+            if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
+            { 
+                cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+                TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+                txtSKUname.Text = tbSKUName.Text.ToString();
+                FilldgReasons(tbSKUName.Text.ToString());
+            }
+            else
+            {
+                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

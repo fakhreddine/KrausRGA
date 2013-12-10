@@ -20,5 +20,6 @@ namespace KrausRGA.Views
         public static mUser mCurrentUser;
 
 
+
     }
 }

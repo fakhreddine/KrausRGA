@@ -111,6 +111,10 @@ namespace KrausRGA.Models
         /// </summary>
         public Boolean IsAlreadySaved { get; protected set; }
 
+        /// <summary>
+        /// Stores Green row from the Grid
+        /// </summary>
+        public List<int> GreenRowsNumber = new List<int>();
         #endregion
 
         #region Member Functions of class.

@@ -141,26 +141,16 @@
                                                 <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="50"  >
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate >
-                                                            <Canvas Name="cvButtons">
+                                                            <Canvas Name="cvButtons" Background="White">
                                                                 <Button Name="btnRed" Width="45" Height="65" BorderBrush="#FFB44C2D" Foreground="#FFD11F1F" Click="btnRed_Click">
                                                                     <Button.Background>
-                                                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                                                            <GradientStop Color="#FFD8D5D5" Offset="0"/>
-                                                                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                                                                            <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                                                                            <GradientStop Color="#FFB86969" Offset="1"/>
-                                                                        </LinearGradientBrush>
+                                                                        <ImageBrush ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                     </Button.Background>
                                                                 </Button >
                                                                 <Button Name="btnGreen" Visibility="Hidden" Width="45" Height="65"  BorderBrush="#FF214D08" Foreground="#FF214D08"
                                                                           Click="btnGreen_Click" >
                                                                     <Button.Background>
-                                                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                                                            <GradientStop Color="#FFCADAC1" Offset="0"/>
-                                                                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                                                                            <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                                                                            <GradientStop Color="#FF4E9E20" Offset="1"/>
-                                                                        </LinearGradientBrush>
+                                                                        <ImageBrush ImageSource="/KrausRGA;component/Images/Checked .png"/>
                                                                     </Button.Background>
                                                                 </Button>
                                                             </Canvas>
