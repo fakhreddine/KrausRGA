@@ -135,6 +135,7 @@
     <Compile Include="EntityModel\Return.cs" />
     <Compile Include="EntityModel\ReturnDetail.cs" />
     <Compile Include="ErrorLogger\ErrorLogger.cs" />
+    <Compile Include="Models\mAudit.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mUser.cs" />
     <Compile Include="Service References\GetRMAServiceRef\Reference.cs">
@@ -155,6 +156,7 @@
     </Compile>
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\clGlobal.cs" />
+    <Compile Include="Views\eActionType.cs" />
     <Compile Include="Views\ePermissione.cs" />
     <Compile Include="Views\ExtensionParent.cs" />
     <Compile Include="Views\ImageK.cs" />
@@ -209,7 +211,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\GetRMAServiceRef\Get1.wsdl" />
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.AuditDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -228,13 +229,14 @@
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices3.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices31.xsd">
+    <None Include="Service References\GetRMAServiceRef\service.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices32.xsd">
+    <None Include="Service References\GetRMAServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices32.xsd">
@@ -323,9 +325,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices1.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices1.disco" />

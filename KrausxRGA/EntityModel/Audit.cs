@@ -29,7 +29,7 @@ namespace KrausRGA.EntityModel
         public Audit(GetRMAServiceRef.AuditDTO _AuditDTO)
         {
             if (_AuditDTO.UserLogID != Guid.Empty) this.UserLogID = (Guid)_AuditDTO.UserLogID;
-            if (_AuditDTO.UserID != Guid.Empty) this.UserID = (Guid)_AuditDTO.UserID;
+            if (_AuditDTO.UserID != Guid.Empty) this.UserID = _AuditDTO.UserID;
             if (_AuditDTO.ActionType != null) this.ActionType = _AuditDTO.ActionType;
             if (_AuditDTO.ActionTime != null) this.ActionTime = _AuditDTO.ActionTime;
             if (_AuditDTO.ActionValue != null) this.ActionValue = _AuditDTO.ActionValue;

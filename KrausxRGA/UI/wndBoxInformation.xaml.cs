@@ -17,6 +17,7 @@ using System.Threading;
 using System.Windows.Media.Effects;
 using System.Windows.Threading;
 
+
 namespace KrausRGA.UI
 {
     /// <summary>
@@ -41,6 +42,7 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
+            mAudit.logthis(eActionType.Login_PageStart.ToString(), DateTime.UtcNow.ToString(),"");
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
 
@@ -105,23 +107,29 @@ namespace KrausRGA.UI
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
 
+                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login.ToString(), DateTime.UtcNow.ToString());
+                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login_Success.ToString(), DateTime.UtcNow.ToString());
+
                             //Manage Current User information.
                             clGlobal.mCurrentUser = _mUser;
                             ErrorMsg("Welcome " + _mUser.UserInfo.UserFullName.ToString(), Color.FromRgb(84, 185, 0));
                         }
                         else
                         {
+                            mAudit.NoUserlogthis(eActionType.UnAutherisedAccessTry__00.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
                             ErrorMsg("You are not permitted to login.", Color.FromRgb(185, 84, 0));
                             txtLogin.Text = "";
                         }
                     }
                     else
                     {
+                        mAudit.NoUserlogthis(eActionType.LoginFail__00.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
                         ErrorMsg("Invalid user information.", Color.FromRgb(185, 84, 0));
                         txtLogin.Text = "";
                     }
                 }
             }
+           
 
         }
 
@@ -142,7 +150,7 @@ namespace KrausRGA.UI
                }));
                 if (txtScan.Text.Trim() != "") //if clear text box.
                 {
-
+                    mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.RMANumberScan.ToString(), DateTime.UtcNow.ToString(), txtsrScan.Text.ToString());
                     //call constructor of Return Model.
                     _mReturn = new mReturnDetails(txtScan.Text.ToUpper());
 
@@ -167,12 +175,14 @@ namespace KrausRGA.UI
                         }
                         else
                         {
+                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved__00.ToString(), DateTime.UtcNow.ToString(),txtsrScan.Text.ToString());
                             ErrorMsg(_mReturn.EnteredNumber + " is already saved.", Color.FromRgb(185, 84, 0));
                             txtScan.Text = "";
                         }
                     }
                     else
                     {
+                        mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumber__00.ToString(), DateTime.UtcNow.ToString(), txtsrScan.Text.ToString());
                         ErrorMsg("Invalid Number. Please check the number.", Color.FromRgb(185, 84, 0));
                         txtScan.Text = "";
                     }
