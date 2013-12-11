@@ -14,7 +14,7 @@ namespace KrausRGA.Views
         Login_InvalidUser__00,
         Login_Success,
         Logout,
-        ApplicationExit,
+        WindowClosed,
         ValidRMANumberScan,
         InvalidRMANumberScanned__00,
         AlreadySaved_RMANumberScanned__00,

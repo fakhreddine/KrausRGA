@@ -445,7 +445,7 @@ namespace KrausRGA.UI
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
 
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString());
+            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
             //Check the ReasonCombo Select or not
             if (cmbOtherReason.forcombobox())
             {
@@ -837,7 +837,7 @@ namespace KrausRGA.UI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.ApplicationExit.ToString(), DateTime.UtcNow.ToString(), clGlobal.mCurrentUser.UserInfo.UserName.ToString());
+            mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"RMA Details Window");
         }
 
        
