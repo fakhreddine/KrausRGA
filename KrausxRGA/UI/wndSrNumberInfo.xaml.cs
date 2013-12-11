@@ -217,9 +217,6 @@ namespace KrausRGA.UI
                 // Take snapshot of webcam image.
                 WebCamCtrl.TakeSnapshot();
 
-                int panelWidth = Convert.ToInt32(WebCamCtrl.ActualWidth);
-                int panelHeight = Convert.ToInt32(WebCamCtrl.ActualHeight);
-
                 var DirInfo = new DirectoryInfo(@"C:\SKUReturned");
                 String ImageName = (from f in DirInfo.GetFiles()
                                     orderby f.LastWriteTime descending
