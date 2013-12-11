@@ -19,6 +19,8 @@ namespace KrausRGA.Views
         //User information maintain 
         public static mUser mCurrentUser;
 
+        //audit object.
+        public static  mAudit mAuditDetail;
 
 
     }

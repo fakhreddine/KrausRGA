@@ -12,7 +12,7 @@ namespace KrausRGA.DBLogics
     /// in audit table
     /// </summary>
 
-    class cmdAudit
+  public class cmdAudit
     {
         #region declaration
         //RMAsystem Database object
