@@ -116,7 +116,7 @@ namespace KrausRGA.UI
                         }
                         else
                         {
-                            mAudit.NoUserlogthis(eActionType.UnAutherisedAccessTry__00.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
+                            mAudit.NoUserlogthis(eActionType.UserPermissonDenied.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
                             ErrorMsg("You are not permitted to login.", Color.FromRgb(185, 84, 0));
                             txtLogin.Text = "";
                         }
@@ -150,7 +150,7 @@ namespace KrausRGA.UI
                }));
                 if (txtScan.Text.Trim() != "") //if clear text box.
                 {
-                    mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.RMANumberScan.ToString(), DateTime.UtcNow.ToString(), txtsrScan.Text.ToString());
+                    mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), txtsrScan.Text.ToString());
                     //call constructor of Return Model.
                     _mReturn = new mReturnDetails(txtScan.Text.ToUpper());
 
@@ -175,14 +175,14 @@ namespace KrausRGA.UI
                         }
                         else
                         {
-                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved__00.ToString(), DateTime.UtcNow.ToString(),txtsrScan.Text.ToString());
+                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved_RMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(),txtsrScan.Text.ToString());
                             ErrorMsg(_mReturn.EnteredNumber + " is already saved.", Color.FromRgb(185, 84, 0));
                             txtScan.Text = "";
                         }
                     }
                     else
                     {
-                        mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumber__00.ToString(), DateTime.UtcNow.ToString(), txtsrScan.Text.ToString());
+                        mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), txtsrScan.Text.ToString());
                         ErrorMsg("Invalid Number. Please check the number.", Color.FromRgb(185, 84, 0));
                         txtScan.Text = "";
                     }
@@ -249,6 +249,21 @@ namespace KrausRGA.UI
         }
 
         #endregion
+
+        private void wndLogin_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (bdrScan.Visibility == Visibility.Visible)
+            {
+                mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ApplicationExit.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserName.ToString());
+            }
+
+
+            if(bdrLogin.Visibility==Visibility.Visible)
+            {
+                mAudit.NoUserlogthis(eActionType.ApplicationExit.ToString(), DateTime.UtcNow.ToString(), txtLogin.Text.ToString());
+                //mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ApplicationExit.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserName.ToString());
+            }
+        }
 
 
     }

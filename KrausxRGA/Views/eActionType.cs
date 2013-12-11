@@ -7,23 +7,28 @@ namespace KrausRGA.Views
 {
     public enum eActionType
     {
-        Login=1,
+        Login = 1,
         Login_PageStart,
         LoginFail__00,
-        UnAutherisedAccessTry__00,
+        UserPermissonDenied,
         Login_InvalidUser__00,
         Login_Success,
         Logout,
         ApplicationExit,
-        RMANumberScan,
-        InvalidRMANumber__00,
-        AlreadySaved__00,
-        Load_RMADetail,
-        Load_ReturnDetails,
-        Load_RetrunReasons,
-        PleaseSelectItem__00,
-        AtleastOneReasonSelect__00,
-        SelectReasons,
-        SelectItem
+        ValidRMANumberScan,
+        InvalidRMANumberScanned__00,
+        AlreadySaved_RMANumberScanned__00,
+        SelectItem__00,
+        Tab_changed,
+        ComboBox_ItemSelected,
+        Reason_Checked,
+        Reason_Unchecked,
+        ProductPersentInRMA_Checked,
+        ProductPersentInRMA_UnChecked,
+        Camera_Started,
+        Image_Captured,
+        New_ReturnReason_Added,
+        Done_Clicked,
+        Camera_Stoped
     }
 }
