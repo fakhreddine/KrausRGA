@@ -42,6 +42,7 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
+            // save information in audit table.
             mAudit.logthis(eActionType.Login_PageStart.ToString(), DateTime.UtcNow.ToString(),"");
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
@@ -107,6 +108,7 @@ namespace KrausRGA.UI
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
 
+                            //save Action in Audit Table.
                             mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login_Success.ToString(), DateTime.UtcNow.ToString(),_mUser.UserInfo.UserFullName);
 
                             //Manage Current User information.
@@ -115,6 +117,7 @@ namespace KrausRGA.UI
                         }
                         else
                         {
+                            //save Action in Audit Table.
                             mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.UserPermissonDenied.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserFullName);
                             ErrorMsg("You are not permitted to login.", Color.FromRgb(185, 84, 0));
                             txtLogin.Text = "";
@@ -122,6 +125,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
+                        //save Action in Audit Table.
                         mAudit.NoUserlogthis(eActionType.LoginFail__00.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
                         ErrorMsg("Invalid user information.", Color.FromRgb(185, 84, 0));
                         txtLogin.Text = "";
@@ -174,6 +178,7 @@ namespace KrausRGA.UI
                         }
                         else
                         {
+                            //save Action in Audit Table.
                             mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved_RMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
                             ErrorMsg(_mReturn.EnteredNumber + " is already saved.", Color.FromRgb(185, 84, 0));
                             txtScan.Text = "";
@@ -181,6 +186,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
+                        //save Action in Audit Table.
                         mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), TempRMANumber);
                         ErrorMsg("Invalid Number. Please check the number.", Color.FromRgb(185, 84, 0));
                         txtScan.Text = "";
@@ -253,14 +259,15 @@ namespace KrausRGA.UI
         {
             if (bdrScan.Visibility == Visibility.Visible)
             {
+                // save information in audit table.
                 mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "login Window");
             }
 
 
             if(bdrLogin.Visibility==Visibility.Visible)
             {
+                // save information in audit table.
                 mAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"login Window");
-                //mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ApplicationExit.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserName.ToString());
             }
         }
 
