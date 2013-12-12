@@ -114,7 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DBLogics\cmd.cs" />
+    <Compile Include="DBLogics\Service.cs" />
     <Compile Include="DBLogics\cmdAudit.cs" />
     <Compile Include="DBLogics\cmdReasonCategory.cs" />
     <Compile Include="DBLogics\cmdReasons.cs" />

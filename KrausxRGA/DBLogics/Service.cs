@@ -10,7 +10,7 @@ namespace KrausRGA.DBLogics
     /// set service reference endpoints from config file 
     /// and create new object of each service.
     /// </summary>
-   public class  cmd
+   public class  Service
     {
        
        /// <summary>

@@ -35,7 +35,7 @@ namespace KrausRGA.DBLogics
             List<Return> _lsReturn = new List<Return>();
             try
             {
-                var TemoRtn = cmd.entGet.ReturnAll().ToList();
+                var TemoRtn = Service.entGet.ReturnAll().ToList();
                 foreach (var Rtnitem in TemoRtn)
                 {
                     _lsReturn.Add(new Return(Rtnitem));
@@ -61,7 +61,7 @@ namespace KrausRGA.DBLogics
             Return _returnObj = new Return();
             try
             {
-                _returnObj = new Return(cmd.entGet.ReturnByReturnID(ReturnID));
+                _returnObj = new Return(Service.entGet.ReturnByReturnID(ReturnID));
             }
             catch (Exception)
             {}
@@ -82,7 +82,7 @@ namespace KrausRGA.DBLogics
             Return _returnTableObj = new Return();
             try
             {
-                _returnTableObj = new Return(cmd.entGet.ReturnByRMANumber(RMANumber));
+                _returnTableObj = new Return(Service.entGet.ReturnByRMANumber(RMANumber));
             }
             catch (Exception)
             { }
@@ -107,7 +107,7 @@ namespace KrausRGA.DBLogics
             Boolean _returnFlag = false;
             try
             {
-                _returnFlag = cmd.entSave.Return(ObjReturnTbl.CopyToSaveDTO(ObjReturnTbl));
+                _returnFlag = Service.entSave.Return(ObjReturnTbl.CopyToSaveDTO(ObjReturnTbl));
             }
             catch (Exception)
             { }

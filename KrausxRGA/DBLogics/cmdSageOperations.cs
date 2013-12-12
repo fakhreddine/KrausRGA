@@ -33,7 +33,7 @@ namespace KrausRGA.DBLogics
            List<RMAInfo> lsRMAInfo = new List<RMAInfo>();
            try
            {
-               var RMAdetailsInfo = cmd.entGet.RMAInfoBySRNumber(SRNumber).ToList();
+               var RMAdetailsInfo = Service.entGet.RMAInfoBySRNumber(SRNumber).ToList();
                if (RMAdetailsInfo.Count()>0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)
@@ -61,7 +61,7 @@ namespace KrausRGA.DBLogics
            List<RMAInfo> lsRMAInfo = new List<RMAInfo>();
            try
            {
-               var RMAdetailsInfo = cmd.entGet.RMAInfoByPONumber(PONumber).ToList();
+               var RMAdetailsInfo = Service.entGet.RMAInfoByPONumber(PONumber).ToList();
                if (RMAdetailsInfo.Count() > 0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)
@@ -89,7 +89,7 @@ namespace KrausRGA.DBLogics
            List<RMAInfo> lsRMAInfo = new List<RMAInfo>();
            try
            {
-               var RMAdetailsInfo = cmd.entGet.RMAInfoBySONumber(SONumber).ToList();
+               var RMAdetailsInfo = Service.entGet.RMAInfoBySONumber(SONumber).ToList();
                if (RMAdetailsInfo.Count() > 0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)
@@ -117,7 +117,7 @@ namespace KrausRGA.DBLogics
            List<RMAInfo> lsRMAInfo = new List<RMAInfo>();
            try
            {
-               var RMAdetailsInfo = cmd.entGet.RMAInfoByShippingNumber(ShipmentNumber).ToList();
+               var RMAdetailsInfo = Service.entGet.RMAInfoByShippingNumber(ShipmentNumber).ToList();
                if (RMAdetailsInfo.Count() > 0)
                {
                    foreach (var RMAitem in RMAdetailsInfo)

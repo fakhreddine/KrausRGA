@@ -34,7 +34,7 @@ namespace KrausRGA.DBLogics
            Boolean _returnFlag = false;
            try
            {
-               _returnFlag = cmd.entSave.ReturnDetails(ReturnDetailsObj.ConvertToSaveDTO(ReturnDetailsObj));
+               _returnFlag = Service.entSave.ReturnDetails(ReturnDetailsObj.ConvertToSaveDTO(ReturnDetailsObj));
            }
            catch (Exception)
            {}

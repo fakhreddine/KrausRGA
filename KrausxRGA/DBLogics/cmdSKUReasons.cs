@@ -16,7 +16,7 @@ namespace KrausRGA.DBLogics
            Boolean _status = false;
            try
            {
-               _status = cmd.entSave.SKUReasons(Trans.CopyToSaveDTO(Trans));
+               _status = Service.entSave.SKUReasons(Trans.CopyToSaveDTO(Trans));
            }
            catch (Exception)
            {

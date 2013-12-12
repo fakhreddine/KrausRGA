@@ -37,7 +37,7 @@ namespace KrausRGA.DBLogics
            try
            {
                //Select all users from Database.
-               var UserList = from ent in cmd.entGet.UserAll()
+               var UserList = from ent in Service.entGet.UserAll()
                                select ent;
 
                //Add each user information to the return list.
@@ -68,7 +68,7 @@ namespace KrausRGA.DBLogics
            User _lsUserReturn = new User();
            try
            {
-               _lsUserReturn =new User(cmd.entGet.UserAll().FirstOrDefault(i=>i.UserID == Userid));
+               _lsUserReturn =new User(Service.entGet.UserAll().FirstOrDefault(i=>i.UserID == Userid));
            }
            catch (Exception)
            {}
@@ -92,7 +92,7 @@ namespace KrausRGA.DBLogics
            User _return = new User();
            try
            {
-               _return =new User(cmd.entGet.UserByUserName(LoginUserName));//.Users.FirstOrDefault(user => user.UserName == LoginUserName);
+               _return =new User(Service.entGet.UserByUserName(LoginUserName));//.Users.FirstOrDefault(user => user.UserName == LoginUserName);
            }
            catch (Exception)
            {}
@@ -114,7 +114,7 @@ namespace KrausRGA.DBLogics
            try
            {
              
-               var userInfo = cmd.entGet.UserByRoleID(RoleID);
+               var userInfo = Service.entGet.UserByRoleID(RoleID);
 
                foreach (var useritem in userInfo)
                {
@@ -145,7 +145,7 @@ namespace KrausRGA.DBLogics
 
            try
            {
-               var username = cmd.entGet.UserByUserName(UserName);
+               var username = Service.entGet.UserByUserName(UserName);
                if (username.UserName !=null)
                {
                    if (username.UserPassword == Password) _userReturn = new User(username);
