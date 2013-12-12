@@ -32,7 +32,7 @@ namespace KrausRGA.DBLogics
 
            try
            {
-               var Rolesinfo = cmd.entGet.RoleAll();
+               var Rolesinfo = Service.entGet.RoleAll();
                foreach (var roleitem in Rolesinfo)
                {
                    Role roles = new Role(roleitem);
@@ -61,7 +61,7 @@ namespace KrausRGA.DBLogics
            Role role = new Role();
            try
            {
-               role = new Role(cmd.entGet.RoleByRoleID(RoleID));
+               role = new Role(Service.entGet.RoleByRoleID(RoleID));
            }
            catch (Exception)
            { }

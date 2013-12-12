@@ -37,7 +37,7 @@ namespace KrausRGA.DBLogics
             Boolean _returnFlag = false;
             try
             {
-                _returnFlag = cmd.entSave.ReturnImages(ReturnImageObj.CopyToSaveDTO(ReturnImageObj));
+                _returnFlag = Service.entSave.ReturnImages(ReturnImageObj.CopyToSaveDTO(ReturnImageObj));
             }
             catch (Exception)
             {}

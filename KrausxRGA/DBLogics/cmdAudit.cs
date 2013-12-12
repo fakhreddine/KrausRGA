@@ -28,7 +28,7 @@ namespace KrausRGA.DBLogics
             List<Audit> _lsReturn = new List<Audit>();
             try
             {
-                var adt = (from auditdetail in cmd.entGet.AuditAll()
+                var adt = (from auditdetail in Service.entGet.AuditAll()
                           select auditdetail).ToList();
                 foreach (var Aitem in adt)
                 {
@@ -53,7 +53,7 @@ namespace KrausRGA.DBLogics
             Audit AuditUser = new Audit();
             try
             {
-                AuditUser = new Audit(cmd.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
+                AuditUser = new Audit(Service.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
             }
             catch (Exception) { }
             return AuditUser;
@@ -69,7 +69,7 @@ namespace KrausRGA.DBLogics
             Boolean _returnflag = false;
             try
             {
-                _returnflag = cmd.entSave.UpsertAudit(userlog.ConvertTOSaveDTO(userlog));
+                _returnflag = Service.entSave.UpsertAudit(userlog.ConvertTOSaveDTO(userlog));
             }
             catch (Exception)
             {}

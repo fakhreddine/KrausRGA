@@ -283,7 +283,7 @@ namespace KrausRGA.Models
             //RMA databse Object.
             try
             {
-                String Anyvalue = cmd.entGet.ReturnByRMANumber(SRnumber).RMANumber;
+                String Anyvalue = Service.entGet.ReturnByRMANumber(SRnumber).RMANumber;
                 if (Anyvalue == SRnumber) _return = true;
             }
             catch (Exception)

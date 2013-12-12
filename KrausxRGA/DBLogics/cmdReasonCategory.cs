@@ -25,7 +25,7 @@ namespace KrausRGA.DBLogics
            Boolean _return = false;
            try
            {
-              _return = cmd.entSave.ReasonCategory(ReasonCat.ConvertToSaveDTO(ReasonCat));
+              _return = Service.entSave.ReasonCategory(ReasonCat.ConvertToSaveDTO(ReasonCat));
               // entRMA.AddToReasonCategories(ReasonCat);
                //entRMA.SaveChanges();
                

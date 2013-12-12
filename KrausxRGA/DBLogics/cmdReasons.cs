@@ -28,7 +28,7 @@ namespace KrausRGA.DBLogics
            List<Reason> _Reasons=new List<Reason>();
             try
             {
-                var resn = cmd.entGet.ReasonsAll().ToList();
+                var resn = Service.entGet.ReasonsAll().ToList();
                 foreach (var Resnitem in resn)
                 {
                     _Reasons.Add(new Reason(Resnitem));
@@ -57,7 +57,7 @@ namespace KrausRGA.DBLogics
             {
                 String _category = CategoryName.ToUpper();
 
-                var Resns = cmd.entGet.ReasonByCategoryName(_category);
+                var Resns = Service.entGet.ReasonByCategoryName(_category);
                 foreach (var Rsnitem in Resns)
                 {
                     _lsReturn.Add(new Reason(Rsnitem));
@@ -84,7 +84,7 @@ namespace KrausRGA.DBLogics
             Boolean status = false;
             try
             {
-                status = cmd.entSave.Reasons(reasonTbl.CopyToSaveDTO(reasonTbl));
+                status = Service.entSave.Reasons(reasonTbl.CopyToSaveDTO(reasonTbl));
 
             }
             catch (Exception)
