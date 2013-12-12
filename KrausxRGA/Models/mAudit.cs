@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using KrausRGA.ErrorLogger;
 using KrausRGA.DBLogics;
 using KrausRGA.EntityModel;
 using KrausRGA.Views;
@@ -36,11 +36,13 @@ namespace KrausRGA.Models
                 _UserC.UserID = TuserID;
                 _UserC.ActionType = ActionType;
                 _UserC.ActionTime = Convert.ToDateTime(ActionTime);
+                _UserC.ActionValue = "NewAppOpen";
                 _UserLog.Add(_UserC);
                 _flag = _audit.UpsertofAudit(_UserC);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.LogThis("mAudit/logthis");
             }
             return _flag;
         }
@@ -62,8 +64,9 @@ namespace KrausRGA.Models
                 _UserLog.Add(_UserC);
                 _flag = _audit.UpsertofAudit(_UserC);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.LogThis("mAudit/NoUserlogthis");
             }
             return _flag;
         }
@@ -87,12 +90,19 @@ namespace KrausRGA.Models
                 _UserLog.Add(_UserC);
                 _flag = _audit.UpsertofAudit(_UserC);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.LogThis("mAudit/logthis(String UserID, String ActionType, String ActionTime,String ActionValue)");
             }
             return _flag;
         }
 
+        /// <summary>
+        /// Initalize connections of services
+        /// </summary>
+        public mAudit()
+        {
+        }
 
     }
 }

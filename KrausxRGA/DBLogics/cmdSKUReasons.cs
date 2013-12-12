@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -18,8 +19,9 @@ namespace KrausRGA.DBLogics
            {
                _status = Service.entSave.SKUReasons(Trans.CopyToSaveDTO(Trans));
            }
-           catch (Exception)
+           catch (Exception ex)
            {
+               ex.LogThis("cmdSKUReasons/SetTransaction");
            }
            return _status;
        

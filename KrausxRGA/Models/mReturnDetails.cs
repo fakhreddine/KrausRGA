@@ -5,6 +5,7 @@ using System.Text;
 using KrausRGA.Views;
 using KrausRGA.EntityModel;
 using KrausRGA.DBLogics;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.Models
 {
@@ -151,8 +152,10 @@ namespace KrausRGA.Models
                         _numberType = eNumberType.PONumber;
                 }
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetEnteredNumberType");
+            }
 
             return _numberType;
 
@@ -212,8 +215,10 @@ namespace KrausRGA.Models
                 }
 
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetIsValidNumberEntreds");
+            }
 
             return _isNumberValid;
         }
@@ -263,8 +268,10 @@ namespace KrausRGA.Models
                 lsReturn.Add(ram3);
 
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetRMAStatusList");
+            }
             return lsReturn;
         }
 
@@ -286,8 +293,10 @@ namespace KrausRGA.Models
                 String Anyvalue = Service.entGet.ReturnByRMANumber(SRnumber).RMANumber;
                 if (Anyvalue == SRnumber) _return = true;
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/IsNumberAlreadyPresent");
+            }
             return _return;
         }
         #endregion
@@ -350,8 +359,10 @@ namespace KrausRGA.Models
                 if (cReturnTbl.UpsertReturnTbl(TblRerutn)) _returnID = TblRerutn.ReturnID;
 
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetReturnTbl");
+            }
             return _returnID;
         }
 
@@ -410,8 +421,10 @@ namespace KrausRGA.Models
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
 
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetReturnDetailTbl");
+            }
             return _ReturnID;
         }
 
@@ -447,8 +460,10 @@ namespace KrausRGA.Models
                 if (cRtnImages.UpsertReturnImage(RtnImages)) _ReturnID = RtnImages.ReturnImageID;
 
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetReturnedImages");
+            }
             return _ReturnID;
         }
 
@@ -467,9 +482,9 @@ namespace KrausRGA.Models
 
                 if (cRtnreasons.InsertReasons(ReasonTable)) _reasonID = ReasonTable.ReasonID;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                ex.LogThis("mReturnDetails/SetReasons");
             }
             return _reasonID;
         }
@@ -487,9 +502,9 @@ namespace KrausRGA.Models
 
                 if (crtReasonCategory.SetReasonCategory(reasonCat)) _reasonCatID = reasonCat.ReasonCatID;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                ex.LogThis("mReturnDetails/SetReasonCategories");
             }
             return _reasonCatID;
         
@@ -506,9 +521,9 @@ namespace KrausRGA.Models
 
                 if(crtTransaction.SetTransaction(tra)) _transationID= tra.SKUReasonID;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                ex.LogThis("mReturnDetails/SetTransaction");
             }
         return _transationID;
         }
@@ -520,11 +535,10 @@ namespace KrausRGA.Models
             {
                reasonList= cRtnreasons.GetReasons();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                ex.LogThis("mReturnDetails/GetReasons");
             }
-
             return reasonList;
         }
 
@@ -547,8 +561,10 @@ namespace KrausRGA.Models
                 String CategoryOFSKU = lsRMAInformation.FirstOrDefault(Sk => Sk.SKUNumber == SKUName).TCLCOD_0;
                 _lsReasons = cRtnreasons.GetReasons(CategoryOFSKU);
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetReasons(String SKUName)");
+            }
             return _lsReasons;
         }
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
 using KrausRGA.Views;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.Models
 {
@@ -55,8 +56,10 @@ namespace KrausRGA.Models
                   _FlagReturn = true;
               }
           }
-          catch (Exception)
-          { }
+          catch (Exception ex)
+          {
+              ex.LogThis("mUser/IsValidUser");
+          }
           return _FlagReturn;
       }
       
@@ -85,13 +88,16 @@ namespace KrausRGA.Models
                        //}
                    }
                }
-               catch (Exception)
-               {}
+               catch (Exception ex)
+               {
+                   ex.LogThis("mUser/IsPermitedTo");
+               }
            return _return;
        }
 
        public mUser()
        {
+
            Service.entGet = new GetRMAServiceRef.GetClient();
            Service.entSave = new SaveRMAServiceRefer.SaveClient();
            Service.entGet.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(KrausRGA.Properties.Settings.Default.GetServicePath.ToString()), Service.entGet.Endpoint.Address.Identity, Service.entGet.Endpoint.Address.Headers);

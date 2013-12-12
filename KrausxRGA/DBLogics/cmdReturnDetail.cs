@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -36,8 +37,10 @@ namespace KrausRGA.DBLogics
            {
                _returnFlag = Service.entSave.ReturnDetails(ReturnDetailsObj.ConvertToSaveDTO(ReturnDetailsObj));
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdReturnDetail/UpsetReturnDetail");
+           }
            return _returnFlag;
  
        }

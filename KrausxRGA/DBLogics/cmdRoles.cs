@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using KrausRGA.Models;
 using KrausRGA.EntityModel;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -40,8 +41,10 @@ namespace KrausRGA.DBLogics
                    _lsRuturn.Add(roles);
                }
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdRoles/GetRoles");
+           }
 
            return _lsRuturn;
        }
@@ -63,8 +66,10 @@ namespace KrausRGA.DBLogics
            {
                role = new Role(Service.entGet.RoleByRoleID(RoleID));
            }
-           catch (Exception)
-           { }
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdRoles/GetRole(Guid RoleID)");
+           }
            return role;
        }
 

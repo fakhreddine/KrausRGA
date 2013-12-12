@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
-
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -41,8 +41,10 @@ namespace KrausRGA.DBLogics
                     _lsReturn.Add(new Return(Rtnitem));
                 }
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturn/GetReturnTbl");
+            }
             return _lsReturn;
         }
 
@@ -63,8 +65,10 @@ namespace KrausRGA.DBLogics
             {
                 _returnObj = new Return(Service.entGet.ReturnByReturnID(ReturnID));
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturn/GetReturnTblByReturnID");
+            }
             return _returnObj;
         }
 
@@ -84,8 +88,10 @@ namespace KrausRGA.DBLogics
             {
                 _returnTableObj = new Return(Service.entGet.ReturnByRMANumber(RMANumber));
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturn/GetRetutnTblByRMANumber");
+            }
             return _returnTableObj;
         }
 
@@ -109,8 +115,10 @@ namespace KrausRGA.DBLogics
             {
                 _returnFlag = Service.entSave.Return(ObjReturnTbl.CopyToSaveDTO(ObjReturnTbl));
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturn/UpsertReturnTbl");
+            }
             return _returnFlag;
         }
 

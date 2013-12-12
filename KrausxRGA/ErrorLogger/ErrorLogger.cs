@@ -31,11 +31,11 @@ namespace KrausRGA.ErrorLogger
         /// <param name="ErrorLocation">
         /// String Error location.( this may be function location with file and class name.)
         /// </param>
-        public static void LogThis(this String Ex_message, Guid UserID, String ErrorLocation )
+        public static void LogThis(this Exception Ex_message, Guid UserID, String ErrorLocation )
         {
             String[] Lines = { "", "",};
             Lines[0] = DateTime.Now.ToString("MMM dd, yyy hh:mm.fff tt") + " ==> User ID : " + UserID + "Error Location : " + ErrorLocation;
-            Lines[1] = Ex_message;
+            Lines[1] = Ex_message.Message;
             try
             {
                 //append lines to the file.
@@ -63,11 +63,11 @@ namespace KrausRGA.ErrorLogger
         /// <param name="ErrorLocation">
         /// String Error location.( this may be function location with file and class name.)
         /// </param>
-        public static void LogThis(this String Ex_message, String ErrorLocation)
+        public static void LogThis(this Exception Ex_message, String ErrorLocation)
         {
             String[] Lines = { "", "", };
             Lines[0] = DateTime.Now.ToString("MMM dd, yyy hh:mm.fff tt") + " ==> Error Location : " + ErrorLocation;
-            Lines[1] = Ex_message;
+            Lines[1] = Ex_message.Message;
             try
             {
                 //append lines to the file.

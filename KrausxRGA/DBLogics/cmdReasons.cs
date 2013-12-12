@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -34,8 +35,10 @@ namespace KrausRGA.DBLogics
                     _Reasons.Add(new Reason(Resnitem));
                 }
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReasons/GetReasons()");
+            }
 
             return _Reasons;
         
@@ -64,8 +67,10 @@ namespace KrausRGA.DBLogics
                 }
 
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReasons/GetReasons(String CategoryName)");
+            }
             return _lsReturn;
 
         }
@@ -87,8 +92,10 @@ namespace KrausRGA.DBLogics
                 status = Service.entSave.Reasons(reasonTbl.CopyToSaveDTO(reasonTbl));
 
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReasons/InsertReasons");
+            }
             return status;
         }
 

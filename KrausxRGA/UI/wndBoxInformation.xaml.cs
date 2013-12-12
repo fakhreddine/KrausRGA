@@ -42,7 +42,7 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(eActionType.Login_PageStart.ToString(), DateTime.UtcNow.ToString(),"");
+            //mAudit.logthis(eActionType.Login_PageStart.ToString(),"ApplicationStatred", DateTime.UtcNow.ToString());
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
 

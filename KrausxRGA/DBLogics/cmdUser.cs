@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -29,9 +30,6 @@ namespace KrausRGA.DBLogics
        /// </returns>
        public List<User> GetUserTbl()
        {
-         
-
-
            //Return list object.
            List<User> _lsUserReturn = new List<User>();
            try
@@ -48,8 +46,10 @@ namespace KrausRGA.DBLogics
                }
 
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdUser/GetUserTbl");
+           }
 
            return _lsUserReturn;
        }
@@ -70,8 +70,10 @@ namespace KrausRGA.DBLogics
            {
                _lsUserReturn =new User(Service.entGet.UserAll().FirstOrDefault(i=>i.UserID == Userid));
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdUser/GetUserTbl(Guid Userid)");
+           }
            return _lsUserReturn;
 
        }
@@ -94,8 +96,10 @@ namespace KrausRGA.DBLogics
            {
                _return =new User(Service.entGet.UserByUserName(LoginUserName));//.Users.FirstOrDefault(user => user.UserName == LoginUserName);
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdUser/GetUserTbl(String LoginUserName)");
+           }
            return _return;
        }
 
@@ -121,8 +125,10 @@ namespace KrausRGA.DBLogics
                    _lsReturn.Add(new User(useritem));
                }
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdUser/GetUserByRoleID");
+           }
            return _lsReturn;
        }
 
@@ -151,8 +157,10 @@ namespace KrausRGA.DBLogics
                    if (username.UserPassword == Password) _userReturn = new User(username);
                }
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdUser/GetUserByUserNamePassword");
+           }
 
            return _userReturn;
        }

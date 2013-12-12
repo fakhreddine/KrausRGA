@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -42,8 +43,10 @@ namespace KrausRGA.DBLogics
                    }
                }
            }
-           catch (Exception)
-           {}
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdSageOperations/GetRMAInfoBySRNumber");
+           }
            return lsRMAInfo;
        }
 
@@ -70,8 +73,10 @@ namespace KrausRGA.DBLogics
                    }
                }
            }
-           catch (Exception)
-           { }
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdSageOperations/GetRMAInfoByPONumber");
+           }
            return lsRMAInfo;
        }
 
@@ -98,8 +103,10 @@ namespace KrausRGA.DBLogics
                    }
                }
            }
-           catch (Exception)
-           { }
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdSageOperations/GetRMAInfoBySONumber");
+           }
            return lsRMAInfo;
        }
 
@@ -126,8 +133,10 @@ namespace KrausRGA.DBLogics
                    }
                }
            }
-           catch (Exception)
-           { }
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdSageOperations/GetRMAInfoByShipmentNumber");
+           }
            return lsRMAInfo;
        }
     }

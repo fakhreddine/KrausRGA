@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -39,8 +40,10 @@ namespace KrausRGA.DBLogics
             {
                 _returnFlag = Service.entSave.ReturnImages(ReturnImageObj.CopyToSaveDTO(ReturnImageObj));
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturnImages/UpsertReturnImage");
+            }
             return _returnFlag;
         }
 

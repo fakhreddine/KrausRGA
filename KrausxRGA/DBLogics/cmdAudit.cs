@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KrausRGA.EntityModel;
+using KrausRGA.ErrorLogger;
 
 namespace KrausRGA.DBLogics
 {
@@ -23,25 +24,25 @@ namespace KrausRGA.DBLogics
         /// get All data from the audit Table
         /// </summary>
         /// <returns></returns>
-        public List<Audit> GetAudit()
-        {
-            List<Audit> _lsReturn = new List<Audit>();
-            try
-            {
-                var adt = (from auditdetail in Service.entGet.AuditAll()
-                          select auditdetail).ToList();
-                foreach (var Aitem in adt)
-                {
-                    Audit _audit = new Audit(Aitem);
-                    _lsReturn.Add(_audit);
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return _lsReturn;
-        }
+      public List<Audit> GetAudit()
+      {
+          List<Audit> _lsReturn = new List<Audit>();
+          try
+          {
+              var adt = (from auditdetail in Service.entGet.AuditAll()
+                         select auditdetail).ToList();
+              foreach (var Aitem in adt)
+              {
+                  Audit _audit = new Audit(Aitem);
+                  _lsReturn.Add(_audit);
+              }
+          }
+          catch (Exception ex)
+          {
+              ex.LogThis("cmdAudit/GetAudit()");
+          }
+          return _lsReturn;
+      }
 
         /// <summary>
         /// This Fuction for get detail of audit by UserID  
@@ -55,7 +56,10 @@ namespace KrausRGA.DBLogics
             {
                 AuditUser = new Audit(Service.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdAudit/GetdatafromauditbyUserid");
+            }
             return AuditUser;
         }
         /// <summary>
@@ -69,10 +73,14 @@ namespace KrausRGA.DBLogics
             Boolean _returnflag = false;
             try
             {
-                _returnflag = Service.entSave.UpsertAudit(userlog.ConvertTOSaveDTO(userlog));
+                SaveRMAServiceRefer.AuditDTO AD = userlog.ConvertTOSaveDTO(userlog);
+                
+                _returnflag = Service.entSave.UpsertAudit(AD);
             }
-            catch (Exception)
-            {}
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdAudit/UpsertofAudit");
+            }
             return _returnflag;
         }
        
