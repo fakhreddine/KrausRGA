@@ -832,7 +832,11 @@ namespace KrausRGA.UI
         
         private void tbrgzdetail_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Tab_changed.ToString(), DateTime.UtcNow.ToString());
+            int indext = tbrgzdetail.SelectedIndex;
+            if (indext > -1)
+            {
+                mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.Tab_changed.ToString(), DateTime.UtcNow.ToString(), "Tab Index" + indext.ToString());
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

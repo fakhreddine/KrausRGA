@@ -47,6 +47,13 @@ namespace KrausRGA.Models
             return _flag;
         }
 
+        /// <summary>
+        /// Save Audit information ActionType,ActionTime,ActionValue.
+        /// </summary>
+        /// <param name="ActionType"></param>
+        /// <param name="ActionTime"></param>
+        /// <param name="ActionValue"></param>
+        /// <returns></returns>
         public static Boolean NoUserlogthis(String ActionType, String ActionTime,String ActionValue)
         {
             Boolean _flag = false;
@@ -72,7 +79,16 @@ namespace KrausRGA.Models
         }
 
 
-
+        /// <summary>
+        /// Save Audit Information userId,ActionType,ActionTime,ActionValue.
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <param name="ActionType"></param>
+        /// <param name="ActionTime"></param>
+        /// <param name="ActionValue"></param>
+        /// <returns>
+        /// Return Boolean.
+        /// </returns>
         public static Boolean logthis(String UserID, String ActionType, String ActionTime,String ActionValue)
         {
             Boolean _flag = false;
