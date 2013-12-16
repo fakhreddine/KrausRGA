@@ -102,7 +102,7 @@
   <xs:element name="UpsertAudit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="audit" nillable="true" type="q8:AuditDTO" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="audit" nillable="true" type="q8:RMAAuditDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

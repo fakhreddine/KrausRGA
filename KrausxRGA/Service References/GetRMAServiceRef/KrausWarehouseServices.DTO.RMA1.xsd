@@ -73,13 +73,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReasonsDTO" nillable="true" type="tns:ReasonsDTO" />
-  <xs:complexType name="ArrayOfAuditDTO">
+  <xs:complexType name="ArrayOfRMAAuditDTO">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuditDTO" nillable="true" type="tns:AuditDTO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RMAAuditDTO" nillable="true" type="tns:RMAAuditDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfAuditDTO" nillable="true" type="tns:ArrayOfAuditDTO" />
-  <xs:complexType name="AuditDTO">
+  <xs:element name="ArrayOfRMAAuditDTO" nillable="true" type="tns:ArrayOfRMAAuditDTO" />
+  <xs:complexType name="RMAAuditDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ActionTime" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ActionType" nillable="true" type="xs:string" />
@@ -88,7 +88,7 @@
       <xs:element minOccurs="0" name="UserLogID" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="AuditDTO" nillable="true" type="tns:AuditDTO" />
+  <xs:element name="RMAAuditDTO" nillable="true" type="tns:RMAAuditDTO" />
   <xs:complexType name="ArrayOfRMAInfoDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="RMAInfoDTO" nillable="true" type="tns:RMAInfoDTO" />

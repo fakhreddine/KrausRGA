@@ -107,7 +107,7 @@ namespace KrausRGA.UI
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
 
-                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login_Success.ToString(), DateTime.UtcNow.ToString(),_mUser.UserInfo.UserFullName);
+                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login_Success.ToString(), DateTime.UtcNow.ToString(),_mUser.UserInfo.UserFullName);
 
                             //Manage Current User information.
                             clGlobal.mCurrentUser = _mUser;
@@ -115,14 +115,14 @@ namespace KrausRGA.UI
                         }
                         else
                         {
-                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.UserPermissonDenied.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserFullName);
+                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.UserPermissonDenied.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserFullName);
                             ErrorMsg("You are not permitted to login.", Color.FromRgb(185, 84, 0));
                             txtLogin.Text = "";
                         }
                     }
                     else
                     {
-                        mAudit.NoUserlogthis(eActionType.LoginFail__00.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
+                        mRMAAudit.NoUserlogthis(eActionType.LoginFail__00.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
                         ErrorMsg("Invalid user information.", Color.FromRgb(185, 84, 0));
                         txtLogin.Text = "";
                     }
@@ -164,7 +164,7 @@ namespace KrausRGA.UI
                                 {
                                     //Create new instance of window.
                                     wndSrNumberInfo wndMain = new wndSrNumberInfo();
-                                    mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                                    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
                                     //opens new window.
                                     wndMain.Show();
                                 }));
@@ -174,14 +174,14 @@ namespace KrausRGA.UI
                         }
                         else
                         {
-                            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved_RMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
+                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved_RMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
                             ErrorMsg(_mReturn.EnteredNumber + " is already saved.", Color.FromRgb(185, 84, 0));
                             txtScan.Text = "";
                         }
                     }
                     else
                     {
-                        mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), TempRMANumber);
+                        mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), TempRMANumber);
                         ErrorMsg("Invalid Number. Please check the number.", Color.FromRgb(185, 84, 0));
                         txtScan.Text = "";
                     }
@@ -253,13 +253,13 @@ namespace KrausRGA.UI
         {
             if (bdrScan.Visibility == Visibility.Visible)
             {
-                mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "login Window");
+                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "login Window");
             }
 
 
             if(bdrLogin.Visibility==Visibility.Visible)
             {
-                mAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"login Window");
+                mRMAAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"login Window");
                 //mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ApplicationExit.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserName.ToString());
             }
         }

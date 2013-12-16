@@ -165,7 +165,7 @@ namespace KrausRGA.UI
             }
             else
             {
-                mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
                 ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
             }
         }
@@ -250,7 +250,7 @@ namespace KrausRGA.UI
                 img.Focus();
                 sclPh.ScrollToRightEnd();
 
-                mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Image_Captured.ToString(), DateTime.UtcNow.ToString(), img.Name.ToString());
+                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Image_Captured.ToString(), DateTime.UtcNow.ToString(), img.Name.ToString());
 
             }
             catch (Exception)
@@ -283,7 +283,7 @@ namespace KrausRGA.UI
             bdrStop.Visibility = System.Windows.Visibility.Visible;
             WebCamCtrl.StartCapture();
 
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Camera_Started.ToString(), DateTime.UtcNow.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Camera_Started.ToString(), DateTime.UtcNow.ToString());
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
@@ -294,7 +294,7 @@ namespace KrausRGA.UI
             bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
             bdrStop.Visibility = System.Windows.Visibility.Hidden;
 
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Camera_Stoped.ToString(), DateTime.UtcNow.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Camera_Stoped.ToString(), DateTime.UtcNow.ToString());
 
         }
 
@@ -445,11 +445,11 @@ namespace KrausRGA.UI
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
 
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
             //Check the ReasonCombo Select or not
             if (cmbOtherReason.forcombobox())
             {
-                mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
+                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
                 Guid reasonID = _mReturn.SetReasons(txtOtherReason.Text);
             }
             txtOtherReason.Text = "";
@@ -559,7 +559,7 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                    mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
                     ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
                 }
             }
@@ -590,7 +590,7 @@ namespace KrausRGA.UI
             }
             else
             {
-                mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
                 ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
             }
         }
@@ -621,7 +621,7 @@ namespace KrausRGA.UI
             _mReturn.GreenRowsNumber.Add(row.GetIndex());
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
-           mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( "+row.GetIndex().ToString()+" )");
+           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( "+row.GetIndex().ToString()+" )");
         }
 
         private void btnGreen_Click(object sender, RoutedEventArgs e)
@@ -636,7 +636,7 @@ namespace KrausRGA.UI
             _mReturn.GreenRowsNumber.Remove(row.GetIndex());
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_UnChecked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_UnChecked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
         }
 
         #region CheckBox Toggel.
@@ -659,7 +659,7 @@ namespace KrausRGA.UI
             }
             else
             {
-                mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
                 ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
             }
         }
@@ -721,61 +721,61 @@ namespace KrausRGA.UI
        
         private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
             bdrDamaged.Inside();
         }
 
         private void cbrDamaged_Unchecked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
             bdrDamaged.Outside();
         }
 
         private void cbrDuplicate_Checked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
             bdrDuplicate.Inside();
         }
 
         private void cbrDuplicate_Unchecked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
             bdrDuplicate.Outside();
         }
 
         private void cbrIncorrectOrder_Checked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
             bdrIcorrectOrder.Inside();
         }
 
         private void cbrIncorrectOrder_Unchecked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
             bdrIcorrectOrder.Outside();
         }
 
         private void cbrDisplayedDiff_Checked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
             bdrDisplayedDiff.Inside();
         }
 
         private void cbrDisplayedDiff_Unchecked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
             bdrDisplayedDiff.Outside();
         }
 
         private void cbrSatisfied_Checked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
             bdrSatisfied.Inside();
         }
 
         private void cbrSatisfied_Unchecked(object sender, RoutedEventArgs e)
         {
-            mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
             bdrSatisfied.Outside();
         }
 
@@ -835,13 +835,13 @@ namespace KrausRGA.UI
             int indext = tbrgzdetail.SelectedIndex;
             if (indext > -1)
             {
-                mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.Tab_changed.ToString(), DateTime.UtcNow.ToString(), "Tab Index" + indext.ToString());
+                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.Tab_changed.ToString(), DateTime.UtcNow.ToString(), "Tab Index" + indext.ToString());
             }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            mAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"RMA Details Window");
+            mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"RMA Details Window");
         }
 
        

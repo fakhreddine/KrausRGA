@@ -9,12 +9,12 @@ using KrausRGA.Views;
 
 namespace KrausRGA.Models
 {
-    public  class mAudit
+    public  class mRMAAudit
     {
         /// <summary>
         /// Create cmdaudit Object.
         /// </summary>
-      public static DBLogics.cmdAudit _audit = new DBLogics.cmdAudit();
+      public static DBLogics.cmdRMAAudit _audit = new DBLogics.cmdRMAAudit();
 
         /// <summary>
         /// Save the audit information.
@@ -28,8 +28,8 @@ namespace KrausRGA.Models
             Boolean _flag = false;
             try
             {
-                List<Audit> _UserLog = new List<Audit>();
-                Audit _UserC = new Audit();
+                List<RMAAudit> _UserLog = new List<RMAAudit>();
+                RMAAudit _UserC = new RMAAudit();
                 _UserC.UserLogID = Guid.NewGuid();
                 Guid TuserID = Guid.Empty;
                 Guid.TryParse(UserID.ToString(), out TuserID);
@@ -59,8 +59,8 @@ namespace KrausRGA.Models
             Boolean _flag = false;
             try
             {
-                List<Audit> _UserLog = new List<Audit>();
-                Audit _UserC = new Audit();
+                List<RMAAudit> _UserLog = new List<RMAAudit>();
+                RMAAudit _UserC = new RMAAudit();
                 _UserC.UserLogID = Guid.NewGuid();
                 //Guid TuserID = Guid.Empty;
                 //Guid.TryParse(UserID.ToString(), out TuserID);
@@ -94,8 +94,8 @@ namespace KrausRGA.Models
             Boolean _flag = false;
             try
             {
-                List<Audit> _UserLog = new List<Audit>();
-                Audit _UserC = new Audit();
+                List<RMAAudit> _UserLog = new List<RMAAudit>();
+                RMAAudit _UserC = new RMAAudit();
                 _UserC.UserLogID = Guid.NewGuid();
                 Guid TuserID = Guid.Empty;
                 Guid.TryParse(UserID.ToString(), out TuserID);
@@ -116,7 +116,7 @@ namespace KrausRGA.Models
         /// <summary>
         /// Initalize connections of services
         /// </summary>
-        public mAudit()
+        public mRMAAudit()
         {
         }
 

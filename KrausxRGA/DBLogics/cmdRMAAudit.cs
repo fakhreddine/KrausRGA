@@ -13,7 +13,7 @@ namespace KrausRGA.DBLogics
     /// in audit table
     /// </summary>
 
-  public class cmdAudit
+  public class cmdRMAAudit
     {
         #region declaration
         //RMAsystem Database object
@@ -24,16 +24,16 @@ namespace KrausRGA.DBLogics
         /// get All data from the audit Table
         /// </summary>
         /// <returns></returns>
-      public List<Audit> GetAudit()
+      public List<RMAAudit> GetAudit()
       {
-          List<Audit> _lsReturn = new List<Audit>();
+          List<RMAAudit> _lsReturn = new List<RMAAudit>();
           try
           {
               var adt = (from auditdetail in Service.entGet.AuditAll()
                          select auditdetail).ToList();
               foreach (var Aitem in adt)
               {
-                  Audit _audit = new Audit(Aitem);
+                  RMAAudit _audit = new RMAAudit(Aitem);
                   _lsReturn.Add(_audit);
               }
           }
@@ -49,12 +49,12 @@ namespace KrausRGA.DBLogics
         /// </summary>
         /// <param name="UserID"></param>
         /// <returns></returns>
-        public Audit GetdatafromauditbyUserid(Guid UserID)
+        public RMAAudit GetdatafromauditbyUserid(Guid UserID)
         {
-            Audit AuditUser = new Audit();
+            RMAAudit AuditUser = new RMAAudit();
             try
             {
-                AuditUser = new Audit(Service.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
+                AuditUser = new RMAAudit(Service.entGet.AuditAll().FirstOrDefault(i => i.UserID == UserID));
             }
             catch (Exception ex)
             {
@@ -68,12 +68,12 @@ namespace KrausRGA.DBLogics
         /// </summary>
         /// <param name="userlog"></param>
         /// <returns></returns>
-        public Boolean UpsertofAudit(Audit userlog)
+        public Boolean UpsertofAudit(RMAAudit userlog)
         {
             Boolean _returnflag = false;
             try
             {
-                SaveRMAServiceRefer.AuditDTO AD = userlog.ConvertTOSaveDTO(userlog);
+                SaveRMAServiceRefer.RMAAuditDTO AD = userlog.ConvertTOSaveDTO(userlog);
                 
                 _returnflag = Service.entSave.UpsertAudit(AD);
             }

@@ -101,7 +101,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserDTO" nillable="true" type="tns:UserDTO" />
-  <xs:complexType name="AuditDTO">
+  <xs:complexType name="RMAAuditDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ActionTime" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ActionType" nillable="true" type="xs:string" />
@@ -110,5 +110,5 @@
       <xs:element minOccurs="0" name="UserLogID" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="AuditDTO" nillable="true" type="tns:AuditDTO" />
+  <xs:element name="RMAAuditDTO" nillable="true" type="tns:RMAAuditDTO" />
 </xs:schema>

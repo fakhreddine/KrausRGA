@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="acf9c2f0-973d-495b-b5a5-60ed98df5728" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="901fe369-c746-4307-b5d5-095aa2b3453f" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="8b864c44-e32f-4caa-9cd5-7004f7d9d4e9" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex" />
-    <MetadataFile FileName="KrausWarehouseServices.DTO.RMA.xsd" MetadataType="Schema" ID="6531f5e7-cbe0-4c29-908a-c0b95ce75fd5" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="a088560a-3234-442d-81e7-5fa47152f5f0" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="6b00e343-2bdf-4d71-9554-82307ba094fd" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="a29ad9f1-59ac-4230-83b7-787f7d1d4ecc" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex" />
+    <MetadataFile FileName="KrausWarehouseServices.DTO.RMA1.xsd" MetadataType="Schema" ID="009ac357-8b1a-4273-b0ee-213b18ac1a86" SourceId="1" SourceUrl="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

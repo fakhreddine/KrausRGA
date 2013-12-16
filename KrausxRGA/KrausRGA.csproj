@@ -115,7 +115,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DBLogics\Service.cs" />
-    <Compile Include="DBLogics\cmdAudit.cs" />
+    <Compile Include="DBLogics\cmdRMAAudit.cs" />
     <Compile Include="DBLogics\cmdReasonCategory.cs" />
     <Compile Include="DBLogics\cmdReasons.cs" />
     <Compile Include="DBLogics\cmdReturn.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="DBLogics\cmdSageOperations.cs" />
     <Compile Include="DBLogics\cmdSKUReasons.cs" />
     <Compile Include="DBLogics\cmdUser.cs" />
-    <Compile Include="EntityModel\Audit.cs" />
+    <Compile Include="EntityModel\RMAAudit.cs" />
     <Compile Include="EntityModel\Role.cs" />
     <Compile Include="EntityModel\SKUReason.cs" />
     <Compile Include="EntityModel\ReturnImage.cs" />
@@ -135,7 +135,7 @@
     <Compile Include="EntityModel\Return.cs" />
     <Compile Include="EntityModel\ReturnDetail.cs" />
     <Compile Include="ErrorLogger\ErrorLogger.cs" />
-    <Compile Include="Models\mAudit.cs" />
+    <Compile Include="Models\mRMAAudit.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mUser.cs" />
     <Compile Include="Service References\GetRMAServiceRef\Reference.cs">
@@ -211,13 +211,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.AuditDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonsDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReturnDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.RMAAuditDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.RMAInfoDTO.datasource">
@@ -229,14 +229,14 @@
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service.wsdl" />
-    <None Include="Service References\GetRMAServiceRef\service.xsd">
+    <None Include="Service References\GetRMAServiceRef\service1.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service1.xsd">
+    <None Include="Service References\GetRMAServiceRef\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices32.xsd">
