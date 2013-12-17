@@ -15,7 +15,7 @@ namespace KrausRGA.GetRMAServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping")]
     [System.SerializableAttribute()]
     public partial class UserDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -29,7 +29,7 @@ namespace KrausRGA.GetRMAServiceRef {
         private System.DateTime CreatedDateTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid RoleIdField;
+        private System.Guid RoleIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime UpdatedDateTimeField;
@@ -92,14 +92,14 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid RoleId {
+        public System.Guid RoleID {
             get {
-                return this.RoleIdField;
+                return this.RoleIDField;
             }
             set {
-                if ((this.RoleIdField.Equals(value) != true)) {
-                    this.RoleIdField = value;
-                    this.RaisePropertyChanged("RoleId");
+                if ((this.RoleIDField.Equals(value) != true)) {
+                    this.RoleIDField = value;
+                    this.RaisePropertyChanged("RoleID");
                 }
             }
         }
@@ -1248,7 +1248,7 @@ namespace KrausRGA.GetRMAServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RoleDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping")]
     [System.SerializableAttribute()]
     public partial class RoleDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1259,10 +1259,10 @@ namespace KrausRGA.GetRMAServiceRef {
         private string ActionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.Guid> CreatedByField;
+        private System.Guid CreatedByField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime CreatedDateTimeField;
+        private System.Nullable<System.DateTime> CreatedDateTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -1271,10 +1271,10 @@ namespace KrausRGA.GetRMAServiceRef {
         private System.Guid RoleIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime UpdatedDateTimeField;
+        private System.Nullable<System.DateTime> UpdatedDateTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.Guid> UpdatedbyField;
+        private System.Guid UpdatedbyField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1300,7 +1300,7 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.Guid> CreatedBy {
+        public System.Guid CreatedBy {
             get {
                 return this.CreatedByField;
             }
@@ -1313,7 +1313,7 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime CreatedDateTime {
+        public System.Nullable<System.DateTime> CreatedDateTime {
             get {
                 return this.CreatedDateTimeField;
             }
@@ -1352,7 +1352,7 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime UpdatedDateTime {
+        public System.Nullable<System.DateTime> UpdatedDateTime {
             get {
                 return this.UpdatedDateTimeField;
             }
@@ -1365,7 +1365,7 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.Guid> Updatedby {
+        public System.Guid Updatedby {
             get {
                 return this.UpdatedbyField;
             }

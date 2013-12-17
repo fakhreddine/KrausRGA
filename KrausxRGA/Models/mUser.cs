@@ -20,6 +20,11 @@ namespace KrausRGA.Models
        //User command Objects
       protected cmdUser _cuser = new cmdUser();
 
+       /// <summary>
+       /// Role Command object.
+       /// </summary>
+      protected cmdRoles _cRoles = new cmdRoles();
+
        #endregion
 
       #region class properties
@@ -78,14 +83,21 @@ namespace KrausRGA.Models
                try
                {
                    //Chech that user is valid and its information is persent in the database.
-                   if (UserInfo.UserName != "" || UserInfo.UserName != null)
+                   if (!_cRoles.IsSuperUser(UserInfo.UserID))
                    {
-                       //check that given enum type is persent int the action allowed to do for user.
-                       //if (UserInfo.Role.Action.Contains(IsPermission.ToString()))
-                      // {
+                       if (UserInfo.UserName != "" || UserInfo.UserName != null)
+                       {
+                           //check that given enum type is persent int the action allowed to do for user.
+                           //if (UserInfo.Role.Action.Contains(IsPermission.ToString()))
+                           // {
                            //set rerutn value falg to true if its found.
                            _return = true;
-                       //}
+                           //}
+                       } 
+                   }
+                   else
+                   {
+                       _return = true;
                    }
                }
                catch (Exception ex)

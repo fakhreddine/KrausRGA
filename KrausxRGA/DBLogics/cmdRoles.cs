@@ -73,6 +73,41 @@ namespace KrausRGA.DBLogics
            return role;
        }
 
+       /// <summary>
+       /// Check That user IsAdmin User Or Not.
+       /// </summary>
+       /// <param name="UserID">
+       /// Guid UserID
+       /// </param>
+       /// <returns>
+       /// Boolean True Or Flase;
+       /// </returns>
+       public Boolean IsSuperUser(Guid UserID)
+       {
+           Boolean _return = true;
+
+           try
+           {
+               Guid RoleID = Service.entGet.UserByUserID(UserID).RoleID;
+                   //Service.Users.FirstOrDefault(i => i.UserID == UserID).RoleId;
+
+               String Action = Service.entGet.RoleByRoleID(RoleID).Action.ToString();
+                 //  ent.Roles.FirstOrDefault(i => i.RoleId == RoleID).Action.ToString();
+               string[] isAdmin = Action.Split('&')[0].Split('-');
+               foreach (String Act in isAdmin)
+               {
+                   if (Act.ToUpper() == "FALSE")
+                   {
+                       _return = false;
+                       break;
+                   }
+               }
+           }
+           catch (Exception)
+           { }
+
+           return _return;
+       }
 
         #endregion
 

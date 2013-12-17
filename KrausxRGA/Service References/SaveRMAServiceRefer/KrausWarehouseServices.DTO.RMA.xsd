@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ReasonCategoryDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
@@ -85,22 +85,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SKUReasonsDTO" nillable="true" type="tns:SKUReasonsDTO" />
-  <xs:complexType name="UserDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CreatedBy" type="ser:guid" />
-      <xs:element minOccurs="0" name="CreatedDateTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="RoleId" type="ser:guid" />
-      <xs:element minOccurs="0" name="UpdatedDateTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Updatedby" type="ser:guid" />
-      <xs:element minOccurs="0" name="UserAddress" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UserFullName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UserID" type="ser:guid" />
-      <xs:element minOccurs="0" name="UserJoiningDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UserPassword" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UserDTO" nillable="true" type="tns:UserDTO" />
   <xs:complexType name="RMAAuditDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ActionTime" nillable="true" type="xs:dateTime" />

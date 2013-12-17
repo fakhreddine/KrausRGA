@@ -30,7 +30,7 @@ namespace KrausRGA.EntityModel
        public User(GetRMAServiceRef.UserDTO _userDTO)
        {
            if (_userDTO.UserID != null) this.UserID = _userDTO.UserID;
-           if (_userDTO.RoleId != null) this.RoleId = _userDTO.RoleId;
+           if (_userDTO.RoleID != null) this.RoleId = _userDTO.RoleID;
            if (_userDTO.UserFullName != null) this.UserFullName = _userDTO.UserFullName;
            if (_userDTO.UserName != null) this.UserName = _userDTO.UserName;
            if (_userDTO.UserAddress != null) this.UserAddress = _userDTO.UserAddress;
@@ -45,7 +45,7 @@ namespace KrausRGA.EntityModel
        public User(SaveRMAServiceRefer.UserDTO _userDTO)
        {
            if (_userDTO.UserID != null) this.UserID = _userDTO.UserID;
-           if (_userDTO.RoleId != null) this.RoleId = _userDTO.RoleId;
+           if (_userDTO.RoleID != null) this.RoleId = _userDTO.RoleID;
            if (_userDTO.UserFullName != null) this.UserFullName = _userDTO.UserFullName;
            if (_userDTO.UserName != null) this.UserName = _userDTO.UserName;
            if (_userDTO.UserAddress != null) this.UserAddress = _userDTO.UserAddress;

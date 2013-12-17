@@ -134,7 +134,6 @@ namespace KrausRGA.UI
 
         private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
         {
-            bdrSrNumber.Visibility = System.Windows.Visibility.Hidden;
             bdrScan.Visibility = System.Windows.Visibility.Hidden;
             bdrScan.Visibility = System.Windows.Visibility.Visible;
             txtScan.Focus();
@@ -144,9 +143,10 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
-                this.Dispatcher.Invoke(new Action(() => {
-                    ScannProgressBarStart();
-               }));
+                Application.Current.Dispatcher.BeginInvoke((ThreadStart)delegate()
+             {
+                 ScannProgressBarStart();
+             });
                 if (txtScan.Text.Trim() != "") //if clear text box.
                 {
                     String TempRMANumber = txtScan.Text.ToUpper();
@@ -203,14 +203,17 @@ namespace KrausRGA.UI
 
         private void dsptSacnner_Tick(object sender, EventArgs e)
         {
-            ProcessBarValue = ProcessBarValue + 1;
-            pbrScanner.Value = ProcessBarValue;
-            if (ProcessBarValue >100)
+            Application.Current.Dispatcher.BeginInvoke((ThreadStart)delegate()
             {
-                dsptSacnner.Stop();
-                pbrScanner.Value = 0;
-                ProcessBarValue = 0;
-            }
+                ProcessBarValue = ProcessBarValue + 1;
+                pbrScanner.Value = ProcessBarValue;
+                if (ProcessBarValue > 100)
+                {
+                    dsptSacnner.Stop();
+                    pbrScanner.Value = 0;
+                    ProcessBarValue = 0;
+                }
+            });
         }
 
         #region Error message strip functions.
@@ -253,7 +256,7 @@ namespace KrausRGA.UI
         {
             if (bdrScan.Visibility == Visibility.Visible)
             {
-                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "login Window");
+              //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "login Window");
             }
 
 

@@ -1053,7 +1053,7 @@ namespace KrausRGA.SaveRMAServiceRefer {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping")]
     [System.SerializableAttribute()]
     public partial class UserDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1067,7 +1067,7 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private System.DateTime CreatedDateTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid RoleIdField;
+        private System.Guid RoleIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime UpdatedDateTimeField;
@@ -1130,14 +1130,14 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid RoleId {
+        public System.Guid RoleID {
             get {
-                return this.RoleIdField;
+                return this.RoleIDField;
             }
             set {
-                if ((this.RoleIdField.Equals(value) != true)) {
-                    this.RoleIdField = value;
-                    this.RaisePropertyChanged("RoleId");
+                if ((this.RoleIDField.Equals(value) != true)) {
+                    this.RoleIDField = value;
+                    this.RaisePropertyChanged("RoleID");
                 }
             }
         }

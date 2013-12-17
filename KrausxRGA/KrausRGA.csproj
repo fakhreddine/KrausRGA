@@ -229,20 +229,32 @@
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA1.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service1.wsdl" />
-    <None Include="Service References\GetRMAServiceRef\service2.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.Shipping1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service21.xsd">
+    <None Include="Service References\GetRMAServiceRef\service.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices32.xsd">
+    <None Include="Service References\GetRMAServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\Save1.wsdl" />
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\service.wsdl" />
+    <None Include="Service References\SaveRMAServiceRefer\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SaveRMAServiceRefer\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Camera Folder.png" />
@@ -303,12 +315,6 @@
     <None Include="Service References\SaveRMAServiceRefer\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices31.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\SaveRMAServiceRefer\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -325,9 +331,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices1.disco" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Checked .png" />
