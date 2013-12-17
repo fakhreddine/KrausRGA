@@ -376,7 +376,7 @@
   </wsdl:binding>
   <wsdl:service name="Get">
     <wsdl:port name="BasicHttpBinding_IGet" binding="tns:BasicHttpBinding_IGet">
-      <soap:address location="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/SOA" />
+      <soap:address location="http://192.168.5.212/KrausWarehouseServices.Service.RMA.Get.svc/SOA" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

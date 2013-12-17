@@ -30,7 +30,7 @@ namespace KrausRGA.UI
     /// </summary>
     public partial class wndSrNumberInfo : Window
     {
-     
+
         #region Declarations.
         mUser _mUser = clGlobal.mCurrentUser;
 
@@ -156,7 +156,7 @@ namespace KrausRGA.UI
             ContentControl cnt = (ContentControl)sender;
             DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-            
+
 
             if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
             {
@@ -365,13 +365,13 @@ namespace KrausRGA.UI
         /// <returns>DataGridRow</returns>
         public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
         {
-                var itemsSource = grid.ItemsSource as IEnumerable;
-                if (null == itemsSource) yield return null;
-                foreach (var item in itemsSource)
-                {
-                    var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                    if (null != row) yield return row;
-                }
+            var itemsSource = grid.ItemsSource as IEnumerable;
+            if (null == itemsSource) yield return null;
+            foreach (var item in itemsSource)
+            {
+                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                if (null != row) yield return row;
+            }
         }
 
 
@@ -414,7 +414,7 @@ namespace KrausRGA.UI
             return _ReturnReason;
 
         }
-        
+
         /// <summary>
         /// Find Guid from row.
         /// </summary>
@@ -445,7 +445,7 @@ namespace KrausRGA.UI
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
 
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
             //Check the ReasonCombo Select or not
             if (cmbOtherReason.forcombobox())
             {
@@ -532,7 +532,7 @@ namespace KrausRGA.UI
             bdrMsg.Background = new SolidColorBrush(BgColor);
             txtError.Text = Msg;
         }
-        
+
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -566,7 +566,7 @@ namespace KrausRGA.UI
             catch (Exception)
             { }
         }
-        
+
         private void btnPluse_Click(object sender, RoutedEventArgs e)
         {
             StackPanel Sp = (StackPanel)(sender as Control).Parent;
@@ -616,12 +616,12 @@ namespace KrausRGA.UI
             Button btnGreen = SpButtons.FindName("btnGreen") as Button;
             btnGreen.Visibility = System.Windows.Visibility.Visible;
             btnRed.Visibility = System.Windows.Visibility.Hidden;
-            
+
             DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
             _mReturn.GreenRowsNumber.Add(row.GetIndex());
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
-           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( "+row.GetIndex().ToString()+" )");
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
         }
 
         private void btnGreen_Click(object sender, RoutedEventArgs e)
@@ -631,7 +631,7 @@ namespace KrausRGA.UI
             Button btnRed = SpButtons.FindName("btnRed") as Button;
             btnGreen.Visibility = System.Windows.Visibility.Hidden;
             btnRed.Visibility = System.Windows.Visibility.Visible;
-            
+
             DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
             _mReturn.GreenRowsNumber.Remove(row.GetIndex());
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
@@ -643,7 +643,7 @@ namespace KrausRGA.UI
 
         private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           
+
 
             TextBlock cbk = (TextBlock)e.Source;
             Canvas cs = cbk.Parent as Canvas;
@@ -651,7 +651,7 @@ namespace KrausRGA.UI
             DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
 
             if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
-            { 
+            {
                 cvItemStatus.Visibility = System.Windows.Visibility.Visible;
                 TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
                 txtSKUname.Text = tbSKUName.Text.ToString();
@@ -677,7 +677,7 @@ namespace KrausRGA.UI
                     {
                         ContentPresenter cp = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
                         DataTemplate Dt = cp.ContentTemplate;
-                        TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid",cp);
+                        TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid", cp);
                         TextBlock txtRCount = (TextBlock)Dt.FindName("txtCheckedCount", cp);
                         int countReasons = 0;
                         txtReturnGuid.Text = "";
@@ -690,7 +690,7 @@ namespace KrausRGA.UI
                                 countReasons++;
                             }
                         }
-                        txtRCount.Text = countReasons.ToString()+" Reason.";
+                        txtRCount.Text = countReasons.ToString() + " Reason.";
                     }
                 }
             }
@@ -718,7 +718,7 @@ namespace KrausRGA.UI
                 txtOtherReason.Text = s.Reason1.ToString();
             }
         }
-       
+
         private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
         {
             mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
@@ -807,7 +807,7 @@ namespace KrausRGA.UI
 
         private void txtItemReason_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key==Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 if (txtItemReason.Text != "Please type other Reason")
                 {
@@ -829,7 +829,7 @@ namespace KrausRGA.UI
         {
             dgReasons.ItemsSource = _mReturn.GetReasons(SKUName);
         }
-        
+
         private void tbrgzdetail_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int indext = tbrgzdetail.SelectedIndex;
@@ -841,9 +841,9 @@ namespace KrausRGA.UI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"RMA Details Window");
+            mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "RMA Details Window");
         }
 
-       
+
     }
 }

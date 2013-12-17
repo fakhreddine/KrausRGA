@@ -530,9 +530,7 @@
                                                           Content="Received wrong item."  Margin="1,2,259,28" 
                                                           Checked="cbrWrong_Checked" 
                                                           Unchecked="cbrWrong_Unchecked"/>
-
                                             </Border>
-
                                         </Canvas>
                                     </Border>
 

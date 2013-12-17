@@ -167,7 +167,7 @@
   </wsdl:binding>
   <wsdl:service name="Save">
     <wsdl:port name="BasicHttpBinding_ISave" binding="tns:BasicHttpBinding_ISave">
-      <soap:address location="http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc/SOA" />
+      <soap:address location="http://192.168.5.212/KrausWarehouseServices.Service.RMA.Save.svc/SOA" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
