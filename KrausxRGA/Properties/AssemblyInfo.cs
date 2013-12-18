@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Kraus RGA")]
-[assembly: AssemblyCopyright("Copyright © ")]
+[assembly: AssemblyCopyright("Copyright © Shiva Infotech India Pvt. LTD. ")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

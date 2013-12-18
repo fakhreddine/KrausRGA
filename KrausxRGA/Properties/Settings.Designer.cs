@@ -43,7 +43,7 @@ namespace KrausRGA.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.5.66/KrausWarehouseServices.Service.RMA.Get.svc/SOA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.5.212/KrausWarehouseServices.Service.RMA.Get.svc/SOA")]
         public string GetServicePath {
             get {
                 return ((string)(this["GetServicePath"]));
@@ -52,7 +52,7 @@ namespace KrausRGA.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.5.66/KrausWarehouseServices.Service.RMA.Save.svc/SOA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.5.212/KrausWarehouseServices.Service.RMA.Save.svc/SOA")]
         public string SetServicePath {
             get {
                 return ((string)(this["SetServicePath"]));
