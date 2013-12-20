@@ -34,6 +34,8 @@ namespace KrausRGA.EntityModel
         public Guid? UpdatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public int ROWID { get; set; }
+        public String RGAROWID { get; set; }
 
         public Return()
         { }
