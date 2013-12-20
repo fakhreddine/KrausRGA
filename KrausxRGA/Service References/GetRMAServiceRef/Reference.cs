@@ -270,6 +270,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private string PONumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RGAROWIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string RMANumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -498,6 +501,19 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RGAROWID {
+            get {
+                return this.RGAROWIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RGAROWIDField, value) != true)) {
+                    this.RGAROWIDField = value;
+                    this.RaisePropertyChanged("RGAROWID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string RMANumber {
             get {
                 return this.RMANumberField;
@@ -649,6 +665,259 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((object.ReferenceEquals(this.ZipCodeField, value) != true)) {
                     this.ZipCodeField = value;
                     this.RaisePropertyChanged("ZipCode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReturnDetailsDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.SerializableAttribute()]
+    public partial class ReturnDetailsDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid CreatedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DeliveredQtyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ExpectedQtyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RGADROWIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReturnDetailIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReturnIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ReturnQtyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SKUNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TCLCOD_0Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime UpadatedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid UpdatedByField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid CreatedBy {
+            get {
+                return this.CreatedByField;
+            }
+            set {
+                if ((this.CreatedByField.Equals(value) != true)) {
+                    this.CreatedByField = value;
+                    this.RaisePropertyChanged("CreatedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreatedDate {
+            get {
+                return this.CreatedDateField;
+            }
+            set {
+                if ((this.CreatedDateField.Equals(value) != true)) {
+                    this.CreatedDateField = value;
+                    this.RaisePropertyChanged("CreatedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DeliveredQty {
+            get {
+                return this.DeliveredQtyField;
+            }
+            set {
+                if ((this.DeliveredQtyField.Equals(value) != true)) {
+                    this.DeliveredQtyField = value;
+                    this.RaisePropertyChanged("DeliveredQty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ExpectedQty {
+            get {
+                return this.ExpectedQtyField;
+            }
+            set {
+                if ((this.ExpectedQtyField.Equals(value) != true)) {
+                    this.ExpectedQtyField = value;
+                    this.RaisePropertyChanged("ExpectedQty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductName {
+            get {
+                return this.ProductNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductNameField, value) != true)) {
+                    this.ProductNameField = value;
+                    this.RaisePropertyChanged("ProductName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductStatus {
+            get {
+                return this.ProductStatusField;
+            }
+            set {
+                if ((this.ProductStatusField.Equals(value) != true)) {
+                    this.ProductStatusField = value;
+                    this.RaisePropertyChanged("ProductStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RGADROWID {
+            get {
+                return this.RGADROWIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RGADROWIDField, value) != true)) {
+                    this.RGADROWIDField = value;
+                    this.RaisePropertyChanged("RGADROWID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReturnDetailID {
+            get {
+                return this.ReturnDetailIDField;
+            }
+            set {
+                if ((this.ReturnDetailIDField.Equals(value) != true)) {
+                    this.ReturnDetailIDField = value;
+                    this.RaisePropertyChanged("ReturnDetailID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReturnID {
+            get {
+                return this.ReturnIDField;
+            }
+            set {
+                if ((this.ReturnIDField.Equals(value) != true)) {
+                    this.ReturnIDField = value;
+                    this.RaisePropertyChanged("ReturnID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ReturnQty {
+            get {
+                return this.ReturnQtyField;
+            }
+            set {
+                if ((this.ReturnQtyField.Equals(value) != true)) {
+                    this.ReturnQtyField = value;
+                    this.RaisePropertyChanged("ReturnQty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SKUNumber {
+            get {
+                return this.SKUNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SKUNumberField, value) != true)) {
+                    this.SKUNumberField = value;
+                    this.RaisePropertyChanged("SKUNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TCLCOD_0 {
+            get {
+                return this.TCLCOD_0Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TCLCOD_0Field, value) != true)) {
+                    this.TCLCOD_0Field = value;
+                    this.RaisePropertyChanged("TCLCOD_0");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime UpadatedDate {
+            get {
+                return this.UpadatedDateField;
+            }
+            set {
+                if ((this.UpadatedDateField.Equals(value) != true)) {
+                    this.UpadatedDateField = value;
+                    this.RaisePropertyChanged("UpadatedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid UpdatedBy {
+            get {
+                return this.UpdatedByField;
+            }
+            set {
+                if ((this.UpdatedByField.Equals(value) != true)) {
+                    this.UpdatedByField = value;
+                    this.RaisePropertyChanged("UpdatedBy");
                 }
             }
         }
@@ -1421,11 +1690,47 @@ namespace KrausRGA.GetRMAServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByRMANumber", ReplyAction="http://tempuri.org/IGet/ReturnByRMANumberResponse")]
         KrausRGA.GetRMAServiceRef.ReturnDTO ReturnByRMANumber(string RMANumber);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByOrderNum", ReplyAction="http://tempuri.org/IGet/ReturnByOrderNumResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByOrderNum(string OrderNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByVendoeNum", ReplyAction="http://tempuri.org/IGet/ReturnByVendoeNumResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByVendoeNum(string VendorNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByVendorName", ReplyAction="http://tempuri.org/IGet/ReturnByVendorNameResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByVendorName(string VendorName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByShipmentNumber", ReplyAction="http://tempuri.org/IGet/ReturnByShipmentNumberResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByShipmentNumber(string ShipmentNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByPONumber", ReplyAction="http://tempuri.org/IGet/ReturnByPONumberResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByPONumber(string PONumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByRGAROWID", ReplyAction="http://tempuri.org/IGet/ReturnByRGAROWIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByRGAROWID(string RGAROWID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByRGADROWID", ReplyAction="http://tempuri.org/IGet/ReturnByRGADROWIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByRGADROWID(string RGADROWID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByretrnID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByretrnIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByretrnID(System.Guid RetunID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByRetundetailID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByRetundetailIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRetundetailID(System.Guid RetundetailID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByRGADROWID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByRGADROWIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGADROWID(string RGADROWID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByRGAROWID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByRGAROWIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGAROWID(string RGAROWID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReasonsAll", ReplyAction="http://tempuri.org/IGet/ReasonsAllResponse")]
         KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonsAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReasonByCategoryName", ReplyAction="http://tempuri.org/IGet/ReasonByCategoryNameResponse")]
         KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonByCategoryName(string CategoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ListOfReasons", ReplyAction="http://tempuri.org/IGet/ListOfReasonsResponse")]
+        string ListOfReasons(System.Guid ReturnDetail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/AuditAll", ReplyAction="http://tempuri.org/IGet/AuditAllResponse")]
         KrausRGA.GetRMAServiceRef.RMAAuditDTO[] AuditAll();
@@ -1516,12 +1821,60 @@ namespace KrausRGA.GetRMAServiceRef {
             return base.Channel.ReturnByRMANumber(RMANumber);
         }
         
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByOrderNum(string OrderNum) {
+            return base.Channel.ReturnByOrderNum(OrderNum);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByVendoeNum(string VendorNumber) {
+            return base.Channel.ReturnByVendoeNum(VendorNumber);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByVendorName(string VendorName) {
+            return base.Channel.ReturnByVendorName(VendorName);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByShipmentNumber(string ShipmentNumber) {
+            return base.Channel.ReturnByShipmentNumber(ShipmentNumber);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByPONumber(string PONumber) {
+            return base.Channel.ReturnByPONumber(PONumber);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByRGAROWID(string RGAROWID) {
+            return base.Channel.ReturnByRGAROWID(RGAROWID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByRGADROWID(string RGADROWID) {
+            return base.Channel.ReturnByRGADROWID(RGADROWID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByretrnID(System.Guid RetunID) {
+            return base.Channel.GetreturnDetailByretrnID(RetunID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRetundetailID(System.Guid RetundetailID) {
+            return base.Channel.GetreturnDetailByRetundetailID(RetundetailID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGADROWID(string RGADROWID) {
+            return base.Channel.GetreturnDetailByRGADROWID(RGADROWID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGAROWID(string RGAROWID) {
+            return base.Channel.GetreturnDetailByRGAROWID(RGAROWID);
+        }
+        
         public KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonsAll() {
             return base.Channel.ReasonsAll();
         }
         
         public KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonByCategoryName(string CategoryName) {
             return base.Channel.ReasonByCategoryName(CategoryName);
+        }
+        
+        public string ListOfReasons(System.Guid ReturnDetail) {
+            return base.Channel.ListOfReasons(ReturnDetail);
         }
         
         public KrausRGA.GetRMAServiceRef.RMAAuditDTO[] AuditAll() {

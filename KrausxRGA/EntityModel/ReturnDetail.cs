@@ -21,8 +21,7 @@ namespace KrausRGA.EntityModel
         public Guid UpdatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpadatedDate { get; set; }
-        public int ROWID { get; set; }
-        public String RGAROWID { get; set; }
+        public String RGADROWID { get; set; }
 
         public ReturnDetail(SaveRMAServiceRefer.ReturnDetailsDTO _ReturnDetails)
         {
@@ -39,6 +38,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.UpdatedBy != Guid.Empty) this.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
             if (_ReturnDetails.CreatedDate != null) this.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
             if (_ReturnDetails.UpadatedDate != null) this.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
+            this.RGADROWID = _ReturnDetails.RGADROWID;
         }
 
         public SaveRMAServiceRefer.ReturnDetailsDTO ConvertToSaveDTO(ReturnDetail _ReturnDetails)
@@ -58,6 +58,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.UpdatedBy != Guid.Empty) _return.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
             if (_ReturnDetails.CreatedDate != null) _return.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
             if (_ReturnDetails.UpadatedDate != null) _return.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
+            _return.RGADROWID = _ReturnDetails.RGADROWID;
             return _return;
 
         }

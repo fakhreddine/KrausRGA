@@ -2,10 +2,10 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Get" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import namespace="http://tempuri.org/" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
+      <xsd:import schemaLocation="" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
+      <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IGet_XMLUserGet_InputMessage">
@@ -68,6 +68,72 @@
   <wsdl:message name="IGet_ReturnByRMANumber_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReturnByRMANumberResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_ReturnByOrderNum_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByOrderNum" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByOrderNum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByOrderNumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByVendoeNum_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByVendoeNum" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByVendoeNum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByVendoeNumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByVendorName_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByVendorName" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByVendorName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByVendorNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByShipmentNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByShipmentNumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByShipmentNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByShipmentNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByPONumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByPONumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByPONumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByPONumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByRGAROWID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByRGAROWID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByRGAROWID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByRGAROWIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByRGADROWID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByRGADROWID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReturnByRGADROWID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByRGADROWIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByretrnID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByretrnID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByretrnID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByretrnIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByRetundetailID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByRetundetailID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByRetundetailID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByRetundetailIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByRGADROWID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByRGADROWID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByRGADROWID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByRGADROWIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByRGAROWID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByRGAROWID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetreturnDetailByRGAROWID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetreturnDetailByRGAROWIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_ReasonsAll_InputMessage">
     <wsdl:part name="parameters" element="tns:ReasonsAll" />
   </wsdl:message>
@@ -79,6 +145,12 @@
   </wsdl:message>
   <wsdl:message name="IGet_ReasonByCategoryName_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReasonByCategoryNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ListOfReasons_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfReasons" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ListOfReasons_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfReasonsResponse" />
   </wsdl:message>
   <wsdl:message name="IGet_AuditAll_InputMessage">
     <wsdl:part name="parameters" element="tns:AuditAll" />
@@ -163,6 +235,50 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByRMANumber" message="tns:IGet_ReturnByRMANumber_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByRMANumberResponse" message="tns:IGet_ReturnByRMANumber_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ReturnByOrderNum">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByOrderNum" message="tns:IGet_ReturnByOrderNum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByOrderNumResponse" message="tns:IGet_ReturnByOrderNum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByVendoeNum">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByVendoeNum" message="tns:IGet_ReturnByVendoeNum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByVendoeNumResponse" message="tns:IGet_ReturnByVendoeNum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByVendorName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByVendorName" message="tns:IGet_ReturnByVendorName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByVendorNameResponse" message="tns:IGet_ReturnByVendorName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByShipmentNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByShipmentNumber" message="tns:IGet_ReturnByShipmentNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByShipmentNumberResponse" message="tns:IGet_ReturnByShipmentNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByPONumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByPONumber" message="tns:IGet_ReturnByPONumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByPONumberResponse" message="tns:IGet_ReturnByPONumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByRGAROWID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByRGAROWID" message="tns:IGet_ReturnByRGAROWID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByRGAROWIDResponse" message="tns:IGet_ReturnByRGAROWID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByRGADROWID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByRGADROWID" message="tns:IGet_ReturnByRGADROWID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByRGADROWIDResponse" message="tns:IGet_ReturnByRGADROWID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByretrnID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByretrnID" message="tns:IGet_GetreturnDetailByretrnID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByretrnIDResponse" message="tns:IGet_GetreturnDetailByretrnID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByRetundetailID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByRetundetailID" message="tns:IGet_GetreturnDetailByRetundetailID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByRetundetailIDResponse" message="tns:IGet_GetreturnDetailByRetundetailID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByRGADROWID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByRGADROWID" message="tns:IGet_GetreturnDetailByRGADROWID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByRGADROWIDResponse" message="tns:IGet_GetreturnDetailByRGADROWID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByRGAROWID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByRGAROWID" message="tns:IGet_GetreturnDetailByRGAROWID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetreturnDetailByRGAROWIDResponse" message="tns:IGet_GetreturnDetailByRGAROWID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ReasonsAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReasonsAll" message="tns:IGet_ReasonsAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReasonsAllResponse" message="tns:IGet_ReasonsAll_OutputMessage" />
@@ -170,6 +286,10 @@
     <wsdl:operation name="ReasonByCategoryName">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReasonByCategoryName" message="tns:IGet_ReasonByCategoryName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReasonByCategoryNameResponse" message="tns:IGet_ReasonByCategoryName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfReasons">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ListOfReasons" message="tns:IGet_ListOfReasons_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ListOfReasonsResponse" message="tns:IGet_ListOfReasons_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AuditAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/AuditAll" message="tns:IGet_AuditAll_InputMessage" />
@@ -292,6 +412,105 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ReturnByOrderNum">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReturnByOrderNum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByVendoeNum">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReturnByVendoeNum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByVendorName">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReturnByVendorName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByShipmentNumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReturnByShipmentNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByPONumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReturnByPONumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByRGAROWID">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReturnByRGAROWID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByRGADROWID">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReturnByRGADROWID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByretrnID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetreturnDetailByretrnID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByRetundetailID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetreturnDetailByRetundetailID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByRGADROWID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetreturnDetailByRGADROWID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetreturnDetailByRGAROWID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetreturnDetailByRGAROWID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ReasonsAll">
       <soap:operation soapAction="http://tempuri.org/IGet/ReasonsAll" style="document" />
       <wsdl:input>
@@ -303,6 +522,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReasonByCategoryName">
       <soap:operation soapAction="http://tempuri.org/IGet/ReasonByCategoryName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfReasons">
+      <soap:operation soapAction="http://tempuri.org/IGet/ListOfReasons" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

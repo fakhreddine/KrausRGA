@@ -34,7 +34,6 @@ namespace KrausRGA.EntityModel
         public Guid? UpdatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public int ROWID { get; set; }
         public String RGAROWID { get; set; }
 
         public Return()
@@ -68,6 +67,8 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.UpdatedBy != null) this.UpdatedBy = _ReturnDTO.UpdatedBy;
             if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;
             if (_ReturnDTO.UpdatedDate != null) this.UpdatedDate = (DateTime)_ReturnDTO.UpdatedDate;
+            this.RGAROWID = _ReturnDTO.RGAROWID;
+
         }
 
         public Return(GetRMAServiceRef.ReturnDTO _ReturnDTO)
@@ -98,6 +99,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.UpdatedBy != null) this.UpdatedBy = _ReturnDTO.UpdatedBy;
             if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;
             if (_ReturnDTO.UpdatedDate != null) this.UpdatedDate = (DateTime)_ReturnDTO.UpdatedDate;
+            this.RGAROWID = _ReturnDTO.RGAROWID;
         }
 
         public SaveRMAServiceRefer.ReturnDTO CopyToSaveDTO(Return _ReturnTbl)
@@ -129,6 +131,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.UpdatedBy != null) _return.UpdatedBy = _ReturnTbl.UpdatedBy;
             if (_ReturnTbl.CreatedDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatedDate;
             if (_ReturnTbl.UpdatedDate != null) _return.UpdatedDate = (DateTime)_ReturnTbl.UpdatedDate;
+            _return.RGAROWID = _ReturnTbl.RGAROWID;
             return _return;
         }
 
@@ -161,6 +164,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.UpdatedBy != null) _return.UpdatedBy = _ReturnTbl.UpdatedBy;
             if (_ReturnTbl.CreatedDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatedDate;
             if (_ReturnTbl.UpdatedDate != null) _return.UpdatedDate = (DateTime)_ReturnTbl.UpdatedDate;
+            _return.RGAROWID = _ReturnTbl.RGAROWID;
             return _return;
         }
    }

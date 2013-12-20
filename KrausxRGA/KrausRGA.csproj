@@ -213,6 +213,9 @@
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonsDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReturnDetailsDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReturnDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -241,17 +244,17 @@
     <None Include="Service References\GetRMAServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service.wsdl" />
-    <None Include="Service References\SaveRMAServiceRefer\service.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service1.wsdl" />
+    <None Include="Service References\SaveRMAServiceRefer\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service1.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

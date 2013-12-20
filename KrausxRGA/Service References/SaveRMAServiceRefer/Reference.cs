@@ -203,6 +203,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private string PONumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RGAROWIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string RMANumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -431,6 +434,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RGAROWID {
+            get {
+                return this.RGAROWIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RGAROWIDField, value) != true)) {
+                    this.RGAROWIDField = value;
+                    this.RaisePropertyChanged("RGAROWID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string RMANumber {
             get {
                 return this.RMANumberField;
@@ -624,6 +640,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private int ProductStatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RGADROWIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Guid ReturnDetailIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -728,6 +747,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((this.ProductStatusField.Equals(value) != true)) {
                     this.ProductStatusField = value;
                     this.RaisePropertyChanged("ProductStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RGADROWID {
+            get {
+                return this.RGADROWIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RGADROWIDField, value) != true)) {
+                    this.RGADROWIDField = value;
+                    this.RaisePropertyChanged("RGADROWID");
                 }
             }
         }

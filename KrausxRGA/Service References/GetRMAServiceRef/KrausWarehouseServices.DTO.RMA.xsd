@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ArrayOfReturnDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnDTO" nillable="true" type="tns:ReturnDTO" />
@@ -23,6 +23,7 @@
       <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PONumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RGAROWID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RMANumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RMAStatus" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="ReturnDate" type="xs:dateTime" />
@@ -38,6 +39,31 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReturnDTO" nillable="true" type="tns:ReturnDTO" />
+  <xs:complexType name="ArrayOfReturnDetailsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnDetailsDTO" nillable="true" type="tns:ReturnDetailsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReturnDetailsDTO" nillable="true" type="tns:ArrayOfReturnDetailsDTO" />
+  <xs:complexType name="ReturnDetailsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeliveredQty" type="xs:int" />
+      <xs:element minOccurs="0" name="ExpectedQty" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="RGADROWID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReturnDetailID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnQty" type="xs:int" />
+      <xs:element minOccurs="0" name="SKUNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TCLCOD_0" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpadatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdatedBy" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReturnDetailsDTO" nillable="true" type="tns:ReturnDetailsDTO" />
   <xs:complexType name="ArrayOfReasonsDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ReasonsDTO" nillable="true" type="tns:ReasonsDTO" />
