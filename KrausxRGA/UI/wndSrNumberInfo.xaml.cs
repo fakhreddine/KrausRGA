@@ -32,6 +32,9 @@ namespace KrausRGA.UI
     {
 
         #region Declarations.
+
+        string imgPath = KrausRGA.Properties.Settings.Default.DrivePath;
+
         mUser _mUser = clGlobal.mCurrentUser;
 
         mReturnDetails _mReturn = clGlobal.mReturn;
@@ -77,7 +80,7 @@ namespace KrausRGA.UI
             }
 
             // Create directory for saving image files.
-            string imgPath = KrausRGA.Properties.Settings.Default.DrivePath;
+           
 
             if (Directory.Exists(imgPath) == false)
             {
@@ -224,13 +227,13 @@ namespace KrausRGA.UI
                 // Take snapshot of webcam image.
                 WebCamCtrl.TakeSnapshot();
 
-                var DirInfo = new DirectoryInfo(@"C:\SKUReturned");
+                var DirInfo = new DirectoryInfo(imgPath);
                 String ImageName = (from f in DirInfo.GetFiles()
                                     orderby f.LastWriteTime descending
                                     select f).First().Name.ToString();
                 String ReNamed = DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
-                File.Move(@"C:\SKUReturned\" + ImageName, @"C:\SKUReturned\" + "KRAUSGRA" + ReNamed + ".jpeg");
-                BitmapSource bs = new BitmapImage(new Uri(@"C:\SKUReturned\" + "KRAUSGRA" + ReNamed + ".jpeg"));
+                File.Move(imgPath + ImageName, imgPath + "KRAUSGRA" + ReNamed + ".jpeg");
+                BitmapSource bs = new BitmapImage(new Uri(imgPath + "KRAUSGRA" + ReNamed + ".jpeg"));
 
                 Image img = new Image();
                 //Zoom image.
@@ -506,7 +509,7 @@ namespace KrausRGA.UI
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
                     {
-                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpeg";
+                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + imageCaptured.Name.ToString() + ".jpeg";
 
                         //Set Images table from model.
                         Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
