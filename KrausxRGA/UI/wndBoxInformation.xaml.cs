@@ -34,6 +34,7 @@ namespace KrausRGA.UI
         public wndBoxInformation()
         {
             InitializeComponent();
+            
 
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
@@ -45,7 +46,7 @@ namespace KrausRGA.UI
             //mAudit.logthis(eActionType.Login_PageStart.ToString(),"ApplicationStatred", DateTime.UtcNow.ToString());
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
-
+            
             //If User is alrady logged then hide the login screen.
             if (clGlobal.IsUserlogged)
             {
@@ -54,6 +55,20 @@ namespace KrausRGA.UI
                 _mUser = clGlobal.mCurrentUser;
                 btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
             }
+            #region Start application within another application.
+            //else if (StartupParametrs.UserName.ToString() != "")
+            //{
+            //    txtLogin.Text = StartupParametrs.UserName.ToString();
+            //    hideButtons(System.Windows.Visibility.Visible);
+            //    StartupParametrs.UserName = "";
+            //    _mUser = new mUser();
+            //    InputManager.Current.ProcessInput(new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, Key.Enter)
+            //    {
+            //        RoutedEvent = Keyboard.KeyDownEvent
+            //    });
+
+            //} 
+            #endregion
             else
             {
                 //If no user is logged in then assign new user to the model

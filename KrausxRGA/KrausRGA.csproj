@@ -161,6 +161,7 @@
     <Compile Include="Views\ImageK.cs" />
     <Compile Include="Views\eNumberType.cs" />
     <Compile Include="Views\RMAInfo.cs" />
+    <Compile Include="Views\StartupParametrs.cs" />
     <Compile Include="Views\Validation.cs" />
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
