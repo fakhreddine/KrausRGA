@@ -1656,6 +1656,147 @@ namespace KrausRGA.GetRMAServiceRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReturnImagesDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.SerializableAttribute()]
+    public partial class ReturnImagesDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid CreatedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime CreatedDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReturnDetailIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReturnImageIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SKUImagePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid UpadatedByField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime UpadatedDateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid CreatedBy {
+            get {
+                return this.CreatedByField;
+            }
+            set {
+                if ((this.CreatedByField.Equals(value) != true)) {
+                    this.CreatedByField = value;
+                    this.RaisePropertyChanged("CreatedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreatedDate {
+            get {
+                return this.CreatedDateField;
+            }
+            set {
+                if ((this.CreatedDateField.Equals(value) != true)) {
+                    this.CreatedDateField = value;
+                    this.RaisePropertyChanged("CreatedDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReturnDetailID {
+            get {
+                return this.ReturnDetailIDField;
+            }
+            set {
+                if ((this.ReturnDetailIDField.Equals(value) != true)) {
+                    this.ReturnDetailIDField = value;
+                    this.RaisePropertyChanged("ReturnDetailID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReturnImageID {
+            get {
+                return this.ReturnImageIDField;
+            }
+            set {
+                if ((this.ReturnImageIDField.Equals(value) != true)) {
+                    this.ReturnImageIDField = value;
+                    this.RaisePropertyChanged("ReturnImageID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SKUImagePath {
+            get {
+                return this.SKUImagePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SKUImagePathField, value) != true)) {
+                    this.SKUImagePathField = value;
+                    this.RaisePropertyChanged("SKUImagePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid UpadatedBy {
+            get {
+                return this.UpadatedByField;
+            }
+            set {
+                if ((this.UpadatedByField.Equals(value) != true)) {
+                    this.UpadatedByField = value;
+                    this.RaisePropertyChanged("UpadatedBy");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime UpadatedDate {
+            get {
+                return this.UpadatedDateField;
+            }
+            set {
+                if ((this.UpadatedDateField.Equals(value) != true)) {
+                    this.UpadatedDateField = value;
+                    this.RaisePropertyChanged("UpadatedDate");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GetRMAServiceRef.IGet")]
     public interface IGet {
@@ -1711,17 +1852,23 @@ namespace KrausRGA.GetRMAServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByRGADROWID", ReplyAction="http://tempuri.org/IGet/ReturnByRGADROWIDResponse")]
         KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByRGADROWID(string RGADROWID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByretrnID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByretrnIDResponse")]
-        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByretrnID(System.Guid RetunID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnByFromDateToDate", ReplyAction="http://tempuri.org/IGet/ReturnByFromDateToDateResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByFromDateToDate(System.DateTime FromDate, System.DateTime ToDate);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByRetundetailID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByRetundetailIDResponse")]
-        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRetundetailID(System.Guid RetundetailID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnDetailAll", ReplyAction="http://tempuri.org/IGet/ReturnDetailAllResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailAll();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByRGADROWID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByRGADROWIDResponse")]
-        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGADROWID(string RGADROWID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnDetailByretrnID", ReplyAction="http://tempuri.org/IGet/ReturnDetailByretrnIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByretrnID(System.Guid RetunID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetreturnDetailByRGAROWID", ReplyAction="http://tempuri.org/IGet/GetreturnDetailByRGAROWIDResponse")]
-        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGAROWID(string RGAROWID);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnDetailByRetundetailID", ReplyAction="http://tempuri.org/IGet/ReturnDetailByRetundetailIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByRetundetailID(System.Guid RetundetailID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnDetailByRGADROWID", ReplyAction="http://tempuri.org/IGet/ReturnDetailByRGADROWIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByRGADROWID(string RGADROWID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReturnDetailByRGAROWID", ReplyAction="http://tempuri.org/IGet/ReturnDetailByRGAROWIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByRGAROWID(string RGAROWID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ReasonsAll", ReplyAction="http://tempuri.org/IGet/ReasonsAllResponse")]
         KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonsAll();
@@ -1752,6 +1899,15 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/RoleByRoleID", ReplyAction="http://tempuri.org/IGet/RoleByRoleIDResponse")]
         KrausRGA.GetRMAServiceRef.RoleDTO RoleByRoleID(System.Guid RoleID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ImagePathTable", ReplyAction="http://tempuri.org/IGet/ImagePathTableResponse")]
+        KrausRGA.GetRMAServiceRef.ReturnImagesDTO[] ImagePathTable(System.Guid ReturnDetailID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ImagePathStringList", ReplyAction="http://tempuri.org/IGet/ImagePathStringListResponse")]
+        string[] ImagePathStringList(System.Guid ReturnDetailID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetRMALatestVersionNumber", ReplyAction="http://tempuri.org/IGet/GetRMALatestVersionNumberResponse")]
+        string GetRMALatestVersionNumber();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1849,20 +2005,28 @@ namespace KrausRGA.GetRMAServiceRef {
             return base.Channel.ReturnByRGADROWID(RGADROWID);
         }
         
-        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByretrnID(System.Guid RetunID) {
-            return base.Channel.GetreturnDetailByretrnID(RetunID);
+        public KrausRGA.GetRMAServiceRef.ReturnDTO[] ReturnByFromDateToDate(System.DateTime FromDate, System.DateTime ToDate) {
+            return base.Channel.ReturnByFromDateToDate(FromDate, ToDate);
         }
         
-        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRetundetailID(System.Guid RetundetailID) {
-            return base.Channel.GetreturnDetailByRetundetailID(RetundetailID);
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailAll() {
+            return base.Channel.ReturnDetailAll();
         }
         
-        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGADROWID(string RGADROWID) {
-            return base.Channel.GetreturnDetailByRGADROWID(RGADROWID);
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByretrnID(System.Guid RetunID) {
+            return base.Channel.ReturnDetailByretrnID(RetunID);
         }
         
-        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] GetreturnDetailByRGAROWID(string RGAROWID) {
-            return base.Channel.GetreturnDetailByRGAROWID(RGAROWID);
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByRetundetailID(System.Guid RetundetailID) {
+            return base.Channel.ReturnDetailByRetundetailID(RetundetailID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByRGADROWID(string RGADROWID) {
+            return base.Channel.ReturnDetailByRGADROWID(RGADROWID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnDetailsDTO[] ReturnDetailByRGAROWID(string RGAROWID) {
+            return base.Channel.ReturnDetailByRGAROWID(RGAROWID);
         }
         
         public KrausRGA.GetRMAServiceRef.ReasonsDTO[] ReasonsAll() {
@@ -1903,6 +2067,18 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public KrausRGA.GetRMAServiceRef.RoleDTO RoleByRoleID(System.Guid RoleID) {
             return base.Channel.RoleByRoleID(RoleID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReturnImagesDTO[] ImagePathTable(System.Guid ReturnDetailID) {
+            return base.Channel.ImagePathTable(ReturnDetailID);
+        }
+        
+        public string[] ImagePathStringList(System.Guid ReturnDetailID) {
+            return base.Channel.ImagePathStringList(ReturnDetailID);
+        }
+        
+        public string GetRMALatestVersionNumber() {
+            return base.Channel.GetRMALatestVersionNumber();
         }
     }
 }

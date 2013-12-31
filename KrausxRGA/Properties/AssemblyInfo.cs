@@ -10,10 +10,10 @@ using System.Windows;
 [assembly: AssemblyTitle("Kraus RGA")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Shiva Infotech India PVT LTD")]
 [assembly: AssemblyProduct("Kraus RGA")]
 [assembly: AssemblyCopyright("Copyright © Shiva Infotech India Pvt. LTD. ")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("A")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.9")]
-[assembly: AssemblyFileVersion("1.0.0.9")]
+[assembly: AssemblyVersion("1.0.0.41")]
+[assembly: AssemblyFileVersion("1.0.0.41")]

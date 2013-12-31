@@ -34,15 +34,6 @@ namespace KrausRGA.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\SKUReturned")]
-        public string DrivePath {
-            get {
-                return ((string)(this["DrivePath"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.5.212/KrausWarehouseServices.Service.RMA.Get.svc/SOA")]
         public string GetServicePath {
             get {
@@ -56,6 +47,15 @@ namespace KrausRGA.Properties {
         public string SetServicePath {
             get {
                 return ((string)(this["SetServicePath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\Shiva5-PC\\Shipping\\images\\")]
+        public string DrivePath {
+            get {
+                return ((string)(this["DrivePath"]));
             }
         }
     }

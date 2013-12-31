@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ArrayOfReturnDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnDTO" nillable="true" type="tns:ReturnDTO" />
@@ -128,4 +128,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RMAInfoDTO" nillable="true" type="tns:RMAInfoDTO" />
+  <xs:complexType name="ArrayOfReturnImagesDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnImagesDTO" nillable="true" type="tns:ReturnImagesDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReturnImagesDTO" nillable="true" type="tns:ArrayOfReturnImagesDTO" />
+  <xs:complexType name="ReturnImagesDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReturnDetailID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnImageID" type="ser:guid" />
+      <xs:element minOccurs="0" name="SKUImagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpadatedBy" type="ser:guid" />
+      <xs:element minOccurs="0" name="UpadatedDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReturnImagesDTO" nillable="true" type="tns:ReturnImagesDTO" />
 </xs:schema>
