@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace KrausRGA.VersionCheck
+namespace RGA.VersionCheck
 {
     public static class GetFileNames
     {
@@ -101,7 +101,10 @@ namespace KrausRGA.VersionCheck
                 myWebClient.DownloadFile(myStringWebResource, fileName);
                 try
                 {
-                    File.Move(Environment.CurrentDirectory + "\\" + fileName, CopyToLocation + fileName);
+                    
+                  
+                        File.Move(Environment.CurrentDirectory + "\\" + fileName, CopyToLocation + fileName);
+
                     Console.WriteLine(DateTime.Now.ToString("hh:mm:ss tt ") + " Downloading File : " + fileName);
 
                 }
