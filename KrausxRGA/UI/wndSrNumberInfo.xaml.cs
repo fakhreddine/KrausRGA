@@ -849,9 +849,11 @@ namespace KrausRGA.UI
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
         {
-            wndBoxInformation boxlogin = new wndBoxInformation();
-            boxlogin.ShowDialog();
-            this.Close();
+            //wndBoxInformation boxlogin = new wndBoxInformation();
+            //boxlogin.ShowDialog();
+            //this.Close();
+            System.Windows.Forms.Application.Restart();
+            //Application.Current.Shutdown();
         }
 
 

@@ -5,6 +5,7 @@
         Name="wndLogin" Loaded="wndLogin_Loaded" WindowState="Maximized" Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="wndLogin_Closing">
     <Viewbox >
         <Grid>
+           
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="-1,0,1,0" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" >
                     <Canvas.Background>
@@ -40,6 +41,10 @@
                             <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="325" Width="305" Background="#FF3E3F42">
                                 <Button x:Name="btnBoxNumber" Style="{StaticResource win8btn}" Content="Scan" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
                             </Border>
+                            <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" BorderThickness="1" Height="80" Canvas.Left="15" Canvas.Top="432" Width="305" Background="#FF3E3F42">
+                                <Button x:Name="btnlogout" Style="{StaticResource win8btn}" Content="Log Out" Margin="-1,-1,-1,1" Click="btnlogout_Click"/>
+                            </Border>
+                            
                             <TextBlock TextWrapping="Wrap" Text="SR # of Return" FontWeight="Bold" TextAlignment="Center" Canvas.Top="167" FontSize="35" Width="337" Foreground="White" Canvas.Left="-7"/>
                         </Canvas>
                     </Border>
