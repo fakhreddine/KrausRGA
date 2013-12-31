@@ -847,6 +847,13 @@ namespace KrausRGA.UI
             mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "RMA Details Window");
         }
 
+        private void btnlogout_Click(object sender, RoutedEventArgs e)
+        {
+            wndBoxInformation boxlogin = new wndBoxInformation();
+            boxlogin.ShowDialog();
+            this.Close();
+        }
+
 
     }
 }

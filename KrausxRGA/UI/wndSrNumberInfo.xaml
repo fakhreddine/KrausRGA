@@ -26,6 +26,9 @@
                                 <DropShadowEffect Color="#FF363636" BlurRadius="15"/>
                             </TextBlock.Effect>
                         </TextBlock>
+                        <Border Canvas.Left="1222" Canvas.Top="106" >
+                            <Button Name="btnlogout"  Content="Log Out" Style="{StaticResource win8btn}" Canvas.Left="1227" Canvas.Top="103" Width="167" Height="45" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" Click="btnlogout_Click"/>
+                        </Border>
                     </Canvas>
                     <Canvas Name="cvMainArea" Height="677" Canvas.Top="100" Width="1400">
                         <TabControl Height="677" Name="tbrgzdetail" Width="1400" BorderBrush="#FF405EB8" Canvas.Top="2" SelectionChanged="tbrgzdetail_SelectionChanged" Background="#7FD6D6D6">
