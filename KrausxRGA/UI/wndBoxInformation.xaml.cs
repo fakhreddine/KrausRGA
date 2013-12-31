@@ -282,6 +282,13 @@ namespace KrausRGA.UI
             }
         }
 
+        private void btnlogout_Click(object sender, RoutedEventArgs e)
+        {
+            //hideButtons(System.Windows.Visibility.Hidden);
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
+        }
+
 
     }
 
