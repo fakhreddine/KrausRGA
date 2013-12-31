@@ -157,7 +157,6 @@
     <Compile Include="UI\wndSrNumberInfo.xaml.cs">
       <DependentUpon>wndSrNumberInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VersionCheck\GetFileNames.cs" />
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\clGlobal.cs" />
     <Compile Include="Views\eActionType.cs" />
@@ -350,7 +349,11 @@
     <Resource Include="Images\Checked .png" />
     <Resource Include="Images\Unchecked .png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="VersionNumber.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
