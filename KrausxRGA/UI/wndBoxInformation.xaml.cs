@@ -286,7 +286,7 @@ namespace KrausRGA.UI
         {
             //hideButtons(System.Windows.Visibility.Hidden);
             System.Windows.Forms.Application.Restart();
-          //  Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
 
