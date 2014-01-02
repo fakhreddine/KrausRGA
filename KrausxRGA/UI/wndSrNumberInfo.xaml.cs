@@ -20,6 +20,8 @@ using System.Drawing.Imaging;
 using Microsoft.Expression.Encoder.Devices;
 using System.Windows.Controls.Primitives;
 using KrausRGA.EntityModel;
+using System.Security.Principal;
+using System.Runtime.InteropServices;
 
 
 namespace KrausRGA.UI
@@ -79,13 +81,35 @@ namespace KrausRGA.UI
                 Directory.CreateDirectory(vidPath);
             }
 
-            // Create directory for saving image files.
-           
+            AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
 
-            if (Directory.Exists(imgPath) == false)
+            IntPtr admin_token = default(IntPtr);
+
+            LogonUser("shiva5", "domain", "avishiva", 9, 0, ref admin_token);
+
+            WindowsIdentity identity = new WindowsIdentity(admin_token);
+
+            WindowsImpersonationContext context = identity.Impersonate();
+
+            try
             {
-                Directory.CreateDirectory(imgPath);
+               // File.Copy(@"d:\ram.txt", @"\\SHIVA5-PC\Shipping\images\ram.txt", true);
+
+                if (Directory.Exists(imgPath) == false)
+                {
+                    Directory.CreateDirectory(imgPath);
+                }
             }
+            catch
+            {
+                context.Undo();
+            }
+
+
+            //if (Directory.Exists(imgPath) == false)
+            //{
+            //    Directory.CreateDirectory(imgPath);
+            //}
 
             // Set some properties of the Webcam control
             WebCamCtrl.VideoDirectory = vidPath;
@@ -852,5 +876,11 @@ namespace KrausRGA.UI
         {
             mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "RMA Details Window");
         }
+
+        [DllImport("advapi32.DLL", SetLastError = true)]
+        public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+
     }
+     
 }
+
