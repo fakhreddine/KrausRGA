@@ -156,6 +156,9 @@
     <Compile Include="UI\wndSrNumberInfo.xaml.cs">
       <DependentUpon>wndSrNumberInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndWait.xaml.cs">
+      <DependentUpon>wndWait.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\clGlobal.cs" />
     <Compile Include="Views\eActionType.cs" />
@@ -170,11 +173,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\WindowThread.cs" />
     <Page Include="UI\wndBoxInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\wndSrNumberInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\wndWait.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

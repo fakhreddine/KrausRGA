@@ -474,6 +474,9 @@ namespace KrausRGA.UI
 
             mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
             //Check the ReasonCombo Select or not
+
+            WindowThread.start();
+
             if (cmbOtherReason.forcombobox())
             {
                 mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
@@ -548,8 +551,9 @@ namespace KrausRGA.UI
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
-            this.Close();
-            wndBox.Show();
+            this.Close(); 
+            wndBox.Show(); 
+           
         }
 
         private void ErrorMsg(string Msg, Color BgColor)
