@@ -269,22 +269,14 @@ namespace KrausRGA.UI
 
         private void wndLogin_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (bdrScan.Visibility == Visibility.Visible)
-            {
-              //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "login Window");
-            }
-
-
             if(bdrLogin.Visibility==Visibility.Visible)
             {
                 mRMAAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"login Window");
-                //mAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ApplicationExit.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserName.ToString());
             }
         }
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
         {
-            //hideButtons(System.Windows.Visibility.Hidden);
             System.Windows.Forms.Application.Restart();
             Application.Current.Shutdown();
         }
