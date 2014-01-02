@@ -43,6 +43,8 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
+            //close wait screen.
+            WindowThread.Stop();
             //mAudit.logthis(eActionType.Login_PageStart.ToString(),"ApplicationStatred", DateTime.UtcNow.ToString());
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
