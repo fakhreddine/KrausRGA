@@ -13,48 +13,75 @@ namespace RGA
         static void Main(string[] args)
         {
             #region Update Version
-            foreach (String Sitem in Directory.GetFiles(Environment.CurrentDirectory))
+
+            try
             {
-                if (Sitem != Environment.CurrentDirectory + "\\RGA.pdb" && Sitem != Environment.CurrentDirectory + "\\RGA.exe" && Sitem != Environment.CurrentDirectory + "\\RGA.exe.config" && Sitem != Environment.CurrentDirectory + "\\RGA.vshost.exe.config" && Sitem != Environment.CurrentDirectory + "\\RGA.vshost.exe")
+                GetFileNames.Url = "http://192.168.1.16/FTPRGA/";
+                if (GetFileNames.ListDiractory().Count > 0)
                 {
-                    try
+                    foreach (String Sitem in Directory.GetFiles(Environment.CurrentDirectory))
                     {
-                        File.Delete(Sitem);
+                        if (Sitem != Environment.CurrentDirectory + "\\RGA.pdb" && Sitem != Environment.CurrentDirectory + "\\RGA.exe" && Sitem != Environment.CurrentDirectory + "\\RGA.exe.config" && Sitem != Environment.CurrentDirectory + "\\RGA.vshost.exe.config" && Sitem != Environment.CurrentDirectory + "\\RGA.vshost.exe")
+                        {
+                            try
+                            {
+                                File.Delete(Sitem);
+                            }
+                            catch (Exception)
+                            {
+                                continue;
+                            }
+
+                        }
                     }
-                    catch (Exception)
+                    Directory.CreateDirectory(Environment.CurrentDirectory + "\\NewFiles\\");
+
+                    foreach (String Sitem in GetFileNames.ListDiractory())
                     {
-                        continue;
+                        try
+                        {
+
+                            GetFileNames.downloadFromFTP(Sitem, Environment.CurrentDirectory + "\\NewFiles\\");
+                            if (Sitem.Contains(".txt") && !Sitem.Contains("VersionNumber.txt"))
+                                File.Move(Environment.CurrentDirectory + "\\NewFiles\\" + Sitem, Environment.CurrentDirectory + "\\" + Sitem.Replace(".txt", ""));
+                            else
+                                File.Move(Environment.CurrentDirectory + "\\NewFiles\\" + Sitem, Environment.CurrentDirectory + "\\" + Sitem);
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
                     }
-                   
                 }
             }
-            Directory.CreateDirectory(Environment.CurrentDirectory + "\\NewFiles\\");
-            GetFileNames.Url = "http://192.168.5.66/RGAVersions/";
-            foreach (String Sitem in GetFileNames.ListDiractory())
+            catch (Exception)
+            { }
+            finally
             {
                 try
                 {
-                    
-                    GetFileNames.downloadFromFTP(Sitem, Environment.CurrentDirectory + "\\NewFiles\\");
-                    if (Sitem.Contains(".txt") && !Sitem.Contains("VersionNumber.txt"))
-                        File.Move(Environment.CurrentDirectory + "\\NewFiles\\" + Sitem, Environment.CurrentDirectory +"\\"+ Sitem.Replace(".txt", ""));
-                    else
-                        File.Move(Environment.CurrentDirectory + "\\NewFiles\\" + Sitem, Environment.CurrentDirectory + "\\" + Sitem);
+                    Directory.Delete(Environment.CurrentDirectory + "\\NewFiles\\", true);
+                    String DirPath = Environment.CurrentDirectory;
+                    System.Diagnostics.ProcessStartInfo RgaApplication = new System.Diagnostics.ProcessStartInfo();
+                    RgaApplication.FileName = DirPath + "\\KrausRGA.exe";
+                    RgaApplication.Verb = "runas";
+                    RgaApplication.WorkingDirectory = DirPath;
+                    RgaApplication.UseShellExecute = true;
+                    System.Diagnostics.Process.Start(RgaApplication);
                 }
                 catch (Exception)
                 {
-                    continue;
+                    //Directory.Delete(Environment.CurrentDirectory , true);
+                    String DirPath = Environment.CurrentDirectory;
+                    System.Diagnostics.ProcessStartInfo RgaApplication = new System.Diagnostics.ProcessStartInfo();
+                    RgaApplication.FileName = DirPath + "\\KrausRGA.exe";
+                    RgaApplication.Verb = "runas";
+                    RgaApplication.WorkingDirectory = DirPath;
+                    RgaApplication.UseShellExecute = true;
+                    System.Diagnostics.Process.Start(RgaApplication);
                 }
-            } 
-            Directory.Delete(Environment.CurrentDirectory + "\\NewFiles\\",true);
-            String DirPath = Environment.CurrentDirectory;
-            System.Diagnostics.ProcessStartInfo RgaApplication = new System.Diagnostics.ProcessStartInfo();
-            RgaApplication.FileName = DirPath + "\\KrausRGA.exe";
-            RgaApplication.Verb = "runas";
-            RgaApplication.WorkingDirectory = DirPath;
-            RgaApplication.UseShellExecute = true;
-            System.Diagnostics.Process.Start(RgaApplication);
-            
+                
+            }
             #endregion
         }
     }

@@ -41,28 +41,31 @@ namespace KrausRGA
 
             #region Update Version
 
-            //String _appVersion = ApplicationDeployment.IsNetworkDeployed
-            //       ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
-            //       : Assembly.GetExecutingAssembly().GetName().Version.ToString();
             String _appVersion = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[0];
+
             String DBVersionNumber = _appVersion;
             try
             {
+
                 DBVersionNumber = Service.entGet.GetRMALatestVersionNumber();
+
+                //Replace current text to new Database number.
+                File.WriteAllText(Environment.CurrentDirectory + "\\VersionNumber.txt", File.ReadAllText(Environment.CurrentDirectory + "\\VersionNumber.txt").Replace(_appVersion, DBVersionNumber));
+
                 if (_appVersion != DBVersionNumber)
                 {
-                    //String DirPath = Environment.CurrentDirectory ;
-                    //System.Diagnostics.ProcessStartInfo RgaApplication = new System.Diagnostics.ProcessStartInfo();
-                    //RgaApplication.FileName = DirPath + "\\RGA.exe";
-                    //RgaApplication.Verb = "runas";
-                    //RgaApplication.WorkingDirectory = DirPath;
-                    //RgaApplication.UseShellExecute = true;
-                    //System.Diagnostics.Process.Start(RgaApplication);
-                    //this.Shutdown();
+                    String DirPath = Environment.CurrentDirectory;
+                    System.Diagnostics.ProcessStartInfo RgaApplication = new System.Diagnostics.ProcessStartInfo();
+                    RgaApplication.FileName = DirPath + "\\RGA.exe";
+                    RgaApplication.Verb = "runas";
+                    RgaApplication.WorkingDirectory = DirPath;
+                    RgaApplication.UseShellExecute = true;
+                    System.Diagnostics.Process.Start(RgaApplication);
+                    this.Shutdown();
                 }
             }
             catch (Exception)
-            {}
+            { }
 
 
             #endregion
