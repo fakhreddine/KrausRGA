@@ -40,10 +40,13 @@ namespace KrausRGA.Views
 
         public static void Stop()
         {
-            if (newWindowThread.IsAlive)
+            try
             {
-                newWindowThread.Abort();
-            }
+                if (newWindowThread.IsAlive)
+                {
+                    newWindowThread.Abort();
+                }
+            }catch(Exception){}
         }
     }
 }

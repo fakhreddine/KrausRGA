@@ -527,7 +527,9 @@ namespace KrausRGA.UI
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
-            this.Close(); 
+            this.Close();
+            //close wait screen.
+            WindowThread.Stop();
             wndBox.Show(); 
            
         }
