@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
        Title="Kraus GRA System" Height="800" Width="1400" WindowState="Maximized"
-       Loaded="Window_Loaded" Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="Window_Closing" >
-    <Viewbox >
+       Loaded="Window_Loaded" Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="Window_Closing" Topmost="True" >
+    <Viewbox>
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="1,2,-1,-2" RenderTransformOrigin="0.965,0.968" Height="777" Width="1400" >

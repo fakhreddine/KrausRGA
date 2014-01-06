@@ -16,6 +16,8 @@ namespace RGA
 
             try
             {
+                Console.WriteLine("New updates are available for Application, Please wait downloading updates...");
+                Console.WriteLine("*[Warning : Please do not interrupt while updating. ]");
                 GetFileNames.Url = "http://192.168.1.16/FTPRGA/";
                 if (GetFileNames.ListDiractory().Count > 0)
                 {

@@ -214,7 +214,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\GetRMAServiceRef\Arrays1.xsd">
+    <None Include="Service References\GetRMAServiceRef\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonsDTO.datasource">

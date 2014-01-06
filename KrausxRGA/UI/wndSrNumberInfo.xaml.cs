@@ -85,7 +85,7 @@ namespace KrausRGA.UI
 
             IntPtr admin_token = default(IntPtr);
 
-            LogonUser("shiva5", "domain", "avishiva", 9, 0, ref admin_token);
+            LogonUser(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, "domain", KrausRGA.Properties.Settings.Default.UserPasswordForImages, 9, 0, ref admin_token);
 
             WindowsIdentity identity = new WindowsIdentity(admin_token);
 
