@@ -49,6 +49,7 @@ namespace KrausRGA.UI
         ScrollViewer SvImagesScroll;
 
         //WEB cam frame height width.
+        
         int Wheight = 530;
         int Wwidth = 400;
 
@@ -72,7 +73,6 @@ namespace KrausRGA.UI
             Binding bndg_2 = new Binding("SelectedValue");
             bndg_2.Source = AudDvcsComboBox;
             WebCamCtrl.SetBinding(Webcam.AudioDeviceProperty, bndg_2);
-
             // Create directory for saving video files.
             string vidPath = @"C:\VideoClips";
 
@@ -93,8 +93,6 @@ namespace KrausRGA.UI
 
             try
             {
-               // File.Copy(@"d:\ram.txt", @"\\SHIVA5-PC\Shipping\images\ram.txt", true);
-
                 if (Directory.Exists(imgPath) == false)
                 {
                     Directory.CreateDirectory(imgPath);
@@ -104,12 +102,6 @@ namespace KrausRGA.UI
             {
                 context.Undo();
             }
-
-
-            //if (Directory.Exists(imgPath) == false)
-            //{
-            //    Directory.CreateDirectory(imgPath);
-            //}
 
             // Set some properties of the Webcam control
             WebCamCtrl.VideoDirectory = vidPath;
@@ -130,13 +122,6 @@ namespace KrausRGA.UI
             #endregion
         }
 
-        private void bdrButtonTemp_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Remove this Button from UI.
-            //btnTemp.Focus();
-
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //fill OtherReason ComboBox
@@ -147,9 +132,6 @@ namespace KrausRGA.UI
             re.Reason1 = "--Select--";
 
             lsReturn.Insert(0, re);
-            //lsReturn.Insert(0, "--Select--");
-
-            //lsReturn.Insert(0,"--Select--");
 
             cmbOtherReason.ItemsSource = lsReturn;
 
@@ -183,11 +165,8 @@ namespace KrausRGA.UI
             ContentControl cnt = (ContentControl)sender;
             DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-
-
             if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
             {
-
                 bdrCamera.Visibility = System.Windows.Visibility.Visible;
             }
             else
@@ -247,7 +226,6 @@ namespace KrausRGA.UI
             try
             {
 
-
                 // Take snapshot of webcam image.
                 WebCamCtrl.TakeSnapshot();
 
@@ -269,7 +247,6 @@ namespace KrausRGA.UI
                 img.Name = "KRAUSGRA" + ReNamed;
                 img.Source = bs;
                 img.Margin = new Thickness(1.0);
-                // _addToStackPanel(spPhotos,img);
 
                 //Images added to the Row.
                 _addToStackPanel(spRowImages, img);
@@ -309,6 +286,7 @@ namespace KrausRGA.UI
             bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
             bdrStop.Visibility = System.Windows.Visibility.Visible;
             WebCamCtrl.StartCapture();
+        //   CanvasToImage.SaveCanvas(this, this.CvsImage, 96, "c:\\canvas.png");
 
             mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Camera_Started.ToString(), DateTime.UtcNow.ToString());
         }

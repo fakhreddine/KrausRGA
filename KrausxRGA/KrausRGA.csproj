@@ -160,6 +160,7 @@
       <DependentUpon>wndWait.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Box.cs" />
+    <Compile Include="Views\CanvasToImage.cs" />
     <Compile Include="Views\clGlobal.cs" />
     <Compile Include="Views\eActionType.cs" />
     <Compile Include="Views\ePermissione.cs" />
