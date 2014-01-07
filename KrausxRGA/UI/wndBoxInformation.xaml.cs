@@ -278,6 +278,7 @@ namespace KrausRGA.UI
             {
                 mRMAAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"login Window");
                 mRMAAudit.saveaudit(Views.AuditType.lsaudit);
+                Views.AuditType.lsaudit.Clear();
             }
         }
 

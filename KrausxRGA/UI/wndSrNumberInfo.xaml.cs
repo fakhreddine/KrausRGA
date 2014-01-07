@@ -549,6 +549,7 @@ namespace KrausRGA.UI
                     }
 
                    mRMAAudit.saveaudit(Views.AuditType.lsaudit);
+                   Views.AuditType.lsaudit.Clear();
 
                 }
             }
@@ -879,6 +880,7 @@ namespace KrausRGA.UI
         {
             mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "RMA Details Window");
             mRMAAudit.saveaudit(Views.AuditType.lsaudit);
+            Views.AuditType.lsaudit.Clear();
         }
 
         [DllImport("advapi32.DLL", SetLastError = true)]
