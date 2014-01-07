@@ -246,7 +246,7 @@ namespace KrausRGA.UI
                 img.Stretch = Stretch.Fill;
                 img.Name = "KRAUSGRA" + ReNamed;
                 img.Source = bs;
-                img.Margin = new Thickness(1.0);
+                img.Margin = new Thickness(0.5);
 
                 //Images added to the Row.
                 _addToStackPanel(spRowImages, img);
