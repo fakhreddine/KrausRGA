@@ -16,6 +16,7 @@ using KrausRGA.Models;
 using System.Threading;
 using System.Windows.Media.Effects;
 using System.Windows.Threading;
+using KrausRGA.EntityModel;
 
 
 namespace KrausRGA.UI
@@ -30,7 +31,9 @@ namespace KrausRGA.UI
         mUser _mUser;
         DispatcherTimer dsptSacnner;
         int ProcessBarValue = 0;
-        
+
+      //  public static List<RMAAudit> lsaudit = new List<RMAAudit>();
+
         public wndBoxInformation()
         {
             InitializeComponent();
@@ -122,6 +125,7 @@ namespace KrausRGA.UI
                             btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
+                            //lsaudit.Insert(0
 
                             mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login_Success.ToString(), DateTime.UtcNow.ToString(),_mUser.UserInfo.UserFullName);
 
@@ -273,6 +277,8 @@ namespace KrausRGA.UI
             if(bdrLogin.Visibility==Visibility.Visible)
             {
                 mRMAAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"login Window");
+                mRMAAudit.saveaudit(Views.AuditType.lsaudit);
+                Views.AuditType.lsaudit.Clear();
             }
         }
 

@@ -37,8 +37,9 @@ namespace KrausRGA.Models
                 _UserC.ActionType = ActionType;
                 _UserC.ActionTime = Convert.ToDateTime(ActionTime);
                 _UserC.ActionValue = "NewAppOpen";
+                Views.AuditType.lsaudit.Add(_UserC);
                 _UserLog.Add(_UserC);
-                _flag = _audit.UpsertofAudit(_UserC);
+              //  _flag = _audit.UpsertofAudit(_UserC);
             }
             catch (Exception ex)
             {
@@ -68,8 +69,9 @@ namespace KrausRGA.Models
                 _UserC.ActionType = ActionType;
                 _UserC.ActionTime = Convert.ToDateTime(ActionTime);
                 _UserC.ActionValue = ActionValue;
+                Views.AuditType.lsaudit.Add(_UserC);
                 _UserLog.Add(_UserC);
-                _flag = _audit.UpsertofAudit(_UserC);
+              //  _flag = _audit.UpsertofAudit(_UserC);
             }
             catch (Exception ex)
             {
@@ -104,11 +106,37 @@ namespace KrausRGA.Models
                 _UserC.ActionTime = Convert.ToDateTime(ActionTime);
                 _UserC.ActionValue = ActionValue;
                 _UserLog.Add(_UserC);
-                _flag = _audit.UpsertofAudit(_UserC);
+                Views.AuditType.lsaudit.Add(_UserC);
+               // _flag = _audit.UpsertofAudit(_UserC);
             }
             catch (Exception ex)
             {
                 ex.LogThis("mAudit/logthis(String UserID, String ActionType, String ActionTime,String ActionValue)");
+            }
+            return _flag;
+        }
+
+        public static Boolean saveaudit(List<RMAAudit> lsaudit)
+        {
+            Boolean _flag = false;
+            try
+            {
+                foreach (var item in lsaudit)
+                {
+                RMAAudit _UserC = new RMAAudit();
+               _UserC.UserLogID = Guid.NewGuid();
+                Guid TuserID = item.UserID;
+                Guid.TryParse(item.UserID.ToString(), out TuserID);
+                _UserC.UserID = TuserID;
+                _UserC.ActionType = item.ActionType;
+                _UserC.ActionTime = Convert.ToDateTime(item.ActionTime);
+                _UserC.ActionValue = item.ActionValue;
+                //_UserLog.Add(_UserC);
+                _flag = _audit.UpsertofAudit(_UserC);
+                }
+            }
+            catch (Exception)
+            {
             }
             return _flag;
         }
