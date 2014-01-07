@@ -547,6 +547,9 @@ namespace KrausRGA.UI
                     {
                         _mReturn.SetTransaction(Ritem, ReturnDetailsID);
                     }
+
+                   mRMAAudit.saveaudit(Views.AuditType.lsaudit);
+
                 }
             }
             wndBoxInformation wndBox = new wndBoxInformation();
@@ -875,6 +878,7 @@ namespace KrausRGA.UI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "RMA Details Window");
+            mRMAAudit.saveaudit(Views.AuditType.lsaudit);
         }
 
         [DllImport("advapi32.DLL", SetLastError = true)]

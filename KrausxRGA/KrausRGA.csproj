@@ -159,6 +159,7 @@
     <Compile Include="UI\wndWait.xaml.cs">
       <DependentUpon>wndWait.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AuditType.cs" />
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\clGlobal.cs" />
     <Compile Include="Views\eActionType.cs" />
