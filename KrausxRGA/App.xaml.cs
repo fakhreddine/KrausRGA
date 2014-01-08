@@ -21,6 +21,7 @@ namespace KrausRGA
         //Add this method override
         protected override void OnStartup(StartupEventArgs e)
         {
+            
 
             #region Initailise servies
             Service.entGet = new GetRMAServiceRef.GetClient();

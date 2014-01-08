@@ -83,7 +83,9 @@
         <Style x:Key="tbFormTitle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="WhiteSmoke"/>
+
             <Setter Property="FontSize" Value="{DynamicResource HeaderSize}"/>
+
         </Style>
 
         

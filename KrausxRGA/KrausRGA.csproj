@@ -104,12 +104,19 @@
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
-    <Reference Include="WebcamControl">
-      <HintPath>D:\Avinash\Backups VIMP\KrausRGA Backup\Dec Backup\KrausRGA\KrausxRGA\bin\Debug\WebcamControl.dll</HintPath>
+    <Reference Include="WebcamControl, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WebcamControl.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>D:\Avinash\Softwares\ExtendedWPFToolkit_Binaries (1)\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -164,6 +171,7 @@
     </Compile>
     <Compile Include="Views\AuditType.cs" />
     <Compile Include="Views\Box.cs" />
+    <Compile Include="Views\CanvasToImage.cs" />
     <Compile Include="Views\clGlobal.cs" />
     <Compile Include="Views\eActionType.cs" />
     <Compile Include="Views\ePermissione.cs" />

@@ -34,6 +34,7 @@ namespace KrausRGA.UI
 
       //  public static List<RMAAudit> lsaudit = new List<RMAAudit>();
 
+        
         public wndBoxInformation()
         {
             String[] FontSizes = Properties.Settings.Default.fontsize_headersiz_constantsize.ToString().Split(new char[] { '_' });
@@ -45,8 +46,6 @@ namespace KrausRGA.UI
             Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
             Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
             InitializeComponent();
-            
-
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
 
