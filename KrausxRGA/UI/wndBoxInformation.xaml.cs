@@ -37,11 +37,7 @@ namespace KrausRGA.UI
         
         public wndBoxInformation()
         {
-            Resources["FontSz"] = 40.0;
-
             InitializeComponent();
-            
-
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
 
