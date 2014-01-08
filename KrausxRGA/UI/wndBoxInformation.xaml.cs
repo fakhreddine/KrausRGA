@@ -37,14 +37,14 @@ namespace KrausRGA.UI
         
         public wndBoxInformation()
         {
-            String[] FontSizes = Properties.Settings.Default.fontsize_headersiz_constantsize.ToString().Split(new char[] { '_' });
-            String HeaderSize = FontSizes[1];
-            String ControlSize = FontSizes[2];
-            String VeriableSize = FontSizes[0];
+            //String[] FontSizes = Properties.Settings.Default.fontsize_headersiz_constantsize.ToString().Split(new char[] { '_' });
+            //String HeaderSize = FontSizes[1];
+            //String ControlSize = FontSizes[2];
+            //String VeriableSize = FontSizes[0];
 
-            Resources["FontSize"] = Convert.ToDouble(VeriableSize);
-            Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
-            Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
+            //Resources["FontSize"] = Convert.ToDouble(VeriableSize);
+            //Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
+            //Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
             InitializeComponent();
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
