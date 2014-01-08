@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -20,14 +21,14 @@ namespace KrausRGA.UI
     {
         public wndAppSetting()
         {
-            //String[] FontSizes = Properties.Settings.Default.fontsize_headersiz_constantsize.ToString().Split(new char[] { '_' });
-            //String HeaderSize = FontSizes[1];
-            //String ControlSize = FontSizes[2];
-            //String VeriableSize = FontSizes[0];
+            String[] FontSizes =  File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
+            String HeaderSize = FontSizes[1];
+            String ControlSize = FontSizes[2];
+            String VeriableSize = FontSizes[0];
 
-            //Resources["FontSize"] = Convert.ToDouble(VeriableSize);
-            //Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
-            //Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
+            Resources["FontSize"] = Convert.ToDouble(VeriableSize);
+            Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
+            Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
 
 
             InitializeComponent();
@@ -40,24 +41,23 @@ namespace KrausRGA.UI
 
         private void sldfont_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Resources["FontSize"] = 22 + Convert.ToDouble(sldfont.Value);
-            Resources["HeaderSize"] = 45 + Convert.ToDouble(sldfont.Value);
-            Resources["ContactFontSize"] = 20 + Convert.ToDouble(sldfont.Value);
+            Resources["FontSize"] = Convert.ToDouble(sldfont.Value);
+            Resources["HeaderSize"] = Convert.ToDouble(sldfont.Value);
+            Resources["ContactFontSize"] = Convert.ToDouble(sldfont.Value);
         }
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
         {
-            
-            //Properties.Settings.Default.fontsize_headersiz_constantsize = Resources["FontSize"].ToString() + "_" + Resources["HeaderSize"].ToString() + "_" + Resources["ContactFontSize"].ToString();
-            //Properties.Settings.Default.Save();
-            //String[] FontSizes = Properties.Settings.Default.fontsize_headersiz_constantsize.ToString().Split(new char[] { '_' });
-            //String HeaderSize = FontSizes[1];
-            //String ControlSize = FontSizes[2];
-            //String VeriableSize = FontSizes[0];
+            File.WriteAllText(Environment.CurrentDirectory + "\\VersionNumber.txt", File.ReadAllText(Environment.CurrentDirectory + "\\VersionNumber.txt").Replace(File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].ToString(),Math.Round(Convert.ToDecimal( Resources["FontSize"].ToString()),0) + "-" +Math.Round(Convert.ToDecimal( Resources["HeaderSize"].ToString()),0) + "-" +Math.Round(Convert.ToDecimal( Resources["ContactFontSize"].ToString()),0)));
 
-            //Resources["FontSize"] =Convert.ToDouble( VeriableSize);
-            //Resources["HeaderSize"] =Convert.ToDouble( HeaderSize);
-            //Resources["ContactFontSize"] =Convert.ToDouble( ControlSize);
+            String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
+            String HeaderSize = FontSizes[1];
+            String ControlSize = FontSizes[2];
+            String VeriableSize = FontSizes[0];
+
+            Resources["FontSize"] = Convert.ToDouble(VeriableSize);
+            Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
+            Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
 
          var msg= MessageBox.Show("You must Restart Application", "Warning", MessageBoxButton.YesNo,MessageBoxImage.Warning);
 

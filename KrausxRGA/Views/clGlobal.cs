@@ -22,6 +22,5 @@ namespace KrausRGA.Views
         //audit object.
         public static  mRMAAudit mAuditDetail;
 
-
     }
 }
