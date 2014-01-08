@@ -36,11 +36,21 @@ namespace KrausRGA.UI
 
         public wndBoxInformation()
         {
+            String[] FontSizes = Properties.Settings.Default.fontsize_headersiz_constantsize.ToString().Split(new char[] { '_' });
+            String HeaderSize = FontSizes[1];
+            String ControlSize = FontSizes[2];
+            String VeriableSize = FontSizes[0];
+
+            Resources["FontSize"] = Convert.ToDouble(VeriableSize);
+            Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
+            Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
             InitializeComponent();
             
 
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
         }
+
+       
 
         #region Events
 
@@ -110,7 +120,6 @@ namespace KrausRGA.UI
 
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
-                   
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
             if (e.Key == Key.Enter)
             {
@@ -286,6 +295,12 @@ namespace KrausRGA.UI
         {
             System.Windows.Forms.Application.Restart();
             Application.Current.Shutdown();
+        }
+
+        private void btnNewScan_Click(object sender, RoutedEventArgs e)
+        {
+            wndAppSetting app = new wndAppSetting();
+            app.ShowDialog();
         }
 
 

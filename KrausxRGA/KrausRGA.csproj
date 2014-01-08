@@ -150,6 +150,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndAppSetting.xaml.cs">
+      <DependentUpon>wndAppSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\wndBoxInformation.xaml.cs">
       <DependentUpon>wndBoxInformation.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Views\WindowThread.cs" />
+    <Page Include="UI\wndAppSetting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\wndBoxInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

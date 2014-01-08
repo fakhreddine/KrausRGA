@@ -9,5 +9,6 @@ namespace KrausRGA.Views
    public static class AuditType
     {
        public static List<RMAAudit> lsaudit = new List<RMAAudit>();
+      
     }
 }

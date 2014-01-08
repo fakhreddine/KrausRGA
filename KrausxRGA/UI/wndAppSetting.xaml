@@ -1,0 +1,23 @@
+﻿<Window x:Class="KrausRGA.UI.wndAppSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="wndAppSetting" Height="331" Width="654" Loaded="Window_Loaded">
+    <Grid>
+        <Slider x:Name="sldfont" HorizontalAlignment="Left" Margin="130,31,0,0" VerticalAlignment="Top" Width="235" Minimum="1" Maximum="50" ValueChanged="sldfont_ValueChanged"/>
+        <Label Content="A" HorizontalAlignment="Left" Margin="88,28,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="A" HorizontalAlignment="Left" Margin="380,12,0,0" VerticalAlignment="Top" FontSize="36" />
+        <Label Content="A" HorizontalAlignment="Left" Margin="95,59,0,0" VerticalAlignment="Top" FontSize="45" />
+        <TextBlock Text="A" HorizontalAlignment="Left" Margin="208,67,0,0" VerticalAlignment="Top" Style="{StaticResource tbFormTitle}" />
+        <Label Content="Header Font" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top"/>
+        <Label Content="Control Font" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top"/>
+        <Label Content="A" Name="lblcontrolfont" HorizontalAlignment="Left" Margin="99,133,0,0" VerticalAlignment="Top" FontSize="22" />
+        <Label Content="A" HorizontalAlignment="Left" Margin="213,138,0,0" VerticalAlignment="Top" Style="{StaticResource lblVeriable}" />
+        <Label Content="Label Font" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top"/>
+        <Label Content="A" x:Name="lblcontrolfont_Copy" HorizontalAlignment="Left" Margin="99,177,0,0" VerticalAlignment="Top" FontSize="20" />
+        <Label Content="A" HorizontalAlignment="Left" Margin="213,185,0,0" VerticalAlignment="Top" Style="{StaticResource lblConstant}" />
+
+        <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" BorderThickness="1" Canvas.Left="15" Canvas.Top="432" Background="#FF3E3F42" Margin="510,245,21,21">
+            <Button x:Name="btnlogout" Style="{StaticResource win8btn}" Content="OK" Margin="-1" Click="btnlogout_Click"/>
+        </Border>
+    </Grid>
+</Window>
