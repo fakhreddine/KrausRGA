@@ -34,8 +34,11 @@ namespace KrausRGA.UI
 
       //  public static List<RMAAudit> lsaudit = new List<RMAAudit>();
 
+        
         public wndBoxInformation()
         {
+            Resources["FontSz"] = 40.0;
+
             InitializeComponent();
             
 
@@ -110,7 +113,6 @@ namespace KrausRGA.UI
 
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
-                   
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
             if (e.Key == Key.Enter)
             {

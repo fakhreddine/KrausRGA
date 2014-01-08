@@ -40,7 +40,6 @@
                                                 <Label Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="155" Width="97" Canvas.Left="36"/>
                                                 <ComboBox Name="cmbRMADecision" Height="54" Width="258" Canvas.Left="138" Canvas.Top="141" 
                                                           ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" />
-
                                             </Canvas>
                                         </Border>
 
@@ -50,7 +49,7 @@
                                                     <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="30" Foreground="White" Margin="10,6,794,0"/>
                                                 </Border>
                                                 <Label Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="69" Width="143" Canvas.Left="38"/>
-                                                <Label Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="173" Canvas.Top="67" Width="254" Height="33"/>
+                                                <Label Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="197" Canvas.Top="70" Width="254" Height="33"/>
 
                                                 <Label Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="107" Width="164" Canvas.Left="26"/>
                                                 <Label Name="lblName"  Style="{StaticResource lblVeriable}" Canvas.Left="195" Canvas.Top="108" Width="344" Height="33">
@@ -525,7 +524,7 @@
 
                                         </Canvas>
                                     </Border>
-                                    <Border x:Name="bdrButtonSave" Height="128" Width="208" Canvas.Left="864" Canvas.Top="419">
+                                    <Border x:Name="bdrButtonSave" Height="128" Width="208" Canvas.Left="864" Canvas.Top="334">
                                         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                                     Name="btnHomeDone"
                                     			Content="Done" 
@@ -534,16 +533,16 @@
                                     			Background="#FF464343" 
                                     			Foreground="#FFF9F9F9" 
                                     			OpacityMask="Black" VerticalAlignment="Bottom"
-                                                    Click="btnHomeDone_Click" HorizontalAlignment="Right" Margin="-10,-83,10,83"
+                                                    Click="btnHomeDone_Click" HorizontalAlignment="Right"
                                                     />
                                     </Border>
                                 </Canvas>
                             </TabItem>
                         </TabControl>
                     </Canvas>
-                    <Border BorderThickness="1" Height="64" Canvas.Top="551" Width="1092" Canvas.Left="5">
-                        <Canvas Margin="0,-63,0,0">
-                            <Border Name="bdrMsg" Visibility="Hidden" BorderThickness="1" Height="27" Canvas.Left="0" Canvas.Top="53" Width="1048" Background="#E1007ACC">
+                    <Border BorderThickness="1" Height="64" Canvas.Top="541" Width="1092" Canvas.Left="5">
+                        <Canvas Margin="0,0,0,0">
+                            <Border Name="bdrMsg" Visibility="Hidden" BorderThickness="1" Height="27" Canvas.Left="0" Canvas.Top="43" Width="1048" Background="#E1007ACC">
                                 <Border.Style >
                                     <Style TargetType="{x:Type Border}">
                                         <Style.Triggers>
