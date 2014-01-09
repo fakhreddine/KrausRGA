@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Application Setting" Height="449" Width="719" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,3,-8,-10">
+        <Grid.Background>
+            <ImageBrush ImageSource="/KrausRGA;component/Images/white.jpg"/>
+        </Grid.Background>
 
         <Border CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="14,18,35,41" >
-            <Canvas Margin="0,0,0,0">
-                <Border Height="52" Background="#FF787878" Width="671">
+            <Canvas Margin="0,0,0,0" Background="#33000000">
+                <Border Height="52" Background="#FF787878" Width="666" CornerRadius="5">
                     <TextBlock TextWrapping="Wrap" Text="Application Setting" FontSize="30" Foreground="White" Margin="10,6,395,0"/>
                 </Border>
                 <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" BorderThickness="1" Canvas.Left="518" Canvas.Top="317" Background="#FF3E3F42" Height="42" Width="137">

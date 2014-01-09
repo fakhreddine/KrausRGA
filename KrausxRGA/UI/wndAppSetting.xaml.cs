@@ -21,7 +21,7 @@ namespace KrausRGA.UI
     {
         public wndAppSetting()
         {
-            String[] FontSizes =  File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
+            String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
             String HeaderSize = FontSizes[1];
             String ControlSize = FontSizes[2];
             String VeriableSize = FontSizes[0];
@@ -36,7 +36,7 @@ namespace KrausRGA.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void sldfont_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -47,34 +47,34 @@ namespace KrausRGA.UI
             String VeriableSize = FontSizes[0];
 
             Resources["FontSize"] = Convert.ToDouble(VeriableSize) + Convert.ToDouble(sldfont.Value);
-            Resources["HeaderSize"] =Convert.ToDouble(HeaderSize)+ Convert.ToDouble(sldfont.Value);
+            Resources["HeaderSize"] = Convert.ToDouble(HeaderSize) + Convert.ToDouble(sldfont.Value);
             Resources["ContactFontSize"] = Convert.ToDouble(ControlSize) + Convert.ToDouble(sldfont.Value);
         }
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
         {
-            File.WriteAllText(Environment.CurrentDirectory + "\\VersionNumber.txt", File.ReadAllText(Environment.CurrentDirectory + "\\VersionNumber.txt").Replace(File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].ToString(),Math.Round(Convert.ToDecimal( Resources["FontSize"].ToString()),0) + "-" +Math.Round(Convert.ToDecimal( Resources["HeaderSize"].ToString()),0) + "-" +Math.Round(Convert.ToDecimal( Resources["ContactFontSize"].ToString()),0)));
+            var msg = MessageBox.Show("Application must be restarted to apply this changes. Do you want to continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
-            String HeaderSize = FontSizes[1];
-            String ControlSize = FontSizes[2];
-            String VeriableSize = FontSizes[0];
+            if (msg.ToString() == "Yes")
+            {
+                File.WriteAllText(Environment.CurrentDirectory + "\\VersionNumber.txt", File.ReadAllText(Environment.CurrentDirectory + "\\VersionNumber.txt").Replace(File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].ToString(), Math.Round(Convert.ToDecimal(Resources["FontSize"].ToString()), 0) + "-" + Math.Round(Convert.ToDecimal(Resources["HeaderSize"].ToString()), 0) + "-" + Math.Round(Convert.ToDecimal(Resources["ContactFontSize"].ToString()), 0)));
 
-            Resources["FontSize"] = Convert.ToDouble(VeriableSize);
-            Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
-            Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
+                String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
+                String HeaderSize = FontSizes[1];
+                String ControlSize = FontSizes[2];
+                String VeriableSize = FontSizes[0];
 
-         var msg= MessageBox.Show("You must Restart Application", "Warning", MessageBoxButton.YesNo,MessageBoxImage.Warning);
+                Resources["FontSize"] = Convert.ToDouble(VeriableSize);
+                Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
+                Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
 
-         if (msg.ToString() == "Yes")
-         {
-             System.Windows.Forms.Application.Restart();
-             Application.Current.Shutdown();
-         }
-         else
-         {
-             this.Close();
-         }
+                System.Windows.Forms.Application.Restart();
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }
