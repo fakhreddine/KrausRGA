@@ -59,10 +59,12 @@
                                                 </Label>
 
                                                 <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="149" Width="187" Canvas.Left="5"/>
+
+                                                <Label Canvas.Left="197" Canvas.Top="149" Style="{StaticResource lblVeriable}">
                                                 <TextBlock x:Name="lblCustomerAddress" Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="337" Height="64" 
 													ScrollViewer.HorizontalScrollBarVisibility="Auto" Canvas.Left="197" Canvas.Top="149"
-													Foreground="Black" FontSize="22" FontWeight="Bold"/>
-
+													Foreground="Black" />
+                                                </Label>
                                                 <Label x:Name="lblcCustCity" Content="City : " Style="{StaticResource lblConstant}" Canvas.Top="61" Width="143" Canvas.Left="597"/>
                                                 <Label x:Name="lblCustCity" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="740" Canvas.Top="61" Width="254" Height="33"/>
 

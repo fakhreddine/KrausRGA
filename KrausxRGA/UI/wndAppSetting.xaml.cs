@@ -41,9 +41,14 @@ namespace KrausRGA.UI
 
         private void sldfont_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Resources["FontSize"] = Convert.ToDouble(sldfont.Value);
-            Resources["HeaderSize"] = Convert.ToDouble(sldfont.Value);
-            Resources["ContactFontSize"] = Convert.ToDouble(sldfont.Value);
+            String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
+            String HeaderSize = FontSizes[1];
+            String ControlSize = FontSizes[2];
+            String VeriableSize = FontSizes[0];
+
+            Resources["FontSize"] = Convert.ToDouble(VeriableSize) + Convert.ToDouble(sldfont.Value);
+            Resources["HeaderSize"] =Convert.ToDouble(HeaderSize)+ Convert.ToDouble(sldfont.Value);
+            Resources["ContactFontSize"] = Convert.ToDouble(ControlSize) + Convert.ToDouble(sldfont.Value);
         }
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
