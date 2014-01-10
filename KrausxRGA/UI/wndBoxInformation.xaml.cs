@@ -56,7 +56,7 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
-           
+            
             //mAudit.logthis(eActionType.Login_PageStart.ToString(),"ApplicationStatred", DateTime.UtcNow.ToString());
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
@@ -140,6 +140,7 @@ namespace KrausRGA.UI
 
                             //Manage Current User information.
                             clGlobal.mCurrentUser = _mUser;
+                            txtUserName.Text = _mUser.UserInfo.UserFullName.ToString() + Environment.NewLine+"[ " + _mUser.RoleName +" ]";
                             ErrorMsg("Welcome " + _mUser.UserInfo.UserFullName.ToString(), Color.FromRgb(84, 185, 0));
                         }
                         else

@@ -31,6 +31,7 @@ namespace KrausRGA.Models
 
       public User UserInfo { get; protected set; }
 
+      public String RoleName { get; set; }
       #endregion
 
       #region Member Functions of class.
@@ -58,6 +59,7 @@ namespace KrausRGA.Models
               if (user.UserName != null)
               {
                   UserInfo = user;
+                  RoleName = _cRoles.GetRole(user.RoleId).Name.ToString();
                   _FlagReturn = true;
               }
           }

@@ -368,6 +368,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icoSetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icoScan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icoLogout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icoEnterNumber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UserIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icoScan.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
