@@ -873,6 +873,24 @@ namespace KrausRGA.UI
         [DllImport("advapi32.DLL", SetLastError = true)]
         public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
 
+        private void btnTabRMADetails_Click(object sender, RoutedEventArgs e)
+        {
+            tbrgzdetail.SelectedIndex = 0;
+            tbrgzdetail.Focus();
+        }
+
+        private void btnTabReturntails_Click(object sender, RoutedEventArgs e)
+        {
+            tbrgzdetail.SelectedIndex = 1;
+        }
+
+        private void btnTabReturnResons_Click(object sender, RoutedEventArgs e)
+        {
+            tbrgzdetail.SelectedIndex = 2;
+        }
+
+       
+
     }
      
 }

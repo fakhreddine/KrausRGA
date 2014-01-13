@@ -156,10 +156,43 @@
                         </BeginStoryboard>
                     </Trigger.EnterActions>
                 </Trigger>
+                
             </Style.Triggers>
+            
+                
         </Style>
-        
-        <!-- 2-->
+        <Style x:Key="bdrSlideStyleKey" TargetType="Border">
+            <Style.Triggers  >
+                <EventTrigger RoutedEvent="MouseDown">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard >
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-350" To="0"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard >
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" To="-350"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+            
+        </Style>
+
+        <!--<Style x:Key="test" TargetType="Button">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsFocused, ElementName=bdrButtons}" Value="True">
+                    <Setter Property="Background" Value="Red" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
+            <!-- 2-->
         <Style x:Key="trgBorderHideShowTO390" TargetType="Border">
             
             <Style.Triggers >

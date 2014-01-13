@@ -7,13 +7,16 @@
             <ImageBrush ImageSource="/KrausRGA;component/Images/white.jpg"/>
         </Grid.Background>
 
-        <Border CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="14,18,35,41" >
+        <Border CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="14,18,35,81" >
             <Canvas Margin="0,0,0,0" Background="#33000000">
-                <Border Height="52" Background="#FF787878" Width="666" CornerRadius="5">
-                    <TextBlock TextWrapping="Wrap" Text="Application Setting" FontSize="30" Foreground="White" Margin="10,6,395,0"/>
+                <Border Height="52" Background="#B2111111" Width="666" CornerRadius="5">
+                    <TextBlock TextWrapping="Wrap" Text="Application Font Size Setting" FontSize="30" Foreground="White" Margin="10,6,242,0"/>
                 </Border>
-                <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" BorderThickness="1" Canvas.Left="518" Canvas.Top="317" Background="#FF3E3F42" Height="42" Width="137">
-                    <Button x:Name="btnlogout" Style="{StaticResource win8btn}" Content="OK" Margin="-1,-2,-1,-1" Click="btnlogout_Click"/>
+                <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="342" Height="52" Width="174" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnlogout_Click" Width="52"></Image>
+                        <Button x:Name="btnlogout" Style="{StaticResource ToolBarButtonBaseStyle}" Content="OK" Margin="-1,-2,-1,-1" Click="btnlogout_Click" Width="103"/>
+                    </StackPanel>
                 </Border>
             </Canvas>
         </Border>
