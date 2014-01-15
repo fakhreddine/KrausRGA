@@ -100,8 +100,7 @@ namespace KrausRGA.UI
             CaptureTime = new DispatcherTimer();
             CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 200);
             CaptureTime.Tick += CaptureTime_Tick;
-            CaptureTime.Start();
-            Camera.Open();
+            
         }
 
         void CaptureTime_Tick(object sender, EventArgs e)
@@ -111,25 +110,51 @@ namespace KrausRGA.UI
             {
                 if (!clGlobal.IsUserlogged)
                 {
-                    txtLogin.Text = Barcode;
-                    txtLogin.Focus();
-                    CaptureTime.Stop();
-                    var key = Key.Enter;                    // Key to send
-                    var target = Keyboard.FocusedElement;    // Target element
-                    var routedEvent = Keyboard.KeyDownEvent; // Event to send
+                    try
+                    {
+                        txtLogin.Text = Barcode;
+                        txtLogin.Focus();
+                        CaptureTime.Stop();
+                        var key = Key.Enter;                    // Key to send
+                        var target = Keyboard.FocusedElement;    // Target element
+                        var routedEvent = Keyboard.KeyDownEvent; // Event to send
 
-                    target.RaiseEvent(
-                      new KeyEventArgs(
-                        Keyboard.PrimaryDevice,
-                        PresentationSource.FromVisual(txtLogin),
-                        0,
-                        key) { RoutedEvent = routedEvent }
-                    );
+                        target.RaiseEvent(
+                          new KeyEventArgs(
+                            Keyboard.PrimaryDevice,
+                            PresentationSource.FromVisual(txtLogin),
+                            0,
+                            key) { RoutedEvent = routedEvent }
+                        );
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("txtLoginKey :"+ex.Message);
+                    }
                 }
                 else
                 {
-                    txtLogin.Text = Barcode;
-                    CaptureTime.Stop();
+                    try
+                    {
+                        txtScan.Text = Barcode;
+                        txtScan.Focus();
+                        CaptureTime.Stop();
+                        var key = Key.Enter;                    // Key to send
+                        var target = Keyboard.FocusedElement;    // Target element
+                        var routedEvent = Keyboard.KeyDownEvent; // Event to send
+
+                        target.RaiseEvent(
+                          new KeyEventArgs(
+                            Keyboard.PrimaryDevice,
+                            PresentationSource.FromVisual(txtScan),
+                            0,
+                            key) { RoutedEvent = routedEvent }
+                        );
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("txtScan :" + ex.Message);
+                    }
                 }
             }
         }
@@ -336,11 +361,13 @@ namespace KrausRGA.UI
             bdrButtons.Visibility = visibility;
             if (visibility.ToString() == System.Windows.Visibility.Hidden.ToString())
             {
+                btnCameraScan.Visibility = System.Windows.Visibility.Visible;
                 bdrLogin.Visibility = System.Windows.Visibility.Visible;
                 txtLogin.Focus();
             }
             else
             {
+                btnCameraScan.Visibility = System.Windows.Visibility.Hidden;
                 bdrLogin.Visibility = System.Windows.Visibility.Hidden;
             }
         }
@@ -351,7 +378,11 @@ namespace KrausRGA.UI
         {
             try
             {
-               
+                if (!CaptureTime.IsEnabled)
+                {
+                      CaptureTime.Start();
+                }
+                Camera.Open();
             }
             catch (Exception)
             {}

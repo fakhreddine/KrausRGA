@@ -36,6 +36,7 @@ namespace KrausRGA.Barcode
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_E);
                Thread.Sleep(600);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);
+               Thread.Sleep(2000);
            }
            catch (Exception)
            {
@@ -76,6 +77,7 @@ namespace KrausRGA.Barcode
            {}
            return ImageName;
        }
+
        public static System.Drawing.Bitmap CaptureDesktopWithCursor()
        {
            System.Drawing.Bitmap desktopBMP;

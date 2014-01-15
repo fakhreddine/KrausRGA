@@ -94,13 +94,14 @@ namespace KrausRGA.Barcode
        public static string CheckBarcode()
        {
            string _return = "";
+           BitmapSource bs=null ;
            try
            {
-              
-               BitmapSource bs = Camera.BitmapToImageSource(Camera.CaptureDesktopWithCursor(), ImageFormat.Jpeg);
+               String BarcodeRead = "";
+               bs = Camera.BitmapToImageSource(Camera.CaptureDesktopWithCursor(), ImageFormat.Jpeg);
                //try { Camera.CreateThumbnail("C:\\Images\\" + DateTime.Now.ToString("MM_HH_SS_TT") + ".jpg", bs); }
                //catch (Exception e) {  }
-               String BarcodeRead = "";
+
                BarcodeRead = Barcode.BarcodeRead.Read(Camera.CaptureDesktopWithCursor());
 
                if (BarcodeRead.ToString() != "")
@@ -110,7 +111,9 @@ namespace KrausRGA.Barcode
                }
            }
            catch (Exception)
-           { }
+           {
+
+           }
            return _return;
 
        }

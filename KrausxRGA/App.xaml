@@ -200,7 +200,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard >
-                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-500" To="390"/>
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-500" To="10"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
