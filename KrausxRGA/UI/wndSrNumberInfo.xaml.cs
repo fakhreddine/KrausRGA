@@ -23,7 +23,6 @@ using KrausRGA.EntityModel;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
 
-
 namespace KrausRGA.UI
 {
 
@@ -119,7 +118,7 @@ namespace KrausRGA.UI
             WebCamCtrl.ImageDirectory = imgPath;
             WebCamCtrl.PictureFormat = ImageFormat.Jpeg;
 
-            WebCamCtrl.FrameRate = 20;
+            WebCamCtrl.FrameRate = 48;
             WebCamCtrl.FrameSize = new System.Drawing.Size(Wheight, Wwidth);
 
             // Find a/v devices connected to the machine.
@@ -245,7 +244,7 @@ namespace KrausRGA.UI
                 String ReNamed = DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
                 File.Move(imgPath + ImageName, imgPath + "KRAUSGRA" + ReNamed + ".jpeg");
                 BitmapSource bs = new BitmapImage(new Uri(imgPath + "KRAUSGRA" + ReNamed + ".jpeg"));
-
+             
                 Image img = new Image();
                 //Zoom image.
                 img.MouseEnter += img_MouseEnter;

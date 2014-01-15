@@ -12,7 +12,7 @@
       <Value Profile="(Default)">http://192.168.1.16/warehouse%20services/KrausWarehouseServices.Service.RMA.Save.svc/SOA</Value>
     </Setting>
     <Setting Name="DrivePath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">\\192.168.5.66\Shipping\Images\</Value>
+      <Value Profile="(Default)">C:\\Shipping\Images\</Value>
     </Setting>
     <Setting Name="UserNameForImagesLogin" Type="System.String" Scope="Application">
       <Value Profile="(Default)">shiva5</Value>

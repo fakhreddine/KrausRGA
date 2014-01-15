@@ -46,6 +46,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -76,8 +77,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="BarcodeImaging, Version=1.0.3579.22966, Culture=neutral, PublicKeyToken=82bacb0497aa5fed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\BarcodeImaging.dll</HintPath>
+    </Reference>
+    <Reference Include="BarcodeScanner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6deb2c38c6117ef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\BarcodeScanner.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="InputSimulator">
+      <HintPath>..\..\..\Users\Shiva5\Desktop\InputSimulator.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Encoder, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86" />
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -122,6 +134,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Barcode\BarcodeRead.cs" />
+    <Compile Include="Barcode\Camera.cs" />
     <Compile Include="DBLogics\Service.cs" />
     <Compile Include="DBLogics\cmdRMAAudit.cs" />
     <Compile Include="DBLogics\cmdReasonCategory.cs" />
@@ -391,6 +405,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icoTabCtrl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icoCam.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

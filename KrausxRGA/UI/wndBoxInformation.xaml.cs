@@ -18,7 +18,11 @@ using System.Windows.Media.Effects;
 using System.Windows.Threading;
 using KrausRGA.EntityModel;
 using System.IO;
-
+using Microsoft.Expression.Encoder.Devices;
+using System.Security.Principal;
+using WebcamControl;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace KrausRGA.UI
 {
@@ -28,14 +32,21 @@ namespace KrausRGA.UI
     /// </summary>
     public partial class wndBoxInformation : Window
     {
+        #region Declation
+
+        //WEB cam .
+        int Wheight = 700;
+        int Wwidth = 520;
+
+        string imgPath = "C:\\Users\\" +Environment.UserName + "\\Pictures\\Camera Roll\\";
+        DispatcherTimer CaptureTime;
         mReturnDetails _mReturn;
         mUser _mUser;
         DispatcherTimer dsptSacnner;
         int ProcessBarValue = 0;
 
-      //  public static List<RMAAudit> lsaudit = new List<RMAAudit>();
+        #endregion
 
-        
         public wndBoxInformation()
         {
             String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
@@ -48,23 +59,81 @@ namespace KrausRGA.UI
             Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
             InitializeComponent();
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-        }
 
-       
+            #region Camera Region
+
+            // Bind the Video and Audio device properties of the
+            // Webcam control to the SelectedValue property of 
+            // the necessary ComboBox.
+            Binding bndg_1 = new Binding("SelectedValue");
+            bndg_1.Source = VidDvcsComboBox;
+            WebCamCtrl.SetBinding(Webcam.VideoDeviceProperty, bndg_1);
+
+            Binding bndg_2 = new Binding("SelectedValue");
+            bndg_2.Source = AudDvcsComboBox;
+            WebCamCtrl.SetBinding(Webcam.AudioDeviceProperty, bndg_2);
+            // Create directory for saving video files.
+            string vidPath = @"C:\VideoClips";
+
+            if (Directory.Exists(vidPath) == false)
+            {
+                Directory.CreateDirectory(vidPath);
+            }
+
+            AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
+
+            IntPtr admin_token = default(IntPtr);
+
+            LogonUser(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, "domain", KrausRGA.Properties.Settings.Default.UserPasswordForImages, 9, 0, ref admin_token);
+
+            WindowsIdentity identity = new WindowsIdentity(admin_token);
+
+            WindowsImpersonationContext context = identity.Impersonate();
+
+            try
+            {
+                if (Directory.Exists(imgPath) == false)
+                {
+                    Directory.CreateDirectory(imgPath);
+                }
+            }
+            catch
+            {
+                context.Undo();
+            }
+
+            // Set some properties of the Webcam control
+            WebCamCtrl.VideoDirectory = vidPath;
+            WebCamCtrl.VidFormat = VideoFormat.mp4;
+
+            WebCamCtrl.ImageDirectory = imgPath;
+            WebCamCtrl.PictureFormat = ImageFormat.Jpeg;
+
+            WebCamCtrl.FrameRate = 48;
+            WebCamCtrl.FrameSize = new System.Drawing.Size(Wheight, Wwidth);
+
+            // Find a/v devices connected to the machine.
+            FindDevices();
+
+            VidDvcsComboBox.SelectedIndex = 0;
+            AudDvcsComboBox.SelectedIndex = 0;
+
+            #endregion
+        }
 
         #region Events
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             //mAudit.logthis(eActionType.Login_PageStart.ToString(),"ApplicationStatred", DateTime.UtcNow.ToString());
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
-            
+
             //If User is alrady logged then hide the login screen.
             if (clGlobal.IsUserlogged)
             {
-                
+
                 hideButtons(System.Windows.Visibility.Visible);
                 _mUser = clGlobal.mCurrentUser;
                 btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
@@ -88,35 +157,8 @@ namespace KrausRGA.UI
                 //If no user is logged in then assign new user to the model
                 _mUser = new mUser();
             }
-           
+
         }
-
-        #endregion
-
-        #region private Functions.
-
-        /// <summary>
-        /// set the visibilty property of Login textbox and Button controls border
-        /// </summary>
-        /// <param name="visibility">
-        /// System.Windows.Visibility visibility enum Property
-        ///passed Visibility work same for buttons but apposit for login box at the same time
-        /// </param>
-        private void hideButtons(System.Windows.Visibility visibility)
-        {
-            bdrButtons.Visibility = visibility;
-            if (visibility.ToString() == System.Windows.Visibility.Hidden.ToString())
-            {
-                bdrLogin.Visibility = System.Windows.Visibility.Visible;
-                txtLogin.Focus();
-            }
-            else
-            {
-                bdrLogin.Visibility = System.Windows.Visibility.Hidden;
-            }
-        }
-
-        #endregion
 
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
@@ -136,11 +178,11 @@ namespace KrausRGA.UI
                             clGlobal.IsUserlogged = true;
                             //lsaudit.Insert(0
 
-                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login_Success.ToString(), DateTime.UtcNow.ToString(),_mUser.UserInfo.UserFullName);
+                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Login_Success.ToString(), DateTime.UtcNow.ToString(), _mUser.UserInfo.UserFullName);
 
                             //Manage Current User information.
                             clGlobal.mCurrentUser = _mUser;
-                            txtUserName.Text = _mUser.UserInfo.UserFullName.ToString() + Environment.NewLine+"[ " + _mUser.RoleName +" ]";
+                            txtUserName.Text = _mUser.UserInfo.UserFullName.ToString() + Environment.NewLine + "[ " + _mUser.RoleName + " ]";
                             ErrorMsg("Welcome " + _mUser.UserInfo.UserFullName.ToString(), Color.FromRgb(84, 185, 0));
                         }
                         else
@@ -152,13 +194,13 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        mRMAAudit.NoUserlogthis(eActionType.LoginFail__00.ToString(), DateTime.UtcNow.ToString(),txtLogin.Text.ToString());
+                        mRMAAudit.NoUserlogthis(eActionType.LoginFail__00.ToString(), DateTime.UtcNow.ToString(), txtLogin.Text.ToString());
                         ErrorMsg("Invalid user information.", Color.FromRgb(185, 84, 0));
                         txtLogin.Text = "";
                     }
                 }
             }
-           
+
 
         }
 
@@ -204,7 +246,7 @@ namespace KrausRGA.UI
                         }
                         else
                         {
-                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved_RMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(),_mReturn.EnteredNumber);
+                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved_RMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
                             ErrorMsg(_mReturn.EnteredNumber + " is already saved.", Color.FromRgb(185, 84, 0));
                             txtScan.Text = "";
                         }
@@ -226,7 +268,7 @@ namespace KrausRGA.UI
         public void ScannProgressBarStart()
         {
             dsptSacnner = new DispatcherTimer();
-            dsptSacnner.Tick +=dsptSacnner_Tick;
+            dsptSacnner.Tick += dsptSacnner_Tick;
             dsptSacnner.Interval = new TimeSpan(0, 0, 0, 0, 10);
             dsptSacnner.Start();
         }
@@ -284,9 +326,9 @@ namespace KrausRGA.UI
 
         private void wndLogin_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(bdrLogin.Visibility==Visibility.Visible)
+            if (bdrLogin.Visibility == Visibility.Visible)
             {
-                mRMAAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(),"login Window");
+                mRMAAudit.NoUserlogthis(eActionType.WindowClosed.ToString(), DateTime.UtcNow.ToString(), "login Window");
                 mRMAAudit.saveaudit(Views.AuditType.lsaudit);
                 Views.AuditType.lsaudit.Clear();
             }
@@ -304,7 +346,153 @@ namespace KrausRGA.UI
             app.ShowDialog();
         }
 
+        #endregion
 
+        #region camera
+
+        private void btnCamera_Click(object sender, RoutedEventArgs e)
+        {
+            Barcode.Camera.TakePhoto();
+           // bdrCamera.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void FindDevices()
+        {
+            var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
+            var audDevices = EncoderDevices.FindDevices(EncoderDeviceType.Audio);
+
+            int CameraNumber = KrausRGA.Properties.Settings.Default.CameraNumber;
+            int i = 0;
+            foreach (EncoderDevice dvc in vidDevices)
+            {
+                if (i == CameraNumber)
+                    VidDvcsComboBox.Items.Add(dvc.Name);
+                i++;
+            }
+
+            foreach (EncoderDevice dvc in audDevices)
+            {
+                AudDvcsComboBox.Items.Add(dvc.Name);
+            }
+
+        }
+
+        private void btnStartCapture_Click(object sender, RoutedEventArgs e)
+        {
+            
+            bdrCapture.Visibility = System.Windows.Visibility.Visible;
+            bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
+            bdrStop.Visibility = System.Windows.Visibility.Visible;
+            WebCamCtrl.StartCapture();
+
+            CaptureTime = new DispatcherTimer();
+            CaptureTime.Interval = new TimeSpan(0, 0, 2);
+            CaptureTime.Tick += CaptureTime_Tick;
+            CaptureTime.Start();
+
+        }
+
+        void CaptureTime_Tick(object sender, EventArgs e)
+        {
+            CheckBarcode();
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            WebCamCtrl.StopCapture();
+
+            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
+            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
+            bdrStop.Visibility = System.Windows.Visibility.Hidden;
+
+            CaptureTime.Stop();
+        }
+
+        private void btnOpenCamera_Click(object sender, RoutedEventArgs e)
+        {
+            bdrCamera.Visibility = System.Windows.Visibility.Visible;
+
+        }
+
+        private void brnCloseCamera_Click(object sender, RoutedEventArgs e)
+        {
+            WebCamCtrl.StopCapture();
+            WebCamCtrl.Dispose();
+            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
+            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
+            bdrStop.Visibility = System.Windows.Visibility.Hidden;
+            bdrCamera.Visibility = System.Windows.Visibility.Hidden;
+
+            CaptureTime.Stop();
+        }
+
+        private void CheckBarcode()
+        {
+            try
+            {
+
+                // Take snapshot of webcam image.
+               // WebCamCtrl.TakeSnapshot();
+                
+                var DirInfo = new DirectoryInfo(imgPath);
+                String ImageName = (from f in DirInfo.GetFiles()
+                                    orderby f.LastWriteTime descending
+                                    select f).First().Name.ToString();
+
+                var ListFiles = (from f in DirInfo.GetFiles()
+                                    select f).ToList();
+                String ReNamed = DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
+                File.Move(imgPath + ImageName, imgPath + "KRAUSGRA" + ReNamed + ".jpeg");
+                BitmapSource bs = new BitmapImage(new Uri(imgPath + "KRAUSGRA" + ReNamed + ".jpeg"));
+                String NewName =  imgPath + "KRAUSGRA" + ReNamed + ".jpeg";
+                String BarcodeRead = Barcode.BarcodeRead.Read(NewName);
+                if (BarcodeRead.ToString() != "")
+                {
+                    MessageBox.Show(BarcodeRead.ToString(), "Barcode Found");
+                }
+                foreach (var FilesIN in ListFiles)
+                {
+                    string Full = FilesIN.FullName.ToString();
+                    File.Delete(FilesIN.FullName.ToString());
+                }
+              
+              //  File.Delete(NewName);
+                //"C:\\BacodeSamples.jpg";
+            }
+            catch (Exception)
+            { }
+        }
+
+        [DllImport("advapi32.DLL", SetLastError = true)]
+        public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+
+
+
+        #endregion
+
+        #region private Functions.
+
+        /// <summary>
+        /// set the visibilty property of Login textbox and Button controls border
+        /// </summary>
+        /// <param name="visibility">
+        /// System.Windows.Visibility visibility enum Property
+        ///passed Visibility work same for buttons but apposit for login box at the same time
+        /// </param>
+        private void hideButtons(System.Windows.Visibility visibility)
+        {
+            bdrButtons.Visibility = visibility;
+            if (visibility.ToString() == System.Windows.Visibility.Hidden.ToString())
+            {
+                bdrLogin.Visibility = System.Windows.Visibility.Visible;
+                txtLogin.Focus();
+            }
+            else
+            {
+                bdrLogin.Visibility = System.Windows.Visibility.Hidden;
+            }
+        }
+
+        #endregion
     }
-
 }
