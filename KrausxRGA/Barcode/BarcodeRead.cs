@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Windows.Media.Imaging;
 
 namespace KrausRGA.Barcode
 {
@@ -75,9 +76,9 @@ namespace KrausRGA.Barcode
        /// </summary>
        /// <param name="FileName"></param>
        /// <returns></returns>
-       public static String Read(String FileName)
+       public static String Read(Bitmap bmpImage)
        {
-           Bitmap bmpImage = new Bitmap(FileName);
+           //Bitmap bmpImage = new Bitmap(FileName);
            bmpImage = AdjustContrast(bmpImage, (float)30.0);
            String _return = "";
            System.Collections.ArrayList barcodes= new System.Collections.ArrayList();
@@ -88,6 +89,30 @@ namespace KrausRGA.Barcode
                _return = _return + Str.ToString();
            }
            return _return;
+       }
+
+       public static string CheckBarcode()
+       {
+           string _return = "";
+           try
+           {
+              
+               BitmapSource bs = Camera.BitmapToImageSource(Camera.CaptureDesktopWithCursor(), ImageFormat.Jpeg);
+               //try { Camera.CreateThumbnail("C:\\Images\\" + DateTime.Now.ToString("MM_HH_SS_TT") + ".jpg", bs); }
+               //catch (Exception e) {  }
+               String BarcodeRead = "";
+               BarcodeRead = Barcode.BarcodeRead.Read(Camera.CaptureDesktopWithCursor());
+
+               if (BarcodeRead.ToString() != "")
+               {
+                   _return = BarcodeRead;
+                   Barcode.Camera.Close();
+               }
+           }
+           catch (Exception)
+           { }
+           return _return;
+
        }
     }
 }

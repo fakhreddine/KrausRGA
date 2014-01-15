@@ -23,6 +23,7 @@ using System.Security.Principal;
 using WebcamControl;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using KrausRGA.Barcode;
 
 namespace KrausRGA.UI
 {
@@ -34,11 +35,8 @@ namespace KrausRGA.UI
     {
         #region Declation
 
-        //WEB cam .
-        int Wheight = 700;
-        int Wwidth = 520;
 
-        string imgPath = "C:\\Users\\" +Environment.UserName + "\\Pictures\\Camera Roll\\";
+        string imgPath = "C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\";
         DispatcherTimer CaptureTime;
         mReturnDetails _mReturn;
         mUser _mUser;
@@ -60,65 +58,7 @@ namespace KrausRGA.UI
             InitializeComponent();
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
-            #region Camera Region
-
-            // Bind the Video and Audio device properties of the
-            // Webcam control to the SelectedValue property of 
-            // the necessary ComboBox.
-            Binding bndg_1 = new Binding("SelectedValue");
-            bndg_1.Source = VidDvcsComboBox;
-            WebCamCtrl.SetBinding(Webcam.VideoDeviceProperty, bndg_1);
-
-            Binding bndg_2 = new Binding("SelectedValue");
-            bndg_2.Source = AudDvcsComboBox;
-            WebCamCtrl.SetBinding(Webcam.AudioDeviceProperty, bndg_2);
-            // Create directory for saving video files.
-            string vidPath = @"C:\VideoClips";
-
-            if (Directory.Exists(vidPath) == false)
-            {
-                Directory.CreateDirectory(vidPath);
-            }
-
-            AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
-
-            IntPtr admin_token = default(IntPtr);
-
-            LogonUser(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, "domain", KrausRGA.Properties.Settings.Default.UserPasswordForImages, 9, 0, ref admin_token);
-
-            WindowsIdentity identity = new WindowsIdentity(admin_token);
-
-            WindowsImpersonationContext context = identity.Impersonate();
-
-            try
-            {
-                if (Directory.Exists(imgPath) == false)
-                {
-                    Directory.CreateDirectory(imgPath);
-                }
-            }
-            catch
-            {
-                context.Undo();
-            }
-
-            // Set some properties of the Webcam control
-            WebCamCtrl.VideoDirectory = vidPath;
-            WebCamCtrl.VidFormat = VideoFormat.mp4;
-
-            WebCamCtrl.ImageDirectory = imgPath;
-            WebCamCtrl.PictureFormat = ImageFormat.Jpeg;
-
-            WebCamCtrl.FrameRate = 48;
-            WebCamCtrl.FrameSize = new System.Drawing.Size(Wheight, Wwidth);
-
-            // Find a/v devices connected to the machine.
-            FindDevices();
-
-            VidDvcsComboBox.SelectedIndex = 0;
-            AudDvcsComboBox.SelectedIndex = 0;
-
-            #endregion
+      
         }
 
         #region Events
@@ -157,7 +97,41 @@ namespace KrausRGA.UI
                 //If no user is logged in then assign new user to the model
                 _mUser = new mUser();
             }
+            CaptureTime = new DispatcherTimer();
+            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 200);
+            CaptureTime.Tick += CaptureTime_Tick;
+            CaptureTime.Start();
+            Camera.Open();
+        }
 
+        void CaptureTime_Tick(object sender, EventArgs e)
+        {
+            string Barcode = BarcodeRead.CheckBarcode();
+            if (Barcode.Trim() != "")
+            {
+                if (!clGlobal.IsUserlogged)
+                {
+                    txtLogin.Text = Barcode;
+                    txtLogin.Focus();
+                    CaptureTime.Stop();
+                    var key = Key.Enter;                    // Key to send
+                    var target = Keyboard.FocusedElement;    // Target element
+                    var routedEvent = Keyboard.KeyDownEvent; // Event to send
+
+                    target.RaiseEvent(
+                      new KeyEventArgs(
+                        Keyboard.PrimaryDevice,
+                        PresentationSource.FromVisual(txtLogin),
+                        0,
+                        key) { RoutedEvent = routedEvent }
+                    );
+                }
+                else
+                {
+                    txtLogin.Text = Barcode;
+                    CaptureTime.Stop();
+                }
+            }
         }
 
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
@@ -348,128 +322,6 @@ namespace KrausRGA.UI
 
         #endregion
 
-        #region camera
-
-        private void btnCamera_Click(object sender, RoutedEventArgs e)
-        {
-            Barcode.Camera.TakePhoto();
-           // bdrCamera.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        private void FindDevices()
-        {
-            var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
-            var audDevices = EncoderDevices.FindDevices(EncoderDeviceType.Audio);
-
-            int CameraNumber = KrausRGA.Properties.Settings.Default.CameraNumber;
-            int i = 0;
-            foreach (EncoderDevice dvc in vidDevices)
-            {
-                if (i == CameraNumber)
-                    VidDvcsComboBox.Items.Add(dvc.Name);
-                i++;
-            }
-
-            foreach (EncoderDevice dvc in audDevices)
-            {
-                AudDvcsComboBox.Items.Add(dvc.Name);
-            }
-
-        }
-
-        private void btnStartCapture_Click(object sender, RoutedEventArgs e)
-        {
-            
-            bdrCapture.Visibility = System.Windows.Visibility.Visible;
-            bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
-            bdrStop.Visibility = System.Windows.Visibility.Visible;
-            WebCamCtrl.StartCapture();
-
-            CaptureTime = new DispatcherTimer();
-            CaptureTime.Interval = new TimeSpan(0, 0, 2);
-            CaptureTime.Tick += CaptureTime_Tick;
-            CaptureTime.Start();
-
-        }
-
-        void CaptureTime_Tick(object sender, EventArgs e)
-        {
-            CheckBarcode();
-        }
-
-        private void btnStop_Click(object sender, RoutedEventArgs e)
-        {
-            WebCamCtrl.StopCapture();
-
-            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
-            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
-            bdrStop.Visibility = System.Windows.Visibility.Hidden;
-
-            CaptureTime.Stop();
-        }
-
-        private void btnOpenCamera_Click(object sender, RoutedEventArgs e)
-        {
-            bdrCamera.Visibility = System.Windows.Visibility.Visible;
-
-        }
-
-        private void brnCloseCamera_Click(object sender, RoutedEventArgs e)
-        {
-            WebCamCtrl.StopCapture();
-            WebCamCtrl.Dispose();
-            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
-            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
-            bdrStop.Visibility = System.Windows.Visibility.Hidden;
-            bdrCamera.Visibility = System.Windows.Visibility.Hidden;
-
-            CaptureTime.Stop();
-        }
-
-        private void CheckBarcode()
-        {
-            try
-            {
-
-                // Take snapshot of webcam image.
-               // WebCamCtrl.TakeSnapshot();
-                
-                var DirInfo = new DirectoryInfo(imgPath);
-                String ImageName = (from f in DirInfo.GetFiles()
-                                    orderby f.LastWriteTime descending
-                                    select f).First().Name.ToString();
-
-                var ListFiles = (from f in DirInfo.GetFiles()
-                                    select f).ToList();
-                String ReNamed = DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
-                File.Move(imgPath + ImageName, imgPath + "KRAUSGRA" + ReNamed + ".jpeg");
-                BitmapSource bs = new BitmapImage(new Uri(imgPath + "KRAUSGRA" + ReNamed + ".jpeg"));
-                String NewName =  imgPath + "KRAUSGRA" + ReNamed + ".jpeg";
-                String BarcodeRead = Barcode.BarcodeRead.Read(NewName);
-                if (BarcodeRead.ToString() != "")
-                {
-                    MessageBox.Show(BarcodeRead.ToString(), "Barcode Found");
-                }
-                foreach (var FilesIN in ListFiles)
-                {
-                    string Full = FilesIN.FullName.ToString();
-                    File.Delete(FilesIN.FullName.ToString());
-                }
-              
-              //  File.Delete(NewName);
-                //"C:\\BacodeSamples.jpg";
-            }
-            catch (Exception)
-            { }
-        }
-
-        [DllImport("advapi32.DLL", SetLastError = true)]
-        public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
-
-
-
-        #endregion
-
         #region private Functions.
 
         /// <summary>
@@ -494,5 +346,19 @@ namespace KrausRGA.UI
         }
 
         #endregion
+
+        private void btnCamera_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch (Exception)
+            {}
+        }
+
+
+
+        
     }
 }
