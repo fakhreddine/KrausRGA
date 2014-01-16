@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
           xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
         Title="Kraus GRA System" Height="1280" Width="800"
-        Name="wndLogin" Loaded="wndLogin_Loaded" WindowState="Normal" Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="wndLogin_Closing">
+        Name="wndLogin" Loaded="wndLogin_Loaded" WindowState="Maximized" Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="wndLogin_Closing">
 
 
     <Viewbox >

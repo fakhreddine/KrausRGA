@@ -4,7 +4,7 @@
         xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
        x:Class="KrausRGA.UI.wndSrNumberInfo"
        Title="Kraus GRA System" Height="1280" Width="800" WindowState="Maximized"
-       Loaded="Window_Loaded" Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="Window_Closing">
+       Loaded="Window_Loaded"  Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="Window_Closing">
     <Viewbox>
         <Grid Height="1280" Width="800">
             <Border BorderThickness="2" BorderBrush="#FFD49919">
