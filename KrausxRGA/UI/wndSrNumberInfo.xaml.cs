@@ -22,6 +22,8 @@ using System.Windows.Controls.Primitives;
 using KrausRGA.EntityModel;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
+using System.Threading;
+using WindowsInput;
 
 namespace KrausRGA.UI
 {
@@ -175,7 +177,20 @@ namespace KrausRGA.UI
 
             if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
             {
-                bdrCamera.Visibility = System.Windows.Visibility.Visible;
+                //Show Camera.
+                Barcode.Camera.Open();
+                Thread.Sleep(1000);
+
+                //Take 5 Photos.
+                for (int i = 0; i < 3; i++)
+                {
+                    Barcode.Camera.TakePhoto();
+                    Thread.Sleep(1000);
+                   
+                }
+                Barcode.Camera.Close();
+                Thread.Sleep(1000);
+                Barcode.Camera.MoveImagesToImages();
             }
             else
             {

@@ -24,6 +24,7 @@ using WebcamControl;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using KrausRGA.Barcode;
+using WindowsInput;
 
 namespace KrausRGA.UI
 {
@@ -65,8 +66,6 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
-
-            //mAudit.logthis(eActionType.Login_PageStart.ToString(),"ApplicationStatred", DateTime.UtcNow.ToString());
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
 
@@ -100,7 +99,9 @@ namespace KrausRGA.UI
             CaptureTime = new DispatcherTimer();
             CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 200);
             CaptureTime.Tick += CaptureTime_Tick;
-            
+
+            //Create File To Move Photos.
+            File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" C:\\Images");
         }
 
         void CaptureTime_Tick(object sender, EventArgs e)
@@ -161,9 +162,14 @@ namespace KrausRGA.UI
 
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
+
+            ///Stop Searching For Barcode.
+            if (CaptureTime.IsEnabled && txtLogin.Text.Trim()!="")
+                CaptureTime.Stop();
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
             if (e.Key == Key.Enter)
             {
+                
                 if (txtLogin.Text.Trim() != "")
                 {
                     if (_mUser.IsValidUser(txtLogin.Text, "2wvcDW8j"))
@@ -199,8 +205,6 @@ namespace KrausRGA.UI
                     }
                 }
             }
-
-
         }
 
         private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
@@ -380,9 +384,10 @@ namespace KrausRGA.UI
             {
                 if (!CaptureTime.IsEnabled)
                 {
-                      CaptureTime.Start();
+                    CaptureTime.Start();
                 }
                 Camera.Open();
+
             }
             catch (Exception)
             {}
