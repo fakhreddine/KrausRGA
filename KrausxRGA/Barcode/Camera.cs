@@ -6,12 +6,17 @@ using System.Text;
 using System.Threading;
 using System.Windows.Media.Imaging;
 using WindowsInput;
+using System.Diagnostics;
 
 namespace KrausRGA.Barcode
 {
    public static class Camera
     {
         private static string imgPath = "C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\";
+       
+       /// <summary>
+       /// capture Photo from Open The Camera.
+       /// </summary>
        public static void TakePhoto()
        {
            try
@@ -24,6 +29,9 @@ namespace KrausRGA.Barcode
            { }
        }
 
+       /// <summary>
+       /// open Camera.
+       /// </summary>
        public static void Open()
        {
            try
@@ -44,6 +52,9 @@ namespace KrausRGA.Barcode
            }
        }
 
+       /// <summary>
+       /// Close Camera.
+       /// </summary>
        public static void Close()
        {
            try
@@ -61,6 +72,10 @@ namespace KrausRGA.Barcode
            }
        }
 
+       /// <summary>
+       /// Latest Photo Captured in Camera Roll Folder Full Path.
+       /// </summary>
+       /// <returns></returns>
        public static String LastPhotoName()
        {
 
@@ -71,11 +86,50 @@ namespace KrausRGA.Barcode
                 DirInfo.Attributes &= ~FileAttributes.ReadOnly;
                 ImageName = (from f in DirInfo.GetFiles()
                                     orderby f.LastWriteTime descending
-                                    select f).First().FullName.ToString();
+                                    select f).First().Name.ToString();
            }
            catch (Exception)
            {}
-           return ImageName;
+           return ImageName+".jpg";
+       }
+
+       /// <summary>
+       /// Count Number Of Files int the Folder;
+       /// </summary>
+       /// <returns></returns>
+       public static int CheckImageCount()
+       {
+           int _returnCount = 0;
+           try
+           {
+                var DirInfo = new DirectoryInfo(imgPath);
+                DirInfo.Attributes &= ~FileAttributes.ReadOnly;
+                _returnCount= (from f in DirInfo.GetFiles()
+                             select f).Count();
+           }
+           catch (Exception)
+           {}
+           return _returnCount;
+       }
+
+       /// <summary>
+       /// Move Camera Roll Folder images to the Designation Folder.
+       /// </summary>
+       /// <param name="DesignationFolder_FullPath">
+       /// Images Moved to this Location, Must be full path
+       /// </param>
+       public static void MoveImagesToImages()
+       {
+           try
+           {
+               String Path = Environment.CurrentDirectory+"\\Move.bat"; //Environment.CurrentDirectory + "\\CapturePhotos\\MoveFolder\\MoveFiles.exe";
+               ProcessStartInfo myProcess = new ProcessStartInfo(Path);
+               myProcess.WindowStyle = ProcessWindowStyle.Hidden;
+               myProcess.UseShellExecute = true;
+               Process.Start(myProcess);
+           }
+           catch (Exception)
+           { }
        }
 
        public static System.Drawing.Bitmap CaptureDesktopWithCursor()
