@@ -3,118 +3,121 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cam="clr-namespace:WebcamControl;assembly=WebcamControl"
        x:Class="KrausRGA.UI.wndSrNumberInfo"
-       Title="Kraus GRA System" Height="714" Width="1228" WindowState="Maximized"
+       Title="Kraus GRA System" Height="1280" Width="800" WindowState="Maximized"
        Loaded="Window_Loaded" Icon="/KrausRGA;component/Images/RGAICO.ico" Closing="Window_Closing">
     <Viewbox>
-        <Grid Height="619" Width="1104">
+        <Grid Height="1280" Width="800">
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="1,2,-1,-2" >
                     <Canvas.Background>
                         <ImageBrush ImageSource="/KrausRGA;component/Images/white.jpg"/>
                     </Canvas.Background>
-                    <Canvas x:Name="cvMainArea" Height="551" Width="1095" Canvas.Left="5">
-                        <TabControl Height="549" x:Name="tbrgzdetail" Width="1092" BorderBrush="#FF405EB8" Canvas.Top="2" SelectionChanged="tbrgzdetail_SelectionChanged" Background="#7FD6D6D6">
-                            <TabItem Header="" Height="0" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="10,0,-10,0">
-                                <Border x:Name="bdrmain" >
-                                    <Canvas x:Name="cvsTb1main" Margin="0,0,0,0">
+                    <Canvas x:Name="cvMainArea" Height="551" Width="800" Canvas.Left="5">
+                        <StackPanel Orientation="Vertical" Height="1280" Width="800">
+                            <Border x:Name="bdrmain" >
+                                <Canvas x:Name="cvsTb1main" Margin="0,0,10,0" Height="477">
 
-                                        <Border Height="227" Width="1062" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
-                                            <Canvas Margin="0,0,0,0">
-                                                <Border Height="52" Width="1061" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
-                                                    <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="30" Foreground="White" Margin="10,6,877,0"/>
-                                                </Border>
-                                                <Label x:Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="59" Width="143" Canvas.Left="476"/>
-                                                <Label x:Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="624" Canvas.Top="59" Width="211" Height="33"/>
+                                    <Border Height="227" Width="770" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
+                                        <Canvas Margin="0,0,0,0">
+                                            <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
+                                                <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="25" Foreground="White" Margin="10,6,351,0"/>
+                                            </Border>
+                                            <Label x:Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="57" Width="143" Canvas.Left="391"/>
+                                            <Label x:Name="lblRMANumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="551" Canvas.Top="59" Width="211" Height="33"/>
 
-                                                <Label x:Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="426" Canvas.Top="135" Width="193"/>
-                                                <Label x:Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="624" Canvas.Top="135" Width="361" Height="33"/>
+                                            <Label x:Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="341" Canvas.Top="132" Width="193"/>
+                                            <Label x:Name="lblRMAReqDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="552" Canvas.Top="135" Width="214" Height="33"/>
 
-                                                <Label x:Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="97" Width="164" Canvas.Left="455"/>
-                                                <Label x:Name="lblVendorNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="624" Canvas.Top="97" Width="205" Height="33"/>
+                                            <Label x:Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="95" Width="164" Canvas.Left="371"/>
+                                            <Label x:Name="lblVendorNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="552" Canvas.Top="97" Width="205" Height="33"/>
 
-                                                <Label x:Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="175" Width="147" Canvas.Left="478"/>
-                                                <Label x:Name="lblVendorName" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="624" Canvas.Top="173" Width="424" Height="33"/>
+                                            <Label x:Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="171" Width="147" Canvas.Left="387"/>
+                                            <Label x:Name="lblVendorName" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="550" Canvas.Top="173" Width="216" Height="33"/>
 
-                                                <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="76" Width="127" Canvas.Left="8"/>
-                                                <ComboBox x:Name="cmbRMAStatus" Height="52" Width="258" Canvas.Left="138" Canvas.Top="65" 
+                                            <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="78" Width="127" Canvas.Left="-3"/>
+                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="136" Canvas.Top="70" Style="{StaticResource combo}" 
 													ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929">
-                                                    <ComboBox.Background>
-                                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                                            <GradientStop Color="#FF292929" Offset="0"/>
-                                                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                                                            <GradientStop Color="#FF292929" Offset="0.5"/>
-                                                            <GradientStop Color="#FF292929" Offset="1"/>
-                                                            <GradientStop Color="#FF292929" Offset="0.498"/>
-                                                        </LinearGradientBrush>
-                                                    </ComboBox.Background>
-                                                </ComboBox>
+                                                <ComboBox.Background>
+                                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                        <GradientStop Color="#FF292929" Offset="0"/>
+                                                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                        <GradientStop Color="#FF292929" Offset="0.5"/>
+                                                        <GradientStop Color="#FF292929" Offset="1"/>
+                                                        <GradientStop Color="#FF292929" Offset="0.498"/>
+                                                    </LinearGradientBrush>
+                                                </ComboBox.Background>
+                                            </ComboBox>
 
-                                                <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="155" Width="97" Canvas.Left="36"/>
-                                                <ComboBox x:Name="cmbRMADecision" Height="54" Width="258" Canvas.Left="138" Canvas.Top="141" 
+                                            <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="152" Width="97" Canvas.Left="27"/>
+                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="202" Canvas.Left="136" Canvas.Top="152" Style="{StaticResource combo}"
 													ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
-                                                    <ComboBox.Background>
-                                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                                            <GradientStop Color="#FF292929" Offset="0"/>
-                                                            <GradientStop Color="#FF292929" Offset="0.5"/>
-                                                            <GradientStop Color="#FF292929" Offset="1"/>
-                                                        </LinearGradientBrush>
-                                                    </ComboBox.Background>
-                                                </ComboBox>
-                                            </Canvas>
-                                        </Border>
+                                                <ComboBox.Background>
+                                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                        <GradientStop Color="#FF292929" Offset="0"/>
+                                                        <GradientStop Color="#FF292929" Offset="0.5"/>
+                                                        <GradientStop Color="#FF292929" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </ComboBox.Background>
+                                            </ComboBox>
+                                        </Canvas>
+                                    </Border>
 
-                                        <Border Height="229" Width="1062" CornerRadius="10" Canvas.Top="242" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
-                                            <Canvas Margin="0,0,0,-2">
-                                                <Border Height="52" Width="1061" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
-                                                    <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="30" Foreground="White" Margin="10,6,794,0"/>
-                                                </Border>
-                                                <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="69" Width="143" Canvas.Left="38"/>
-                                                <Label x:Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="197" Canvas.Top="70" Width="254" Height="33"/>
+                                    <Border Height="229" Width="770" CornerRadius="10" Canvas.Top="242" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
+                                        <Canvas Margin="0,0,0,0">
+                                            <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
+                                                <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
+                                            </Border>
+                                            <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="60" Width="143" Canvas.Left="36"/>
+                                            <Label x:Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="184" Canvas.Top="70" Width="254" Height="33"/>
 
-                                                <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="107" Width="164" Canvas.Left="26"/>
-                                                <Label x:Name="lblName"  Style="{StaticResource lblVeriable}" Canvas.Left="195" Canvas.Top="108" Width="344" Height="33">
-                                                    <TextBlock x:Name="tbCustomerName" TextWrapping="NoWrap" Text="N/A" Width="334"/>
-                                                </Label>
+                                            <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="107" Width="164" Canvas.Left="15"/>
+                                            <Label x:Name="lblName"  Style="{StaticResource lblVeriable}" Canvas.Left="182" Canvas.Top="108" Width="224" Height="33">
+                                                <TextBlock x:Name="tbCustomerName" TextWrapping="NoWrap" Text="N/A" Width="334"/>
+                                            </Label>
 
-                                                <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="149" Width="187" Canvas.Left="5"/>
+                                            <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="149" Width="187" Canvas.Left="-7"/>
 
-                                                <Label Canvas.Left="197" Canvas.Top="149" Style="{StaticResource lblVeriable}">
-                                                    <TextBlock x:Name="lblCustomerAddress" Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="337" Height="64" 
+                                            <Label Canvas.Left="186" Canvas.Top="147" Style="{StaticResource lblVeriable}" Width="225">
+                                                <TextBlock x:Name="lblCustomerAddress" Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="215" Height="64" 
 													ScrollViewer.HorizontalScrollBarVisibility="Auto" Canvas.Left="197" Canvas.Top="149"
 													Foreground="Black" />
-                                                </Label>
-                                                <Label x:Name="lblcCustCity" Content="City : " Style="{StaticResource lblConstant}" Canvas.Top="61" Width="143" Canvas.Left="597"/>
-                                                <Label x:Name="lblCustCity" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="740" Canvas.Top="61" Width="254" Height="33"/>
+                                            </Label>
+                                            <Label x:Name="lblcCustCity" Content="City : " Style="{StaticResource lblConstant}" Canvas.Top="61" Width="143" Canvas.Left="431"/>
+                                            <Label x:Name="lblCustCity" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="581" Canvas.Top="61" Width="185" Height="33"/>
 
-                                                <Label x:Name="lblcState" Content="State/Province : " Style="{StaticResource lblConstant}" Canvas.Top="103" Width="163" Canvas.Left="577"/>
-                                                <Label x:Name="lblState" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="740" Canvas.Top="103" Width="254" Height="33"/>
+                                            <Label x:Name="lblcState" Content="State/Province : " Style="{StaticResource lblConstant}" Canvas.Top="103" Width="163" Canvas.Left="411"/>
+                                            <Label x:Name="lblState" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="580" Canvas.Top="103" Width="186" Height="33"/>
 
-                                                <Label x:Name="lblcZipCode" Content="Zip/Postal Code: " Style="{StaticResource lblConstant}" Canvas.Top="141" Width="163" Canvas.Left="577"/>
-                                                <Label x:Name="lblZipCode" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="740" Canvas.Top="141" Width="254" Height="33"/>
+                                            <Label x:Name="lblcZipCode" Content="Zip/Postal Code: " Style="{StaticResource lblConstant}" Canvas.Top="141" Width="163" Canvas.Left="411"/>
+                                            <Label x:Name="lblZipCode" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="579" Canvas.Top="141" Width="177" Height="33"/>
 
-                                                <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="179" Width="163" Canvas.Left="577"/>
-                                                <Label x:Name="lblCountry" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="740" Canvas.Top="177" Width="254" Height="33"/>
-                                            </Canvas>
-                                        </Border>
+                                            <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="179" Width="163" Canvas.Left="411"/>
+                                            <Label x:Name="lblCountry" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="575" Canvas.Top="180" Width="181" Height="33"/>
+                                        </Canvas>
+                                    </Border>
 
-                                    </Canvas>
-                                </Border>
-                            </TabItem>
-                            <TabItem  Height="0" Width="200" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" Margin="23,0,-23,0" >
-                                <Border x:Name="bdrmain2" >
-                                    <Canvas x:Name="cvsTb1main2" Margin="0,0,0,0">
-                                        <!-- Grid View-->
-                                        <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
-                                            <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
-                                        </Border>
+                                </Canvas>
+                            </Border>
 
-                                        <!-- Grid View-->
-                                        <DataGrid x:Name="dgPackageInfo"
+
+                            <Border x:Name="bdrmain2" >
+                                <Canvas x:Name="cvsTb1main2" Margin="0,0,0,0" Height="313">
+                                    <!-- Grid View-->
+                                    <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
+                                        <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
+                                    </Border>
+
+                                    <!-- Grid View-->
+                                    <Border Height="45" Width="798" Background="#B2111111" Canvas.Top="1" Canvas.Left="2">
+                                        <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="10,6,236,0"/>
+                                    </Border>
+
+                                    <DataGrid x:Name="dgPackageInfo"
 											SelectionMode="Extended" 
 											ItemsSource="{Binding}" 
 											HorizontalAlignment="Center" 
 											VerticalAlignment="Center"
-											Width="1027" 
+											Width="784" 
 											ScrollViewer.CanContentScroll="False" 
 											ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
 											ScrollViewer.VerticalScrollBarVisibility="Auto" 
@@ -128,129 +131,167 @@
 											BorderBrush="{x:Null}" 
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
-											Height="487"  
-											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Left="55">
+											Height="268"  
+											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Left="6" Canvas.Top="45">
 
-                                            <DataGrid.Resources>
-                                                <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                                    <Setter Property="FontSize" Value="20"/>
-                                                </Style>
-                                            </DataGrid.Resources>
+                                        <DataGrid.Resources>
+                                            <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
+                                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                                <Setter Property="FontSize" Value="20"/>
+                                            </Style>
+                                        </DataGrid.Resources>
 
-                                            <DataGrid.Columns>
-                                                <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="50"  >
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate >
-                                                            <Canvas x:Name="cvButtons" Background="White">
-                                                                <Button x:Name="btnRed" Width="45" Height="65" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
-                                                                    <Button.Background>
-                                                                        <ImageBrush ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
-                                                                    </Button.Background>
-                                                                </Button>
-                                                                <Button x:Name="btnGreen" Visibility="Hidden" Width="45" Height="65"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
+                                        <DataGrid.Columns>
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="50"  >
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate >
+                                                        <Canvas x:Name="cvButtons" Background="White">
+                                                            <Button x:Name="btnRed" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
+                                                                <Button.Background>
+                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
+                                                                </Button.Background>
+                                                            </Button>
+                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="40" Height="40"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
 																	Click="btnGreen_Click" >
-                                                                    <Button.Background>
-                                                                        <ImageBrush ImageSource="/KrausRGA;component/Images/Checked .png"/>
-                                                                    </Button.Background>
-                                                                </Button>
-                                                            </Canvas>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                                                <Button.Background>
+                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/Checked .png"/>
+                                                                </Button.Background>
+                                                            </Button>
+                                                        </Canvas>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
 													Binding="{Binding SKUNumber}" 
 													Header="SKU"  
-													Width="180" 
+													Width="150" 
 													IsReadOnly="True" />
 
-                                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
 													Binding="{Binding ProductName}" 
 													Header="Product Name" 
-													Width="200" 
+													Width="210" 
                                     				/>
 
-                                                <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
 													Header="Qty"
-													Width="150">
+													Width="80">
 
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <StackPanel x:Name="spQty1" Width="150">
-                                                                <TextBlock x:Name="tbQty" TextAlignment="Center" Width="150" Text="{Binding ReturnedQty}" FontSize="20"/>
-                                                                <StackPanel x:Name="spQty2" Orientation="Horizontal">
-                                                                    <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-																		Width="75" Height="40" FontSize="30"
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="spQty1" Width="80">
+                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="15"/>
+                                                            <StackPanel x:Name="spQty2" Orientation="Horizontal">
+                                                                <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+																		Width="35" Height="20" FontSize="12"
 																		Foreground="White" Background="#FF464646" 
 																		Click="btnMinus_Click" />
-                                                                    <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-																		Width="75" Height="40" 
-																		FontSize="30" Foreground="White" Background="#FF464646"
+                                                                <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+																		Width="35" Height="20" 
+																		FontSize="12" Foreground="White" Background="#FF464646"
 																		Click="btnPluse_Click" />
-                                                                </StackPanel>
                                                             </StackPanel>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
 
-                                                <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
 													Header="Images" 
-													Width="320" >
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate >
-                                                            <ScrollViewer x:Name="svScrollImages" Width="320" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
-                                                                <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
-                                                                    <StackPanel x:Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
-                                                                </ContentControl>
-                                                            </ScrollViewer>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
+													Width="200" >
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate >
+                                                        <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+                                                            <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
+                                                                <StackPanel x:Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
+                                                            </ContentControl>
+                                                        </ScrollViewer>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
 
-                                                <DataGridTemplateColumn Header="Reasons" 
+                                            <DataGridTemplateColumn Header="Reasons" 
 													HeaderStyle="{StaticResource HeaderStyleKey}"
 													Width="*" >
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
-                                                                <Canvas x:Name="cvItemReasons" >
-                                                                    <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="70" Width="120" />
-                                                                    <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
-                                                                </Canvas>
-                                                            </ContentControl>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                        <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="77" Height="349" Width="504" >
-                                            <Border.Style>
-                                                <Style TargetType="{x:Type Border}">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="Visibility" Value="Hidden">
-                                                            <Trigger.EnterActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="0"  To="-1500"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </Trigger.EnterActions>
-                                                        </Trigger>
-                                                        <Trigger Property="Visibility" Value="Visible">
-                                                            <Trigger.EnterActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.8" From="-1500"  To="10"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </Trigger.EnterActions>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <Canvas x:Name="cnCamera" Visibility="Visible"  Background="#B2323232" Margin="0,0,-152,-93" >
-                                                <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="390" Canvas.Left="119" Width="500" Canvas.Top="12"/>
-                                                <Border x:Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="24" Width="88" CornerRadius="10" Canvas.Left="-147">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
+                                                            <Canvas x:Name="cvItemReasons" >
+                                                                <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="70" Width="80" />
+                                                                <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
+                                                            </Canvas>
+                                                        </ContentControl>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Border x:Name="bdrCamera" Visibility="Hidden" Canvas.Top="77" Height="349" Width="504" >
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="Visibility" Value="Hidden">
+                                                        <Trigger.EnterActions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="0"  To="-1500"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </Trigger.EnterActions>
+                                                    </Trigger>
+                                                    <Trigger Property="Visibility" Value="Visible">
+                                                        <Trigger.EnterActions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.8" From="-1500"  To="10"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </Trigger.EnterActions>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <Canvas x:Name="cnCamera" Visibility="Visible"  Background="#B2323232" Margin="0,0,-152,-93" >
+                                            <cam:Webcam x:Name="WebCamCtrl"  Background="#FF3A3939" BorderBrush="#FF3C3C3C" BorderThickness="2" Height="390" Canvas.Left="119" Width="500" Canvas.Top="12"/>
+                                            <Border x:Name="bdrStop" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="24" Width="88" CornerRadius="10" Canvas.Left="-147">
+                                                <Border.Style>
+                                                    <Style TargetType="{x:Type Border}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="Visibility" Value="Hidden">
+                                                                <Trigger.EnterActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </Trigger.EnterActions>
+                                                            </Trigger>
+                                                            <Trigger Property="Visibility" Value="Visible">
+                                                                <Trigger.EnterActions>
+                                                                    <BeginStoryboard>
+                                                                        <Storyboard>
+                                                                            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
+                                                                        </Storyboard>
+                                                                    </BeginStoryboard>
+                                                                </Trigger.EnterActions>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Canvas Margin="0,0,-10,-10"  >
+                                                    <Button x:Name="btnStop" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Height="71" Width="88" Click="btnStop_Click">
+                                                        <Button.Background>
+                                                            <ImageBrush ImageSource="/KrausRGA;component/Images/Stopicon.png"/>
+                                                        </Button.Background>
+                                                        <Button.Foreground>
+                                                            <ImageBrush ImageSource="/KrausRGA;component/Images/Stopicon.png"/>
+                                                        </Button.Foreground>
+                                                    </Button>
+                                                    <TextBlock x:Name="tbkStop" Text="Stop Camera" HorizontalAlignment="Center" Height="19" Width="88" Canvas.Top="62" Foreground="White" FontSize="15"/>
+                                                </Canvas>
+                                            </Border>
+                                            <Canvas Height="228" Width="112" Canvas.Top="-2">
+                                                <Border x:Name="bdrCapture" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="144" Width="83" CornerRadius="10" Canvas.Left="-124">
                                                     <Border.Style>
                                                         <Style TargetType="{x:Type Border}">
                                                             <Style.Triggers>
@@ -275,270 +316,232 @@
                                                             </Style.Triggers>
                                                         </Style>
                                                     </Border.Style>
-                                                    <Canvas Margin="0,0,-10,-10"  >
-                                                        <Button x:Name="btnStop" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Height="71" Width="88" Click="btnStop_Click">
+                                                    <Canvas >
+                                                        <ComboBox Height="22" HorizontalAlignment="Left" Margin="104,269,0,0"
+																x:Name="VidDvcsComboBox" VerticalAlignment="Top" Width="210" Visibility="Hidden" />
+                                                        <ComboBox Visibility="Hidden" Height="23" HorizontalAlignment="Left" Margin="105,302,0,0"
+																x:Name="AudDvcsComboBox" VerticalAlignment="Top" Width="209" />
+                                                        <Button x:Name="btnCapture" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}"  BorderThickness="0" Height="60" Width="78" Click="SnapshotButton_Click" >
                                                             <Button.Background>
-                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/Stopicon.png"/>
+                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/iconcamera.png"/>
                                                             </Button.Background>
                                                             <Button.Foreground>
-                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/Stopicon.png"/>
+                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/iconcamera.png"/>
                                                             </Button.Foreground>
                                                         </Button>
-                                                        <TextBlock x:Name="tbkStop" Text="Stop Camera" HorizontalAlignment="Center" Height="19" Width="88" Canvas.Top="62" Foreground="White" FontSize="15"/>
+                                                        <TextBlock x:Name="tbkCapture" Text="Capture" TextAlignment="Center" Height="25" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White" FontSize="15"/>
                                                     </Canvas>
                                                 </Border>
-                                                <Canvas Height="228" Width="112" Canvas.Top="-2">
-                                                    <Border x:Name="bdrCapture" Visibility="Visible" BorderBrush="Black" BorderThickness="0" Height="81" Canvas.Top="144" Width="83" CornerRadius="10" Canvas.Left="-124">
-                                                        <Border.Style>
-                                                            <Style TargetType="{x:Type Border}">
-                                                                <Style.Triggers>
-                                                                    <Trigger Property="Visibility" Value="Hidden">
-                                                                        <Trigger.EnterActions>
-                                                                            <BeginStoryboard>
-                                                                                <Storyboard>
-                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
-                                                                                </Storyboard>
-                                                                            </BeginStoryboard>
-                                                                        </Trigger.EnterActions>
-                                                                    </Trigger>
-                                                                    <Trigger Property="Visibility" Value="Visible">
-                                                                        <Trigger.EnterActions>
-                                                                            <BeginStoryboard>
-                                                                                <Storyboard>
-                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
-                                                                                </Storyboard>
-                                                                            </BeginStoryboard>
-                                                                        </Trigger.EnterActions>
-                                                                    </Trigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </Border.Style>
-                                                        <Canvas >
-                                                            <ComboBox Height="22" HorizontalAlignment="Left" Margin="104,269,0,0"
-																x:Name="VidDvcsComboBox" VerticalAlignment="Top" Width="210" Visibility="Hidden" />
-                                                            <ComboBox Visibility="Hidden" Height="23" HorizontalAlignment="Left" Margin="105,302,0,0"
-																x:Name="AudDvcsComboBox" VerticalAlignment="Top" Width="209" />
-                                                            <Button x:Name="btnCapture" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}"  BorderThickness="0" Height="60" Width="78" Click="SnapshotButton_Click" >
-                                                                <Button.Background>
-                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconcamera.png"/>
-                                                                </Button.Background>
-                                                                <Button.Foreground>
-                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconcamera.png"/>
-                                                                </Button.Foreground>
-                                                            </Button>
-                                                            <TextBlock x:Name="tbkCapture" Text="Capture" TextAlignment="Center" Height="25" Width="74" Canvas.Left="4" Canvas.Top="56" Foreground="White" FontSize="15"/>
-                                                        </Canvas>
-                                                    </Border>
-                                                    <Border x:Name="bdrStartCapture"  Visibility="Visible" BorderThickness="0" Height="71" Canvas.Top="30" Width="78" CornerRadius="10" Canvas.Left="10">
-                                                        <Border.Style>
-                                                            <Style TargetType="{x:Type Border}">
-                                                                <Style.Triggers>
-                                                                    <Trigger Property="Visibility" Value="Hidden">
-                                                                        <Trigger.EnterActions>
-                                                                            <BeginStoryboard>
-                                                                                <Storyboard>
-                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
-                                                                                </Storyboard>
-                                                                            </BeginStoryboard>
-                                                                        </Trigger.EnterActions>
-                                                                    </Trigger>
-                                                                    <Trigger Property="Visibility" Value="Visible">
-                                                                        <Trigger.EnterActions>
-                                                                            <BeginStoryboard>
-                                                                                <Storyboard>
-                                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
-                                                                                </Storyboard>
-                                                                            </BeginStoryboard>
-                                                                        </Trigger.EnterActions>
-                                                                    </Trigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </Border.Style>
-                                                        <Canvas Margin="2,12,-9,-17" >
-                                                            <Button x:Name="btnStartCapture" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Height="60" Width="78" Click="btnStartCapture_Click"  >
-                                                                <Button.Background>
-                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconplay.png"/>
-                                                                </Button.Background>
-                                                                <Button.Foreground>
-                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/iconplay.png"/>
-                                                                </Button.Foreground>
-                                                            </Button>
-                                                            <TextBlock x:Name="tbkStartCapture" Text="Start Camera" HorizontalAlignment="Center" Height="20" Width="85" Canvas.Top="56" Foreground="White" FontSize="15"/>
-                                                        </Canvas>
-                                                    </Border>
-                                                </Canvas>
-                                                <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="32" >
-                                                    <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
-                                                </ScrollViewer>
-                                                <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="488" 
+                                                <Border x:Name="bdrStartCapture"  Visibility="Visible" BorderThickness="0" Height="71" Canvas.Top="30" Width="78" CornerRadius="10" Canvas.Left="10">
+                                                    <Border.Style>
+                                                        <Style TargetType="{x:Type Border}">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="Visibility" Value="Hidden">
+                                                                    <Trigger.EnterActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="10"  To="-90"/>
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.EnterActions>
+                                                                </Trigger>
+                                                                <Trigger Property="Visibility" Value="Visible">
+                                                                    <Trigger.EnterActions>
+                                                                        <BeginStoryboard>
+                                                                            <Storyboard>
+                                                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Duration="0:0:0.5" From="-90"  To="10"/>
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.EnterActions>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <Canvas Margin="2,12,-9,-17" >
+                                                        <Button x:Name="btnStartCapture" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" BorderThickness="0" Height="60" Width="78" Click="btnStartCapture_Click"  >
+                                                            <Button.Background>
+                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/iconplay.png"/>
+                                                            </Button.Background>
+                                                            <Button.Foreground>
+                                                                <ImageBrush ImageSource="/KrausRGA;component/Images/iconplay.png"/>
+                                                            </Button.Foreground>
+                                                        </Button>
+                                                        <TextBlock x:Name="tbkStartCapture" Text="Start Camera" HorizontalAlignment="Center" Height="20" Width="85" Canvas.Top="56" Foreground="White" FontSize="15"/>
+                                                    </Canvas>
+                                                </Border>
+                                            </Canvas>
+                                            <ScrollViewer x:Name="sclPh" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Canvas.Left="416" Canvas.Top="24" Width="32" >
+                                                <StackPanel OverridesDefaultStyle="True" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal"  x:Name="spPhotos" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="829"/>
+                                            </ScrollViewer>
+                                            <Button Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" x:Name="brnCloseCamera" Content="Close Camera" Canvas.Left="488" 
 													Canvas.Top="166" Width="440" Height="108" RenderTransformOrigin="0.5,0.5" Background="#FFE07D1A" Foreground="White"
 													HorizontalAlignment="Right" FontSize="30" FontWeight="Bold" Click="brnCloseCamera_Click">
-                                                    <Button.RenderTransform>
-                                                        <TransformGroup>
-                                                            <ScaleTransform/>
-                                                            <SkewTransform/>
-                                                            <RotateTransform Angle="89.854"/>
-                                                            <TranslateTransform/>
-                                                        </TransformGroup>
-                                                    </Button.RenderTransform>
-                                                </Button>
-                                            </Canvas>
-                                        </Border>
-                                        <!-- Zoom image captured. -->
-                                        <Border x:Name="bdrZoomImage" Canvas.Left="376" Canvas.Top="77" BorderThickness="2" Visibility="Hidden" CornerRadius="5" BorderBrush="#FF9B20E2" Height="317" Width="448">
-                                            <Image Canvas.Left="417" Stretch="Fill"  Canvas.Top="130" x:Name="imgZoom" Visibility="Visible" MouseLeftButtonDown="imgZoom_MouseLeftButtonDown" Margin="4"/>
-                                        </Border>
-
-                                        <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="500" Canvas.Left="430" Canvas.Top="45" Width="950" OpacityMask="#FF535252" Background="#FF406B83">
-                                            <Canvas.Style>
-                                                <Style TargetType="{x:Type Canvas}">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsVisible" Value="true">
-                                                            <Trigger.EnterActions >
-                                                                <BeginStoryboard >
-                                                                    <Storyboard >
-                                                                        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" 
-																			From="1500" 
-																			To="470" 
-																			Duration="0:0:0.1"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </Trigger.EnterActions>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Canvas.Style>
-                                            <TextBlock x:Name="tbTitle" Text="Select Reasons" Foreground="#FFF9F9F9" Canvas.Left="44" Canvas.Top="2"/>
-
-                                            <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-294" Width="504"
-												Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="205" Background="#FFE07D1A" >
                                                 <Button.RenderTransform>
                                                     <TransformGroup>
                                                         <ScaleTransform/>
                                                         <SkewTransform/>
-                                                        <RotateTransform Angle="90"/>
+                                                        <RotateTransform Angle="89.854"/>
                                                         <TranslateTransform/>
                                                     </TransformGroup>
                                                 </Button.RenderTransform>
                                             </Button>
-                                            <ScrollViewer  Canvas.Top="47" Width="950" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >
-                                                <DataGrid Height="453" x:Name="dgReasons"
+                                        </Canvas>
+                                    </Border>
+                                    <!-- Zoom image captured. -->
+                                    <Border x:Name="bdrZoomImage" Canvas.Left="376" Canvas.Top="77" BorderThickness="2" Visibility="Hidden" CornerRadius="5" BorderBrush="#FF9B20E2" Height="317" Width="448">
+                                        <Image Canvas.Left="417" Stretch="Fill"  Canvas.Top="130" x:Name="imgZoom" Visibility="Visible" MouseLeftButtonDown="imgZoom_MouseLeftButtonDown" Margin="4"/>
+                                    </Border>
+
+                                    <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="268" Canvas.Left="300" Canvas.Top="45" Width="500" OpacityMask="#FF535252" Background="#FF406B83">
+                                        <Canvas.Style>
+                                            <Style TargetType="{x:Type Canvas}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsVisible" Value="true">
+                                                        <Trigger.EnterActions >
+                                                            <BeginStoryboard >
+                                                                <Storyboard >
+                                                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" 
+																			From="1000" 
+																			To="300" 
+																			Duration="0:0:0.1"/>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </Trigger.EnterActions>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Canvas.Style>
+                                        <TextBlock x:Name="tbTitle" Text="Select Reasons" Foreground="#FFF9F9F9" Canvas.Left="2" Canvas.Top="2" FontSize="25"/>
+
+                                        <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-177" Width="270"
+												Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="88" Background="#FFE07D1A" >
+                                            <Button.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform Angle="90"/>
+                                                    <TranslateTransform/>
+                                                </TransformGroup>
+                                            </Button.RenderTransform>
+                                        </Button>
+                                        <ScrollViewer  Canvas.Top="47" Width="500" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >
+                                            <DataGrid Height="221" x:Name="dgReasons"
 													ItemsSource="{Binding}" 
 													AutoGenerateColumns="False"
 													CanUserAddRows="False"
 													HeadersVisibility="None"
 													HorizontalGridLinesBrush="#FF272626" VerticalGridLinesBrush="{x:Null}" 
-													Background="#FFE6E6E6" Width="946" GridLinesVisibility="None" RowHeight="60" >
-                                                    <DataGrid.Columns >
-                                                        <DataGridTemplateColumn Header="" Width="50"  >
-                                                            <DataGridTemplateColumn.CellStyle>
-                                                                <Style TargetType="{x:Type DataGridCell}">
-                                                                    <Setter Property="Margin" Value="5,5,0,5"/>
-                                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                                </Style>
-                                                            </DataGridTemplateColumn.CellStyle>
-                                                            <DataGridTemplateColumn.CellTemplate>
-                                                                <DataTemplate>
-                                                                    <Canvas x:Name="cvReasons" Background="#FF787878" >
-                                                                        <CheckBox x:Name="cbReasons" Style="{StaticResource cbStyleKey}" Content="" Canvas.Top="4" Canvas.Left="2" />
-                                                                    </Canvas>
-                                                                </DataTemplate>
-                                                            </DataGridTemplateColumn.CellTemplate>
-                                                        </DataGridTemplateColumn>
-                                                        <DataGridTemplateColumn Header="Reasons" Width="*">
-                                                            <DataGridTemplateColumn.CellStyle>
-                                                                <Style TargetType="{x:Type DataGridCell}">
-                                                                    <Setter Property="Margin" Value="-4,5,5,5"/>
-                                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                                </Style>
-                                                            </DataGridTemplateColumn.CellStyle>
-                                                            <DataGridTemplateColumn.CellTemplate>
-                                                                <DataTemplate>
-                                                                    <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1"  >
-                                                                        <Border BorderBrush="#FF0F0F0F" BorderThickness="0,1,1,1" Background="#FF919191" CornerRadius="3" >
-                                                                            <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="7,0,0,0"  />
-                                                                        </Border>
-                                                                    </ContentControl>
-                                                                </DataTemplate>
-                                                            </DataGridTemplateColumn.CellTemplate>
-                                                        </DataGridTemplateColumn>
-                                                        <DataGridTextColumn  
+													Background="#FFE6E6E6" Width="500" GridLinesVisibility="None" RowHeight="35" >
+                                                <DataGrid.Columns >
+                                                    <DataGridTemplateColumn Header="" Width="50"  >
+                                                        <DataGridTemplateColumn.CellStyle>
+                                                            <Style TargetType="{x:Type DataGridCell}">
+                                                                <Setter Property="Margin" Value="5,5,0,5"/>
+                                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                            </Style>
+                                                        </DataGridTemplateColumn.CellStyle>
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <Canvas x:Name="cvReasons" Background="#FF787878" >
+                                                                    <CheckBox x:Name="cbReasons" Style="{StaticResource cbStyleKey1}" Content="" Canvas.Top="4" Canvas.Left="2" />
+                                                                </Canvas>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn Header="Reasons" Width="*">
+                                                        <DataGridTemplateColumn.CellStyle>
+                                                            <Style TargetType="{x:Type DataGridCell}">
+                                                                <Setter Property="Margin" Value="-4,5,5,5"/>
+                                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                            </Style>
+                                                        </DataGridTemplateColumn.CellStyle>
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1"  >
+                                                                    <Border BorderBrush="#FF0F0F0F" BorderThickness="0,1,1,1" Background="#FF919191" CornerRadius="3" >
+                                                                        <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="7,0,0,0"  />
+                                                                    </Border>
+                                                                </ContentControl>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                    <DataGridTextColumn  
 															Binding="{Binding ReasonID}"
 															Header=""  
 															Width="0"
-															Foreground="#FFB8B8B8"
+															Foreground="WhiteSmoke"
 															IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
-                                            </ScrollViewer>
-                                            <TextBox Height="49" x:Name="txtItemReason" TextWrapping="Wrap" Visibility="Hidden" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
-                                            <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
-                                        </Canvas>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </ScrollViewer>
+                                        <TextBox Height="49" x:Name="txtItemReason" TextWrapping="Wrap" Visibility="Hidden" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
+                                        <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
                                     </Canvas>
-                                </Border>
-                            </TabItem>
-                            <TabItem Height="0" Width="250" FontSize="30" Foreground="#FF1BACFF" BorderBrush="#FF405EB8" BorderThickness="2" VerticalAlignment="Top" Margin="38,0,-38,0">
-                                <Canvas>
-                                    <Border Width="1062" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Height="296" >
-                                        <Canvas x:Name="cvCheckboxHolder" Margin="0,0,0,0">
-                                            <Border Height="52" Width="1061" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
-                                                <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="30" Foreground="White" Margin="10,6,780,0"/>
+                                </Canvas>
+                            </Border>
+
+                            <Border>
+                                <Canvas Height="471">
+                                    <Border Width="790" CornerRadius="10" Canvas.Top="2" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="241" >
+                                        <Canvas x:Name="cvCheckboxHolder" Margin="-10,0,10,0">
+                                            <Border Height="45" Width="789" Background="#B2111111" Canvas.Top="1" Canvas.Left="8">
+                                                <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="25" Foreground="White" Margin="10,6,236,0"/>
                                             </Border>
 
 
-                                            <Border x:Name="bdrDamaged" Canvas.Left="51" Canvas.Top="72" Height="51" Width="392"
+                                            <Border x:Name="bdrDamaged" Canvas.Left="19" Canvas.Top="59" Height="51" Width="291"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="1,2,259,28" 
+                                                <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="10,6,200,31" 
 													Checked="cbrDamaged_Checked" Unchecked="cbrDamaged_Unchecked" Background="White"/>
                                             </Border>
 
-                                            <Border x:Name="bdrDuplicate" Canvas.Left="51" Canvas.Top="223" Height="51" Width="392"
+                                            <Border x:Name="bdrDuplicate" Canvas.Left="18" Canvas.Top="177" Height="51" Width="292"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7" RenderTransformOrigin="0.718,0.322">
-                                                <CheckBox x:Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237"   Margin="1,2,259,28"  
+                                                <CheckBox x:Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237"   Margin="14,7,184,30"  
 													Checked="cbrDuplicate_Checked" Unchecked="cbrDuplicate_Unchecked"/>
                                             </Border>
-                                            <Border x:Name="bdrIcorrectOrder" Canvas.Left="469" Canvas.Top="70" Height="51" Width="579"
+                                            <Border x:Name="bdrIcorrectOrder" Canvas.Left="328" Canvas.Top="58" Height="51" Width="407"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
                                                 <CheckBox x:Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74"
-													Margin="3,1,382,29"  
+													Margin="5,5,269,29"  
 													Checked="cbrIncorrectOrder_Checked" Unchecked="cbrIncorrectOrder_Unchecked"/>
                                             </Border>
 
-                                            <Border x:Name="bdrDisplayedDiff" Canvas.Left="471" Canvas.Top="148" Height="51" Width="579"
+                                            <Border x:Name="bdrDisplayedDiff" Canvas.Left="327" Canvas.Top="118" Height="51" Width="470"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="3,1,382,29"  
+                                                <CheckBox x:Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="2,4,311,30"  
 													Checked="cbrDisplayedDiff_Checked" Unchecked="cbrDisplayedDiff_Unchecked"/>
                                             </Border>
-                                            <Border x:Name="bdrSatisfied" Canvas.Left="471" Canvas.Top="224" Height="51" Width="579"
+                                            <Border x:Name="bdrSatisfied" Canvas.Left="327" Canvas.Top="176" Height="51" Width="407"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="3,1,382,29" 
+                                                <CheckBox x:Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="2,4,270,32" 
 													Checked="cbrSatisfied_Checked" Unchecked="cbrSatisfied_Unchecked" />
 
                                             </Border>
-                                            <Border x:Name="bdrRecivedWrong" Canvas.Left="51" Canvas.Top="147" Height="51" Width="392"
+                                            <Border x:Name="bdrRecivedWrong" Canvas.Left="17" Canvas.Top="116" Height="51" Width="293"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
                                                 <CheckBox x:Name="cbrWrong" Style="{StaticResource cbStyleKey}"
-													Content="Received wrong item."  Margin="1,2,259,28" 
+													Content="Received wrong item."  Margin="10,4,188,31" 
 													Checked="cbrWrong_Checked" 
 													Unchecked="cbrWrong_Unchecked"/>
                                             </Border>
                                         </Canvas>
                                     </Border>
 
-                                    <Border Width="1058" CornerRadius="10" Canvas.Top="313" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Height="167" >
-                                        <Canvas Margin="0,0,0,0">
-                                            <Border Height="52" Width="1057" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
-                                                <TextBlock TextWrapping="Wrap" Text="Other Reason" FontSize="30" Foreground="White" Margin="10,4,624,6"/>
+                                    <Border Width="791" CornerRadius="10" Canvas.Top="244" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="144" Canvas.Left="-1" >
+                                        <Canvas Margin="0,2,0,5">
+                                            <Border Height="47" Width="787" Background="#B2111111" Canvas.Top="1" Canvas.Left="3">
+                                                <TextBlock TextWrapping="Wrap" Text="Other Reason" FontSize="25" Foreground="White" Margin="10,4,266,6"/>
                                             </Border>
 
-                                            <TextBox x:Name="txtOtherReason" Height="49" Width="1044" Canvas.Top="53" TextWrapping="WrapWithOverflow" Background="{x:Null}" />
-                                            <ComboBox x:Name="cmbOtherReason" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID"  Canvas.Left="2" Canvas.Top="102" Width="1052" Height="55" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbOtherReason_SelectionChanged" Foreground="#FF55BFB6" BorderBrush="#FF292828">
+                                            <TextBox x:Name="txtOtherReason" Height="43" Width="783" Canvas.Top="49" TextWrapping="WrapWithOverflow" Background="{x:Null}" Canvas.Left="4" FontSize="30" />
+                                            <ComboBox x:Name="cmbOtherReason" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID" Canvas.Top="95" Width="787" Height="45" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbOtherReason_SelectionChanged" Foreground="#FF55BFB6" BorderBrush="#FF292828" Style="{StaticResource combo}" Canvas.Left="-1">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                                         <GradientStop Color="#FF292828" Offset="0.498"/>
@@ -548,18 +551,35 @@
                                                     </LinearGradientBrush>
                                                 </ComboBox.Background>
                                             </ComboBox>
-
                                         </Canvas>
                                     </Border>
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="418" Height="56" Width="234" Canvas.Left="556" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnHomeDone_Click"/>
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}"
+                                    			x:Name="btnHomeDone"
+                                    			Content="Done" 
+                                    			Click="btnHomeDone_Click" Width="157"  />
+                                        </StackPanel>
+                                    </Border>
 
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="418" Height="56" Width="218" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}"  MouseDown="btnback_Click" Source="/KrausRGA;component/Images/bac.png"/>
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}"
+                                    			x:Name="btnback"
+                                    			Content="Back" 
+                                    			Click="btnback_Click"  Width="145"  />
+                                        </StackPanel>
+                                    </Border>
 
                                 </Canvas>
-                            </TabItem>
-                        </TabControl>
+                            </Border>
+                        </StackPanel>
                     </Canvas>
-                    <Border BorderThickness="1" Height="64" Canvas.Top="541" Width="1092" Canvas.Left="5">
-                        <Canvas Margin="0,0,0,0">
-                            <Border x:Name="bdrMsg" Visibility="Hidden" BorderThickness="1" Height="27" Canvas.Left="0" Canvas.Top="43" Width="1048" Background="#E1007ACC">
+                    <Border BorderThickness="1" Height="34" Canvas.Top="1175" Width="781" Canvas.Left="6">
+                        <Canvas Margin="0,1,0,-1">
+                            <Border x:Name="bdrMsg" Visibility="Hidden" BorderThickness="1" Height="27" Canvas.Left="0" Width="779" Background="#E1007ACC" Canvas.Top="3">
                                 <Border.Style >
                                     <Style TargetType="{x:Type Border}">
                                         <Style.Triggers>
@@ -585,46 +605,34 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
-                                <TextBlock x:Name="txtError" Style="{StaticResource ScrollTextBlockKeyStyle}" TextWrapping="Wrap" Text="sdfasdf" Margin="9,0,-1,2" HorizontalAlignment="Left" Width="1038"/>
+                                <TextBlock x:Name="txtError" Style="{StaticResource ScrollTextBlockKeyStyle}" TextWrapping="Wrap" Text="sdfasdf" Margin="9,0,0,2" HorizontalAlignment="Left" Width="754"/>
                             </Border>
                         </Canvas>
                     </Border>
-                    <Border Name="bdrButtons" Style="{StaticResource bdrSlideStyleKey }"  Height="615" Width="404" Canvas.Left="-344" Background="Transparent">
+                    <Border Name="bdrButtons" Style="{StaticResource bdrSlideStyleKey }"  Height="615" Width="404" Canvas.Left="-344" Background="Transparent" Visibility="Hidden">
                         <Canvas Name="cnNewReturn" Width="332" Background="#B2111111" Canvas.Top="128" Margin="0,0,104,0" >
                             <StackPanel>
-
                                 <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="397" >
                                     <StackPanel Orientation="Horizontal">
                                         <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoTabCtrl.jpg" ></Image>
-                                        <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnTabRMADetails" Content="RMA Details" Click="btnTabRMADetails_Click" />
+                                        <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnTabRMADetails" Content="RMA Details" />
                                     </StackPanel>
                                 </Border>
                                 <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="397" >
                                     <StackPanel Orientation="Horizontal">
                                         <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoTabCtrl.jpg" ></Image>
-                                        <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnTabReturntails" Content="Return Details" Click="btnTabReturntails_Click" />
+                                        <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnTabReturntails" Content="Return Details" />
                                     </StackPanel>
                                 </Border>
                                 <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="397" >
                                     <StackPanel Orientation="Horizontal">
                                         <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoTabCtrl.jpg" ></Image>
-                                        <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnTabReturnResons" Content="Return Reason" Click="btnTabReturnResons_Click" />
+                                        <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnTabReturnResons" Content="Return Reason"  />
                                     </StackPanel>
                                 </Border>
                                 <Canvas Height="200">
-
                                 </Canvas>
-                                <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="397" >
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnHomeDone_Click"></Image>
-                                        <Button Style="{StaticResource ToolBarButtonBaseStyle}"
-											x:Name="btnHomeDone"
-											Content="Done" 
-											Click="btnHomeDone_Click"  />
-                                    </StackPanel>
-                                </Border>
                             </StackPanel>
-
                         </Canvas>
                     </Border>
                 </Canvas>

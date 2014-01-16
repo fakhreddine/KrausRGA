@@ -855,11 +855,7 @@ namespace KrausRGA.UI
 
         private void tbrgzdetail_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int indext = tbrgzdetail.SelectedIndex;
-            if (indext > -1)
-            {
-                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.Tab_changed.ToString(), DateTime.UtcNow.ToString(), "Tab Index" + indext.ToString());
-            }
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -872,24 +868,12 @@ namespace KrausRGA.UI
         [DllImport("advapi32.DLL", SetLastError = true)]
         public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
 
-        private void btnTabRMADetails_Click(object sender, RoutedEventArgs e)
+        private void btnback_Click(object sender, RoutedEventArgs e)
         {
-            tbrgzdetail.SelectedIndex = 0;
-            tbrgzdetail.Focus();
+            wndBoxInformation boxinfo = new wndBoxInformation();
+            boxinfo.Show();
+            this.Close();
         }
-
-        private void btnTabReturntails_Click(object sender, RoutedEventArgs e)
-        {
-            tbrgzdetail.SelectedIndex = 1;
-        }
-
-        private void btnTabReturnResons_Click(object sender, RoutedEventArgs e)
-        {
-            tbrgzdetail.SelectedIndex = 2;
-        }
-
-       
-
     }
      
 }

@@ -16,10 +16,14 @@
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-        
-       
+        <Style x:Key="combo" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
         <Style x:Key="cbStyleKey" TargetType="CheckBox">
-            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontSize" Value="8"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="RenderTransform">
@@ -33,7 +37,22 @@
                 </Setter.Value>
             </Setter>
         </Style>
-<!-- ____________________________________-->
+        <Style x:Key="cbStyleKey1" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="8"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- ____________________________________-->
         
         
         <Style x:Key="TextMenu" TargetType="TextBlock">
