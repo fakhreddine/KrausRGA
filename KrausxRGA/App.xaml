@@ -44,7 +44,7 @@
             <Setter Property="RenderTransform">
                 <Setter.Value>
                     <TransformGroup>
-                        <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
                         <SkewTransform/>
                         <RotateTransform/>
                         <TranslateTransform/>
