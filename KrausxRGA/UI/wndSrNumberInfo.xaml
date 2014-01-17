@@ -49,7 +49,7 @@
                                             </ComboBox>
 
                                             <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="152" Width="97" Canvas.Left="27"/>
-                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="202" Canvas.Left="136" Canvas.Top="152" Style="{StaticResource combo}" IsReadOnly="True"
+                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="202" Canvas.Left="136" Canvas.Top="152" Style="{StaticResource combo}" IsEnabled="True"
 													ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -68,7 +68,7 @@
                                                 <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
                                             </Border>
                                             <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="60" Width="143" Canvas.Left="36"/>
-                                            <Label x:Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="184" Canvas.Top="70" Width="254" Height="33"/>
+                                            <Label x:Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="183" Canvas.Top="60" Width="254" Height="33"/>
 
                                             <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="107" Width="164" Canvas.Left="15"/>
                                             <Label x:Name="lblName"  Style="{StaticResource lblVeriable}" Canvas.Left="182" Canvas.Top="108" Width="224" Height="33">
