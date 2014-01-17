@@ -188,33 +188,45 @@ namespace KrausRGA.UI
                     {
                         Barcode.Camera.TakePhoto();
                         Thread.Sleep(1000);
+
                         imagesname.Add(Barcode.Camera.LastPhotoName());
-                        //move this section after move images
-                        string path = "C:\\Images\\";
-
-                        BitmapSource bs = new BitmapImage(new Uri(path + Barcode.Camera.LastPhotoName()));
-
-                        Image img = new Image();
-                        //Zoom image.
-                        img.MouseEnter += img_MouseEnter;
-
-                        img.Height = 62;
-                        img.Width = 74;
-                        img.Stretch = Stretch.Fill;
-                        img.Name = Barcode.Camera.LastPhotoName();
-                        img.Source = bs;
-                        img.Margin = new Thickness(0.5);
-
-                        //Images added to the Row.
-                        _addToStackPanel(spRowImages, img);
                     }
                     Barcode.Camera.Close();
                     Thread.Sleep(1000);
                     Barcode.Camera.MoveImagesToImages();
+                    Thread.Sleep(1000);
+                    for (int i = 0; i < imagesname.Count; i++)
+                    {
+                        try
+                        {
+                            string path = "C:\\Images\\";
+
+                            BitmapSource bs = new BitmapImage(new Uri(path + imagesname[i].ToString()));
+                           
+                            Image img = new Image();
+                            //Zoom image.
+                            img.MouseEnter += img_MouseEnter;
+
+                            img.Height = 62;
+                            img.Width = 74;
+                            img.Stretch = Stretch.Fill;
+                            img.Name = imagesname[i].ToString().Split(new char [] {'.'})[0];
+                            img.Source = bs;
+                            img.Margin = new Thickness(0.5);
+
+                            //Images added to the Row.
+                            _addToStackPanel(spRowImages, img);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+
+
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(ex.Message);
+                 
                 }
             }
             else
