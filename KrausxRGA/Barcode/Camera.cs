@@ -21,7 +21,7 @@ namespace KrausRGA.Barcode
        {
            try
            {
-               Thread.Sleep(3000);
+               Thread.Sleep(2000);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.SPACE);
               
            }
@@ -42,9 +42,8 @@ namespace KrausRGA.Barcode
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_A);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_M);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_E);
-               Thread.Sleep(600);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);
-               Thread.Sleep(2000);
+               Thread.Sleep(1000);
            }
            catch (Exception)
            {
