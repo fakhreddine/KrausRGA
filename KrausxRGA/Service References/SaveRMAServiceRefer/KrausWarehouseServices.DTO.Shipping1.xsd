@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfUserDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDTO" nillable="true" type="tns:UserDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUserDTO" nillable="true" type="tns:ArrayOfUserDTO" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="UserDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="CreatedBy" type="ser:guid" />
@@ -23,22 +17,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserDTO" nillable="true" type="tns:UserDTO" />
-  <xs:complexType name="ArrayOfRoleDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoleDTO" nillable="true" type="tns:RoleDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfRoleDTO" nillable="true" type="tns:ArrayOfRoleDTO" />
-  <xs:complexType name="RoleDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Action" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CreatedBy" type="ser:guid" />
-      <xs:element minOccurs="0" name="CreatedDateTime" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="RoleID" type="ser:guid" />
-      <xs:element minOccurs="0" name="UpdatedDateTime" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Updatedby" type="ser:guid" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="RoleDTO" nillable="true" type="tns:RoleDTO" />
 </xs:schema>

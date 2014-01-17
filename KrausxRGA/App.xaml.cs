@@ -26,10 +26,10 @@ namespace KrausRGA
             #region Initailise servies
             Service.entGet = new GetRMAServiceRef.GetClient();
             Service.entSave = new SaveRMAServiceRefer.SaveClient();
-            Service.entGet.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(KrausRGA.Properties.Settings.Default.GetServicePath.ToString()), Service.entGet.Endpoint.Address.Identity, Service.entGet.Endpoint.Address.Headers);
-            Service.entGet.Open();
-            Service.entSave.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(KrausRGA.Properties.Settings.Default.SetServicePath.ToString()), Service.entGet.Endpoint.Address.Identity, Service.entGet.Endpoint.Address.Headers);
-            Service.entSave.Open();
+            //Service.entGet.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(KrausRGA.Properties.Settings.Default.GetServicePath.ToString()), Service.entGet.Endpoint.Address.Identity, Service.entGet.Endpoint.Address.Headers);
+            //Service.entGet.Open();
+            //Service.entSave.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(KrausRGA.Properties.Settings.Default.SetServicePath.ToString()), Service.entGet.Endpoint.Address.Identity, Service.entGet.Endpoint.Address.Headers);
+            //Service.entSave.Open();
             #endregion
 
             #region Application Start From another Application.
