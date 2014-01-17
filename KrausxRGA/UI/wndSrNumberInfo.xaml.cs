@@ -403,7 +403,7 @@ namespace KrausRGA.UI
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
                     {
-                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + imageCaptured.Name.ToString() + ".jpeg";
+                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + imageCaptured.Name.ToString() + ".jpg";
 
                         //Set Images table from model.
                         Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
