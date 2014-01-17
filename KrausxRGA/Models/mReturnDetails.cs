@@ -81,6 +81,8 @@ namespace KrausRGA.Models
             //Check that SR Number is persent in database.
             IsAlreadySaved = IsNumberAlreadyPresent(EnteredNumber);
 
+            //Check Decision is Always new.
+            IsValidNumber=CanUserOpenThis();
         }
 
         #endregion
@@ -116,9 +118,18 @@ namespace KrausRGA.Models
         /// Stores Green row from the Grid
         /// </summary>
         public List<int> GreenRowsNumber = new List<int>();
+
+
+        /// <summary>
+        /// Store Return List
+        /// </summary>
+        private Return _Return = new Return();
         #endregion
 
         #region Member Functions of class.
+
+
+
 
         /// <summary>
         /// Entered Number Type.
@@ -213,7 +224,7 @@ namespace KrausRGA.Models
                         _isNumberValid = false;
                         break;
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -290,7 +301,8 @@ namespace KrausRGA.Models
             //RMA databse Object.
             try
             {
-                String Anyvalue = Service.entGet.ReturnByRMANumber(SRnumber).RMANumber;
+                _Return = new Return(Service.entGet.ReturnByRMANumber(SRnumber));
+                String Anyvalue = _Return.RMANumber;
                 if (Anyvalue == SRnumber) _return = true;
             }
             catch (Exception ex)
@@ -298,7 +310,29 @@ namespace KrausRGA.Models
                 ex.LogThis("mReturnDetails/IsNumberAlreadyPresent");
             }
             return _return;
+
         }
+
+        /// <summary>
+        /// Validation for decision is always New.
+        /// </summary>
+        /// <returns>
+        /// return Boolean value.
+        /// </returns>
+        public Boolean CanUserOpenThis()
+        {
+            Boolean _flag = false;
+            try
+            {
+                if (_Return.Decision==null)
+                    _flag = true;
+            }
+            catch (Exception)
+            {}
+
+            return _flag;
+        }
+
         #endregion
 
         #region Set Methods of Database.

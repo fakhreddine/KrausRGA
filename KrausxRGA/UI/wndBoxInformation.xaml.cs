@@ -233,8 +233,7 @@ namespace KrausRGA.UI
 
                     if (_mReturn.IsValidNumber) //Is number valid or not.
                     {
-                        if (!_mReturn.IsAlreadySaved) //Is number already saved in database.
-                        {
+                       
                             this.Dispatcher.Invoke(new Action(() =>
                                 {
                                     //Create new instance of window.
@@ -246,13 +245,7 @@ namespace KrausRGA.UI
 
                             //close this screen.
                             this.Close();
-                        }
-                        else
-                        {
-                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.AlreadySaved_RMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
-                            ErrorMsg(_mReturn.EnteredNumber + " is already saved.", Color.FromRgb(185, 84, 0));
-                            txtScan.Text = "";
-                        }
+                        
                     }
                     else
                     {
