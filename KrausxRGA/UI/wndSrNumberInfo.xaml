@@ -492,28 +492,28 @@
                                             <Border x:Name="bdrDamaged" Canvas.Left="19" Canvas.Top="59" Height="51" Width="291"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="10,9,200,22" 
+                                                <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="19,3,171,28" 
 													Checked="cbrDamaged_Checked" Unchecked="cbrDamaged_Unchecked" Background="White"/>
                                             </Border>
 
                                             <Border x:Name="bdrDuplicate" Canvas.Left="18" Canvas.Top="177" Height="51" Width="292"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7" RenderTransformOrigin="0.718,0.322">
-                                                <CheckBox x:Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237"   Margin="17,8,174,25"  
+                                                <CheckBox x:Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237"   Margin="13,3,169,30"  
 													Checked="cbrDuplicate_Checked" Unchecked="cbrDuplicate_Unchecked"/>
                                             </Border>
                                             <Border x:Name="bdrIcorrectOrder" Canvas.Left="328" Canvas.Top="58" Height="51" Width="458"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
                                                 <CheckBox x:Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74"
-													Margin="5,6,269,25"  
+													Margin="5,5,269,26"  
 													Checked="cbrIncorrectOrder_Checked" Unchecked="cbrIncorrectOrder_Unchecked"/>
                                             </Border>
 
                                             <Border x:Name="bdrDisplayedDiff" Canvas.Left="327" Canvas.Top="118" Height="51" Width="459"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="11,6,282,24"  
+                                                <CheckBox x:Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="7,4,286,28"  
 													Checked="cbrDisplayedDiff_Checked" Unchecked="cbrDisplayedDiff_Unchecked"/>
                                             </Border>
                                             <Border x:Name="bdrSatisfied" Canvas.Left="329" Canvas.Top="176" Height="51" Width="459"
@@ -527,7 +527,7 @@
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
                                                 <CheckBox x:Name="cbrWrong" Style="{StaticResource cbStyleKey}"
-													Content="Received wrong item."  Margin="10,9,188,23" 
+													Content="Received wrong item."  Margin="14,4,173,28" 
 													Checked="cbrWrong_Checked" 
 													Unchecked="cbrWrong_Unchecked"/>
                                             </Border>
