@@ -81,12 +81,11 @@ namespace KrausRGA.Models
             //Check that SR Number is persent in database.
             IsAlreadySaved = IsNumberAlreadyPresent(EnteredNumber);
 
-            //Check Decision is Always new.
-            IsValidNumber=CanUserOpenThis();
+            
         }
 
         #endregion
-
+         
         #region class Properties
 
         /// <summary>
@@ -304,6 +303,9 @@ namespace KrausRGA.Models
                 _Return = new Return(Service.entGet.ReturnByRMANumber(SRnumber));
                 String Anyvalue = _Return.RMANumber;
                 if (Anyvalue == SRnumber) _return = true;
+
+                //Check Decision is Always new.
+                IsValidNumber = CanUserOpenThis();
             }
             catch (Exception ex)
             {
@@ -321,11 +323,12 @@ namespace KrausRGA.Models
         /// </returns>
         public Boolean CanUserOpenThis()
         {
-            Boolean _flag = false;
+            Boolean _flag = IsValidNumber;
             try
             {
-                if (_Return.Decision==null)
-                    _flag = true;
+                if (_Return.Decision !=0 && _Return.Decision !=null) 
+                    _flag = false;
+
             }
             catch (Exception)
             {}
