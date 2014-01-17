@@ -177,20 +177,45 @@ namespace KrausRGA.UI
 
             if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
             {
-                //Show Camera.
-                Barcode.Camera.Open();
-                Thread.Sleep(1000);
-
-                //Take 5 Photos.
-                for (int i = 0; i < 3; i++)
+                try
                 {
-                    Barcode.Camera.TakePhoto();
+                    //Show Camera.
+                    Barcode.Camera.Open();
                     Thread.Sleep(1000);
-                   
+                    List<string> imagesname = new List<string>();
+                    //Take 5 Photos.
+                    for (int i = 0; i < 3; i++)
+                    {
+                        Barcode.Camera.TakePhoto();
+                        Thread.Sleep(1000);
+                        imagesname.Add(Barcode.Camera.LastPhotoName());
+                        //move this section after move images
+                        string path = "C:\\Images\\";
+
+                        BitmapSource bs = new BitmapImage(new Uri(path + Barcode.Camera.LastPhotoName()));
+
+                        Image img = new Image();
+                        //Zoom image.
+                        img.MouseEnter += img_MouseEnter;
+
+                        img.Height = 62;
+                        img.Width = 74;
+                        img.Stretch = Stretch.Fill;
+                        img.Name = Barcode.Camera.LastPhotoName();
+                        img.Source = bs;
+                        img.Margin = new Thickness(0.5);
+
+                        //Images added to the Row.
+                        _addToStackPanel(spRowImages, img);
+                    }
+                    Barcode.Camera.Close();
+                    Thread.Sleep(1000);
+                    Barcode.Camera.MoveImagesToImages();
                 }
-                Barcode.Camera.Close();
-                Thread.Sleep(1000);
-                Barcode.Camera.MoveImagesToImages();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
@@ -381,7 +406,7 @@ namespace KrausRGA.UI
             catch (Exception)
             { }
         }
-
+       
         #endregion
 
         #region Functions.

@@ -90,7 +90,7 @@ namespace KrausRGA.Barcode
            }
            catch (Exception)
            {}
-           return ImageName+".jpg";
+           return ImageName;
        }
 
        /// <summary>
