@@ -200,7 +200,7 @@ namespace KrausRGA.UI
                     else
                     {
                         mRMAAudit.NoUserlogthis(eActionType.LoginFail__00.ToString(), DateTime.UtcNow.ToString(), txtLogin.Text.ToString());
-                        ErrorMsg("Invalid user information.", Color.FromRgb(185, 84, 0));
+                        ErrorMsg("Invalid user information : " + txtLogin.Text, Color.FromRgb(185, 84, 0));
                         txtLogin.Text = "";
                     }
                 }
@@ -250,7 +250,7 @@ namespace KrausRGA.UI
                     else
                     {
                         mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), TempRMANumber);
-                        ErrorMsg("Invalid Number. Please check the number.", Color.FromRgb(185, 84, 0));
+                        ErrorMsg("Invalid Number. Please check the number. :"+txtScan.Text, Color.FromRgb(185, 84, 0));
                         txtScan.Text = "";
                     }
                 }
