@@ -49,11 +49,6 @@ namespace KrausRGA.UI
         //Scroll Viewer from selected Row;
         ScrollViewer SvImagesScroll;
 
-        //WEB cam frame height width.
-        
-        int Wheight = 530;
-        int Wwidth = 400;
-
         #endregion
 
         public wndSrNumberInfo()
@@ -68,68 +63,8 @@ namespace KrausRGA.UI
             Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
 
             InitializeComponent();
-
-            #region User Region.
-
             FillRMAStausAndDecision();
 
-            // Bind the Video and Audio device properties of the
-            // Webcam control to the SelectedValue property of 
-            // the necessary ComboBox.
-            Binding bndg_1 = new Binding("SelectedValue");
-            bndg_1.Source = VidDvcsComboBox;
-            WebCamCtrl.SetBinding(Webcam.VideoDeviceProperty, bndg_1);
-
-            Binding bndg_2 = new Binding("SelectedValue");
-            bndg_2.Source = AudDvcsComboBox;
-            WebCamCtrl.SetBinding(Webcam.AudioDeviceProperty, bndg_2);
-            // Create directory for saving video files.
-            string vidPath = @"C:\VideoClips";
-
-            if (Directory.Exists(vidPath) == false)
-            {
-                Directory.CreateDirectory(vidPath);
-            }
-
-            AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
-
-            IntPtr admin_token = default(IntPtr);
-
-            LogonUser(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, "domain", KrausRGA.Properties.Settings.Default.UserPasswordForImages, 9, 0, ref admin_token);
-
-            WindowsIdentity identity = new WindowsIdentity(admin_token);
-
-            WindowsImpersonationContext context = identity.Impersonate();
-
-            try
-            {
-                if (Directory.Exists(imgPath) == false)
-                {
-                    Directory.CreateDirectory(imgPath);
-                }
-            }
-            catch
-            {
-                context.Undo();
-            }
-
-            // Set some properties of the Webcam control
-            WebCamCtrl.VideoDirectory = vidPath;
-            WebCamCtrl.VidFormat = VideoFormat.mp4;
-
-            WebCamCtrl.ImageDirectory = imgPath;
-            WebCamCtrl.PictureFormat = ImageFormat.Jpeg;
-
-            WebCamCtrl.FrameRate = 48;
-            WebCamCtrl.FrameSize = new System.Drawing.Size(Wheight, Wwidth);
-
-            // Find a/v devices connected to the machine.
-            FindDevices();
-
-            VidDvcsComboBox.SelectedIndex = 0;
-            AudDvcsComboBox.SelectedIndex = 0;
-
-            #endregion
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -144,10 +79,6 @@ namespace KrausRGA.UI
             lsReturn.Insert(0, re);
 
             cmbOtherReason.ItemsSource = lsReturn;
-
-            // Display webcam video on control.
-            bdrStop.Visibility = System.Windows.Visibility.Hidden;
-            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
 
             _lsRMAInfo = _mReturn.lsRMAInformation;
 
@@ -260,66 +191,6 @@ namespace KrausRGA.UI
 
         #region Web cam Methods
 
-        private void FindDevices()
-        {
-            var vidDevices = EncoderDevices.FindDevices(EncoderDeviceType.Video);
-            var audDevices = EncoderDevices.FindDevices(EncoderDeviceType.Audio);
-
-            int CameraNumber = KrausRGA.Properties.Settings.Default.CameraNumber;
-            int i = 0;
-            foreach (EncoderDevice dvc in vidDevices)
-            {
-                if (i == CameraNumber)
-                    VidDvcsComboBox.Items.Add(dvc.Name);
-                i++;
-            }
-
-            foreach (EncoderDevice dvc in audDevices)
-            {
-                AudDvcsComboBox.Items.Add(dvc.Name);
-            }
-
-        }
-
-        private void SnapshotButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-
-                // Take snapshot of webcam image.
-                WebCamCtrl.TakeSnapshot();
-
-                var DirInfo = new DirectoryInfo(imgPath);
-                String ImageName = (from f in DirInfo.GetFiles()
-                                    orderby f.LastWriteTime descending
-                                    select f).First().Name.ToString();
-                String ReNamed = DateTime.Now.ToString("ddMMMyyyy_hh_mm_ssfff_tt");
-                File.Move(imgPath + ImageName, imgPath + "KRAUSGRA" + ReNamed + ".jpeg");
-                BitmapSource bs = new BitmapImage(new Uri(imgPath + "KRAUSGRA" + ReNamed + ".jpeg"));
-             
-                Image img = new Image();
-                //Zoom image.
-                img.MouseEnter += img_MouseEnter;
-
-                img.Height = 62;
-                img.Width = 74;
-                img.Stretch = Stretch.Fill;
-                img.Name = "KRAUSGRA" + ReNamed;
-                img.Source = bs;
-                img.Margin = new Thickness(0.5);
-
-                //Images added to the Row.
-                _addToStackPanel(spRowImages, img);
-
-                img.Focus();
-                sclPh.ScrollToRightEnd();
-
-                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Image_Captured.ToString(), DateTime.UtcNow.ToString(), img.Name.ToString());
-
-            }
-            catch (Exception)
-            { }
-        }
 
         #region Zoom Images.
 
@@ -337,48 +208,6 @@ namespace KrausRGA.UI
         }
 
         #endregion
-
-        private void btnStartCapture_Click(object sender, RoutedEventArgs e)
-        {
-
-
-            bdrCapture.Visibility = System.Windows.Visibility.Visible;
-            bdrStartCapture.Visibility = System.Windows.Visibility.Hidden;
-            bdrStop.Visibility = System.Windows.Visibility.Visible;
-            WebCamCtrl.StartCapture();
-        //   CanvasToImage.SaveCanvas(this, this.CvsImage, 96, "c:\\canvas.png");
-
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Camera_Started.ToString(), DateTime.UtcNow.ToString());
-        }
-
-        private void btnStop_Click(object sender, RoutedEventArgs e)
-        {
-            WebCamCtrl.StopCapture();
-
-            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
-            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
-            bdrStop.Visibility = System.Windows.Visibility.Hidden;
-
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Camera_Stoped.ToString(), DateTime.UtcNow.ToString());
-
-        }
-
-        private void btnOpenCamera_Click(object sender, RoutedEventArgs e)
-        {
-            bdrCamera.Visibility = System.Windows.Visibility.Visible;
-
-        }
-
-        private void brnCloseCamera_Click(object sender, RoutedEventArgs e)
-        {
-            WebCamCtrl.StopCapture();
-            WebCamCtrl.Dispose();
-            bdrCapture.Visibility = System.Windows.Visibility.Hidden;
-            bdrStartCapture.Visibility = System.Windows.Visibility.Visible;
-            bdrStop.Visibility = System.Windows.Visibility.Hidden;
-            bdrCamera.Visibility = System.Windows.Visibility.Hidden;
-            removeStackPanelChild(spPhotos);
-        }
 
         /// <summary>
         /// remove child controles from Stackpanel
@@ -916,9 +745,6 @@ namespace KrausRGA.UI
             mRMAAudit.saveaudit(Views.AuditType.lsaudit);
             Views.AuditType.lsaudit.Clear();
         }
-
-        [DllImport("advapi32.DLL", SetLastError = true)]
-        public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
 
         private void btnback_Click(object sender, RoutedEventArgs e)
         {

@@ -101,7 +101,7 @@ namespace KrausRGA.UI
             CaptureTime.Tick += CaptureTime_Tick;
 
             //Create File To Move Photos.
-            File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" C:\\Images");
+            File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" "+KrausRGA.Properties.Settings.Default.DrivePath);
         }
 
         void CaptureTime_Tick(object sender, EventArgs e)
