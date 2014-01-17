@@ -54,7 +54,7 @@ namespace KrausRGA.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Shipping\\Images\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Images")]
         public string DrivePath {
             get {
                 return ((string)(this["DrivePath"]));
