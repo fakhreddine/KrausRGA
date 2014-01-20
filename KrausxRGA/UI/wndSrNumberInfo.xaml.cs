@@ -757,21 +757,49 @@ namespace KrausRGA.UI
 
         private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ChangeColor(cbrDamaged,txtitemdamage); 
+            ChangeColor(cbrDamaged, txtitemdamage, cnvDamage); 
         }
 
-        private void ChangeColor(CheckBox Chk, TextBlock txt)
+        private void ChangeColor(CheckBox Chk, TextBlock txt,Canvas can)
         {
             if (Chk.IsChecked == false)
             {
                 Chk.IsChecked = true;
                 txt.Background = new SolidColorBrush(Colors.Black);
+                can.Background = new SolidColorBrush(Color.FromRgb(121, 216, 66));
+               
             }
             else if (Chk.IsChecked == true)
             {
                 Chk.IsChecked = false;
                 txt.Background = new SolidColorBrush(Colors.Gray);
+                 can.Background = new SolidColorBrush(Color.FromRgb(198, 122, 58));
             }
+        }
+
+        private void ContentControl_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            ChangeColor(cbrDuplicate,txtDuplicate,cnvDuplicate);
+        }
+
+        private void ContentControl_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+            ChangeColor(cbrWrong, txtreceicewrongitem, cnvRecieve);
+        }
+
+        private void ContentControl_MouseDown_3(object sender, MouseButtonEventArgs e)
+        {
+            ChangeColor(cbrDisplayedDiff, txtDisplayedOff,cnvDisplayedOff);
+        }
+
+        private void ContentControl_MouseDown_4(object sender, MouseButtonEventArgs e)
+        {
+            ChangeColor(cbrIncorrectOrder, txtinccorectorder,cnvInccorectorder);
+        }
+
+        private void ContentControl_MouseDown_5(object sender, MouseButtonEventArgs e)
+        {
+            ChangeColor(cbrSatisfied, txtSatisfied,cnvSatisfied);
         }
     }
 }

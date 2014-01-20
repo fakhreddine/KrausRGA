@@ -497,16 +497,15 @@
                                             <Border x:Name="bdrDamaged" Canvas.Left="19" Canvas.Top="59" Height="51" Width="291"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <ContentControl MouseDown="ContentControl_MouseDown">
+                                                <ContentControl MouseDown="ContentControl_MouseDown" Margin="0,0,-1,0">
                                                     <Border HorizontalAlignment="Center">
-                                                        <Canvas>
+                                                        <Canvas Width="286">
                                                             <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="277" Canvas.Top="-50" 
 													Checked="cbrDamaged_Checked" Unchecked="cbrDamaged_Unchecked" Background="White" Visibility="Hidden" />
-                                                            <TextBlock x:Name="txtitemdamage"  Text="Item Damaged."  FontSize="20" Background="Gray" Foreground="WhiteSmoke" Canvas.Left="-144" Width="287" Height="49" />
+                                                            <TextBlock x:Name="txtitemdamage"  Text="Item Damaged."  FontSize="20" Background="Gray" Foreground="WhiteSmoke" Width="289" Height="49" TextAlignment="Center" Canvas.Left="-3" />
+                                                            <Canvas Name="cnvDamage" Height="10" Width="290" Canvas.Left="-3" Canvas.Top="35" Background="#FFC67A3A" />
                                                         </Canvas>
                                                     </Border>
-
-
                                                 </ContentControl>
                                             </Border>
 
@@ -514,37 +513,77 @@
                                             <Border x:Name="bdrDuplicate" Canvas.Left="18" Canvas.Top="177" Height="51" Width="292"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7" RenderTransformOrigin="0.718,0.322">
-                                                <CheckBox x:Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237"   Margin="13,3,169,30"  
+                                                <ContentControl MouseDown="ContentControl_MouseDown_1">
+                                                    <Border>
+                                                        <Canvas>
+                                                            <CheckBox x:Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237"   Margin="13,3,169,30"  Visibility="Hidden"
 													Checked="cbrDuplicate_Checked" Unchecked="cbrDuplicate_Unchecked"/>
+                                                            <TextBlock x:Name="txtDuplicate" Text="Duplicate Shipment." Background="Gray" Foreground="WhiteSmoke" FontSize="20" Height="49" Width="290" TextAlignment="Center"></TextBlock>
+                                                            <Canvas Name="cnvDuplicate" Height="10" Width="290" Canvas.Left="-3" Canvas.Top="35" Background="#FFC67A3A" />
+                                                        </Canvas>
+                                                    </Border>
+                                                </ContentControl>
                                             </Border>
                                             <Border x:Name="bdrIcorrectOrder" Canvas.Left="328" Canvas.Top="58" Height="51" Width="458"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74"
+                                                <ContentControl MouseDown="ContentControl_MouseDown_4">
+                                                    <Border>
+                                                        <Canvas>
+                                                            <CheckBox x:Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74" Visibility="Hidden"
 													Margin="5,5,269,26"  
 													Checked="cbrIncorrectOrder_Checked" Unchecked="cbrIncorrectOrder_Unchecked"/>
+                                                            <TextBlock x:Name="txtinccorectorder" Text="Incorrect item ordered." Background="Gray" Foreground="WhiteSmoke" TextAlignment="Center" FontSize="20" Width="456" Height="49"></TextBlock>
+                                                            <Canvas Name="cnvInccorectorder" Height="10" Width="456" Canvas.Top="36" Background="#FFC67A3A" />
+
+                                                        </Canvas>
+                                                    </Border>
+                                                </ContentControl>
                                             </Border>
 
                                             <Border x:Name="bdrDisplayedDiff" Canvas.Left="327" Canvas.Top="118" Height="51" Width="459"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="7,4,286,28"  
+                                                <ContentControl MouseDown="ContentControl_MouseDown_3">
+                                                    <Border>
+                                                        <Canvas>
+                                                            <CheckBox x:Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="7,4,286,28" Visibility="Hidden"  
 													Checked="cbrDisplayedDiff_Checked" Unchecked="cbrDisplayedDiff_Unchecked"/>
+                                                            <TextBlock x:Name="txtDisplayedOff" Text="Item is different from displayed on web." Foreground="WhiteSmoke" Background="Gray" FontSize="20" TextAlignment="Center" Height="49" Width="457"></TextBlock>
+                                                            <Canvas Name="cnvDisplayedOff" Height="10" Width="460" Canvas.Left="-3" Canvas.Top="32" Background="#FFC67A3A" />
+                                                        </Canvas>
+                                                    </Border>
+                                                </ContentControl>
                                             </Border>
                                             <Border x:Name="bdrSatisfied" Canvas.Left="329" Canvas.Top="176" Height="51" Width="459"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="8,6,270,23" 
-													Checked="cbrSatisfied_Checked" Unchecked="cbrSatisfied_Unchecked" />
-
+                                                <ContentControl MouseDown="ContentControl_MouseDown_5">
+                                                    <Border>
+                                                        <Canvas>
+                                                            <CheckBox x:Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="8,6,270,23" 
+													Checked="cbrSatisfied_Checked" Unchecked="cbrSatisfied_Unchecked" Visibility="Hidden"/>
+                                                            <TextBlock x:Name="txtSatisfied" FontSize="20" Text="Not satisfied with item." Foreground="WhiteSmoke" Background="Gray" TextAlignment="Center" Width="457" Height="49"></TextBlock>
+                                                            <Canvas Name="cnvSatisfied" Height="10" Width="460" Canvas.Left="-3" Canvas.Top="35" Background="#FFC67A3A" />
+                                                        </Canvas>
+                                                    </Border>
+                                                </ContentControl>
                                             </Border>
                                             <Border x:Name="bdrRecivedWrong" Canvas.Left="17" Canvas.Top="116" Height="51" Width="293"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrWrong" Style="{StaticResource cbStyleKey}"
+                                                <ContentControl MouseDown="ContentControl_MouseDown_2">
+                                                    <Border>
+                                                        <Canvas>
+                                                            <CheckBox x:Name="cbrWrong" Style="{StaticResource cbStyleKey}"
 													Content="Received wrong item."  Margin="14,4,173,28" 
 													Checked="cbrWrong_Checked" 
-													Unchecked="cbrWrong_Unchecked"/>
+													Unchecked="cbrWrong_Unchecked" Visibility="Hidden"/>
+                                                            <TextBlock x:Name="txtreceicewrongitem" Text="Received wrong item." FontSize="20" TextAlignment="Center" Background="Gray" Foreground="WhiteSmoke" Height="49" Width="291"></TextBlock>
+                                                            <Canvas Name="cnvRecieve" Height="10" Width="290" Canvas.Left="-3" Canvas.Top="35" Background="#FFC67A3A" />
+                                                        </Canvas>
+                                                    </Border>
+                                                </ContentControl>
                                             </Border>
                                         </Canvas>
                                     </Border>
