@@ -37,13 +37,14 @@ namespace KrausRGA.Barcode
            try
            {
                InputSimulator.SimulateKeyPress(VirtualKeyCode.LWIN);
-               Thread.Sleep(600);
+               Thread.Sleep(500);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_C);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_A);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_M);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.VK_E);
+               Thread.Sleep(300);
                InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);
-               Thread.Sleep(1000);
+               Thread.Sleep(1500);
            }
            catch (Exception)
            {
