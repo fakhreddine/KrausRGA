@@ -105,7 +105,7 @@
                     <ControlTemplate TargetType="{x:Type ButtonBase}">
                         <Border 
                     x:Name="Border"  
-                    BorderThickness="1"
+                    BorderThickness="2"
                     Background="{x:Null}"
                     BorderBrush="Transparent">
                             <ContentPresenter 
@@ -119,16 +119,16 @@
                             <!-- Additional triggers removed, e.g "IsMouseOver" -->
                             <!-- You may not want any at all -->
                             <Trigger Property="IsFocused" Value="true">
-                                <Setter TargetName="Border" Property="Background" Value="#FF831212" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#606060" />
+                                <Setter TargetName="Border" Property="Background" Value="#FF3B8312" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF3B8312" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="Border" Property="Background" Value="#FF831212" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#606060" />
+                                <Setter TargetName="Border" Property="Background" Value="#FF3B8312" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF3B8312" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter TargetName="Border" Property="Background" Value="#FF831212" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#606060" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF3B8312" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
