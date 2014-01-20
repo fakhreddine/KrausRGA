@@ -259,7 +259,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         Padding="{TemplateBinding Padding}" 
                         BorderBrush="{TemplateBinding BorderBrush}" 
-                        CornerRadius="5"
+                        CornerRadius="0"
                         Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
@@ -269,7 +269,7 @@
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Opacity" Value="0.25" />
-                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="BorderBrush" Value="{x:Null}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

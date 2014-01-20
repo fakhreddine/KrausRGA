@@ -117,7 +117,7 @@
 											ItemsSource="{Binding}" 
 											HorizontalAlignment="Center" 
 											VerticalAlignment="Center"
-											Width="784" 
+											Width="790" 
 											ScrollViewer.CanContentScroll="False" 
 											ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
 											ScrollViewer.VerticalScrollBarVisibility="Auto" 
@@ -132,7 +132,7 @@
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
 											Height="268"  
-											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Left="6" Canvas.Top="45">
+											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="45">
 
                                         <DataGrid.Resources>
                                             <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
@@ -146,15 +146,15 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <Canvas x:Name="cvButtons" Background="White">
-                                                            <Button x:Name="btnRed" Width="40" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
+                                                            <Button x:Name="btnRed" Width="50" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
                                                                 <Button.Background>
-                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
+                                                                    <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                 </Button.Background>
                                                             </Button>
-                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="40" Height="40"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
+                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="50" Height="40"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
 																	Click="btnGreen_Click" >
                                                                 <Button.Background>
-                                                                    <ImageBrush ImageSource="/KrausRGA;component/Images/Checked .png"/>
+                                                                    <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Checked .png"/>
                                                                 </Button.Background>
                                                             </Button>
                                                         </Canvas>
