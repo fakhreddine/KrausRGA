@@ -325,9 +325,9 @@ namespace KrausRGA.UI
             {
                 ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
                 DataTemplate chkDt = chkCp.ContentTemplate;
-                CheckBox chkIsChecked = chkDt.FindName("cbReasons", chkCp) as CheckBox;
-                TextBlock ResonGuid = dgReasons.Columns[2].GetCellContent(Row) as TextBlock;
-                if (chkIsChecked.IsChecked == true) _return = ResonGuid.Text.ToString();
+                Border bdrChec = chkDt.FindName("bdrCheck", chkCp) as Border;
+                TextBlock ResonGuid = dgReasons.Columns[1].GetCellContent(Row) as TextBlock;
+                if (bdrChec.Background.ToString() == Colors.Black.ToString()) _return = ResonGuid.Text.ToString();
             }
             catch (Exception)
             {
@@ -690,19 +690,21 @@ namespace KrausRGA.UI
             try
             {
                 TextBlock cbk = (TextBlock)e.Source;
-                Border bdr = (Border)cbk.Parent;
+                Canvas cvs = (Canvas)cbk.Parent;
+                Border bdr = (Border)cvs.Parent;
                 DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
                 ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
                 DataTemplate Dt = cp.ContentTemplate;
                 CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
-
                 if (ch.IsChecked == true)
                 {
                     ch.IsChecked = false;
+                    bdr.Background = new SolidColorBrush(Colors.Gray);
                 }
                 else
                 {
                     ch.IsChecked = true;
+                    bdr.Background = new SolidColorBrush(Colors.Black);
                 }
             }
             catch { }
@@ -752,7 +754,25 @@ namespace KrausRGA.UI
             boxinfo.Show();
             this.Close();
         }
+
+        private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangeColor(cbrDamaged,txtitemdamage); 
+        }
+
+        private void ChangeColor(CheckBox Chk, TextBlock txt)
+        {
+            if (Chk.IsChecked == false)
+            {
+                Chk.IsChecked = true;
+                txt.Background = new SolidColorBrush(Colors.Black);
+            }
+            else if (Chk.IsChecked == true)
+            {
+                Chk.IsChecked = false;
+                txt.Background = new SolidColorBrush(Colors.Gray);
+            }
+        }
     }
-     
 }
 

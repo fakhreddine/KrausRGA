@@ -392,7 +392,7 @@
                                         <Image Canvas.Left="417" Stretch="Fill"  Canvas.Top="130" x:Name="imgZoom" Visibility="Visible" MouseLeftButtonDown="imgZoom_MouseLeftButtonDown" Margin="4"/>
                                     </Border>
 
-                                    <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="268" Canvas.Left="300" Canvas.Top="45" Width="500" OpacityMask="#FF535252" Background="#FF406B83">
+                                    <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="268" Canvas.Left="300" Canvas.Top="48" Width="500" OpacityMask="#FF535252" Background="#FF406B83">
                                         <Canvas.Style>
                                             <Style TargetType="{x:Type Canvas}">
                                                 <Style.Triggers>
@@ -411,10 +411,10 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Canvas.Style>
-                                        <TextBlock x:Name="tbTitle" Text="Select Reasons" Foreground="#FFF9F9F9" Canvas.Left="2" Canvas.Top="2" FontSize="25"/>
+                                        <TextBlock x:Name="tbTitle" Text="Select Reasons" Foreground="#FFF9F9F9" Canvas.Left="133" Canvas.Top="7" FontSize="25"/>
 
                                         <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-177" Width="270"
-												Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="88" Background="#FFE07D1A" >
+												Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="88" Background="#FFE07D1A" Foreground="WhiteSmoke" FontSize="35" >
                                             <Button.RenderTransform>
                                                 <TransformGroup>
                                                     <ScaleTransform/>
@@ -424,56 +424,61 @@
                                                 </TransformGroup>
                                             </Button.RenderTransform>
                                         </Button>
-                                        <ScrollViewer  Canvas.Top="47" Width="500" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >
-                                            <DataGrid Height="221" x:Name="dgReasons"
+                                        <!--<ScrollViewer  Canvas.Top="47" Width="500" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >-->
+                                        <DataGrid Height="221" x:Name="dgReasons"
 													ItemsSource="{Binding}" 
 													AutoGenerateColumns="False"
 													CanUserAddRows="False"
 													HeadersVisibility="None"
 													HorizontalGridLinesBrush="#FF272626" VerticalGridLinesBrush="{x:Null}" 
-													Background="#FFE6E6E6" Width="500" GridLinesVisibility="None" RowHeight="35" >
-                                                <DataGrid.Columns >
-                                                    <DataGridTemplateColumn Header="" Width="50"  >
+													Background="#FFE6E6E6" Width="500" GridLinesVisibility="None" RowHeight="45" Canvas.Top="46" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
+                                            <DataGrid.Columns >
+
+                                                <!--<DataGridTemplateColumn Header="" Width="50"  >
                                                         <DataGridTemplateColumn.CellStyle>
                                                             <Style TargetType="{x:Type DataGridCell}">
-                                                                <Setter Property="Margin" Value="5,5,0,5"/>
-                                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                                <Setter Property="Margin" Value="0,0,0,0"/>
+                                                            <Setter Property="Width" Value="0"/>
+                                                            <Setter Property="VerticalContentAlignment" Value="Center"/>
                                                             </Style>
                                                         </DataGridTemplateColumn.CellStyle>
                                                         <DataGridTemplateColumn.CellTemplate>
                                                             <DataTemplate>
-                                                                <Canvas x:Name="cvReasons" Background="#FF787878" >
-                                                                    <CheckBox x:Name="cbReasons" Style="{StaticResource cbStyleKey1}" Content="" Canvas.Top="4" Canvas.Left="2" />
+                                                            <Canvas x:Name="cvReasons" Background="#FF919191" Visibility="Hidden" >
+                                                                  
                                                                 </Canvas>
                                                             </DataTemplate>
                                                         </DataGridTemplateColumn.CellTemplate>
-                                                    </DataGridTemplateColumn>
-                                                    <DataGridTemplateColumn Header="Reasons" Width="*">
-                                                        <DataGridTemplateColumn.CellStyle>
-                                                            <Style TargetType="{x:Type DataGridCell}">
-                                                                <Setter Property="Margin" Value="-4,5,5,5"/>
-                                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                            </Style>
-                                                        </DataGridTemplateColumn.CellStyle>
-                                                        <DataGridTemplateColumn.CellTemplate>
-                                                            <DataTemplate>
-                                                                <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1"  >
-                                                                    <Border BorderBrush="#FF0F0F0F" BorderThickness="0,1,1,1" Background="#FF919191" CornerRadius="3" >
-                                                                        <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="7,0,0,0"  />
-                                                                    </Border>
-                                                                </ContentControl>
-                                                            </DataTemplate>
-                                                        </DataGridTemplateColumn.CellTemplate>
-                                                    </DataGridTemplateColumn>
-                                                    <DataGridTextColumn  
+                                                    </DataGridTemplateColumn>-->
+                                                <DataGridTemplateColumn Header="Reasons" Width="500">
+                                                    <DataGridTemplateColumn.CellStyle>
+                                                        <Style TargetType="{x:Type DataGridCell}">
+                                                            <Setter Property="Margin" Value="5,5,5,5"/>
+                                                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                        </Style>
+                                                    </DataGridTemplateColumn.CellStyle>
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1"  >
+                                                                <Border Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="0,1,1,1" Background="#FF919191" CornerRadius="3" Height="60" Margin="10,0,0,0" >
+                                                                    <Canvas Margin="0,0,0,0">
+                                                                        <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="10,0,0,0" FontSize="20" Foreground="WhiteSmoke"/>
+                                                                        <CheckBox x:Name="cbReasons" Width="0" Content="" Canvas.Top="4" Canvas.Left="2" Visibility="Hidden" />
+                                                                    </Canvas>
+                                                                </Border>
+                                                            </ContentControl>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn  
 															Binding="{Binding ReasonID}"
 															Header=""  
 															Width="0"
 															Foreground="WhiteSmoke"
 															IsReadOnly="True"/>
-                                                </DataGrid.Columns>
-                                            </DataGrid>
-                                        </ScrollViewer>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <!--</ScrollViewer>-->
                                         <TextBox Height="49" x:Name="txtItemReason" TextWrapping="Wrap" Visibility="Hidden" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
                                         <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
                                     </Canvas>
@@ -492,9 +497,19 @@
                                             <Border x:Name="bdrDamaged" Canvas.Left="19" Canvas.Top="59" Height="51" Width="291"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
 												CornerRadius="3" Background="#FFC7C7C7">
-                                                <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="41" Canvas.Top="72" Margin="19,3,171,28" 
-													Checked="cbrDamaged_Checked" Unchecked="cbrDamaged_Unchecked" Background="White"/>
+                                                <ContentControl MouseDown="ContentControl_MouseDown">
+                                                    <Border HorizontalAlignment="Center">
+                                                        <Canvas>
+                                                            <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="277" Canvas.Top="-50" 
+													Checked="cbrDamaged_Checked" Unchecked="cbrDamaged_Unchecked" Background="White" Visibility="Hidden" />
+                                                            <TextBlock x:Name="txtitemdamage"  Text="Item Damaged."  FontSize="20" Background="Gray" Foreground="WhiteSmoke" Canvas.Left="-144" Width="287" Height="49" />
+                                                        </Canvas>
+                                                    </Border>
+
+
+                                                </ContentControl>
                                             </Border>
+
 
                                             <Border x:Name="bdrDuplicate" Canvas.Left="18" Canvas.Top="177" Height="51" Width="292"
 												BorderBrush="Black" BorderThickness="1,1,1,1" 
