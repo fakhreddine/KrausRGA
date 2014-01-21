@@ -3,46 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Application Setting" Height="1200" Width="800" WindowState="Maximized" Loaded="Window_Loaded" >
     <Viewbox>
-        <Grid Margin="0,3,2,5" Height="1200" Width="798">
-        <Grid.Background>
-            <ImageBrush ImageSource="/KrausRGA;component/Images/white.jpg"/>
-        </Grid.Background>
+        <Grid Margin="0,3,2,5" Height="1200" Width="798" Background="#FFC7C7C7">
 
-        <Border CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="4,0,10,0" >
-            <Canvas Margin="0,0,-14,0" Background="#33000000">
-                <Border Height="52" Background="#B2111111" Width="784" CornerRadius="5">
-                    <TextBlock TextWrapping="Wrap" Text="Application Font Size Setting" FontSize="30" Foreground="White" Margin="10,6,242,0"/>
-                </Border>
-                <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="356" Height="52" Width="174" Canvas.Left="8" >
-                    <StackPanel Orientation="Horizontal" Margin="0,-1,0,1">
-                        <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnlogout_Click" Width="52"></Image>
-                        <Button x:Name="btnlogout" Style="{StaticResource ToolBarButtonBaseStyle}" Content="OK" Margin="-1,-2,-1,-1" Click="btnlogout_Click" Width="103"/>
-                    </StackPanel>
-                </Border>
-            </Canvas>
-        </Border>
-        <Label Content="A" HorizontalAlignment="Left" Margin="279,145,0,0" VerticalAlignment="Top" FontSize="45" Height="74" />
-        <TextBlock Text="A" HorizontalAlignment="Left" Margin="447,166,0,0" VerticalAlignment="Top" Style="{StaticResource tbFormTitle}" Foreground="Black" />
-        <Label Content="Header Font" HorizontalAlignment="Left" Margin="98,166,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="20" />
-        <Label Content="Control Font" HorizontalAlignment="Left" Margin="99,231,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="20"/>
-        <Label Content="A" Name="lblcontrolfont" HorizontalAlignment="Left" Margin="285,225,0,0" VerticalAlignment="Top" FontSize="22" />
-        <Label Content="A" HorizontalAlignment="Left" Margin="445,231,0,0" VerticalAlignment="Top" Style="{StaticResource lblVeriable}" />
-        <Label Content="Label Font" HorizontalAlignment="Left" Margin="113,288,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="20" />
-        <Label Content="A" x:Name="lblcontrolfont_Copy" HorizontalAlignment="Left" Margin="288,287,0,0" VerticalAlignment="Top" FontSize="20" />
-        <Label Content="A" HorizontalAlignment="Left" Margin="447,292,0,0" VerticalAlignment="Top" Style="{StaticResource lblConstant}" />
+            <Border CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" Margin="4,0,10,0" >
+                <Canvas Margin="0,0,-14,0" Background="#33000000">
+                    <Border Height="52" Background="#B2111111" Width="784" CornerRadius="5">
+                        <TextBlock TextWrapping="Wrap" Text="Application Font Size Setting" FontSize="30" Foreground="White" Margin="10,6,242,0"/>
+                    </Border>
+                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="356" Height="52" Width="174" Canvas.Left="8" >
+                        <StackPanel Orientation="Horizontal" Margin="0,-1,0,1">
+                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnlogout_Click" Width="52"></Image>
+                            <Button x:Name="btnlogout" Style="{StaticResource ToolBarButtonBaseStyle}" Content="OK" Margin="-1,-2,-1,-1" Click="btnlogout_Click" Width="103"/>
+                        </StackPanel>
+                    </Border>
+                </Canvas>
+            </Border>
+            <Label Content="A" HorizontalAlignment="Left" Margin="279,145,0,0" VerticalAlignment="Top" FontSize="45" Height="74" />
+            <TextBlock Text="A" HorizontalAlignment="Left" Margin="447,166,0,0" VerticalAlignment="Top" Style="{StaticResource tbFormTitle}" Foreground="Black" />
+            <Label Content="Header Font" HorizontalAlignment="Left" Margin="98,166,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="20" />
+            <Label Content="Control Font" HorizontalAlignment="Left" Margin="99,231,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="20"/>
+            <Label Content="A" Name="lblcontrolfont" HorizontalAlignment="Left" Margin="285,225,0,0" VerticalAlignment="Top" FontSize="22" />
+            <Label Content="A" HorizontalAlignment="Left" Margin="445,231,0,0" VerticalAlignment="Top" Style="{StaticResource lblVeriable}" />
+            <Label Content="Label Font" HorizontalAlignment="Left" Margin="113,288,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="20" />
+            <Label Content="A" x:Name="lblcontrolfont_Copy" HorizontalAlignment="Left" Margin="288,287,0,0" VerticalAlignment="Top" FontSize="20" />
+            <Label Content="A" HorizontalAlignment="Left" Margin="447,292,0,0" VerticalAlignment="Top" Style="{StaticResource lblConstant}" />
 
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="68" Margin="14,71,0,0" VerticalAlignment="Top" Width="661">
-            <Canvas Margin="-1,0,9,0">
-                <Border/>
-                <Border/>
-                <Border/>
-                <Label Content="A" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="36" RenderTransformOrigin="17.697,0.672" Canvas.Left="579" Width="42" />
-                <Slider x:Name="sldfont" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="413" Minimum="-15" Maximum="15" ValueChanged="sldfont_ValueChanged" Canvas.Left="161" Canvas.Top="25" Foreground="#FFA4A4A4"/>
-                <Label Content="A" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="20" Canvas.Left="113" Canvas.Top="17"/>
-            </Canvas>
+            <Border BorderThickness="1" HorizontalAlignment="Left" Height="68" Margin="14,71,0,0" VerticalAlignment="Top" Width="661">
+                <Canvas Margin="-1,0,9,0">
+                    <Border/>
+                    <Border/>
+                    <Border/>
+                    <Label Content="A" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="36" RenderTransformOrigin="17.697,0.672" Canvas.Left="579" Width="42" />
+                    <Slider x:Name="sldfont" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="413" Minimum="-15" Maximum="15" ValueChanged="sldfont_ValueChanged" Canvas.Left="161" Canvas.Top="25" Foreground="#FFA4A4A4"/>
+                    <Label Content="A" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="20" Canvas.Left="113" Canvas.Top="17"/>
+                </Canvas>
 
 
-        </Border>
-    </Grid>
+            </Border>
+        </Grid>
     </Viewbox>
 </Window>

@@ -101,7 +101,7 @@
                             </Border>
 
 
-                            <Border x:Name="bdrmain2" >
+                            <Border x:Name="bdrmain2" Height="337" >
                                 <Canvas x:Name="cvsTb1main2" Margin="0,0,0,0" Height="327">
                                     <!-- Grid View-->
                                     <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
@@ -109,7 +109,7 @@
                                     </Border>
 
                                     <!-- Grid View-->
-                                    <Border Height="45" Width="788" Background="#B2111111" Canvas.Top="1" Canvas.Left="2">
+                                    <Border Height="45" Width="788" Background="#B2111111" Canvas.Top="-7" Canvas.Left="2">
                                         <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="10,6,236,0"/>
                                     </Border>
 
@@ -132,8 +132,8 @@
 											BorderBrush="{x:Null}" 
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
-											Height="282"  
-											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="45">
+											Height="289"  
+											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38">
 
                                         <DataGrid.Resources>
                                             <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
@@ -165,7 +165,7 @@
                                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
 													Binding="{Binding SKUNumber}" 
 													Header="SKU"  
-													Width="130" 
+													Width="120" 
 													IsReadOnly="True" />
 
                                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
@@ -181,7 +181,7 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel x:Name="spQty1" Width="80">
-                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="15"/>
+                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="15" FontWeight="Bold"/>
                                                             <StackPanel x:Name="spQty2" Orientation="Horizontal">
                                                                 <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
 																		Width="40" Height="35" FontSize="12"
@@ -608,7 +608,7 @@
                                             </ComboBox>
                                         </Canvas>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="418" Height="56" Width="234" Canvas.Left="556" >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="422" Height="56" Width="234" Canvas.Left="556" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnHomeDone_Click" Width="59"/>
                                             <Button Style="{StaticResource ToolBarButtonBaseStyle}"
@@ -618,7 +618,7 @@
                                         </StackPanel>
                                     </Border>
 
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="418" Height="56" Width="218" >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="422" Height="56" Width="218" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}"  MouseDown="btnback_Click" Source="/KrausRGA;component/Images/bac.png" Width="36"/>
                                             <Button Style="{StaticResource ToolBarButtonBaseStyle}"

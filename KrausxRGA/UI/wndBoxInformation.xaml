@@ -10,11 +10,7 @@
 
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
-                <Canvas Margin="-1,0,1,0" RenderTransformOrigin="0.965,0.968" Height="1280" Width="800" >
-
-                    <Canvas.Background>
-                        <ImageBrush ImageSource="/KrausRGA;component/Images/white.jpg"/>
-                    </Canvas.Background>
+                <Canvas Margin="-1,0,1,0" RenderTransformOrigin="0.965,0.968" Height="1280" Width="800" Background="#FFC7C7C7" >
 
                     <Canvas x:Name="cnTitle" Height="100" Width="798" Canvas.Left="2">
                         <Canvas.Background>
@@ -58,31 +54,31 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <Canvas Margin="0,-120,0,120">
-                                <Border Style="{StaticResource bdrWin8btn}"  Canvas.Top="140" Canvas.Left="37"  >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnBoxNumber_Click"></Image>
-                                    <Button x:Name="btnPONumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Enter Number" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
-                                </StackPanel>
-                            </Border>
-                            <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="226" Canvas.Left="37"  >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoScan.jpg" MouseDown="btnBoxNumber_Click"></Image>
-                                    <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Scangun Scan" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
-                                </StackPanel>
-                            </Border>
-                            <Border  Style="{StaticResource bdrWin8btn}" Canvas.Left="432" Canvas.Top="139" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSetting.png" MouseDown="btnNewScan_Click"/>
-                                    <Button x:Name="btnNewScan" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Application Setting" Click="btnNewScan_Click" />
-                                </StackPanel>
-                            </Border>
-                            <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="225" Canvas.Left="432" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoLogout.png" MouseDown="btnlogout_Click"></Image>
-                                    <Button x:Name="btnlogout" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Log Out" Click="btnlogout_Click"/>
-                                </StackPanel>
-                            </Border>
-                            </Canvas>
+                                    <Border Style="{StaticResource bdrWin8btn}"  Canvas.Top="140" Canvas.Left="37"  >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnBoxNumber_Click"></Image>
+                                            <Button x:Name="btnPONumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Enter Number" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="226" Canvas.Left="37"  >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoScan.jpg" MouseDown="btnBoxNumber_Click"></Image>
+                                            <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Scangun Scan" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border  Style="{StaticResource bdrWin8btn}" Canvas.Left="432" Canvas.Top="139" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSetting.png" MouseDown="btnNewScan_Click"/>
+                                            <Button x:Name="btnNewScan" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Application Setting" Click="btnNewScan_Click" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="225" Canvas.Left="432" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoLogout.png" MouseDown="btnlogout_Click"></Image>
+                                            <Button x:Name="btnlogout" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Log Out" Click="btnlogout_Click"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Canvas>
                             </Border>
                         </Canvas>
                     </Border>
