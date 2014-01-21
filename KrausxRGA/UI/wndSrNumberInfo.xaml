@@ -143,16 +143,16 @@
                                         </DataGrid.Resources>
 
                                         <DataGrid.Columns>
-                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="50"  >
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="70" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <Canvas x:Name="cvButtons" Background="White">
-                                                            <Button x:Name="btnRed" Width="50" Height="60" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
+                                                            <Button x:Name="btnRed" Width="70" Height="60" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                 </Button.Background>
                                                             </Button>
-                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="50" Height="40"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
+                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="70" Height="60"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
 																	Click="btnGreen_Click" >
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Checked .png"/>
@@ -165,7 +165,7 @@
                                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
 													Binding="{Binding SKUNumber}" 
 													Header="SKU"  
-													Width="150" 
+													Width="130" 
 													IsReadOnly="True" />
 
                                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
@@ -184,11 +184,11 @@
                                                             <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="15"/>
                                                             <StackPanel x:Name="spQty2" Orientation="Horizontal">
                                                                 <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-																		Width="35" Height="20" FontSize="12"
+																		Width="40" Height="35" FontSize="12"
 																		Foreground="White" Background="#FF464646" 
 																		Click="btnMinus_Click" />
                                                                 <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-																		Width="35" Height="20" 
+																		Width="40" Height="35" 
 																		FontSize="12" Foreground="White" Background="#FF464646"
 																		Click="btnPluse_Click" />
                                                             </StackPanel>
@@ -202,7 +202,7 @@
 													Width="200" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
-                                                        <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+                                                        <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="60">
                                                             <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
                                                                 <StackPanel x:Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
                                                             </ContentControl>
