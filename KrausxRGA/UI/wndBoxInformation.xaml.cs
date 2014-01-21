@@ -76,6 +76,7 @@ namespace KrausRGA.UI
                 hideButtons(System.Windows.Visibility.Visible);
                 _mUser = clGlobal.mCurrentUser;
                 btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
+                txtUserName.Text = _mUser.UserInfo.UserFullName.ToString() + Environment.NewLine + "[ " + _mUser.RoleName + " ]";
             }
             #region Start application within another application.
             //else if (StartupParametrs.UserName.ToString() != "")

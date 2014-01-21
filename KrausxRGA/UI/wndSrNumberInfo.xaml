@@ -8,13 +8,10 @@
     <Viewbox>
         <Grid Height="1280" Width="800">
             <Border BorderThickness="2" BorderBrush="#FFD49919">
-                <Canvas Margin="1,2,-1,-2" >
-                    <Canvas.Background>
-                        <ImageBrush ImageSource="/KrausRGA;component/Images/white.jpg"/>
-                    </Canvas.Background>
+                <Canvas Margin="1,2,-1,-2" Background="#FFC7C7C7" >
                     <Canvas x:Name="cvMainArea" Height="551" Width="800" Canvas.Left="5">
                         <StackPanel Orientation="Vertical" Height="1280" Width="800">
-                            <Border x:Name="bdrmain" >
+                            <Border x:Name="bdrmain" Height="457" >
                                 <Canvas x:Name="cvsTb1main" Margin="0,0,10,0" Height="477">
 
                                     <Border Height="227" Width="770" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
@@ -66,7 +63,7 @@
                                         </Canvas>
                                     </Border>
 
-                                    <Border Height="229" Width="770" CornerRadius="10" Canvas.Top="242" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
+                                    <Border Height="210" Width="770" CornerRadius="10" Canvas.Top="242" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
                                         <Canvas Margin="0,0,0,0">
                                             <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
                                                 <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
@@ -81,8 +78,8 @@
 
                                             <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="149" Width="187" Canvas.Left="-7"/>
 
-                                            <Label Canvas.Left="186" Canvas.Top="147" Style="{StaticResource lblVeriable}" Width="225">
-                                                <TextBlock x:Name="lblCustomerAddress" Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="215" Height="64" 
+                                            <Label Canvas.Left="186" Canvas.Top="147" Style="{StaticResource lblVeriable}" Width="251" Height="56">
+                                                <TextBlock x:Name="lblCustomerAddress" Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="241" Height="46" 
 													ScrollViewer.HorizontalScrollBarVisibility="Auto" Canvas.Left="197" Canvas.Top="149"
 													Foreground="Black" />
                                             </Label>
@@ -95,8 +92,8 @@
                                             <Label x:Name="lblcZipCode" Content="Zip/Postal Code: " Style="{StaticResource lblConstant}" Canvas.Top="141" Width="163" Canvas.Left="411"/>
                                             <Label x:Name="lblZipCode" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="579" Canvas.Top="141" Width="177" Height="33"/>
 
-                                            <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="179" Width="163" Canvas.Left="411"/>
-                                            <Label x:Name="lblCountry" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="575" Canvas.Top="180" Width="181" Height="33"/>
+                                            <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="167" Width="163" Canvas.Left="411"/>
+                                            <Label x:Name="lblCountry" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="575" Canvas.Top="168" Width="181" Height="33"/>
                                         </Canvas>
                                     </Border>
 
@@ -105,7 +102,7 @@
 
 
                             <Border x:Name="bdrmain2" >
-                                <Canvas x:Name="cvsTb1main2" Margin="0,0,0,0" Height="313">
+                                <Canvas x:Name="cvsTb1main2" Margin="0,0,0,0" Height="327">
                                     <!-- Grid View-->
                                     <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
                                         <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
@@ -135,7 +132,7 @@
 											BorderBrush="{x:Null}" 
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
-											Height="268"  
+											Height="282"  
 											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="45">
 
                                         <DataGrid.Resources>
@@ -150,7 +147,7 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <Canvas x:Name="cvButtons" Background="White">
-                                                            <Button x:Name="btnRed" Width="50" Height="40" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
+                                                            <Button x:Name="btnRed" Width="50" Height="60" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                 </Button.Background>
@@ -598,7 +595,7 @@
                                                 <TextBlock TextWrapping="Wrap" Text="Other Reason" FontSize="25" Foreground="White" Margin="10,4,266,6"/>
                                             </Border>
 
-                                            <TextBox x:Name="txtOtherReason" Height="43" Width="783" Canvas.Top="49" TextWrapping="WrapWithOverflow" Background="{x:Null}" Canvas.Left="4" FontSize="30"/>
+                                            <TextBox x:Name="txtOtherReason" Height="43" Width="783" Canvas.Top="49" TextWrapping="WrapWithOverflow" Background="White" Canvas.Left="4" FontSize="30"/>
                                             <ComboBox x:Name="cmbOtherReason" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID" Canvas.Top="95" Width="787" Height="45" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbOtherReason_SelectionChanged" Foreground="#FF55BFB6" BorderBrush="#FF292828" Style="{StaticResource combo}" Canvas.Left="-1">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">

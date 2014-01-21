@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace KrausRGA.Barcode
 {
-   public static class BarcodeRead
+   public static class BarcodeRead 
     {
        /// <summary>
        /// Adjust Image Cotrast 
@@ -117,5 +118,6 @@ namespace KrausRGA.Barcode
            return _return;
 
        }
+       
     }
 }

@@ -57,7 +57,7 @@
                                         <GradientStop Color="#FF4B4B4B" Offset="0.305"/>
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <Canvas Margin="0,-120,-303,120">
+                                <Canvas Margin="0,-120,0,120">
                                 <Border Style="{StaticResource bdrWin8btn}"  Canvas.Top="140" Canvas.Left="37"  >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnBoxNumber_Click"></Image>

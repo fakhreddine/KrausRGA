@@ -71,6 +71,7 @@ namespace KrausRGA.UI
         {
             //fill OtherReason ComboBox
             List<Reason> lsReturn = _mReturn.GetReasons();
+            
 
             Reason re = new Reason();
             re.ReasonID = Guid.NewGuid();
@@ -751,6 +752,7 @@ namespace KrausRGA.UI
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
             wndBoxInformation boxinfo = new wndBoxInformation();
+            clGlobal.IsUserlogged = true;
             boxinfo.Show();
             this.Close();
         }
@@ -801,6 +803,7 @@ namespace KrausRGA.UI
         {
             ChangeColor(cbrSatisfied, txtSatisfied,cnvSatisfied);
         }
+
     }
 }
 
