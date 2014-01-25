@@ -20,7 +20,11 @@ namespace KrausRGA.Views
         public static mUser mCurrentUser;
 
         //audit object.
-        public static  mRMAAudit mAuditDetail;
+        public static mRMAAudit mAuditDetail;
 
+        public static List<String> lsImageList;
+
+        public static String BarcodeValue;
+        
     }
 }

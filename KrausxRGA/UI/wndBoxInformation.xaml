@@ -10,7 +10,7 @@
 
         <Grid>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
-                <Canvas Margin="-1,0,1,0" RenderTransformOrigin="0.965,0.968" Height="1280" Width="800" Background="#FFC7C7C7" >
+                <Canvas Name="cvsmain" Margin="-1,0,1,0" RenderTransformOrigin="0.965,0.968" Height="1280" Width="800" Background="#FFC7C7C7" >
 
                     <Canvas x:Name="cnTitle" Height="100" Width="798" Canvas.Left="2">
                         <Canvas.Background>
@@ -84,7 +84,7 @@
                     </Border>
 
                     <Border Name="bdrLogin" Style="{StaticResource trgBorderHideShowTO390}" BorderBrush="#FF209DD8" BorderThickness="2,2,2,2" Height="265" Canvas.Left="10" Canvas.Top="548" Width="750" CornerRadius="15" Background="#CC232121">
-                        <Canvas>
+                        <Canvas Name="cvsLoginBox">
                             <TextBlock Name="tbLoginText" Text="Please scan your badge" FontSize="20" Canvas.Left="188" Canvas.Top="71" Foreground="#FFE0E0E0" />
                             <TextBlock Name="tbTitleLogin" Style="{StaticResource tbFormTitle}"  Text="Login" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
                             <Border BorderBrush="Black" BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395"  Background="White">
@@ -92,7 +92,7 @@
                             </Border>
                             <Border Name="btnCameraScan" Visibility="Visible" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="586" Canvas.Top="90" Width="74" Height="74" >
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoCam.png" MouseDown="btnCamera_Click" />
+                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoCam.png" MouseDown="btnCamera_Click" RenderTransformOrigin="0.807,0.821" />
                                 </StackPanel>
                             </Border>
                         </Canvas>

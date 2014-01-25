@@ -122,8 +122,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    <Reference Include="WpfCap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WpfCap\bin\Debug\WpfCap.dll</HintPath>
     </Reference>
     <Reference Include="WPFToolkit.Extended">
       <HintPath>D:\Avinash\Softwares\ExtendedWPFToolkit_Binaries (1)\WPFToolkit.Extended.dll</HintPath>
@@ -178,6 +179,9 @@
     <Compile Include="UI\wndBoxInformation.xaml.cs">
       <DependentUpon>wndBoxInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndCamera.xaml.cs">
+      <DependentUpon>wndCamera.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\wndSrNumberInfo.xaml.cs">
       <DependentUpon>wndSrNumberInfo.xaml</DependentUpon>
     </Compile>
@@ -206,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\wndBoxInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\wndCamera.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -420,7 +428,9 @@
   <ItemGroup>
     <Resource Include="Images\bac.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\icoPower.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

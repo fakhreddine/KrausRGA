@@ -1,0 +1,39 @@
+﻿<Window x:Class="KrausRGA.UI.wndCamera"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cap="http://schemas.sharpsoft.net/xaml"
+        xmlns:l="clr-namespace:KrausRGA"
+        Title="wndCamera" Height="1260" Width="800"
+        WindowState="Maximized"
+        Closing="Window_Closing_1" Loaded="Window_Loaded_1"
+        WindowStyle="None" Background="{x:Null}"
+        >
+    <Viewbox>
+        <Border Height="1260" Width="800">
+            <Canvas>
+                <Canvas Name="cvsCamera" Height="1078" Width="800">
+                <Grid RenderTransformOrigin="0.5,0.5" Height="810" Width="1085" Canvas.Left="-143" Canvas.Top="133">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90.00"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <cap:CapPlayer x:Name="player" Margin="0,-0,-0,0"/>
+                </Grid>
+                </Canvas>
+                <Canvas Name="cvsControls" Height="173" Width="800" Canvas.Top="1083" Background="#FF636363">
+                    <Border Name="btnCapture" Visibility="Visible" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="10" Canvas.Top="10" Width="159" Height="153" >
+                            <Image Style="{StaticResource btnImage}" MouseDown="Image_MouseDown_2" Stretch="Fill" Source="/KrausRGA;component/Images/icoCam.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="33,16,25,32" />
+                    </Border>
+                    <Border Name="btnClose" Visibility="Visible" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="631" Canvas.Top="10" Width="159" Height="153" >
+                        <Image Style="{StaticResource btnImage}" MouseDown="Image_MouseDown_1" Stretch="Fill" Source="/KrausRGA;component/Images/icoLogout.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="33,16,25,32" />
+                    </Border>
+                </Canvas>
+            </Canvas>
+            
+        </Border>
+    </Viewbox>
+</Window>

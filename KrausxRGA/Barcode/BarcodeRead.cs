@@ -80,7 +80,7 @@ namespace KrausRGA.Barcode
        public static String Read(Bitmap bmpImage)
        {
            //Bitmap bmpImage = new Bitmap(FileName);
-           bmpImage = AdjustContrast(bmpImage, (float)30.0);
+           bmpImage = AdjustContrast(bmpImage, (float)20.0);
            String _return = "";
            System.Collections.ArrayList barcodes= new System.Collections.ArrayList();
            int  iScans = 100;
@@ -92,32 +92,20 @@ namespace KrausRGA.Barcode
            return _return;
        }
 
-       public static string CheckBarcode()
+
+       public static String Read(System.Windows.Controls.Canvas CanvasControl)
        {
-           string _return = "";
-           BitmapSource bs=null ;
+           String _return = "";
            try
            {
-               String BarcodeRead = "";
-               bs = Camera.BitmapToImageSource(Camera.CaptureDesktopWithCursor(), ImageFormat.Jpeg);
-               //try { Camera.CreateThumbnail("C:\\Images\\" + DateTime.Now.ToString("MM_HH_SS_TT") + ".jpg", bs); }
-               //catch (Exception e) {  }
+               _return = Read(Camera.CanvasToBitmap(CanvasControl));
 
-               BarcodeRead = Barcode.BarcodeRead.Read(Camera.CaptureDesktopWithCursor());
-
-               if (BarcodeRead.ToString() != "")
-               {
-                   _return = BarcodeRead;
-                   Barcode.Camera.Close();
-               }
            }
            catch (Exception)
            {
-
            }
            return _return;
-
+                
        }
-       
     }
 }

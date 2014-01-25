@@ -38,7 +38,6 @@ namespace KrausRGA.UI
 
 
         string imgPath = "C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\";
-        DispatcherTimer CaptureTime;
         mReturnDetails _mReturn;
         mUser _mUser;
         DispatcherTimer dsptSacnner;
@@ -68,7 +67,7 @@ namespace KrausRGA.UI
         {
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
-
+         
             //If User is alrady logged then hide the login screen.
             if (clGlobal.IsUserlogged)
             {
@@ -97,26 +96,21 @@ namespace KrausRGA.UI
                 //If no user is logged in then assign new user to the model
                 _mUser = new mUser();
             }
-            CaptureTime = new DispatcherTimer();
-            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 200);
-            CaptureTime.Tick += CaptureTime_Tick;
 
             //Create File To Move Photos.
             File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" "+KrausRGA.Properties.Settings.Default.DrivePath);
         }
 
-        void CaptureTime_Tick(object sender, EventArgs e)
+        void CaptureTime_Tick(String BarcodeReded)
         {
-            string Barcode = BarcodeRead.CheckBarcode();
-            if (Barcode.Trim() != "")
+            if (BarcodeReded.Trim() != "")
             {
                 if (!clGlobal.IsUserlogged)
                 {
                     try
                     {
-                        txtLogin.Text = Barcode;
-                        txtLogin.Focus();
-                        CaptureTime.Stop();
+                        txtLogin.Text = BarcodeReded;
+                        txtLogin.Focus(); 
                         var key = Key.Enter;                    // Key to send
                         var target = Keyboard.FocusedElement;    // Target element
                         var routedEvent = Keyboard.KeyDownEvent; // Event to send
@@ -138,9 +132,8 @@ namespace KrausRGA.UI
                 {
                     try
                     {
-                        txtScan.Text = Barcode;
+                        txtScan.Text = BarcodeReded;
                         txtScan.Focus();
-                        CaptureTime.Stop();
                         var key = Key.Enter;                    // Key to send
                         var target = Keyboard.FocusedElement;    // Target element
                         var routedEvent = Keyboard.KeyDownEvent; // Event to send
@@ -164,9 +157,6 @@ namespace KrausRGA.UI
         private void txtLogin_KeyDown(object sender, KeyEventArgs e)
         {
 
-            ///Stop Searching For Barcode.
-            if (CaptureTime.IsEnabled && txtLogin.Text.Trim()!="")
-                CaptureTime.Stop();
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
             if (e.Key == Key.Enter)
             {
@@ -374,21 +364,19 @@ namespace KrausRGA.UI
 
         private void btnCamera_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (!CaptureTime.IsEnabled)
-                {
-                    CaptureTime.Start();
-                }
-                Camera.Open();
+            wndCamera camra = new wndCamera();
+            camra.ShowDialog();
+            //try
+            //{
+            //    if (!CaptureTime.IsEnabled)
+            //    {
+            //        CaptureTime.Start();
+            //    }
+            //    Camera.Open();
 
-            }
-            catch (Exception)
-            {}
+            //}
+            //catch (Exception)
+            //{}
         }
-
-
-
-        
     }
 }

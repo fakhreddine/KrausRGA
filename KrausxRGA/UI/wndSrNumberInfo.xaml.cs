@@ -113,28 +113,14 @@ namespace KrausRGA.UI
                 {
                     //Show Camera.
                     Barcode.Camera.Open();
-                    Thread.Sleep(1000);
-                    List<string> imagesname = new List<string>();
-                    //Take 5 Photos.
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Barcode.Camera.TakePhoto();
-                        Thread.Sleep(1000);
-
-                        imagesname.Add(Barcode.Camera.LastPhotoName());
-                    }
-                    Barcode.Camera.Close();
-                    Thread.Sleep(1000);
-                    Barcode.Camera.MoveImagesToImages();
-                    Thread.Sleep(1000);
-                    for (int i = 0; i < imagesname.Count; i++)
+                    foreach (String Nameitem in Views.clGlobal.lsImageList)
                     {
                         try
                         {
-                            string path = KrausRGA.Properties.Settings.Default.DrivePath+"\\";
+                            string path = KrausRGA.Properties.Settings.Default.DrivePath + "\\";
 
-                            BitmapSource bs = new BitmapImage(new Uri(path + imagesname[i].ToString()));
-                           
+                            BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+
                             Image img = new Image();
                             //Zoom image.
                             img.MouseEnter += img_MouseEnter;
@@ -142,7 +128,7 @@ namespace KrausRGA.UI
                             img.Height = 62;
                             img.Width = 74;
                             img.Stretch = Stretch.Fill;
-                            img.Name = imagesname[i].ToString().Split(new char [] {'.'})[0];
+                            img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
                             img.Source = bs;
                             img.Margin = new Thickness(0.5);
 
@@ -153,12 +139,10 @@ namespace KrausRGA.UI
                         {
                         }
                     }
-
-
                 }
                 catch (Exception)
                 {
-                 
+
                 }
             }
             else
