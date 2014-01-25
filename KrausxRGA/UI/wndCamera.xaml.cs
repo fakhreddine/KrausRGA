@@ -74,6 +74,8 @@ namespace KrausRGA.UI
 
         private void CaptureTime_Tick(object sender, EventArgs e)
         {
+            if (TimerTickCount == 0)
+            bdrScanner.Visibility = System.Windows.Visibility.Visible;
             TimerTickCount++;
             if(TimerTickCount==1)
             tbInfoText.Text = "Scanning Barcode.";
