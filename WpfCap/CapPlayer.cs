@@ -27,6 +27,8 @@ namespace WpfCap
              
             this.Dispose();
         }
+
+
       public void Current_Exit(object sender, ExitEventArgs e)
         {
             this.Dispose();
@@ -68,12 +70,6 @@ namespace WpfCap
             DependencyProperty.Register("Framerate", typeof(float), typeof(CapPlayer), new UIPropertyMetadata(default(float)));
 
 
-
-
-
-
-
-
         #region IDisposable Members
 
         public void Dispose()
@@ -82,6 +78,7 @@ namespace WpfCap
           //  _device.IsRunning = true;
                 _device.Dispose();
         }
+
 
         #endregion
     }

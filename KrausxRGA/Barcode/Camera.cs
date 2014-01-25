@@ -181,6 +181,12 @@ namespace KrausRGA.Barcode
             System.Drawing.Bitmap BmpOut = null;
             try
             {
+                try
+                {
+                    File.Delete(KrausRGA.Properties.Settings.Default.DrivePath + "\\Img.jpg");
+                }
+                catch (Exception)
+                {}
                 Uri path =new Uri( KrausRGA.Properties.Settings.Default.DrivePath+"\\Img.jpg");
                 // Save current canvas transform
                 Transform transform = surface.LayoutTransform;
@@ -217,6 +223,7 @@ namespace KrausRGA.Barcode
 
                 // Restore previously saved layout
                 surface.LayoutTransform = transform;
+                Thread.Sleep(200);
 
                 BmpOut = new System.Drawing.Bitmap(KrausRGA.Properties.Settings.Default.DrivePath+"\\Img.jpg");
             }

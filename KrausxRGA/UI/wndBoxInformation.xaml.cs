@@ -106,6 +106,7 @@ namespace KrausRGA.UI
 
         void FBCode_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if(Views.clGlobal.FBCode.BarcodeValue!="")
             CaptureTime_Tick(Views.clGlobal.FBCode.BarcodeValue);
         }
 
@@ -117,20 +118,13 @@ namespace KrausRGA.UI
                 {
                     try
                     {
-                        Thread.Sleep(500);
+                        
                         txtLogin.Text = BarcodeReded;
-                        txtLogin.Focus(); 
-                        var key = Key.Enter;                    // Key to send
-                        var target = Keyboard.FocusedElement;    // Target element
-                        var routedEvent = Keyboard.KeyDownEvent; // Event to send
-
-                        target.RaiseEvent(
-                          new KeyEventArgs(
-                            Keyboard.PrimaryDevice,
-                            PresentationSource.FromVisual(txtLogin),
-                            0,
-                            key) { RoutedEvent = routedEvent }
-                        );
+                        txtLogin.Focus();
+                        InputSimulator.SimulateKeyDown(VirtualKeyCode.RETURN);
+                        Views.clGlobal.FBCode.BarcodeValue = "";
+                        Views.clGlobal.BarcodeValueFound = "";
+                        
                     }
                     catch (Exception ex)
                     {
@@ -143,17 +137,9 @@ namespace KrausRGA.UI
                     {
                         txtScan.Text = BarcodeReded;
                         txtScan.Focus();
-                        var key = Key.Enter;                    // Key to send
-                        var target = Keyboard.FocusedElement;    // Target element
-                        var routedEvent = Keyboard.KeyDownEvent; // Event to send
-
-                        target.RaiseEvent(
-                          new KeyEventArgs(
-                            Keyboard.PrimaryDevice,
-                            PresentationSource.FromVisual(txtScan),
-                            0,
-                            key) { RoutedEvent = routedEvent }
-                        );
+                        InputSimulator.SimulateKeyDown(VirtualKeyCode.RETURN);
+                        Views.clGlobal.FBCode.BarcodeValue = "";
+                        Views.clGlobal.BarcodeValueFound = "";
                     }
                     catch (Exception ex)
                     {

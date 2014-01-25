@@ -22,17 +22,19 @@ namespace KrausRGA.UI
     public partial class wndCamera : Window
     {
         DispatcherTimer CaptureTime;
+        int TimerTickCount = 0;
         public wndCamera()
         {
             InitializeComponent();
+            tbInfoText.Text = "";
             Views.clGlobal.BarcodeValueFound = "";
             Views.clGlobal.lsImageList = new List<string>();
         }
 
         private void Window_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if(CaptureTime.IsEnabled)
             CaptureTime.Stop();
-            Thread.Sleep(500);
         }
 
         private void Image_MouseDown_1(object sender, MouseButtonEventArgs e)
@@ -56,6 +58,7 @@ namespace KrausRGA.UI
             {
                 Barcode.Camera.TakePhoto(cvsCamera);
                 Views.clGlobal.lsImageList.Add(Barcode.Camera.LastPhotoName());
+                tbInfoText.Text = "Image captured. " + Barcode.Camera.LastPhotoName()+"'";
             }
             catch (Exception)
             {}
@@ -64,19 +67,29 @@ namespace KrausRGA.UI
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             CaptureTime = new DispatcherTimer();
-            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 200);
+            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 1000);
             CaptureTime.Tick += CaptureTime_Tick;
 
         }
 
         private void CaptureTime_Tick(object sender, EventArgs e)
         {
-            String _barcodeValue = Barcode.BarcodeRead.Read(cvsCamera);
+            TimerTickCount++;
+            if(TimerTickCount==1)
+            tbInfoText.Text = "Scanning Barcode.";
+            tbInfoText.Text = tbInfoText.Text +".";
 
+            String _barcodeValue = Barcode.BarcodeRead.Read(cvsCamera);
             if (_barcodeValue != "")
             {
-              Views.clGlobal.FBCode.BarcodeValue = _barcodeValue;
-                CaptureTime.Stop();
+                CaptureTime.Stop(); 
+                Views.clGlobal.FBCode.BarcodeValue = _barcodeValue;
+                try
+            {
+                player.Dispose();
+            }
+            catch (Exception)
+            { }
                 this.Close();
             }
         }
