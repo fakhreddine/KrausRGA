@@ -181,7 +181,7 @@ namespace KrausRGA.Barcode
             System.Drawing.Bitmap BmpOut = null;
             try
             {
-                Uri path =new Uri( "C:\\Img.jpg");
+                Uri path =new Uri( KrausRGA.Properties.Settings.Default.DrivePath+"\\Img.jpg");
                 // Save current canvas transform
                 Transform transform = surface.LayoutTransform;
                 // reset current transform (in case it is scaled or rotated)
@@ -207,11 +207,18 @@ namespace KrausRGA.Barcode
                 // Create a file stream for saving image
                 using (FileStream outStream = new FileStream(path.LocalPath, FileMode.Create))
                 {
-                    BmpOut = new System.Drawing.Bitmap(outStream);
+                    // Use png encoder for our data
+                    PngBitmapEncoder encoder = new PngBitmapEncoder();
+                    // push the rendered bitmap to it
+                    encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+                    // save the data to the stream
+                    encoder.Save(outStream);
                 }
 
                 // Restore previously saved layout
                 surface.LayoutTransform = transform;
+
+                BmpOut = new System.Drawing.Bitmap(KrausRGA.Properties.Settings.Default.DrivePath+"\\Img.jpg");
             }
             catch (Exception)
             {}

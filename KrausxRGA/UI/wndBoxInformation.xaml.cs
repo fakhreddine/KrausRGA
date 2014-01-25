@@ -65,6 +65,9 @@ namespace KrausRGA.UI
 
         private void wndLogin_Loaded(object sender, RoutedEventArgs e)
         {
+            Views.clGlobal.BarcodeValueFound = Views.clGlobal.FBCode.BarcodeValue;
+            Views.clGlobal.FBCode.PropertyChanged += FBCode_PropertyChanged;
+
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
          
@@ -101,6 +104,11 @@ namespace KrausRGA.UI
             File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" "+KrausRGA.Properties.Settings.Default.DrivePath);
         }
 
+        void FBCode_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            CaptureTime_Tick(Views.clGlobal.FBCode.BarcodeValue);
+        }
+
         void CaptureTime_Tick(String BarcodeReded)
         {
             if (BarcodeReded.Trim() != "")
@@ -109,6 +117,7 @@ namespace KrausRGA.UI
                 {
                     try
                     {
+                        Thread.Sleep(500);
                         txtLogin.Text = BarcodeReded;
                         txtLogin.Focus(); 
                         var key = Key.Enter;                    // Key to send
@@ -364,19 +373,9 @@ namespace KrausRGA.UI
 
         private void btnCamera_Click(object sender, RoutedEventArgs e)
         {
-            wndCamera camra = new wndCamera();
-            camra.ShowDialog();
-            //try
-            //{
-            //    if (!CaptureTime.IsEnabled)
-            //    {
-            //        CaptureTime.Start();
-            //    }
-            //    Camera.Open();
-
-            //}
-            //catch (Exception)
-            //{}
+           wndCamera camra = new wndCamera();
+           camra.ShowDialog();
         }
+        
     }
 }

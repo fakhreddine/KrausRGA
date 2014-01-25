@@ -98,7 +98,8 @@ namespace KrausRGA.Barcode
            String _return = "";
            try
            {
-               _return = Read(Camera.CanvasToBitmap(CanvasControl));
+               Bitmap Bmp = Camera.CanvasToBitmap(CanvasControl);
+               _return = Read(Bmp);
 
            }
            catch (Exception)

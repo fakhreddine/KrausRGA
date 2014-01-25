@@ -137,6 +137,7 @@
     </ApplicationDefinition>
     <Compile Include="Barcode\BarcodeRead.cs" />
     <Compile Include="Barcode\Camera.cs" />
+    <Compile Include="Barcode\FoundBarcode.cs" />
     <Compile Include="Barcode\GDIStuff.cs" />
     <Compile Include="Barcode\Win32Stuff.cs" />
     <Compile Include="DBLogics\Service.cs" />

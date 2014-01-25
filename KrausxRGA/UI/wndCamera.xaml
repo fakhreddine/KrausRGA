@@ -29,9 +29,13 @@
                             <Image Style="{StaticResource btnImage}" MouseDown="Image_MouseDown_2" Stretch="Fill" Source="/KrausRGA;component/Images/icoCam.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="33,16,25,32" />
                     </Border>
                     <Border Name="btnClose" Visibility="Visible" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="631" Canvas.Top="10" Width="159" Height="153" >
-                        <Image Style="{StaticResource btnImage}" MouseDown="Image_MouseDown_1" Stretch="Fill" Source="/KrausRGA;component/Images/icoLogout.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="33,16,25,32" />
+                        <Image Style="{StaticResource btnImage}" MouseDown="Image_MouseDown_1" Stretch="Fill" Source="/KrausRGA;component/Images/icoLogout.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="30,22,28,26" />
+                    </Border>
+                    <Border Name="btnScan" Visibility="Visible" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="205" Canvas.Top="10" Width="159" Height="153" >
+                        <Image Style="{StaticResource btnImage}" MouseDown="Image_MouseDown_3" Stretch="Fill" Source="/KrausRGA;component/Images/icoScan.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="30,22,28,26" />
                     </Border>
                 </Canvas>
+               
             </Canvas>
             
         </Border>
