@@ -67,31 +67,41 @@ namespace KrausRGA.UI
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             CaptureTime = new DispatcherTimer();
-            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 350);
             CaptureTime.Tick += CaptureTime_Tick;
 
         }
 
         private void CaptureTime_Tick(object sender, EventArgs e)
         {
-            if (TimerTickCount == 0)
-            bdrScanner.Visibility = System.Windows.Visibility.Visible;
             TimerTickCount++;
-            if(TimerTickCount==1)
-            tbInfoText.Text = "Scanning Barcode.";
-            tbInfoText.Text = tbInfoText.Text +".";
+
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+
+                if (TimerTickCount== 1)
+                    bdrScanner.Visibility = System.Windows.Visibility.Visible;
+
+                if (TimerTickCount == 10)
+                    bdrScanner.Visibility = System.Windows.Visibility.Hidden;
+
+                if (TimerTickCount == 1)
+                    tbInfoText.Text = "Scanning Barcode.";
+                tbInfoText.Text = tbInfoText.Text + ".";
+
+            }));
 
             String _barcodeValue = Barcode.BarcodeRead.Read(cvsCamera);
             if (_barcodeValue != "")
             {
-                CaptureTime.Stop(); 
+                CaptureTime.Stop();
                 Views.clGlobal.FBCode.BarcodeValue = _barcodeValue;
                 try
-            {
-                player.Dispose();
-            }
-            catch (Exception)
-            { }
+                {
+                    player.Dispose();
+                }
+                catch (Exception)
+                { }
                 this.Close();
             }
         }

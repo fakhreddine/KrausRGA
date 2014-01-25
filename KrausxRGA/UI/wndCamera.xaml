@@ -12,7 +12,7 @@
         <Border Height="1260" Width="800">
             <Canvas>
                 <Canvas Name="cvsCamera" Height="1070" Width="800" Background="#FF26807B">
-                <Grid RenderTransformOrigin="0.5,0.5" Height="798" Width="1090" Canvas.Left="-145" Canvas.Top="137">
+                <Grid RenderTransformOrigin="0.5,0.5" Height="798" Width="1090" Canvas.Left="-145" Canvas.Top="135">
                     <Grid.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="-1" />
@@ -22,7 +22,7 @@
                         </TransformGroup>
                     </Grid.RenderTransform>
                     <cap:CapPlayer x:Name="player" Margin="0,0,0,0"/>
-                </Grid>
+                    </Grid>
                 </Canvas>
                 <Canvas Name="cvsControls" Height="186" Width="800" Canvas.Top="1070" Background="#7F197671">
                     <Border Visibility="Hidden" Name="bdrScanner" Height="16" Width="800" CornerRadius="5">
