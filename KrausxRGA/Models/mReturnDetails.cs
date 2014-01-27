@@ -6,6 +6,8 @@ using KrausRGA.Views;
 using KrausRGA.EntityModel;
 using KrausRGA.DBLogics;
 using KrausRGA.ErrorLogger;
+using System.Windows.Controls;
+using System.Collections;
 
 namespace KrausRGA.Models
 {
@@ -604,7 +606,10 @@ namespace KrausRGA.Models
             }
             return _lsReasons;
         }
+       
+
     }
+
 
 
     public class RAMStatus

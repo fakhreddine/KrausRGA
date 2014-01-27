@@ -118,14 +118,13 @@
 											AutoGenerateColumns="False" 
 											FontSize="17" 
 											Background="{x:Null}" 
-											SelectionUnit="FullRow" 
 											BorderThickness="1" 
 											Cursor="Hand"   
 											BorderBrush="{x:Null}" 
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
 											Height="289"  
-											SelectedIndex="-1" Canvas.Top="38">
+											 Canvas.Top="38">
 
                                         <DataGrid.Resources>
                                             <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
@@ -141,8 +140,8 @@
 													IsReadOnly="True" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel>
-                                                            <TextBlock x:Name="txtSKU" TextAlignment="Center" Width="80" Text="{Binding SKU}" FontSize="15" FontWeight="Bold"/>
+                                                        <StackPanel  Height="60" Width="120">
+                                                            <TextBox x:Name="txtSKU"  Height="60" Margin="0,0,0,0" Text="{Binding SKU}" FontSize="20" FontWeight="Bold"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -154,8 +153,8 @@
                                                                     
                                               <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <StackPanel>
-                                                            <TextBlock x:Name="txtProductName" TextAlignment="Center" Width="80" Text="{Binding ProductName}" FontSize="15" FontWeight="Bold"/>
+                                                        <StackPanel  Height="60" Width="210" >
+                                                            <TextBox x:Name="txtProductName"  Height="60" Margin="0,0,0,0" Text="{Binding ProductName}" FontSize="20" FontWeight="Bold"/>
                                                         </StackPanel>
                                                 </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -167,8 +166,8 @@
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel x:Name="spQty1" Width="80">
-                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="15" FontWeight="Bold"/>
+                                                        <StackPanel x:Name="spQty1" Height="60" Width="80">
+                                                            <TextBox x:Name="tbQty"  Height="60" Margin="0,0,0,0" Text="{Binding Quantity}" FontSize="20" FontWeight="Bold" KeyDown="tbQty_KeyDown_1"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>

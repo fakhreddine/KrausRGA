@@ -14,7 +14,7 @@ namespace KrausRGA.Models
     {
 
 
-       public List<RMAInfo> lsRMAInformation { get; protected set; }
+      
 
         #region Declarations.
 
@@ -56,7 +56,10 @@ namespace KrausRGA.Models
         #endregion
 
 
-        public Guid SetReturnTbl(List<Return> lsRMAInformation, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy)
+       
+
+
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -65,24 +68,24 @@ namespace KrausRGA.Models
                 Return TblRerutn = new Return();
 
                 TblRerutn.ReturnID = Guid.NewGuid();
-                TblRerutn.RMANumber = lsRMAInformation[0].RMANumber;
-                TblRerutn.ShipmentNumber = lsRMAInformation[0].ShipmentNumber;
-                TblRerutn.OrderNumber = lsRMAInformation[0].OrderNumber;
-                TblRerutn.PONumber = lsRMAInformation[0].PONumber;
-                TblRerutn.OrderDate = lsRMAInformation[0].OrderDate;
-                TblRerutn.DeliveryDate = lsRMAInformation[0].DeliveryDate;
-                TblRerutn.ReturnDate = lsRMAInformation[0].ReturnDate;
-                TblRerutn.VendorNumber = lsRMAInformation[0].VendorNumber;
-                TblRerutn.VendoeName = lsRMAInformation[0].VendoeName;
-                TblRerutn.CustomerName1 = lsRMAInformation[0].CustomerName1;
-                TblRerutn.CustomerName2 = lsRMAInformation[0].CustomerName2;
-                TblRerutn.Address1 = lsRMAInformation[0].Address1;
-                TblRerutn.Address2 = lsRMAInformation[0].Address2;
-                TblRerutn.Address3 = lsRMAInformation[0].Address3;
-                TblRerutn.ZipCode = lsRMAInformation[0].ZipCode;
-                TblRerutn.City = lsRMAInformation[0].City;
-                TblRerutn.State = lsRMAInformation[0].State;
-                TblRerutn.Country = lsRMAInformation[0].Country;
+                TblRerutn.RMANumber = lsNewRMA[0].RMANumber;
+                TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
+                TblRerutn.OrderNumber = "N/A";
+                TblRerutn.PONumber = lsNewRMA[0].PONumber;
+                TblRerutn.OrderDate = DateTime.UtcNow;
+                TblRerutn.DeliveryDate = DateTime.UtcNow;
+                TblRerutn.ReturnDate = lsNewRMA[0].ReturnDate;
+                TblRerutn.VendorNumber = lsNewRMA[0].VendorNumber;
+                TblRerutn.VendoeName = lsNewRMA[0].VendoeName;
+                TblRerutn.CustomerName1 = lsNewRMA[0].CustomerName1;
+                TblRerutn.CustomerName2 = "N/A";
+                TblRerutn.Address1 = lsNewRMA[0].Address1;
+                TblRerutn.Address2 = "N/A";
+                TblRerutn.Address3 = "N/A";
+                TblRerutn.ZipCode = lsNewRMA[0].ZipCode;
+                TblRerutn.City = lsNewRMA[0].City;
+                TblRerutn.State = lsNewRMA[0].State;
+                TblRerutn.Country = lsNewRMA[0].Country;
                 TblRerutn.ReturnReason = ReturnReason;
                 TblRerutn.RMAStatus = RMAStatus;
                 TblRerutn.Decision = Decision;
@@ -119,6 +122,71 @@ namespace KrausRGA.Models
         }
 
 
+        public List<RAMStatus> GetRMAStatusList()
+        {
+            List<RAMStatus> lsReturn = new List<RAMStatus>();
+            try
+            {
+                RAMStatus ram2 = new RAMStatus();
+                ram2.ID = 0;
+                ram2.Status = "New";
+
+                RAMStatus ram = new RAMStatus();
+                ram.ID = 1;
+                ram.Status = "Approved";
+
+                RAMStatus ram1 = new RAMStatus();
+                ram1.ID = 2;
+                ram1.Status = "Pending";
+
+                RAMStatus ram3 = new RAMStatus();
+                ram3.ID = 3;
+                ram3.Status = "Canceled";
+
+                lsReturn.Add(ram2);
+                lsReturn.Add(ram);
+                lsReturn.Add(ram1);
+                lsReturn.Add(ram3);
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetRMAStatusList");
+            }
+            return lsReturn;
+        }
+
+        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy)
+        {
+            Guid _ReturnID = Guid.Empty;
+            try
+            {
+                ReturnDetail TblReturnDetails = new ReturnDetail();
+
+                TblReturnDetails.ReturnDetailID = Guid.NewGuid();
+                TblReturnDetails.ReturnID = ReturnTblID;
+                TblReturnDetails.SKUNumber = SKUNumber;
+                TblReturnDetails.ProductName = ProductName;
+                TblReturnDetails.DeliveredQty = DeliveredQty;
+                TblReturnDetails.ExpectedQty = ExpectedQty;
+                TblReturnDetails.TCLCOD_0 = TK;
+                TblReturnDetails.ReturnQty = ReturnQty;
+                TblReturnDetails.ProductStatus = 0;
+                TblReturnDetails.CreatedBy = CreatedBy;
+                TblReturnDetails.CreatedDate = DateTime.UtcNow;
+                TblReturnDetails.UpadatedDate = DateTime.UtcNow;
+                TblReturnDetails.UpdatedBy = CreatedBy;
+
+                //On Success of transaction.
+                if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetReturnDetailTbl");
+            }
+            return _ReturnID;
+        }
 
 
     }
