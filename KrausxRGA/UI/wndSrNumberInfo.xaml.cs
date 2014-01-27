@@ -15,7 +15,6 @@ using KrausRGA.DBLogics;
 using KrausRGA.Views;
 using System.Collections;
 using System.IO;
-using WebcamControl;
 using System.Drawing.Imaging;
 using Microsoft.Expression.Encoder.Devices;
 using System.Windows.Controls.Primitives;
