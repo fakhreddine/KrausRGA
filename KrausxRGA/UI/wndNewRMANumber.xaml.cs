@@ -140,73 +140,73 @@ namespace KrausRGA.UI
 
         private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
         {
-           // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
             bdrDamaged.Inside();
         }
 
         private void cbrDamaged_Unchecked(object sender, RoutedEventArgs e)
         {
-          //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
             bdrDamaged.Outside();
         }
 
         private void cbrDuplicate_Checked(object sender, RoutedEventArgs e)
         {
-          //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
+           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
             bdrDuplicate.Inside();
         }
 
         private void cbrDuplicate_Unchecked(object sender, RoutedEventArgs e)
         {
-           // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
             bdrDuplicate.Outside();
         }
 
         private void cbrIncorrectOrder_Checked(object sender, RoutedEventArgs e)
         {
-          //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
+           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
             bdrIcorrectOrder.Inside();
         }
 
         private void cbrIncorrectOrder_Unchecked(object sender, RoutedEventArgs e)
         {
-          //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
+           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
             bdrIcorrectOrder.Outside();
         }
 
         private void cbrDisplayedDiff_Checked(object sender, RoutedEventArgs e)
         {
-          //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
             bdrDisplayedDiff.Inside();
         }
 
         private void cbrDisplayedDiff_Unchecked(object sender, RoutedEventArgs e)
         {
-           // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
             bdrDisplayedDiff.Outside();
         
         }
 
         private void cbrSatisfied_Checked(object sender, RoutedEventArgs e)
         {
-          //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
+           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
             bdrSatisfied.Inside();
         }
 
         private void cbrSatisfied_Unchecked(object sender, RoutedEventArgs e)
         {
-           // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
+           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
             bdrSatisfied.Outside();
         }
 
         private void cbrWrong_Checked(object sender, RoutedEventArgs e)
         {
-
+            bdrRecivedWrong.Inside();
         }
 
         private void cbrWrong_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            bdrRecivedWrong.Outside();
         }
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
@@ -465,7 +465,10 @@ namespace KrausRGA.UI
 
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
-
+            wndBoxInformation boxinfo = new wndBoxInformation();
+            clGlobal.IsUserlogged = true;
+            boxinfo.Show();
+            this.Close();
         }
 
         private void cmbOtherReason_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -577,8 +580,6 @@ namespace KrausRGA.UI
 
             if (itembox.SelectedItem != null)
             {
-
-
                 string item = lstSKU.SelectedItem.ToString();
 
                 string[] NewRMA = item.Split(new char[] { '#' });
@@ -587,12 +588,7 @@ namespace KrausRGA.UI
                 string NewPName = NewRMA[1];
                 string Category = NewRMA[2];
 
-
-
-
                 int index = dgPackageInfo.SelectedIndex;
-
-
 
                 DataGridCell cell = GetCell(index, 0);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
@@ -606,6 +602,14 @@ namespace KrausRGA.UI
 
 
                 ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text = NewPName;
+
+                DataGridCell cell2 = GetCell(index, 2);
+                ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
+                DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
+
+
+                ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Focus();
+
 
                 lstSKU.Visibility = Visibility.Hidden;
 
