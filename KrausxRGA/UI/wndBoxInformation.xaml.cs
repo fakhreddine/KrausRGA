@@ -20,7 +20,6 @@ using KrausRGA.EntityModel;
 using System.IO;
 using Microsoft.Expression.Encoder.Devices;
 using System.Security.Principal;
-using WebcamControl;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using KrausRGA.Barcode;
@@ -317,8 +316,12 @@ namespace KrausRGA.UI
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.Application.Restart();
-            Application.Current.Shutdown();
+            //System.Windows.Forms.Application.Restart();
+            //Application.Current.Shutdown();
+
+            wndNewRMANumber nRMA = new wndNewRMANumber();
+            nRMA.Show();
+
         }
 
         private void btnNewScan_Click(object sender, RoutedEventArgs e)
