@@ -12,7 +12,7 @@
         <Border Height="1260" Width="800">
             <Canvas>
                 <Canvas Height="90" Canvas.Top="1170" Width="800" Background="#B2C1C1C1">
-                    <Border x:Name="btnClose" Visibility="Visible" MouseDown="Image_MouseDown_1"  CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="656" Width="134" Height="90" RenderTransformOrigin="0.5,0.5" >
+                    <Border x:Name="btnClose" Visibility="Visible" MouseDown="Image_MouseDown_1"  CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="674" Width="91" Height="80" RenderTransformOrigin="0.5,0.5" Canvas.Top="3" >
                         <Border.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -21,7 +21,7 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </Border.RenderTransform>
-                        <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoLogout.png" RenderTransformOrigin="0.807,0.821" Width="Auto" Margin="26,12,23,18" />
+                        <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoLogout.png" RenderTransformOrigin="0.807,0.821" Width="Auto" Margin="23,17,26,21" />
                     </Border>
                 </Canvas>
                 <Canvas x:Name="cvsCamera" Height="1070" Width="800" Background="#FF26807B" Margin="0,100,0,0">
@@ -77,7 +77,7 @@
                             </Style>
                         </Border.Style>
                     </Border>
-                    <Border x:Name="btnCapture" Visibility="Visible" MouseDown="Image_MouseDown_2" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="141" Canvas.Top="66" Width="140" Height="114" RenderTransformOrigin="0.5,0.5" >
+                    <Border x:Name="btnCapture" Visibility="Visible" MouseDown="Image_MouseDown_2" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="149" Canvas.Top="94" Width="104" Height="94" RenderTransformOrigin="0.5,0.5" >
                         <Border.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -86,10 +86,10 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </Border.RenderTransform>
-                        <Image Style="{StaticResource btnImage}"  Stretch="Fill" Source="/KrausRGA;component/Images/icoCam.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="17,16,22,32" />
+                        <Image Style="{StaticResource btnImage}"  Stretch="Fill" Source="/KrausRGA;component/Images/icoCam.png" RenderTransformOrigin="0.807,0.821" Width="Auto" Margin="25,17,27,26" />
                     </Border>
                   
-                    <Border x:Name="btnScan" Visibility="Visible" MouseDown="Image_MouseDown_3" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="311" Canvas.Top="66" Width="138" Height="114" RenderTransformOrigin="0.5,0.5" >
+                    <Border x:Name="btnScan" Visibility="Visible" MouseDown="Image_MouseDown_3" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="321" Canvas.Top="87" Width="107" Height="103" RenderTransformOrigin="0.5,0.5" >
                         <Border.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -98,7 +98,7 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </Border.RenderTransform>
-                        <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoScan.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="18,22,19,26" />
+                        <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoScan.png" RenderTransformOrigin="0.807,0.821" Width="Auto" Margin="31,31,30,32" />
                     </Border>
                 </Canvas>
                 <Border x:Name="bdrPreview" Visibility="Hidden" BorderBrush="Transparent" BorderThickness="0" Height="1070" Canvas.Left="0" Width="800">
