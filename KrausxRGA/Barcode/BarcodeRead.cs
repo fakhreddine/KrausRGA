@@ -9,6 +9,10 @@ using System.Windows.Media.Imaging;
 
 namespace KrausRGA.Barcode
 {
+    /// <summary>
+    /// Avinash :2014 Kraus RGA project.
+    /// Barcode scanning Tool external Application interface.
+    /// </summary>
    public static class BarcodeRead 
     {
        /// <summary>
@@ -95,7 +99,15 @@ namespace KrausRGA.Barcode
            return _return;
        }
 
-
+       /// <summary>
+       /// Read the Barcode from the Canvas that displayes the Camera control.
+       /// </summary>
+       /// <param name="CanvasControl">
+       /// Canvas control containing the Camera Control as child.
+       /// </param>
+       /// <returns>
+       /// String that contains the barcode number.
+       /// </returns>
        public static String Read(System.Windows.Controls.Canvas CanvasControl)
        {
            String _return = "";

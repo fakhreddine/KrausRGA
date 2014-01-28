@@ -11,21 +11,42 @@
     <Viewbox>
         <Border Height="1260" Width="800">
             <Canvas>
-                <Canvas Name="cvsCamera" Height="1070" Width="800" Background="#FF26807B">
-                <Grid RenderTransformOrigin="0.5,0.5" Height="798" Width="1090" Canvas.Left="-145" Canvas.Top="135">
-                    <Grid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="-1" />
-                            <SkewTransform/>
-                            <RotateTransform Angle="90.00"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Grid.RenderTransform>
-                    <cap:CapPlayer x:Name="player" Margin="0,0,0,0"/>
+                <Canvas Height="90" Canvas.Top="1170" Width="800" Background="#B2C1C1C1">
+                    <Border x:Name="btnClose" Visibility="Visible" MouseDown="Image_MouseDown_1"  CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="656" Width="134" Height="90" RenderTransformOrigin="0.5,0.5" >
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoLogout.png" RenderTransformOrigin="0.807,0.821" Width="Auto" Margin="26,12,23,18" />
+                    </Border>
+                </Canvas>
+                <Canvas x:Name="cvsCamera" Height="1070" Width="800" Background="#FF26807B" Margin="0,100,0,0">
+                    <Grid RenderTransformOrigin="0.5,0.5" Height="798" Width="1090" Canvas.Left="-145" Canvas.Top="138">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1" />
+                                <SkewTransform/>
+                                <RotateTransform Angle="270.00"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <cap:CapPlayer x:Name="player" Margin="-3,3,0,-3"/>
                     </Grid>
                 </Canvas>
-                <Canvas Name="cvsControls" Height="186" Width="800" Canvas.Top="1070" Background="#7F197671">
-                    <Border Visibility="Hidden" Name="bdrScanner" Height="16" Width="800" CornerRadius="5">
+                <Canvas x:Name="cvsControls" Height="200" Width="800" Canvas.Top="524" Background="#00197671" Canvas.Left="357" RenderTransformOrigin="0.5,0.5">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Border Visibility="Hidden" x:Name="bdrScanner" Height="16" Width="800" CornerRadius="5">
                         <Border.Background>
                             <RadialGradientBrush>
                                 <GradientStop Color="#FFB69999" Offset="0"/>
@@ -47,8 +68,7 @@
                                                                 Duration="0:0:2"
                                                         AutoReverse="True"
                                                         RepeatBehavior="Forever"
-                                                        >
-                                                    </DoubleAnimation>
+                                                        />
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </Trigger.EnterActions>
@@ -57,29 +77,39 @@
                             </Style>
                         </Border.Style>
                     </Border>
-                    <Border>
-                        <TextBlock Text="Camera" Name="tbInfoText" Foreground="WhiteSmoke" FontSize="35" Width="798"/>
+                    <Border x:Name="btnCapture" Visibility="Visible" MouseDown="Image_MouseDown_2" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="141" Canvas.Top="66" Width="140" Height="114" RenderTransformOrigin="0.5,0.5" >
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <Image Style="{StaticResource btnImage}"  Stretch="Fill" Source="/KrausRGA;component/Images/icoCam.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="17,16,22,32" />
                     </Border>
-                    <Border Name="btnCapture" Visibility="Visible" MouseDown="Image_MouseDown_2" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="141" Canvas.Top="66" Width="140" Height="114" >
-                            <Image Style="{StaticResource btnImage}"  Stretch="Fill" Source="/KrausRGA;component/Images/icoCam.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="17,16,22,32" />
-                    </Border>
-                    <Border Name="btnClose" Visibility="Visible" MouseDown="Image_MouseDown_1"  CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="500" Canvas.Top="66" Width="139" Height="114" >
-                        <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoLogout.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="20,22,18,26" />
-                    </Border>
-                    <Border Name="btnScan" Visibility="Visible" MouseDown="Image_MouseDown_3" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="311" Canvas.Top="66" Width="138" Height="114" >
+                  
+                    <Border x:Name="btnScan" Visibility="Visible" MouseDown="Image_MouseDown_3" CornerRadius="50" Style="{StaticResource bdrWin8btn}" Canvas.Left="311" Canvas.Top="66" Width="138" Height="114" RenderTransformOrigin="0.5,0.5" >
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
                         <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoScan.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="18,22,19,26" />
                     </Border>
                 </Canvas>
-                <Border Name="bdrPreview" Visibility="Hidden" BorderBrush="Transparent" BorderThickness="0" Height="1070" Canvas.Left="0" Width="800">
+                <Border x:Name="bdrPreview" Visibility="Hidden" BorderBrush="Transparent" BorderThickness="0" Height="1070" Canvas.Left="0" Width="800">
                     <Border.Style>
-                        <Style TargetType="Border">
+                        <Style TargetType="{x:Type Border}">
                             <Style.Triggers >
-                                <Trigger Property="Border.Visibility" Value="Visible">
+                                <Trigger Property="Visibility" Value="Visible">
                                     <Trigger.EnterActions >
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="1" To="-900" Duration="0:0:0.7" BeginTime="0:0:0.700">
-                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="1" To="-900" Duration="0:0:0.7" BeginTime="0:0:0.700"/>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.EnterActions>
@@ -87,8 +117,13 @@
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
-                    <Image Name="imgPreview"/>
+                    <Image x:Name="imgPreview"/>
                 </Border>
+                <Canvas Height="100" Canvas.Left="10" Canvas.Top="-5" Width="790">
+                    <Border Canvas.Top="10" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock Text="Camera" x:Name="tbInfoText" Foreground="WhiteSmoke" FontSize="35" Width="798"/>
+                    </Border>
+                </Canvas>
 
             </Canvas>
             

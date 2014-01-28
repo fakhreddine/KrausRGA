@@ -52,7 +52,10 @@ namespace WpfCap
         {
             if (DeviceMonikes.Count() <= 0)
                 throw new NotSupportedException("You should connect DirectDraw source first");
-            deviceMoniker = DeviceMonikes[0].MonikerString;
+
+            //Set Second Camera Here.
+            //On Deployment. meke this 0 as 1 will activate the secondary camera.   
+            deviceMoniker = DeviceMonikes[1].MonikerString;
             Start();
         }
 

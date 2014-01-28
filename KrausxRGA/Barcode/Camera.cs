@@ -14,6 +14,9 @@ namespace KrausRGA.Barcode
 {
     public static class Camera
     {
+        /// <summary>
+        /// Static pathe of images where we want to store the images. this is set though the properties of project.
+        /// </summary>
         private static string imgPath =KrausRGA.Properties.Settings.Default.DrivePath +"\\";
 
         /// <summary>
@@ -106,76 +109,15 @@ namespace KrausRGA.Barcode
             return _returnCount;
         }
 
-        ///// <summary>
-        ///// Move Camera Roll Folder images to the Designation Folder.
-        ///// </summary>
-        ///// <param name="DesignationFolder_FullPath">
-        ///// Images Moved to this Location, Must be full path
-        ///// </param>
-        //public static void MoveImagesToImages()
-        //{
-        //    try
-        //    {
-        //        String Path = Environment.CurrentDirectory + "\\Move.bat"; //Environment.CurrentDirectory + "\\CapturePhotos\\MoveFolder\\MoveFiles.exe";
-        //        ProcessStartInfo myProcess = new ProcessStartInfo(Path);
-        //        myProcess.WindowStyle = ProcessWindowStyle.Hidden;
-        //        myProcess.UseShellExecute = true;
-        //        Process.Start(myProcess);
-        //    }
-        //    catch (Exception)
-        //    { }
-        //}
-
-        //public static System.Drawing.Bitmap CaptureDesktopWithCursor()
-        //{
-        //    System.Drawing.Bitmap desktopBMP;
-        //    desktopBMP = CaptureDesktop();
-        //    if (desktopBMP != null)
-        //    {
-        //        return desktopBMP;
-        //    }
-        //    return null;
-        //}
-        //public struct SIZE
-        //{
-        //    public int cx;
-        //    public int cy;
-        //}
-        //static System.Drawing.Bitmap CaptureDesktop()
-        //{
-        //    SIZE size;
-        //    IntPtr hBitmap;
-        //    IntPtr hDC = Win32Stuff.GetDC(Win32Stuff.GetDesktopWindow());
-        //    IntPtr hMemDC = GDIStuff.CreateCompatibleDC(hDC);
-
-        //    size.cx = Win32Stuff.GetSystemMetrics
-        //              (Win32Stuff.SM_CXSCREEN);
-
-        //    size.cy = Win32Stuff.GetSystemMetrics
-        //              (Win32Stuff.SM_CYSCREEN);
-
-        //    hBitmap = GDIStuff.CreateCompatibleBitmap(hDC, size.cx, size.cy);
-
-        //    if (hBitmap != IntPtr.Zero)
-        //    {
-        //        IntPtr hOld = (IntPtr)GDIStuff.SelectObject
-        //                               (hMemDC, hBitmap);
-
-        //        GDIStuff.BitBlt(hMemDC, 0, 0, size.cx, size.cy, hDC,
-        //                                       0, 0, GDIStuff.SRCCOPY);
-
-        //        GDIStuff.SelectObject(hMemDC, hOld);
-        //        GDIStuff.DeleteDC(hMemDC);
-        //        Win32Stuff.ReleaseDC(Win32Stuff.GetDesktopWindow(), hDC);
-        //        System.Drawing.Bitmap bmp = System.Drawing.Image.FromHbitmap(hBitmap);
-        //        GDIStuff.DeleteObject(hBitmap);
-        //        GC.Collect();
-        //        return bmp;
-        //    }
-        //    return null;
-
-        //}
-
+        /// <summary>
+        /// This function convert the Canvas control to the Bitmap Image.
+        /// </summary>
+        /// <param name="surface">
+        /// Canvas control Object want to convert.
+        /// </param>
+        /// <returns>
+        /// Bitmap Object containing Canvas control Image.
+        /// </returns>
         public static System.Drawing.Bitmap CanvasToBitmap(System.Windows.Controls.Canvas surface) 
         {
             System.Drawing.Bitmap BmpOut = null;
@@ -232,6 +174,16 @@ namespace KrausRGA.Barcode
             return BmpOut;
         }
 
+        /// <summary>
+        /// Convert the Bitmap to Image source.
+        /// </summary>
+        /// <param name="bitmap">
+        /// Bitmap Object.
+        /// </param>
+        /// <param name="imgFormat">
+        /// 
+        /// </param>
+        /// <returns></returns>
         public static BitmapImage BitmapToImageSource(System.Drawing.Bitmap bitmap, System.Drawing.Imaging.ImageFormat imgFormat)
         {
             using (MemoryStream memory = new MemoryStream())
@@ -247,6 +199,7 @@ namespace KrausRGA.Barcode
                 return bitmapImage;
             }
         }
+        
         public static void CreateThumbnail(string filename, BitmapSource image5)
         {
             if (filename != string.Empty)

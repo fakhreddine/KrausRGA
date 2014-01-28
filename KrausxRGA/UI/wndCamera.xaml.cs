@@ -56,6 +56,7 @@ namespace KrausRGA.UI
         {
             try
             {
+                cvsControls.Visibility = System.Windows.Visibility.Hidden;
                 bdrPreview.Visibility = System.Windows.Visibility.Hidden;
                 String LastPhotoName = "";
                 Barcode.Camera.TakePhoto(cvsCamera);
@@ -66,6 +67,7 @@ namespace KrausRGA.UI
                 tbInfoText.Text = "Image captured. " + LastPhotoName + "'";
                 imgPreview.Source = new BitmapImage(new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + LastPhotoName));
                 bdrPreview.Visibility = System.Windows.Visibility.Visible;
+                cvsControls.Visibility = System.Windows.Visibility.Visible;
             }
             catch (Exception)
             {}
@@ -81,6 +83,8 @@ namespace KrausRGA.UI
 
         private void CaptureTime_Tick(object sender, EventArgs e)
         {
+            cvsControls.Visibility = System.Windows.Visibility.Hidden;
+
             TimerTickCount++;
 
             this.Dispatcher.Invoke(new Action(() =>
