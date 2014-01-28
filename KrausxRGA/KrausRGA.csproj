@@ -116,7 +116,7 @@
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WebcamControl, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Avinash\Backups VIMP\KrausRGA Backup\Dec Backup\KrausRGA-20\KrausxRGA\bin\Debug\WebcamControl.dll</HintPath>
+      <HintPath>\\SHIVA3-PC\Users\WebcamControl.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

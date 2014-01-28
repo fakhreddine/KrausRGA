@@ -43,6 +43,10 @@ namespace KrausRGA.UI
         string PName,_PName;
         string Qty,_Qty;
 
+         ScrollViewer SvImagesScroll;
+
+         StackPanel spRowImages;
+
         public wndNewRMANumber()
         {
             InitializeComponent();
@@ -285,6 +289,12 @@ namespace KrausRGA.UI
                 }
 
             }
+            wndBoxInformation wndBox = new wndBoxInformation();
+            clGlobal.IsUserlogged = true;
+            this.Close();
+            //close wait screen.
+            WindowThread.Stop();
+            wndBox.Show(); 
 
         }
 
@@ -598,6 +608,93 @@ namespace KrausRGA.UI
                 lstSKU.Visibility = Visibility.Hidden;
 
             }
+        }
+
+
+         protected void _addToStackPanel(StackPanel StackPanelName, Image CapImage)
+        {
+            try
+            {
+                StackPanelName.Children.Add(CapImage);
+                SvImagesScroll.ScrollToRightEnd();
+            }
+            catch (Exception)
+            { }
+        }
+          void img_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Image img = (Image)sender;
+            bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
+            imgZoom.Source = img.Source;
+        }
+
+        private void imgZoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            imgZoom.Source = null;
+            bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
+        }
+        private void ContentControl_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+          //  ContentControl cnt = (ContentControl)sender;
+          //  DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+                try
+                {
+                    //Show Camera.
+                    Barcode.Camera.Open();
+                    foreach (String Nameitem in Views.clGlobal.lsImageList)
+                    {
+                        try
+                        {
+                            string path = KrausRGA.Properties.Settings.Default.DrivePath + "\\";
+
+                            BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+
+                            Image img = new Image();
+                            //Zoom image.
+                            img.MouseEnter += img_MouseEnter;
+
+                            img.Height = 62;
+                            img.Width = 74;
+                            img.Stretch = Stretch.Fill;
+                            img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+                            img.Source = bs;
+                            img.Margin = new Thickness(0.5);
+
+                            //Images added to the Row.
+                            _addToStackPanel(spRowImages, img);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+        private void dgPackageInfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            // int selectedIndex = dgPackageInfo.SelectedIndex;
+            //if (selectedIndex != -1)
+            //{
+            //    foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+            //    {
+            //        if (row.IsSelected)
+            //        {
+            //            ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+            //            DataTemplate Dt = cp.ContentTemplate;
+            //            StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
+            //            spRowImages = spProductIMages;
+            //            ScrollViewer SvImages = (ScrollViewer)Dt.FindName("svScrollImages", cp);
+            //            SvImagesScroll = SvImages;
+            //        }
+            //    }
+            // }
+            // }
+
         }
 
 
