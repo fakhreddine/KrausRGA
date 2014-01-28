@@ -58,7 +58,7 @@ namespace KrausRGA.UI
             InitializeComponent();
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
-      
+
         }
 
         #region Events
@@ -70,7 +70,7 @@ namespace KrausRGA.UI
 
             //Hide Button Window and show Login Window
             hideButtons(System.Windows.Visibility.Hidden);
-         
+
             //If User is alrady logged then hide the login screen.
             if (clGlobal.IsUserlogged)
             {
@@ -101,13 +101,13 @@ namespace KrausRGA.UI
             }
 
             //Create File To Move Photos.
-            File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" "+KrausRGA.Properties.Settings.Default.DrivePath);
+            File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" " + KrausRGA.Properties.Settings.Default.DrivePath);
         }
 
         void FBCode_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(Views.clGlobal.FBCode.BarcodeValue!="")
-            CaptureTime_Tick(Views.clGlobal.FBCode.BarcodeValue);
+            if (Views.clGlobal.FBCode.BarcodeValue != "")
+                CaptureTime_Tick(Views.clGlobal.FBCode.BarcodeValue);
         }
 
         void CaptureTime_Tick(String BarcodeReded)
@@ -118,17 +118,17 @@ namespace KrausRGA.UI
                 {
                     try
                     {
-                        
+
                         txtLogin.Text = BarcodeReded;
                         txtLogin.Focus();
                         InputSimulator.SimulateKeyDown(VirtualKeyCode.RETURN);
                         Views.clGlobal.FBCode.BarcodeValue = "";
                         Views.clGlobal.BarcodeValueFound = "";
-                        
+
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("txtLoginKey :"+ex.Message);
+                        MessageBox.Show("txtLoginKey :" + ex.Message);
                     }
                 }
                 else
@@ -155,7 +155,7 @@ namespace KrausRGA.UI
             //If pressed key is Enter then Scan for UserName and  show  hide Buttons.
             if (e.Key == Key.Enter)
             {
-                
+
                 if (txtLogin.Text.Trim() != "")
                 {
                     if (_mUser.IsValidUser(txtLogin.Text, "2wvcDW8j"))
@@ -219,24 +219,23 @@ namespace KrausRGA.UI
 
                     if (_mReturn.IsValidNumber) //Is number valid or not.
                     {
-                       
-                            this.Dispatcher.Invoke(new Action(() =>
-                                {
-                                    //Create new instance of window.
-                                    wndSrNumberInfo wndMain = new wndSrNumberInfo();
-                                    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
-                                    //opens new window.
-                                    wndMain.Show();
-                                }));
 
-                            //close this screen.
-                            this.Close();
-                        
+                        this.Dispatcher.Invoke(new Action(() =>
+                            {
+                                //Create new instance of window.
+                                wndSrNumberInfo wndMain = new wndSrNumberInfo();
+                                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                                //opens new window.
+                                wndMain.Show();
+                            }));
+
+                        //close this screen.
+                        this.Close();
                     }
                     else
                     {
                         mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), TempRMANumber);
-                        ErrorMsg("Invalid Number. Please check the number. :"+txtScan.Text, Color.FromRgb(185, 84, 0));
+                        ErrorMsg("Invalid Number. Please check the number. :" + txtScan.Text, Color.FromRgb(185, 84, 0));
                         txtScan.Text = "";
                     }
                 }
@@ -359,9 +358,9 @@ namespace KrausRGA.UI
 
         private void btnCamera_Click(object sender, RoutedEventArgs e)
         {
-           wndCamera camra = new wndCamera();
-           camra.ShowDialog();
+            wndCamera camra = new wndCamera();
+            camra.ShowDialog();
         }
-        
+
     }
 }

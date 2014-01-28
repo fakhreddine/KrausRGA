@@ -106,9 +106,9 @@
                             <Border BorderThickness="2" Height="55" Canvas.Left="188" Canvas.Top="98" Width="395" CornerRadius="10">
                                 <TextBox x:Name="txtScan" TextWrapping="Wrap" Text="" FontSize="30" BorderBrush="{x:Null}" Background="{x:Null}" KeyDown="txtScan_KeyDown"/>
                             </Border>
-                            <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" CornerRadius="50" Width="78" Canvas.Left="594" Canvas.Top="89" >
+                            <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" CornerRadius="50" Width="78" Canvas.Left="594" Canvas.Top="89" MouseDown="btnCamera_Click" >
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoCam.png" MouseDown="btnCamera_Click" />
+                                    <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoCam.png"  />
                                 </StackPanel>
                             </Border>
                         </Canvas>

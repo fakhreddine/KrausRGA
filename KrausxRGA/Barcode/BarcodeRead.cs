@@ -80,11 +80,14 @@ namespace KrausRGA.Barcode
        public static String Read(Bitmap bmpImage)
        {
            //Bitmap bmpImage = new Bitmap(FileName);
-           bmpImage = AdjustContrast(bmpImage, (float)20.0);
+           bmpImage = AdjustContrast(bmpImage, (float)30.0);
            String _return = "";
            System.Collections.ArrayList barcodes= new System.Collections.ArrayList();
            int  iScans = 100;
            BarcodeScanner.FullScanPage(ref barcodes, bmpImage, iScans, BarcodeScanner.BarcodeType.All);
+           if(barcodes.Count <=0)
+           BarcodeScanner.ScanPage(ref barcodes, bmpImage, iScans,BarcodeScanner.ScanDirection.Horizontal ,BarcodeScanner.BarcodeType.All);
+
            foreach (var Str in barcodes)
            {
                _return = _return + Str.ToString();
