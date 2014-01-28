@@ -251,24 +251,17 @@ namespace KrausRGA.UI
                 Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
 
 
-                //ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
-                //DataTemplate DtStatus = CntStatus.ContentTemplate;
+             
                 DataGridCell cell3 = GetCell(i, 4);
                 ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
                 DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
-               // TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
                 TextBlock txtRGuid = DataTemp3.FindName("txtReasosnsGuid", CntPersenter3) as TextBlock;
 
 
-                //ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                //DataTemplate DtImages = CntImag.ContentTemplate;
                 DataGridCell cell4 = GetCell(i, 3);
                 ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
                 DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
                 StackPanel SpImages = (StackPanel)DataTemp4.FindName("spProductImages", CntPersenter4);
-
-
-
 
 
                 if (SKU != null) _SKU = SKU;
@@ -292,9 +285,6 @@ namespace KrausRGA.UI
                 }
 
             }
-
-         
-
 
         }
 
