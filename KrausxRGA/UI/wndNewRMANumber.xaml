@@ -20,7 +20,9 @@
                                             <TextBox x:Name="txtRMANumber"  Canvas.Left="426" Canvas.Top="49" Width="257" Height="33"/>
 
                                             <Label x:Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="237" Canvas.Top="122" Width="193"/>
-                                            <TextBox x:Name="txtRMAReqDate"  Canvas.Left="427" Canvas.Top="125" Width="256" Height="33"/>
+                                           
+                                            <DatePicker x:Name="txtRMAReqDate" Canvas.Left="427" Canvas.Top="125" Width="256" Height="31" />
+                                            
 
                                             <Label x:Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="85" Width="164" Canvas.Left="267"/>
                                             <TextBox x:Name="txtVendorNumber"  Canvas.Left="427" Canvas.Top="87" Width="256" Height="33"/>
@@ -32,7 +34,7 @@
 
                                             <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="127" Canvas.Left="4"/>
                                             <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True"
-													ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" SelectionChanged="cmbRMAStatus_SelectionChanged_1">
+													ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                                         <GradientStop Color="#FF292929" Offset="0"/>

@@ -219,7 +219,7 @@ namespace KrausRGA.UI
             ret.RMANumber = txtRMANumber.Text;
             ret.VendoeName = txtVendorName.Text;
             ret.VendorNumber = txtVendorNumber.Text;
-            ret.ReturnDate = DateTime.UtcNow;
+            ret.ReturnDate = Convert.ToDateTime(txtRMAReqDate.Text);
             ret.PONumber = txtPoNumber.Text;
             ret.CustomerName1 = txtName.Text;
             ret.Address1 = txtAddress.Text;
@@ -484,7 +484,9 @@ namespace KrausRGA.UI
         public void FillRMAStausAndDecision()
         {
             cmbRMADecision.ItemsSource = _mNewRMA.GetRMAStatusList();
+            cmbRMADecision.SelectedIndex = 0;
             cmbRMAStatus.ItemsSource = _mNewRMA.GetRMAStatusList();
+            cmbRMAStatus.SelectedIndex = 0;
         }
 
         /// <summary>
