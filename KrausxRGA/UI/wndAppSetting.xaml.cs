@@ -76,5 +76,6 @@ namespace KrausRGA.UI
                 this.Close();
             }
         }
+
     }
 }
