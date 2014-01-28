@@ -626,7 +626,7 @@ namespace KrausRGA.UI
           void img_MouseEnter(object sender, MouseEventArgs e)
         {
             Image img = (Image)sender;
-            bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
+            bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
             imgZoom.Source = img.Source;
         }
 
@@ -637,9 +637,11 @@ namespace KrausRGA.UI
         }
         private void ContentControl_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
-          //  ContentControl cnt = (ContentControl)sender;
-          //  DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
-
+            int index = dgPackageInfo.SelectedIndex;
+            DataGridCell cell = GetCell(index, 3);
+            ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+            DataTemplate DataTemp = CntPersenter.ContentTemplate;
+            spRowImages = (StackPanel)DataTemp.FindName("spProductImages", CntPersenter);
                 try
                 {
                     //Show Camera.
