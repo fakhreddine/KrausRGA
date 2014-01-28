@@ -302,5 +302,12 @@ namespace KrausRGA.Barcode
             // Restore previously saved layout
             surface.LayoutTransform = transform;
         }
+
+        public static void Rotate90Degree(String ImageUri )
+        {
+            System.Drawing.Bitmap bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(ImageUri);
+            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+            bitmap1.Save(ImageUri);
+        }
     }
 }

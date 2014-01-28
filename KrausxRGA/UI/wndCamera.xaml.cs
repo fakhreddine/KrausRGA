@@ -58,6 +58,7 @@ namespace KrausRGA.UI
             {
                 Barcode.Camera.TakePhoto(cvsCamera);
                 Views.clGlobal.lsImageList.Add(Barcode.Camera.LastPhotoName());
+                Barcode.Camera.Rotate90Degree(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + Barcode.Camera.LastPhotoName());
                 tbInfoText.Text = "Image captured. " + Barcode.Camera.LastPhotoName()+"'";
             }
             catch (Exception)
@@ -67,7 +68,7 @@ namespace KrausRGA.UI
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             CaptureTime = new DispatcherTimer();
-            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 350);
+            CaptureTime.Interval = new TimeSpan(0, 0, 0, 0, 500);
             CaptureTime.Tick += CaptureTime_Tick;
 
         }
