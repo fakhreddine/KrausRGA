@@ -709,6 +709,11 @@ namespace KrausRGA.UI
 
         }
 
+        private void dgPackageInfo_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            dgPackageInfo.Items.RemoveAt(dgPackageInfo.SelectedIndex);
+        }
+
 
     }
 }
