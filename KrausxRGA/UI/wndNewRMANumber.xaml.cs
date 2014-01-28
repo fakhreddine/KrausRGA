@@ -417,7 +417,7 @@ namespace KrausRGA.UI
 
             FillRMAStausAndDecision();
 
-            var data = new RDetails { SKU = "", ProductName = "", Quantity="" };
+            var data = new RDetails { SKU = "", ProductName = "", Quantity="1" };
 
             dgPackageInfo.Items.Add(data);
 
@@ -459,50 +459,55 @@ namespace KrausRGA.UI
 
             lstSKU.ItemsSource = _lsNewRMAnumber;
 
-            int index = dgPackageInfo.SelectedIndex;
+            //int index = dgPackageInfo.SelectedIndex;
 
-            int position = (index + 1) * 60;
+            //int position =( (index) * 90)+110;
+
+            //Canvas.SetTop(lstSKU, position);
 
         }
 
         private void lstSKU_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           string item = lstSKU.SelectedItem.ToString();
 
-           string[] NewRMA=item.Split(new char[] { '#' });
+            ListBox itembox = (ListBox)sender;
 
-           string NewSKU = NewRMA[0];
-           string NewPName = NewRMA[1];
-           string Category = NewRMA[2];
+            if (itembox.SelectedItem != null)
+            {
 
 
-           
+                string item = lstSKU.SelectedItem.ToString();
 
-           int index = dgPackageInfo.SelectedIndex;
+                string[] NewRMA = item.Split(new char[] { '#' });
 
-
-
-          DataGridCell cell = GetCell(index, 0);
-          ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-          DataTemplate DataTemp = CntPersenter.ContentTemplate;
-
-          ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = NewSKU;
-
-          DataGridCell cell1 = GetCell(index, 1);
-          ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
-          DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+                string NewSKU = NewRMA[0];
+                string NewPName = NewRMA[1];
+                string Category = NewRMA[2];
 
 
-          ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text = NewPName;
 
-          lstSKU.Visibility = Visibility.Hidden;
-            
+
+                int index = dgPackageInfo.SelectedIndex;
+
+
+
+                DataGridCell cell = GetCell(index, 0);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+
+                ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = NewSKU;
+
+                DataGridCell cell1 = GetCell(index, 1);
+                ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+                DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+
+
+                ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text = NewPName;
+
+                lstSKU.Visibility = Visibility.Hidden;
+
+            }
         }
-
-
-
-
-
 
 
     }
