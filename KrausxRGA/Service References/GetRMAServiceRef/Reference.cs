@@ -1894,6 +1894,9 @@ namespace KrausRGA.GetRMAServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/RMAInfoBySRNumber", ReplyAction="http://tempuri.org/IGet/RMAInfoBySRNumberResponse")]
         KrausRGA.GetRMAServiceRef.RMAInfoDTO[] RMAInfoBySRNumber(string SRNumber);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ProductMachingNameCat", ReplyAction="http://tempuri.org/IGet/ProductMachingNameCatResponse")]
+        string[] ProductMachingNameCat(string Chars);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/RoleAll", ReplyAction="http://tempuri.org/IGet/RoleAllResponse")]
         KrausRGA.GetRMAServiceRef.RoleDTO[] RoleAll();
         
@@ -2059,6 +2062,10 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public KrausRGA.GetRMAServiceRef.RMAInfoDTO[] RMAInfoBySRNumber(string SRNumber) {
             return base.Channel.RMAInfoBySRNumber(SRNumber);
+        }
+        
+        public string[] ProductMachingNameCat(string Chars) {
+            return base.Channel.ProductMachingNameCat(Chars);
         }
         
         public KrausRGA.GetRMAServiceRef.RoleDTO[] RoleAll() {
