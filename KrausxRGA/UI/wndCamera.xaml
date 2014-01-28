@@ -70,7 +70,26 @@
                         <Image Style="{StaticResource btnImage}" Stretch="Fill" Source="/KrausRGA;component/Images/icoScan.png" RenderTransformOrigin="0.807,0.821" Width="97" Margin="18,22,19,26" />
                     </Border>
                 </Canvas>
-               
+                <Border Name="bdrPreview" Visibility="Hidden" BorderBrush="Transparent" BorderThickness="0" Height="1070" Canvas.Left="0" Width="800">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers >
+                                <Trigger Property="Border.Visibility" Value="Visible">
+                                    <Trigger.EnterActions >
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="1" To="-900" Duration="0:0:0.7" BeginTime="0:0:0.700">
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Image Name="imgPreview"/>
+                </Border>
+
             </Canvas>
             
         </Border>
