@@ -89,14 +89,16 @@ namespace KrausRGA.UI
 
                 NewRMAnumber = _mNewRMA.NewRMAInfo(Sku);
 
-                string[] NewRMA = NewRMAnumber[0].Split(new char[] { '#' });
+                if (NewRMAnumber.Count > 0)
+                {
+                    string[] NewRMA = NewRMAnumber[0].Split(new char[] { '#' });
 
-               
-                string Category = NewRMA[2];
+
+                    string Category = NewRMA[2];
 
 
-                FilldgReasons(Category);
-           
+                    FilldgReasons(Category);
+                }
               //  mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
                // ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
             
@@ -504,10 +506,14 @@ namespace KrausRGA.UI
         {
             var itemsSource = grid.ItemsSource as IEnumerable;
             if (null == itemsSource) yield return null;
-            foreach (var item in itemsSource)
+            if (itemsSource != null)
             {
-                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                if (null != row) yield return row;
+               
+                foreach (var item in itemsSource)
+                {
+                    var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                    if (null != row) yield return row;
+                }
             }
         }
 
