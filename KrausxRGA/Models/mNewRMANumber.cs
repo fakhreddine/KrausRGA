@@ -192,21 +192,21 @@ namespace KrausRGA.Models
             return _ReturnID;
         }
 
-        //public List<Reason> GetReasons(String SKUName)
-        //{
-        //    List<Reason> _lsReasons = new List<Reason>();
-        //    try
-        //    {
-        //        //find category of product.
-        //        String CategoryOFSKU = lsRMAInformation.FirstOrDefault(Sk => Sk.SKUNumber == SKUName).TCLCOD_0;
-        //        _lsReasons = cRtnreasons.GetReasons(CategoryOFSKU);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ex.LogThis("mReturnDetails/GetReasons(String SKUName)");
-        //    }
-        //    return _lsReasons;
-        //}
+        public List<Reason> GetReasons(String Category)
+        {
+            List<Reason> _lsReasons = new List<Reason>();
+            try
+            {
+                //find category of product.
+               // String CategoryOFSKU = lsRMAInformation.FirstOrDefault(Sk => Sk.SKUNumber == SKUName).TCLCOD_0;
+                _lsReasons = cRtnreasons.GetReasons(Category);
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetReasons(String SKUName)");
+            }
+            return _lsReasons;
+        }
 
         public List<string> NewRMAInfo(string Chars)
         {
@@ -218,6 +218,51 @@ namespace KrausRGA.Models
             catch (Exception)
             {   }
             return _lsNewRMA;
+        }
+
+
+        public Guid SetTransaction(Guid ReasonID, Guid ReturnDetailID)
+        {
+            Guid _transationID = Guid.Empty;
+            try
+            {
+                SKUReason tra = new SKUReason();
+                tra.SKUReasonID = Guid.NewGuid();
+                tra.ReasonID = ReasonID;
+                tra.ReturnDetailID = ReturnDetailID;
+
+                if (crtTransaction.SetTransaction(tra)) _transationID = tra.SKUReasonID;
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetTransaction");
+            }
+            return _transationID;
+        }
+
+
+        public Guid SetReturnedImages(Guid ReturnDetailID, String ImagePath, Guid CreatedBy)
+        {
+            Guid _ReturnID = Guid.Empty;
+            try
+            {
+                ReturnImage RtnImages = new ReturnImage();
+
+                RtnImages.ReturnImageID = Guid.NewGuid();
+                RtnImages.ReturnDetailID = ReturnDetailID;
+                RtnImages.SKUImagePath = ImagePath;
+                RtnImages.CreatedBy = CreatedBy;
+                RtnImages.CreatedDate = DateTime.UtcNow;
+                RtnImages.UpadatedBy = CreatedBy;
+                RtnImages.UpadatedDate = DateTime.UtcNow;
+                if (cRtnImages.UpsertReturnImage(RtnImages)) _ReturnID = RtnImages.ReturnImageID;
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetReturnedImages");
+            }
+            return _ReturnID;
         }
 
 
