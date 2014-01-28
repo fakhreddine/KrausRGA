@@ -43,8 +43,6 @@ namespace KrausRGA.UI
         string PName,_PName;
         string Qty,_Qty;
 
-         ScrollViewer SvImagesScroll;
-
          StackPanel spRowImages;
 
         public wndNewRMANumber()
@@ -57,10 +55,12 @@ namespace KrausRGA.UI
         {
 
         }
+        
         public void FilldgReasons(String cat)
         {
             dgReasons.ItemsSource = _mNewRMA.GetReasons(cat);
         }
+        
         private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -316,6 +316,7 @@ namespace KrausRGA.UI
             }
             return null;
         }
+        
         public DataGridRow GetRow(int index)
         {
             DataGridRow row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(index);
@@ -347,6 +348,7 @@ namespace KrausRGA.UI
             }
             return child;
         }
+        
         private String ReturnReasons()
         {
             String _ReturnReason = "";
@@ -386,7 +388,6 @@ namespace KrausRGA.UI
             return _return;
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
@@ -417,6 +418,7 @@ namespace KrausRGA.UI
 
             }
         }
+        
         private void ChangeColor(CheckBox Chk, TextBlock txt, Canvas can)
         {
             if (Chk.IsChecked == false)
@@ -433,6 +435,7 @@ namespace KrausRGA.UI
                 can.Background = new SolidColorBrush(Color.FromRgb(198, 122, 58));
             }
         }
+        
         private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ChangeColor(cbrDamaged, txtitemdamage, cnvDamage);
@@ -622,12 +625,12 @@ namespace KrausRGA.UI
             try
             {
                 StackPanelName.Children.Add(CapImage);
-                SvImagesScroll.ScrollToRightEnd();
             }
             catch (Exception)
             { }
         }
-          void img_MouseEnter(object sender, MouseEventArgs e)
+        
+        void img_MouseEnter(object sender, MouseEventArgs e)
         {
             Image img = (Image)sender;
             bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
@@ -639,6 +642,7 @@ namespace KrausRGA.UI
             imgZoom.Source = null;
             bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
         }
+        
         private void ContentControl_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
             int index = dgPackageInfo.SelectedIndex;
