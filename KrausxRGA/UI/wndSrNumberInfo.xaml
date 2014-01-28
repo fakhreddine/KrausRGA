@@ -143,16 +143,16 @@
                                         </DataGrid.Resources>
 
                                         <DataGrid.Columns>
-                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="70" >
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="82" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <Canvas x:Name="cvButtons" Background="White">
-                                                            <Button x:Name="btnRed" Width="70" Height="60" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
+                                                            <Button x:Name="btnRed" Width="80" Height="70" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                 </Button.Background>
                                                             </Button>
-                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="70" Height="60"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
+                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="80" Height="70"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
 																	Click="btnGreen_Click" >
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Checked .png"/>
@@ -165,7 +165,7 @@
                                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
 													Binding="{Binding SKUNumber}" 
 													Header="SKU"  
-													Width="120" 
+													Width="110" 
 													IsReadOnly="True" />
 
                                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
@@ -181,14 +181,14 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel x:Name="spQty1" Width="80">
-                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="15" FontWeight="Bold"/>
+                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="20" FontWeight="Bold"/>
                                                             <StackPanel x:Name="spQty2" Orientation="Horizontal">
                                                                 <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-																		Width="40" Height="35" FontSize="12"
+																		Width="40" Height="40" FontSize="12"
 																		Foreground="White" Background="#FF464646" 
 																		Click="btnMinus_Click" />
                                                                 <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-																		Width="40" Height="35" 
+																		Width="40" Height="40" 
 																		FontSize="12" Foreground="White" Background="#FF464646"
 																		Click="btnPluse_Click" />
                                                             </StackPanel>
@@ -202,7 +202,7 @@
 													Width="200" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
-                                                        <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="60">
+                                                        <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="70">
                                                             <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown">
                                                                 <StackPanel x:Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
                                                             </ContentControl>
@@ -271,7 +271,7 @@
 													HorizontalGridLinesBrush="#FF272626" VerticalGridLinesBrush="{x:Null}" 
 													Background="#FFE6E6E6" Width="500" GridLinesVisibility="None" RowHeight="45" Canvas.Top="46" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
                                             <DataGrid.Columns >
-                                                <DataGridTemplateColumn Header="Reasons" Width="500">
+                                                <DataGridTemplateColumn Header="Reasons" Width="500" >
                                                     <DataGridTemplateColumn.CellStyle>
                                                         <Style TargetType="{x:Type DataGridCell}">
                                                             <Setter Property="Margin" Value="2,2,2,2"/>
@@ -280,8 +280,8 @@
                                                     </DataGridTemplateColumn.CellStyle>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate  >
-                                                            <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1"  >
-                                                                <Border Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="1,1,1,1"  Background="#FF919191" CornerRadius="0" Margin="0,0,0,0" >
+                                                            <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1" >
+                                                                <Border Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="1,1,1,1"  Background="#FF919191" CornerRadius="0" Height="100" Margin="0,0,0,0" >
                                                                     <Canvas Margin="0,0,0,0">
                                                                         <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="10,0,0,0" FontSize="25"  Width="500" Foreground="WhiteSmoke"/>
                                                                         <CheckBox x:Name="cbReasons" Width="0" Content="" Canvas.Top="4" Canvas.Left="2" Visibility="Hidden" />
