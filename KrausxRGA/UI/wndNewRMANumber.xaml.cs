@@ -43,6 +43,10 @@ namespace KrausRGA.UI
         string PName,_PName;
         string Qty,_Qty;
 
+         ScrollViewer SvImagesScroll;
+
+         StackPanel spRowImages;
+
         public wndNewRMANumber()
         {
             InitializeComponent();
@@ -215,7 +219,7 @@ namespace KrausRGA.UI
             ret.RMANumber = txtRMANumber.Text;
             ret.VendoeName = txtVendorName.Text;
             ret.VendorNumber = txtVendorNumber.Text;
-            ret.ReturnDate = DateTime.UtcNow;
+            ret.ReturnDate = Convert.ToDateTime(txtRMAReqDate.Text);
             ret.PONumber = txtPoNumber.Text;
             ret.CustomerName1 = txtName.Text;
             ret.Address1 = txtAddress.Text;
@@ -251,24 +255,17 @@ namespace KrausRGA.UI
                 Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
 
 
-                //ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
-                //DataTemplate DtStatus = CntStatus.ContentTemplate;
+             
                 DataGridCell cell3 = GetCell(i, 4);
                 ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
                 DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
-               // TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
                 TextBlock txtRGuid = DataTemp3.FindName("txtReasosnsGuid", CntPersenter3) as TextBlock;
 
 
-                //ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                //DataTemplate DtImages = CntImag.ContentTemplate;
                 DataGridCell cell4 = GetCell(i, 3);
                 ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
                 DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
                 StackPanel SpImages = (StackPanel)DataTemp4.FindName("spProductImages", CntPersenter4);
-
-
-
 
 
                 if (SKU != null) _SKU = SKU;
@@ -292,9 +289,12 @@ namespace KrausRGA.UI
                 }
 
             }
-
-         
-
+            wndBoxInformation wndBox = new wndBoxInformation();
+            clGlobal.IsUserlogged = true;
+            this.Close();
+            //close wait screen.
+            WindowThread.Stop();
+            wndBox.Show(); 
 
         }
 
@@ -484,7 +484,9 @@ namespace KrausRGA.UI
         public void FillRMAStausAndDecision()
         {
             cmbRMADecision.ItemsSource = _mNewRMA.GetRMAStatusList();
+            cmbRMADecision.SelectedIndex = 0;
             cmbRMAStatus.ItemsSource = _mNewRMA.GetRMAStatusList();
+            cmbRMAStatus.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -608,6 +610,93 @@ namespace KrausRGA.UI
                 lstSKU.Visibility = Visibility.Hidden;
 
             }
+        }
+
+
+         protected void _addToStackPanel(StackPanel StackPanelName, Image CapImage)
+        {
+            try
+            {
+                StackPanelName.Children.Add(CapImage);
+                SvImagesScroll.ScrollToRightEnd();
+            }
+            catch (Exception)
+            { }
+        }
+          void img_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Image img = (Image)sender;
+            bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
+            imgZoom.Source = img.Source;
+        }
+
+        private void imgZoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            imgZoom.Source = null;
+            bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
+        }
+        private void ContentControl_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+          //  ContentControl cnt = (ContentControl)sender;
+          //  DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+                try
+                {
+                    //Show Camera.
+                    Barcode.Camera.Open();
+                    foreach (String Nameitem in Views.clGlobal.lsImageList)
+                    {
+                        try
+                        {
+                            string path = KrausRGA.Properties.Settings.Default.DrivePath + "\\";
+
+                            BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+
+                            Image img = new Image();
+                            //Zoom image.
+                            img.MouseEnter += img_MouseEnter;
+
+                            img.Height = 62;
+                            img.Width = 74;
+                            img.Stretch = Stretch.Fill;
+                            img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+                            img.Source = bs;
+                            img.Margin = new Thickness(0.5);
+
+                            //Images added to the Row.
+                            _addToStackPanel(spRowImages, img);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+        private void dgPackageInfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            // int selectedIndex = dgPackageInfo.SelectedIndex;
+            //if (selectedIndex != -1)
+            //{
+            //    foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+            //    {
+            //        if (row.IsSelected)
+            //        {
+            //            ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+            //            DataTemplate Dt = cp.ContentTemplate;
+            //            StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
+            //            spRowImages = spProductIMages;
+            //            ScrollViewer SvImages = (ScrollViewer)Dt.FindName("svScrollImages", cp);
+            //            SvImagesScroll = SvImages;
+            //        }
+            //    }
+            // }
+            // }
+
         }
 
 
