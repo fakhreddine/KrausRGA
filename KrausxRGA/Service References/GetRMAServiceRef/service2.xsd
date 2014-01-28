@@ -431,6 +431,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ProductMachingNameCat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Chars" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProductMachingNameCatResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ProductMachingNameCatResult" nillable="true" type="q38:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RoleAll">
     <xs:complexType>
       <xs:sequence />
@@ -439,49 +453,49 @@
   <xs:element name="RoleAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" minOccurs="0" name="RoleAllResult" nillable="true" type="q38:ArrayOfRoleDTO" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" minOccurs="0" name="RoleAllResult" nillable="true" type="q39:ArrayOfRoleDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RoleByRoleID">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="RoleID" type="q39:guid" />
+        <xs:element xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="RoleID" type="q40:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RoleByRoleIDResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" minOccurs="0" name="RoleByRoleIDResult" nillable="true" type="q40:RoleDTO" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" minOccurs="0" name="RoleByRoleIDResult" nillable="true" type="q41:RoleDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImagePathTable">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ReturnDetailID" type="q41:guid" />
+        <xs:element xmlns:q42="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ReturnDetailID" type="q42:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImagePathTableResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="ImagePathTableResult" nillable="true" type="q42:ArrayOfReturnImagesDTO" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="ImagePathTableResult" nillable="true" type="q43:ArrayOfReturnImagesDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImagePathStringList">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ReturnDetailID" type="q43:guid" />
+        <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ReturnDetailID" type="q44:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ImagePathStringListResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ImagePathStringListResult" nillable="true" type="q44:ArrayOfstring" />
+        <xs:element xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ImagePathStringListResult" nillable="true" type="q45:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

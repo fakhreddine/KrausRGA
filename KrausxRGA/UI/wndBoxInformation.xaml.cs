@@ -197,6 +197,8 @@ namespace KrausRGA.UI
             bdrScan.Visibility = System.Windows.Visibility.Hidden;
             bdrScan.Visibility = System.Windows.Visibility.Visible;
             txtScan.Focus();
+           // wndNewRMANumber nRMA = new wndNewRMANumber();
+           // nRMA.Show();
         }
 
         private void txtScan_KeyDown(object sender, KeyEventArgs e)
@@ -318,9 +320,9 @@ namespace KrausRGA.UI
         {
             //System.Windows.Forms.Application.Restart();
             //Application.Current.Shutdown();
-
             wndNewRMANumber nRMA = new wndNewRMANumber();
             nRMA.Show();
+          
 
         }
 

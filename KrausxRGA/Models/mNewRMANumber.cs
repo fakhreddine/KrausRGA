@@ -53,9 +53,12 @@ namespace KrausRGA.Models
         /// </summary>
         protected DBLogics.cmdSKUReasons crtTransaction = new DBLogics.cmdSKUReasons();
 
+
+        public List<int> GreenRowsNumber = new List<int>();
+
         #endregion
 
-
+      //  List<RMAInfo> _lsNEWRMA = new List<RMAInfo>();
        
 
 
@@ -64,6 +67,7 @@ namespace KrausRGA.Models
             Guid _returnID = Guid.Empty;
             try
             {
+               // _lsNEWRMA = lsNewRMA;
                 //Return table new object.
                 Return TblRerutn = new Return();
 
@@ -186,6 +190,34 @@ namespace KrausRGA.Models
                 ex.LogThis("mReturnDetails/SetReturnDetailTbl");
             }
             return _ReturnID;
+        }
+
+        //public List<Reason> GetReasons(String SKUName)
+        //{
+        //    List<Reason> _lsReasons = new List<Reason>();
+        //    try
+        //    {
+        //        //find category of product.
+        //        String CategoryOFSKU = lsRMAInformation.FirstOrDefault(Sk => Sk.SKUNumber == SKUName).TCLCOD_0;
+        //        _lsReasons = cRtnreasons.GetReasons(CategoryOFSKU);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ex.LogThis("mReturnDetails/GetReasons(String SKUName)");
+        //    }
+        //    return _lsReasons;
+        //}
+
+        public List<string> NewRMAInfo(string Chars)
+        {
+            List<string> _lsNewRMA = new List<string>();
+            try
+            {
+                _lsNewRMA = cSage.GetNewRMANumber(Chars);
+            }
+            catch (Exception)
+            {   }
+            return _lsNewRMA;
         }
 
 

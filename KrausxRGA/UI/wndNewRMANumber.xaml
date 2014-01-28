@@ -141,7 +141,7 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel  Height="60" Width="120">
-                                                            <TextBox x:Name="txtSKU"  Height="60" Margin="0,0,0,0" Text="{Binding SKU}" FontSize="20" FontWeight="Bold"/>
+                                                            <TextBox x:Name="txtSKU"  Height="60" Margin="0,0,0,0" Text="{Binding SKU}" FontSize="20" FontWeight="Bold" TextChanged="txtSKU_TextChanged_1"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -192,7 +192,7 @@
 													Width="*" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <ContentControl x:Name="cntItemStatus" >
+                                                        <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown">
                                                             <Canvas x:Name="cvItemReasons" >
                                                                 <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="70" Width="80" />
                                                                 <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
@@ -437,7 +437,7 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1"  >
-                                                                <Border Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="0,1,1,1" Background="#FF919191" CornerRadius="3" Height="60" Margin="10,0,0,0" >
+                                                                <Border Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="0,1,1,1" Background="#FF919191" CornerRadius="3" Height="160" Margin="10,0,0,0" >
                                                                     <Canvas Margin="0,0,0,0">
                                                                         <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="10,0,0,0" FontSize="20" Foreground="WhiteSmoke"/>
                                                                         <CheckBox x:Name="cbReasons" Width="0" Content="" Canvas.Top="4" Canvas.Left="2" Visibility="Hidden" />
@@ -459,6 +459,7 @@
                                         <TextBox Height="49" x:Name="txtItemReason" TextWrapping="Wrap" Visibility="Hidden" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
                                         <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
                                     </Canvas>
+                                    <ListBox x:Name="lstSKU"  Height="206" Canvas.Left="2" Canvas.Top="110" Width="181" Visibility="Hidden" SelectionChanged="lstSKU_SelectionChanged" />
                                 </Canvas>
                             </Border>
 

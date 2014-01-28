@@ -139,5 +139,29 @@ namespace KrausRGA.DBLogics
            }
            return lsRMAInfo;
        }
+
+
+       public List<String> GetNewRMANumber(String Chars)
+       {
+           List<String> lsRMAInfo = new List<String>();
+           try
+           {
+               var NewRMAdetailsInfo = Service.entGet.ProductMachingNameCat(Chars);
+               if (NewRMAdetailsInfo.Count() > 0)
+               {
+                   foreach (var RMAitem in NewRMAdetailsInfo)
+                   {
+                       lsRMAInfo.Add(RMAitem);
+                   }
+               }
+           }
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdSageOperations/GetRMAInfoByShipmentNumber");
+           }
+           return lsRMAInfo;
+       }
+
+
     }
 }
