@@ -318,11 +318,9 @@ namespace KrausRGA.UI
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
         {
-            //System.Windows.Forms.Application.Restart();
-            //Application.Current.Shutdown();
-            wndNewRMANumber nRMA = new wndNewRMANumber();
-            nRMA.Show();
-          
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
+            
 
         }
 
@@ -365,6 +363,14 @@ namespace KrausRGA.UI
         {
             wndCamera camra = new wndCamera();
             camra.ShowDialog();
+        }
+
+        private void btnPONumber_Click(object sender, RoutedEventArgs e)
+        {
+            wndNewRMANumber nRMA = new wndNewRMANumber();
+            nRMA.Show();
+            this.Close();
+          
         }
 
     }

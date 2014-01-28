@@ -53,9 +53,9 @@ namespace KrausRGA.UI
         {
 
         }
-        public void FilldgReasons(String SKUName)
+        public void FilldgReasons(String cat)
         {
-          //  dgReasons.ItemsSource = _mNewRMA.GetReasons(SKUName);
+            dgReasons.ItemsSource = _mNewRMA.GetReasons(cat);
         }
         private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -65,18 +65,37 @@ namespace KrausRGA.UI
             TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
             DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
 
-            if (_mNewRMA.GreenRowsNumber.Contains(row.GetIndex()))
-            {
+          
                 cvItemStatus.Visibility = System.Windows.Visibility.Visible;
                 TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-                txtSKUname.Text = tbSKUName.Text.ToString();
-                FilldgReasons(tbSKUName.Text.ToString());
-            }
-            else
-            {
-                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+              //  txtSKUname.Text = tbSKUName.Text.ToString();
+
+                int index = dgPackageInfo.SelectedIndex;
+
+
+
+                DataGridCell cell = GetCell(index, 0);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+
+                string Sku = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text;
+
+                List<String> NewRMAnumber=new List<string>();
+
+
+                NewRMAnumber = _mNewRMA.NewRMAInfo(Sku);
+
+                string[] NewRMA = NewRMAnumber[0].Split(new char[] { '#' });
+
+               
+                string Category = NewRMA[2];
+
+
+                FilldgReasons(Category);
+           
+              //  mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
                // ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-            }
+            
         }
 
         private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
@@ -231,12 +250,51 @@ namespace KrausRGA.UI
                 DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
                 Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
 
+
+                //ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                //DataTemplate DtStatus = CntStatus.ContentTemplate;
+                DataGridCell cell3 = GetCell(i, 4);
+                ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
+                DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
+               // TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
+                TextBlock txtRGuid = DataTemp3.FindName("txtReasosnsGuid", CntPersenter3) as TextBlock;
+
+
+                //ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                //DataTemplate DtImages = CntImag.ContentTemplate;
+                DataGridCell cell4 = GetCell(i, 3);
+                ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
+                DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
+                StackPanel SpImages = (StackPanel)DataTemp4.FindName("spProductImages", CntPersenter4);
+
+
+
+
+
                 if (SKU != null) _SKU = SKU;
                 if (SKU != null) _PName = PName;
                 if (SKU != null) _Qty = Qty;
 
                 Guid ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), "", clGlobal.mCurrentUser.UserInfo.UserID);
+
+
+                foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
+                {
+                    _mNewRMA.SetTransaction(Ritem, ReturnDetailsID);
+                }
+
+                foreach (Image imageCaptured in SpImages.Children)
+                {
+                    String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + imageCaptured.Name.ToString() + ".jpg";
+
+                    //Set Images table from model.
+                    Guid ImageID = _mNewRMA.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
+                }
+
             }
+
+         
+
 
         }
 
@@ -310,11 +368,54 @@ namespace KrausRGA.UI
             return _ReturnReason;
 
         }
-        
+
+        public String GetGuidChecked(DataGridRow Row)
+        {
+            String _return = "";
+            try
+            {
+                ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
+                DataTemplate chkDt = chkCp.ContentTemplate;
+                Border bdrChec = chkDt.FindName("bdrCheck", chkCp) as Border;
+                TextBlock ResonGuid = dgReasons.Columns[1].GetCellContent(Row) as TextBlock;
+                if (bdrChec.Background.ToString() == Colors.Black.ToString()) _return = ResonGuid.Text.ToString();
+            }
+            catch (Exception)
+            {
+            }
+            return _return;
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ChangeColor(cbrDamaged, txtitemdamage, cnvDamage); 
+            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+
+            int selectedIndex = dgPackageInfo.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+
+
+                DataGridCell cell = GetCell(selectedIndex, 4);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+
+                TextBlock txtReturnGuid = (TextBlock)DataTemp.FindName("txtReasosnsGuid", CntPersenter);
+                TextBlock txtRCount = (TextBlock)DataTemp.FindName("txtCheckedCount", CntPersenter);
+                int countReasons = 0;
+                txtReturnGuid.Text = "";
+                foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
+                {
+                    string RGuid = GetGuidChecked(RowReason);
+                    if (RGuid != "")
+                    {
+                        txtReturnGuid.Text += "#" + RGuid;
+                        countReasons++;
+                    }
+                }
+                txtRCount.Text = countReasons.ToString() + " Reason.";
+
+            }
         }
         private void ChangeColor(CheckBox Chk, TextBlock txt, Canvas can)
         {
@@ -334,7 +435,7 @@ namespace KrausRGA.UI
         }
         private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            ChangeColor(cbrDamaged, txtitemdamage, cnvDamage);
         }
 
         private void ContentControl_MouseDown_2(object sender, MouseButtonEventArgs e)
