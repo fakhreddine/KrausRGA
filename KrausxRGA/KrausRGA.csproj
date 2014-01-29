@@ -405,9 +405,6 @@
     <Resource Include="Images\icoSetting.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\icoScan.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\icoLogout.png" />
   </ItemGroup>
   <ItemGroup>
@@ -436,6 +433,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icoPower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icoScan.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
