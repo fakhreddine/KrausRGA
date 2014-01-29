@@ -98,9 +98,6 @@ namespace KrausRGA.UI
                 //If no user is logged in then assign new user to the model
                 _mUser = new mUser();
             }
-
-            //Create File To Move Photos.
-            File.WriteAllText(Environment.CurrentDirectory + "\\Move.bat", "move \"C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\*\" " + KrausRGA.Properties.Settings.Default.DrivePath);
         }
 
         void FBCode_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
