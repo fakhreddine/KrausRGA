@@ -641,7 +641,8 @@ namespace KrausRGA.UI
                 ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
                 DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
                 ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Focus();
-              
+
+                InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);
 
                 DataGridCell cell7 = GetCell(index, 5);
                 ContentPresenter CntPersenter7 = cell7.Content as ContentPresenter;
