@@ -24,6 +24,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using WindowsInput;
 using System.Data;
+using System.Reflection;
 
 
 
@@ -39,9 +40,14 @@ namespace KrausRGA.UI
 
         mUser _mUser = clGlobal.mCurrentUser;
 
+        Guid ReturnDetailsID;
+
         string SKU,_SKU;
         string PName,_PName;
         string Qty,_Qty;
+        string Cat, _Cat;
+
+        DateTime eastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "Eastern Standard Time");
 
          StackPanel spRowImages;
 
@@ -49,6 +55,9 @@ namespace KrausRGA.UI
         {
             InitializeComponent();
             FillRMAStausAndDecision();
+            txtRMAReqDate.SelectedDate = DateTime.Now;
+
+          
         }
 
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -76,7 +85,9 @@ namespace KrausRGA.UI
 
                 int index = dgPackageInfo.SelectedIndex;
 
+            
 
+               
 
                 DataGridCell cell = GetCell(index, 0);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
@@ -89,20 +100,27 @@ namespace KrausRGA.UI
 
                 NewRMAnumber = _mNewRMA.NewRMAInfo(Sku);
 
+                string Category;
                 if (NewRMAnumber.Count > 0)
                 {
                     string[] NewRMA = NewRMAnumber[0].Split(new char[] { '#' });
 
+                     Category = NewRMA[2];
 
-                    string Category = NewRMA[2];
-
-
+                    FilldgReasons(Category);
+                }
+                else
+                {
+                    Category = "";
                     FilldgReasons(Category);
                 }
               //  mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
                // ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
             
         }
+
+    
+
 
         private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
@@ -221,7 +239,8 @@ namespace KrausRGA.UI
             ret.RMANumber = txtRMANumber.Text;
             ret.VendoeName = txtVendorName.Text;
             ret.VendorNumber = txtVendorNumber.Text;
-            ret.ReturnDate = Convert.ToDateTime(txtRMAReqDate.Text);
+            eastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(txtRMAReqDate.SelectedDate.Value, "Eastern Standard Time");
+            ret.ReturnDate = eastern;
             ret.PONumber = txtPoNumber.Text;
             ret.CustomerName1 = txtName.Text;
             ret.Address1 = txtAddress.Text;
@@ -256,8 +275,13 @@ namespace KrausRGA.UI
                 DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
                 Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
 
-
+                DataGridCell cell5 = GetCell(i, 5);
+                ContentPresenter CntPersenter5 = cell5.Content as ContentPresenter;
+                DataTemplate DataTemp5 = CntPersenter5.ContentTemplate;
+                Cat = ((TextBox)DataTemp5.FindName("txtcategory", CntPersenter5)).Text.ToString();
              
+
+
                 DataGridCell cell3 = GetCell(i, 4);
                 ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
                 DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
@@ -271,10 +295,16 @@ namespace KrausRGA.UI
 
 
                 if (SKU != null) _SKU = SKU;
-                if (SKU != null) _PName = PName;
-                if (SKU != null) _Qty = Qty;
+                if (PName != null) _PName = PName;
+                if (Qty != null) _Qty = Qty;
+                if (Cat != null) _Cat = Cat;
 
-                Guid ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), "", clGlobal.mCurrentUser.UserInfo.UserID);
+                
+
+                if (_SKU!="" && _PName!="")
+                {
+                   ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID);    
+                }
 
 
                 foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
@@ -532,11 +562,11 @@ namespace KrausRGA.UI
 
             FillRMAStausAndDecision();
 
-            var data = new RDetails { SKU = "", ProductName = "", Quantity="1" };
+            var data = new RDetails { SKU = "", ProductName = "", Quantity = "1", cat = "" };
 
             dgPackageInfo.Items.Add(data);
 
-
+        
 
         }
 
@@ -545,6 +575,7 @@ namespace KrausRGA.UI
             public string SKU { get; set; }
             public string ProductName { get; set; }
             public String Quantity { get; set; }
+            public String cat { get; set; }
         }
 
         private void cmbRMAStatus_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -556,7 +587,7 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
-                var data = new RDetails { SKU = "", ProductName = "", Quantity = "1" };
+                var data = new RDetails { SKU = "", ProductName = "", Quantity = "1", cat = "" };
 
                 dgPackageInfo.Items.Add(data);
             }
@@ -602,23 +633,23 @@ namespace KrausRGA.UI
                 DataGridCell cell = GetCell(index, 0);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
                 DataTemplate DataTemp = CntPersenter.ContentTemplate;
-
                 ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = NewSKU;
 
                 DataGridCell cell1 = GetCell(index, 1);
                 ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
                 DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
-
-
                 ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text = NewPName;
 
                 DataGridCell cell2 = GetCell(index, 2);
                 ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
                 DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
-
-
                 ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Focus();
+              
 
+                DataGridCell cell7 = GetCell(index, 5);
+                ContentPresenter CntPersenter7 = cell7.Content as ContentPresenter;
+                DataTemplate DataTemp7 = CntPersenter7.ContentTemplate;
+                ((TextBox)DataTemp7.FindName("txtcategory", CntPersenter7)).Text = Category;
 
                 lstSKU.Visibility = Visibility.Hidden;
 
@@ -719,6 +750,14 @@ namespace KrausRGA.UI
         {
             dgPackageInfo.Items.RemoveAt(dgPackageInfo.SelectedIndex);
         }
+
+        private void txtCheckedCount_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            int index = dgPackageInfo.SelectedIndex;
+        }
+
+       
+
 
 
     }

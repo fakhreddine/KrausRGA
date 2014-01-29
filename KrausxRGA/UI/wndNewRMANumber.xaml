@@ -97,7 +97,7 @@
 
 
                             <Border x:Name="bdrmain2" Height="337" >
-                                <Canvas x:Name="cvsTb1main2" Margin="0,0,0,0" Height="327">
+                                <Canvas x:Name="cvsTb1main2" Margin="0,5,10,5" Height="327">
                                     <!-- Grid View-->
                                     <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
                                         <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
@@ -112,7 +112,7 @@
 											SelectionMode="Extended" 
 											HorizontalAlignment="Center" 
 											VerticalAlignment="Center"
-											Width="790" 
+											Width="839" 
 											ScrollViewer.CanContentScroll="False" 
 											ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
 											ScrollViewer.VerticalScrollBarVisibility="Auto" 
@@ -126,7 +126,7 @@
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
 											Height="289"  
-											 Canvas.Top="38" SelectionChanged="dgPackageInfo_SelectionChanged_1" MouseDoubleClick="dgPackageInfo_MouseDoubleClick_1">
+											 Canvas.Top="43" SelectionChanged="dgPackageInfo_SelectionChanged_1" MouseDoubleClick="dgPackageInfo_MouseDoubleClick_1" >
 
                                         <DataGrid.Resources>
                                             <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
@@ -164,7 +164,7 @@
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
 													Header="Qty"
-													Width="80">
+													Width="80" >
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -175,6 +175,7 @@
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
 
+                                       
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
 													Header="Images" 
 													Width="200" >
@@ -196,13 +197,28 @@
                                                     <DataTemplate>
                                                         <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown">
                                                             <Canvas x:Name="cvItemReasons" >
-                                                                <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="70" Width="80" />
+                                                                <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="70" Width="80" MouseDown="txtCheckedCount_MouseDown_1" />
                                                                 <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
                                                             </Canvas>
                                                         </ContentControl>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn  
+													Header="" Width="0"
+													 >
+
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="spcat" >
+                                                            <TextBox x:Name="txtcategory"  Margin="0,0,0,0" Text="{Binding cat}" Foreground="WhiteSmoke" Visibility="Hidden" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+
+
                                         </DataGrid.Columns>
                                     </DataGrid>
                                     <!--<Border x:Name="bdrCamera" Visibility="Visible" Canvas.Top="77" Height="349" Width="504" >
