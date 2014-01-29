@@ -16,18 +16,18 @@
                                             <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
                                                 <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="25" Foreground="White" Margin="10,6,351,0"/>
                                             </Border>
-                                            <Label x:Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="47" Width="143" Canvas.Left="287"/>
-                                            <TextBox x:Name="txtRMANumber"  Canvas.Left="426" Canvas.Top="49" Width="257" Height="33"/>
+                                            <Label x:Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="51" Width="143" Canvas.Left="278"/>
+                                            <TextBox x:Name="txtRMANumber"  Canvas.Left="429" Canvas.Top="49" Width="257" Height="33"  />
 
-                                            <Label x:Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="237" Canvas.Top="122" Width="193"/>
+                                            <Label x:Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="230" Canvas.Top="86" Width="193"/>
                                            
-                                            <DatePicker x:Name="txtRMAReqDate" Canvas.Left="427" Canvas.Top="125" Width="256" Height="31" />
+                                            <DatePicker x:Name="txtRMAReqDate" Canvas.Left="428" Canvas.Top="88" Width="256" Height="31" />
                                             
 
-                                            <Label x:Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="85" Width="164" Canvas.Left="267"/>
-                                            <TextBox x:Name="txtVendorNumber"  Canvas.Left="427" Canvas.Top="87" Width="256" Height="33"/>
+                                            <Label x:Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="127" Width="164" Canvas.Left="259"/>
+                                            <TextBox x:Name="txtVendorNumber"  Canvas.Left="429" Canvas.Top="123" Width="256" Height="33"/>
 
-                                            <Label x:Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="161" Width="147" Canvas.Left="283"/>
+                                            <Label x:Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="161" Width="147" Canvas.Left="275"/>
                                             <TextBox x:Name="txtVendorName"  Canvas.Left="425" Canvas.Top="163" Width="331" Height="62"/>
                                               
                                           
