@@ -19,7 +19,7 @@ namespace KrausRGA.Views
        public static Boolean forcombobox(this ComboBox cm)
        {
           Boolean _return = false;
-          if (cm.SelectedIndex == 0)
+          if (cm.SelectedIndex != 0)
           {
               _return = true;
           }
