@@ -73,17 +73,18 @@ namespace KrausRGA.UI
         private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            //TextBlock cbk = (TextBlock)e.Source;
-            //Canvas cs = cbk.Parent as Canvas;
-            //TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
-            //DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            TextBlock cbk = (TextBlock)e.Source;
+            Canvas cs = cbk.Parent as Canvas;
+            TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
+            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
 
+            int index = row.GetIndex();
           
                 cvItemStatus.Visibility = System.Windows.Visibility.Visible;
                 //TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
               //  txtSKUname.Text = tbSKUName.Text.ToString();
 
-                int index = dgPackageInfo.SelectedIndex;
+               // int index = dgPackageInfo.SelectedIndex;
 
                 DataGridCell cell = GetCell(index, 0);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
