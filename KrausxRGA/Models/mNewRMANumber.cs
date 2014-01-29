@@ -59,7 +59,19 @@ namespace KrausRGA.Models
         #endregion
 
       //  List<RMAInfo> _lsNEWRMA = new List<RMAInfo>();
-       
+
+        public String GetNewROWID(Guid RMAID)
+        {
+            String _retunn = "";
+            try
+            {
+                _retunn = cReturnTbl.GetReturnTblByReturnID(RMAID).RGAROWID;
+            }
+            catch (Exception)
+            {}
+            return _retunn;
+
+        }
 
 
         public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy)
@@ -72,7 +84,7 @@ namespace KrausRGA.Models
                 Return TblRerutn = new Return();
 
                 TblRerutn.ReturnID = Guid.NewGuid();
-                TblRerutn.RMANumber = lsNewRMA[0].RMANumber;
+                TblRerutn.RMANumber = null;//lsNewRMA[0].RMANumber;
                 TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
                 TblRerutn.OrderNumber = "N/A";
                 TblRerutn.PONumber = lsNewRMA[0].PONumber;

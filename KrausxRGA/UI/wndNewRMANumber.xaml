@@ -17,7 +17,7 @@
                                                 <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="25" Foreground="White" Margin="10,6,351,0"/>
                                             </Border>
                                             <Label x:Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="51" Width="143" Canvas.Left="278"/>
-                                            <TextBox x:Name="txtRMANumber"  Canvas.Left="429" Canvas.Top="49" Width="257" Height="33"  />
+                                            <TextBox x:Name="txtRMANumber" IsEnabled="False" Canvas.Left="429"  FontSize="15" Foreground="Red"  Text="Generate after saving this information." Canvas.Top="49" Width="257" Height="33"  />
 
                                             <Label x:Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="230" Canvas.Top="86" Width="193"/>
                                            

@@ -250,7 +250,7 @@ namespace KrausRGA.UI
 
             //Save to RMA Master Table.
             Guid ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn,ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
-
+            MessageBox.Show("RMA number for this return is : " + _mNewRMA.GetNewROWID(ReturnTblID));
             for (int i = 0; i < dgPackageInfo.Items.Count; i++)
             {
 
