@@ -84,7 +84,7 @@ namespace KrausRGA.UI
         private void CaptureTime_Tick(object sender, EventArgs e)
         {
             cvsControls.Visibility = System.Windows.Visibility.Hidden;
-
+            bdrMarks.Visibility = System.Windows.Visibility.Visible;
             TimerTickCount++;
 
             this.Dispatcher.Invoke(new Action(() =>
@@ -113,6 +113,7 @@ namespace KrausRGA.UI
                 }
                 catch (Exception)
                 { }
+                bdrMarks.Visibility = System.Windows.Visibility.Visible;
                 this.Close();
             }
         }

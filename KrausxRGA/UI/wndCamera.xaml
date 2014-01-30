@@ -27,6 +27,15 @@
                             </TransformGroup>
                         </Grid.RenderTransform>
                         <cap:CapPlayer x:Name="player" Margin="-3,3,0,-3"/>
+                        <Border Visibility="Hidden" Name="bdrMarks" BorderBrush="{x:Null}" BorderThickness="0" HorizontalAlignment="Left" Height="666" Margin="817,55,0,0" VerticalAlignment="Top" Width="217">
+                            <Canvas Margin="0,0,0,0">
+                                <Border BorderBrush="#FF27C120"  Height="197" Width="71" BorderThickness="2,2,0,0"></Border>
+                                <Border BorderBrush="#FF27C120"  Height="171" Width="71" BorderThickness="2,0,0,2" Canvas.Top="495"/>
+                                <Border BorderBrush="#FF27C120"  Height="197" Width="65" BorderThickness="0,2,2,0" Canvas.Left="152"/>
+                                <Border BorderBrush="#FF27C120"  Height="171" Width="65" Canvas.Left="152" Canvas.Top="495" BorderThickness="0,0,2,2"></Border>
+                            </Canvas>
+                        </Border>
+                        
                     </Grid>
                 </Canvas>
                 <Canvas x:Name="cvsControls" Height="200" Width="800" Canvas.Top="524" Background="#00197671" Canvas.Left="357" RenderTransformOrigin="0.5,0.5">
