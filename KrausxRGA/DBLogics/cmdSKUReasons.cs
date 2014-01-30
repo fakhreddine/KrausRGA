@@ -27,5 +27,18 @@ namespace KrausRGA.DBLogics
        
        }
 
+       public List<SKUReason> GetSKuReasonsByReturnDetailsID(Guid ReturnDetailID)
+       {
+           List<SKUReason> _lsReturn = new List<SKUReason>();
+           try
+           {
+
+           }
+           catch (Exception)
+           {}
+           return _lsReturn;
+
+       }
+
     }
 }

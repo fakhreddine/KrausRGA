@@ -14,7 +14,22 @@ namespace KrausRGA.DBLogics
 
         #region Get methods.
 
-
+       public List<ReturnDetail> GetReturnDetailsByReturnID(Guid ReturnID)
+       {
+           List<ReturnDetail> _lsReturn = new List<ReturnDetail>();
+           try
+           {
+               var listReturnTbl = Service.entGet.ReturnDetailByretrnID(ReturnID).ToList();
+               foreach (var lsitem in listReturnTbl)
+               {
+                   _lsReturn.Add(new ReturnDetail(lsitem));
+                   
+               }
+           }
+           catch (Exception)
+           {}
+           return _lsReturn;
+       }
 
         #endregion
 

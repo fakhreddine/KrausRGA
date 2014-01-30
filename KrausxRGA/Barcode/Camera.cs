@@ -26,7 +26,7 @@ namespace KrausRGA.Barcode
         {
             try
             {
-                String RAMNUmber = "";
+                String RAMNUmber = "NEWRMA00";
                 try
                 {
                     RAMNUmber = Views.clGlobal.mReturn.lsRMAInformation[0].RMANumber;
@@ -34,7 +34,7 @@ namespace KrausRGA.Barcode
                 catch (Exception)
                 {
                 }
-                CanvasExportToPng(new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + RAMNUmber +"_"+ DateTime.Now.ToString("DDMMHHmmssstt") + ".jpg"), surface);
+                CanvasExportToPng(new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + RAMNUmber +"_"+ DateTime.Now.ToString("ddMMHHmmssstt") + ".jpg"), surface);
                 var player = new MediaPlayer();
                 player.Open(new Uri(@"C:\Windows\Media\Windows Recycle.wav"));
                 player.Play();

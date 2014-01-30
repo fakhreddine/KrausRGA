@@ -6,9 +6,9 @@ using System.Text;
 
 namespace KrausRGA.Barcode
 {
-     public class FoundBarcode : INotifyPropertyChanged
+    public class FoundBarcode : INotifyPropertyChanged
     {
-         private string barcodeValue;
+        private string barcodeValue;
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(PropertyChangedEventArgs e)

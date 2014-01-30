@@ -40,6 +40,23 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.UpadatedDate != null) this.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
+        public ReturnDetail(GetRMAServiceRef.ReturnDetailsDTO _ReturnDetails)
+        {
+            if (_ReturnDetails.ReturnDetailID != Guid.Empty) this.ReturnDetailID = _ReturnDetails.ReturnDetailID;
+            if (_ReturnDetails.ReturnID != Guid.Empty) this.ReturnID = _ReturnDetails.ReturnID;
+            if (_ReturnDetails.SKUNumber != null) this.SKUNumber = _ReturnDetails.SKUNumber;
+            if (_ReturnDetails.ProductName != null) this.ProductName = _ReturnDetails.ProductName;
+            if (_ReturnDetails.TCLCOD_0 != null) this.TCLCOD_0 = _ReturnDetails.TCLCOD_0;
+            this.DeliveredQty = (int)_ReturnDetails.DeliveredQty;
+            this.ExpectedQty = (int)_ReturnDetails.ExpectedQty;
+            this.ReturnQty = (int)_ReturnDetails.ReturnQty;
+            this.ProductStatus = (int)_ReturnDetails.ProductStatus;
+            if (_ReturnDetails.CreatedBy != Guid.Empty) this.CreatedBy = (Guid)_ReturnDetails.CreatedBy;
+            if (_ReturnDetails.UpdatedBy != Guid.Empty) this.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
+            if (_ReturnDetails.CreatedDate != null) this.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
+            if (_ReturnDetails.UpadatedDate != null) this.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
+            this.RGADROWID = _ReturnDetails.RGADROWID;
+        }
 
         public SaveRMAServiceRefer.ReturnDetailsDTO ConvertToSaveDTO(ReturnDetail _ReturnDetails)
         {

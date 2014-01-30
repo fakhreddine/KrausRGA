@@ -23,6 +23,7 @@ namespace KrausRGA.EntityModel
             if (SKUReasons.ReasonID != Guid.Empty) this.ReasonID = (Guid)SKUReasons.ReasonID;
             if (SKUReasons.ReturnDetailID != Guid.Empty) this.ReturnDetailID = (Guid)SKUReasons.ReturnDetailID;
         }
+        
 
         public SaveRMAServiceRefer.SKUReasonsDTO CopyToSaveDTO(SKUReason _SKUReason)
         {

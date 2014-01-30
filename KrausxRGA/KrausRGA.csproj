@@ -102,7 +102,6 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="system.windows.controls.input.toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -114,9 +113,8 @@
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
-    <Reference Include="WebcamControl, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>\\SHIVA3-PC\Users\WebcamControl.dll</HintPath>
+    <Reference Include="WebcamControl">
+      <HintPath>D:\Avinash\Backups VIMP\KrausRGA Backup\Dec Backup\KrausRGA-20\KrausxRGA\bin\Debug\WebcamControl.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -164,6 +162,7 @@
     <Compile Include="Models\mNewRMANumber.cs" />
     <Compile Include="Models\mRMAAudit.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
+    <Compile Include="Models\mUpdateModeRMA.cs" />
     <Compile Include="Models\mUser.cs" />
     <Compile Include="Service References\GetRMAServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
