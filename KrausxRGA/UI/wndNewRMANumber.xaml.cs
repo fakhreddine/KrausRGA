@@ -53,6 +53,15 @@ namespace KrausRGA.UI
 
         public wndNewRMANumber()
         {
+            String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
+            String HeaderSize = FontSizes[1];
+            String ControlSize = FontSizes[2];
+            String VeriableSize = FontSizes[0];
+
+            Resources["FontSize"] = Convert.ToDouble(VeriableSize);
+            Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
+            Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
+
             InitializeComponent();
             FillRMAStausAndDecision();
             txtRMAReqDate.SelectedDate = DateTime.Now;
