@@ -83,7 +83,7 @@ namespace KrausRGA.UI
             _lsRMAInfo = _mReturn.lsRMAInformation;
 
             //Set all vaues.
-            lblRMANumber.Content = _mReturn.EnteredNumber;
+            lblRMANumber.Content = _lsRMAInfo[0].RMANumber;
             tbCustomerName.Text = _lsRMAInfo[0].CustomerName1;
             lblRMAReqDate.Content = _lsRMAInfo[0].ReturnDate.ToString("MMM dd, yyyy");
             lblVendorNumber.Content = _lsRMAInfo[0].VendorNumber.ToString();

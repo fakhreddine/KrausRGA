@@ -74,6 +74,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReasonID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReasonPoints" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReasonsDTO" nillable="true" type="tns:ReasonsDTO" />

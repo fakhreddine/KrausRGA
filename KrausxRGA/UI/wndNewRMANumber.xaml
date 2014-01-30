@@ -104,8 +104,8 @@
                                     </Border>
 
                                     <!-- Grid View-->
-                                    <Border Height="45" Width="788" Background="#B2111111" Canvas.Top="-7" Canvas.Left="2">
-                                        <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="10,6,236,0"/>
+                                    <Border Height="45" Width="788" Background="#B2111111" Canvas.Top="-7" Canvas.Left="-1">
+                                        <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="10,3,236,3"/>
                                     </Border>
 
                                     <DataGrid x:Name="dgPackageInfo"
@@ -126,7 +126,7 @@
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
 											Height="294"  
-											 Canvas.Top="38" SelectionChanged="dgPackageInfo_SelectionChanged_1" MouseDoubleClick="dgPackageInfo_MouseDoubleClick_1" >
+											 Canvas.Top="38" SelectionChanged="dgPackageInfo_SelectionChanged_1" MouseDoubleClick="dgPackageInfo_MouseDoubleClick_1" Canvas.Left="-3" >
 
                                         <DataGrid.Resources>
                                             <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">

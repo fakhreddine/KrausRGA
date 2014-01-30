@@ -18,15 +18,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="ed828f5c-be98-4dc2-82ba-1a25b41678ce" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="45b7090c-14a9-44ce-a204-12e6ea97ad14" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="7b307eed-3e6d-4184-be8f-f5ac465f7c39" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex" />
-    <MetadataFile FileName="KrausWarehouseServices.DTO.Shipping.xsd" MetadataType="Schema" ID="0f0d97d6-2428-438b-9083-f0986257c30e" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex" />
-    <MetadataFile FileName="KrausWarehouseServices.DTO.RMA1.xsd" MetadataType="Schema" ID="b1a990ac-1724-48d0-9ee6-4716c1f3fde1" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex" />
-    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="e52964e2-c775-4740-bb58-3bb2140185b6" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ec9309bd-8612-4a2f-b787-e95301d795cd" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="81cac780-a3a4-4478-a1a5-bf0ba8bae054" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="24a68b86-4fa0-4a37-b2ca-464c3d28703b" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="KrausWarehouseServices.DTO.Shipping1.xsd" MetadataType="Schema" ID="1e0cabb2-299f-439d-a869-2fd30f5062dc" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="KrausWarehouseServices.DTO.RMA.xsd" MetadataType="Schema" ID="a9d8a20e-eaaf-409b-8a4a-5779a8c0f18c" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="b60f76e5-181e-434b-82a6-55df2758e95c" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Get.svc/mex/mex/mex/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

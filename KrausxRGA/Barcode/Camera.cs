@@ -26,10 +26,18 @@ namespace KrausRGA.Barcode
         {
             try
             {
-                CanvasExportToPng(new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\Image"+DateTime.Now.ToString("DDMMyyyyHHmmsstt")+".jpg"), surface);
-              var player=  new MediaPlayer();
-              player.Open(new Uri(@"C:\Windows\Media\Windows Recycle.wav"));
-              player.Play();
+                String RAMNUmber = "";
+                try
+                {
+                    RAMNUmber = Views.clGlobal.mReturn.lsRMAInformation[0].RMANumber;
+                }
+                catch (Exception)
+                {
+                }
+                CanvasExportToPng(new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + RAMNUmber +"_"+ DateTime.Now.ToString("DDMMHHmmssstt") + ".jpg"), surface);
+                var player = new MediaPlayer();
+                player.Open(new Uri(@"C:\Windows\Media\Windows Recycle.wav"));
+                player.Play();
             }
             catch (Exception)
             { }
