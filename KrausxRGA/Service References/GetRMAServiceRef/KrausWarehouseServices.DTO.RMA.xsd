@@ -147,4 +147,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReturnImagesDTO" nillable="true" type="tns:ReturnImagesDTO" />
+  <xs:complexType name="ArrayOfSKUReasonsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SKUReasonsDTO" nillable="true" type="tns:SKUReasonsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSKUReasonsDTO" nillable="true" type="tns:ArrayOfSKUReasonsDTO" />
+  <xs:complexType name="SKUReasonsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReasonID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnDetailID" type="ser:guid" />
+      <xs:element minOccurs="0" name="SKUReasonID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SKUReasonsDTO" nillable="true" type="tns:SKUReasonsDTO" />
 </xs:schema>

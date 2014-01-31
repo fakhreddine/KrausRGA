@@ -32,7 +32,11 @@ namespace KrausRGA.DBLogics
            List<SKUReason> _lsReturn = new List<SKUReason>();
            try
            {
-
+               var LsReasosn = Service.entGet.GetSKUImagesByReturnDetailID(ReturnDetailID);
+               foreach (var lsitem in LsReasosn)
+               {
+                   _lsReturn.Add(new SKUReason(lsitem));
+               }
            }
            catch (Exception)
            {}

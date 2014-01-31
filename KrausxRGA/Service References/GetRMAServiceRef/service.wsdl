@@ -231,6 +231,12 @@
   <wsdl:message name="IGet_GetRMALatestVersionNumber_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRMALatestVersionNumberResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailIDResponse" />
+  </wsdl:message>
   <wsdl:portType name="IGet">
     <wsdl:operation name="XMLUserGet">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/XMLUserGet" message="tns:IGet_XMLUserGet_InputMessage" />
@@ -379,6 +385,10 @@
     <wsdl:operation name="GetRMALatestVersionNumber">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetRMALatestVersionNumber" message="tns:IGet_GetRMALatestVersionNumber_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetRMALatestVersionNumberResponse" message="tns:IGet_GetRMALatestVersionNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSKUImagesByReturnDetailID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" message="tns:IGet_GetSKUImagesByReturnDetailID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailIDResponse" message="tns:IGet_GetSKUImagesByReturnDetailID_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGet" type="tns:IGet">
@@ -709,6 +719,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRMALatestVersionNumber">
       <soap:operation soapAction="http://tempuri.org/IGet/GetRMALatestVersionNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSKUImagesByReturnDetailID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

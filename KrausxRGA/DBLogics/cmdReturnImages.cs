@@ -17,8 +17,22 @@ namespace KrausRGA.DBLogics
         #endregion
 
         #region Get methods.
-        
 
+        public List<ReturnImage> GetReturnImagesByReturnDetailsID(Guid ReturnDetailsID)
+        {
+            List<ReturnImage> _lsReturn = new List<ReturnImage>();
+            try
+            {
+                var Temp = Service.entGet.ImagePathTable(ReturnDetailsID);
+                foreach (var item in Temp)
+                {
+                   _lsReturn.Add(new ReturnImage(item));
+                }
+            }
+            catch (Exception)
+            { }
+            return _lsReturn;
+        }
 
         #endregion
 

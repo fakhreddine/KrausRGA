@@ -9,13 +9,13 @@ namespace KrausRGA.Models
 {
    public class mUpdateModeRMA
     {
-       public Return _ReturnTbl { get; set; }
+       public Return _ReturnTbl { get; protected set; }
 
-       public List<ReturnDetail> _lsReturnDetails { get; set; }
+       public List<ReturnDetail> _lsReturnDetails { get; protected set; }
 
-       public List<Reason> _lsReasons { get; set; }
+       public List<Guid> _lsReasons { get; protected set; }
 
-       public List<ReturnImage> _lsImages { get; set; }
+       public List<ReturnImage> _lsImages { get; protected set; }
 
 
        #region Declarations.
@@ -48,12 +48,13 @@ namespace KrausRGA.Models
        /// <summary>
        /// Reasoncategory table Command Object
        /// </summary>
-       protected DBLogics.cmdReasonCategory crtReasonCategory = new DBLogics.cmdReasonCategory();
+       protected DBLogics.cmdReasonCategory cReasonCategory = new DBLogics.cmdReasonCategory();
 
        /// <summary>
        /// Transaction table Command object 
        /// </summary>
-       protected DBLogics.cmdSKUReasons crtTransaction = new DBLogics.cmdSKUReasons();
+       protected DBLogics.cmdSKUReasons cSkuReasons= new DBLogics.cmdSKUReasons();
+
 
        #endregion
 
@@ -65,11 +66,14 @@ namespace KrausRGA.Models
        public mUpdateModeRMA(String RMANumber)
        {
 
-
+           GetReturnTbl(RMANumber);
+           GetLsReturnDetails(_ReturnTbl.ReturnID);
+           GetReasons(_lsReturnDetails);
+           GetRerurnImages(_lsReturnDetails);
 
        }
 
-       public void GetReturnTbl(String RMANumber)
+       protected void GetReturnTbl(String RMANumber)
        {
            try
            {
@@ -79,7 +83,7 @@ namespace KrausRGA.Models
            {}
        }
 
-       public void GetLsReturnDetails(Guid ReturntblID)
+       protected void GetLsReturnDetails(Guid ReturntblID)
        {
            try
            {
@@ -88,8 +92,41 @@ namespace KrausRGA.Models
            catch (Exception)
            {}
        }
-       
 
+       protected void GetReasons(List<ReturnDetail> LsRetnDetails)
+       {
+           try
+           {
+               foreach (var lsitem in LsRetnDetails)
+               {
+                   List<SKUReason> _lsSKuResnID = cSkuReasons.GetSKuReasonsByReturnDetailsID(lsitem.ReturnDetailID);
+                   foreach (var item in _lsSKuResnID)
+                   {
+                       Guid ReasonID = (Guid)item.ReasonID;
+                       _lsReasons.Add(ReasonID);
+                   }
+               }
+           }
+           catch (Exception)
+           {}
+       }
+
+       protected void GetRerurnImages(List<ReturnDetail> lsRetnDetails)
+       {
+           try
+           {
+               foreach (var Rditem in lsRetnDetails)
+               {
+                   List<ReturnImage> _lsReturnImages = cRtnImages.GetReturnImagesByReturnDetailsID(Rditem.ReturnDetailID);
+                   foreach (var Imgitem in _lsReturnImages)
+                   {
+                       _lsImages.Add(Imgitem);
+                   }
+               }
+           }
+           catch (Exception)
+           {}
+       }
 
     }
 }

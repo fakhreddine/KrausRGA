@@ -42,6 +42,7 @@ namespace KrausRGA.UI
         mReturnDetails _mReturn = clGlobal.mReturn;
 
         List<RMAInfo> _lsRMAInfo = new List<RMAInfo>();
+        mUpdateModeRMA _mUpdate;
 
         //Stack Panel in row assigned to this and used in Images captured add.
         StackPanel spRowImages;
@@ -97,7 +98,8 @@ namespace KrausRGA.UI
 
             dgPackageInfo.ItemsSource = _lsRMAInfo;
 
-
+            if (Views.clGlobal.mReturn.IsAlreadySaved)
+                 //_mUpdate = new mUpdateModeRMA(C
 
         }
 
