@@ -13,7 +13,6 @@
                         <StackPanel Orientation="Vertical" Height="1280" Width="800">
                             <Border x:Name="bdrmain" Height="457" >
                                 <Canvas x:Name="cvsTb1main" Margin="0,0,10,0" Height="477">
-
                                     <Border Height="227" Width="770" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
                                         <Canvas Margin="0,0,0,0">
                                             <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
@@ -133,7 +132,8 @@
 											HorizontalGridLinesBrush="#FF575757" 
 											VerticalGridLinesBrush="Gray"
 											Height="289"  
-											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38">
+											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" 
+                                           >
 
                                         <DataGrid.Resources>
                                             <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">

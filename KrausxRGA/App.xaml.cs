@@ -53,17 +53,17 @@ namespace KrausRGA
                 //Replace current text to new Database number.
                 File.WriteAllText(Environment.CurrentDirectory + "\\VersionNumber.txt", File.ReadAllText(Environment.CurrentDirectory + "\\VersionNumber.txt").Replace(_appVersion, DBVersionNumber));
 
-                if (_appVersion != DBVersionNumber)
-                {
-                    String DirPath = Environment.CurrentDirectory;
-                    System.Diagnostics.ProcessStartInfo RgaApplication = new System.Diagnostics.ProcessStartInfo();
-                    RgaApplication.FileName = DirPath + "\\RGA.exe";
-                    RgaApplication.Verb = "runas";
-                    RgaApplication.WorkingDirectory = DirPath;
-                    RgaApplication.UseShellExecute = true;
-                    System.Diagnostics.Process.Start(RgaApplication);
-                    this.Shutdown();
-                }
+                //if (_appVersion != DBVersionNumber)
+                //{
+                //    String DirPath = Environment.CurrentDirectory;
+                //    System.Diagnostics.ProcessStartInfo RgaApplication = new System.Diagnostics.ProcessStartInfo();
+                //    RgaApplication.FileName = DirPath + "\\RGA.exe";
+                //    RgaApplication.Verb = "runas";
+                //    RgaApplication.WorkingDirectory = DirPath;
+                //    RgaApplication.UseShellExecute = true;
+                //    System.Diagnostics.Process.Start(RgaApplication);
+                //    this.Shutdown();
+                //}
             }
             catch (Exception)
             { }

@@ -13,7 +13,7 @@ namespace KrausRGA.Models
 
        public List<ReturnDetail> _lsReturnDetails { get; protected set; }
 
-       public List<Guid> _lsReasons { get; protected set; }
+       public List<SKUReason> _lsReasons { get; protected set; }
 
        public List<ReturnImage> _lsImages { get; protected set; }
 
@@ -65,7 +65,8 @@ namespace KrausRGA.Models
 
        public mUpdateModeRMA(String RMANumber)
        {
-
+           _lsImages = new List<ReturnImage>();
+           _lsReasons = new List<SKUReason>();
            GetReturnTbl(RMANumber);
            GetLsReturnDetails(_ReturnTbl.ReturnID);
            GetReasons(_lsReturnDetails);
@@ -99,11 +100,10 @@ namespace KrausRGA.Models
            {
                foreach (var lsitem in LsRetnDetails)
                {
-                   List<SKUReason> _lsSKuResnID = cSkuReasons.GetSKuReasonsByReturnDetailsID(lsitem.ReturnDetailID);
-                   foreach (var item in _lsSKuResnID)
+                 
+                   foreach (var item in cSkuReasons.GetSKuReasonsByReturnDetailsID(lsitem.ReturnDetailID))
                    {
-                       Guid ReasonID = (Guid)item.ReasonID;
-                       _lsReasons.Add(ReasonID);
+                       _lsReasons.Add(item);
                    }
                }
            }
@@ -117,8 +117,8 @@ namespace KrausRGA.Models
            {
                foreach (var Rditem in lsRetnDetails)
                {
-                   List<ReturnImage> _lsReturnImages = cRtnImages.GetReturnImagesByReturnDetailsID(Rditem.ReturnDetailID);
-                   foreach (var Imgitem in _lsReturnImages)
+                   
+                   foreach (var Imgitem in  cRtnImages.GetReturnImagesByReturnDetailsID(Rditem.ReturnDetailID))
                    {
                        _lsImages.Add(Imgitem);
                    }

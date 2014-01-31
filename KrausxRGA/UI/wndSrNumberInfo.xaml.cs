@@ -23,6 +23,7 @@ using System.Security.Principal;
 using System.Runtime.InteropServices;
 using System.Threading;
 using WindowsInput;
+using System.Windows.Threading;
 
 namespace KrausRGA.UI
 {
@@ -48,6 +49,8 @@ namespace KrausRGA.UI
         StackPanel spRowImages;
         //Scroll Viewer from selected Row;
         ScrollViewer SvImagesScroll;
+
+        DispatcherTimer dtLoadUpdate;
 
         #endregion
 
@@ -97,9 +100,22 @@ namespace KrausRGA.UI
             lblCountry.Content = _lsRMAInfo[0].Country;
 
             dgPackageInfo.ItemsSource = _lsRMAInfo;
-
             if (Views.clGlobal.mReturn.IsAlreadySaved)
-                 //_mUpdate = new mUpdateModeRMA(C
+            {
+               _mUpdate = new mUpdateModeRMA(Views.clGlobal.mReturn.lsRMAInformation[0].RMANumber);
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                dtLoadUpdate.Start();
+            }
+           
+        }
+
+        void dtLoadUpdate_Tick(object sender, EventArgs e)
+        {
+            dtLoadUpdate.Stop();
+          
+            SetGridChack(dgPackageInfo);
 
         }
 
@@ -274,23 +290,18 @@ namespace KrausRGA.UI
         private String ReturnReasons()
         {
             String _ReturnReason = "";
-            CheckBox cbk = new CheckBox();
-            Border bdr = new Border();
-            foreach (var cbk2 in cvCheckboxHolder.Children) //For each Control in the Canvas.
-            {
-                if (cbk2.GetType() == bdr.GetType())//If control is type of checkbox.
-                {
-                    bdr = (Border)cbk2;
-                    if (cbk.GetType() == bdr.Child.GetType())
-                    {
-                        cbk = (CheckBox)bdr.Child;
-                        if (cbk.IsChecked == true) //if checkbox is checked.
-                        {
-                            _ReturnReason += cbk.Content.ToString() + " ";
-                        }
-                    }
-                }
-            }
+            if (cbrDamaged.IsChecked == true) _ReturnReason = _ReturnReason + txtitemdamage.Text;
+
+            if (cbrDisplayedDiff.IsChecked == true) _ReturnReason = _ReturnReason + txtDisplayedOff.Text;
+
+            if (cbrDuplicate.IsChecked == true) _ReturnReason = _ReturnReason + txtDuplicate.Text;
+
+            if (cbrIncorrectOrder.IsChecked == true) _ReturnReason = _ReturnReason + txtinccorectorder.Text;
+
+            if (cbrSatisfied.IsChecked == true) _ReturnReason = _ReturnReason + txtSatisfied.Text;
+
+            if (cbrWrong.IsChecked == true) _ReturnReason = _ReturnReason + txtreceicewrongitem.Text;
+
             _ReturnReason += txtOtherReason.Text;
 
             return _ReturnReason;
@@ -391,7 +402,7 @@ namespace KrausRGA.UI
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
                     {
-                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + imageCaptured.Name.ToString() + ".jpg";
+                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath +"\\"+ imageCaptured.Name.ToString() + ".jpg";
 
                         //Set Images table from model.
                         Guid ImageID = _mReturn.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
@@ -410,11 +421,12 @@ namespace KrausRGA.UI
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
-            this.Close();
+           
             //close wait screen.
             WindowThread.Stop();
-            wndBox.Show(); 
-           
+            wndBox.Show();
+            
+            this.Close();
         }
 
         private void ErrorMsg(string Msg, Color BgColor)
@@ -791,6 +803,149 @@ namespace KrausRGA.UI
             ChangeColor(cbrSatisfied, txtSatisfied,cnvSatisfied);
         }
 
+
+        protected void SetGridChack(DataGrid Grid)
+        {
+            try
+            {
+                SetReasons(_mUpdate._ReturnTbl.ReturnReason);
+                foreach (DataGridRow row in GetDataGridRows(Grid))
+                {
+
+
+                    for (int i = 0; i < _mUpdate._lsReturnDetails.Count(); i++)
+                    {
+                        // item SKUNumber
+                        TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+                        //CheckBOx item Peresent
+                        ContentPresenter CntPersenter = dgPackageInfo.Columns[0].GetCellContent(row) as ContentPresenter;
+                        DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                        Button btnGreen = (Button)DataTemp.FindName("btnGreen", CntPersenter);
+                        Button btnRed = (Button)DataTemp.FindName("btnRed", CntPersenter);
+
+                        if (_mUpdate._lsReturnDetails[i].SKUNumber == SkuNumber.Text && btnGreen.Visibility == System.Windows.Visibility.Hidden )
+                        {
+                            _mReturn.GreenRowsNumber.Add(row.GetIndex());
+                            btnGreen.Visibility = System.Windows.Visibility.Visible;
+                            btnRed.Visibility = System.Windows.Visibility.Hidden;
+                            //item Returned Quantity.
+                            ContentPresenter CntQuantity = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
+                            DataTemplate DtQty = CntQuantity.ContentTemplate;
+                            TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
+                            txtRetutn.Text = _mUpdate._lsReturnDetails[i].ReturnQty.ToString();
+
+
+                            //item Status.k
+                            ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                            DataTemplate DtStatus = CntStatus.ContentTemplate;
+                            TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
+                            TextBlock txtCheckedCount = DtStatus.FindName("txtCheckedCount", CntStatus) as TextBlock;
+                            
+                                txtRGuid.Text = GetReasonFronList(_mUpdate._lsReturnDetails[i].ReturnDetailID);
+
+                              txtCheckedCount.Text=  ((txtRGuid.Text.ToString().Split(new char[] { '#' }).Count()) -1).ToString() + " Reasons";
+
+                              //Images Stack Panel.
+                              ContentPresenter CntImag = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                              DataTemplate DtImages = CntImag.ContentTemplate;
+                              StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                              foreach (var Imgitem in _mUpdate._lsImages)
+                              {
+                                  if (Imgitem.ReturnDetailID == _mUpdate._lsReturnDetails[i].ReturnDetailID)
+                                  {
+                                      try
+                                      {
+                                          BitmapSource bs = new BitmapImage(new Uri(Imgitem.SKUImagePath));
+
+                                          Image img = new Image();
+                                          //Zoom image.
+                                          img.MouseEnter += img_MouseEnter;
+
+                                          img.Height = 62;
+                                          img.Width = 74;
+                                          img.Stretch = Stretch.Fill;
+                                          String Name = Imgitem.SKUImagePath.Remove(0, Imgitem.SKUImagePath.IndexOf("SR"));
+                                          img.Name = Name.ToString().Split(new char[] { '.' })[0];
+                                          img.Source = bs;
+                                          img.Margin = new Thickness(0.5);
+
+                                          //Images added to the Row.
+                                          _addToStackPanel(SpImages, img);
+                                      }
+                                      catch (Exception)
+                                      {
+                                      }
+                                  }
+                              }
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception)
+            { }
+
+        }
+
+        public String GetReasonFronList(Guid ReturDetailsID)
+        {
+            String IDs = "";
+            foreach (var item in _mUpdate._lsReasons)
+            {
+                if (item.ReturnDetailID == ReturDetailsID)
+                {
+                    IDs = IDs + "#"+ item.ReasonID;
+                }
+            }
+            return IDs;
+        }
+
+        public void SetReasons(String Resns)
+        {
+            String[] Rlin = Resns.Split(new char[]{'.'});
+
+            foreach (var ritem in Rlin)
+            {
+                if (cbrDamaged.Content.ToString().Contains(ritem))
+                {
+                    cbrDamaged.IsChecked = false;
+                    ChangeColor(cbrDamaged, txtitemdamage, cnvDamage);
+                }
+                else if (cbrDisplayedDiff.Content.ToString().Contains(ritem))
+                {
+                    cbrDisplayedDiff.IsChecked = false;
+                    ChangeColor(cbrDisplayedDiff, txtDisplayedOff, cnvDisplayedOff);
+                }
+                else if (cbrDuplicate.Content.ToString().Contains(ritem))
+                {
+                    cbrDuplicate.IsChecked = false;
+                    ChangeColor(cbrDuplicate, txtDuplicate, cnvDuplicate);
+                }
+                else if (cbrIncorrectOrder.Content.ToString().Contains(ritem))
+                {
+                    cbrIncorrectOrder.IsChecked = false;
+                    ChangeColor(cbrIncorrectOrder, txtinccorectorder, cnvInccorectorder);
+                }
+                else if (cbrSatisfied.Content.ToString().Contains(ritem))
+                {
+                    cbrSatisfied.IsChecked = false;
+                    ChangeColor(cbrSatisfied, txtSatisfied, cnvSatisfied);
+                }
+                else if (cbrWrong.Content.ToString().Contains(ritem))
+                {
+                    cbrWrong.IsChecked = false;
+                    ChangeColor(cbrWrong, txtreceicewrongitem, cnvRecieve);
+                }
+                else
+                {
+                    cmbOtherReason.SelectedIndex = cmbOtherReason.Items.IndexOf(new object[] { ritem.ToString() });
+                    txtOtherReason.Text = ritem.ToString();
+                }
+
+            }
+        }
     }
 }
 
