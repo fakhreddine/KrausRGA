@@ -12,7 +12,7 @@
       <Value Profile="(Default)">http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Save.svc/SOA</Value>
     </Setting>
     <Setting Name="DrivePath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Images</Value>
+      <Value Profile="(Default)">\\192.168.1.172\Macintosh HD\ftp_share\RGAImages</Value>
     </Setting>
     <Setting Name="UserNameForImagesLogin" Type="System.String" Scope="Application">
       <Value Profile="(Default)">shiva5</Value>

@@ -61,11 +61,13 @@ namespace KrausRGA.UI
                 String LastPhotoName = "";
                 Barcode.Camera.TakePhoto(cvsCamera);
                 LastPhotoName = Barcode.Camera.LastPhotoName();
+                Barcode.Camera.Rotate90Degree("C:\\Images\\" + LastPhotoName);
+                //(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + LastPhotoName);
+                Barcode.Camera.CopytoNetwork(LastPhotoName);
+                
                 Views.clGlobal.lsImageList.Add(LastPhotoName);
-
-                Barcode.Camera.Rotate90Degree(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + LastPhotoName);
                 tbInfoText.Text = "Image captured. " + LastPhotoName + "'";
-                imgPreview.Source = new BitmapImage(new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + LastPhotoName));
+                imgPreview.Source = new BitmapImage(new Uri("C:\\Images" + "\\" + LastPhotoName));
                 bdrPreview.Visibility = System.Windows.Visibility.Visible;
                 cvsControls.Visibility = System.Windows.Visibility.Visible;
             }

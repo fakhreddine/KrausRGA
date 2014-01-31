@@ -9,6 +9,8 @@ using WindowsInput;
 using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows;
+using System.Security.Principal;
+using System.Runtime.InteropServices;
 
 namespace KrausRGA.Barcode
 {
@@ -17,7 +19,7 @@ namespace KrausRGA.Barcode
         /// <summary>
         /// Static pathe of images where we want to store the images. this is set though the properties of project.
         /// </summary>
-        private static string imgPath =KrausRGA.Properties.Settings.Default.DrivePath +"\\";
+        private static string imgPath = KrausRGA.Properties.Settings.Default.DrivePath + "\\";
 
         /// <summary>
         /// capture Photo from Open The Camera.
@@ -34,7 +36,7 @@ namespace KrausRGA.Barcode
                 catch (Exception)
                 {
                 }
-                CanvasExportToPng(new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\" + RAMNUmber +"_"+ DateTime.Now.ToString("ddMMHHmmssstt") + ".jpg"), surface);
+                CanvasExportToPng(new Uri("C:\\Images" + "\\" + RAMNUmber + "_" + DateTime.Now.ToString("ddMMHHmmssstt") + ".jpg"), surface);
                 var player = new MediaPlayer();
                 player.Open(new Uri(@"C:\Windows\Media\Windows Recycle.wav"));
                 player.Play();
@@ -87,7 +89,7 @@ namespace KrausRGA.Barcode
             String ImageName = "";
             try
             {
-                var DirInfo = new DirectoryInfo(imgPath);
+                var DirInfo = new DirectoryInfo("C:\\Images\\");
                 DirInfo.Attributes &= ~FileAttributes.ReadOnly;
                 ImageName = (from f in DirInfo.GetFiles()
                              orderby f.LastWriteTime descending
@@ -126,7 +128,7 @@ namespace KrausRGA.Barcode
         /// <returns>
         /// Bitmap Object containing Canvas control Image.
         /// </returns>
-        public static System.Drawing.Bitmap CanvasToBitmap(System.Windows.Controls.Canvas surface) 
+        public static System.Drawing.Bitmap CanvasToBitmap(System.Windows.Controls.Canvas surface)
         {
             System.Drawing.Bitmap BmpOut = null;
             try
@@ -136,8 +138,8 @@ namespace KrausRGA.Barcode
                     File.Delete(KrausRGA.Properties.Settings.Default.DrivePath + "\\Img.jpg");
                 }
                 catch (Exception)
-                {}
-                Uri path =new Uri( KrausRGA.Properties.Settings.Default.DrivePath+"\\Img.jpg");
+                { }
+                Uri path = new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\Img.jpg");
                 // Save current canvas transform
                 Transform transform = surface.LayoutTransform;
                 // reset current transform (in case it is scaled or rotated)
@@ -175,10 +177,10 @@ namespace KrausRGA.Barcode
                 surface.LayoutTransform = transform;
                 Thread.Sleep(200);
 
-                BmpOut = new System.Drawing.Bitmap(KrausRGA.Properties.Settings.Default.DrivePath+"\\Img.jpg");
+                BmpOut = new System.Drawing.Bitmap(KrausRGA.Properties.Settings.Default.DrivePath + "\\Img.jpg");
             }
             catch (Exception)
-            {}
+            { }
             return BmpOut;
         }
 
@@ -207,7 +209,7 @@ namespace KrausRGA.Barcode
                 return bitmapImage;
             }
         }
-        
+
         public static void CreateThumbnail(string filename, BitmapSource image5)
         {
             if (filename != string.Empty)
@@ -225,6 +227,7 @@ namespace KrausRGA.Barcode
 
         public static void CanvasExportToPng(Uri path, System.Windows.Controls.Canvas surface)
         {
+            
             if (path == null) return;
 
             // Save current canvas transform
@@ -262,13 +265,49 @@ namespace KrausRGA.Barcode
 
             // Restore previously saved layout
             surface.LayoutTransform = transform;
+        
+
+
         }
 
-        public static void Rotate90Degree(String ImageUri )
+        public static void Rotate90Degree(String ImageUri)
         {
             System.Drawing.Bitmap bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(ImageUri);
             bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
             bitmap1.Save(ImageUri);
+        }
+
+        public static void CopytoNetwork(String Filename)
+        {
+            try
+            {
+                string updir = KrausRGA.Properties.Settings.Default.DrivePath;
+
+                //AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
+                //WindowsIdentity identity = new WindowsIdentity(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, KrausRGA.Properties.Settings.Default.UserPasswordForImages);
+                //WindowsImpersonationContext context = identity.Impersonate();
+                Thread newWindowThread = new Thread(new ThreadStart(() =>
+                {
+                    System.Net.NetworkCredential AccessPermissions = new System.Net.NetworkCredential("UserName","Password");
+                    using (new NetworkConnection(updir, AccessPermissions))
+                    {
+                        File.Copy(@"C:\Images\" + Filename, updir + "\\" + Filename, true);
+                        // File.Delete(@"C:\Images\" + Filename);
+                        // Start the Dispatcher Processing
+                        System.Windows.Threading.Dispatcher.Run();
+                    }
+                }));
+                // Set the apartment state
+                newWindowThread.SetApartmentState(ApartmentState.STA);
+                // Make the thread a background thread
+                newWindowThread.IsBackground = true;
+                // Start the thread
+                newWindowThread.Start();  
+               
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
