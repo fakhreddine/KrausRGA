@@ -136,7 +136,7 @@ namespace KrausRGA.UI
                     {
                         try
                         {
-                            string path = KrausRGA.Properties.Settings.Default.DrivePath + "\\";
+                            string path = "C:\\Images\\";
 
                             BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
 
