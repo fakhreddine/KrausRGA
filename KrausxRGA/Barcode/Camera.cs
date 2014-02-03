@@ -135,11 +135,11 @@ namespace KrausRGA.Barcode
             {
                 try
                 {
-                    File.Delete(KrausRGA.Properties.Settings.Default.DrivePath + "\\Img.jpg");
+                    File.Delete("C:\\Images\\Img.jpg");
                 }
                 catch (Exception)
                 { }
-                Uri path = new Uri(KrausRGA.Properties.Settings.Default.DrivePath + "\\Img.jpg");
+                Uri path = new Uri("C:\\Images\\Img.jpg");
                 // Save current canvas transform
                 Transform transform = surface.LayoutTransform;
                 // reset current transform (in case it is scaled or rotated)
@@ -177,7 +177,7 @@ namespace KrausRGA.Barcode
                 surface.LayoutTransform = transform;
                 Thread.Sleep(200);
 
-                BmpOut = new System.Drawing.Bitmap(KrausRGA.Properties.Settings.Default.DrivePath + "\\Img.jpg");
+                BmpOut = new System.Drawing.Bitmap("C:\\Images\\Img.jpg");
             }
             catch (Exception)
             { }
@@ -265,9 +265,6 @@ namespace KrausRGA.Barcode
 
             // Restore previously saved layout
             surface.LayoutTransform = transform;
-        
-
-
         }
 
         public static void Rotate90Degree(String ImageUri)
@@ -288,14 +285,21 @@ namespace KrausRGA.Barcode
                 //WindowsImpersonationContext context = identity.Impersonate();
                 Thread newWindowThread = new Thread(new ThreadStart(() =>
                 {
-                    System.Net.NetworkCredential AccessPermissions = new System.Net.NetworkCredential("UserName","Password");
-                    using (new NetworkConnection(updir, AccessPermissions))
+                    try
                     {
-                        File.Copy(@"C:\Images\" + Filename, updir + "\\" + Filename, true);
-                        // File.Delete(@"C:\Images\" + Filename);
-                        // Start the Dispatcher Processing
-                        System.Windows.Threading.Dispatcher.Run();
+                        //System.Net.NetworkCredential AccessPermissions = new System.Net.NetworkCredential(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, KrausRGA.Properties.Settings.Default.UserNameForImagesLogin);
+                        //using (new NetworkConnection(updir, AccessPermissions))
+                        //{
+                            File.Copy(@"C:\Images\" + Filename, updir + "\\" + Filename, true);
+                            // File.Delete(@"C:\Images\" + Filename);
+                            // Start the Dispatcher Processing
+                            System.Windows.Threading.Dispatcher.Run();
+                       // }
                     }
+                    catch (Exception)
+                    {
+                    }
+                    
                 }));
                 // Set the apartment state
                 newWindowThread.SetApartmentState(ApartmentState.STA);
@@ -308,6 +312,35 @@ namespace KrausRGA.Barcode
             catch (Exception)
             {
             }
+        }
+
+        /// <summary>
+        /// Delete Files from the local drive at once in a day.
+        /// </summary>
+        public static void DeleteLocalImages()
+        {
+            try
+            {
+                //Read Lines From the Text File.
+                String[] FileLines = File.ReadAllLines(Environment.CurrentDirectory.ToString() + "\\VersionNumber.txt")[2].Split(new char[] { ':' });
+                
+                //Chack for the Datetime 
+                if (Convert.ToDateTime(FileLines[1].ToString())<  DateTime.Now)
+                {
+                    if (FileLines[0]=="0")
+                    {
+                        Directory.Delete("C:\\Images", true);
+                        File.WriteAllText(Environment.CurrentDirectory + "\\VersionNumber.txt", File.ReadAllText(Environment.CurrentDirectory + "\\VersionNumber.txt").Replace(File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[2].ToString(), "1:"+DateTime.Now.ToString("dd/MM/yyyy")).ToString(), Encoding.Default);
+                    }
+                }
+                ///Ceate Diractory for Images.
+                if (!Directory.Exists("C:\\Images"))
+                {
+                    Directory.CreateDirectory("C:\\Images");
+                }
+            }
+            catch (Exception)
+            {}
         }
     }
 }

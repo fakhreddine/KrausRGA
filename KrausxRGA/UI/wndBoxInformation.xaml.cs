@@ -98,6 +98,11 @@ namespace KrausRGA.UI
                 //If no user is logged in then assign new user to the model
                 _mUser = new mUser();
             }
+
+            //Delete Image Files  from the Local Drive
+            Barcode.Camera.DeleteLocalImages();
+
+
         }
 
         void FBCode_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
