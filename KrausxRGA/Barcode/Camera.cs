@@ -11,7 +11,8 @@ using System.Windows.Media;
 using System.Windows;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
-
+using System.Security.Permissions; // PermissionSetAttribute
+using System.ComponentModel;
 namespace KrausRGA.Barcode
 {
     public static class Camera
@@ -273,28 +274,22 @@ namespace KrausRGA.Barcode
             bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
             bitmap1.Save(ImageUri);
         }
+       
 
         public static void CopytoNetwork(String Filename)
         {
             try
             {
+
                 string updir = KrausRGA.Properties.Settings.Default.DrivePath;
 
-                //AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
-                //WindowsIdentity identity = new WindowsIdentity(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, KrausRGA.Properties.Settings.Default.UserPasswordForImages);
-                //WindowsImpersonationContext context = identity.Impersonate();
                 Thread newWindowThread = new Thread(new ThreadStart(() =>
                 {
                     try
                     {
-                        System.Net.NetworkCredential AccessPermissions = new System.Net.NetworkCredential(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, KrausRGA.Properties.Settings.Default.UserNameForImagesLogin);
-                        using (new NetworkConnection(updir, AccessPermissions))
-                        {
-                            File.Copy(@"C:\Images\" + Filename, updir + "\\" + Filename, true);
-                            // File.Delete(@"C:\Images\" + Filename);
-                            // Start the Dispatcher Processing
-                            System.Windows.Threading.Dispatcher.Run();
-                        }
+                        File.Copy(@"C:\Images\" + Filename, updir + "\\" + Filename, true);
+                        // Start the Dispatcher Processing
+                        System.Windows.Threading.Dispatcher.Run();
                     }
                     catch (Exception)
                     {

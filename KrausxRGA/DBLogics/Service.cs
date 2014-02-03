@@ -24,6 +24,6 @@ namespace KrausRGA.DBLogics
        public static GetRMAServiceRef.GetClient entGet;
 
        
-
+  
     }
 }

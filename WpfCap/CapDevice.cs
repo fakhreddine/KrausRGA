@@ -55,7 +55,14 @@ namespace WpfCap
 
             //Set Second Camera Here.
             //On Deployment. meke this 0 as 1 will activate the secondary camera.   
-            deviceMoniker = DeviceMonikes[0].MonikerString;
+            try
+            {
+                deviceMoniker = DeviceMonikes[1].MonikerString;
+            }
+            catch (Exception)
+            {
+                deviceMoniker = DeviceMonikes[0].MonikerString;
+            }
             Start();
         }
 
