@@ -435,14 +435,14 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guild new ReturnDetailID
         /// </returns>
-        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty,int ReturnQty,string TK, Guid CreatedBy)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID,Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty,int ReturnQty,string TK, Guid CreatedBy)
         {
             Guid _ReturnID = Guid.Empty;
             try
             {
                 ReturnDetail TblReturnDetails = new ReturnDetail();
 
-                TblReturnDetails.ReturnDetailID = Guid.NewGuid();
+                TblReturnDetails.ReturnDetailID = ReturnDetailsID;
                 TblReturnDetails.ReturnID = ReturnTblID;
                 TblReturnDetails.SKUNumber = SKUNumber;
                 TblReturnDetails.ProductName = ProductName;
@@ -482,14 +482,14 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guid of ReturnImageID New inserted Record id. 
         /// </returns>
-        public Guid SetReturnedImages(Guid ReturnDetailID, String ImagePath, Guid CreatedBy)
+        public Guid SetReturnedImages(Guid ImageID,Guid ReturnDetailID, String ImagePath, Guid CreatedBy)
         {
             Guid _ReturnID = Guid.Empty;
             try
             {
                 ReturnImage RtnImages = new ReturnImage();
 
-                RtnImages.ReturnImageID = Guid.NewGuid();
+                RtnImages.ReturnImageID = ImageID;
                 RtnImages.ReturnDetailID = ReturnDetailID;
                 RtnImages.SKUImagePath = ImagePath;
                 RtnImages.CreatedBy = CreatedBy;
@@ -548,13 +548,13 @@ namespace KrausRGA.Models
             return _reasonCatID;
         
         }
-        public Guid SetTransaction(Guid ReasonID, Guid ReturnDetailID)
+        public Guid SetTransaction(Guid SKUReasonID,Guid ReasonID, Guid ReturnDetailID)
         {
             Guid _transationID = Guid.Empty;
             try
             {
                 SKUReason tra = new SKUReason();
-                tra.SKUReasonID=Guid.NewGuid();
+                tra.SKUReasonID = SKUReasonID;
                 tra.ReasonID = ReasonID;
                 tra.ReturnDetailID = ReturnDetailID;
 

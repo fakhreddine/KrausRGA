@@ -35,7 +35,7 @@
                                             </Label>
 
                                             <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="127" Canvas.Left="4"/>
-                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True"
+                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True" IsEnabled="False"
 													ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -49,7 +49,7 @@
                                             </ComboBox>
 
                                             <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="141" Width="97" Canvas.Left="34"/>
-                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="202" Canvas.Left="10" Canvas.Top="170" Style="{StaticResource combo}" IsEnabled="True"
+                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="202" Canvas.Left="10" Canvas.Top="170" Style="{StaticResource combo}" IsEnabled="False"
 													ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">

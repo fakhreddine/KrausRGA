@@ -287,14 +287,14 @@ namespace KrausRGA.Barcode
                 {
                     try
                     {
-                        //System.Net.NetworkCredential AccessPermissions = new System.Net.NetworkCredential(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, KrausRGA.Properties.Settings.Default.UserNameForImagesLogin);
-                        //using (new NetworkConnection(updir, AccessPermissions))
-                        //{
+                        System.Net.NetworkCredential AccessPermissions = new System.Net.NetworkCredential(KrausRGA.Properties.Settings.Default.UserNameForImagesLogin, KrausRGA.Properties.Settings.Default.UserNameForImagesLogin);
+                        using (new NetworkConnection(updir, AccessPermissions))
+                        {
                             File.Copy(@"C:\Images\" + Filename, updir + "\\" + Filename, true);
                             // File.Delete(@"C:\Images\" + Filename);
                             // Start the Dispatcher Processing
                             System.Windows.Threading.Dispatcher.Run();
-                       // }
+                        }
                     }
                     catch (Exception)
                     {

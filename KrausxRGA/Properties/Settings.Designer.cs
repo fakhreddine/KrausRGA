@@ -61,7 +61,7 @@ namespace KrausRGA.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("shiva5")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" mediaserver")]
         public string UserNameForImagesLogin {
             get {
                 return ((string)(this["UserNameForImagesLogin"]));
@@ -70,7 +70,7 @@ namespace KrausRGA.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("avishiva")]
+        [global::System.Configuration.DefaultSettingValueAttribute("kraus2013")]
         public string UserPasswordForImages {
             get {
                 return ((string)(this["UserPasswordForImages"]));
