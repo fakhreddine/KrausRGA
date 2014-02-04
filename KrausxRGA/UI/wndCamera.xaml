@@ -7,6 +7,7 @@
         WindowState="Maximized"
         Closing="Window_Closing_1" Loaded="Window_Loaded_1"
         WindowStyle="None" Background="{x:Null}"
+        Topmost="True"
         >
     <Viewbox>
         <Border Height="1260" Width="800">

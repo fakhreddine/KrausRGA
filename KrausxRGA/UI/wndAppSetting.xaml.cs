@@ -77,5 +77,13 @@ namespace KrausRGA.UI
             }
         }
 
+        private void btnback_Click(object sender, RoutedEventArgs e)
+        {
+            wndBoxInformation boxinfo = new wndBoxInformation();
+            Views.clGlobal.IsUserlogged = true;
+            boxinfo.Show();
+            this.Close();
+        }
+
     }
 }

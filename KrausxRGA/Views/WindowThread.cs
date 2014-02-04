@@ -18,16 +18,21 @@ namespace KrausRGA.Views
         {
             newWindowThread = new Thread(new ThreadStart(() =>
             {
-                // Create and show the Window
-                wndWait tempWindow = new wndWait();
-                tempWindow.Activate();
-                tempWindow.Topmost = false;
-                tempWindow.Focus();
-                tempWindow.ShowActivated = true;
-                tempWindow.Show();
+                try
+                {
+                    // Create and show the Window
+                    wndWait tempWindow = new wndWait();
+                    tempWindow.Activate();
+                    tempWindow.Topmost = false;
+                    tempWindow.Focus();
+                    tempWindow.ShowActivated = true;
+                    tempWindow.Show();
 
-                // Start the Dispatcher Processing
-                System.Windows.Threading.Dispatcher.Run();
+                    // Start the Dispatcher Processing
+                    System.Windows.Threading.Dispatcher.Run();
+                }
+                catch (Exception)
+                { }
             }));
             // Set the apartment state
             newWindowThread.SetApartmentState(ApartmentState.STA);
@@ -35,7 +40,6 @@ namespace KrausRGA.Views
             newWindowThread.IsBackground = true;
             // Start the thread
             newWindowThread.Start();
-
         }
 
         public static void Stop()

@@ -52,6 +52,8 @@ namespace KrausRGA.UI
 
         DispatcherTimer dtLoadUpdate;
 
+        public static Thread thSaving;
+
         #endregion
 
         public wndSrNumberInfo()
@@ -114,9 +116,8 @@ namespace KrausRGA.UI
         void dtLoadUpdate_Tick(object sender, EventArgs e)
         {
             dtLoadUpdate.Stop();
-          
             SetGridChack(dgPackageInfo);
-
+            
         }
 
         #region Data Grid Events.
@@ -337,12 +338,11 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
-
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
-            //Check the ReasonCombo Select or not
-
             WindowThread.start();
 
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+          
+            //Check the ReasonCombo Select or not
             if (cmbOtherReason.forcombobox())
             {
                 mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
@@ -427,11 +427,9 @@ namespace KrausRGA.UI
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
-
+            WindowThread.start();
             //close wait screen.
-            WindowThread.Stop();
             wndBox.Show();
-
             this.Close();
         }
 
@@ -892,7 +890,6 @@ namespace KrausRGA.UI
             }
             catch (Exception)
             { }
-
         }
 
         public String GetReasonFronList(Guid ReturDetailsID)
