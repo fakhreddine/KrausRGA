@@ -64,9 +64,27 @@ namespace KrausRGA.DBLogics
 
         #region Deleted.
 
-
-
-        
+       /// <summary>
+       /// Delete Return Details table with the all the foreign key tables.
+       /// </summary>
+       /// <param name="ReturnDetailID">
+       /// ReturnDetails table ID.
+       /// </param>
+       /// <returns>
+       /// Boolean details.
+       /// </returns>
+       public Boolean DeleteReturnDetails(Guid ReturnDetailID)
+       {
+           Boolean _returnFlag = false;
+           try
+           {
+               _returnFlag = Service.entDelete.ReturnDetailsallForeignKeyTables(ReturnDetailID);
+           }
+           catch (Exception)
+           {}
+           return _returnFlag;
+       }
+       
         #endregion
     }
 }

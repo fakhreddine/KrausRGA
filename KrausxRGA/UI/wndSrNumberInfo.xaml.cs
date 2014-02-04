@@ -359,11 +359,14 @@ namespace KrausRGA.UI
             //Save to RMA Master Table.
             Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
             if (Views.clGlobal.mReturn.IsAlreadySaved)
+            {
                 ReturnTblID = _mUpdate._ReturnTbl.ReturnID;
+                foreach (var ReturnDetailsID in _mUpdate._lsReturnDetails)
+                {
+                    _mReturn.DeleteReturnDetails(ReturnDetailsID.ReturnDetailID);
+                }
+            }
 
-            int SavedReturnDetails = 0;
-            int ImageCount =0;
-            int Resn = 0;
             foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
             {
                 //CheckBOx item Peresent
@@ -401,86 +404,34 @@ namespace KrausRGA.UI
                     int ExpectedQty = rmaInfo.ExpectedQty;
                     string tck = rmaInfo.TCLCOD_0;
 
-                    if (Views.clGlobal.mReturn.IsAlreadySaved)
+                    //Set returned details table.
+                    Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID);
+
+                    //Save Images info Table.
+                    foreach (Image imageCaptured in SpImages.Children)
                     {
-                        Guid ReturnDeID;
-                        try
-                        {
-                            ReturnDeID = _mUpdate._lsReturnDetails[SavedReturnDetails].ReturnDetailID;
-                        }
-                        catch (Exception)
-                        {
-                            ReturnDeID = Guid.NewGuid();
+                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpg";
 
-                        }
-
-                        _mReturn.SetReturnDetailTbl(ReturnDeID, ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID);
-                        SavedReturnDetails++;
-
-                        foreach (Image imageCaptured in SpImages.Children)
-                        {
-                            String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpg";
-
-                            try
-                            {
-                                //Set Images table from model.
-                                _mReturn.SetReturnedImages(_mUpdate._lsImages[ImageCount].ReturnImageID, ReturnDeID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                                ImageCount++;
-                            }
-                            catch (Exception)
-                            {
-                                Guid ImageID = _mReturn.SetReturnedImages(Guid.NewGuid(), ReturnDeID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                            }
-                        }
-
-                        //SKU Reasons Table
-                        foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
-                        {
-                            try
-                            {
-                                _mReturn.SetTransaction(_mUpdate._lsReasons[Resn].ReasonID, Ritem, ReturnDeID);
-                                Resn++;
-                            }
-                            catch (Exception)
-                            {
-                                _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDeID);
-                            }
-
-                        }
-
+                        //Set Images table from model.
+                        Guid ImageID = _mReturn.SetReturnedImages(Guid.NewGuid(), ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
                     }
-                    else
+
+                    //SKU Reasons Table
+                    foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
                     {
-                        //Set returned details table.
-                        Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID);
-
-                        //Save Images info Table.
-                        foreach (Image imageCaptured in SpImages.Children)
-                        {
-                            String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpg";
-
-                            //Set Images table from model.
-                            Guid ImageID = _mReturn.SetReturnedImages(Guid.NewGuid(), ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                        }
-
-                        //SKU Reasons Table
-                        foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
-                        {
-                            _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
-                        }
+                        _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
                     }
-                   mRMAAudit.saveaudit(Views.AuditType.lsaudit);
-                   Views.AuditType.lsaudit.Clear();
-
+                    mRMAAudit.saveaudit(Views.AuditType.lsaudit);
+                    Views.AuditType.lsaudit.Clear();
                 }
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
-           
+
             //close wait screen.
             WindowThread.Stop();
             wndBox.Show();
-            
+
             this.Close();
         }
 

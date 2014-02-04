@@ -606,8 +606,11 @@ namespace KrausRGA.Models
             }
             return _lsReasons;
         }
-       
 
+        public Boolean DeleteReturnDetails(Guid ReturnDetailsID)
+        {
+            return cRetutnDetailsTbl.DeleteReturnDetails(ReturnDetailsID);
+        }
     }
 
 
