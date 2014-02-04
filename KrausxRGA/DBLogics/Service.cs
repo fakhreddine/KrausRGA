@@ -23,7 +23,10 @@ namespace KrausRGA.DBLogics
        /// </summary>
        public static GetRMAServiceRef.GetClient entGet;
 
-       
+       /// <summary>
+       /// Delete Service object.
+       /// </summary>
+       public static DeleteRMAServiceRef.DeleteClient entDelete;
   
     }
 }

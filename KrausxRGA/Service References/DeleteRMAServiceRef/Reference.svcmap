@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a8147b09-71fe-4bcd-ac4e-e4d253968621" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Delete.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Delete.wsdl" MetadataType="Wsdl" ID="1d695618-36e3-4ee7-b872-7d030cef05c0" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Delete.svc?wsdl" />
+    <MetadataFile FileName="KrausWarehouseServices.xsd" MetadataType="Schema" ID="4145298c-410f-4ed4-94aa-9e6a92042edf" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Delete.svc?xsd=xsd0" />
+    <MetadataFile FileName="KrausWarehouseServices.disco" MetadataType="Disco" ID="3ecb03d5-b7eb-4e27-a269-30cc9876eff4" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Delete.svc?disco" />
+    <MetadataFile FileName="KrausWarehouseServices1.xsd" MetadataType="Schema" ID="46cc783e-3885-4c61-9211-afb964d594d7" SourceId="1" SourceUrl="http://192.168.1.16:74/KrausWarehouseServices.Service.RMA.Delete.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

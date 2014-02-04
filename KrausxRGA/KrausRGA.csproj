@@ -165,6 +165,11 @@
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mUpdateModeRMA.cs" />
     <Compile Include="Models\mUser.cs" />
+    <Compile Include="Service References\DeleteRMAServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\GetRMAServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -262,6 +267,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\DeleteRMAServiceRef\Delete.wsdl" />
+    <None Include="Service References\DeleteRMAServiceRef\KrausWarehouseServices.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DeleteRMAServiceRef\KrausWarehouseServices1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\GetRMAServiceRef\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -368,6 +380,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DeleteRMAServiceRef\" />
     <WCFMetadataStorage Include="Service References\GetRMAServiceRef\" />
     <WCFMetadataStorage Include="Service References\SaveRMAServiceRefer\" />
   </ItemGroup>
@@ -439,6 +452,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icoScan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeleteRMAServiceRef\KrausWarehouseServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeleteRMAServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeleteRMAServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DeleteRMAServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
