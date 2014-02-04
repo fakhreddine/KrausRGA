@@ -23,7 +23,7 @@ namespace KrausRGA.Views
                     // Create and show the Window
                     wndWait tempWindow = new wndWait();
                     tempWindow.Activate();
-                    tempWindow.Topmost = false;
+                    tempWindow.Topmost = true;
                     tempWindow.Focus();
                     tempWindow.ShowActivated = true;
                     tempWindow.Show();
@@ -49,6 +49,9 @@ namespace KrausRGA.Views
                 if (newWindowThread.IsAlive)
                 {
                     newWindowThread.Abort();
+                    Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.Name == "wndWait");
+                    win.Close();
+                    
                 }
             }catch(Exception){}
         }
