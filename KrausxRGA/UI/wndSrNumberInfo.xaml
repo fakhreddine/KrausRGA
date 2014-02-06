@@ -218,7 +218,7 @@
                                                     <DataTemplate>
                                                         <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
                                                             <Canvas x:Name="cvItemReasons" >
-                                                                <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="70" Width="80" />
+                                                                <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="120" Width="200" />
                                                                 <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
                                                             </Canvas>
                                                         </ContentControl>
