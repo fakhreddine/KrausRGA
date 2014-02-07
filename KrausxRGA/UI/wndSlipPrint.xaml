@@ -1,0 +1,25 @@
+﻿<Window x:Class="KrausRGA.UI.wndSlipPrint"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="wndSlipPrint" Height="2in" Width="4in" Loaded="Window_Loaded_1">
+    <Grid Margin="4,6,2,4">
+        <Border BorderBrush="Black" BorderThickness="2" Name="brdmain" CornerRadius="30">
+            <Canvas Margin="12,10,15,8">
+                <TextBlock Text="Expiration :" RenderTransformOrigin="0.886,1.949" Canvas.Top="19" Height="15" FontSize="10" Canvas.Left="3"/>
+                <TextBlock Text="Received By :" RenderTransformOrigin="0.886,1.949" Canvas.Top="34" Canvas.Left="3" Height="16" FontSize="10" />
+                <TextBlock Text="Reason :" RenderTransformOrigin="0.886,1.949" Canvas.Top="49" Canvas.Left="3" Height="16" FontSize="10" />
+                <Image  x:Name="imageBarcode" Height="45" Width="178" Canvas.Left="149" Canvas.Top="5" />
+                <TextBlock Text="Received :" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="10" Canvas.Left="4" Canvas.Top="3"/>
+                <TextBlock Text="null" Name="txtReceivedDate" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="10" Canvas.Left="65" Canvas.Top="3" Width="77" TextWrapping="Wrap"/>
+                <TextBlock Text="null" Name="txtExpiration" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="10" Canvas.Left="65" Canvas.Top="18" Width="77" TextWrapping="Wrap"/>
+                <TextBlock Text="null" Name="txtReceived" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="10" Canvas.Left="64" Canvas.Top="33" Width="77" TextWrapping="Wrap"/>
+                <TextBlock Text="null" x:Name="txtReason" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="10" Canvas.Left="64" Canvas.Top="50" Width="77" TextWrapping="Wrap"/>
+                <TextBlock Text="null" x:Name="txtSRNumber" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="10" Canvas.Left="193" Canvas.Top="48" Width="77" TextWrapping="Wrap"/>
+
+                <Image  x:Name="image" Height="41" Width="215" Canvas.Left="65" Canvas.Top="73" />
+                <Border Height="1" Width="338" Canvas.Left="1" Canvas.Top="68" BorderBrush="Gray" BorderThickness="1"/>
+                <TextBlock Text="null" x:Name="txtproductName" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="10" Canvas.Left="135" Canvas.Top="114" Width="77" TextWrapping="Wrap"/>
+            </Canvas>
+        </Border>
+    </Grid>
+</Window>

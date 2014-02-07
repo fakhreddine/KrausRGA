@@ -80,6 +80,9 @@
     <Reference Include="BarcodeImaging">
       <HintPath>\\SHIVA5-PC\Shared Folder\Debug\BarcodeImaging.dll</HintPath>
     </Reference>
+    <Reference Include="BarcodeLib">
+      <HintPath>..\..\visualstudio\Packing Net\PackingNet\bin\Debug\BarcodeLib.dll</HintPath>
+    </Reference>
     <Reference Include="BarcodeScanner">
       <HintPath>\\SHIVA5-PC\Shared Folder\Debug\BarcodeScanner.dll</HintPath>
     </Reference>
@@ -192,6 +195,9 @@
     <Compile Include="UI\wndNewRMANumber.xaml.cs">
       <DependentUpon>wndNewRMANumber.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndSlipPrint.xaml.cs">
+      <DependentUpon>wndSlipPrint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\wndSrNumberInfo.xaml.cs">
       <DependentUpon>wndSrNumberInfo.xaml</DependentUpon>
     </Compile>
@@ -228,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\wndNewRMANumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\wndSlipPrint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,7 +1,7 @@
 ﻿<Application x:Class="KrausRGA.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="UI/wndBoxInformation.xaml">
+             StartupUri="UI/wndSlipPrint.xaml">
     <Application.Resources>
         <!--UI styles -->
         
