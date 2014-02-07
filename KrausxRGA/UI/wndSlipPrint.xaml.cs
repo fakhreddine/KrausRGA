@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using KrausRGA.Views;
 
 namespace KrausRGA.UI
 {
@@ -24,6 +25,7 @@ namespace KrausRGA.UI
 
         DispatcherTimer _threadPrint = new DispatcherTimer();
         int i = 0;
+        List<cSlipInfo> _lsInfoSlip = new List<cSlipInfo>();
 
         public wndSlipPrint()
         {
@@ -47,11 +49,17 @@ namespace KrausRGA.UI
         {
             BarcodeLib.Barcode b = new BarcodeLib.Barcode();
 
-            string SRnumber = "SR00123112";
-            string productname = "KPF-1602";
+            _lsInfoSlip = clGlobal.lsSlipInfo;
+
+            string SRnumber = _lsInfoSlip[0].SRNumber;
+            string productname = "812679018572";//_lsInfoSlip[0].ProductName;
+            DateTime ReceivedDate = _lsInfoSlip[0].ReceivedDate;
+            DateTime Expiration = _lsInfoSlip[0].Expiration;
+            string UserName = _lsInfoSlip[0].ReceivedBY;
+            string Reason = _lsInfoSlip[0].Reason;
 
             var sBoxNumber = b.Encode(BarcodeLib.TYPE.CODE128, SRnumber, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 400, 160);
-            var sproductname = b.Encode(BarcodeLib.TYPE.CODE128, productname, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 400, 160);
+            var sproductname = b.Encode(BarcodeLib.TYPE.UPCA, productname, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 400, 160);
 
             var bitmapBox = new System.Drawing.Bitmap(sBoxNumber);
             var pbitmapBox = new System.Drawing.Bitmap(sproductname);
@@ -64,10 +72,10 @@ namespace KrausRGA.UI
             imageBarcode.Source = bBoxSource;
             image.Source = pproduct;
 
-            txtExpiration.Text = "Jan 30 2014";
-            txtReceivedDate.Text = "Mar 30 2014";
-            txtReceived.Text = "UserName";
-            txtReason.Text = "BR";
+            txtExpiration.Text = Expiration.ToString("MMM dd, yyyy");
+            txtReceivedDate.Text = ReceivedDate.ToString("MMM dd, yyyy");
+            txtReceived.Text = UserName; 
+            txtReason.Text = Reason;
             txtSRNumber.Text = SRnumber;
             txtproductName.Text=productname;
         }

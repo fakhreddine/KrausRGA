@@ -83,11 +83,11 @@ namespace KrausRGA.Models
             //Check that SR Number is persent in database.
             IsAlreadySaved = IsNumberAlreadyPresent(EnteredNumber);
 
-            
+
         }
 
         #endregion
-         
+
         #region class Properties
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace KrausRGA.Models
         /// </returns>
         public Boolean GetIsValidNumberEntred(String Number, eNumberType enumNumberType)
         {
-            
+
             Boolean _isNumberValid = false;
 
             try
@@ -225,7 +225,7 @@ namespace KrausRGA.Models
                         _isNumberValid = false;
                         break;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -328,12 +328,12 @@ namespace KrausRGA.Models
             Boolean _flag = IsValidNumber;
             try
             {
-                if (_Return.Decision !=0 && _Return.Decision !=null) 
+                if (_Return.Decision != 0 && _Return.Decision != null)
                     _flag = false;
 
             }
             catch (Exception)
-            {}
+            { }
 
             return _flag;
         }
@@ -435,7 +435,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guild new ReturnDetailID
         /// </returns>
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID,Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty,int ReturnQty,string TK, Guid CreatedBy)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -455,7 +455,7 @@ namespace KrausRGA.Models
                 TblReturnDetails.CreatedDate = DateTime.UtcNow;
                 TblReturnDetails.UpadatedDate = DateTime.UtcNow;
                 TblReturnDetails.UpdatedBy = CreatedBy;
-                
+
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
 
@@ -482,7 +482,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guid of ReturnImageID New inserted Record id. 
         /// </returns>
-        public Guid SetReturnedImages(Guid ImageID,Guid ReturnDetailID, String ImagePath, Guid CreatedBy)
+        public Guid SetReturnedImages(Guid ImageID, Guid ReturnDetailID, String ImagePath, Guid CreatedBy)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -546,9 +546,9 @@ namespace KrausRGA.Models
                 ex.LogThis("mReturnDetails/SetReasonCategories");
             }
             return _reasonCatID;
-        
+
         }
-        public Guid SetTransaction(Guid SKUReasonID,Guid ReasonID, Guid ReturnDetailID)
+        public Guid SetTransaction(Guid SKUReasonID, Guid ReasonID, Guid ReturnDetailID)
         {
             Guid _transationID = Guid.Empty;
             try
@@ -558,13 +558,13 @@ namespace KrausRGA.Models
                 tra.ReasonID = ReasonID;
                 tra.ReturnDetailID = ReturnDetailID;
 
-                if(crtTransaction.SetTransaction(tra)) _transationID= tra.SKUReasonID;
+                if (crtTransaction.SetTransaction(tra)) _transationID = tra.SKUReasonID;
             }
             catch (Exception ex)
             {
                 ex.LogThis("mReturnDetails/SetTransaction");
             }
-        return _transationID;
+            return _transationID;
         }
         public List<Reason> GetReasons()
         {
@@ -572,7 +572,7 @@ namespace KrausRGA.Models
 
             try
             {
-               reasonList= cRtnreasons.GetReasons();
+                reasonList = cRtnreasons.GetReasons();
             }
             catch (Exception ex)
             {
@@ -611,7 +611,34 @@ namespace KrausRGA.Models
         {
             return cRetutnDetailsTbl.DeleteReturnDetails(ReturnDetailsID);
         }
+
+
+        public List<cSlipInfo> GetSlipInfo(string SkuNumber, String ReturnReasons)
+        {
+            List<cSlipInfo> _lsslipinfo = new List<cSlipInfo>();
+            try
+            {
+                cSlipInfo slip = new cSlipInfo();
+                slip.ProductName = SkuNumber;
+                slip.Reason = ReturnReasons;
+                slip.ReceivedBY = clGlobal.mCurrentUser.UserInfo.UserName;
+                slip.ReceivedDate = lsRMAInformation[0].DeliveryDate;
+                slip.Expiration = lsRMAInformation[0].DeliveryDate.AddMonths(3);
+                slip.SRNumber = lsRMAInformation[0].RMANumber;
+                _lsslipinfo.Add(slip);
+            }
+            catch (Exception)
+            {
+
+            }
+            return _lsslipinfo;
+        }
     }
+
+    
+
+
+    
 
 
 

@@ -208,6 +208,7 @@
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\CanvasToImage.cs" />
     <Compile Include="Views\clGlobal.cs" />
+    <Compile Include="Views\cSlipInfo.cs" />
     <Compile Include="Views\eActionType.cs" />
     <Compile Include="Views\ePermissione.cs" />
     <Compile Include="Views\ExtensionParent.cs" />

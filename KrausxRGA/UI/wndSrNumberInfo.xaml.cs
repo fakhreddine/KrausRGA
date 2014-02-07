@@ -42,6 +42,10 @@ namespace KrausRGA.UI
 
         mReturnDetails _mReturn = clGlobal.mReturn;
 
+        List<cSlipInfo> _lsSlpiInfo = new List<cSlipInfo>();
+
+        
+
         List<RMAInfo> _lsRMAInfo = new List<RMAInfo>();
         mUpdateModeRMA _mUpdate;
 
@@ -338,7 +342,7 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
-            WindowThread.start();
+          //  WindowThread.start();
 
             mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
           
@@ -404,7 +408,7 @@ namespace KrausRGA.UI
                     int ExpectedQty = rmaInfo.ExpectedQty;
                     string tck = rmaInfo.TCLCOD_0;
 
-                    //Set returned details table.
+                                        //Set returned details table.
                     Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, ProcutName.Text, DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID);
 
                     //Save Images info Table.
@@ -420,14 +424,22 @@ namespace KrausRGA.UI
                     foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
                     {
                         _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
+
                     }
+
+                    wndSlipPrint slip = new wndSlipPrint();
+
+                   Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, ReturnReasons());
+
+                   slip.ShowDialog();
+
                     mRMAAudit.saveaudit(Views.AuditType.lsaudit);
                     Views.AuditType.lsaudit.Clear();
                 }
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
-            WindowThread.Stop();
+          //  WindowThread.Stop();
             //close wait screen.
             wndBox.Show();
             this.Close();
