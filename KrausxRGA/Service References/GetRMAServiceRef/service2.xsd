@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
-  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
-  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
+  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
+  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="XMLUserGet">
     <xs:complexType>
       <xs:sequence>
@@ -445,6 +445,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetEANCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Chars" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEANCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetEANCodeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CharEAN" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RoleAll">
     <xs:complexType>
       <xs:sequence />
@@ -522,6 +550,32 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="GetSKUImagesByReturnDetailIDResult" nillable="true" type="q47:ArrayOfSKUReasonsDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CategotyReasonNameByReasonID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ReasonID" type="q48:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CategotyReasonNameByReasonIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="CategotyReasonNameByReasonIDResult" nillable="true" type="q49:ArrayOfReasonCategoryDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CategotyReasonAll">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CategotyReasonAllResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="CategotyReasonAllResult" nillable="true" type="q50:ArrayOfReasonCategoryDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

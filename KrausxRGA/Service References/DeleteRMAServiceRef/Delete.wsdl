@@ -12,16 +12,35 @@
   <wsdl:message name="IDelete_ReturnDetailsallForeignKeyTables_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReturnDetailsallForeignKeyTablesResponse" />
   </wsdl:message>
+  <wsdl:message name="IDelete_ReasonCategoryByReasonID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonCategoryByReasonID" />
+  </wsdl:message>
+  <wsdl:message name="IDelete_ReasonCategoryByReasonID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonCategoryByReasonIDResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDelete">
     <wsdl:operation name="ReturnDetailsallForeignKeyTables">
       <wsdl:input wsaw:Action="http://tempuri.org/IDelete/ReturnDetailsallForeignKeyTables" message="tns:IDelete_ReturnDetailsallForeignKeyTables_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDelete/ReturnDetailsallForeignKeyTablesResponse" message="tns:IDelete_ReturnDetailsallForeignKeyTables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReasonCategoryByReasonID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDelete/ReasonCategoryByReasonID" message="tns:IDelete_ReasonCategoryByReasonID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDelete/ReasonCategoryByReasonIDResponse" message="tns:IDelete_ReasonCategoryByReasonID_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDelete" type="tns:IDelete">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ReturnDetailsallForeignKeyTables">
       <soap:operation soapAction="http://tempuri.org/IDelete/ReturnDetailsallForeignKeyTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReasonCategoryByReasonID">
+      <soap:operation soapAction="http://tempuri.org/IDelete/ReasonCategoryByReasonID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

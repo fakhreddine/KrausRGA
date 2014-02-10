@@ -2,11 +2,11 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Get" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import namespace="http://tempuri.org/" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
+      <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
+      <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IGet_XMLUserGet_InputMessage">
@@ -201,6 +201,18 @@
   <wsdl:message name="IGet_ProductMachingNameCat_OutputMessage">
     <wsdl:part name="parameters" element="tns:ProductMachingNameCatResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_GetEANCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEANCode" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetEANCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEANCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetProductName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductName" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetProductName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_RoleAll_InputMessage">
     <wsdl:part name="parameters" element="tns:RoleAll" />
   </wsdl:message>
@@ -236,6 +248,18 @@
   </wsdl:message>
   <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_CategotyReasonNameByReasonID_InputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonNameByReasonID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_CategotyReasonNameByReasonID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonNameByReasonIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_CategotyReasonAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonAll" />
+  </wsdl:message>
+  <wsdl:message name="IGet_CategotyReasonAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonAllResponse" />
   </wsdl:message>
   <wsdl:portType name="IGet">
     <wsdl:operation name="XMLUserGet">
@@ -366,6 +390,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ProductMachingNameCat" message="tns:IGet_ProductMachingNameCat_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ProductMachingNameCatResponse" message="tns:IGet_ProductMachingNameCat_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetEANCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetEANCode" message="tns:IGet_GetEANCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetEANCodeResponse" message="tns:IGet_GetEANCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetProductName" message="tns:IGet_GetProductName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetProductNameResponse" message="tns:IGet_GetProductName_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RoleAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/RoleAll" message="tns:IGet_RoleAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/RoleAllResponse" message="tns:IGet_RoleAll_OutputMessage" />
@@ -389,6 +421,14 @@
     <wsdl:operation name="GetSKUImagesByReturnDetailID">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" message="tns:IGet_GetSKUImagesByReturnDetailID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailIDResponse" message="tns:IGet_GetSKUImagesByReturnDetailID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CategotyReasonNameByReasonID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonID" message="tns:IGet_CategotyReasonNameByReasonID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonIDResponse" message="tns:IGet_CategotyReasonNameByReasonID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CategotyReasonAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/CategotyReasonAll" message="tns:IGet_CategotyReasonAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/CategotyReasonAllResponse" message="tns:IGet_CategotyReasonAll_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGet" type="tns:IGet">
@@ -681,6 +721,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEANCode">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetEANCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductName">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetProductName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RoleAll">
       <soap:operation soapAction="http://tempuri.org/IGet/RoleAll" style="document" />
       <wsdl:input>
@@ -728,6 +786,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetSKUImagesByReturnDetailID">
       <soap:operation soapAction="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CategotyReasonNameByReasonID">
+      <soap:operation soapAction="http://tempuri.org/IGet/CategotyReasonNameByReasonID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CategotyReasonAll">
+      <soap:operation soapAction="http://tempuri.org/IGet/CategotyReasonAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using KrausRGA.Views;
+using KrausRGA.Barcode;
 
 namespace KrausRGA.UI
 {
@@ -26,6 +27,9 @@ namespace KrausRGA.UI
         DispatcherTimer _threadPrint = new DispatcherTimer();
         int i = 0;
         List<cSlipInfo> _lsInfoSlip = new List<cSlipInfo>();
+        public UPCA upc = null;
+
+       
 
         public wndSlipPrint()
         {
@@ -33,6 +37,7 @@ namespace KrausRGA.UI
             _threadPrint.Interval = new TimeSpan(0, 0, 1);
             _threadPrint.Start();
             _threadPrint.Tick += _threadPrint_Tick;
+            txtTextToAdd.Visibility = Visibility.Hidden;
         }
 
         void _threadPrint_Tick(object sender, EventArgs e)
@@ -45,6 +50,7 @@ namespace KrausRGA.UI
             this.Close();
            
         }
+
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             BarcodeLib.Barcode b = new BarcodeLib.Barcode();
@@ -52,14 +58,41 @@ namespace KrausRGA.UI
             _lsInfoSlip = clGlobal.lsSlipInfo;
 
             string SRnumber = _lsInfoSlip[0].SRNumber;
-            string productname = "812679018572";//_lsInfoSlip[0].ProductName;
+            string SKUName = _lsInfoSlip[0].ProductName;
+            string productname = _lsInfoSlip[0].EANCode;
             DateTime ReceivedDate = _lsInfoSlip[0].ReceivedDate;
             DateTime Expiration = _lsInfoSlip[0].Expiration;
             string UserName = _lsInfoSlip[0].ReceivedBY;
             string Reason = _lsInfoSlip[0].Reason;
 
-            var sBoxNumber = b.Encode(BarcodeLib.TYPE.CODE128, SRnumber, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 400, 160);
-            var sproductname = b.Encode(BarcodeLib.TYPE.UPCA, productname, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 400, 160);
+            var sBoxNumber = b.Encode(BarcodeLib.TYPE.CODE128, SRnumber, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 1500, 550);
+            var sproductname = b.Encode(BarcodeLib.TYPE.UPCA, productname, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 2000, 500);
+
+            txtTextToAdd.Text = _lsInfoSlip[0].EANCode;
+
+
+            UPCA upca = new UPCA();
+            if (this.txtTextToAdd.Text.Length == 12)
+            {
+                this.txtTextToAdd.Text = this.txtTextToAdd.Text.Substring(0, 11) + upca.GetCheckSum(this.txtTextToAdd.Text).ToString();
+                System.Drawing.Image img;
+                img = upca.CreateBarCode(this.txtTextToAdd.Text, 3);
+
+                //this.image.Left = System.Convert.ToInt32((this.image.Width / 2) - (img.Width / 2));
+
+                var imges = new System.Drawing.Bitmap(img);
+
+                var newimag = Imaging.CreateBitmapSourceFromHBitmap(imges.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                image.Source = newimag;
+
+                //this.pctBarCode.Image = img;
+                this.txtTextToAdd.SelectAll();
+            }
+            else
+            {
+                this.image.Source = null;
+            }
 
             var bitmapBox = new System.Drawing.Bitmap(sBoxNumber);
             var pbitmapBox = new System.Drawing.Bitmap(sproductname);
@@ -70,14 +103,15 @@ namespace KrausRGA.UI
             bitmapBox.Dispose();
 
             imageBarcode.Source = bBoxSource;
-            image.Source = pproduct;
+          //  image.Source = pproduct;
 
             txtExpiration.Text = Expiration.ToString("MMM dd, yyyy");
             txtReceivedDate.Text = ReceivedDate.ToString("MMM dd, yyyy");
             txtReceived.Text = UserName; 
             txtReason.Text = Reason;
             txtSRNumber.Text = SRnumber;
-            txtproductName.Text=productname;
+            txtproductName.Text = SKUName;
+           // txtEANcode.Text = _lsInfoSlip[0].EANCode;
         }
 
         private void _print()

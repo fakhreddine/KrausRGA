@@ -99,6 +99,10 @@ namespace KrausRGA.DBLogics
             return status;
         }
 
+       public string GetReasonsByReturnDetailID(Guid ReturnDetailID)
+       {
+           return Service.entGet.ListOfReasons(ReturnDetailID);
+       }
 
     }
 }

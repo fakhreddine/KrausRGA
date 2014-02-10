@@ -429,7 +429,7 @@ namespace KrausRGA.UI
 
                     wndSlipPrint slip = new wndSlipPrint();
 
-                   Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, ReturnReasons());
+                   Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text,_mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetReasonsByRDetail(ReturnDetailsID));
 
                    slip.ShowDialog();
 

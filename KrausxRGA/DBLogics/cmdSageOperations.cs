@@ -157,9 +157,23 @@ namespace KrausRGA.DBLogics
            }
            catch (Exception ex)
            {
-               ex.LogThis("cmdSageOperations/GetRMAInfoByShipmentNumber");
+               ex.LogThis("cmdSageOperations/GetNewRMANumber");
            }
            return lsRMAInfo;
+       }
+
+       public string GetEANCode(String ItemCode)
+       {
+           string EANCode = "";
+           try
+           {
+               EANCode = Service.entGet.GetEANCode(ItemCode);
+           }
+           catch (Exception)
+           {
+           }
+           return EANCode;
+       
        }
 
 

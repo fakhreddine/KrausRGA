@@ -141,6 +141,7 @@
     <Compile Include="Barcode\FoundBarcode.cs" />
     <Compile Include="Barcode\GDIStuff.cs" />
     <Compile Include="Barcode\NetworkConnection.cs" />
+    <Compile Include="Barcode\UPCA.cs" />
     <Compile Include="Barcode\Win32Stuff.cs" />
     <Compile Include="DBLogics\Service.cs" />
     <Compile Include="DBLogics\cmdRMAAudit.cs" />
@@ -285,8 +286,11 @@
     <None Include="Service References\DeleteRMAServiceRef\KrausWarehouseServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\Arrays.xsd">
+    <None Include="Service References\GetRMAServiceRef\Arrays1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonCategoryDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonsDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -315,17 +319,17 @@
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.Shipping1.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.Shipping.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service.wsdl" />
-    <None Include="Service References\GetRMAServiceRef\service.xsd">
+    <None Include="Service References\GetRMAServiceRef\service1.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service1.xsd">
+    <None Include="Service References\GetRMAServiceRef\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA.xsd">
