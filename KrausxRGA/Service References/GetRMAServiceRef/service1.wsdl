@@ -4,11 +4,23 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
       <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" />
+      <xsd:import schemaLocation="" namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping" />
       <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IGet_CategotyReasonNameByReasonID_InputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonNameByReasonID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_CategotyReasonNameByReasonID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonNameByReasonIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_CategotyReasonAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonAll" />
+  </wsdl:message>
+  <wsdl:message name="IGet_CategotyReasonAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CategotyReasonAllResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_XMLUserGet_InputMessage">
     <wsdl:part name="parameters" element="tns:XMLUserGet" />
   </wsdl:message>
@@ -165,6 +177,12 @@
   <wsdl:message name="IGet_ListOfReasons_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListOfReasonsResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_ReasonsByReturnDetailID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonsByReturnDetailID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_ReasonsByReturnDetailID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReasonsByReturnDetailIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_AuditAll_InputMessage">
     <wsdl:part name="parameters" element="tns:AuditAll" />
   </wsdl:message>
@@ -213,6 +231,12 @@
   <wsdl:message name="IGet_GetProductName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProductNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_GetPrintReasonFromSage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintReasonFromSage" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetPrintReasonFromSage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintReasonFromSageResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_RoleAll_InputMessage">
     <wsdl:part name="parameters" element="tns:RoleAll" />
   </wsdl:message>
@@ -249,19 +273,15 @@
   <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailIDResponse" />
   </wsdl:message>
-  <wsdl:message name="IGet_CategotyReasonNameByReasonID_InputMessage">
-    <wsdl:part name="parameters" element="tns:CategotyReasonNameByReasonID" />
-  </wsdl:message>
-  <wsdl:message name="IGet_CategotyReasonNameByReasonID_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CategotyReasonNameByReasonIDResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGet_CategotyReasonAll_InputMessage">
-    <wsdl:part name="parameters" element="tns:CategotyReasonAll" />
-  </wsdl:message>
-  <wsdl:message name="IGet_CategotyReasonAll_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CategotyReasonAllResponse" />
-  </wsdl:message>
   <wsdl:portType name="IGet">
+    <wsdl:operation name="CategotyReasonNameByReasonID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonID" message="tns:IGet_CategotyReasonNameByReasonID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonIDResponse" message="tns:IGet_CategotyReasonNameByReasonID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CategotyReasonAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/CategotyReasonAll" message="tns:IGet_CategotyReasonAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/CategotyReasonAllResponse" message="tns:IGet_CategotyReasonAll_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="XMLUserGet">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/XMLUserGet" message="tns:IGet_XMLUserGet_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/XMLUserGetResponse" message="tns:IGet_XMLUserGet_OutputMessage" />
@@ -366,6 +386,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ListOfReasons" message="tns:IGet_ListOfReasons_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ListOfReasonsResponse" message="tns:IGet_ListOfReasons_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ReasonsByReturnDetailID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReasonsByReturnDetailID" message="tns:IGet_ReasonsByReturnDetailID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReasonsByReturnDetailIDResponse" message="tns:IGet_ReasonsByReturnDetailID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AuditAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/AuditAll" message="tns:IGet_AuditAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/AuditAllResponse" message="tns:IGet_AuditAll_OutputMessage" />
@@ -398,6 +422,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetProductName" message="tns:IGet_GetProductName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetProductNameResponse" message="tns:IGet_GetProductName_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetPrintReasonFromSage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetPrintReasonFromSage" message="tns:IGet_GetPrintReasonFromSage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetPrintReasonFromSageResponse" message="tns:IGet_GetPrintReasonFromSage_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RoleAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/RoleAll" message="tns:IGet_RoleAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/RoleAllResponse" message="tns:IGet_RoleAll_OutputMessage" />
@@ -422,17 +450,27 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" message="tns:IGet_GetSKUImagesByReturnDetailID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailIDResponse" message="tns:IGet_GetSKUImagesByReturnDetailID_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CategotyReasonNameByReasonID">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonID" message="tns:IGet_CategotyReasonNameByReasonID_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonIDResponse" message="tns:IGet_CategotyReasonNameByReasonID_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CategotyReasonAll">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGet/CategotyReasonAll" message="tns:IGet_CategotyReasonAll_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGet/CategotyReasonAllResponse" message="tns:IGet_CategotyReasonAll_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGet" type="tns:IGet">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CategotyReasonNameByReasonID">
+      <soap:operation soapAction="http://tempuri.org/IGet/CategotyReasonNameByReasonID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CategotyReasonAll">
+      <soap:operation soapAction="http://tempuri.org/IGet/CategotyReasonAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="XMLUserGet">
       <soap:operation soapAction="http://tempuri.org/IGet/XMLUserGet" style="document" />
       <wsdl:input>
@@ -667,6 +705,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ReasonsByReturnDetailID">
+      <soap:operation soapAction="http://tempuri.org/IGet/ReasonsByReturnDetailID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AuditAll">
       <soap:operation soapAction="http://tempuri.org/IGet/AuditAll" style="document" />
       <wsdl:input>
@@ -739,6 +786,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetPrintReasonFromSage">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetPrintReasonFromSage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RoleAll">
       <soap:operation soapAction="http://tempuri.org/IGet/RoleAll" style="document" />
       <wsdl:input>
@@ -786,24 +842,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetSKUImagesByReturnDetailID">
       <soap:operation soapAction="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CategotyReasonNameByReasonID">
-      <soap:operation soapAction="http://tempuri.org/IGet/CategotyReasonNameByReasonID" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CategotyReasonAll">
-      <soap:operation soapAction="http://tempuri.org/IGet/CategotyReasonAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

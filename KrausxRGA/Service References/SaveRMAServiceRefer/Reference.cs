@@ -210,6 +210,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private System.DateTime DeliveryDatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ExpirationDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime OrderDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -235,6 +238,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ReturnReasonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime ScannedDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShipmentNumberField;
@@ -411,6 +417,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ExpirationDate {
+            get {
+                return this.ExpirationDateField;
+            }
+            set {
+                if ((this.ExpirationDateField.Equals(value) != true)) {
+                    this.ExpirationDateField = value;
+                    this.RaisePropertyChanged("ExpirationDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime OrderDate {
             get {
                 return this.OrderDateField;
@@ -523,6 +542,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((object.ReferenceEquals(this.ReturnReasonField, value) != true)) {
                     this.ReturnReasonField = value;
                     this.RaisePropertyChanged("ReturnReason");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime ScannedDate {
+            get {
+                return this.ScannedDateField;
+            }
+            set {
+                if ((this.ScannedDateField.Equals(value) != true)) {
+                    this.ScannedDateField = value;
+                    this.RaisePropertyChanged("ScannedDate");
                 }
             }
         }

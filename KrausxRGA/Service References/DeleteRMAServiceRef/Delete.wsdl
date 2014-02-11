@@ -18,6 +18,12 @@
   <wsdl:message name="IDelete_ReasonCategoryByReasonID_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReasonCategoryByReasonIDResponse" />
   </wsdl:message>
+  <wsdl:message name="IDelete_SKUReasonsByReturnDetailsID_InputMessage">
+    <wsdl:part name="parameters" element="tns:SKUReasonsByReturnDetailsID" />
+  </wsdl:message>
+  <wsdl:message name="IDelete_SKUReasonsByReturnDetailsID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SKUReasonsByReturnDetailsIDResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDelete">
     <wsdl:operation name="ReturnDetailsallForeignKeyTables">
       <wsdl:input wsaw:Action="http://tempuri.org/IDelete/ReturnDetailsallForeignKeyTables" message="tns:IDelete_ReturnDetailsallForeignKeyTables_InputMessage" />
@@ -26,6 +32,10 @@
     <wsdl:operation name="ReasonCategoryByReasonID">
       <wsdl:input wsaw:Action="http://tempuri.org/IDelete/ReasonCategoryByReasonID" message="tns:IDelete_ReasonCategoryByReasonID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDelete/ReasonCategoryByReasonIDResponse" message="tns:IDelete_ReasonCategoryByReasonID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SKUReasonsByReturnDetailsID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDelete/SKUReasonsByReturnDetailsID" message="tns:IDelete_SKUReasonsByReturnDetailsID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDelete/SKUReasonsByReturnDetailsIDResponse" message="tns:IDelete_SKUReasonsByReturnDetailsID_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDelete" type="tns:IDelete">
@@ -41,6 +51,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReasonCategoryByReasonID">
       <soap:operation soapAction="http://tempuri.org/IDelete/ReasonCategoryByReasonID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SKUReasonsByReturnDetailsID">
+      <soap:operation soapAction="http://tempuri.org/IDelete/SKUReasonsByReturnDetailsID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

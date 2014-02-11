@@ -44,7 +44,6 @@ namespace KrausRGA.Barcode
                 for (wholeSet = 1; wholeSet <= System.Convert.ToInt32(incomingString.Length); wholeSet++)
                 {
                     int currentASCII = (int)Convert.ToChar((incomingString.Substring(wholeSet - 1, 1))) - 48;
-                    string currentLetter = "";
                     if (wholeSet == 1)
                     {
                         DrawSet(UPCABegin, placeMarker, 0);

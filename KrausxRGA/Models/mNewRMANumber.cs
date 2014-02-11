@@ -91,6 +91,8 @@ namespace KrausRGA.Models
                 TblRerutn.OrderDate = DateTime.UtcNow;
                 TblRerutn.DeliveryDate = DateTime.UtcNow;
                 TblRerutn.ReturnDate = lsNewRMA[0].ReturnDate;
+                TblRerutn.ScannedDate = DateTime.UtcNow;
+                TblRerutn.ExpirationDate = DateTime.UtcNow.AddDays(60);
                 TblRerutn.VendorNumber = lsNewRMA[0].VendorNumber;
                 TblRerutn.VendoeName = lsNewRMA[0].VendoeName;
                 TblRerutn.CustomerName1 = lsNewRMA[0].CustomerName1;

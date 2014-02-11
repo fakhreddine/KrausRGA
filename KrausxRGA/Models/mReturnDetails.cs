@@ -375,6 +375,8 @@ namespace KrausRGA.Models
                 TblRerutn.OrderDate = lsRMAInformation[0].OrderDate;
                 TblRerutn.DeliveryDate = lsRMAInformation[0].DeliveryDate;
                 TblRerutn.ReturnDate = lsRMAInformation[0].ReturnDate;
+                TblRerutn.ScannedDate = DateTime.UtcNow;
+                TblRerutn.ExpirationDate = DateTime.UtcNow.AddDays(60);
                 TblRerutn.VendorNumber = lsRMAInformation[0].VendorNumber;
                 TblRerutn.VendoeName = lsRMAInformation[0].VendorName;
                 TblRerutn.CustomerName1 = lsRMAInformation[0].CustomerName1;
@@ -622,8 +624,8 @@ namespace KrausRGA.Models
                 slip.ProductName = SkuNumber;
                 slip.Reason = ReturnReasons;
                 slip.ReceivedBY = clGlobal.mCurrentUser.UserInfo.UserName;
-                slip.ReceivedDate = lsRMAInformation[0].ReturnDate;
-                slip.Expiration = lsRMAInformation[0].ReturnDate.AddMonths(3);
+                slip.ReceivedDate = _Return.ScannedDate;
+                slip.Expiration = _Return.ExpirationDate;
                 slip.SRNumber = lsRMAInformation[0].RMANumber;
                 slip.EANCode = EANCode;
                 _lsslipinfo.Add(slip);
@@ -659,10 +661,20 @@ namespace KrausRGA.Models
             {
             }
             return Reasons;
-
         }
 
-
+        public String GetSageReasonBySKUSR(String SRNumber,String SKUNumber)
+        {
+            string SageReasons = "";
+            try
+            {
+                SageReasons = cSage.GetSageReason(SRNumber, SKUNumber);
+            }
+            catch (Exception)
+            {
+            }
+            return SageReasons;
+        }
 
     }
 

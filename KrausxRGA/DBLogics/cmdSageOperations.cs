@@ -176,6 +176,20 @@ namespace KrausRGA.DBLogics
        
        }
 
+       public string GetSageReason(String SRnumber,String SKUNumber)
+       {
+           string SageReasons = "";
+           try
+           {
+               SageReasons = Service.entGet.GetPrintReasonFromSage(SRnumber, SKUNumber);
+           }
+           catch (Exception)
+           {
+           }
+           return SageReasons;
+
+       }
+
 
     }
 }

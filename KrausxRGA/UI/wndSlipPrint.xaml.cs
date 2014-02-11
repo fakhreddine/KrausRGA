@@ -25,7 +25,6 @@ namespace KrausRGA.UI
     {
 
         DispatcherTimer _threadPrint = new DispatcherTimer();
-        int i = 0;
         List<cSlipInfo> _lsInfoSlip = new List<cSlipInfo>();
         public UPCA upc = null;
 

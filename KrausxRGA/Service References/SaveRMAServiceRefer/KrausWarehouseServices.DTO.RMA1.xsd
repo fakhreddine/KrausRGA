@@ -30,6 +30,7 @@
       <xs:element minOccurs="0" name="CustomerName2" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Decision" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="DeliveryDat" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpirationDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PONumber" nillable="true" type="xs:string" />
@@ -39,6 +40,7 @@
       <xs:element minOccurs="0" name="ReturnDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ReturnID" type="ser:guid" />
       <xs:element minOccurs="0" name="ReturnReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ScannedDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ShipmentNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UpdatedBy" nillable="true" type="ser:guid" />
