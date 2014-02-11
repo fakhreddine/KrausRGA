@@ -668,7 +668,11 @@ namespace KrausRGA.Models
             string SageReasons = "";
             try
             {
-                SageReasons = cSage.GetSageReason(SRNumber, SKUNumber);
+                 SageReasons = cSage.GetSageReason(SRNumber, SKUNumber);
+                 if (SageReasons.Trim()=="")
+                 {
+                     SageReasons = "N/A";  
+                 }
             }
             catch (Exception)
             {

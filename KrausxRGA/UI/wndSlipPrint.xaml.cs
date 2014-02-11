@@ -62,7 +62,10 @@ namespace KrausRGA.UI
             DateTime ReceivedDate = _lsInfoSlip[0].ReceivedDate;
             DateTime Expiration = _lsInfoSlip[0].Expiration;
             string UserName = _lsInfoSlip[0].ReceivedBY;
-            string Reason = _lsInfoSlip[0].Reason;
+            string Reason = "N/A";
+
+            if(_lsInfoSlip[0].Reason!="")
+             Reason = _lsInfoSlip[0].Reason;
 
             var sBoxNumber = b.Encode(BarcodeLib.TYPE.CODE128, SRnumber, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 1500, 550);
             var sproductname = b.Encode(BarcodeLib.TYPE.UPCA, productname, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 2000, 500);

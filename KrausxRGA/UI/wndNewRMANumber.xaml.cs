@@ -333,7 +333,7 @@ namespace KrausRGA.UI
 
                     wndSlipPrint slip = new wndSlipPrint();
 
-                    Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), _mNewRMA.GetReasonsByRDetail(ReturnDetailsID), _mNewRMA.GetNewROWID(ReturnTblID));
+                    Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(ReturnTblID));
 
                     slip.ShowDialog();
                 }
