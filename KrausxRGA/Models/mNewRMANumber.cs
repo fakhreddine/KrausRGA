@@ -277,6 +277,53 @@ namespace KrausRGA.Models
             return _ReturnID;
         }
 
+        public List<cSlipInfo> GetSlipInfo(List<Return> lsNewRMA,string SkuNumber, String EANCode, String ReturnReasons,string NewRGANumber)
+        {
+            List<cSlipInfo> _lsslipinfo = new List<cSlipInfo>();
+            try
+            {
+                cSlipInfo slip = new cSlipInfo();
+                slip.ProductName = SkuNumber;
+                slip.Reason = ReturnReasons;
+                slip.ReceivedBY = clGlobal.mCurrentUser.UserInfo.UserName;
+                slip.ReceivedDate = lsNewRMA[0].ReturnDate;
+                slip.Expiration = lsNewRMA[0].ReturnDate.AddMonths(3);
+                slip.SRNumber = NewRGANumber;
+                slip.EANCode = EANCode;
+                _lsslipinfo.Add(slip);
+            }
+            catch (Exception)
+            {
 
+            }
+            return _lsslipinfo;
+        }
+
+        public String GetENACodeByItem(string ItemName)
+        {
+            string ENACode = "";
+            try
+            {
+                ENACode = cSage.GetEANCode(ItemName);
+            }
+            catch (Exception)
+            {
+            }
+            return ENACode;
+
+        }
+        public String GetReasonsByRDetail(Guid ReturnDetailID)
+        {
+            string Reasons = "";
+            try
+            {
+                Reasons = cRtnreasons.GetReasonsByReturnDetailID(ReturnDetailID);
+            }
+            catch (Exception)
+            {
+            }
+            return Reasons;
+
+        }
     }
 }

@@ -237,6 +237,8 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
+
+
             Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
             Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
 
@@ -326,12 +328,21 @@ namespace KrausRGA.UI
                     Guid ImageID = _mNewRMA.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
                 }
 
+                if (_SKU != "" && _PName != "")
+                {
+
+                    wndSlipPrint slip = new wndSlipPrint();
+
+                    Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), _mNewRMA.GetReasonsByRDetail(ReturnDetailsID), _mNewRMA.GetNewROWID(ReturnTblID));
+
+                    slip.ShowDialog();
+                }
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
             this.Close();
             //close wait screen.
-            WindowThread.Stop();
+           // WindowThread.Stop();
             wndBox.Show(); 
 
         }
@@ -603,7 +614,7 @@ namespace KrausRGA.UI
         {
             List<String> _lsNewRMAnumber = new List<string>();
 
-            string che = ((System.Windows.Controls.TextBox)(e.Source)).Text;
+            string che = ((System.Windows.Controls.TextBox)(e.Source)).Text.ToUpper();
 
             _lsNewRMAnumber = _mNewRMA.NewRMAInfo(che);
 

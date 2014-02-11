@@ -84,6 +84,7 @@ namespace KrausRGA.UI
 
                 var newimag = Imaging.CreateBitmapSourceFromHBitmap(imges.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
+
                 image.Source = newimag;
 
                 //this.pctBarCode.Image = img;

@@ -10,10 +10,10 @@ namespace KrausRGA.Barcode
     {
             private Bitmap newBitmap;
             private Graphics g;
-            private int barCodeHeight = 35;
+            private int barCodeHeight = 28;
             private int placeMarker = 0;
-            private int imageWidth = 270;
-            private float imageScale = 1;
+            private int imageWidth = 125;
+            private float imageScale =1;
             private string UPCABegin = "0000000000000101";
             private string[] UPCALeft = { "0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011" };
             private string UPCAMiddle = "01010";
@@ -70,7 +70,7 @@ namespace KrausRGA.Barcode
                     }
                 }
 
-                System.Drawing.Font font = new System.Drawing.Font("Courier New, Bold", 9);
+                System.Drawing.Font font = new System.Drawing.Font("Verdana, Bold", 7);
                 try
                 {
                     g.DrawString(txt.Substring(0, 1), font, Brushes.Black, new System.Drawing.PointF(0, 15));
