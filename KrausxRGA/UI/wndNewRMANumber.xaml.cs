@@ -247,6 +247,8 @@ namespace KrausRGA.UI
             ret.RMANumber = txtRMANumber.Text;
             ret.VendoeName = txtVendorName.Text;
             ret.VendorNumber = txtVendorNumber.Text;
+            ret.ScannedDate = DateTime.UtcNow;
+            ret.ExpirationDate = DateTime.UtcNow.AddDays(60);
             eastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(txtRMAReqDate.SelectedDate.Value, "Eastern Standard Time");
             ret.ReturnDate = eastern;
             ret.PONumber = txtPoNumber.Text;

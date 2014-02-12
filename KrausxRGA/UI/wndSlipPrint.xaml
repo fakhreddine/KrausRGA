@@ -19,7 +19,7 @@
 
                 <Image  x:Name="image" Height="42" Width="212" Canvas.Left="34" Canvas.Top="73"/>
                 <Border Height="1" Width="282" Canvas.Top="70" BorderBrush="Gray" BorderThickness="1" Canvas.Left="3"/>
-                <TextBlock Text="null" x:Name="txtproductName" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="8" FontWeight="Bold" TextAlignment="Center" Canvas.Left="69" Canvas.Top="114" Width="87" TextWrapping="Wrap"/>
+                <TextBlock Text="null" x:Name="txtproductName" RenderTransformOrigin="-0.061,-1.256" Height="16" FontSize="8" FontWeight="Bold" TextAlignment="Center" Canvas.Left="10" Canvas.Top="115" Width="288" TextWrapping="Wrap"/>
             </Canvas>
         </Border>
     </Grid>

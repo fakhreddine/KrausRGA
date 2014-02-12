@@ -288,8 +288,8 @@ namespace KrausRGA.Models
                 slip.ProductName = SkuNumber;
                 slip.Reason = ReturnReasons;
                 slip.ReceivedBY = clGlobal.mCurrentUser.UserInfo.UserName;
-                slip.ReceivedDate = lsNewRMA[0].ReturnDate;
-                slip.Expiration = lsNewRMA[0].ReturnDate.AddMonths(3);
+                slip.ReceivedDate = lsNewRMA[0].ScannedDate;
+                slip.Expiration = lsNewRMA[0].ExpirationDate;
                 slip.SRNumber = NewRGANumber;
                 slip.EANCode = EANCode;
                 _lsslipinfo.Add(slip);

@@ -68,9 +68,14 @@ namespace KrausRGA.UI
              Reason = _lsInfoSlip[0].Reason;
 
             var sBoxNumber = b.Encode(BarcodeLib.TYPE.CODE128, SRnumber, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 1500, 550);
-            var sproductname = b.Encode(BarcodeLib.TYPE.UPCA, productname, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 2000, 500);
-
+           // var sproductname = b.Encode(BarcodeLib.TYPE.UPCA, productname, System.Drawing.Color.Black, System.Drawing.Color.Transparent, 2000, 500);
             txtTextToAdd.Text = _lsInfoSlip[0].EANCode;
+            if (_lsInfoSlip[0].EANCode == "" || _lsInfoSlip[0].EANCode == "N/A")
+            {
+                txtTextToAdd.Text = "000000000000";
+                SKUName = "*[UPC Code Not Found] " + SKUName;
+            }
+            
 
 
             UPCA upca = new UPCA();
@@ -98,10 +103,10 @@ namespace KrausRGA.UI
             }
 
             var bitmapBox = new System.Drawing.Bitmap(sBoxNumber);
-            var pbitmapBox = new System.Drawing.Bitmap(sproductname);
+         //   var pbitmapBox = new System.Drawing.Bitmap(sproductname);
 
             var bBoxSource = Imaging.CreateBitmapSourceFromHBitmap(bitmapBox.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            var pproduct = Imaging.CreateBitmapSourceFromHBitmap(pbitmapBox.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+           // var pproduct = Imaging.CreateBitmapSourceFromHBitmap(pbitmapBox.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
             bitmapBox.Dispose();
 
