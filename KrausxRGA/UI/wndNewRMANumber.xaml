@@ -253,6 +253,7 @@
                                         </Button>
                                         <!--<ScrollViewer  Canvas.Top="47" Width="500" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Canvas.Left="0" >-->
                                         <DataGrid Height="221" x:Name="dgReasons"
+                                                   MinRowHeight="70"
 													ItemsSource="{Binding}" 
 													AutoGenerateColumns="False"
 													CanUserAddRows="False"
@@ -269,10 +270,10 @@
                                                     </DataGridTemplateColumn.CellStyle>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate  >
-                                                            <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1" >
+                                                            <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1" Height="70">
                                                                 <Border Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="1,1,1,1"  Background="#FF919191" CornerRadius="0" Height="100" Margin="0,0,0,0" >
                                                                     <Canvas Margin="0,0,0,0">
-                                                                        <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="10,0,0,0" FontSize="25"  Width="500" Foreground="WhiteSmoke"/>
+                                                                        <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="10,0,0,0" FontSize="25" Height="70" Width="500" Foreground="WhiteSmoke"/>
                                                                         <CheckBox x:Name="cbReasons" Width="0" Content="" Canvas.Top="4" Canvas.Left="2" Visibility="Hidden" />
                                                                     </Canvas>
                                                                 </Border>
