@@ -359,9 +359,10 @@ namespace KrausRGA.UI
 
             Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
             Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
-
+            DateTime ScannedDate = DateTime.UtcNow;
+            DateTime ExpirationDate = DateTime.UtcNow.AddDays(60);
             //Save to RMA Master Table.
-            Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
+            Guid ReturnTblID = _mReturn.SetReturnTbl(ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID,ScannedDate,ExpirationDate);
             if (Views.clGlobal.mReturn.IsAlreadySaved)
             {
                 ReturnTblID = _mUpdate._ReturnTbl.ReturnID;
@@ -429,7 +430,7 @@ namespace KrausRGA.UI
 
                     wndSlipPrint slip = new wndSlipPrint();
 
-                    Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text));
+                    Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text),ScannedDate,ExpirationDate);
 
                    slip.ShowDialog();
 

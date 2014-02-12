@@ -359,7 +359,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guid RetutnID that is inserted or updated on transaction filure it return empty Guid.
         /// </returns>
-        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy)
+        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy,DateTime ScannedDate, DateTime ExpirationDate)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -375,8 +375,8 @@ namespace KrausRGA.Models
                 TblRerutn.OrderDate = lsRMAInformation[0].OrderDate;
                 TblRerutn.DeliveryDate = lsRMAInformation[0].DeliveryDate;
                 TblRerutn.ReturnDate = lsRMAInformation[0].ReturnDate;
-                TblRerutn.ScannedDate = DateTime.UtcNow;
-                TblRerutn.ExpirationDate = DateTime.UtcNow.AddDays(60);
+                TblRerutn.ScannedDate = ScannedDate;
+                TblRerutn.ExpirationDate = ExpirationDate;
                 TblRerutn.VendorNumber = lsRMAInformation[0].VendorNumber;
                 TblRerutn.VendoeName = lsRMAInformation[0].VendorName;
                 TblRerutn.CustomerName1 = lsRMAInformation[0].CustomerName1;
@@ -615,7 +615,7 @@ namespace KrausRGA.Models
         }
 
 
-        public List<cSlipInfo> GetSlipInfo(string SkuNumber,String EANCode, String ReturnReasons)
+        public List<cSlipInfo> GetSlipInfo(string SkuNumber,String EANCode, String ReturnReasons,DateTime ScannedDate, DateTime ExpirationDate)
         {
             List<cSlipInfo> _lsslipinfo = new List<cSlipInfo>();
             try
@@ -624,8 +624,8 @@ namespace KrausRGA.Models
                 slip.ProductName = SkuNumber;
                 slip.Reason = ReturnReasons;
                 slip.ReceivedBY = clGlobal.mCurrentUser.UserInfo.UserName;
-                slip.ReceivedDate = _Return.ScannedDate;
-                slip.Expiration = _Return.ExpirationDate;
+                slip.ReceivedDate = ScannedDate;
+                slip.Expiration = ExpirationDate;
                 slip.SRNumber = lsRMAInformation[0].RMANumber;
                 slip.EANCode = EANCode;
                 _lsslipinfo.Add(slip);
