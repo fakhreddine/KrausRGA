@@ -6,6 +6,10 @@ using System.Drawing;
 
 namespace KrausRGA.Barcode
 {
+    /// <summary>
+    /// Upc code generation class.
+    /// Generates the code with the Text of 12 Digit.
+    /// </summary>
    public class UPCA
     {
             private Bitmap newBitmap;
@@ -20,6 +24,18 @@ namespace KrausRGA.Barcode
             private string[] UPCARight = { "1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100" };
             private string UPCAEnd = "1010000000000000";
 
+       /// <summary>
+       /// Create barcode from the text.s
+       /// </summary>
+       /// <param name="txt">
+       /// String 12 digit intergers that to be converted to UPC-A barcode.
+       /// </param>
+       /// <param name="scale">
+       /// Scale is nothign.
+       /// </param>
+       /// <returns>
+       /// Control image.
+       /// </returns>
             public Image CreateBarCode(string txt, int scale)
             {
                 Image img = null;

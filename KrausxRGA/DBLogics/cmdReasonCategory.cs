@@ -27,9 +27,6 @@ namespace KrausRGA.DBLogics
             try
             {
                 _return = Service.entSave.ReasonCategory(ReasonCat.ConvertToSaveDTO(ReasonCat));
-                // entRMA.AddToReasonCategories(ReasonCat);
-                //entRMA.SaveChanges();
-
             }
             catch (Exception ex)
             {

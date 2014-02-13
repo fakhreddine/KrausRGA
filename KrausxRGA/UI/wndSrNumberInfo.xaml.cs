@@ -35,62 +35,75 @@ namespace KrausRGA.UI
     {
 
         #region Declarations.
-
+        //where the images captured stored.
         string imgPath = KrausRGA.Properties.Settings.Default.DrivePath;
-
+        //user models object.
         mUser _mUser = clGlobal.mCurrentUser;
-
-        mReturnDetails _mReturn = clGlobal.mReturn;
-
-        List<cSlipInfo> _lsSlpiInfo = new List<cSlipInfo>();
-
         
-
+        //return details model object.
+        mReturnDetails _mReturn = clGlobal.mReturn;
+        
+        //Print slip class list.
+        List<cSlipInfo> _lsSlpiInfo = new List<cSlipInfo>();
+        
+        //RMA information from sage list.
         List<RMAInfo> _lsRMAInfo = new List<RMAInfo>();
+        
+        //Update mode opened saves the details of RMA.
         mUpdateModeRMA _mUpdate;
 
         //Stack Panel in row assigned to this and used in Images captured add.
         StackPanel spRowImages;
+
         //Scroll Viewer from selected Row;
         ScrollViewer SvImagesScroll;
 
+        //Dispacher that works when the RMA number opend in Upadate mode.
         DispatcherTimer dtLoadUpdate;
 
+        //recoded saving thread.
         public static Thread thSaving;
 
         #endregion
 
         public wndSrNumberInfo()
         {
+            #region Font size set of the application
+            
+            //get the font sizes from the text file.
             String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
             String HeaderSize = FontSizes[1];
             String ControlSize = FontSizes[2];
             String VeriableSize = FontSizes[0];
-
             Resources["FontSize"] = Convert.ToDouble(VeriableSize);
             Resources["HeaderSize"] = Convert.ToDouble(HeaderSize);
             Resources["ContactFontSize"] = Convert.ToDouble(ControlSize);
+            
+            #endregion
 
             InitializeComponent();
-            FillRMAStausAndDecision();
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //fill status and Decision combobox;
+            FillRMAStausAndDecision();
+
             //fill OtherReason ComboBox
             List<Reason> lsReturn = _mReturn.GetReasons();
+
+            //add reason select to the Combobox other reason.
             Reason re = new Reason();
             re.ReasonID = Guid.NewGuid();
             re.Reason1 = "--Select--";
-
             lsReturn.Insert(0, re);
-
             cmbOtherReason.ItemsSource = lsReturn;
 
+            //RMA information assigned from the Model of Return.
             _lsRMAInfo = _mReturn.lsRMAInformation;
 
-            //Set all vaues.
+            #region Display all to the window..
+            
             lblRMANumber.Content = _lsRMAInfo[0].RMANumber;
             tbCustomerName.Text = _lsRMAInfo[0].CustomerName1;
             lblRMAReqDate.Content = _lsRMAInfo[0].ReturnDate.ToString("MMM dd, yyyy");
@@ -103,23 +116,36 @@ namespace KrausRGA.UI
             lblZipCode.Content = _lsRMAInfo[0].ZipCode;
             lblCountry.Content = _lsRMAInfo[0].Country;
             lblExpirationDate.Content = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(60), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString("MMM dd, yyyy");
+            dgPackageInfo.ItemsSource = _lsRMAInfo; 
 
-            dgPackageInfo.ItemsSource = _lsRMAInfo;
+            #endregion
+
+            #region Update mode RMA.
+            //RMA number is already present in the database.
             if (Views.clGlobal.mReturn.IsAlreadySaved)
             {
-               _mUpdate = new mUpdateModeRMA(Views.clGlobal.mReturn.lsRMAInformation[0].RMANumber);
-               lblExpirationDate.Content = _mUpdate._ReturnTbl.ExpirationDate.ToString("MMM dd yyyy");
+                //Get the all information from datebase to the Update mode from RMA Number.
+                _mUpdate = new mUpdateModeRMA(Views.clGlobal.mReturn.lsRMAInformation[0].RMANumber);
+                
+                //Show the Expiry date.
+                lblExpirationDate.Content = _mUpdate._ReturnTbl.ExpirationDate.ToString("MMM dd yyyy");
+                
+                //Initialize the Dispacher that shows all values from the Update model.
                 dtLoadUpdate = new DispatcherTimer();
                 dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
                 dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
                 dtLoadUpdate.Start();
             }
+ 
+            #endregion
            
         }
 
         void dtLoadUpdate_Tick(object sender, EventArgs e)
         {
             dtLoadUpdate.Stop();
+            //set the all setting from update model.
             SetGridChack(dgPackageInfo);
             
         }

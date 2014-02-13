@@ -15,6 +15,11 @@ using System.Security.Permissions; // PermissionSetAttribute
 using System.ComponentModel;
 namespace KrausRGA.Barcode
 {
+    /// <summary>
+    /// Avi : 14 Feb ; Kraus RGA Project.
+    /// All method related to the Camera control.
+    /// Open camera , Close camera, take Photo, Captured last photo ect.
+    /// </summary>
     public static class Camera
     {
         /// <summary>
@@ -211,6 +216,15 @@ namespace KrausRGA.Barcode
             }
         }
 
+        /// <summary>
+        /// Create thubnels of the Images from file.
+        /// </summary>
+        /// <param name="filename">
+        /// String file name.
+        /// </param>
+        /// <param name="image5">
+        /// Bitmap source to be converted in to given file name.
+        /// </param>
         public static void CreateThumbnail(string filename, BitmapSource image5)
         {
             if (filename != string.Empty)
@@ -226,6 +240,18 @@ namespace KrausRGA.Barcode
             }
         }
 
+
+        /// <summary>
+        /// Avi : 14 Feb ; Kraus RGA Project.
+        /// Export the canvas to the Images withe the file name.
+        /// used in the camera screen to capture the images.
+        /// </summary>
+        /// <param name="path">
+        /// String pathe of the images to be save with the image extension.
+        /// </param>
+        /// <param name="surface">
+        /// Canvas control to be converted in to image.
+        /// </param>
         public static void CanvasExportToPng(Uri path, System.Windows.Controls.Canvas surface)
         {
             
@@ -268,6 +294,14 @@ namespace KrausRGA.Barcode
             surface.LayoutTransform = transform;
         }
 
+        /// <summary>
+        /// Avi : 14 Feb ; Kraus RGA Project.
+        /// Coptured images is rotated in 90 Degree.
+        /// Images captured is vertical to make it horizontal.
+        /// </summary>
+        /// <param name="ImageUri">
+        /// String Image URL to be converted 
+        /// </param>
         public static void Rotate90Degree(String ImageUri)
         {
             System.Drawing.Bitmap bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(ImageUri);
@@ -275,7 +309,14 @@ namespace KrausRGA.Barcode
             bitmap1.Save(ImageUri);
         }
        
-
+        /// <summary>
+        /// Copy the images to the network drive.
+        /// Shared drive.
+        /// shared drive adderess is taken from the Properties.
+        /// </summary>
+        /// <param name="Filename">
+        /// String File name to be copy on the Shred drive.
+        /// </param>
         public static void CopytoNetwork(String Filename)
         {
             try
