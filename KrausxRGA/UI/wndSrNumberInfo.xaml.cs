@@ -80,8 +80,6 @@ namespace KrausRGA.UI
         {
             //fill OtherReason ComboBox
             List<Reason> lsReturn = _mReturn.GetReasons();
-            
-
             Reason re = new Reason();
             re.ReasonID = Guid.NewGuid();
             re.Reason1 = "--Select--";
@@ -104,11 +102,13 @@ namespace KrausRGA.UI
             lblState.Content = _lsRMAInfo[0].State;
             lblZipCode.Content = _lsRMAInfo[0].ZipCode;
             lblCountry.Content = _lsRMAInfo[0].Country;
+            lblExpirationDate.Content = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(60), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString("MMM dd, yyyy");
 
             dgPackageInfo.ItemsSource = _lsRMAInfo;
             if (Views.clGlobal.mReturn.IsAlreadySaved)
             {
                _mUpdate = new mUpdateModeRMA(Views.clGlobal.mReturn.lsRMAInformation[0].RMANumber);
+               lblExpirationDate.Content = _mUpdate._ReturnTbl.ExpirationDate.ToString("MMM dd yyyy");
                 dtLoadUpdate = new DispatcherTimer();
                 dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
                 dtLoadUpdate.Tick += dtLoadUpdate_Tick;

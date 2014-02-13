@@ -18,18 +18,12 @@ namespace KrausRGA.Views
        /// <returns></returns>
        public static Boolean forcombobox(this ComboBox cm)
        {
-          Boolean _return = false;
+          Boolean _return = true;
           if (cm.SelectedIndex != 0)
           {
-              _return = true;
+              _return = false;
           }
           return _return;
        }
-
-       //public static Boolean gridrow(this DataGrid dg)
-       //{
-       //    return dg.SelectedCells[3]==null ? true : false;
-       //}
-         
     }
 }
