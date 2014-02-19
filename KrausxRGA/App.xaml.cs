@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-
+using KrausRGA.Views;
 namespace KrausRGA
 {
     /// <summary>
@@ -33,12 +33,12 @@ namespace KrausRGA
             //Service.entSave.Open();
             #endregion
 
-            #region Application Start From another Application.
-            //String[] LoginParametrs = e.Args;
-            //if (LoginParametrs.Count() > 0)
-            //{
-            //    StartupParametrs.UserName = LoginParametrs[0];
-            //} 
+            #region Map Images Drive
+
+            //Map network drive to the local system.
+            MapDrive();
+
+
             #endregion
 
             #region Update Version
@@ -71,6 +71,28 @@ namespace KrausRGA
 
 
             #endregion
+
+           
+        }
+
+
+        /// <summary>
+        /// Map the network drive to the System.
+        /// </summary>
+        private void MapDrive()
+        {
+            try
+            {
+                NetworkDrive drive = new NetworkDrive();
+                drive.Force = true;
+                drive.LocalDrive = "X:";
+                drive.ShareName = @"\\192.168.1.172\Macintosh HD\ftp_share\RGAImages";
+                drive.SaveCredentials = true;
+                drive.MapDrive("mediaserver", "kraus2013");
+            }
+            catch (Exception)
+            {}
+
         }
     }
 }
