@@ -215,6 +215,7 @@
     <Compile Include="Views\ExtensionParent.cs" />
     <Compile Include="Views\ImageK.cs" />
     <Compile Include="Views\eNumberType.cs" />
+    <Compile Include="Views\NetworkDrive.cs" />
     <Compile Include="Views\RMAInfo.cs" />
     <Compile Include="Views\StartupParametrs.cs" />
     <Compile Include="Views\Validation.cs" />
