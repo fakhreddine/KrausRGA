@@ -57,7 +57,7 @@
                                     <Border Style="{StaticResource bdrWin8btn}"  Canvas.Top="140" Canvas.Left="37"  >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnBoxNumber_Click"></Image>
-                                            <Button x:Name="btnPONumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Enter Number" Margin="-1,-1,-1,1" Click="btnPONumber_Click" />
+                                            <Button x:Name="btnPONumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="New RMA" Margin="-1,-1,-1,1" Click="btnPONumber_Click" />
                                         </StackPanel>
                                     </Border>
                                     <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="226" Canvas.Left="37"  >

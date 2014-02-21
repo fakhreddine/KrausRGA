@@ -702,11 +702,14 @@ namespace KrausRGA.UI
         
         private void ContentControl_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
-            int index = dgPackageInfo.SelectedIndex;
-            DataGridCell cell = GetCell(index, 3);
-            ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-            DataTemplate DataTemp = CntPersenter.ContentTemplate;
-            spRowImages = (StackPanel)DataTemp.FindName("spProductImages", CntPersenter);
+            ContentControl cnt = (ContentControl)sender;
+            StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+
+            //int index = dgPackageInfo.SelectedIndex;
+            //DataGridCell cell = GetCell(index, 3);
+            //ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+            //DataTemplate DataTemp = CntPersenter.ContentTemplate;
+            //spRowImages = (StackPanel)DataTemp.FindName("spProductImages", CntPersenter);
                 try
                 {
                     //Show Camera.
@@ -715,7 +718,7 @@ namespace KrausRGA.UI
                     {
                         try
                         {
-                            string path = KrausRGA.Properties.Settings.Default.DrivePath + "\\";
+                            string path = "C:\\images" + "\\";
 
                             BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
 
