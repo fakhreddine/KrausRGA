@@ -191,5 +191,46 @@ namespace KrausRGA.DBLogics
        }
 
 
+       public List<RMAInfo> GetCustInfoByPoNumber(String PONumber)
+       {
+           List<RMAInfo> lsCustinfo = new List<RMAInfo>();
+           try
+           {
+               var CustomerInfo = Service.entGet.GetCustomerByPOnumber(PONumber).ToList();
+               if (CustomerInfo.Count() > 0)
+               {
+                   foreach (var Customer in CustomerInfo)
+                   {
+                       lsCustinfo .Add(new RMAInfo(Customer));
+                   }
+               }
+           }
+           catch (Exception)
+           {
+           }
+           return lsCustinfo;
+       
+       }
+
+       public List<String> GetPONumber(String Chars)
+       {
+           List<String> lsponumber = new List<String>();
+           try
+           {
+               var ponumbers = Service.entGet.GetPOnumber(Chars);
+               if (ponumbers.Count() > 0)
+               {
+                   foreach (var ponum in ponumbers)
+                   {
+                       lsponumber.Add(ponum);
+                   }
+               }
+           }
+           catch (Exception ex)
+           {
+               ex.LogThis("cmdSageOperations/GetPOnumber");
+           }
+           return lsponumber;
+       }
     }
 }

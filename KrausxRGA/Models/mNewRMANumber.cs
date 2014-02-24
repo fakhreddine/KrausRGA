@@ -327,5 +327,33 @@ namespace KrausRGA.Models
             return Reasons;
 
         }
+
+        public List<RMAInfo> GetCustomer(string PONumber)
+        {
+            List<RMAInfo> lsCustomer = new List<RMAInfo>();
+            try
+            {
+                lsCustomer = cSage.GetCustInfoByPoNumber(PONumber);
+            }
+            catch (Exception)
+            {
+            }
+            return lsCustomer;
+        
+        }
+
+        public List<string> GetPOnumber(string Chars)
+        {
+            List<string> _lsPonumber = new List<string>();
+            try
+            {
+                _lsPonumber = cSage.GetPONumber(Chars);
+            }
+            catch (Exception)
+            { }
+            return _lsPonumber;
+        }
+
+
     }
 }

@@ -89,11 +89,17 @@ namespace KrausRGA.UI
 
             int index = row.GetIndex();
           
-                cvItemStatus.Visibility = System.Windows.Visibility.Visible;
-                //TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-              //  txtSKUname.Text = tbSKUName.Text.ToString();
+            DataGridCell cell2 = GetCell(index, 0);
+            ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
+            DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
 
-               // int index = dgPackageInfo.SelectedIndex;
+            DataGridCell cell1 = GetCell(index, 1);
+            ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+            DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+
+            if (((TextBox)DataTemp2.FindName("txtSKU", CntPersenter2)).Text != "" && ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text != "")
+            {
+                cvItemStatus.Visibility = System.Windows.Visibility.Visible;
 
                 DataGridCell cell = GetCell(index, 0);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
@@ -101,7 +107,7 @@ namespace KrausRGA.UI
 
                 string Sku = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text;
 
-                List<String> NewRMAnumber=new List<string>();
+                List<String> NewRMAnumber = new List<string>();
 
 
                 NewRMAnumber = _mNewRMA.NewRMAInfo(Sku);
@@ -111,7 +117,7 @@ namespace KrausRGA.UI
                 {
                     string[] NewRMA = NewRMAnumber[0].Split(new char[] { '#' });
 
-                     Category = NewRMA[2];
+                    Category = NewRMA[2];
 
                     FilldgReasons(Category);
                 }
@@ -120,13 +126,8 @@ namespace KrausRGA.UI
                     Category = "";
                     FilldgReasons(Category);
                 }
-              //  mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
-               // ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-            
+            }
         }
-
-    
-
 
         private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
@@ -624,12 +625,6 @@ namespace KrausRGA.UI
 
             lstSKU.ItemsSource = _lsNewRMAnumber;
 
-            //int index = dgPackageInfo.SelectedIndex;
-
-            //int position =( (index) * 90)+110;
-
-            //Canvas.SetTop(lstSKU, position);
-
         }
 
         private void lstSKU_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -704,12 +699,21 @@ namespace KrausRGA.UI
         {
             ContentControl cnt = (ContentControl)sender;
             StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+         
+            DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+            int index = row.GetIndex();
 
-            //int index = dgPackageInfo.SelectedIndex;
-            //DataGridCell cell = GetCell(index, 3);
-            //ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-            //DataTemplate DataTemp = CntPersenter.ContentTemplate;
-            //spRowImages = (StackPanel)DataTemp.FindName("spProductImages", CntPersenter);
+
+            DataGridCell cell = GetCell(index, 0);
+            ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+            DataTemplate DataTemp = CntPersenter.ContentTemplate;
+
+            DataGridCell cell1 = GetCell(index, 1);
+            ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+            DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+
+            if (((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text != "" && ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text != "")
+            {
                 try
                 {
                     //Show Camera.
@@ -746,27 +750,12 @@ namespace KrausRGA.UI
 
                 }
             }
+            }
+    
 
         private void dgPackageInfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            // int selectedIndex = dgPackageInfo.SelectedIndex;
-            //if (selectedIndex != -1)
-            //{
-            //    foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
-            //    {
-            //        if (row.IsSelected)
-            //        {
-            //            ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-            //            DataTemplate Dt = cp.ContentTemplate;
-            //            StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
-            //            spRowImages = spProductIMages;
-            //            ScrollViewer SvImages = (ScrollViewer)Dt.FindName("svScrollImages", cp);
-            //            SvImagesScroll = SvImages;
-            //        }
-            //    }
-            // }
-            // }
-
+          
         }
 
         private void dgPackageInfo_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
@@ -774,6 +763,49 @@ namespace KrausRGA.UI
             dgPackageInfo.Items.RemoveAt(dgPackageInfo.SelectedIndex);
         }
 
+        private void txtPoNumber_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+              List<RMAInfo> lsCustomeronfo=_mNewRMA.GetCustomer(txtPoNumber.Text);
+              lstponumber.Visibility = Visibility.Hidden;   
 
+              if (lsCustomeronfo.Count>0)
+              {
+                  txtAddress.Text = lsCustomeronfo[0].Address1;
+                  txtCountry.Text = lsCustomeronfo[0].Country;
+                  txtCustCity.Text = lsCustomeronfo[0].City;
+                  txtState.Text = lsCustomeronfo[0].State;
+                  txtZipCode.Text = lsCustomeronfo[0].ZipCode;
+                  txtName.Text = lsCustomeronfo[0].CustomerName1;     
+              }
+            }
+        }
+
+        private void txtPoNumber_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            lstponumber.ItemsSource=_mNewRMA.GetPOnumber(txtPoNumber.Text);
+            lstponumber.Visibility = Visibility.Visible;
+        }
+
+        private void lstponumber_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstponumber.SelectedItem!=null)
+            {
+                List<RMAInfo> lsCustomeronfo = _mNewRMA.GetCustomer(lstponumber.SelectedItem.ToString());
+
+                if (lsCustomeronfo.Count > 0)
+                {
+                    txtPoNumber.Text = lsCustomeronfo[0].PONumber;
+                    txtAddress.Text = lsCustomeronfo[0].Address1;
+                    txtCountry.Text = lsCustomeronfo[0].Country;
+                    txtCustCity.Text = lsCustomeronfo[0].City;
+                    txtState.Text = lsCustomeronfo[0].State;
+                    txtZipCode.Text = lsCustomeronfo[0].ZipCode;
+                    txtName.Text = lsCustomeronfo[0].CustomerName1;
+                }
+                lstponumber.Visibility = Visibility.Hidden;    
+            }
+        }
     }
 }

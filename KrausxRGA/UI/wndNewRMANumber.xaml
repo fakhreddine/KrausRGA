@@ -27,7 +27,7 @@
                                             <TextBox x:Name="txtVendorNumber"  Canvas.Left="435" Canvas.Top="123" Width="256" Height="33" FontSize="15"/>
 
                                             <Label x:Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="178" Width="169" Canvas.Left="223"/>
-                                            <TextBox x:Name="txtVendorName"  Canvas.Left="435" Canvas.Top="161" Width="331" Height="62" FontSize="15"/>
+                                            <TextBox x:Name="txtVendorName"  Canvas.Left="435" Canvas.Top="161" Width="321" Height="62" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True"/>
                                       
                                             <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="150" Canvas.Left="28"/>
                                             <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True"
@@ -63,14 +63,14 @@
                                                 <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
                                             </Border>
                                             <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="62" Width="154" Canvas.Left="7"/>
-                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="55" Width="238" Height="33" FontSize="15"/>
+                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="55" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1"/>
 
                                             <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="105" Width="158" Canvas.Left="3"/>
                                             <TextBox x:Name="txtName"   Canvas.Left="166" Canvas.Top="100" Width="239" Height="33" FontSize="15"/>
                                      
                                             <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="154" Width="168" Canvas.Left="-7"/>
 
-                                            <TextBox x:Name="txtAddress" Canvas.Left="166" Canvas.Top="140"  Width="240" Height="56" FontSize="15"/>
+                                            <TextBox x:Name="txtAddress" Canvas.Left="166" Canvas.Top="138"  Width="240" Height="56" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True"/>
                                                
                                             <Label x:Name="lblcCustCity" Content="City : " Style="{StaticResource lblConstant}" Canvas.Top="58" Width="118" Canvas.Left="439"/>
                                             <TextBox x:Name="txtCustCity"  Canvas.Left="566" Canvas.Top="51" Width="185" Height="33" FontSize="15"/>
@@ -83,6 +83,7 @@
 
                                             <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="166" Width="114" Canvas.Left="441"/>
                                             <TextBox x:Name="txtCountry"  Canvas.Left="566" Canvas.Top="166" Width="187" Height="33" FontSize="15"/>
+                                            <ListBox Height="198" FontSize="30" Canvas.Left="407" Width="302" Visibility="Hidden" x:Name="lstponumber"  SelectionChanged="lstponumber_SelectionChanged_1" Canvas.Top="10"/>
                                         </Canvas>
                                     </Border>
 
@@ -93,13 +94,20 @@
                             <Border x:Name="bdrmain2" Height="337" >
                                 <Canvas x:Name="cvsTb1main2" Margin="0,5,10,5" Height="327">
                                     <!-- Grid View-->
-                                    <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
-                                        <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
+                                    <!-- Grid View-->
+
+                                    <!-- Grid View-->
+                                    <!-- Grid View-->
+
+                                    <!-- Grid View-->
+                                    <!-- Grid View-->
+                                    <Border Height="45" Width="788" Background="#B2111111" Canvas.Top="-1" Canvas.Left="-1">
+                                        <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="10,3,236,3"/>
                                     </Border>
 
                                     <!-- Grid View-->
-                                    <Border Height="45" Width="788" Background="#B2111111" Canvas.Top="-7" Canvas.Left="-1">
-                                        <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="10,3,236,3"/>
+                                    <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
+                                        <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
                                     </Border>
 
                                     <DataGrid x:Name="dgPackageInfo"
@@ -131,9 +139,9 @@
 
                                         <DataGrid.Columns>
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-													Header="SKU"  
-													Width="120" 
-													IsReadOnly="True" >
+                                        		Header="SKU"  
+                                        		Width="120" 
+                                        		IsReadOnly="True" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel  Height="60" Width="120">
@@ -144,21 +152,21 @@
 
                                             </DataGridTemplateColumn>
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-													Header="Product Name" 
-													Width="210" >
-                                                                    
-                                              <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
+                                        		Header="Product Name" 
+                                        		Width="210" >
+
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
                                                         <StackPanel  Height="60" Width="210" >
                                                             <TextBox x:Name="txtProductName"  Height="60" Margin="0,0,0,0" Text="{Binding ProductName}" FontSize="20" FontWeight="Bold"/>
                                                         </StackPanel>
-                                                </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                    			  </DataGridTemplateColumn>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-													Header="Qty"
-													Width="80" >
+                                        		Header="Qty"
+                                        		Width="80" >
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -169,10 +177,10 @@
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
 
-                                       
+
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
-													Header="Images" 
-													Width="200" >
+                                        		Header="Images" 
+                                        		Width="200" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="60">
@@ -185,8 +193,8 @@
                                             </DataGridTemplateColumn>
 
                                             <DataGridTemplateColumn Header="Reasons" 
-													HeaderStyle="{StaticResource HeaderStyleKey}"
-													Width="180" >
+                                        		HeaderStyle="{StaticResource HeaderStyleKey}"
+                                        		Width="180" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown">
@@ -222,9 +230,9 @@
                                                             <BeginStoryboard >
                                                                 <Storyboard >
                                                                     <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" 
-																			From="1000" 
-																			To="300" 
-																			Duration="0:0:0.1"/>
+                                                						From="1000" 
+                                                						To="300" 
+                                                						Duration="0:0:0.1"/>
                                                                 </Storyboard>
                                                             </BeginStoryboard>
                                                         </Trigger.EnterActions>
@@ -265,7 +273,7 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate  >
                                                             <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1" Height="70">
-                                                                <Border Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="1,1,1,1"  Background="#FF919191" CornerRadius="0" Height="100" Margin="0,0,0,0" >
+                                                                <Border x:Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="1,1,1,1"  Background="#FF919191" CornerRadius="0" Height="100" Margin="0,0,0,0" >
                                                                     <Canvas Margin="0,0,0,0">
                                                                         <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="10,0,0,0" FontSize="25" Height="70" Width="500" Foreground="WhiteSmoke"/>
                                                                         <CheckBox x:Name="cbReasons" Width="0" Content="" Canvas.Top="4" Canvas.Left="2" Visibility="Hidden" />
@@ -276,11 +284,11 @@
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
                                                 <DataGridTextColumn  
-															Binding="{Binding ReasonID}"
-															Header=""  
-															Width="0"
-															Foreground="WhiteSmoke"
-															IsReadOnly="True"/>
+                                            		Binding="{Binding ReasonID}"
+                                            		Header=""  
+                                            		Width="0"
+                                            		Foreground="WhiteSmoke"
+                                            		IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <!--</ScrollViewer>-->

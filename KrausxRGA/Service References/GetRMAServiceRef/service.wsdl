@@ -9,6 +9,18 @@
       <xsd:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IGet_GetRMALatestVersionNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRMALatestVersionNumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetRMALatestVersionNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRMALatestVersionNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_CategotyReasonNameByReasonID_InputMessage">
     <wsdl:part name="parameters" element="tns:CategotyReasonNameByReasonID" />
   </wsdl:message>
@@ -237,6 +249,18 @@
   <wsdl:message name="IGet_GetPrintReasonFromSage_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPrintReasonFromSageResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_GetCustomerByPOnumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerByPOnumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetCustomerByPOnumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerByPOnumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetPOnumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPOnumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetPOnumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPOnumberResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_RoleAll_InputMessage">
     <wsdl:part name="parameters" element="tns:RoleAll" />
   </wsdl:message>
@@ -261,19 +285,15 @@
   <wsdl:message name="IGet_ImagePathStringList_OutputMessage">
     <wsdl:part name="parameters" element="tns:ImagePathStringListResponse" />
   </wsdl:message>
-  <wsdl:message name="IGet_GetRMALatestVersionNumber_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetRMALatestVersionNumber" />
-  </wsdl:message>
-  <wsdl:message name="IGet_GetRMALatestVersionNumber_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetRMALatestVersionNumberResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailID" />
-  </wsdl:message>
-  <wsdl:message name="IGet_GetSKUImagesByReturnDetailID_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSKUImagesByReturnDetailIDResponse" />
-  </wsdl:message>
   <wsdl:portType name="IGet">
+    <wsdl:operation name="GetRMALatestVersionNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetRMALatestVersionNumber" message="tns:IGet_GetRMALatestVersionNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetRMALatestVersionNumberResponse" message="tns:IGet_GetRMALatestVersionNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSKUImagesByReturnDetailID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" message="tns:IGet_GetSKUImagesByReturnDetailID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailIDResponse" message="tns:IGet_GetSKUImagesByReturnDetailID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CategotyReasonNameByReasonID">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonID" message="tns:IGet_CategotyReasonNameByReasonID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/CategotyReasonNameByReasonIDResponse" message="tns:IGet_CategotyReasonNameByReasonID_OutputMessage" />
@@ -426,6 +446,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetPrintReasonFromSage" message="tns:IGet_GetPrintReasonFromSage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetPrintReasonFromSageResponse" message="tns:IGet_GetPrintReasonFromSage_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCustomerByPOnumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetCustomerByPOnumber" message="tns:IGet_GetCustomerByPOnumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetCustomerByPOnumberResponse" message="tns:IGet_GetCustomerByPOnumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPOnumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetPOnumber" message="tns:IGet_GetPOnumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetPOnumberResponse" message="tns:IGet_GetPOnumber_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RoleAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/RoleAll" message="tns:IGet_RoleAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/RoleAllResponse" message="tns:IGet_RoleAll_OutputMessage" />
@@ -442,17 +470,27 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ImagePathStringList" message="tns:IGet_ImagePathStringList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ImagePathStringListResponse" message="tns:IGet_ImagePathStringList_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetRMALatestVersionNumber">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetRMALatestVersionNumber" message="tns:IGet_GetRMALatestVersionNumber_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetRMALatestVersionNumberResponse" message="tns:IGet_GetRMALatestVersionNumber_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetSKUImagesByReturnDetailID">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" message="tns:IGet_GetSKUImagesByReturnDetailID_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailIDResponse" message="tns:IGet_GetSKUImagesByReturnDetailID_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGet" type="tns:IGet">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRMALatestVersionNumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetRMALatestVersionNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSKUImagesByReturnDetailID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CategotyReasonNameByReasonID">
       <soap:operation soapAction="http://tempuri.org/IGet/CategotyReasonNameByReasonID" style="document" />
       <wsdl:input>
@@ -795,6 +833,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCustomerByPOnumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetCustomerByPOnumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPOnumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetPOnumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RoleAll">
       <soap:operation soapAction="http://tempuri.org/IGet/RoleAll" style="document" />
       <wsdl:input>
@@ -824,24 +880,6 @@
     </wsdl:operation>
     <wsdl:operation name="ImagePathStringList">
       <soap:operation soapAction="http://tempuri.org/IGet/ImagePathStringList" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetRMALatestVersionNumber">
-      <soap:operation soapAction="http://tempuri.org/IGet/GetRMALatestVersionNumber" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSKUImagesByReturnDetailID">
-      <soap:operation soapAction="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
