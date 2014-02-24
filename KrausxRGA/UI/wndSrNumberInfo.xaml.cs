@@ -157,6 +157,8 @@ namespace KrausRGA.UI
             ContentControl cnt = (ContentControl)sender;
             DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
+            StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+
             if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
             {
                 try
