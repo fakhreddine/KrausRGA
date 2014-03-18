@@ -232,5 +232,76 @@ namespace KrausRGA.DBLogics
            }
            return lsponumber;
        }
+     
+       public List<string> GetVenderName(string Chars)
+       {
+           List<string> lsvendername = new List<string>();
+           try
+           {
+               var vendername = Service.entGet.GetVenderName(Chars);
+               if (vendername.Count()>0)
+               {
+                   foreach (var item in vendername)
+                   {
+                       lsvendername.Add(item);
+                   }    
+               }
+               
+           }
+           catch (Exception)
+           {
+           }
+           return lsvendername;
+       }
+
+       public List<string> GetVenderNumber(String Chars)
+       {
+           List<string> lsvendernumber = new List<string>();
+           try
+           {
+               var vendernumber = Service.entGet.GetGetVenderNumber(Chars);
+               if (vendernumber.Count()>0)
+               {
+                   foreach (var item in vendernumber)
+                   {
+                       lsvendernumber.Add(item);
+                   }   
+               }
+           }
+           catch (Exception)
+           {
+           }
+           return lsvendernumber;
+       }
+
+       public string GetVenderNamebyVenderNumber(String VenderNumber)
+       {
+           string Vendername = "";
+           try
+           {
+               Vendername = Service.entGet.GetVenderNameByVenderNumber(VenderNumber);
+           }
+           catch (Exception)
+           {
+           }
+           return Vendername;
+       }
+
+       public string GetVenderNumberByVenderName(string VenderName)
+       {
+           string VenderNumber = "";
+           try
+           {
+               VenderNumber = Service.entGet.GetVenderNumberByVenderName(VenderName);
+           }
+           catch (Exception)
+           {
+           }
+           return VenderNumber;
+
+       }
+
     }
+
+
 }

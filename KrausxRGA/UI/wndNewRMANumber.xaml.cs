@@ -807,5 +807,57 @@ namespace KrausRGA.UI
                 lstponumber.Visibility = Visibility.Hidden;    
             }
         }
+
+        private void txtVendorNumber_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (Key.Down==Key.Enter)
+            {
+                 txtVendorName.Text = _mNewRMA.GetVenderNameByVenderNumber(txtVendorNumber.Text);
+            }
+            lstVenderNumber.Visibility = Visibility.Hidden;   
+        }
+
+        private void txtVendorNumber_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            lstVenderNumber.ItemsSource = _mNewRMA.GetVanderNumber(txtVendorNumber.Text.ToUpper());
+            lstVenderNumber.Visibility = Visibility.Visible;
+        }
+
+        private void lstVenderNumber_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstVenderNumber.SelectedItem!=null)
+            {
+                txtVendorNumber.Text = lstVenderNumber.SelectedItem.ToString();
+                txtVendorName.Text = _mNewRMA.GetVenderNameByVenderNumber(txtVendorNumber.Text);
+            }
+            lstVenderNumber.Visibility = Visibility.Hidden;
+            lstVenderName.Visibility = Visibility.Hidden;
+        }
+
+        private void lstVenderName_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstVenderName.SelectedItem != null)
+            {
+                txtVendorName.Text = lstVenderName.SelectedItem.ToString();
+                txtVendorNumber.Text = _mNewRMA.GetVenderNumberByVenderName(txtVendorName.Text);
+            }
+            lstVenderName.Visibility = Visibility.Hidden;
+            lstVenderNumber.Visibility = Visibility.Hidden;
+        }
+
+        private void txtVendorName_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (Key.Down == Key.Enter)
+            {
+                txtVendorNumber.Text = _mNewRMA.GetVenderNumberByVenderName(txtVendorName.Text);
+            }
+            lstVenderName.Visibility = Visibility.Hidden;   
+        }
+
+        private void txtVendorName_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            lstVenderName.ItemsSource = _mNewRMA.GetVenderName(txtVendorName.Text.ToUpper());
+            lstVenderName.Visibility = Visibility.Visible;
+        }
     }
 }

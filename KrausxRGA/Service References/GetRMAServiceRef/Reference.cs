@@ -15,160 +15,6 @@ namespace KrausRGA.GetRMAServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SKUReasonsDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
-    [System.SerializableAttribute()]
-    public partial class SKUReasonsDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid ReasonIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid ReturnDetailIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid SKUReasonIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid ReasonID {
-            get {
-                return this.ReasonIDField;
-            }
-            set {
-                if ((this.ReasonIDField.Equals(value) != true)) {
-                    this.ReasonIDField = value;
-                    this.RaisePropertyChanged("ReasonID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid ReturnDetailID {
-            get {
-                return this.ReturnDetailIDField;
-            }
-            set {
-                if ((this.ReturnDetailIDField.Equals(value) != true)) {
-                    this.ReturnDetailIDField = value;
-                    this.RaisePropertyChanged("ReturnDetailID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid SKUReasonID {
-            get {
-                return this.SKUReasonIDField;
-            }
-            set {
-                if ((this.SKUReasonIDField.Equals(value) != true)) {
-                    this.SKUReasonIDField = value;
-                    this.RaisePropertyChanged("SKUReasonID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ReasonCategoryDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
-    [System.SerializableAttribute()]
-    public partial class ReasonCategoryDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CategoryNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid ReasonCatIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid ReasonIDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CategoryName {
-            get {
-                return this.CategoryNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CategoryNameField, value) != true)) {
-                    this.CategoryNameField = value;
-                    this.RaisePropertyChanged("CategoryName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid ReasonCatID {
-            get {
-                return this.ReasonCatIDField;
-            }
-            set {
-                if ((this.ReasonCatIDField.Equals(value) != true)) {
-                    this.ReasonCatIDField = value;
-                    this.RaisePropertyChanged("ReasonCatID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid ReasonID {
-            get {
-                return this.ReasonIDField;
-            }
-            set {
-                if ((this.ReasonIDField.Equals(value) != true)) {
-                    this.ReasonIDField = value;
-                    this.RaisePropertyChanged("ReasonID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.Shipping")]
     [System.SerializableAttribute()]
     public partial class UserDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1999,21 +1845,163 @@ namespace KrausRGA.GetRMAServiceRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SKUReasonsDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.SerializableAttribute()]
+    public partial class SKUReasonsDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReasonIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReturnDetailIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid SKUReasonIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReasonID {
+            get {
+                return this.ReasonIDField;
+            }
+            set {
+                if ((this.ReasonIDField.Equals(value) != true)) {
+                    this.ReasonIDField = value;
+                    this.RaisePropertyChanged("ReasonID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReturnDetailID {
+            get {
+                return this.ReturnDetailIDField;
+            }
+            set {
+                if ((this.ReturnDetailIDField.Equals(value) != true)) {
+                    this.ReturnDetailIDField = value;
+                    this.RaisePropertyChanged("ReturnDetailID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid SKUReasonID {
+            get {
+                return this.SKUReasonIDField;
+            }
+            set {
+                if ((this.SKUReasonIDField.Equals(value) != true)) {
+                    this.SKUReasonIDField = value;
+                    this.RaisePropertyChanged("SKUReasonID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReasonCategoryDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.SerializableAttribute()]
+    public partial class ReasonCategoryDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CategoryNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReasonCatIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ReasonIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CategoryName {
+            get {
+                return this.CategoryNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryNameField, value) != true)) {
+                    this.CategoryNameField = value;
+                    this.RaisePropertyChanged("CategoryName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReasonCatID {
+            get {
+                return this.ReasonCatIDField;
+            }
+            set {
+                if ((this.ReasonCatIDField.Equals(value) != true)) {
+                    this.ReasonCatIDField = value;
+                    this.RaisePropertyChanged("ReasonCatID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ReasonID {
+            get {
+                return this.ReasonIDField;
+            }
+            set {
+                if ((this.ReasonIDField.Equals(value) != true)) {
+                    this.ReasonIDField = value;
+                    this.RaisePropertyChanged("ReasonID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GetRMAServiceRef.IGet")]
     public interface IGet {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetRMALatestVersionNumber", ReplyAction="http://tempuri.org/IGet/GetRMALatestVersionNumberResponse")]
-        string GetRMALatestVersionNumber();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID", ReplyAction="http://tempuri.org/IGet/GetSKUImagesByReturnDetailIDResponse")]
-        KrausRGA.GetRMAServiceRef.SKUReasonsDTO[] GetSKUImagesByReturnDetailID(System.Guid ReturnDetailID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/CategotyReasonNameByReasonID", ReplyAction="http://tempuri.org/IGet/CategotyReasonNameByReasonIDResponse")]
-        KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonNameByReasonID(System.Guid ReasonID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/CategotyReasonAll", ReplyAction="http://tempuri.org/IGet/CategotyReasonAllResponse")]
-        KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/XMLUserGet", ReplyAction="http://tempuri.org/IGet/XMLUserGetResponse")]
         KrausRGA.GetRMAServiceRef.UserDTO[] XMLUserGet(string EnumGetTypeString, string Parameters);
@@ -2129,6 +2117,18 @@ namespace KrausRGA.GetRMAServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetPOnumber", ReplyAction="http://tempuri.org/IGet/GetPOnumberResponse")]
         string[] GetPOnumber(string chars);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetVenderName", ReplyAction="http://tempuri.org/IGet/GetVenderNameResponse")]
+        string[] GetVenderName(string chars);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetGetVenderNumber", ReplyAction="http://tempuri.org/IGet/GetGetVenderNumberResponse")]
+        string[] GetGetVenderNumber(string number);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetVenderNameByVenderNumber", ReplyAction="http://tempuri.org/IGet/GetVenderNameByVenderNumberResponse")]
+        string GetVenderNameByVenderNumber(string vendernumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetVenderNumberByVenderName", ReplyAction="http://tempuri.org/IGet/GetVenderNumberByVenderNameResponse")]
+        string GetVenderNumberByVenderName(string vendername);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/RoleAll", ReplyAction="http://tempuri.org/IGet/RoleAllResponse")]
         KrausRGA.GetRMAServiceRef.RoleDTO[] RoleAll();
         
@@ -2140,6 +2140,18 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/ImagePathStringList", ReplyAction="http://tempuri.org/IGet/ImagePathStringListResponse")]
         string[] ImagePathStringList(System.Guid ReturnDetailID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetRMALatestVersionNumber", ReplyAction="http://tempuri.org/IGet/GetRMALatestVersionNumberResponse")]
+        string GetRMALatestVersionNumber();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetSKUImagesByReturnDetailID", ReplyAction="http://tempuri.org/IGet/GetSKUImagesByReturnDetailIDResponse")]
+        KrausRGA.GetRMAServiceRef.SKUReasonsDTO[] GetSKUImagesByReturnDetailID(System.Guid ReturnDetailID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/CategotyReasonNameByReasonID", ReplyAction="http://tempuri.org/IGet/CategotyReasonNameByReasonIDResponse")]
+        KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonNameByReasonID(System.Guid ReasonID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/CategotyReasonAll", ReplyAction="http://tempuri.org/IGet/CategotyReasonAllResponse")]
+        KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonAll();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2167,22 +2179,6 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public GetClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public string GetRMALatestVersionNumber() {
-            return base.Channel.GetRMALatestVersionNumber();
-        }
-        
-        public KrausRGA.GetRMAServiceRef.SKUReasonsDTO[] GetSKUImagesByReturnDetailID(System.Guid ReturnDetailID) {
-            return base.Channel.GetSKUImagesByReturnDetailID(ReturnDetailID);
-        }
-        
-        public KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonNameByReasonID(System.Guid ReasonID) {
-            return base.Channel.CategotyReasonNameByReasonID(ReasonID);
-        }
-        
-        public KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonAll() {
-            return base.Channel.CategotyReasonAll();
         }
         
         public KrausRGA.GetRMAServiceRef.UserDTO[] XMLUserGet(string EnumGetTypeString, string Parameters) {
@@ -2337,6 +2333,22 @@ namespace KrausRGA.GetRMAServiceRef {
             return base.Channel.GetPOnumber(chars);
         }
         
+        public string[] GetVenderName(string chars) {
+            return base.Channel.GetVenderName(chars);
+        }
+        
+        public string[] GetGetVenderNumber(string number) {
+            return base.Channel.GetGetVenderNumber(number);
+        }
+        
+        public string GetVenderNameByVenderNumber(string vendernumber) {
+            return base.Channel.GetVenderNameByVenderNumber(vendernumber);
+        }
+        
+        public string GetVenderNumberByVenderName(string vendername) {
+            return base.Channel.GetVenderNumberByVenderName(vendername);
+        }
+        
         public KrausRGA.GetRMAServiceRef.RoleDTO[] RoleAll() {
             return base.Channel.RoleAll();
         }
@@ -2351,6 +2363,22 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public string[] ImagePathStringList(System.Guid ReturnDetailID) {
             return base.Channel.ImagePathStringList(ReturnDetailID);
+        }
+        
+        public string GetRMALatestVersionNumber() {
+            return base.Channel.GetRMALatestVersionNumber();
+        }
+        
+        public KrausRGA.GetRMAServiceRef.SKUReasonsDTO[] GetSKUImagesByReturnDetailID(System.Guid ReturnDetailID) {
+            return base.Channel.GetSKUImagesByReturnDetailID(ReturnDetailID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonNameByReasonID(System.Guid ReasonID) {
+            return base.Channel.CategotyReasonNameByReasonID(ReasonID);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.ReasonCategoryDTO[] CategotyReasonAll() {
+            return base.Channel.CategotyReasonAll();
         }
     }
 }

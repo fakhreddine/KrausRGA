@@ -354,6 +354,57 @@ namespace KrausRGA.Models
             return _lsPonumber;
         }
 
+        public List<string> GetVenderName(String Chars)
+        {
+            List<String> _lsvenderName = new List<string>();
+            try
+            {
+                _lsvenderName = cSage.GetVenderName(Chars);
+            }
+            catch (Exception)
+            {
+            }
+            return _lsvenderName;
+        }
+
+        public List<String> GetVanderNumber(String Chars)
+        {
+            List<string> _lsVenderNumber = new List<string>();
+            try
+            {
+                _lsVenderNumber = cSage.GetVenderNumber(Chars);
+            }
+            catch (Exception)
+            {
+            }
+            return _lsVenderNumber;
+        }
+
+        public string GetVenderNameByVenderNumber(String VenderNumber)
+        {
+            string VenderName = "";
+            try
+            {
+                VenderName = cSage.GetVenderNamebyVenderNumber(VenderNumber);
+            }
+            catch (Exception)
+            {
+            }
+            return VenderName;
+        }
+
+        public String GetVenderNumberByVenderName(String VenderName)
+        {
+            string VenderNumber = "";
+            try
+            {
+                VenderNumber = cSage.GetVenderNumberByVenderName(VenderName);
+            }
+            catch (Exception)
+            {
+            }
+            return VenderNumber;
+        }
 
     }
 }

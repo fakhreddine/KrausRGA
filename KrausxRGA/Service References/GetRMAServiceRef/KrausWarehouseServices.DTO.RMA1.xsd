@@ -1,34 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfSKUReasonsDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SKUReasonsDTO" nillable="true" type="tns:SKUReasonsDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSKUReasonsDTO" nillable="true" type="tns:ArrayOfSKUReasonsDTO" />
-  <xs:complexType name="SKUReasonsDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ReasonID" type="ser:guid" />
-      <xs:element minOccurs="0" name="ReturnDetailID" type="ser:guid" />
-      <xs:element minOccurs="0" name="SKUReasonID" type="ser:guid" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="SKUReasonsDTO" nillable="true" type="tns:SKUReasonsDTO" />
-  <xs:complexType name="ArrayOfReasonCategoryDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReasonCategoryDTO" nillable="true" type="tns:ReasonCategoryDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfReasonCategoryDTO" nillable="true" type="tns:ArrayOfReasonCategoryDTO" />
-  <xs:complexType name="ReasonCategoryDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ReasonCatID" type="ser:guid" />
-      <xs:element minOccurs="0" name="ReasonID" type="ser:guid" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ReasonCategoryDTO" nillable="true" type="tns:ReasonCategoryDTO" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ArrayOfReturnDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnDTO" nillable="true" type="tns:ReturnDTO" />
@@ -177,4 +149,32 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReturnImagesDTO" nillable="true" type="tns:ReturnImagesDTO" />
+  <xs:complexType name="ArrayOfSKUReasonsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SKUReasonsDTO" nillable="true" type="tns:SKUReasonsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSKUReasonsDTO" nillable="true" type="tns:ArrayOfSKUReasonsDTO" />
+  <xs:complexType name="SKUReasonsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReasonID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnDetailID" type="ser:guid" />
+      <xs:element minOccurs="0" name="SKUReasonID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SKUReasonsDTO" nillable="true" type="tns:SKUReasonsDTO" />
+  <xs:complexType name="ArrayOfReasonCategoryDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReasonCategoryDTO" nillable="true" type="tns:ReasonCategoryDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReasonCategoryDTO" nillable="true" type="tns:ArrayOfReasonCategoryDTO" />
+  <xs:complexType name="ReasonCategoryDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReasonCatID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReasonID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReasonCategoryDTO" nillable="true" type="tns:ReasonCategoryDTO" />
 </xs:schema>
