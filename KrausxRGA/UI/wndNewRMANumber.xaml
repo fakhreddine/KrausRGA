@@ -16,7 +16,7 @@
                                                 <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="25" Foreground="White" Margin="10,6,351,0"/>
                                             </Border>
                                             <Label x:Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="189" Canvas.Left="205"/>
-                                            <TextBox x:Name="txtRMANumber" IsEnabled="False" Canvas.Left="433"  FontSize="15" Foreground="Red"  Text="Generated after saving this information." Canvas.Top="49" Width="257" Height="33"  />
+                                            <TextBox x:Name="txtRMANumber" IsEnabled="False" Canvas.Left="433"  FontSize="15" Foreground="Red"  Text="Generated after saving this information." Canvas.Top="49" Width="271" Height="33"  />
 
                                             <Label x:Name="lblcRMARewDate" Content="RMA Request Date : " Style="{StaticResource lblConstant}" Canvas.Left="201" Canvas.Top="95" Width="193"/>
 
@@ -24,10 +24,10 @@
                                             
 
                                             <Label x:Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="133" Width="197" Canvas.Left="195"/>
-                                            <TextBox x:Name="txtVendorNumber"  Canvas.Left="435" Canvas.Top="123" Width="256" Height="33" FontSize="15" KeyDown="txtVendorNumber_KeyDown_1" TextChanged="txtVendorNumber_TextChanged_1"/>
+                                            <TextBox x:Name="txtVendorNumber"  Canvas.Left="435" Canvas.Top="123" Width="256" Height="33" FontSize="15" KeyDown="txtVendorNumber_KeyDown_1" TextChanged="txtVendorNumber_TextChanged_1" LostFocus="txtVendorNumber_LostFocus" GotFocus="txtVendorNumber_GotFocus"/>
 
                                             <Label x:Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="178" Width="169" Canvas.Left="223"/>
-                                            <TextBox x:Name="txtVendorName"  Canvas.Left="435" Canvas.Top="161" Width="321" Height="62" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True" KeyDown="txtVendorName_KeyDown_1" TextChanged="txtVendorName_TextChanged_1"/>
+                                            <TextBox x:Name="txtVendorName"  Canvas.Left="435" Canvas.Top="161" Width="321" Height="62" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True" KeyDown="txtVendorName_KeyDown_1" TextChanged="txtVendorName_TextChanged_1" LostFocus="txtVendorName_LostFocus" GotFocus="txtVendorName_GotFocus"/>
                                       
                                             <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="150" Canvas.Left="28"/>
                                             <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True"
@@ -54,7 +54,7 @@
                                                     </LinearGradientBrush>
                                                 </ComboBox.Background>
                                             </ComboBox>
-                                            <ListBox Height="100" x:Name="lstVenderNumber" Canvas.Left="434" Canvas.Top="157" Width="256" Visibility="Hidden" SelectionChanged="lstVenderNumber_SelectionChanged_1"/>
+                                            <!--<ListBox Height="100"  Canvas.Left="435" Canvas.Top="161" Width="256" Visibility="Visible"  SelectionChanged="lstVenderNumber_SelectionChanged_1"/>-->
                                         </Canvas>
                                     </Border>
 
@@ -64,7 +64,7 @@
                                                 <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
                                             </Border>
                                             <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="62" Width="154" Canvas.Left="7"/>
-                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="55" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1"/>
+                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="55" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1" GotFocus="txtPoNumber_GotFocus" LostFocus="txtPoNumber_LostFocus"/>
 
                                             <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="105" Width="158" Canvas.Left="3"/>
                                             <TextBox x:Name="txtName"   Canvas.Left="166" Canvas.Top="100" Width="239" Height="33" FontSize="15"/>
@@ -85,7 +85,8 @@
                                             <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="166" Width="114" Canvas.Left="441"/>
                                             <TextBox x:Name="txtCountry"  Canvas.Left="566" Canvas.Top="166" Width="187" Height="33" FontSize="15"/>
                                             <ListBox Height="198" FontSize="30" Canvas.Left="407" Width="302" Visibility="Hidden" x:Name="lstponumber"  SelectionChanged="lstponumber_SelectionChanged_1" Canvas.Top="10"/>
-                                            <ListBox Height="198" Width="319" Canvas.Left="437" Canvas.Top="-4" Name="lstVenderName" SelectionChanged="lstVenderName_SelectionChanged_1" Visibility="Hidden"/>
+                                            <ListBox Height="194" Width="319" FontSize="25" Canvas.Left="437" Name="lstVenderName" SelectionChanged="lstVenderName_SelectionChanged_1" Visibility="Hidden"/>
+                                            <ListBox Height="161" x:Name="lstVenderNumber" FontSize="25" Width="252" Canvas.Left="437"  Visibility="Hidden" Canvas.Top="-75" SelectionChanged="lstVenderNumber_SelectionChanged_1"/>
                                         </Canvas>
                                     </Border>
 

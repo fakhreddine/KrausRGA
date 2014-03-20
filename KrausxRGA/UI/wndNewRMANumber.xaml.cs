@@ -784,8 +784,22 @@ namespace KrausRGA.UI
 
         private void txtPoNumber_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            lstponumber.ItemsSource=_mNewRMA.GetPOnumber(txtPoNumber.Text);
-            lstponumber.Visibility = Visibility.Visible;
+            if (txtPoNumber.Text == "")
+            {
+                lstponumber.Visibility = Visibility.Hidden;
+                txtPoNumber.Text = "";
+                txtAddress.Text = "";
+                txtCountry.Text = "";
+                txtCustCity.Text = "";
+                txtState.Text = "";
+                txtZipCode.Text = "";
+                txtName.Text = "";
+            }
+            else
+            {
+                lstponumber.ItemsSource = _mNewRMA.GetPOnumber(txtPoNumber.Text);
+                lstponumber.Visibility = Visibility.Visible;
+            }
         }
 
         private void lstponumber_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -819,8 +833,16 @@ namespace KrausRGA.UI
 
         private void txtVendorNumber_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            lstVenderNumber.ItemsSource = _mNewRMA.GetVanderNumber(txtVendorNumber.Text.ToUpper());
-            lstVenderNumber.Visibility = Visibility.Visible;
+            if (txtVendorNumber.Text == "")
+            {
+                lstVenderNumber.Visibility = Visibility.Hidden;
+                txtVendorName.Text = "";
+            }
+            else
+            {
+                lstVenderNumber.ItemsSource = _mNewRMA.GetVanderNumber(txtVendorNumber.Text.ToUpper());
+                lstVenderNumber.Visibility = Visibility.Visible;
+            }
         }
 
         private void lstVenderNumber_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -856,8 +878,79 @@ namespace KrausRGA.UI
 
         private void txtVendorName_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            lstVenderName.ItemsSource = _mNewRMA.GetVenderName(txtVendorName.Text.ToUpper());
-            lstVenderName.Visibility = Visibility.Visible;
+            if (txtVendorName.Text == "")
+            {
+                lstVenderName.Visibility = Visibility.Hidden;
+                txtVendorNumber.Text = "";
+            }
+            else
+            {
+                lstVenderName.ItemsSource = _mNewRMA.GetVenderName(txtVendorName.Text.ToUpper());
+                lstVenderName.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtVendorNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            lstVenderNumber.Visibility = Visibility.Hidden;
+        }
+
+        private void txtVendorNumber_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtVendorNumber.Text == "")
+            {
+                lstVenderNumber.Visibility = Visibility.Hidden;
+               // txtVendorName.Text = "";
+            }
+            else
+            {
+                lstVenderNumber.ItemsSource = _mNewRMA.GetVanderNumber(txtVendorNumber.Text.ToUpper());
+                lstVenderNumber.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtVendorName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            lstVenderName.Visibility = Visibility.Hidden;
+        }
+
+        private void txtVendorName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtVendorName.Text == "")
+            {
+                lstVenderName.Visibility = Visibility.Hidden;
+               // txtVendorNumber.Text = "";
+            }
+            else
+            {
+                lstVenderName.ItemsSource = _mNewRMA.GetVenderName(txtVendorName.Text.ToUpper());
+                lstVenderName.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtPoNumber_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtPoNumber.Text == "")
+            {
+                lstponumber.Visibility = Visibility.Hidden;
+                txtPoNumber.Text = "";
+                txtAddress.Text = "";
+                txtCountry.Text = "";
+                txtCustCity.Text = "";
+                txtState.Text = "";
+                txtZipCode.Text = "";
+                txtName.Text = "";
+            }
+            else
+            {
+                lstponumber.ItemsSource = _mNewRMA.GetPOnumber(txtPoNumber.Text);
+                lstponumber.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtPoNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            lstponumber.Visibility = Visibility.Hidden;
         }
     }
 }
