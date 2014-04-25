@@ -76,7 +76,12 @@ namespace KrausRGA.UI
 
                 hideButtons(System.Windows.Visibility.Visible);
                 _mUser = clGlobal.mCurrentUser;
-                btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
+
+                bdrScan.Visibility = System.Windows.Visibility.Hidden;
+                bdrScan.Visibility = System.Windows.Visibility.Visible;
+                txtScan.Focus();
+
+               // btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                 txtUserName.Text = _mUser.UserInfo.UserFullName.ToString() + Environment.NewLine + "[ " + _mUser.RoleName + " ]";
             }
             #region Start application within another application.
@@ -165,7 +170,13 @@ namespace KrausRGA.UI
                         {
                             hideButtons(System.Windows.Visibility.Visible);
 
-                            btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
+                            bdrScan.Visibility = System.Windows.Visibility.Hidden;
+                            bdrScan.Visibility = System.Windows.Visibility.Visible;
+                            txtScan.Focus();
+
+
+
+                           // btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
                             //lsaudit.Insert(0
@@ -196,9 +207,14 @@ namespace KrausRGA.UI
 
         private void btnBoxNumber_Click(object sender, RoutedEventArgs e)
         {
-            bdrScan.Visibility = System.Windows.Visibility.Hidden;
-            bdrScan.Visibility = System.Windows.Visibility.Visible;
-            txtScan.Focus();
+            //bdrScan.Visibility = System.Windows.Visibility.Hidden;
+            //bdrScan.Visibility = System.Windows.Visibility.Visible;
+            //txtScan.Focus();
+
+            wndPONumber nRMA = new wndPONumber();
+            nRMA.Show();
+            this.Close();
+
            // wndNewRMANumber nRMA = new wndNewRMANumber();
            // nRMA.Show();
         }

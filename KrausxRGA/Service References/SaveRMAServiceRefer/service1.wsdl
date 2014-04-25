@@ -56,6 +56,12 @@
   <wsdl:message name="ISave_UpsertAudit_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpsertAuditResponse" />
   </wsdl:message>
+  <wsdl:message name="ISave_ReturnedSKUPoints_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnedSKUPoints" />
+  </wsdl:message>
+  <wsdl:message name="ISave_ReturnedSKUPoints_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnedSKUPointsResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISave">
     <wsdl:operation name="ReasonCategory">
       <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReasonCategory" message="tns:ISave_ReasonCategory_InputMessage" />
@@ -88,6 +94,10 @@
     <wsdl:operation name="UpsertAudit">
       <wsdl:input wsaw:Action="http://tempuri.org/ISave/UpsertAudit" message="tns:ISave_UpsertAudit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISave/UpsertAuditResponse" message="tns:ISave_UpsertAudit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnedSKUPoints">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReturnedSKUPoints" message="tns:ISave_ReturnedSKUPoints_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReturnedSKUPointsResponse" message="tns:ISave_ReturnedSKUPoints_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISave" type="tns:ISave">
@@ -157,6 +167,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpsertAudit">
       <soap:operation soapAction="http://tempuri.org/ISave/UpsertAudit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnedSKUPoints">
+      <soap:operation soapAction="http://tempuri.org/ISave/ReturnedSKUPoints" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

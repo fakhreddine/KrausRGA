@@ -243,6 +243,12 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private System.DateTime ScannedDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Setting_Wty_DaysField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ShipDate_ScanDate_Days_DiffField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShipmentNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -259,6 +265,12 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VendorNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Warranty_STAField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Wrong_RMA_FlgField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZipCodeField;
@@ -560,6 +572,32 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Setting_Wty_Days {
+            get {
+                return this.Setting_Wty_DaysField;
+            }
+            set {
+                if ((this.Setting_Wty_DaysField.Equals(value) != true)) {
+                    this.Setting_Wty_DaysField = value;
+                    this.RaisePropertyChanged("Setting_Wty_Days");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ShipDate_ScanDate_Days_Diff {
+            get {
+                return this.ShipDate_ScanDate_Days_DiffField;
+            }
+            set {
+                if ((this.ShipDate_ScanDate_Days_DiffField.Equals(value) != true)) {
+                    this.ShipDate_ScanDate_Days_DiffField = value;
+                    this.RaisePropertyChanged("ShipDate_ScanDate_Days_Diff");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ShipmentNumber {
             get {
                 return this.ShipmentNumberField;
@@ -638,6 +676,32 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Warranty_STA {
+            get {
+                return this.Warranty_STAField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Warranty_STAField, value) != true)) {
+                    this.Warranty_STAField = value;
+                    this.RaisePropertyChanged("Warranty_STA");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Wrong_RMA_Flg {
+            get {
+                return this.Wrong_RMA_FlgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Wrong_RMA_FlgField, value) != true)) {
+                    this.Wrong_RMA_FlgField = value;
+                    this.RaisePropertyChanged("Wrong_RMA_Flg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ZipCode {
             get {
                 return this.ZipCodeField;
@@ -701,6 +765,12 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKUNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_Reason_Total_PointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SKU_StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TCLCOD_0Field;
@@ -860,6 +930,32 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((object.ReferenceEquals(this.SKUNumberField, value) != true)) {
                     this.SKUNumberField = value;
                     this.RaisePropertyChanged("SKUNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Reason_Total_Points {
+            get {
+                return this.SKU_Reason_Total_PointsField;
+            }
+            set {
+                if ((this.SKU_Reason_Total_PointsField.Equals(value) != true)) {
+                    this.SKU_Reason_Total_PointsField = value;
+                    this.RaisePropertyChanged("SKU_Reason_Total_Points");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SKU_Status {
+            get {
+                return this.SKU_StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SKU_StatusField, value) != true)) {
+                    this.SKU_StatusField = value;
+                    this.RaisePropertyChanged("SKU_Status");
                 }
             }
         }
@@ -1445,6 +1541,147 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ReturnedSKUReasonPointsDTO", Namespace="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA")]
+    [System.SerializableAttribute()]
+    public partial class ReturnedSKUReasonPointsDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> PointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ReasonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Reason_ValueField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.Guid> ReturnDetailIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.Guid> ReturnIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SKUField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Points {
+            get {
+                return this.PointsField;
+            }
+            set {
+                if ((this.PointsField.Equals(value) != true)) {
+                    this.PointsField = value;
+                    this.RaisePropertyChanged("Points");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Reason {
+            get {
+                return this.ReasonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ReasonField, value) != true)) {
+                    this.ReasonField = value;
+                    this.RaisePropertyChanged("Reason");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Reason_Value {
+            get {
+                return this.Reason_ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Reason_ValueField, value) != true)) {
+                    this.Reason_ValueField = value;
+                    this.RaisePropertyChanged("Reason_Value");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.Guid> ReturnDetailID {
+            get {
+                return this.ReturnDetailIDField;
+            }
+            set {
+                if ((this.ReturnDetailIDField.Equals(value) != true)) {
+                    this.ReturnDetailIDField = value;
+                    this.RaisePropertyChanged("ReturnDetailID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.Guid> ReturnID {
+            get {
+                return this.ReturnIDField;
+            }
+            set {
+                if ((this.ReturnIDField.Equals(value) != true)) {
+                    this.ReturnIDField = value;
+                    this.RaisePropertyChanged("ReturnID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SKU {
+            get {
+                return this.SKUField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SKUField, value) != true)) {
+                    this.SKUField = value;
+                    this.RaisePropertyChanged("SKU");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SaveRMAServiceRefer.ISave")]
     public interface ISave {
@@ -1472,6 +1709,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/UpsertAudit", ReplyAction="http://tempuri.org/ISave/UpsertAuditResponse")]
         bool UpsertAudit(KrausRGA.SaveRMAServiceRefer.RMAAuditDTO audit);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/ReturnedSKUPoints", ReplyAction="http://tempuri.org/ISave/ReturnedSKUPointsResponse")]
+        bool ReturnedSKUPoints(KrausRGA.SaveRMAServiceRefer.ReturnedSKUReasonPointsDTO _returnedSkuPoints);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1531,6 +1771,10 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         public bool UpsertAudit(KrausRGA.SaveRMAServiceRefer.RMAAuditDTO audit) {
             return base.Channel.UpsertAudit(audit);
+        }
+        
+        public bool ReturnedSKUPoints(KrausRGA.SaveRMAServiceRefer.ReturnedSKUReasonPointsDTO _returnedSkuPoints) {
+            return base.Channel.ReturnedSKUPoints(_returnedSkuPoints);
         }
     }
 }

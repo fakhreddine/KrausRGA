@@ -34,6 +34,12 @@ namespace KrausRGA.EntityModel
         public byte? Decision { get; set; }
         public Guid? CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
+
+        public string Wrong_RMA_Flg { get; set; }
+        public string Warranty_STA { get; set; }
+        public int Setting_Wty_Days { get; set; }
+        public int ShipDate_ScanDate_Days_Diff { get; set; }
+
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public String RGAROWID { get; set; }
@@ -70,6 +76,13 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.Decision != null) this.Decision = _ReturnDTO.Decision;
             if (_ReturnDTO.CreatedBy != null) this.CreatedBy = _ReturnDTO.CreatedBy;
             if (_ReturnDTO.UpdatedBy != null) this.UpdatedBy = _ReturnDTO.UpdatedBy;
+
+            if (_ReturnDTO.Wrong_RMA_Flg != null) this.Wrong_RMA_Flg = _ReturnDTO.Wrong_RMA_Flg;
+            if (_ReturnDTO.Warranty_STA != null) this.Warranty_STA = _ReturnDTO.Warranty_STA;
+            if (_ReturnDTO.Setting_Wty_Days != null) this.Setting_Wty_Days = _ReturnDTO.Setting_Wty_Days;
+            if (_ReturnDTO.ShipDate_ScanDate_Days_Diff != null) this.ShipDate_ScanDate_Days_Diff = _ReturnDTO.ShipDate_ScanDate_Days_Diff;
+
+
             if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;
             if (_ReturnDTO.UpdatedDate != null) this.UpdatedDate = (DateTime)_ReturnDTO.UpdatedDate;
             this.RGAROWID = _ReturnDTO.RGAROWID;
@@ -104,6 +117,15 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.Decision != null) this.Decision = _ReturnDTO.Decision;
             if (_ReturnDTO.CreatedBy != null) this.CreatedBy = _ReturnDTO.CreatedBy;
             if (_ReturnDTO.UpdatedBy != null) this.UpdatedBy = _ReturnDTO.UpdatedBy;
+
+            if (_ReturnDTO.Wrong_RMA_Flg != null) this.Wrong_RMA_Flg = _ReturnDTO.Wrong_RMA_Flg;
+            if (_ReturnDTO.Warranty_STA != null) this.Warranty_STA = _ReturnDTO.Warranty_STA;
+            if (_ReturnDTO.Setting_Wty_Days != null) this.Setting_Wty_Days = _ReturnDTO.Setting_Wty_Days;
+            if (_ReturnDTO.ShipDate_ScanDate_Days_Diff != null) this.ShipDate_ScanDate_Days_Diff = _ReturnDTO.ShipDate_ScanDate_Days_Diff;
+
+
+
+
             if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;
             if (_ReturnDTO.UpdatedDate != null) this.UpdatedDate = (DateTime)_ReturnDTO.UpdatedDate;
             this.RGAROWID = _ReturnDTO.RGAROWID;
@@ -138,6 +160,12 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.Decision != null) _return.Decision = _ReturnTbl.Decision;
             if (_ReturnTbl.CreatedBy != null) _return.CreatedBy = _ReturnTbl.CreatedBy;
             if (_ReturnTbl.UpdatedBy != null) _return.UpdatedBy = _ReturnTbl.UpdatedBy;
+
+            if (_ReturnTbl.Wrong_RMA_Flg != null) _return.Wrong_RMA_Flg = _ReturnTbl.Wrong_RMA_Flg;
+            if (_ReturnTbl.Warranty_STA != null) _return.Warranty_STA = _ReturnTbl.Warranty_STA;
+            if (_ReturnTbl.Setting_Wty_Days != null) _return.Setting_Wty_Days = _ReturnTbl.Setting_Wty_Days;
+            if (_ReturnTbl.ShipDate_ScanDate_Days_Diff != null) _return.ShipDate_ScanDate_Days_Diff = _ReturnTbl.ShipDate_ScanDate_Days_Diff;
+
             if (_ReturnTbl.CreatedDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatedDate;
             if (_ReturnTbl.UpdatedDate != null) _return.UpdatedDate = (DateTime)_ReturnTbl.UpdatedDate;
             _return.RGAROWID = _ReturnTbl.RGAROWID;
@@ -173,6 +201,14 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.Decision != null) _return.Decision = _ReturnTbl.Decision;
             if (_ReturnTbl.CreatedBy != null) _return.CreatedBy = _ReturnTbl.CreatedBy;
             if (_ReturnTbl.UpdatedBy != null) _return.UpdatedBy = _ReturnTbl.UpdatedBy;
+
+            if (_ReturnTbl.Wrong_RMA_Flg != null) _return.Wrong_RMA_Flg = _ReturnTbl.Wrong_RMA_Flg;
+            if (_ReturnTbl.Warranty_STA != null) _return.Warranty_STA = _ReturnTbl.Warranty_STA;
+            if (_ReturnTbl.Setting_Wty_Days != null) _return.Setting_Wty_Days = _ReturnTbl.Setting_Wty_Days;
+            if (_ReturnTbl.ShipDate_ScanDate_Days_Diff != null) _return.ShipDate_ScanDate_Days_Diff = _ReturnTbl.ShipDate_ScanDate_Days_Diff;
+
+
+
             if (_ReturnTbl.CreatedDate != null) _return.CreatesDate = (DateTime)_ReturnTbl.CreatedDate;
             if (_ReturnTbl.UpdatedDate != null) _return.UpdatedDate = (DateTime)_ReturnTbl.UpdatedDate;
             _return.RGAROWID = _ReturnTbl.RGAROWID;

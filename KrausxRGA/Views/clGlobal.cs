@@ -21,6 +21,20 @@ namespace KrausRGA.Views
         //User information maintain 
         public static mUser mCurrentUser;
 
+        public static string ScenarioType;
+
+        public static string WrongRMAFlag;
+
+        public static string Warranty;
+
+        public static int ShipDate_ScanDate_Diff;
+
+        public static string SKU_Staus;
+
+        public static int TotalPoints;
+
+        public static List<StatusAndPoints> statuspoints;
+
         //audit object.
         public static mRMAAudit mAuditDetail;
 

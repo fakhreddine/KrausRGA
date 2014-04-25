@@ -114,4 +114,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ReturnedSKUPoints">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/KrausWarehouseServices.DTO.RMA" minOccurs="0" name="_returnedSkuPoints" nillable="true" type="q9:ReturnedSKUReasonPointsDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReturnedSKUPointsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReturnedSKUPointsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

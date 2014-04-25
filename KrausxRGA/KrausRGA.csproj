@@ -143,6 +143,7 @@
     <Compile Include="Barcode\NetworkConnection.cs" />
     <Compile Include="Barcode\UPCA.cs" />
     <Compile Include="Barcode\Win32Stuff.cs" />
+    <Compile Include="DBLogics\cmdReturnedSKUPoints.cs" />
     <Compile Include="DBLogics\Service.cs" />
     <Compile Include="DBLogics\cmdRMAAudit.cs" />
     <Compile Include="DBLogics\cmdReasonCategory.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="DBLogics\cmdSageOperations.cs" />
     <Compile Include="DBLogics\cmdSKUReasons.cs" />
     <Compile Include="DBLogics\cmdUser.cs" />
+    <Compile Include="EntityModel\ReturnedSKUPoints.cs" />
     <Compile Include="EntityModel\RMAAudit.cs" />
     <Compile Include="EntityModel\Role.cs" />
     <Compile Include="EntityModel\SKUReason.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="EntityModel\ReturnDetail.cs" />
     <Compile Include="ErrorLogger\ErrorLogger.cs" />
     <Compile Include="Models\mNewRMANumber.cs" />
+    <Compile Include="Models\mPOnumberRMA.cs" />
     <Compile Include="Models\mRMAAudit.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mUpdateModeRMA.cs" />
@@ -196,6 +199,7 @@
     <Compile Include="UI\wndNewRMANumber.xaml.cs">
       <DependentUpon>wndNewRMANumber.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndPONumber.xaml.cs" />
     <Compile Include="UI\wndSlipPrint.xaml.cs">
       <DependentUpon>wndSlipPrint.xaml</DependentUpon>
     </Compile>
@@ -218,6 +222,7 @@
     <Compile Include="Views\NetworkDrive.cs" />
     <Compile Include="Views\RMAInfo.cs" />
     <Compile Include="Views\StartupParametrs.cs" />
+    <Compile Include="Views\StatusAndPoints.cs" />
     <Compile Include="Views\Validation.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -239,6 +244,10 @@
     <Page Include="UI\wndNewRMANumber.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\wndPONumber.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\wndSlipPrint.xaml">
       <SubType>Designer</SubType>

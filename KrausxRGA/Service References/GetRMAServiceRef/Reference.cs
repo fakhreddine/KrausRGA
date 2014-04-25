@@ -294,6 +294,12 @@ namespace KrausRGA.GetRMAServiceRef {
         private System.DateTime ScannedDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Setting_Wty_DaysField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ShipDate_ScanDate_Days_DiffField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShipmentNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -310,6 +316,12 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string VendorNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Warranty_STAField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Wrong_RMA_FlgField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ZipCodeField;
@@ -611,6 +623,32 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Setting_Wty_Days {
+            get {
+                return this.Setting_Wty_DaysField;
+            }
+            set {
+                if ((this.Setting_Wty_DaysField.Equals(value) != true)) {
+                    this.Setting_Wty_DaysField = value;
+                    this.RaisePropertyChanged("Setting_Wty_Days");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ShipDate_ScanDate_Days_Diff {
+            get {
+                return this.ShipDate_ScanDate_Days_DiffField;
+            }
+            set {
+                if ((this.ShipDate_ScanDate_Days_DiffField.Equals(value) != true)) {
+                    this.ShipDate_ScanDate_Days_DiffField = value;
+                    this.RaisePropertyChanged("ShipDate_ScanDate_Days_Diff");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ShipmentNumber {
             get {
                 return this.ShipmentNumberField;
@@ -689,6 +727,32 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Warranty_STA {
+            get {
+                return this.Warranty_STAField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Warranty_STAField, value) != true)) {
+                    this.Warranty_STAField = value;
+                    this.RaisePropertyChanged("Warranty_STA");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Wrong_RMA_Flg {
+            get {
+                return this.Wrong_RMA_FlgField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Wrong_RMA_FlgField, value) != true)) {
+                    this.Wrong_RMA_FlgField = value;
+                    this.RaisePropertyChanged("Wrong_RMA_Flg");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ZipCode {
             get {
                 return this.ZipCodeField;
@@ -752,6 +816,12 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKUNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_Reason_Total_PointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SKU_StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TCLCOD_0Field;
@@ -911,6 +981,32 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((object.ReferenceEquals(this.SKUNumberField, value) != true)) {
                     this.SKUNumberField = value;
                     this.RaisePropertyChanged("SKUNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Reason_Total_Points {
+            get {
+                return this.SKU_Reason_Total_PointsField;
+            }
+            set {
+                if ((this.SKU_Reason_Total_PointsField.Equals(value) != true)) {
+                    this.SKU_Reason_Total_PointsField = value;
+                    this.RaisePropertyChanged("SKU_Reason_Total_Points");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SKU_Status {
+            get {
+                return this.SKU_StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SKU_StatusField, value) != true)) {
+                    this.SKU_StatusField = value;
+                    this.RaisePropertyChanged("SKU_Status");
                 }
             }
         }
@@ -2096,6 +2192,9 @@ namespace KrausRGA.GetRMAServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/RMAInfoByPONumber", ReplyAction="http://tempuri.org/IGet/RMAInfoByPONumberResponse")]
         KrausRGA.GetRMAServiceRef.RMAInfoDTO[] RMAInfoByPONumber(string PONumber);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/NewRMAInfoByOnlyPONumber", ReplyAction="http://tempuri.org/IGet/NewRMAInfoByOnlyPONumberResponse")]
+        KrausRGA.GetRMAServiceRef.RMAInfoDTO[] NewRMAInfoByOnlyPONumber(string PONumber);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/RMAInfoBySRNumber", ReplyAction="http://tempuri.org/IGet/RMAInfoBySRNumberResponse")]
         KrausRGA.GetRMAServiceRef.RMAInfoDTO[] RMAInfoBySRNumber(string SRNumber);
         
@@ -2303,6 +2402,10 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public KrausRGA.GetRMAServiceRef.RMAInfoDTO[] RMAInfoByPONumber(string PONumber) {
             return base.Channel.RMAInfoByPONumber(PONumber);
+        }
+        
+        public KrausRGA.GetRMAServiceRef.RMAInfoDTO[] NewRMAInfoByOnlyPONumber(string PONumber) {
+            return base.Channel.NewRMAInfoByOnlyPONumber(PONumber);
         }
         
         public KrausRGA.GetRMAServiceRef.RMAInfoDTO[] RMAInfoBySRNumber(string SRNumber) {

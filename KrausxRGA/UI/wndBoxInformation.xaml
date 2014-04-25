@@ -63,7 +63,7 @@
                                     <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="226" Canvas.Left="37"  >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoScan.jpg" MouseDown="btnBoxNumber_Click" ></Image>
-                                            <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Scangun Scan" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click" />
+                                            <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="PO Number" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click" />
                                         </StackPanel>
                                     </Border>
                                     <Border  Style="{StaticResource bdrWin8btn}" Canvas.Left="432" Canvas.Top="139" >

@@ -21,6 +21,9 @@ namespace KrausRGA.EntityModel
         public Guid UpdatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpadatedDate { get; set; }
+        public string SKU_Status { get; set; }
+        public int SKU_Reason_Total_Points { get; set; }
+
         public String RGADROWID { get; set; }
 
         public ReturnDetail(SaveRMAServiceRefer.ReturnDetailsDTO _ReturnDetails)
@@ -38,6 +41,11 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.UpdatedBy != Guid.Empty) this.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
             if (_ReturnDetails.CreatedDate != null) this.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
             if (_ReturnDetails.UpadatedDate != null) this.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
+
+            if (_ReturnDetails.SKU_Status != null) this.SKU_Status = _ReturnDetails.SKU_Status;
+            this.SKU_Reason_Total_Points = (int)_ReturnDetails.SKU_Reason_Total_Points;
+
+
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
         public ReturnDetail(GetRMAServiceRef.ReturnDetailsDTO _ReturnDetails)
@@ -55,6 +63,12 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.UpdatedBy != Guid.Empty) this.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
             if (_ReturnDetails.CreatedDate != null) this.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
             if (_ReturnDetails.UpadatedDate != null) this.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
+
+            if (_ReturnDetails.SKU_Status != null) this.SKU_Status =_ReturnDetails.SKU_Status;
+             this.SKU_Reason_Total_Points = (int)_ReturnDetails.SKU_Reason_Total_Points;
+
+
+
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
 
@@ -75,6 +89,10 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.UpdatedBy != Guid.Empty) _return.UpdatedBy = (Guid)_ReturnDetails.UpdatedBy;
             if (_ReturnDetails.CreatedDate != null) _return.CreatedDate = (DateTime)_ReturnDetails.CreatedDate;
             if (_ReturnDetails.UpadatedDate != null) _return.UpadatedDate = (DateTime)_ReturnDetails.UpadatedDate;
+
+            if (_ReturnDetails.SKU_Status != null) _return.SKU_Status = _ReturnDetails.SKU_Status;
+             _return.SKU_Reason_Total_Points =(int) _ReturnDetails.SKU_Reason_Total_Points;
+
             _return.RGADROWID = _ReturnDetails.RGADROWID;
             return _return;
 

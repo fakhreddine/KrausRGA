@@ -23,6 +23,9 @@ namespace KrausRGA.DeleteRMAServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDelete/SKUReasonsByReturnDetailsID", ReplyAction="http://tempuri.org/IDelete/SKUReasonsByReturnDetailsIDResponse")]
         bool SKUReasonsByReturnDetailsID(System.Guid ReturnDetailID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDelete/ReasonsByReasonID", ReplyAction="http://tempuri.org/IDelete/ReasonsByReasonIDResponse")]
+        bool ReasonsByReasonID(System.Guid ReasonID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -62,6 +65,10 @@ namespace KrausRGA.DeleteRMAServiceRef {
         
         public bool SKUReasonsByReturnDetailsID(System.Guid ReturnDetailID) {
             return base.Channel.SKUReasonsByReturnDetailsID(ReturnDetailID);
+        }
+        
+        public bool ReasonsByReasonID(System.Guid ReasonID) {
+            return base.Channel.ReasonsByReasonID(ReasonID);
         }
     }
 }

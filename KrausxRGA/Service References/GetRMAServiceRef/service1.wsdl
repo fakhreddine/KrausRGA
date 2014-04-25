@@ -195,6 +195,12 @@
   <wsdl:message name="IGet_RMAInfoByPONumber_OutputMessage">
     <wsdl:part name="parameters" element="tns:RMAInfoByPONumberResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_NewRMAInfoByOnlyPONumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewRMAInfoByOnlyPONumber" />
+  </wsdl:message>
+  <wsdl:message name="IGet_NewRMAInfoByOnlyPONumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewRMAInfoByOnlyPONumberResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_RMAInfoBySRNumber_InputMessage">
     <wsdl:part name="parameters" element="tns:RMAInfoBySRNumber" />
   </wsdl:message>
@@ -433,6 +439,10 @@
     <wsdl:operation name="RMAInfoByPONumber">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/RMAInfoByPONumber" message="tns:IGet_RMAInfoByPONumber_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/RMAInfoByPONumberResponse" message="tns:IGet_RMAInfoByPONumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewRMAInfoByOnlyPONumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/NewRMAInfoByOnlyPONumber" message="tns:IGet_NewRMAInfoByOnlyPONumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/NewRMAInfoByOnlyPONumberResponse" message="tns:IGet_NewRMAInfoByOnlyPONumber_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RMAInfoBySRNumber">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/RMAInfoBySRNumber" message="tns:IGet_RMAInfoBySRNumber_InputMessage" />
@@ -785,6 +795,15 @@
     </wsdl:operation>
     <wsdl:operation name="RMAInfoByPONumber">
       <soap:operation soapAction="http://tempuri.org/IGet/RMAInfoByPONumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewRMAInfoByOnlyPONumber">
+      <soap:operation soapAction="http://tempuri.org/IGet/NewRMAInfoByOnlyPONumber" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
