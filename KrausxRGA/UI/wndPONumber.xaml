@@ -4,6 +4,7 @@
         Title="wndPONumber" Height="1280" Width="800" Loaded="Window_Loaded" WindowState="Maximized">
     <Viewbox>
         <Grid Height="1280" Width="800">
+            <TextBox HorizontalAlignment="Left" Height="38" Margin="365,463,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210" x:Name="txtbarcode" KeyDown="txtbarcode_KeyDown_1"/>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="1,2,-1,-2" Background="#FFC7C7C7" >
                     <Canvas x:Name="cvMainArea" Height="551" Width="800" Canvas.Left="5">
@@ -24,10 +25,10 @@
 
 
                                             <Label x:Name="lblcVendorNumber" Content="Vendor Number : " Style="{StaticResource lblConstant}" Canvas.Top="133" Width="197" Canvas.Left="195"/>
-                                            <TextBox x:Name="txtVendorNumber"  Canvas.Left="435" Canvas.Top="123" Width="256" Height="33" FontSize="15" KeyDown="txtVendorNumber_KeyDown_1" TextChanged="txtVendorNumber_TextChanged_1" LostFocus="txtVendorNumber_LostFocus" GotFocus="txtVendorNumber_GotFocus"/>
+                                            <TextBox x:Name="txtVendorNumber"  Canvas.Left="435" Canvas.Top="123" Width="256" Height="33" FontSize="15"   IsEnabled="False"/>
 
                                             <Label x:Name="lblcVendorName" Content="Vendor Name : " Style="{StaticResource lblConstant}" Canvas.Top="178" Width="169" Canvas.Left="223"/>
-                                            <TextBox x:Name="txtVendorName"  Canvas.Left="435" Canvas.Top="161" Width="321" Height="62" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True" KeyDown="txtVendorName_KeyDown_1" TextChanged="txtVendorName_TextChanged_1" LostFocus="txtVendorName_LostFocus" GotFocus="txtVendorName_GotFocus"/>
+                                            <TextBox x:Name="txtVendorName"  Canvas.Left="435" Canvas.Top="161" Width="321" Height="62" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True"   IsEnabled="False"/>
 
                                             <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="150" Canvas.Left="28"/>
                                             <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True"
@@ -85,8 +86,8 @@
                                             <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="166" Width="114" Canvas.Left="441"/>
                                             <TextBox x:Name="txtCountry"  Canvas.Left="566" Canvas.Top="166" Width="187" Height="33" FontSize="15"/>
                                             <ListBox Height="198" FontSize="30" Canvas.Left="407" Width="302" Visibility="Hidden" x:Name="lstponumber"  SelectionChanged="lstponumber_SelectionChanged_1" Canvas.Top="10"/>
-                                            <ListBox Height="194" Width="319" FontSize="25" Canvas.Left="437" Name="lstVenderName" SelectionChanged="lstVenderName_SelectionChanged_1" Visibility="Hidden"/>
-                                            <ListBox Height="161" x:Name="lstVenderNumber" FontSize="25" Width="252" Canvas.Left="437"  Visibility="Hidden" Canvas.Top="-75" SelectionChanged="lstVenderNumber_SelectionChanged_1"/>
+                                            <ListBox Height="194" Width="319" FontSize="25" Canvas.Left="437" Name="lstVenderName"  Visibility="Hidden"/>
+                                            <ListBox Height="161" x:Name="lstVenderNumber" FontSize="25" Width="252" Canvas.Left="437"  Visibility="Hidden" Canvas.Top="-75" />
                                         </Canvas>
                                     </Border>
 
@@ -114,26 +115,26 @@
                                     </Border>
 
                                     <DataGrid x:Name="dgPackageInfo"
-											SelectionMode="Extended" 
-											ItemsSource="{Binding}" 
-											HorizontalAlignment="Center" 
-											VerticalAlignment="Center"
-											Width="790" 
-											ScrollViewer.CanContentScroll="False" 
-											ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-											ScrollViewer.VerticalScrollBarVisibility="Auto" 
-											CanUserAddRows="False"    
-											AutoGenerateColumns="False" 
-											FontSize="17" 
-											Background="{x:Null}" 
-											SelectionUnit="FullRow" 
-											BorderThickness="1" 
-											Cursor="Hand"   
-											BorderBrush="{x:Null}" 
-											HorizontalGridLinesBrush="#FF575757" 
-											VerticalGridLinesBrush="Gray"
-											Height="289"  
-											SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" 
+        								SelectionMode="Extended" 
+        								ItemsSource="{Binding}" 
+        								HorizontalAlignment="Center" 
+        								VerticalAlignment="Center"
+        								Width="790" 
+        								ScrollViewer.CanContentScroll="False" 
+        								ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+        								ScrollViewer.VerticalScrollBarVisibility="Auto" 
+        								CanUserAddRows="False"    
+        								AutoGenerateColumns="False" 
+        								FontSize="17" 
+        								Background="{x:Null}" 
+        								SelectionUnit="FullRow" 
+        								BorderThickness="1" 
+        								Cursor="Hand"   
+        								BorderBrush="{x:Null}" 
+        								HorizontalGridLinesBrush="#FF575757" 
+        								VerticalGridLinesBrush="Gray"
+        								Height="289"  
+        								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" 
                                            >
 
                                         <DataGrid.Resources>
@@ -154,7 +155,7 @@
                                                                 </Button.Background>
                                                             </Button>
                                                             <Button x:Name="btnGreen" Visibility="Hidden" Width="80" Height="70"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
-																	Click="btnGreen_Click" >
+        														Click="btnGreen_Click" >
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Checked .png"/>
                                                                 </Button.Background>
@@ -164,20 +165,20 @@
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
                                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-													Binding="{Binding SKUNumber}" 
-													Header="SKU"  
-													Width="110" 
-													IsReadOnly="True" />
+        										Binding="{Binding SKUNumber}" 
+        										Header="SKU"  
+        										Width="110" 
+        										IsReadOnly="True" />
 
-                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-													Binding="{Binding ProductName}" 
-													Header="Product Name" 
-													Width="210" 
-                                    				/>
+                                            <!--<DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ProductName}" 
+        										Header="" 
+        										Width="0" 
+                                    				/>-->
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-													Header="Qty"
-													Width="80">
+        										Header="Qty"
+        										Width="80">
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -185,13 +186,13 @@
                                                             <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="20" FontWeight="Bold"/>
                                                             <StackPanel x:Name="spQty2" Orientation="Horizontal">
                                                                 <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-																		Width="40" Height="40" FontSize="12"
-																		Foreground="White" Background="#FF464646" 
-																		Click="btnMinus_Click" />
+        															Width="40" Height="40" FontSize="12"
+        															Foreground="White" Background="#FF464646" 
+        															Click="btnMinus_Click" />
                                                                 <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-																		Width="40" Height="40" 
-																		FontSize="12" Foreground="White" Background="#FF464646"
-																		Click="btnPluse_Click" />
+        															Width="40" Height="40" 
+        															FontSize="12" Foreground="White" Background="#FF464646"
+        															Click="btnPluse_Click" />
                                                             </StackPanel>
                                                         </StackPanel>
                                                     </DataTemplate>
@@ -199,8 +200,8 @@
                                             </DataGridTemplateColumn>
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
-													Header="Images" 
-													Width="200" >
+        										Header="Images" 
+        										Width="140" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="70">
@@ -213,20 +214,49 @@
                                             </DataGridTemplateColumn>
 
                                             <DataGridTemplateColumn Header="Reasons" 
-													HeaderStyle="{StaticResource HeaderStyleKey}"
-													Width="*" >
+        										HeaderStyle="{StaticResource HeaderStyleKey}"
+        										Width="85" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
                                                             <Canvas x:Name="cvItemReasons" >
-                                                                <TextBlock x:Name="txtCheckedCount" Text="0 Reasons" Margin="0,0,0,0" Height="120" Width="200" />
+                                                                <TextBlock x:Name="txtCheckedCount" Text="" Margin="0,0,0,0" Height="120" Width="200" />
                                                                 <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
                                                             </Canvas>
                                                         </ContentControl>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn Header="Bar Code" Width="265" >
+                                                <DataGridTemplateColumn.HeaderStyle>
+                                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                                    </Style>
+                                                </DataGridTemplateColumn.HeaderStyle>
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Canvas>
+                                                            <Image x:Name="imgBarCode" Canvas.Left="15" Width="255" Height="50" Stretch="Uniform"/>
+                                                        </Canvas>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+
                                         </DataGrid.Columns>
+                                        <DataGrid.RowValidationErrorTemplate>
+                                            <ControlTemplate>
+                                                <Grid Margin="0,-2,0,-2"
+        											ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}}">
+                                                    <Ellipse StrokeThickness="0" Fill="Red" 
+        												Width="{TemplateBinding FontSize}" 
+        												Height="{TemplateBinding FontSize}" />
+                                                    <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
+        												FontWeight="Bold" Foreground="White" 
+        												HorizontalAlignment="Center"  />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </DataGrid.RowValidationErrorTemplate>
                                     </DataGrid>
                                     <Border x:Name="bdrZoomImage" Canvas.Left="376" Canvas.Top="77" BorderThickness="2" Visibility="Hidden" CornerRadius="5" BorderBrush="#FF9B20E2" Height="317" Width="448">
                                         <Image Canvas.Left="417" Stretch="Fill"  Canvas.Top="130" x:Name="imgZoom" Visibility="Visible"  Margin="4"/>
@@ -313,7 +343,37 @@
                             <Border>
                                 <Canvas Height="471">
                                     <Border Width="790" CornerRadius="10" Canvas.Top="2" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="241" >
-                                        <Canvas x:Name="cvCheckboxHolder" Margin="-10,0,10,0">
+                                        <Canvas Margin="-10,0,10,0" Name="CanvasConditions" IsEnabled="False">
+                                            <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75"></Label>
+
+                                            <Canvas>
+                                                <Label Canvas.Left="141" Canvas.Top="28" Name="lblItemIsNew" Content="Item is New" Style="{StaticResource lblConstant}" Width="167" Height="32" FontSize="20" ></Label>
+                                                <RadioButton Content="Yes" Name="btnBoxNew" Canvas.Left="340" Canvas.Top="29" Height="29" Width="58" FontSize="20" Checked="btnBoxNew_Checked_1"></RadioButton>
+                                                <RadioButton Content="No" Name="btnBoxNotNew" Canvas.Left="480" Canvas.Top="29" Height="29" Width="104" FontSize="20" Checked="btnBoxNotNew_Checked_1"></RadioButton>
+                                            </Canvas>
+                                            <Canvas>
+                                                <Label Canvas.Left="143" Canvas.Top="186" Name="lblDefectontea" Content="Defect in Transite" Style="{StaticResource lblConstant}" Width="167" Height="32" FontSize="20" ></Label>
+                                                <RadioButton Content="Yes" Name="btntransiteYes" Canvas.Left="336" Canvas.Top="188" Height="29" Width="84" FontSize="20" Checked="btntransiteYes_Checked_1" IsEnabled="False"></RadioButton>
+                                                <RadioButton Content="No" Canvas.Left="476" Name="btntransiteNo" Canvas.Top="188" Height="29" Width="104" FontSize="20" Checked="btntransiteNo_Checked" IsEnabled="False" ></RadioButton>
+                                            </Canvas>
+                                            <Canvas>
+                                                <Label Canvas.Left="152" Name="lblInstalled" Canvas.Top="70" Content="Installed" Style="{StaticResource lblConstant}" Width="152" Height="32" FontSize="20" ></Label>
+                                                <RadioButton Content="Yes" Canvas.Left="338" Canvas.Top="72" Name="btnInstalledYes" Height="29" Width="84" FontSize="20" Checked="btnInstalledYes_Checked_1"></RadioButton>
+                                                <RadioButton Content="No" Canvas.Left="477" Canvas.Top="73" Name="btnInstalledNo" Height="29" Width="84" FontSize="20" Checked="btnInstalledNo_Checked_1" ></RadioButton>
+                                            </Canvas>
+                                            <Canvas>
+                                                <Label Canvas.Left="30" Name="lblStatus" Canvas.Top="112" Content="Chip/Bended/Scratch/Broken" Style="{StaticResource lblConstant}" Width="281" Height="32" FontSize="20" ></Label>
+                                                <RadioButton Content="Yes"  Canvas.Left="337" Canvas.Top="113" Name="btnStatusYes" Height="29" Width="84" FontSize="20" Checked="btnStatusYes_Checked" ></RadioButton>
+                                                <RadioButton Content="No"  Canvas.Left="477" Canvas.Top="113" Name="btnStatusNo" Height="29" Width="84" FontSize="20" Checked="btnStatusNo_Checked"></RadioButton>
+                                            </Canvas>
+                                            <Canvas>
+                                                <Label Canvas.Left="34" Canvas.Top="149" Name="lblManufacturer" Content="Manufacturer Defective" Style="{StaticResource lblConstant}" Width="281" Height="32" FontSize="20" ></Label>
+                                                <RadioButton Content="Yes" Canvas.Left="336" IsEnabled="False" Canvas.Top="153" Name="btnManufacturerYes" Height="29" Width="84" FontSize="20" Checked="btnManufacturerYes_Checked"></RadioButton>
+                                                <RadioButton Content="No" Canvas.Left="477" Canvas.Top="152" IsEnabled="False" Name="btnManufacturerNo" Height="29" Width="84" FontSize="20" Checked="btnManufacturerNo_Checked"></RadioButton>
+                                            </Canvas>
+                                            <Button Content="Done" Name="btnAdd" Canvas.Left="656" Canvas.Top="183" Width="120" Height="38" FontSize="20" Click="btnAdd_Click" ></Button>
+                                        </Canvas>
+                                        <!--<Canvas x:Name="cvCheckboxHolder" Margin="-10,0,10,0">
                                             <Border Height="45" Width="789" Background="#B2111111" Canvas.Top="1" Canvas.Left="8">
                                                 <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="25" Foreground="White" Margin="10,6,236,0"/>
                                             </Border>
@@ -410,7 +470,7 @@
                                                     </Border>
                                                 </ContentControl>
                                             </Border>
-                                        </Canvas>
+                                        </Canvas>-->
                                     </Border>
 
                                     <Border Width="791" CornerRadius="10" Canvas.Top="244" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="144" Canvas.Left="-1" >
@@ -516,6 +576,7 @@
                     </Border>
                 </Canvas>
             </Border>
+            <Button Content="Show Barcode" FontSize="20"  HorizontalAlignment="Left" Margin="656,467,0,0" VerticalAlignment="Top" Width="134" Height="38" Name="btnshow" Click="Button_Click_1"/>
         </Grid>
     </Viewbox>
 </Window>

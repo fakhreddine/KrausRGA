@@ -53,6 +53,9 @@ namespace KrausRGA.Models
         /// </summary>
         protected DBLogics.cmdSKUReasons crtTransaction = new DBLogics.cmdSKUReasons();
 
+        protected DBLogics.cmdReturnedSKUPoints cRetutnedSKUPoints = new DBLogics.cmdReturnedSKUPoints();
+
+
 
         public List<int> GreenRowsNumber = new List<int>();
 
@@ -74,7 +77,7 @@ namespace KrausRGA.Models
         }
 
 
-        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy)
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -111,6 +114,12 @@ namespace KrausRGA.Models
                 TblRerutn.CreatedDate = DateTime.UtcNow;
                 TblRerutn.UpdatedBy = null;
                 TblRerutn.UpdatedDate = DateTime.Now;
+
+                TblRerutn.Wrong_RMA_Flg = Wrong_RMA_Flg;
+                TblRerutn.Warranty_STA = Warranty_STA;
+                TblRerutn.Setting_Wty_Days = Setting_Wty_Days;
+                TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
+
 
                 //On success of transaction it returns id.
                 if (cReturnTbl.UpsertReturnTbl(TblRerutn)) _returnID = TblRerutn.ReturnID;
@@ -174,7 +183,7 @@ namespace KrausRGA.Models
             return lsReturn;
         }
 
-        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy)
+        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -195,6 +204,9 @@ namespace KrausRGA.Models
                 TblReturnDetails.UpadatedDate = DateTime.UtcNow;
                 TblReturnDetails.UpdatedBy = CreatedBy;
 
+                TblReturnDetails.SKU_Status = SKU_Status;
+                TblReturnDetails.SKU_Reason_Total_Points = SKU_Reason_Total_Points;
+
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
 
@@ -204,6 +216,33 @@ namespace KrausRGA.Models
                 ex.LogThis("mReturnDetails/SetReturnDetailTbl");
             }
             return _ReturnID;
+        }
+
+        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points)
+        {
+            Guid _ReturnedskuID = Guid.Empty;
+            try
+            {
+                ReturnedSKUPoints TblReturnedSKUPoints = new ReturnedSKUPoints();
+
+                TblReturnedSKUPoints.ID = ReturnedSKUID;
+                TblReturnedSKUPoints.ReturnDetailID = ReturnDetailsID;
+                TblReturnedSKUPoints.ReturnID = ReturnTblID;
+                TblReturnedSKUPoints.SKU = SKU;
+                TblReturnedSKUPoints.Reason = Reason;
+                TblReturnedSKUPoints.Reason_Value = Reason_Value;
+                TblReturnedSKUPoints.Points = Points;
+
+
+                //On Success of transaction.
+                if (cRetutnedSKUPoints.UpsertReturnedSKUPoints(TblReturnedSKUPoints)) _ReturnedskuID = TblReturnedSKUPoints.ID;
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnedSKUPoints/SetReturnedSKUPoints");
+            }
+            return _ReturnedskuID;
         }
 
         public List<Reason> GetReasons(String Category)
@@ -404,6 +443,20 @@ namespace KrausRGA.Models
             {
             }
             return VenderNumber;
+        }
+
+        public String GetSKUNameByItem(string code)
+        {
+            string SKU = "";
+            try
+            {
+                SKU = cSage.GetPruductNameByEANCode(code);
+            }
+            catch (Exception)
+            {
+            }
+            return SKU;
+
         }
 
     }

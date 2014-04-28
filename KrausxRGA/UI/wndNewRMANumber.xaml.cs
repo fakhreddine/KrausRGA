@@ -40,6 +40,10 @@ namespace KrausRGA.UI
 
         mUser _mUser = clGlobal.mCurrentUser;
 
+         DataTable dt = new DataTable();
+
+         List<StatusAndPoints> listofstatus = new List<StatusAndPoints>();
+
         Guid ReturnDetailsID;
 
         string SKU,_SKU;
@@ -165,76 +169,76 @@ namespace KrausRGA.UI
 
         }
 
-        private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
-        {
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
-            bdrDamaged.Inside();
-        }
+        //private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
+        //    bdrDamaged.Inside();
+        //}
 
-        private void cbrDamaged_Unchecked(object sender, RoutedEventArgs e)
-        {
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
-            bdrDamaged.Outside();
-        }
+        //private void cbrDamaged_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDamaged.Content.ToString());
+        //    bdrDamaged.Outside();
+        //}
 
-        private void cbrDuplicate_Checked(object sender, RoutedEventArgs e)
-        {
-           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
-            bdrDuplicate.Inside();
-        }
+        //private void cbrDuplicate_Checked(object sender, RoutedEventArgs e)
+        //{
+        //   mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
+        //    bdrDuplicate.Inside();
+        //}
 
-        private void cbrDuplicate_Unchecked(object sender, RoutedEventArgs e)
-        {
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
-            bdrDuplicate.Outside();
-        }
+        //private void cbrDuplicate_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDuplicate.Content.ToString());
+        //    bdrDuplicate.Outside();
+        //}
 
-        private void cbrIncorrectOrder_Checked(object sender, RoutedEventArgs e)
-        {
-           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
-            bdrIcorrectOrder.Inside();
-        }
+        //private void cbrIncorrectOrder_Checked(object sender, RoutedEventArgs e)
+        //{
+        //   mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
+        //    bdrIcorrectOrder.Inside();
+        //}
 
-        private void cbrIncorrectOrder_Unchecked(object sender, RoutedEventArgs e)
-        {
-           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
-            bdrIcorrectOrder.Outside();
-        }
+        //private void cbrIncorrectOrder_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //   mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrIncorrectOrder.Content.ToString());
+        //    bdrIcorrectOrder.Outside();
+        //}
 
-        private void cbrDisplayedDiff_Checked(object sender, RoutedEventArgs e)
-        {
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
-            bdrDisplayedDiff.Inside();
-        }
+        //private void cbrDisplayedDiff_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
+        //    bdrDisplayedDiff.Inside();
+        //}
 
-        private void cbrDisplayedDiff_Unchecked(object sender, RoutedEventArgs e)
-        {
-            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
-            bdrDisplayedDiff.Outside();
+        //private void cbrDisplayedDiff_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrDisplayedDiff.Content.ToString());
+        //    bdrDisplayedDiff.Outside();
         
-        }
+        //}
 
-        private void cbrSatisfied_Checked(object sender, RoutedEventArgs e)
-        {
-           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
-            bdrSatisfied.Inside();
-        }
+        //private void cbrSatisfied_Checked(object sender, RoutedEventArgs e)
+        //{
+        //   mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Checked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
+        //    bdrSatisfied.Inside();
+        //}
 
-        private void cbrSatisfied_Unchecked(object sender, RoutedEventArgs e)
-        {
-           mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
-            bdrSatisfied.Outside();
-        }
+        //private void cbrSatisfied_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //   mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Reason_Unchecked.ToString(), DateTime.UtcNow.ToString(), cbrSatisfied.Content.ToString());
+        //    bdrSatisfied.Outside();
+        //}
 
-        private void cbrWrong_Checked(object sender, RoutedEventArgs e)
-        {
-            bdrRecivedWrong.Inside();
-        }
+        //private void cbrWrong_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    bdrRecivedWrong.Inside();
+        //}
 
-        private void cbrWrong_Unchecked(object sender, RoutedEventArgs e)
-        {
-            bdrRecivedWrong.Outside();
-        }
+        //private void cbrWrong_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    bdrRecivedWrong.Outside();
+        //}
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
@@ -263,43 +267,43 @@ namespace KrausRGA.UI
             _lsreturn.Add(ret);
 
             //Save to RMA Master Table.
-            Guid ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn,ReturnReasons(), RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID);
+            Guid ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.WrongRMAFlag, Views.clGlobal.Warranty, 60, 0);
             MessageBox.Show("RMA number for this return is : " + _mNewRMA.GetNewROWID(ReturnTblID));
             for (int i = 0; i < dgPackageInfo.Items.Count; i++)
             {
 
-                DataGridCell cell = GetCell(i, 0);
+                DataGridCell cell = GetCell(i, 1);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
                 DataTemplate DataTemp = CntPersenter.ContentTemplate;
 
                 SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
 
 
-                DataGridCell cell1 = GetCell(i, 1);
+                DataGridCell cell1 = GetCell(i, 2);
                 ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
                 DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
                 PName = ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text.ToString();
 
 
-                DataGridCell cell2 = GetCell(i, 2);
+                DataGridCell cell2 = GetCell(i, 3);
                 ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
                 DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
                 Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
 
-                DataGridCell cell5 = GetCell(i, 5);
+                DataGridCell cell5 = GetCell(i, 6);
                 ContentPresenter CntPersenter5 = cell5.Content as ContentPresenter;
                 DataTemplate DataTemp5 = CntPersenter5.ContentTemplate;
                 Cat = ((TextBox)DataTemp5.FindName("txtcategory", CntPersenter5)).Text.ToString();
              
 
 
-                DataGridCell cell3 = GetCell(i, 4);
+                DataGridCell cell3 = GetCell(i, 5);
                 ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
                 DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
                 TextBlock txtRGuid = DataTemp3.FindName("txtReasosnsGuid", CntPersenter3) as TextBlock;
 
 
-                DataGridCell cell4 = GetCell(i, 3);
+                DataGridCell cell4 = GetCell(i, 4);
                 ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
                 DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
                 StackPanel SpImages = (StackPanel)DataTemp4.FindName("spProductImages", CntPersenter4);
@@ -310,13 +314,43 @@ namespace KrausRGA.UI
                 if (Qty != null) _Qty = Qty;
                 if (Cat != null) _Cat = Cat;
 
-                
-
-                if (_SKU!="" && _PName!="")
+                string SKUNewName = "";
+                if (listofstatus.Count > 0)
                 {
-                   ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID);    
+                    for (int j = 0; j < listofstatus.Count; j++)
+                    {
+                        if (listofstatus[j].SKUName == _SKU)
+                        {
+                            SKUNewName = _SKU;
+                            Views.clGlobal.SKU_Staus = listofstatus[j].Status;
+                            Views.clGlobal.TotalPoints = listofstatus[j].Points;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    SKUNewName = _SKU;
+                    Views.clGlobal.SKU_Staus = "Reject";
+                    Views.clGlobal.TotalPoints = 0;
                 }
 
+                if (_SKU!="")
+                {
+                    ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints);    
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    for (int k = 0; k < dt.Rows.Count; k++)
+                    {
+                        Guid ReturnedSKUPoints = _mNewRMA.SetReturnedSKUPoints(Guid.NewGuid(), ReturnDetailsID, ReturnTblID, dt.Rows[k][0].ToString(), dt.Rows[k][1].ToString(), dt.Rows[k][2].ToString(), Convert.ToInt16(dt.Rows[k][3].ToString()));
+                    }
+                    dt.Clear();
+                }
+
+                Views.clGlobal.SKU_Staus = "";
+                Views.clGlobal.TotalPoints = 0;
 
                 foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
                 {
@@ -331,7 +365,7 @@ namespace KrausRGA.UI
                     Guid ImageID = _mNewRMA.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
                 }
 
-                if (_SKU != "" && _PName != "")
+                if (_SKU != "")
                 {
 
                     wndSlipPrint slip = new wndSlipPrint();
@@ -401,27 +435,27 @@ namespace KrausRGA.UI
             return child;
         }
         
-        private String ReturnReasons()
-        {
-            String _ReturnReason = "";
+        //private String ReturnReasons()
+        //{
+        //    String _ReturnReason = "";
 
-            if (cbrDamaged.IsChecked == true) _ReturnReason = _ReturnReason + txtitemdamage.Text;
+        //    if (cbrDamaged.IsChecked == true) _ReturnReason = _ReturnReason + txtitemdamage.Text;
 
-            if (cbrDisplayedDiff.IsChecked == true) _ReturnReason = _ReturnReason + txtDisplayedOff.Text;
+        //    if (cbrDisplayedDiff.IsChecked == true) _ReturnReason = _ReturnReason + txtDisplayedOff.Text;
 
-            if (cbrDuplicate.IsChecked == true) _ReturnReason = _ReturnReason + txtDuplicate.Text;
+        //    if (cbrDuplicate.IsChecked == true) _ReturnReason = _ReturnReason + txtDuplicate.Text;
 
-            if (cbrIncorrectOrder.IsChecked == true) _ReturnReason = _ReturnReason + txtinccorectorder.Text;
+        //    if (cbrIncorrectOrder.IsChecked == true) _ReturnReason = _ReturnReason + txtinccorectorder.Text;
 
-            if (cbrSatisfied.IsChecked == true) _ReturnReason = _ReturnReason + txtSatisfied.Text;
+        //    if (cbrSatisfied.IsChecked == true) _ReturnReason = _ReturnReason + txtSatisfied.Text;
 
-            if (cbrWrong.IsChecked == true) _ReturnReason = _ReturnReason + txtreceicewrongitem.Text;
+        //    if (cbrWrong.IsChecked == true) _ReturnReason = _ReturnReason + txtreceicewrongitem.Text;
 
-            _ReturnReason += txtOtherReason.Text;
+        //    _ReturnReason += txtOtherReason.Text;
 
-            return _ReturnReason;
+        //    return _ReturnReason;
 
-        }
+        //}
 
         public String GetGuidChecked(DataGridRow Row)
         {
@@ -488,35 +522,35 @@ namespace KrausRGA.UI
             }
         }
         
-        private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ChangeColor(cbrDamaged, txtitemdamage, cnvDamage);
-        }
+        //private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChangeColor(cbrDamaged, txtitemdamage, cnvDamage);
+        //}
 
-        private void ContentControl_MouseDown_2(object sender, MouseButtonEventArgs e)
-        {
-            ChangeColor(cbrWrong, txtreceicewrongitem, cnvRecieve);
-        }
+        //private void ContentControl_MouseDown_2(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChangeColor(cbrWrong, txtreceicewrongitem, cnvRecieve);
+        //}
 
-        private void ContentControl_MouseDown_4(object sender, MouseButtonEventArgs e)
-        {
-            ChangeColor(cbrIncorrectOrder, txtinccorectorder, cnvInccorectorder);
-        }
+        //private void ContentControl_MouseDown_4(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChangeColor(cbrIncorrectOrder, txtinccorectorder, cnvInccorectorder);
+        //}
 
-        private void ContentControl_MouseDown_3(object sender, MouseButtonEventArgs e)
-        {
-            ChangeColor(cbrDisplayedDiff, txtDisplayedOff, cnvDisplayedOff);
-        }
+        //private void ContentControl_MouseDown_3(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChangeColor(cbrDisplayedDiff, txtDisplayedOff, cnvDisplayedOff);
+        //}
 
-        private void ContentControl_MouseDown_1(object sender, MouseButtonEventArgs e)
-        {
-            ChangeColor(cbrDuplicate, txtDuplicate, cnvDuplicate);
-        }
+        //private void ContentControl_MouseDown_1(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChangeColor(cbrDuplicate, txtDuplicate, cnvDuplicate);
+        //}
 
-        private void ContentControl_MouseDown_5(object sender, MouseButtonEventArgs e)
-        {
-            ChangeColor(cbrSatisfied, txtSatisfied, cnvSatisfied);
-        }
+        //private void ContentControl_MouseDown_5(object sender, MouseButtonEventArgs e)
+        //{
+        //    ChangeColor(cbrSatisfied, txtSatisfied, cnvSatisfied);
+        //}
 
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
@@ -578,6 +612,11 @@ namespace KrausRGA.UI
 
             lsReturn.Insert(0, re);
 
+               dt.Columns.Add("SKU", typeof(string));
+            dt.Columns.Add("Reason", typeof(string));
+            dt.Columns.Add("Reason_Value", typeof(string));
+            dt.Columns.Add("Points", typeof(int));
+
             cmbOtherReason.ItemsSource = lsReturn;
 
             FillRMAStausAndDecision();
@@ -585,6 +624,7 @@ namespace KrausRGA.UI
             var data = new RDetails { SKU = "", ProductName = "", Quantity = "1", cat = "" };
 
             dgPackageInfo.Items.Add(data);
+            txtbarcode.Focus();
 
         
 
@@ -621,7 +661,7 @@ namespace KrausRGA.UI
 
             _lsNewRMAnumber = _mNewRMA.NewRMAInfo(che);
 
-            lstSKU.Visibility = Visibility.Visible;
+           // lstSKU.Visibility = Visibility.Visible;
 
             lstSKU.ItemsSource = _lsNewRMAnumber;
 
@@ -952,5 +992,425 @@ namespace KrausRGA.UI
         {
             lstponumber.Visibility = Visibility.Hidden;
         }
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            string SelectedskuName = "";
+
+            for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+            {
+
+                DataGridCell cell = GetCell(i, 0);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DtQty = CntPersenter.ContentTemplate;
+
+                DataGridCell cell2 = GetCell(i, 1);
+                ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter2.ContentTemplate;
+
+                SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter2)).Text.ToString();
+
+                Button txtRetutn = (Button)DtQty.FindName("btnGreen", CntPersenter);
+                if (txtRetutn.Visibility == Visibility.Visible)
+                {
+                    SelectedskuName = SKU;
+                    //dgPackageInfo.Items[i] = IsEnabled = true;
+                }
+            }
+            DataRow dr = dt.NewRow();
+            dr["SKU"] = SelectedskuName;
+            if (btnBoxNew.IsChecked == true)
+            {
+                dr["Reason"] = lblItemIsNew.Content;
+                dr["Reason_Value"] = "Yes";
+                dr["Points"] = 100;
+                dt.Rows.Add(dr);
+            }
+            else if (btnBoxNotNew.IsChecked == true)
+            {
+                dr["Reason"] = lblItemIsNew.Content;
+                dr["Reason_Value"] = "No";
+                dr["Points"] = 0;
+                dt.Rows.Add(dr);
+            }
+
+
+
+            DataRow dr1 = dt.NewRow();
+            dr1["SKU"] = SelectedskuName;
+            if (btnInstalledYes.IsChecked == true)
+            {
+                dr1["Reason"] = lblInstalled.Content;
+                dr1["Reason_Value"] = "Yes";
+                dr1["Points"] = 0;
+                dt.Rows.Add(dr1);
+            }
+            else if (btnInstalledNo.IsChecked == true)
+            {
+                dr1["Reason"] = lblInstalled.Content;
+                dr1["Reason_Value"] = "No";
+                dr1["Points"] = 100;
+                dt.Rows.Add(dr1);
+            }
+
+
+            DataRow dr2 = dt.NewRow();
+            dr2["SKU"] = SelectedskuName;
+            if (btnStatusYes.IsChecked == true)
+            {
+                dr2["Reason"] = lblStatus.Content;
+                dr2["Reason_Value"] = "Yes";
+                dr2["Points"] = 100;
+                dt.Rows.Add(dr2);
+            }
+            else if (btnStatusNo.IsChecked == true)
+            {
+                dr2["Reason"] = lblStatus.Content;
+                dr2["Reason_Value"] = "No";
+                dr2["Points"] = 0;
+                dt.Rows.Add(dr2);
+            }
+
+
+            DataRow dr3 = dt.NewRow();
+            dr3["SKU"] = SelectedskuName;
+            if (btnManufacturerYes.IsChecked == true)
+            {
+                dr3["Reason"] = lblManufacturer.Content;
+                dr3["Reason_Value"] = "Yes";
+                dr3["Points"] = 100;
+                dt.Rows.Add(dr3);
+            }
+            else if (btnManufacturerNo.IsChecked == true)
+            {
+                dr3["Reason"] = lblManufacturer.Content;
+                dr3["Reason_Value"] = "No";
+                dr3["Points"] = 0;
+                dt.Rows.Add(dr3);
+            }
+
+
+            DataRow dr4 = dt.NewRow();
+            dr4["SKU"] = SelectedskuName;
+            if (btntransiteYes.IsChecked == true)
+            {
+                dr4["Reason"] = lblDefectontea.Content;
+                dr4["Reason_Value"] = "Yes";
+                dr4["Points"] = 100;
+                dt.Rows.Add(dr4);
+            }
+            else if (btntransiteNo.IsChecked == true)
+            {
+                dr4["Reason"] = lblDefectontea.Content;
+                dr4["Reason_Value"] = "No";
+                dr4["Points"] = 0;
+                dt.Rows.Add(dr4);
+            }
+
+            StatusAndPoints _lsstatusandpoints = new StatusAndPoints();
+            _lsstatusandpoints.SKUName = SelectedskuName;
+            _lsstatusandpoints.Status = Views.clGlobal.SKU_Staus;
+            _lsstatusandpoints.Points = Convert.ToInt16(lblpoints.Content);//Views.clGlobal.TotalPoints;
+            listofstatus.Add(_lsstatusandpoints);
+
+            lblpoints.Content = "";
+            points = 0;
+
+
+
+            int ro = dt.Rows.Count;
+            UncheckAllButtons();
+           // ErrorMsg("Please Select Next Item or Go ahead.", Color.FromRgb(185, 84, 0));
+        }
+        
+
+        Boolean itemnew = true;
+        int count = 0;
+        int points = 0;
+        private void btnBoxNew_Checked_1(object sender, RoutedEventArgs e)
+        {
+            if (itemnew)
+            {
+                points = points + 100;
+                lblpoints.Content = points.ToString();
+            }
+            else
+            {
+
+            }
+            itemnew = false;
+        }
+
+        private void UncheckAllButtons()
+        {
+            btnBoxNew.IsChecked = false;
+            btnBoxNotNew.IsChecked = false;
+            btnInstalledYes.IsChecked = false;
+            btnInstalledNo.IsChecked = false;
+            btnStatusNo.IsChecked = false;
+            btnStatusYes.IsChecked = false;
+            btnManufacturerNo.IsChecked = false;
+            btnManufacturerYes.IsChecked = false;
+            btntransiteNo.IsChecked = false;
+            btntransiteYes.IsChecked = false;
+
+            btnManufacturerNo.IsEnabled = false;
+            btnManufacturerYes.IsEnabled = false;
+            btntransiteNo.IsEnabled = false;
+            btntransiteYes.IsEnabled = false;
+        }
+
+        private void btnBoxNotNew_Checked_1(object sender, RoutedEventArgs e)
+        {
+            if (!itemnew)
+            {
+                points = points - 100;
+                lblpoints.Content = points.ToString();
+            }
+            else
+            {
+                points = points + 0;
+                lblpoints.Content = points.ToString();
+            }
+            itemnew = true;
+        }
+        Boolean IsDefectiveTransite = true;
+        private void btntransiteYes_Checked_1(object sender, RoutedEventArgs e)
+        {
+            if (IsDefectiveTransite)
+            {
+                points = points + 100;
+                lblpoints.Content = points.ToString();
+                Views.clGlobal.SKU_Staus = "Refund";
+            }
+            else
+            {
+
+            }
+            IsDefectiveTransite = false;
+        }
+
+        private void btntransiteNo_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!IsDefectiveTransite)
+            {
+                points = points - 100;
+                lblpoints.Content = points.ToString();
+            }
+            else
+            {
+                points = points + 0;
+                lblpoints.Content = points.ToString();
+            }
+            IsDefectiveTransite = true;
+            // Views.clGlobal.SKU_Staus = "";
+
+            if (btnManufacturerNo.IsChecked == true && btntransiteNo.IsChecked == true)
+            {
+                Views.clGlobal.SKU_Staus = "Deny";
+            }
+        }
+        Boolean ISinstalled = true;
+        private void btnInstalledYes_Checked_1(object sender, RoutedEventArgs e)
+        {
+            if (!ISinstalled)
+            {
+                points = points - 100;
+                lblpoints.Content = points.ToString();
+            }
+            else
+            {
+                points = points + 0;
+                lblpoints.Content = points.ToString();
+            }
+            ISinstalled = true;
+
+
+
+           // ErrorMsg("This Item is Rejected.", Color.FromRgb(185, 84, 0));
+            //btnStatusNo.IsEnabled = false;
+            // btnStatusYes.IsEnabled = false;
+            btnAdd.IsEnabled = true;
+        }
+        private void btnInstalledNo_Checked_1(object sender, RoutedEventArgs e)
+        {
+            if (ISinstalled)
+            {
+                points = points + 100;
+                lblpoints.Content = points.ToString();
+            }
+            else
+            {
+
+            }
+            ISinstalled = false;
+
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            // btnAdd.IsEnabled = false;
+            btnStatusNo.IsEnabled = true;
+            btnStatusYes.IsEnabled = true;
+        }
+        private void btnStatusNo_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!IsManufacture)
+            {
+                points = points - 100;
+                lblpoints.Content = points.ToString();
+            }
+            if (!IsDefectiveTransite)
+            {
+                points = points - 100;
+                lblpoints.Content = points.ToString();
+            }
+            if (IsStatus)
+            {
+                points = points + 100;
+                lblpoints.Content = points.ToString();
+            }
+            IsStatus = false;
+            btnManufacturerNo.IsEnabled = false;
+            btnManufacturerYes.IsEnabled = false;
+            btntransiteNo.IsEnabled = false;
+            btntransiteYes.IsEnabled = false;
+            btnManufacturerNo.IsChecked = false;
+            btnManufacturerYes.IsChecked = false;
+            btntransiteNo.IsChecked = false;
+            btntransiteYes.IsChecked = false;
+            btnAdd.IsEnabled = true;
+        }
+
+        private void btnManufacturerYes_Checked(object sender, RoutedEventArgs e)
+        {
+
+            if (IsManufacture)
+            {
+                points = points + 100;
+                lblpoints.Content = points.ToString();
+                Views.clGlobal.SKU_Staus = "Refund";
+            }
+            else
+            {
+
+            }
+            IsManufacture = false;
+        }
+
+        private void btnManufacturerNo_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!IsManufacture)
+            {
+                points = points - 100;
+                lblpoints.Content = points.ToString();
+            }
+            else
+            {
+                points = points + 0;
+                lblpoints.Content = points.ToString();
+            }
+            IsManufacture = true;
+            // Views.clGlobal.SKU_Staus = "";
+
+            if (btnManufacturerNo.IsChecked == true && btntransiteNo.IsChecked == true)
+            {
+                Views.clGlobal.SKU_Staus = "Deny";
+            }
+        }
+        Boolean IsStatus = true;
+        Boolean IsManufacture = true;
+        private void btnStatusYes_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!IsStatus)
+            {
+                points = points - 100;
+                lblpoints.Content = points.ToString();
+            }
+            IsStatus = true;
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            //  btnAdd.IsEnabled = false;
+            btnManufacturerNo.IsEnabled = true;
+            btnManufacturerYes.IsEnabled = true;
+            btntransiteNo.IsEnabled = true;
+            btntransiteYes.IsEnabled = true;
+            btnManufacturerNo.IsChecked = false;
+            btnManufacturerYes.IsChecked = false;
+            btntransiteNo.IsChecked = false;
+            btntransiteYes.IsChecked = false;
+            IsManufacture = true;
+            IsDefectiveTransite = true;
+        }
+
+        private void btnRed_Click(object sender, RoutedEventArgs e)
+        {
+
+            for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+            {
+
+                DataGridCell cell = GetCell(i, 0);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DtQty = CntPersenter.ContentTemplate;
+                Button txtRetutn = (Button)DtQty.FindName("btnGreen", CntPersenter);
+                txtRetutn.Visibility = System.Windows.Visibility.Hidden;
+                Button txtRetutn2 = (Button)DtQty.FindName("btnRed", CntPersenter);
+                txtRetutn2.Visibility = System.Windows.Visibility.Visible;
+                txtbarcode.Focus();
+            }
+            CanvasConditions.IsEnabled = true;
+            Button btnRed = (Button)e.Source;
+            Canvas SpButtons = (Canvas)btnRed.Parent;
+            Button btnGreen = SpButtons.FindName("btnGreen") as Button;
+            btnGreen.Visibility = System.Windows.Visibility.Visible;
+            btnRed.Visibility = System.Windows.Visibility.Hidden;
+
+            DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+            GreenRowsNumber1.Add(row.GetIndex());
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            txtbarcode.Focus();
+
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
+        }
+        List<int> GreenRowsNumber1 = new List<int>();
+        private void btnGreen_Click(object sender, RoutedEventArgs e)
+        {
+            CanvasConditions.IsEnabled = false;
+            Button btnGreen = (Button)e.Source;
+            Canvas SpButtons = (Canvas)btnGreen.Parent;
+            Button btnRed = SpButtons.FindName("btnRed") as Button;
+            btnGreen.Visibility = System.Windows.Visibility.Hidden;
+            btnRed.Visibility = System.Windows.Visibility.Visible;
+
+            DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+            GreenRowsNumber1.Remove(row.GetIndex());
+            bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+            txtbarcode.Focus();
+
+            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_UnChecked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
+
+        }
+        private void txtbarcode_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
+                int count=0;
+
+                if (dgPackageInfo.Items.Count>1)
+                {
+                    count = dgPackageInfo.Items.Count-1;
+                }
+
+
+                DataGridCell cell = GetCell(count, 1);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = _mNewRMA.GetSKUNameByItem(txtbarcode.Text.Remove(0, 1));
+
+                txtbarcode.Text = "";
+                txtbarcode.Focus();
+
+                var data = new RDetails { SKU = "", ProductName = "", Quantity = "1", cat = "" };
+
+                dgPackageInfo.Items.Add(data);
+            }
+        }
+       
     }
 }

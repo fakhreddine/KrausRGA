@@ -45,6 +45,8 @@ namespace KrausRGA.Models
         /// </summary>
         protected DBLogics.cmdSKUReasons crtTransaction = new DBLogics.cmdSKUReasons();
 
+        protected DBLogics.cmdReturnedSKUPoints cRetutnedSKUPoints = new DBLogics.cmdReturnedSKUPoints();
+
 
         public List<int> GreenRowsNumber = new List<int>();
 
@@ -68,9 +70,65 @@ namespace KrausRGA.Models
             }
             return _lsReasons;
         }
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff)
+        {
+            Guid _returnID = Guid.Empty;
+            try
+            {
+                // _lsNEWRMA = lsNewRMA;
+                //Return table new object.
+                Return TblRerutn = new Return();
+
+                TblRerutn.ReturnID = Guid.NewGuid();
+                TblRerutn.RMANumber = null;//lsNewRMA[0].RMANumber;
+                TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
+                TblRerutn.OrderNumber = "N/A";
+                TblRerutn.PONumber = lsNewRMA[0].PONumber;
+                TblRerutn.OrderDate = DateTime.UtcNow;
+                TblRerutn.DeliveryDate = DateTime.UtcNow;
+                TblRerutn.ReturnDate = lsNewRMA[0].ReturnDate;
+                TblRerutn.ScannedDate = DateTime.UtcNow;
+                TblRerutn.ExpirationDate = DateTime.UtcNow.AddDays(60);
+                TblRerutn.VendorNumber = lsNewRMA[0].VendorNumber;
+                TblRerutn.VendoeName = lsNewRMA[0].VendoeName;
+                TblRerutn.CustomerName1 = lsNewRMA[0].CustomerName1;
+                TblRerutn.CustomerName2 = "N/A";
+                TblRerutn.Address1 = lsNewRMA[0].Address1;
+                TblRerutn.Address2 = "N/A";
+                TblRerutn.Address3 = "N/A";
+                TblRerutn.ZipCode = lsNewRMA[0].ZipCode;
+                TblRerutn.City = lsNewRMA[0].City;
+                TblRerutn.State = lsNewRMA[0].State;
+                TblRerutn.Country = lsNewRMA[0].Country;
+                TblRerutn.ReturnReason = ReturnReason;
+                TblRerutn.RMAStatus = RMAStatus;
+                TblRerutn.Decision = Decision;
+                TblRerutn.CreatedBy = CreatedBy;
+                TblRerutn.CreatedDate = DateTime.UtcNow;
+                TblRerutn.UpdatedBy = null;
+                TblRerutn.UpdatedDate = DateTime.Now;
+
+                TblRerutn.Wrong_RMA_Flg = Wrong_RMA_Flg;
+                TblRerutn.Warranty_STA = Warranty_STA;
+                TblRerutn.Setting_Wty_Days = Setting_Wty_Days;
+                TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
 
 
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy)
+
+
+
+                //On success of transaction it returns id.
+                if (cReturnTbl.UpsertReturnTbl(TblRerutn)) _returnID = TblRerutn.ReturnID;
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetReturnTbl");
+            }
+            return _returnID;
+        }
+
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -82,7 +140,7 @@ namespace KrausRGA.Models
                 TblReturnDetails.SKUNumber = SKUNumber;
                 TblReturnDetails.ProductName = ProductName;
                 TblReturnDetails.DeliveredQty = DeliveredQty;
-                TblReturnDetails.ExpectedQty =ExpectedQty;
+                TblReturnDetails.ExpectedQty = ExpectedQty;
                 TblReturnDetails.TCLCOD_0 = TK;
                 TblReturnDetails.ReturnQty = ReturnQty;
                 TblReturnDetails.ProductStatus = 0;
@@ -90,6 +148,9 @@ namespace KrausRGA.Models
                 TblReturnDetails.CreatedDate = DateTime.UtcNow;
                 TblReturnDetails.UpadatedDate = DateTime.UtcNow;
                 TblReturnDetails.UpdatedBy = CreatedBy;
+
+                TblReturnDetails.SKU_Status = SKU_Status;
+                TblReturnDetails.SKU_Reason_Total_Points = SKU_Reason_Total_Points;
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
@@ -217,6 +278,47 @@ namespace KrausRGA.Models
 
             }
             return _lsslipinfo;
+        }
+
+        public String GetSKUNameByItem(string code)
+        {
+            string SKU = "";
+            try
+            {
+                SKU = cSage.GetPruductNameByEANCode(code);
+            }
+            catch (Exception)
+            {
+            }
+            return SKU;
+
+        }
+
+        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points)
+        {
+            Guid _ReturnedskuID = Guid.Empty;
+            try
+            {
+                ReturnedSKUPoints TblReturnedSKUPoints = new ReturnedSKUPoints();
+
+                TblReturnedSKUPoints.ID = ReturnedSKUID;
+                TblReturnedSKUPoints.ReturnDetailID = ReturnDetailsID;
+                TblReturnedSKUPoints.ReturnID = ReturnTblID;
+                TblReturnedSKUPoints.SKU = SKU;
+                TblReturnedSKUPoints.Reason = Reason;
+                TblReturnedSKUPoints.Reason_Value = Reason_Value;
+                TblReturnedSKUPoints.Points = Points;
+
+
+                //On Success of transaction.
+                if (cRetutnedSKUPoints.UpsertReturnedSKUPoints(TblReturnedSKUPoints)) _ReturnedskuID = TblReturnedSKUPoints.ID;
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnedSKUPoints/SetReturnedSKUPoints");
+            }
+            return _ReturnedskuID;
         }
 
     }

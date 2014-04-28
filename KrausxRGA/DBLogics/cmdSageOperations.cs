@@ -207,7 +207,7 @@ namespace KrausRGA.DBLogics
            List<RMAInfo> lsCustinfo = new List<RMAInfo>();
            try
            {
-               var CustomerInfo = Service.entGet.GetCustomerByPOnumber(PONumber).ToList();
+               var CustomerInfo = Service.entGet.NewRMAInfoByOnlyPONumber(PONumber).ToList();//Service.entGet.GetCustomerByPOnumber(PONumber).ToList();
                if (CustomerInfo.Count() > 0)
                {
                    foreach (var Customer in CustomerInfo)
