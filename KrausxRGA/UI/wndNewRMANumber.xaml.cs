@@ -294,7 +294,7 @@ namespace KrausRGA.UI
                 ContentPresenter CntPersenter5 = cell5.Content as ContentPresenter;
                 DataTemplate DataTemp5 = CntPersenter5.ContentTemplate;
                 Cat = ((TextBox)DataTemp5.FindName("txtcategory", CntPersenter5)).Text.ToString();
-             
+
 
 
                 DataGridCell cell3 = GetCell(i, 5);
@@ -335,9 +335,9 @@ namespace KrausRGA.UI
                     Views.clGlobal.TotalPoints = 0;
                 }
 
-                if (_SKU!="")
+                if (_SKU != "")
                 {
-                    ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints);    
+                    ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints);
                 }
 
                 if (dt.Rows.Count > 0)
@@ -349,8 +349,7 @@ namespace KrausRGA.UI
                     dt.Clear();
                 }
 
-                Views.clGlobal.SKU_Staus = "";
-                Views.clGlobal.TotalPoints = 0;
+
 
                 foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
                 {
@@ -370,10 +369,12 @@ namespace KrausRGA.UI
 
                     wndSlipPrint slip = new wndSlipPrint();
 
-                    Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(ReturnTblID));
+                    Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(ReturnTblID), Views.clGlobal.WrongRMAFlag, Views.clGlobal.SKU_Staus);
 
                     slip.ShowDialog();
                 }
+                Views.clGlobal.SKU_Staus = "";
+                Views.clGlobal.TotalPoints = 0;
             }
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
@@ -1010,6 +1011,7 @@ namespace KrausRGA.UI
                 SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter2)).Text.ToString();
 
                 Button txtRetutn = (Button)DtQty.FindName("btnGreen", CntPersenter);
+
                 if (txtRetutn.Visibility == Visibility.Visible)
                 {
                     SelectedskuName = SKU;
@@ -1059,14 +1061,14 @@ namespace KrausRGA.UI
             {
                 dr2["Reason"] = lblStatus.Content;
                 dr2["Reason_Value"] = "Yes";
-                dr2["Points"] = 100;
+                dr2["Points"] = 0;
                 dt.Rows.Add(dr2);
             }
             else if (btnStatusNo.IsChecked == true)
             {
                 dr2["Reason"] = lblStatus.Content;
                 dr2["Reason_Value"] = "No";
-                dr2["Points"] = 0;
+                dr2["Points"] = 100;
                 dt.Rows.Add(dr2);
             }
 
@@ -1114,12 +1116,18 @@ namespace KrausRGA.UI
 
             lblpoints.Content = "";
             points = 0;
+            itemnew = true;
+            IsStatus = true;
+            IsManufacture = true;
+            IsDefectiveTransite = true;
+            ISinstalled = true;
 
 
 
             int ro = dt.Rows.Count;
             UncheckAllButtons();
            // ErrorMsg("Please Select Next Item or Go ahead.", Color.FromRgb(185, 84, 0));
+            btnAdd.IsEnabled = false;
         }
         
 
@@ -1216,11 +1224,27 @@ namespace KrausRGA.UI
             {
                 points = points - 100;
                 lblpoints.Content = points.ToString();
+
+                btnStatusNo.IsEnabled = false;
+                btnStatusYes.IsEnabled = false;
+
+                btnManufacturerNo.IsEnabled = false;
+                btnManufacturerYes.IsEnabled = false;
+                btntransiteNo.IsEnabled = false;
+                btntransiteYes.IsEnabled = false;
             }
             else
             {
                 points = points + 0;
                 lblpoints.Content = points.ToString();
+
+                btnStatusNo.IsEnabled = false;
+                btnStatusYes.IsEnabled = false;
+
+                btnManufacturerNo.IsEnabled = false;
+                btnManufacturerYes.IsEnabled = false;
+                btntransiteNo.IsEnabled = false;
+                btntransiteYes.IsEnabled = false;
             }
             ISinstalled = true;
 
@@ -1267,6 +1291,7 @@ namespace KrausRGA.UI
                 lblpoints.Content = points.ToString();
             }
             IsStatus = false;
+            Views.clGlobal.SKU_Staus = "Refund";
             btnManufacturerNo.IsEnabled = false;
             btnManufacturerYes.IsEnabled = false;
             btntransiteNo.IsEnabled = false;
@@ -1354,6 +1379,7 @@ namespace KrausRGA.UI
                 txtbarcode.Focus();
             }
             CanvasConditions.IsEnabled = true;
+            btnAdd.IsEnabled = true;
             Button btnRed = (Button)e.Source;
             Canvas SpButtons = (Canvas)btnRed.Parent;
             Button btnGreen = SpButtons.FindName("btnGreen") as Button;
@@ -1371,6 +1397,7 @@ namespace KrausRGA.UI
         private void btnGreen_Click(object sender, RoutedEventArgs e)
         {
             CanvasConditions.IsEnabled = false;
+            btnAdd.IsEnabled = false;
             Button btnGreen = (Button)e.Source;
             Canvas SpButtons = (Canvas)btnGreen.Parent;
             Button btnRed = SpButtons.FindName("btnRed") as Button;

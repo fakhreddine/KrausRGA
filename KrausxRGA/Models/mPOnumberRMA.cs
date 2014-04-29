@@ -258,7 +258,7 @@ namespace KrausRGA.Models
             return SageReasons;
         }
 
-        public List<cSlipInfo> GetSlipInfo(List<Return> lsNewRMA, string SkuNumber, String EANCode, String ReturnReasons, string NewRGANumber)
+        public List<cSlipInfo> GetSlipInfo(List<Return> lsNewRMA, string SkuNumber, String EANCode, String ReturnReasons, string NewRGANumber,string RMAStatus,string ItemStatus)
         {
             List<cSlipInfo> _lsslipinfo = new List<cSlipInfo>();
             try
@@ -271,6 +271,9 @@ namespace KrausRGA.Models
                 slip.Expiration = lsNewRMA[0].ExpirationDate;
                 slip.SRNumber = NewRGANumber;
                 slip.EANCode = EANCode;
+                slip.ItemStatus = ItemStatus;
+                slip.RMAStatus = RMAStatus;
+
                 _lsslipinfo.Add(slip);
             }
             catch (Exception)

@@ -14,5 +14,8 @@ namespace KrausRGA.Views
         public string SRNumber { get; set; }
         public string ProductName { get; set; }
         public string EANCode { get; set; }
+
+        public string RMAStatus { get; set; }
+        public string ItemStatus { get; set; }
     }
 }

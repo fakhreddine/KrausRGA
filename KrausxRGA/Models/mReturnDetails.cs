@@ -628,7 +628,7 @@ namespace KrausRGA.Models
         }
 
 
-        public List<cSlipInfo> GetSlipInfo(string SkuNumber,String EANCode, String ReturnReasons,DateTime ScannedDate, DateTime ExpirationDate)
+        public List<cSlipInfo> GetSlipInfo(string SkuNumber,String EANCode, String ReturnReasons,DateTime ScannedDate, DateTime ExpirationDate,string RMAStatus,string ItemStatus)
         {
             List<cSlipInfo> _lsslipinfo = new List<cSlipInfo>();
             try
@@ -641,6 +641,8 @@ namespace KrausRGA.Models
                 slip.Expiration = ExpirationDate;
                 slip.SRNumber = lsRMAInformation[0].RMANumber;
                 slip.EANCode = EANCode;
+                slip.RMAStatus = RMAStatus;
+                slip.ItemStatus = ItemStatus;
                 _lsslipinfo.Add(slip);
             }
             catch (Exception)

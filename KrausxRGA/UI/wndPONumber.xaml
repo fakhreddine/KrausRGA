@@ -215,7 +215,7 @@
 
                                             <DataGridTemplateColumn Header="Reasons" 
         										HeaderStyle="{StaticResource HeaderStyleKey}"
-        										Width="85" >
+        										Width="50" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >

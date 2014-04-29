@@ -62,6 +62,23 @@ namespace KrausRGA.UI
             DateTime ReceivedDate = _lsInfoSlip[0].ReceivedDate;
             DateTime Expiration = _lsInfoSlip[0].Expiration;
             string UserName = _lsInfoSlip[0].ReceivedBY;
+            string RMAStatusReal;
+            String RMAStatus = _lsInfoSlip[0].RMAStatus;
+            if (RMAStatus == "0")
+            {
+                RMAStatusReal = "Accepted";
+            }
+            else if (RMAStatus == "1")
+            {
+                RMAStatusReal = "Rejected";
+            }
+            else
+            {
+                RMAStatusReal = "N/A";
+            }
+
+            string ItemStatus = _lsInfoSlip[0].ItemStatus;
+
             string Reason = "N/A";
 
             if(_lsInfoSlip[0].Reason!="")
@@ -119,6 +136,9 @@ namespace KrausRGA.UI
             txtReason.Text = Reason;
             txtSRNumber.Text = SRnumber;
             txtproductName.Text = SKUName;
+            txtRMAStatus.Text = RMAStatusReal;
+            txtItemStatus.Text = ItemStatus;
+
            // txtEANcode.Text = _lsInfoSlip[0].EANCode;
         }
 
