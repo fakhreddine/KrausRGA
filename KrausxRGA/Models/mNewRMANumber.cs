@@ -75,7 +75,25 @@ namespace KrausRGA.Models
             return _retunn;
 
         }
+        public Guid SetReasons(string Reasons)
+        {
+            Guid _reasonID = Guid.Empty;
 
+            try
+            {
+                Reason ReasonTable = new Reason();
+
+                ReasonTable.ReasonID = Guid.NewGuid();
+                ReasonTable.Reason1 = Reasons;
+
+                if (cRtnreasons.InsertReasons(ReasonTable)) _reasonID = ReasonTable.ReasonID;
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/SetReasons");
+            }
+            return _reasonID;
+        }
 
         public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff)
         {

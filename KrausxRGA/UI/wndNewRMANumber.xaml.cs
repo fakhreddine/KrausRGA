@@ -242,7 +242,13 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
-
+            if (cmbOtherReason.SelectedIndex != 0)
+            {
+                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
+                Guid reasonID = _mNewRMA.SetReasons(txtOtherReason.Text);
+            }
+            txtOtherReason.Text = "";
+            txtItemReason.Text = "";
 
             Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
             Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
@@ -801,7 +807,7 @@ namespace KrausRGA.UI
 
         private void dgPackageInfo_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
-            dgPackageInfo.Items.RemoveAt(dgPackageInfo.SelectedIndex);
+          //  dgPackageInfo.Items.RemoveAt(dgPackageInfo.SelectedIndex);
         }
 
         private void txtPoNumber_KeyDown_1(object sender, KeyEventArgs e)
@@ -1224,7 +1230,7 @@ namespace KrausRGA.UI
             {
                 points = points - 100;
                 lblpoints.Content = points.ToString();
-
+                Views.clGlobal.SKU_Staus = "Deny";
                 btnStatusNo.IsEnabled = false;
                 btnStatusYes.IsEnabled = false;
 
@@ -1237,7 +1243,7 @@ namespace KrausRGA.UI
             {
                 points = points + 0;
                 lblpoints.Content = points.ToString();
-
+                Views.clGlobal.SKU_Staus = "Deny";
                 btnStatusNo.IsEnabled = false;
                 btnStatusYes.IsEnabled = false;
 
@@ -1414,7 +1420,7 @@ namespace KrausRGA.UI
         }
         private void txtbarcode_KeyDown_1(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter && txtbarcode.Text.Trim() != "")
             {
                 List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                 int count=0;
@@ -1428,7 +1434,7 @@ namespace KrausRGA.UI
                 DataGridCell cell = GetCell(count, 1);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
                 DataTemplate DataTemp = CntPersenter.ContentTemplate;
-                ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = _mNewRMA.GetSKUNameByItem(txtbarcode.Text.Remove(0, 1));
+                ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = _mNewRMA.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
 
                 txtbarcode.Text = "";
                 txtbarcode.Focus();

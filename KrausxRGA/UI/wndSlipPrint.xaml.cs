@@ -62,20 +62,40 @@ namespace KrausRGA.UI
             DateTime ReceivedDate = _lsInfoSlip[0].ReceivedDate;
             DateTime Expiration = _lsInfoSlip[0].Expiration;
             string UserName = _lsInfoSlip[0].ReceivedBY;
-            string RMAStatusReal;
+            string RMAStatusReal = "N/A";
             String RMAStatus = _lsInfoSlip[0].RMAStatus;
-            if (RMAStatus == "0")
+
+            if (Views.clGlobal.ScenarioType == "HomeDepot")
+            {
+                if (RMAStatus == "0" && Views.clGlobal.Warranty == "1")
+                {
+                    RMAStatusReal = "Accepted";
+                }
+                else if (RMAStatus == "0" && Views.clGlobal.Warranty == "0")
+                {
+                    RMAStatusReal = "Rejected";
+                }
+                else if (RMAStatus == "1" )
+                {
+                    RMAStatusReal = "Rejected";
+                }
+            }
+            if (Views.clGlobal.ScenarioType == "Lowes")
             {
                 RMAStatusReal = "Accepted";
             }
-            else if (RMAStatus == "1")
+            if (Views.clGlobal.ScenarioType == "Others")
             {
-                RMAStatusReal = "Rejected";
+                if (Views.clGlobal.Warranty == "1")
+                {
+                    RMAStatusReal = "Accepted";
+                }
+                else if (Views.clGlobal.Warranty == "0")
+                {
+                    RMAStatusReal = "Rejected";
+                }
             }
-            else
-            {
-                RMAStatusReal = "N/A";
-            }
+           
 
             string ItemStatus = _lsInfoSlip[0].ItemStatus;
 
@@ -148,7 +168,7 @@ namespace KrausRGA.UI
             {
 
                 PrintDialog printDlg = new System.Windows.Controls.PrintDialog();
-                printDlg.PrintTicket.PageMediaSize = new PageMediaSize((Double)395.0, (Double)820.0);
+                printDlg.PrintTicket.PageMediaSize = new PageMediaSize((Double)395.0, (Double)220.0);
                 //printDlg.ShowDialog();
 
                 //get selected printer capabilities
