@@ -15,6 +15,10 @@ namespace KrausRGA.Views
         /// return model object.
         public static mReturnDetails mReturn;
 
+        public static mPOnumberRMA mPONumber;
+
+        public static Boolean IsAlreadySaved;
+
         //user Logged in or not.
         public static Boolean IsUserlogged = false;
 
@@ -32,6 +36,11 @@ namespace KrausRGA.Views
         public static string SKU_Staus;
 
         public static int TotalPoints;
+
+        public static int IsScanned;
+
+        public static int IsManually;
+
 
         public static List<StatusAndPoints> statuspoints;
 

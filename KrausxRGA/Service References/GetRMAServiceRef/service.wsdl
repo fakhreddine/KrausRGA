@@ -57,6 +57,18 @@
   <wsdl:message name="IGet_ReturnByReturnID_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReturnByReturnIDResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_GetSKUReasonandPointsByReturnID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUReasonandPointsByReturnID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetSKUReasonandPointsByReturnID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUReasonandPointsByReturnIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetSKUReasonandPointsByReturnDetailID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUReasonandPointsByReturnDetailID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetSKUReasonandPointsByReturnDetailID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSKUReasonandPointsByReturnDetailIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_ReturnByReturnDetailID_InputMessage">
     <wsdl:part name="parameters" element="tns:ReturnByReturnDetailID" />
   </wsdl:message>
@@ -348,6 +360,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByReturnID" message="tns:IGet_ReturnByReturnID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByReturnIDResponse" message="tns:IGet_ReturnByReturnID_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetSKUReasonandPointsByReturnID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetSKUReasonandPointsByReturnID" message="tns:IGet_GetSKUReasonandPointsByReturnID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetSKUReasonandPointsByReturnIDResponse" message="tns:IGet_GetSKUReasonandPointsByReturnID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSKUReasonandPointsByReturnDetailID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetSKUReasonandPointsByReturnDetailID" message="tns:IGet_GetSKUReasonandPointsByReturnDetailID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetSKUReasonandPointsByReturnDetailIDResponse" message="tns:IGet_GetSKUReasonandPointsByReturnDetailID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ReturnByReturnDetailID">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/ReturnByReturnDetailID" message="tns:IGet_ReturnByReturnDetailID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/ReturnByReturnDetailIDResponse" message="tns:IGet_ReturnByReturnDetailID_OutputMessage" />
@@ -588,6 +608,24 @@
     </wsdl:operation>
     <wsdl:operation name="ReturnByReturnID">
       <soap:operation soapAction="http://tempuri.org/IGet/ReturnByReturnID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSKUReasonandPointsByReturnID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetSKUReasonandPointsByReturnID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSKUReasonandPointsByReturnDetailID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetSKUReasonandPointsByReturnDetailID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

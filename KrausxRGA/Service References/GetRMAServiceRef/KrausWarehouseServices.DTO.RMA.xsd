@@ -45,6 +45,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReturnDTO" nillable="true" type="tns:ReturnDTO" />
+  <xs:complexType name="ArrayOfReturnedSKUReasonPointsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnedSKUReasonPointsDTO" nillable="true" type="tns:ReturnedSKUReasonPointsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReturnedSKUReasonPointsDTO" nillable="true" type="tns:ArrayOfReturnedSKUReasonPointsDTO" />
+  <xs:complexType name="ReturnedSKUReasonPointsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Points" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reason_Value" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReturnDetailID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="SKU" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReturnedSKUReasonPointsDTO" nillable="true" type="tns:ReturnedSKUReasonPointsDTO" />
   <xs:complexType name="ArrayOfReturnDetailsDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ReturnDetailsDTO" nillable="true" type="tns:ReturnDetailsDTO" />
@@ -57,6 +75,8 @@
       <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DeliveredQty" type="xs:int" />
       <xs:element minOccurs="0" name="ExpectedQty" type="xs:int" />
+      <xs:element minOccurs="0" name="IsManuallyAdded" type="xs:int" />
+      <xs:element minOccurs="0" name="IsSkuScanned" type="xs:int" />
       <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductStatus" type="xs:int" />
       <xs:element minOccurs="0" name="RGADROWID" nillable="true" type="xs:string" />

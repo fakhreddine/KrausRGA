@@ -46,9 +46,69 @@ namespace KrausRGA.Models
         protected DBLogics.cmdSKUReasons crtTransaction = new DBLogics.cmdSKUReasons();
 
         protected DBLogics.cmdReturnedSKUPoints cRetutnedSKUPoints = new DBLogics.cmdReturnedSKUPoints();
-
-
+      //  public Boolean IsAlreadySaved { get; protected set; }
+        public String EnteredNumber { get; protected set; }
         public List<int> GreenRowsNumber = new List<int>();
+        List<Return> _Return = new List<Return>();
+        public void mPOnumberRMA1(String ScannedNumber)
+        {
+            //set entered Number Property of class.
+            EnteredNumber = ScannedNumber;
+
+            //Find Type of enum entered number.
+         //   EnumNumberType = GetEnteredNumberType(EnteredNumber);
+
+            //Find valid Number or not.
+           // IsValidNumber = GetIsValidNumberEntred(EnteredNumber, EnumNumberType);
+
+            //Check that SR Number is persent in database.
+          Views.clGlobal.IsAlreadySaved = IsNumberAlreadyPresent(EnteredNumber);
+
+
+        }
+
+
+        public Boolean IsNumberAlreadyPresent(String SRnumber)
+        {
+            Boolean _return = false;
+            //RMA databse Object.
+            try
+            {
+                //_Return = new Return(Service.entGet.ReturnByRMANumber(SRnumber));
+
+                List<Return> _lsReturn = new List<Return>();
+
+                //string po = Service.entGet.ReturnByPONumber(SRnumber).SingleOrDefault().PONumber[0].ToString();
+
+                var listReturnTbl = Service.entGet.ReturnByPONumber(SRnumber).ToList();
+                foreach (var lsitem in listReturnTbl)
+                {
+                    _lsReturn.Add(new Return(lsitem));
+
+                }
+
+                string po = _lsReturn[0].PONumber;
+
+
+
+                String Anyvalue = po;//_Return.RMANumber;
+                if (Anyvalue == SRnumber) _return = true;
+
+                //Check Decision is Always new.
+               // IsValidNumber = CanUserOpenThis();
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mPOnumberRMA/IsNumberAlreadyPresent");
+            }
+            return _return;
+
+        }
+
+        public Boolean DeleteReturnDetails(Guid ReturnDetailsID)
+        {
+            return cRetutnDetailsTbl.DeleteReturnDetails(ReturnDetailsID);
+        }
 
         /// <summary>
         /// List Of information of RMA details.
@@ -84,8 +144,8 @@ namespace KrausRGA.Models
                 TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
                 TblRerutn.OrderNumber = "N/A";
                 TblRerutn.PONumber = lsNewRMA[0].PONumber;
-                TblRerutn.OrderDate = DateTime.UtcNow;
-                TblRerutn.DeliveryDate = DateTime.UtcNow;
+                TblRerutn.OrderDate = lsNewRMA[0].OrderDate;
+                TblRerutn.DeliveryDate = lsNewRMA[0].DeliveryDate;
                 TblRerutn.ReturnDate = lsNewRMA[0].ReturnDate;
                 TblRerutn.ScannedDate = DateTime.UtcNow;
                 TblRerutn.ExpirationDate = DateTime.UtcNow.AddDays(60);
@@ -128,7 +188,7 @@ namespace KrausRGA.Models
             return _returnID;
         }
 
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points,int IsScanned,int IsManually)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -151,6 +211,9 @@ namespace KrausRGA.Models
 
                 TblReturnDetails.SKU_Status = SKU_Status;
                 TblReturnDetails.SKU_Reason_Total_Points = SKU_Reason_Total_Points;
+
+                TblReturnDetails.IsSkuScanned = IsScanned;
+                TblReturnDetails.IsManuallyAdded = IsManually;
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;

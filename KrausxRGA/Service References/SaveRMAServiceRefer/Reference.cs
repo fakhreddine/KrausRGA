@@ -746,6 +746,12 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private int ExpectedQtyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IsManuallyAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IsSkuScannedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ProductNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -839,6 +845,32 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((this.ExpectedQtyField.Equals(value) != true)) {
                     this.ExpectedQtyField = value;
                     this.RaisePropertyChanged("ExpectedQty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IsManuallyAdded {
+            get {
+                return this.IsManuallyAddedField;
+            }
+            set {
+                if ((this.IsManuallyAddedField.Equals(value) != true)) {
+                    this.IsManuallyAddedField = value;
+                    this.RaisePropertyChanged("IsManuallyAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IsSkuScanned {
+            get {
+                return this.IsSkuScannedField;
+            }
+            set {
+                if ((this.IsSkuScannedField.Equals(value) != true)) {
+                    this.IsSkuScannedField = value;
+                    this.RaisePropertyChanged("IsSkuScanned");
                 }
             }
         }

@@ -65,6 +65,10 @@ namespace KrausRGA.UI
 
         BackgroundWorker Worker = new BackgroundWorker();
 
+       List<SkuAndIsScanned> lsskuIsScanned = new List<SkuAndIsScanned>();
+
+       List<SkuAndIsScanned> lsIsManually = new List<SkuAndIsScanned>();
+
         Boolean check = true;
 
         List<StatusAndPoints> listofstatus = new List<StatusAndPoints>();
@@ -122,11 +126,11 @@ namespace KrausRGA.UI
             List<Reason> lsReturn = _mReturn.GetReasons();
 
             //add reason select to the Combobox other reason.
-            Reason re = new Reason();
-            re.ReasonID = Guid.NewGuid();
-            re.Reason1 = "--Select--";
-            lsReturn.Insert(0, re);
-            cmbOtherReason.ItemsSource = lsReturn;
+            //Reason re = new Reason();
+            //re.ReasonID = Guid.NewGuid();
+            //re.Reason1 = "--Select--";
+            //lsReturn.Insert(0, re);
+            //cmbOtherReason.ItemsSource = lsReturn;
 
 
             dt.Columns.Add("SKU", typeof(string));
@@ -159,7 +163,7 @@ namespace KrausRGA.UI
             if (_lsRMAInfo[0].VendorNumber.ToString() == "GENC0001" || _lsRMAInfo[0].VendorNumber.ToString() == "DOMC0404" || _lsRMAInfo[0].VendorNumber.ToString() == "INTC0017" || _lsRMAInfo[0].VendorNumber.ToString() == "DOMC0551" || _lsRMAInfo[0].VendorNumber.ToString() == "DOMC0795")
             {
                 Views.clGlobal.ScenarioType = "HomeDepot";
-                ErrorMsg("Please Check this RMA is Wrong or Not Byscanning the Barcode.", Color.FromRgb(185, 84, 0));
+                ErrorMsg("Please Check this RMA is Wrong or Not By Scanning the Barcode.", Color.FromRgb(185, 84, 0));
                 
             }
 
@@ -255,7 +259,7 @@ namespace KrausRGA.UI
                     if (UPC_Code.Trim() == "") UPC_Code = "00000000000";
 
                     //clGlobal.call.SKUnameToUPCCode(SKUNo.Text.ToString());
-                    ContentPresenter sp = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                    ContentPresenter sp = dgPackageInfo.Columns[4].GetCellContent(row1) as ContentPresenter;
                     DataTemplate myDataTemplate = sp.ContentTemplate;
                     Image ImgbarcodSet = (Image)myDataTemplate.FindName("imgBarCode", sp);
                     System.Drawing.Image Barcodeimg = null;
@@ -534,12 +538,12 @@ namespace KrausRGA.UI
             mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.Done_Clicked.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
           
             //Check the ReasonCombo Select or not
-            if (cmbOtherReason.SelectedIndex!=0)
-            {
-                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
-                Guid reasonID = _mReturn.SetReasons(txtOtherReason.Text);
-            }
-            txtOtherReason.Text = "";
+            //if (cmbOtherReason.SelectedIndex!=0)
+            //{
+            //    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
+            //    Guid reasonID = _mReturn.SetReasons(txtOtherReason.Text);
+            //}
+            //txtOtherReason.Text = "";
             txtItemReason.Text = "";
 
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
@@ -609,9 +613,9 @@ namespace KrausRGA.UI
                         StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
                         //item Status.k
-                        ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                        DataTemplate DtStatus = CntStatus.ContentTemplate;
-                        TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
+                        //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                        //DataTemplate DtStatus = CntStatus.ContentTemplate;
+                        //TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
 
                         //Returned RMA Information.
                         RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text);
@@ -632,7 +636,30 @@ namespace KrausRGA.UI
                         }
 
                         //Set returned details table.
-                        Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, "Refund", 0);
+
+
+                        for (int i = 0; i < lsskuIsScanned.Count; i++)
+                        {
+                            if (lsskuIsScanned[i].SKUName == SkuNumber.Text)
+                            {
+                                Views.clGlobal.IsScanned = lsskuIsScanned[i].IsScanned;
+                                break;
+                            }
+                        }
+                        for (int i = 0; i < lsIsManually.Count; i++)
+                        {
+                            if (lsIsManually[i].SKUName == SkuNumber.Text)
+                            {
+                                Views.clGlobal.IsManually = lsIsManually[i].IsScanned;
+                                Views.clGlobal.IsScanned = 1;
+                                break;
+                            }
+                        }
+                    //lsIsManually
+
+                        Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, "Refund", 0, Views.clGlobal.IsScanned, Views.clGlobal.IsManually);
+                        Views.clGlobal.IsScanned = 0;
+                        Views.clGlobal.IsManually = 0;
 
 
                         Guid ReturnedSKUPoints = _mReturn.SetReturnedSKUPoints(Guid.NewGuid(),ReturnDetailsID,ReturnTblID, SkuNumber.Text, "N/A", "N/A", 0);
@@ -649,11 +676,11 @@ namespace KrausRGA.UI
                         }
 
                         //SKU Reasons Table
-                        foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
-                        {
-                            _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
+                        //foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
+                        //{
+                        //    _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
 
-                        }
+                        //}
 
                         wndSlipPrint slip = new wndSlipPrint();
 
@@ -684,9 +711,9 @@ namespace KrausRGA.UI
                     StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
                     //item Status.k
-                    ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                    DataTemplate DtStatus = CntStatus.ContentTemplate;
-                    TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
+                    //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                    //DataTemplate DtStatus = CntStatus.ContentTemplate;
+                    //TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
 
                     //Returned RMA Information.
                     RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text);
@@ -716,6 +743,8 @@ namespace KrausRGA.UI
                                 SKUNewName = SkuNumber.Text;
                                 Views.clGlobal.SKU_Staus = listofstatus[i].Status;
                                 Views.clGlobal.TotalPoints = listofstatus[i].Points;
+                                Views.clGlobal.IsScanned = listofstatus[i].IsScanned;
+                                Views.clGlobal.IsManually = listofstatus[i].IsMannually;
                                 break;
                             }
                         }
@@ -725,12 +754,19 @@ namespace KrausRGA.UI
                         SKUNewName = SkuNumber.Text;
                         Views.clGlobal.SKU_Staus = "Reject";
                         Views.clGlobal.TotalPoints = 0;
-                       
+                        Views.clGlobal.IsScanned = 1;
+                        Views.clGlobal.IsManually = 1;
                     }
 
+                  
+
+
+                    //lsIsManually
 
                     //Set returned details table.
-                    Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SKUNewName, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints);
+                    Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SKUNewName, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually);
+                    Views.clGlobal.IsScanned = 0;
+                    Views.clGlobal.IsManually = 0;
                     // j++;
 
                  
@@ -761,11 +797,11 @@ namespace KrausRGA.UI
                     }
 
                     //SKU Reasons Table
-                    foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
-                    {
-                        _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
+                    //foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
+                    //{
+                    //    _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
 
-                    }
+                    //}
 
 
                     wndSlipPrint slip = new wndSlipPrint();
@@ -800,9 +836,9 @@ namespace KrausRGA.UI
                     StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
                     //item Status.k
-                    ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                    DataTemplate DtStatus = CntStatus.ContentTemplate;
-                    TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
+                    //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                    //DataTemplate DtStatus = CntStatus.ContentTemplate;
+                    //TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
 
                     //Returned RMA Information.
                     RMAInfo rmaInfo = _mReturn.lsRMAInformation.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text);
@@ -834,6 +870,8 @@ namespace KrausRGA.UI
                                 SKUNewName = SkuNumber.Text;
                                 Views.clGlobal.SKU_Staus = listofstatus[i].Status;
                                 Views.clGlobal.TotalPoints = listofstatus[i].Points;
+                                Views.clGlobal.IsScanned = listofstatus[i].IsScanned;
+                                Views.clGlobal.IsManually = listofstatus[i].IsMannually;
                                 break;
                             }
                         }
@@ -843,9 +881,24 @@ namespace KrausRGA.UI
                         SKUNewName = SkuNumber.Text;
                         Views.clGlobal.SKU_Staus = "Reject";
                         Views.clGlobal.TotalPoints = 0;
+                        Views.clGlobal.IsScanned = 1;
+                        Views.clGlobal.IsManually = 1;
                     }
 
-                    Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints);
+                    for (int i = 0; i < lsIsManually.Count; i++)
+                    {
+                        if (lsIsManually[i].SKUName == SkuNumber.Text)
+                        {
+                            SKUNewName = SkuNumber.Text;
+                            Views.clGlobal.IsManually = lsIsManually[i].IsScanned;
+                            break;
+                        }
+                    }
+
+                    Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually);
+
+                    Views.clGlobal.IsScanned = 0;
+                    Views.clGlobal.IsManually = 0;
 
                     if (dt.Rows.Count > 0)
                     {
@@ -868,11 +921,11 @@ namespace KrausRGA.UI
                     }
 
                     //SKU Reasons Table
-                    foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
-                    {
-                        _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
+                    //foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
+                    //{
+                    //    _mReturn.SetTransaction(Guid.NewGuid(), Ritem, ReturnDetailsID);
 
-                    }
+                    //}
 
                     wndSlipPrint slip = new wndSlipPrint();
 
@@ -991,21 +1044,29 @@ namespace KrausRGA.UI
                     txtRetutn.Visibility = System.Windows.Visibility.Hidden;
                     Button txtRetutn2 = (Button)DtQty.FindName("btnRed", butoninfo);
                     txtRetutn2.Visibility = System.Windows.Visibility.Visible;
+
                     txtbarcode.Text = "";
                     txtbarcode.Focus();
+
                 }
                 if (Views.clGlobal.ScenarioType == "Lowes")
                 {
                     CanvasConditions.IsEnabled = false;
                     txtbarcode.Focus();
                     btnAdd.IsEnabled = true;
+                   
+
                     Button btnRed = (Button)e.Source;
                     Canvas SpButtons = (Canvas)btnRed.Parent;
                     Button btnGreen = SpButtons.FindName("btnGreen") as Button;
-                    btnGreen.Visibility = System.Windows.Visibility.Visible;
-                    btnRed.Visibility = System.Windows.Visibility.Hidden;
-
                     DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+                    if (row.Background==Brushes.Gray)
+                    {
+                        btnGreen.Visibility = System.Windows.Visibility.Visible;
+                        btnRed.Visibility = System.Windows.Visibility.Hidden;
+                    }
+
+                    //DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
                     _mReturn.GreenRowsNumber.Add(row.GetIndex());
                     bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                     txtbarcode.Text = "";
@@ -1018,17 +1079,20 @@ namespace KrausRGA.UI
 
                     if (txtError.Text == "Select Item and Go ahead")
                     {
-                        CanvasConditions.IsEnabled = true;
+                      //  CanvasConditions.IsEnabled = true;
                         txtbarcode.Focus();
 
                         btnAdd.IsEnabled = true;
                         Button btnRed = (Button)e.Source;
                         Canvas SpButtons = (Canvas)btnRed.Parent;
                         Button btnGreen = SpButtons.FindName("btnGreen") as Button;
-                        btnGreen.Visibility = System.Windows.Visibility.Visible;
-                        btnRed.Visibility = System.Windows.Visibility.Hidden;
-
                         DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+                        if (row.Background == Brushes.Gray)
+                        {
+                            CanvasConditions.IsEnabled = true;
+                            btnGreen.Visibility = System.Windows.Visibility.Visible;
+                            btnRed.Visibility = System.Windows.Visibility.Hidden;
+                        }
                         _mReturn.GreenRowsNumber.Add(row.GetIndex());
                         bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                         txtbarcode.Text = "";
@@ -1040,17 +1104,20 @@ namespace KrausRGA.UI
                 if (Views.clGlobal.ScenarioType == "Others")
                 {
                    
-                        CanvasConditions.IsEnabled = true;
+                       // CanvasConditions.IsEnabled = true;
                         txtbarcode.Focus();
 
                         btnAdd.IsEnabled = true;
                         Button btnRed = (Button)e.Source;
                         Canvas SpButtons = (Canvas)btnRed.Parent;
                         Button btnGreen = SpButtons.FindName("btnGreen") as Button;
-                        btnGreen.Visibility = System.Windows.Visibility.Visible;
-                        btnRed.Visibility = System.Windows.Visibility.Hidden;
-
                         DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+                        if (row.Background == Brushes.Gray)
+                        {
+                            CanvasConditions.IsEnabled = true;
+                            btnGreen.Visibility = System.Windows.Visibility.Visible;
+                            btnRed.Visibility = System.Windows.Visibility.Hidden;
+                        }
                         _mReturn.GreenRowsNumber.Add(row.GetIndex());
                         bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                         txtbarcode.Text = "";
@@ -1099,55 +1166,55 @@ namespace KrausRGA.UI
         {
 
 
-            TextBlock cbk = (TextBlock)e.Source;
-            Canvas cs = cbk.Parent as Canvas;
-            TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
-            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            //TextBlock cbk = (TextBlock)e.Source;
+            //Canvas cs = cbk.Parent as Canvas;
+            //TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
+            //DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
 
-            if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
-            {
-                cvItemStatus.Visibility = System.Windows.Visibility.Visible;
-                TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-                txtSKUname.Text = tbSKUName.Text.ToString();
-                FilldgReasons(tbSKUName.Text.ToString());
-            }
-            else
-            {
-                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
-                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-            }
+            //if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
+            //{
+            //    cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+            //    TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+            //    txtSKUname.Text = tbSKUName.Text.ToString();
+            //    FilldgReasons(tbSKUName.Text.ToString());
+            //}
+            //else
+            //{
+            //    mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+            //    ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            //}
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+            //cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
 
-            int selectedIndex = dgPackageInfo.SelectedIndex;
-            if (selectedIndex != -1)
-            {
-                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
-                {
-                    if (row.IsSelected)
-                    {
-                        ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                        DataTemplate Dt = cp.ContentTemplate;
-                        TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid", cp);
-                        TextBlock txtRCount = (TextBlock)Dt.FindName("txtCheckedCount", cp);
-                        int countReasons = 0;
-                        txtReturnGuid.Text = "";
-                        foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
-                        {
-                            string RGuid = GetGuidChecked(RowReason);
-                            if (RGuid != "")
-                            {
-                                txtReturnGuid.Text += "#" + RGuid;
-                                countReasons++;
-                            }
-                        }
-                        txtRCount.Text = countReasons.ToString() + " Reason.";
-                    }
-                }
-            }
+            //int selectedIndex = dgPackageInfo.SelectedIndex;
+            //if (selectedIndex != -1)
+            //{
+            //    foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+            //    {
+            //        if (row.IsSelected)
+            //        {
+            //            ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+            //            DataTemplate Dt = cp.ContentTemplate;
+            //            TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid", cp);
+            //            TextBlock txtRCount = (TextBlock)Dt.FindName("txtCheckedCount", cp);
+            //            int countReasons = 0;
+            //            txtReturnGuid.Text = "";
+            //            foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
+            //            {
+            //                string RGuid = GetGuidChecked(RowReason);
+            //                if (RGuid != "")
+            //                {
+            //                    txtReturnGuid.Text += "#" + RGuid;
+            //                    countReasons++;
+            //                }
+            //            }
+            //            txtRCount.Text = countReasons.ToString() + " Reason.";
+            //        }
+            //    }
+            //}
         }
 
         //private void cbrWrong_Checked(object sender, RoutedEventArgs e)
@@ -1160,18 +1227,18 @@ namespace KrausRGA.UI
         //    bdrRecivedWrong.Outside();
         //}
 
-        private void cmbOtherReason_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbOtherReason.SelectedIndex == 0)
-            {
-                txtOtherReason.Text = "";
-            }
-            else
-            {
-                Reason s = (Reason)cmbOtherReason.SelectedItem;
-                txtOtherReason.Text = s.Reason1.ToString();
-            }
-        }
+        //private void cmbOtherReason_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cmbOtherReason.SelectedIndex == 0)
+        //    {
+        //        txtOtherReason.Text = "";
+        //    }
+        //    else
+        //    {
+        //        Reason s = (Reason)cmbOtherReason.SelectedItem;
+        //        txtOtherReason.Text = s.Reason1.ToString();
+        //    }
+        //}
 
         //private void cbrDamaged_Checked(object sender, RoutedEventArgs e)
         //{
@@ -1386,14 +1453,14 @@ namespace KrausRGA.UI
 
 
                             //item Status.k
-                            ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
-                            DataTemplate DtStatus = CntStatus.ContentTemplate;
-                            TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
-                            TextBlock txtCheckedCount = DtStatus.FindName("txtCheckedCount", CntStatus) as TextBlock;
+                            //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                            //DataTemplate DtStatus = CntStatus.ContentTemplate;
+                            //TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
+                            //TextBlock txtCheckedCount = DtStatus.FindName("txtCheckedCount", CntStatus) as TextBlock;
                             
-                                txtRGuid.Text = GetReasonFronList(_mUpdate._lsReturnDetails[i].ReturnDetailID);
+                              //  txtRGuid.Text = GetReasonFronList(_mUpdate._lsReturnDetails[i].ReturnDetailID);
 
-                              txtCheckedCount.Text=  ((txtRGuid.Text.ToString().Split(new char[] { '#' }).Count()) -1).ToString() + " Reasons";
+                            //  txtCheckedCount.Text=  ((txtRGuid.Text.ToString().Split(new char[] { '#' }).Count()) -1).ToString() + " Reasons";
 
                               //Images Stack Panel.
                               ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
@@ -1518,12 +1585,15 @@ namespace KrausRGA.UI
                 {
                     foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
                     {
-
+                        SkuAndIsScanned _lsskuandscanned = new SkuAndIsScanned();
                         TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
                         string Str = txtbarcode.Text.TrimStart('0').ToString();
                         string sku = _mReturn.GetENACodeByItem(SkuNumber.Text);
                         if (sku == Str)
                         {
+                            _lsskuandscanned.SKUName = SkuNumber.Text;
+                            _lsskuandscanned.IsScanned = 1;
+                            lsskuIsScanned.Add(_lsskuandscanned);
                             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                             row.Background = Brushes.Gray;
                             txtbarcode.Text = "";
@@ -1537,9 +1607,9 @@ namespace KrausRGA.UI
                     if (!flag)
                     {
                         List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
-
                         foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
                         {
+                            //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
 
@@ -1550,13 +1620,26 @@ namespace KrausRGA.UI
                             ls.SKUNumber = SkuNumber.Text;
                             ls.ReturnedQty = Convert.ToInt16(txtRetutn.Text);
 
+                            //_lsIsmanually.IsScanned = 0;
+                            //_lsIsmanually.SKUName = SkuNumber.Text;
+
+                            //lsIsManually.Add(_lsIsmanually);
+
                             _lsRMAInfo1.Add(ls);
+
+
                         }
 
                         RMAInfo ls1 = new RMAInfo();
-
+                        SkuAndIsScanned _lsIsmanually1 = new SkuAndIsScanned();
 
                         ls1.SKUNumber = _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+                        _lsIsmanually1.IsScanned = 1;
+                        _lsIsmanually1.SKUName = _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+                        lsIsManually.Add(_lsIsmanually1);
+
 
                         txtbarcode.Text = "";
                         txtbarcode.Focus();
@@ -1574,16 +1657,20 @@ namespace KrausRGA.UI
 
                     foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
                     {
-
+                        SkuAndIsScanned _lsskuandscanned = new SkuAndIsScanned();
                         TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
 
                         string Str = txtbarcode.Text.TrimStart('0').ToString();
                            string sku = _mReturn.GetENACodeByItem(SkuNumber.Text);
                            if (sku == Str)
                            {
+                               _lsskuandscanned.SKUName = SkuNumber.Text;
+                               _lsskuandscanned.IsScanned = 1;
 
+                               lsskuIsScanned.Add(_lsskuandscanned);
                                bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                                row.Background = Brushes.Gray;
+                               Views.clGlobal.IsScanned = 1;
                                txtbarcode.Text = "";
                                txtbarcode.Focus();
                                flag = true;
@@ -1599,6 +1686,7 @@ namespace KrausRGA.UI
                         Views.clGlobal.SKU_Staus = "Reject";
                         Views.clGlobal.TotalPoints = points;// lblpoints.Content;
                         Views.clGlobal.Warranty = "N/A";
+                        Views.clGlobal.IsManually = 1;
 
 
                         MessageBox.Show("This item is Wrong.");
@@ -1668,14 +1756,22 @@ namespace KrausRGA.UI
                 {
                     foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
                     {
+                        SkuAndIsScanned _lsskuandscanned = new SkuAndIsScanned();
+                      
 
                         TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
                         string Str = txtbarcode.Text.TrimStart('0').ToString();
                         string sku = _mReturn.GetENACodeByItem(SkuNumber.Text);
                         if (sku == Str)
                         {
+                            _lsskuandscanned.SKUName = SkuNumber.Text;
+                            _lsskuandscanned.IsScanned = 1;
+
+                            lsskuIsScanned.Add(_lsskuandscanned);
+
                             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                             row.Background = Brushes.Gray;
+                            Views.clGlobal.IsScanned = 1;
                             txtbarcode.Text = "";
                             txtbarcode.Focus();
                             flag = true;
@@ -1690,6 +1786,7 @@ namespace KrausRGA.UI
 
                         foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
                         {
+                           // SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
 
@@ -1700,13 +1797,25 @@ namespace KrausRGA.UI
                             ls.SKUNumber = SkuNumber.Text;
                             ls.ReturnedQty = Convert.ToInt16(txtRetutn.Text);
 
+                           // _lsIsmanually.SKUName = SkuNumber.Text;
+                          //  _lsIsmanually.IsScanned = 0;
+
+                           //  lsIsManually.Add(_lsIsmanually);// _lsIsmanually
+
                             _lsRMAInfo1.Add(ls);
                         }
 
                         RMAInfo ls1 = new RMAInfo();
+                        SkuAndIsScanned _lsIsmanually1 = new SkuAndIsScanned();
+
 
                         string ss = txtbarcode.Text.Remove(0, 1);
                         ls1.SKUNumber = _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+                        _lsIsmanually1.IsScanned = 1;
+                        _lsIsmanually1.SKUName = _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+                        lsIsManually.Add(_lsIsmanually1);
 
                         txtbarcode.Text = "";
                         txtbarcode.Focus();
@@ -2042,6 +2151,19 @@ namespace KrausRGA.UI
                  _lsstatusandpoints.SKUName = SelectedskuName;
                  _lsstatusandpoints.Status = Views.clGlobal.SKU_Staus;
                  _lsstatusandpoints.Points =Convert.ToInt16(lblpoints.Content);//Views.clGlobal.TotalPoints;
+                
+                 for (int i = 0; i < lsskuIsScanned.Count; i++)
+                 {
+                     if (lsskuIsScanned[i].SKUName==SelectedskuName)
+                     {
+                         _lsstatusandpoints.IsScanned = lsskuIsScanned[i].IsScanned;
+                         break;
+                     }
+                 }
+
+                 //_lsstatusandpoints.IsScanned = Views.clGlobal.IsScanned;
+                 _lsstatusandpoints.IsMannually = Views.clGlobal.IsManually;
+
                  listofstatus.Add(_lsstatusandpoints);
 
                  lblpoints.Content = "";
@@ -2052,13 +2174,16 @@ namespace KrausRGA.UI
                  IsDefectiveTransite = true;
                  ISinstalled = true;
 
+              
+
                  int ro = dt.Rows.Count;
                  UncheckAllButtons();
                  ErrorMsg("Select Item and Go ahead", Color.FromRgb(185, 84, 0));
 
-
+                 txtbarcode.Text = "";
+                 txtbarcode.Focus();
                  btnAdd.IsEnabled = false;
-                 
+                 CanvasConditions.IsEnabled = false;
             }
 
 
@@ -2175,7 +2300,20 @@ namespace KrausRGA.UI
                 StatusAndPoints _lsstatusandpoints = new StatusAndPoints();
                 _lsstatusandpoints.SKUName = SelectedskuName;
                 _lsstatusandpoints.Status = Views.clGlobal.SKU_Staus;
-                _lsstatusandpoints.Points = Convert.ToInt16(lblpoints.Content);//Views.clGlobal.TotalPoints;
+                _lsstatusandpoints.Points = Convert.ToInt16(lblpoints.Content);
+
+                for (int i = 0; i < lsskuIsScanned.Count; i++)
+                {
+                    if (lsskuIsScanned[i].SKUName == SelectedskuName)
+                    {
+                        _lsstatusandpoints.IsScanned = lsskuIsScanned[i].IsScanned;
+                        break;
+                    }
+
+                }
+                _lsstatusandpoints.IsMannually = Views.clGlobal.IsManually;
+                
+                //Views.clGlobal.TotalPoints;
                 listofstatus.Add(_lsstatusandpoints);
 
                 lblpoints.Content = "";
@@ -2193,6 +2331,8 @@ namespace KrausRGA.UI
 
 
                 btnAdd.IsEnabled = false;
+
+                CanvasConditions.IsEnabled = false;
                 
 
             }
@@ -2314,6 +2454,30 @@ namespace KrausRGA.UI
                 Views.clGlobal.SKU_Staus = "Deny";
             }
 
+        }
+
+        private void dgPackageInfo_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            //TextBlock cbk = (TextBlock)e.Row;
+            //DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            //row.Background = new SolidColorBrush(Color.FromArgb(100, 117, 162, 97));
+
+            //TextBlock RowDataContaxt = e.Row.DataContext as TextBlock;
+            ////string ta = e.Row.Item[
+
+            //for (int i = 0; i < lsskuIsScanned.Count; i++)
+            //{
+            //    if (lsskuIsScanned[i].SKUName == "")
+            //    {
+
+
+            //    }
+            //}
+
+
+
+
+            //e.Row.Background = Brushes.Gray; //FindResource("GrayBackgroundBrush") as Brush;
         }
     }
 }

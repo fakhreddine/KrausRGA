@@ -242,12 +242,12 @@ namespace KrausRGA.UI
 
         private void btnHomeDone_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbOtherReason.SelectedIndex != 0)
-            {
-                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
-                Guid reasonID = _mNewRMA.SetReasons(txtOtherReason.Text);
-            }
-            txtOtherReason.Text = "";
+            //if (cmbOtherReason.SelectedIndex != 0)
+            //{
+            //    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.New_ReturnReason_Added.ToString(), DateTime.UtcNow.ToString());
+            //    Guid reasonID = _mNewRMA.SetReasons(txtOtherReason.Text);
+            //}
+            //txtOtherReason.Text = "";
             txtItemReason.Text = "";
 
             Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
@@ -303,10 +303,10 @@ namespace KrausRGA.UI
 
 
 
-                DataGridCell cell3 = GetCell(i, 5);
-                ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
-                DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
-                TextBlock txtRGuid = DataTemp3.FindName("txtReasosnsGuid", CntPersenter3) as TextBlock;
+                //DataGridCell cell3 = GetCell(i, 5);
+                //ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
+                //DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
+                //TextBlock txtRGuid = DataTemp3.FindName("txtReasosnsGuid", CntPersenter3) as TextBlock;
 
 
                 DataGridCell cell4 = GetCell(i, 4);
@@ -343,7 +343,7 @@ namespace KrausRGA.UI
 
                 if (_SKU != "")
                 {
-                    ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints);
+                    ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, 1, 1);
                 }
 
                 if (dt.Rows.Count > 0)
@@ -357,10 +357,10 @@ namespace KrausRGA.UI
 
 
 
-                foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
-                {
-                    _mNewRMA.SetTransaction(Ritem, ReturnDetailsID);
-                }
+                //foreach (Guid Ritem in (txtRGuid.Text.ToString().GetGuid()))
+                //{
+                //    _mNewRMA.SetTransaction(Ritem, ReturnDetailsID);
+                //}
 
                 foreach (Image imageCaptured in SpImages.Children)
                 {
@@ -567,18 +567,18 @@ namespace KrausRGA.UI
             this.Close();
         }
 
-        private void cmbOtherReason_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbOtherReason.SelectedIndex == 0)
-            {
-                txtOtherReason.Text = "";
-            }
-            else
-            {
-                Reason s = (Reason)cmbOtherReason.SelectedItem;
-                txtOtherReason.Text = s.Reason1.ToString();
-            }
-        }
+        //private void cmbOtherReason_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cmbOtherReason.SelectedIndex == 0)
+        //    {
+        //        txtOtherReason.Text = "";
+        //    }
+        //    else
+        //    {
+        //        Reason s = (Reason)cmbOtherReason.SelectedItem;
+        //        txtOtherReason.Text = s.Reason1.ToString();
+        //    }
+        //}
 
         public void FillRMAStausAndDecision()
         {
@@ -613,18 +613,18 @@ namespace KrausRGA.UI
             List<Reason> lsReturn = _mNewRMA.GetReasons();
 
 
-            Reason re = new Reason();
-            re.ReasonID = Guid.NewGuid();
-            re.Reason1 = "--Select--";
+            //Reason re = new Reason();
+            //re.ReasonID = Guid.NewGuid();
+            //re.Reason1 = "--Select--";
 
-            lsReturn.Insert(0, re);
+            //lsReturn.Insert(0, re);
 
                dt.Columns.Add("SKU", typeof(string));
             dt.Columns.Add("Reason", typeof(string));
             dt.Columns.Add("Reason_Value", typeof(string));
             dt.Columns.Add("Points", typeof(int));
 
-            cmbOtherReason.ItemsSource = lsReturn;
+           // cmbOtherReason.ItemsSource = lsReturn;
 
             FillRMAStausAndDecision();
 

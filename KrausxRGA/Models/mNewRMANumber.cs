@@ -201,7 +201,7 @@ namespace KrausRGA.Models
             return lsReturn;
         }
 
-        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points)
+        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points,int Isscanned,int IsMnually)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -224,6 +224,8 @@ namespace KrausRGA.Models
 
                 TblReturnDetails.SKU_Status = SKU_Status;
                 TblReturnDetails.SKU_Reason_Total_Points = SKU_Reason_Total_Points;
+                TblReturnDetails.IsManuallyAdded = IsMnually;
+                TblReturnDetails.IsSkuScanned = Isscanned;
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
