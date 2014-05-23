@@ -36,8 +36,8 @@
                                             <Label x:Name="lblExpirationDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="427" Canvas.Top="198" Width="256" Height="33"/>
 
 
-                                            <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="127" Canvas.Left="4"/>
-                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="202" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True" IsEnabled="False"
+                                            <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="127" Canvas.Left="60"/>
+                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="252" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True" IsEnabled="False"
         										ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -50,8 +50,8 @@
                                                 </ComboBox.Background>
                                             </ComboBox>
 
-                                            <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="141" Width="97" Canvas.Left="34"/>
-                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="202" Canvas.Left="10" Canvas.Top="170" Style="{StaticResource combo}" IsEnabled="False"
+                                            <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="139" Width="97" Canvas.Left="78"/>
+                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="252" Canvas.Left="10" Canvas.Top="170" Style="{StaticResource combo}" IsEnabled="False"
         										ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -134,7 +134,7 @@
         								HorizontalGridLinesBrush="#FF575757" 
         								VerticalGridLinesBrush="Gray"
         								Height="289"  
-        								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" Canvas.Left="2" LoadingRow="dgPackageInfo_LoadingRow" 
+        								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" Canvas.Left="2" LoadingRow="dgPackageInfo_LoadingRow" MouseDoubleClick="dgPackageInfo_MouseDoubleClick" 
                                            >
 
                                         <DataGrid.Resources>
@@ -145,16 +145,16 @@
                                         </DataGrid.Resources>
 
                                         <DataGrid.Columns>
-                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="82" >
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="62" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <Canvas x:Name="cvButtons" Background="White">
-                                                            <Button x:Name="btnRed" Width="80" Height="70" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
+                                                            <Button x:Name="btnRed" Width="60" Height="70" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                 </Button.Background>
                                                             </Button>
-                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="80" Height="70"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
+                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="60" Height="70"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
         														Click="btnGreen_Click" >
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Checked .png"/>
@@ -178,13 +178,13 @@
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Header="Qty"
-        										Width="80">
+        										Width="50">
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel x:Name="spQty1" Width="80">
-                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="80" Text="{Binding ReturnedQty}" FontSize="20" FontWeight="Bold"/>
-                                                            <StackPanel x:Name="spQty2" Orientation="Horizontal">
+                                                        <StackPanel x:Name="spQty1" Width="40">
+                                                            <TextBlock x:Name="tbQty" TextAlignment="Center" Width="40" Text="{Binding SKU_Qty_Seq}" FontSize="20" FontWeight="Bold"/>
+                                                            <!--<StackPanel x:Name="spQty2" Orientation="Horizontal">
                                                                 <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
         															Width="40" Height="40" FontSize="12"
         															Foreground="White" Background="#FF464646" 
@@ -193,7 +193,7 @@
         															Width="40" Height="40" 
         															FontSize="12" Foreground="White" Background="#FF464646"
         															Click="btnPluse_Click" />
-                                                            </StackPanel>
+                                                            </StackPanel>-->
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -201,7 +201,7 @@
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
         										Header="Images" 
-        										Width="200" >
+        										Width="150" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="70">
@@ -242,6 +242,31 @@
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
 
+                                           
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Header=""
+        										Width="40">
+
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="spDQyt" Width="40">
+                                                            <TextBlock x:Name="tbDQyt" TextAlignment="Center" Width="40" Text="{Binding SKU_Sequence}" FontSize="20" FontWeight="Bold"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Header="Status"
+        										Width="70">
+
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="spskustatus" Width="60">
+                                                            <TextBlock x:Name="tbskustatus" TextAlignment="Center" Width="60" Text="{Binding SKU_Status}" FontSize="15" FontWeight="Bold"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
 
                                         </DataGrid.Columns>
                                         <DataGrid.RowValidationErrorTemplate>

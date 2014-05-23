@@ -773,7 +773,13 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private string SKUNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_Qty_SeqField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SKU_Reason_Total_PointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_SequenceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKU_StatusField;
@@ -967,6 +973,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Qty_Seq {
+            get {
+                return this.SKU_Qty_SeqField;
+            }
+            set {
+                if ((this.SKU_Qty_SeqField.Equals(value) != true)) {
+                    this.SKU_Qty_SeqField = value;
+                    this.RaisePropertyChanged("SKU_Qty_Seq");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int SKU_Reason_Total_Points {
             get {
                 return this.SKU_Reason_Total_PointsField;
@@ -975,6 +994,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((this.SKU_Reason_Total_PointsField.Equals(value) != true)) {
                     this.SKU_Reason_Total_PointsField = value;
                     this.RaisePropertyChanged("SKU_Reason_Total_Points");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Sequence {
+            get {
+                return this.SKU_SequenceField;
+            }
+            set {
+                if ((this.SKU_SequenceField.Equals(value) != true)) {
+                    this.SKU_SequenceField = value;
+                    this.RaisePropertyChanged("SKU_Sequence");
                 }
             }
         }
@@ -1603,6 +1635,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKUField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SkuSequenceField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1704,6 +1739,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> SkuSequence {
+            get {
+                return this.SkuSequenceField;
+            }
+            set {
+                if ((this.SkuSequenceField.Equals(value) != true)) {
+                    this.SkuSequenceField = value;
+                    this.RaisePropertyChanged("SkuSequence");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -1726,6 +1774,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/Return", ReplyAction="http://tempuri.org/ISave/ReturnResponse")]
         bool Return(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/ReturnByPOnmber", ReplyAction="http://tempuri.org/ISave/ReturnByPOnmberResponse")]
+        bool ReturnByPOnmber(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/ReturnDetails", ReplyAction="http://tempuri.org/ISave/ReturnDetailsResponse")]
         bool ReturnDetails(KrausRGA.SaveRMAServiceRefer.ReturnDetailsDTO returndetail);
@@ -1783,6 +1834,10 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         public bool Return(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return) {
             return base.Channel.Return(_return);
+        }
+        
+        public bool ReturnByPOnmber(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return) {
+            return base.Channel.ReturnByPOnmber(_return);
         }
         
         public bool ReturnDetails(KrausRGA.SaveRMAServiceRefer.ReturnDetailsDTO returndetail) {

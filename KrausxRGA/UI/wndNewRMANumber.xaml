@@ -65,7 +65,7 @@
                                                 <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
                                             </Border>
                                             <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="62" Width="154" Canvas.Left="7"/>
-                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="55" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1" GotFocus="txtPoNumber_GotFocus" LostFocus="txtPoNumber_LostFocus"/>
+                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="55" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1" GotFocus="txtPoNumber_GotFocus" LostFocus="txtPoNumber_LostFocus" IsEnabled="False"/>
 
                                             <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="105" Width="158" Canvas.Left="3"/>
                                             <TextBox x:Name="txtName"   Canvas.Left="166" Canvas.Top="100" Width="239" Height="33" FontSize="15"/>
@@ -165,18 +165,18 @@
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
                                         		Header="SKU"  
-                                        		Width="120" 
+                                        		Width="200" 
                                         		IsReadOnly="True" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel  Height="60" Width="120">
-                                                            <TextBox x:Name="txtSKU"  Height="60" Margin="0,0,0,0" Text="{Binding SKU}" FontSize="20" FontWeight="Bold" TextChanged="txtSKU_TextChanged_1"/>
+                                                        <StackPanel  Height="60" Width="200">
+                                                            <TextBox x:Name="txtSKU"  Height="60" Margin="0,0,0,0" Text="{Binding SKUNumber}" FontSize="20" FontWeight="Bold" TextChanged="txtSKU_TextChanged_1"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
 
                                             </DataGridTemplateColumn>
-                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                            <!--<DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
                                         		Header="Product Name" 
                                         		Width="210" >
 
@@ -187,7 +187,7 @@
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                            </DataGridTemplateColumn>-->
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
                                         		Header="Qty"
@@ -196,7 +196,7 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel x:Name="spQty1" Height="60" Width="80">
-                                                            <TextBox x:Name="tbQty"  Height="60" Margin="0,0,0,0" Text="{Binding Quantity}" FontSize="20" FontWeight="Bold" KeyDown="tbQty_KeyDown_1"/>
+                                                            <TextBox x:Name="tbQty"  Height="60" Margin="0,0,0,0" Text="{Binding SKU_Qty_Seq}" FontSize="20" FontWeight="Bold" KeyDown="tbQty_KeyDown_1"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -205,7 +205,7 @@
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
                                         		Header="Images" 
-                                        		Width="250" >
+                                        		Width="300" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <ScrollViewer x:Name="svScrollImages" Width="250" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="60">
@@ -216,7 +216,18 @@
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Header="Status"
+        										Width="70">
 
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="spskustatus" Width="60">
+                                                            <TextBlock x:Name="tbskustatus" TextAlignment="Center" Width="60" Text="{Binding SKU_Status}" FontSize="15" FontWeight="Bold"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
                                             <!--<DataGridTemplateColumn Header="Reasons" 
                                         		HeaderStyle="{StaticResource HeaderStyleKey}"
                                         		Width="160" >
@@ -231,7 +242,7 @@
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>-->
-                                            <DataGridTemplateColumn  Header="" Width="0">
+                                            <!--<DataGridTemplateColumn  Header="" Width="0">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel x:Name="spcat" >
@@ -239,7 +250,7 @@
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                            </DataGridTemplateColumn>-->
                                         </DataGrid.Columns>
                                     </DataGrid>
                                     <Border x:Name="bdrZoomImage" Canvas.Left="376" Canvas.Top="77" BorderThickness="2" Visibility="Hidden" CornerRadius="5" BorderBrush="#FF9B20E2" Height="317" Width="448">

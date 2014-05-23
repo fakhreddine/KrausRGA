@@ -805,6 +805,9 @@ namespace KrausRGA.GetRMAServiceRef {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKUField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SkuSequenceField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -906,6 +909,19 @@ namespace KrausRGA.GetRMAServiceRef {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> SkuSequence {
+            get {
+                return this.SkuSequenceField;
+            }
+            set {
+                if ((this.SkuSequenceField.Equals(value) != true)) {
+                    this.SkuSequenceField = value;
+                    this.RaisePropertyChanged("SkuSequence");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -965,7 +981,13 @@ namespace KrausRGA.GetRMAServiceRef {
         private string SKUNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_Qty_SeqField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SKU_Reason_Total_PointsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_SequenceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKU_StatusField;
@@ -1159,6 +1181,19 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Qty_Seq {
+            get {
+                return this.SKU_Qty_SeqField;
+            }
+            set {
+                if ((this.SKU_Qty_SeqField.Equals(value) != true)) {
+                    this.SKU_Qty_SeqField = value;
+                    this.RaisePropertyChanged("SKU_Qty_Seq");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int SKU_Reason_Total_Points {
             get {
                 return this.SKU_Reason_Total_PointsField;
@@ -1167,6 +1202,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((this.SKU_Reason_Total_PointsField.Equals(value) != true)) {
                     this.SKU_Reason_Total_PointsField = value;
                     this.RaisePropertyChanged("SKU_Reason_Total_Points");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Sequence {
+            get {
+                return this.SKU_SequenceField;
+            }
+            set {
+                if ((this.SKU_SequenceField.Equals(value) != true)) {
+                    this.SKU_SequenceField = value;
+                    this.RaisePropertyChanged("SKU_Sequence");
                 }
             }
         }
@@ -1483,6 +1531,12 @@ namespace KrausRGA.GetRMAServiceRef {
         private string SKUNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_Qty_SeqField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SKU_SequenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShipmentNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1740,6 +1794,32 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((object.ReferenceEquals(this.SKUNumberField, value) != true)) {
                     this.SKUNumberField = value;
                     this.RaisePropertyChanged("SKUNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Qty_Seq {
+            get {
+                return this.SKU_Qty_SeqField;
+            }
+            set {
+                if ((this.SKU_Qty_SeqField.Equals(value) != true)) {
+                    this.SKU_Qty_SeqField = value;
+                    this.RaisePropertyChanged("SKU_Qty_Seq");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SKU_Sequence {
+            get {
+                return this.SKU_SequenceField;
+            }
+            set {
+                if ((this.SKU_SequenceField.Equals(value) != true)) {
+                    this.SKU_SequenceField = value;
+                    this.RaisePropertyChanged("SKU_Sequence");
                 }
             }
         }

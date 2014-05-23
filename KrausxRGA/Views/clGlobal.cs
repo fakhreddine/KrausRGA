@@ -41,6 +41,13 @@ namespace KrausRGA.Views
 
         public static int IsManually;
 
+        public static int NewItemQty;
+
+        public static int _SKU_Qty_Seq;
+
+        public static string Ponumber;
+
+        public static string NewRGANumber;
 
         public static List<StatusAndPoints> statuspoints;
 

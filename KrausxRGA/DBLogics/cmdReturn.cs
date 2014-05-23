@@ -95,6 +95,27 @@ namespace KrausRGA.DBLogics
             return _returnTableObj;
         }
 
+        public List<Return> GetRetrunByROWID(string ROWID)
+        {
+            List<Return> _lsreturn = new List<Return>();
+            try
+            {
+                var byrowid = Service.entGet.ReturnByRGAROWID(ROWID).ToList();
+                foreach (var item in byrowid)
+                {
+                    _lsreturn.Add(new Return(item));
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturn/GetRetrunByROWID");
+            }
+            return _lsreturn;
+        }
+
+
+
+
         #endregion
 
         #region Set Methods.
@@ -121,6 +142,21 @@ namespace KrausRGA.DBLogics
             }
             return _returnFlag;
         }
+
+        public Boolean UpsertReturnTblByPonumber(Return ObjReturnTbl)
+        {
+            Boolean _returnFlag = false;
+            try
+            {
+                _returnFlag = Service.entSave.ReturnByPOnmber(ObjReturnTbl.CopyToSaveDTO(ObjReturnTbl));
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturn/UpsertReturnTblByPOnumber");
+            }
+            return _returnFlag;
+        }
+
 
         #endregion
 

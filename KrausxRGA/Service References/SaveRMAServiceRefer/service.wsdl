@@ -26,6 +26,12 @@
   <wsdl:message name="ISave_Return_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReturnResponse" />
   </wsdl:message>
+  <wsdl:message name="ISave_ReturnByPOnmber_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByPOnmber" />
+  </wsdl:message>
+  <wsdl:message name="ISave_ReturnByPOnmber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnByPOnmberResponse" />
+  </wsdl:message>
   <wsdl:message name="ISave_ReturnDetails_InputMessage">
     <wsdl:part name="parameters" element="tns:ReturnDetails" />
   </wsdl:message>
@@ -75,6 +81,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISave/Return" message="tns:ISave_Return_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReturnResponse" message="tns:ISave_Return_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ReturnByPOnmber">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReturnByPOnmber" message="tns:ISave_ReturnByPOnmber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReturnByPOnmberResponse" message="tns:ISave_ReturnByPOnmber_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ReturnDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/ISave/ReturnDetails" message="tns:ISave_ReturnDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISave/ReturnDetailsResponse" message="tns:ISave_ReturnDetails_OutputMessage" />
@@ -122,6 +132,15 @@
     </wsdl:operation>
     <wsdl:operation name="Return">
       <soap:operation soapAction="http://tempuri.org/ISave/Return" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnByPOnmber">
+      <soap:operation soapAction="http://tempuri.org/ISave/ReturnByPOnmber" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

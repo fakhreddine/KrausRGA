@@ -171,6 +171,7 @@
     <Compile Include="Models\mRMAAudit.cs" />
     <Compile Include="Models\mReturnDetails.cs" />
     <Compile Include="Models\mupdatedForPonumber.cs" />
+    <Compile Include="Models\mUpdateForNewRMA.cs" />
     <Compile Include="Models\mUpdateModeRMA.cs" />
     <Compile Include="Models\mUser.cs" />
     <Compile Include="Service References\DeleteRMAServiceRef\Reference.cs">
@@ -347,17 +348,17 @@
     <None Include="Service References\GetRMAServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA1.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping1.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service1.wsdl" />
-    <None Include="Service References\SaveRMAServiceRefer\service2.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service.wsdl" />
+    <None Include="Service References\SaveRMAServiceRefer\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service21.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

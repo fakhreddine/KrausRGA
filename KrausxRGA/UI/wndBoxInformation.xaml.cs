@@ -38,6 +38,10 @@ namespace KrausRGA.UI
 
         string imgPath = "C:\\Users\\" + Environment.UserName + "\\Pictures\\Camera Roll\\";
         mReturnDetails _mReturn;
+
+        mPOnumberRMA _mponumner = new mPOnumberRMA();
+       
+
         mUser _mUser;
         DispatcherTimer dsptSacnner;
         int ProcessBarValue = 0;
@@ -253,9 +257,54 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), TempRMANumber);
-                        ErrorMsg("Invalid Number. Please check the number. :" + txtScan.Text, Color.FromRgb(185, 84, 0));
-                        txtScan.Text = "";
+                        if (txtScan.Text.ToUpper().Contains("RGA"))
+                        {
+
+                            Views.clGlobal.NewRGANumber = txtScan.Text.ToUpper();
+                            var retunbyrow = _mponumner.GetReturnByRowID(txtScan.Text.ToUpper())[0];
+
+                            if (retunbyrow.OrderNumber == "N/A")
+                            {
+                                this.Dispatcher.Invoke(new Action(() =>
+                                {
+                                    Views.clGlobal.IsAlreadySaved = true;
+                                    //Create new instance of window.
+                                    wndNewRMANumber wndMain = new wndNewRMANumber();
+                                    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                                    //opens new window.
+                                    wndMain.Show();
+                                }));
+
+                                //close this screen.
+                                this.Close();
+                            }
+                            else
+                            {
+                                Views.clGlobal.Ponumber = retunbyrow.PONumber;
+                                _mponumner.mPOnumberRMA1(Views.clGlobal.Ponumber);
+
+                                if (Views.clGlobal.IsAlreadySaved)
+                                {
+                                    this.Dispatcher.Invoke(new Action(() =>
+                                    {
+                                        //Create new instance of window.
+                                        wndPONumber wndMain = new wndPONumber();
+                                        mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                                        //opens new window.
+                                        wndMain.Show();
+                                    }));
+
+                                    //close this screen.
+                                    this.Close();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.InvalidRMANumberScanned__00.ToString(), DateTime.UtcNow.ToString(), TempRMANumber);
+                            ErrorMsg("Invalid Number. Please check the number. :" + txtScan.Text, Color.FromRgb(185, 84, 0));
+                            txtScan.Text = "";
+                        }
                     }
                 }
                 else

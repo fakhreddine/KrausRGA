@@ -70,7 +70,9 @@
       <xs:element minOccurs="0" name="ReturnID" type="ser:guid" />
       <xs:element minOccurs="0" name="ReturnQty" type="xs:int" />
       <xs:element minOccurs="0" name="SKUNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SKU_Qty_Seq" type="xs:int" />
       <xs:element minOccurs="0" name="SKU_Reason_Total_Points" type="xs:int" />
+      <xs:element minOccurs="0" name="SKU_Sequence" type="xs:int" />
       <xs:element minOccurs="0" name="SKU_Status" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TCLCOD_0" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UpadatedDate" type="xs:dateTime" />
@@ -117,6 +119,7 @@
       <xs:element minOccurs="0" name="ReturnDetailID" nillable="true" type="ser:guid" />
       <xs:element minOccurs="0" name="ReturnID" nillable="true" type="ser:guid" />
       <xs:element minOccurs="0" name="SKU" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SkuSequence" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReturnedSKUReasonPointsDTO" nillable="true" type="tns:ReturnedSKUReasonPointsDTO" />

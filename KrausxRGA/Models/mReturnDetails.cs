@@ -262,26 +262,63 @@ namespace KrausRGA.Models
             List<RAMStatus> lsReturn = new List<RAMStatus>();
             try
             {
-                RAMStatus ram2 = new RAMStatus();
-                ram2.ID = 0;
-                ram2.Status = "New";
+
 
                 RAMStatus ram = new RAMStatus();
-                ram.ID = 1;
-                ram.Status = "Approved";
+                ram.ID = 0;
+                ram.Status = "Incomplete";
 
                 RAMStatus ram1 = new RAMStatus();
-                ram1.ID = 2;
-                ram1.Status = "Pending";
+                ram1.ID = 1;
+                ram1.Status = "Complete";
 
                 RAMStatus ram3 = new RAMStatus();
-                ram3.ID = 3;
-                ram3.Status = "Canceled";
+                ram3.ID = 2;
+                ram3.Status = "Wrong RMA";
 
-                lsReturn.Add(ram2);
+
                 lsReturn.Add(ram);
                 lsReturn.Add(ram1);
                 lsReturn.Add(ram3);
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetRMAStatusList");
+            }
+            return lsReturn;
+        }
+
+
+        public List<RAMStatus> GetRMADecision()
+        {
+            List<RAMStatus> lsReturn = new List<RAMStatus>();
+            try
+            {
+
+
+                RAMStatus ram = new RAMStatus();
+                ram.ID = 0;
+                ram.Status = "Pending";
+
+                RAMStatus ram1 = new RAMStatus();
+                ram1.ID = 1;
+                ram1.Status = "Deny";
+
+                RAMStatus ram3 = new RAMStatus();
+                ram3.ID = 2;
+                ram3.Status = "Full Refund";
+
+                RAMStatus ram4 = new RAMStatus();
+                ram4.ID = 3;
+                ram4.Status = "Partial-Refund";
+
+
+
+                lsReturn.Add(ram);
+                lsReturn.Add(ram1);
+                lsReturn.Add(ram3);
+                lsReturn.Add(ram4);
 
             }
             catch (Exception ex)
@@ -311,7 +348,7 @@ namespace KrausRGA.Models
                 if (Anyvalue == SRnumber) _return = true;
 
                 //Check Decision is Always new.
-                IsValidNumber = CanUserOpenThis();
+              //  IsValidNumber = CanUserOpenThis();
             }
             catch (Exception ex)
             {
@@ -447,7 +484,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guild new ReturnDetailID
         /// </returns>
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points,int IsScanned,int Manually)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int Manually, int NewItemQty, int SKU_Qty_Seq)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -472,6 +509,9 @@ namespace KrausRGA.Models
                 TblReturnDetails.SKU_Reason_Total_Points = SKU_Reason_Total_Points;
                 TblReturnDetails.IsSkuScanned = IsScanned;
                 TblReturnDetails.IsManuallyAdded = Manually;
+
+                TblReturnDetails.SKU_Sequence = NewItemQty;
+                TblReturnDetails.SKU_Qty_Seq = SKU_Qty_Seq;
 
 
                 //On Success of transaction.
@@ -717,7 +757,7 @@ namespace KrausRGA.Models
         }
 
 
-        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points)
+        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points,int skusequence)
         {
             Guid _ReturnedskuID = Guid.Empty;
             try
@@ -731,6 +771,7 @@ namespace KrausRGA.Models
                 TblReturnedSKUPoints.Reason = Reason;
                 TblReturnedSKUPoints.Reason_Value = Reason_Value;
                 TblReturnedSKUPoints.Points = Points;
+                TblReturnedSKUPoints.SkuSequence = skusequence;
             
 
                 //On Success of transaction.

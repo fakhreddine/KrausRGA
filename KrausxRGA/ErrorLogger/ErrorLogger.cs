@@ -16,7 +16,7 @@ namespace KrausRGA.ErrorLogger
         /// <summary>
         /// Static path of error log file.
         /// </summary>
-        static readonly String _FilePath = "C:\\RGAErrorLog.txt";
+        static readonly String _FilePath = "C:\\temp\\RGAErrorLog.txt";
         
         /// <summary>
         /// Log error to the text file on path "C:\\RGAErrorLog.txt"

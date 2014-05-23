@@ -17,7 +17,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="combo" TargetType="ComboBox">
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>

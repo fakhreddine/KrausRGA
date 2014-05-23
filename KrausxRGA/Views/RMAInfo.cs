@@ -35,6 +35,8 @@ namespace KrausRGA.Views
         public String State { get; set; }
         public String Country { get; set; }
         public string TCLCOD_0 { get;set; }
+        public int SKU_Sequence { get; set; }
+        public int SKU_Qty_Seq { get; set; }
 
         public RMAInfo()
         {
@@ -67,6 +69,9 @@ namespace KrausRGA.Views
             if (_sage.State != null) this.State = (string)_sage.State;
             if (_sage.Country != null) this.Country = (string)_sage.Country;
             if (_sage.TCLCOD_0 != null) this.TCLCOD_0 = (string)_sage.TCLCOD_0;
+            this.SKU_Sequence = (int)_sage.SKU_Sequence;
+            this.SKU_Qty_Seq = (int)_sage.SKU_Qty_Seq;
+
         }
 
         public GetRMAServiceRef.RMAInfoDTO CopyToGetDTO(RMAInfo _sage)
@@ -96,6 +101,8 @@ namespace KrausRGA.Views
             if (_sage.State != null) this.State = (string)_sage.State;
             if (_sage.Country != null) this.Country = (string)_sage.Country;
             if (_sage.TCLCOD_0 != null) this.TCLCOD_0 = (string)_sage.TCLCOD_0;
+            this.SKU_Sequence = (int)_sage.SKU_Sequence;
+            this.SKU_Qty_Seq = (int)_sage.SKU_Qty_Seq;
 
             return _return;
         }

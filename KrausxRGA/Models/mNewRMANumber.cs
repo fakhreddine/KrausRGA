@@ -172,23 +172,21 @@ namespace KrausRGA.Models
             List<RAMStatus> lsReturn = new List<RAMStatus>();
             try
             {
-                RAMStatus ram2 = new RAMStatus();
-                ram2.ID = 0;
-                ram2.Status = "New";
+              
 
                 RAMStatus ram = new RAMStatus();
-                ram.ID = 1;
-                ram.Status = "Approved";
+                ram.ID = 0;
+                ram.Status = "Incomplete";
 
                 RAMStatus ram1 = new RAMStatus();
-                ram1.ID = 2;
-                ram1.Status = "Pending";
+                ram1.ID = 1;
+                ram1.Status = "Complete";
 
                 RAMStatus ram3 = new RAMStatus();
-                ram3.ID = 3;
-                ram3.Status = "Canceled";
+                ram3.ID = 2;
+                ram3.Status = "Wrong RMA";
 
-                lsReturn.Add(ram2);
+            
                 lsReturn.Add(ram);
                 lsReturn.Add(ram1);
                 lsReturn.Add(ram3);
@@ -201,7 +199,47 @@ namespace KrausRGA.Models
             return lsReturn;
         }
 
-        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points,int Isscanned,int IsMnually)
+
+        public List<RAMStatus> GetRMADecision()
+        {
+            List<RAMStatus> lsReturn = new List<RAMStatus>();
+            try
+            {
+              
+
+                RAMStatus ram = new RAMStatus();
+                ram.ID = 0;
+                ram.Status = "Pending";
+
+                RAMStatus ram1 = new RAMStatus();
+                ram1.ID = 1;
+                ram1.Status = "Deny";
+
+                RAMStatus ram3 = new RAMStatus();
+                ram3.ID = 2;
+                ram3.Status = "Full Refund";
+
+                RAMStatus ram4 = new RAMStatus();
+                ram4.ID = 3;
+                ram4.Status = "Partial-Refund";
+
+
+             
+                lsReturn.Add(ram);
+                lsReturn.Add(ram1);
+                lsReturn.Add(ram3);
+                lsReturn.Add(ram4);
+
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("mReturnDetails/GetRMAStatusList");
+            }
+            return lsReturn;
+        }
+
+
+        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int Isscanned, int IsMnually, int NewItemQty, int SKU_Qty_Seq)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -226,6 +264,10 @@ namespace KrausRGA.Models
                 TblReturnDetails.SKU_Reason_Total_Points = SKU_Reason_Total_Points;
                 TblReturnDetails.IsManuallyAdded = IsMnually;
                 TblReturnDetails.IsSkuScanned = Isscanned;
+
+
+                TblReturnDetails.SKU_Sequence = NewItemQty;
+                TblReturnDetails.SKU_Qty_Seq = SKU_Qty_Seq;
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
@@ -481,6 +523,19 @@ namespace KrausRGA.Models
             return SKU;
 
         }
+        public List<Return> GetReturnByRowID(String RowId)
+        {
+            List<Return> lsreurnbyrowid = new List<Return>();
+            try
+            {
+                lsreurnbyrowid = cReturnTbl.GetRetrunByROWID(RowId);
+            }
+            catch (Exception)
+            {
 
+
+            }
+            return lsreurnbyrowid;
+        }
     }
 }

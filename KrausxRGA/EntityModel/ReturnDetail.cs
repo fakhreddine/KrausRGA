@@ -25,6 +25,8 @@ namespace KrausRGA.EntityModel
         public int SKU_Reason_Total_Points { get; set; }
         public int IsSkuScanned { get; set; }
         public int IsManuallyAdded { get; set; }
+        public int SKU_Sequence { get; set; }
+        public int SKU_Qty_Seq { get; set; }
 
         public String RGADROWID { get; set; }
 
@@ -48,6 +50,9 @@ namespace KrausRGA.EntityModel
             this.SKU_Reason_Total_Points = (int)_ReturnDetails.SKU_Reason_Total_Points;
             this.IsSkuScanned = (int)_ReturnDetails.IsSkuScanned;
             this.IsManuallyAdded = (int)_ReturnDetails.IsManuallyAdded;
+
+            this.SKU_Sequence = (int)_ReturnDetails.SKU_Sequence;
+            this.SKU_Qty_Seq = (int)_ReturnDetails.SKU_Qty_Seq;
 
 
             this.RGADROWID = _ReturnDetails.RGADROWID;
@@ -73,7 +78,8 @@ namespace KrausRGA.EntityModel
              this.IsSkuScanned = (int)_ReturnDetails.IsSkuScanned;
              this.IsManuallyAdded = (int)_ReturnDetails.IsManuallyAdded;
 
-
+             this.SKU_Sequence = (int)_ReturnDetails.SKU_Sequence;
+             this.SKU_Qty_Seq = (int)_ReturnDetails.SKU_Qty_Seq;
 
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
@@ -100,6 +106,9 @@ namespace KrausRGA.EntityModel
              _return.SKU_Reason_Total_Points =(int) _ReturnDetails.SKU_Reason_Total_Points;
              _return.IsSkuScanned = (int)_ReturnDetails.IsSkuScanned;
              _return.IsManuallyAdded = (int)_ReturnDetails.IsManuallyAdded;
+             _return.SKU_Sequence = (int)_ReturnDetails.SKU_Sequence;
+             _return.SKU_Qty_Seq = (int)_ReturnDetails.SKU_Qty_Seq;
+
 
             _return.RGADROWID = _ReturnDetails.RGADROWID;
             return _return;

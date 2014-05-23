@@ -12,5 +12,7 @@ namespace KrausRGA.Views
         public int Points { get; set; }
         public int IsScanned { get; set; }
         public int IsMannually { get; set; }
+        public int NewItemQuantity { get; set; }
+        public int skusequence { get; set; }
     }
 }

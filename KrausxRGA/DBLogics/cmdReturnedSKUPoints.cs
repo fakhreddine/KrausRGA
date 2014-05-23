@@ -41,6 +41,7 @@ namespace KrausRGA.DBLogics
                     skuandpoint.Reason = item.Reason;
                     skuandpoint.SKU = item.SKU;
                     skuandpoint.Points = item.Points;
+                    skuandpoint.SkuSequence = item.SkuSequence;
                     lsskuandpoint.Add(skuandpoint);
                 }
                
@@ -72,6 +73,7 @@ namespace KrausRGA.DBLogics
                     skuandpoint.Reason = item.Reason;
                     skuandpoint.SKU = item.SKU;
                     skuandpoint.Points = item.Points;
+                    skuandpoint.SkuSequence = item.SkuSequence;
                     lsskuandpoint.Add(skuandpoint);
                 }
                

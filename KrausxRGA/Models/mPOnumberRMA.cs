@@ -142,7 +142,7 @@ namespace KrausRGA.Models
                 TblRerutn.ReturnID = Guid.NewGuid();
                 TblRerutn.RMANumber = null;//lsNewRMA[0].RMANumber;
                 TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
-                TblRerutn.OrderNumber = "N/A";
+                TblRerutn.OrderNumber = lsNewRMA[0].OrderNumber;
                 TblRerutn.PONumber = lsNewRMA[0].PONumber;
                 TblRerutn.OrderDate = lsNewRMA[0].OrderDate;
                 TblRerutn.DeliveryDate = lsNewRMA[0].DeliveryDate;
@@ -152,20 +152,20 @@ namespace KrausRGA.Models
                 TblRerutn.VendorNumber = lsNewRMA[0].VendorNumber;
                 TblRerutn.VendoeName = lsNewRMA[0].VendoeName;
                 TblRerutn.CustomerName1 = lsNewRMA[0].CustomerName1;
-                TblRerutn.CustomerName2 = "N/A";
+                TblRerutn.CustomerName2 = lsNewRMA[0].CustomerName2;
                 TblRerutn.Address1 = lsNewRMA[0].Address1;
-                TblRerutn.Address2 = "N/A";
-                TblRerutn.Address3 = "N/A";
+                TblRerutn.Address2 = null;
+                TblRerutn.Address3 = null;
                 TblRerutn.ZipCode = lsNewRMA[0].ZipCode;
                 TblRerutn.City = lsNewRMA[0].City;
                 TblRerutn.State = lsNewRMA[0].State;
                 TblRerutn.Country = lsNewRMA[0].Country;
-                TblRerutn.ReturnReason = ReturnReason;
+                TblRerutn.ReturnReason = null;
                 TblRerutn.RMAStatus = RMAStatus;
                 TblRerutn.Decision = Decision;
                 TblRerutn.CreatedBy = CreatedBy;
                 TblRerutn.CreatedDate = DateTime.UtcNow;
-                TblRerutn.UpdatedBy = null;
+                TblRerutn.UpdatedBy = CreatedBy;
                 TblRerutn.UpdatedDate = DateTime.Now;
 
                 TblRerutn.Wrong_RMA_Flg = Wrong_RMA_Flg;
@@ -178,7 +178,7 @@ namespace KrausRGA.Models
 
 
                 //On success of transaction it returns id.
-                if (cReturnTbl.UpsertReturnTbl(TblRerutn)) _returnID = TblRerutn.ReturnID;
+                if (cReturnTbl.UpsertReturnTblByPonumber(TblRerutn)) _returnID = TblRerutn.ReturnID;
 
             }
             catch (Exception ex)
@@ -188,7 +188,7 @@ namespace KrausRGA.Models
             return _returnID;
         }
 
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points,int IsScanned,int IsManually)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int IsManually, int NewItemQty, int SKU_Qty_Seq)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -214,6 +214,10 @@ namespace KrausRGA.Models
 
                 TblReturnDetails.IsSkuScanned = IsScanned;
                 TblReturnDetails.IsManuallyAdded = IsManually;
+
+                TblReturnDetails.SKU_Sequence = NewItemQty;
+                TblReturnDetails.SKU_Qty_Seq = SKU_Qty_Seq;
+
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
@@ -360,7 +364,7 @@ namespace KrausRGA.Models
 
         }
 
-        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points)
+        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points, int skusequence)
         {
             Guid _ReturnedskuID = Guid.Empty;
             try
@@ -375,6 +379,8 @@ namespace KrausRGA.Models
                 TblReturnedSKUPoints.Reason_Value = Reason_Value;
                 TblReturnedSKUPoints.Points = Points;
 
+                TblReturnedSKUPoints.SkuSequence = skusequence;
+
 
                 //On Success of transaction.
                 if (cRetutnedSKUPoints.UpsertReturnedSKUPoints(TblReturnedSKUPoints)) _ReturnedskuID = TblReturnedSKUPoints.ID;
@@ -385,6 +391,21 @@ namespace KrausRGA.Models
                 ex.LogThis("mReturnedSKUPoints/SetReturnedSKUPoints");
             }
             return _ReturnedskuID;
+        }
+
+        public List<Return> GetReturnByRowID(String RowId)
+        {
+            List<Return> lsreurnbyrowid = new List<Return>();
+            try
+            {
+                lsreurnbyrowid = cReturnTbl.GetRetrunByROWID(RowId);
+            }
+            catch (Exception)
+            {
+                
+               
+            }
+            return lsreurnbyrowid;
         }
 
     }

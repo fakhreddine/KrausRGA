@@ -65,36 +65,36 @@ namespace KrausRGA.UI
             string RMAStatusReal = "N/A";
             String RMAStatus = _lsInfoSlip[0].RMAStatus;
 
-            if (Views.clGlobal.ScenarioType == "HomeDepot")
-            {
-                if (RMAStatus == "0" && Views.clGlobal.Warranty == "1")
+            //if (Views.clGlobal.ScenarioType == "HomeDepot")
+            //{
+                if (RMAStatus == "0")
                 {
-                    RMAStatusReal = "Accepted";
+                    RMAStatusReal = "Incomplete";
                 }
-                else if (RMAStatus == "0" && Views.clGlobal.Warranty == "0")
+                else if (RMAStatus == "1")
                 {
-                    RMAStatusReal = "Rejected";
+                    RMAStatusReal = "Complete"; //"Rejected";
                 }
-                else if (RMAStatus == "1" )
+                else if (RMAStatus == "2")
                 {
-                    RMAStatusReal = "Rejected";
+                    RMAStatusReal = "Wrong RMA";//"Rejected";
                 }
-            }
-            if (Views.clGlobal.ScenarioType == "Lowes")
-            {
-                RMAStatusReal = "Accepted";
-            }
-            if (Views.clGlobal.ScenarioType == "Others")
-            {
-                if (Views.clGlobal.Warranty == "1")
-                {
-                    RMAStatusReal = "Accepted";
-                }
-                else if (Views.clGlobal.Warranty == "0")
-                {
-                    RMAStatusReal = "Rejected";
-                }
-            }
+            //}
+            //if (Views.clGlobal.ScenarioType == "Lowes")
+            //{
+            //    RMAStatusReal = "Accepted";
+            //}
+            //if (Views.clGlobal.ScenarioType == "Others")
+            //{
+            //    if (Views.clGlobal.Warranty == "1")
+            //    {
+            //        RMAStatusReal = "Accepted";
+            //    }
+            //    else if (Views.clGlobal.Warranty == "0")
+            //    {
+            //        RMAStatusReal = "N/A"; //"Rejected";
+            //    }
+            //}
            
 
             string ItemStatus = _lsInfoSlip[0].ItemStatus;

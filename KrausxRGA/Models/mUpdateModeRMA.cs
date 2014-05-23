@@ -17,6 +17,8 @@ namespace KrausRGA.Models
 
        public List<ReturnImage> _lsImages { get; protected set; }
 
+       public List<ReturnedSKUPoints> _lsskuandpoints1 { get; protected set; }
+
 
        #region Declarations.
 
@@ -56,6 +58,9 @@ namespace KrausRGA.Models
        protected DBLogics.cmdSKUReasons cSkuReasons= new DBLogics.cmdSKUReasons();
 
 
+       protected DBLogics.cmdReturnedSKUPoints cSkupoints = new DBLogics.cmdReturnedSKUPoints();
+
+
        #endregion
 
        public mUpdateModeRMA()
@@ -71,6 +76,7 @@ namespace KrausRGA.Models
            GetLsReturnDetails(_ReturnTbl.ReturnID);
            GetReasons(_lsReturnDetails);
            GetRerurnImages(_lsReturnDetails);
+           GetSKUAndPointsByReturnID(_ReturnTbl.ReturnID);
 
        }
 
@@ -126,6 +132,26 @@ namespace KrausRGA.Models
            }
            catch (Exception)
            {}
+       }
+
+
+       protected void GetSKUAndPointsByReturnID(Guid ReturntblID)
+       {
+           try
+           {
+               _lsskuandpoints1 = cSkupoints.GetReturnedSKUPointsByReturnID(ReturntblID);
+           }
+           catch (Exception)
+           { }
+       }
+       protected void GetSKUAndPointsByReturnDetailID(Guid ReturntDetailID)
+       {
+           try
+           {
+               _lsskuandpoints1 = cSkupoints.GetReturnedSKUPointsByReturnDetailID(ReturntDetailID);
+           }
+           catch (Exception)
+           { }
        }
 
     }

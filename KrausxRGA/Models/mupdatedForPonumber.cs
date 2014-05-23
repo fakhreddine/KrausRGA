@@ -10,7 +10,7 @@ namespace KrausRGA.Models
 {
    public class mupdatedForPonumber
     {
-          public  Return _ReturnTbl1 { get; protected set; }
+       public Return _ReturnTbl1 { get; protected set; }
 
        public List<ReturnDetail> _lsReturnDetails1 { get; protected set; }
 
