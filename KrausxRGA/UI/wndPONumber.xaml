@@ -4,7 +4,7 @@
         Title="wndPONumber" Height="1280" Width="800" Loaded="Window_Loaded" WindowState="Maximized">
     <Viewbox>
         <Grid Height="1280" Width="800">
-            <TextBox HorizontalAlignment="Left" Height="38" Margin="365,463,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210" x:Name="txtbarcode" KeyDown="txtbarcode_KeyDown_1"/>
+            <TextBox HorizontalAlignment="Left" Height="38" Margin="217,467,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210" x:Name="txtbarcode" KeyDown="txtbarcode_KeyDown_1"/>
             <Border BorderThickness="2" BorderBrush="#FFD49919">
                 <Canvas Margin="1,2,-1,-2" Background="#FFC7C7C7" >
                     <Canvas x:Name="cvMainArea" Height="551" Width="800" Canvas.Left="5">
@@ -266,7 +266,17 @@
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ProductID}" 
+        										Header=""  
+        										Width="" 
+        										IsReadOnly="True" />
 
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding SalesPrice}" 
+        										Header=""  
+        										Width="" 
+        										IsReadOnly="True" />
 
                                         </DataGrid.Columns>
                                         <DataGrid.RowValidationErrorTemplate>
@@ -369,7 +379,7 @@
                                 <Canvas Height="471">
                                     <Border Width="790" CornerRadius="10" Canvas.Top="2" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="332" >
                                         <Canvas Margin="-10,0,10,0" Name="CanvasConditions" IsEnabled="False">
-                                            <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75"></Label>
+                                            <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75" Visibility="Hidden"></Label>
 
                                             <Canvas  Height="54" Width="493" RenderTransformOrigin="2.093,1.173" Canvas.Left="227" Canvas.Top="12">
                                                 <Label Canvas.Left="2" Canvas.Top="5" Name="lblItemIsNew" Content="Item is New" Style="{StaticResource lblConstant}" Width="167" Height="46" FontSize="30" ></Label>
@@ -602,6 +612,7 @@
                 </Canvas>
             </Border>
             <Button Content="Show Barcode" FontSize="20"  HorizontalAlignment="Left" Margin="656,467,0,0" VerticalAlignment="Top" Width="134" Height="38" Name="btnshow" Click="Button_Click_1" />
+            <Button Content="Scan Barcode" FontSize="20"  HorizontalAlignment="Left" Margin="491,467,0,0" VerticalAlignment="Top" Width="134" Height="38" Name="btnScan" Visibility="Hidden"  Click="btnScan_Click" />
         </Grid>
     </Viewbox>
 </Window>

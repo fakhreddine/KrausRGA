@@ -140,7 +140,7 @@ namespace KrausRGA.Models
 
 
                 //On success of transaction it returns id.
-                if (cReturnTbl.UpsertReturnTbl(TblRerutn)) _returnID = TblRerutn.ReturnID;
+                if (cReturnTbl.UpsertReturnTblByRGANumber(TblRerutn)) _returnID = TblRerutn.ReturnID;
 
             }
             catch (Exception ex)
@@ -239,7 +239,7 @@ namespace KrausRGA.Models
         }
 
 
-        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int Isscanned, int IsMnually, int NewItemQty, int SKU_Qty_Seq)
+        public Guid SetReturnDetailTbl(Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int Isscanned, int IsMnually, int NewItemQty, int SKU_Qty_Seq, string ProductID, decimal SalesPrice)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -269,6 +269,9 @@ namespace KrausRGA.Models
                 TblReturnDetails.SKU_Sequence = NewItemQty;
                 TblReturnDetails.SKU_Qty_Seq = SKU_Qty_Seq;
 
+                TblReturnDetails.ProductID = ProductID;
+                TblReturnDetails.SalesPrice = SalesPrice;
+
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
 
@@ -280,7 +283,7 @@ namespace KrausRGA.Models
             return _ReturnID;
         }
 
-        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points)
+        public Guid SetReturnedSKUPoints(Guid ReturnedSKUID, Guid ReturnDetailsID, Guid ReturnTblID, String SKU, String Reason, string Reason_Value, int Points, int SkuSequence)
         {
             Guid _ReturnedskuID = Guid.Empty;
             try
@@ -294,6 +297,7 @@ namespace KrausRGA.Models
                 TblReturnedSKUPoints.Reason = Reason;
                 TblReturnedSKUPoints.Reason_Value = Reason_Value;
                 TblReturnedSKUPoints.Points = Points;
+                TblReturnedSKUPoints.SkuSequence = SkuSequence;
 
 
                 //On Success of transaction.
@@ -516,6 +520,21 @@ namespace KrausRGA.Models
             try
             {
                 SKU = cSage.GetPruductNameByEANCode(code);
+            }
+            catch (Exception)
+            {
+            }
+            return SKU;
+
+        }
+
+
+        public String GetSKUNameAndProductNameByItem(string code)
+        {
+            string SKU = "";
+            try
+            {
+                SKU = cSage.GetPruductNameAndProductIDByEANCode(code);
             }
             catch (Exception)
             {

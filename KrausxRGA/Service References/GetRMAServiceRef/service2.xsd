@@ -529,6 +529,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetProductNameAndProductID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CharEAN" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductNameAndProductIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductNameAndProductIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetPrintReasonFromSage">
     <xs:complexType>
       <xs:sequence>

@@ -28,6 +28,9 @@ namespace KrausRGA.EntityModel
         public int SKU_Sequence { get; set; }
         public int SKU_Qty_Seq { get; set; }
 
+        public string ProductID { get; set; }
+        public decimal? SalesPrice { get; set; }
+
         public String RGADROWID { get; set; }
 
         public ReturnDetail(SaveRMAServiceRefer.ReturnDetailsDTO _ReturnDetails)
@@ -54,6 +57,8 @@ namespace KrausRGA.EntityModel
             this.SKU_Sequence = (int)_ReturnDetails.SKU_Sequence;
             this.SKU_Qty_Seq = (int)_ReturnDetails.SKU_Qty_Seq;
 
+            if (_ReturnDetails.ProductID != null) this.ProductID = _ReturnDetails.ProductID;
+            if (_ReturnDetails.SalesPrice != null) this.SalesPrice = _ReturnDetails.SalesPrice;
 
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
@@ -80,6 +85,9 @@ namespace KrausRGA.EntityModel
 
              this.SKU_Sequence = (int)_ReturnDetails.SKU_Sequence;
              this.SKU_Qty_Seq = (int)_ReturnDetails.SKU_Qty_Seq;
+
+             if (_ReturnDetails.ProductID != null) this.ProductID = _ReturnDetails.ProductID;
+             if (_ReturnDetails.SalesPrice != null) this.SalesPrice = _ReturnDetails.SalesPrice;
 
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
@@ -109,6 +117,8 @@ namespace KrausRGA.EntityModel
              _return.SKU_Sequence = (int)_ReturnDetails.SKU_Sequence;
              _return.SKU_Qty_Seq = (int)_ReturnDetails.SKU_Qty_Seq;
 
+             if (_ReturnDetails.ProductID != null) _return.ProductID = _ReturnDetails.ProductID;
+             if (_ReturnDetails.SalesPrice != null) _return.SalesPrice = _ReturnDetails.SalesPrice;
 
             _return.RGADROWID = _ReturnDetails.RGADROWID;
             return _return;

@@ -157,6 +157,20 @@ namespace KrausRGA.DBLogics
             return _returnFlag;
         }
 
+        public Boolean UpsertReturnTblByRGANumber(Return ObjReturnTbl)
+        {
+            Boolean _returnFlag = false;
+            try
+            {
+                _returnFlag = Service.entSave.ReturnByRGANumber(ObjReturnTbl.CopyToSaveDTO(ObjReturnTbl));
+            }
+            catch (Exception ex)
+            {
+                ex.LogThis("cmdReturn/UpsertReturnTblByPOnumber");
+            }
+            return _returnFlag;
+        }
+
 
         #endregion
 

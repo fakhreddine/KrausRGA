@@ -60,6 +60,9 @@ namespace KrausRGA.Views
 
         public static FoundBarcode FBCode = new FoundBarcode();
 
+        public static BarcodeForSKU FBCodeForSKU = new BarcodeForSKU();
+
+
         public static List<cSlipInfo> lsSlipInfo;
 
     }

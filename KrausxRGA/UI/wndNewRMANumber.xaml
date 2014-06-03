@@ -217,6 +217,21 @@
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Header=""
+        										Width="40">
+
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="spDQyt" Width="40">
+                                                            <TextBlock x:Name="tbDQyt" TextAlignment="Center" Width="40" Text="{Binding SKU_Sequence}" FontSize="20" FontWeight="Bold"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+
+
+
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Header="Status"
         										Width="70">
 
@@ -228,6 +243,35 @@
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                        		Header=""  
+                                        		Width="1" 
+                                        		IsReadOnly="True" >
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel  Height="1" Width="1">
+                                                            <TextBox x:Name="txtProductID"  Height="1" Margin="0,0,0,0" Text="{Binding ProductID}" FontSize="10" FontWeight="Bold" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                        		Header=""  
+                                        		Width="1" 
+                                        		IsReadOnly="True" >
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel  Height="1" Width="1">
+                                                            <TextBox x:Name="txtSalesPrice"  Height="60" Margin="0,0,0,0" Text="{Binding SalesPrice}" FontSize="10" FontWeight="Bold" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+
+                                            </DataGridTemplateColumn>
+                                         
+
                                             <!--<DataGridTemplateColumn Header="Reasons" 
                                         		HeaderStyle="{StaticResource HeaderStyleKey}"
                                         		Width="160" >
@@ -339,7 +383,7 @@
                                 <Canvas Height="471">
                                     <Border Width="790" CornerRadius="10" Canvas.Top="2" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="342" >
                                         <Canvas Margin="-10,0,10,0" Name="CanvasConditions" IsEnabled="False">
-                                        <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75"></Label>
+                                        <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75" Visibility="Hidden"></Label>
 
                                         <Canvas>
                                             <Label Canvas.Left="187" Canvas.Top="32" Name="lblItemIsNew" Content="Item is New" Style="{StaticResource lblConstant}" Width="231" Height="50" FontSize="30" ></Label>

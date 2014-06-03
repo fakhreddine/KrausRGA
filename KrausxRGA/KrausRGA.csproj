@@ -136,6 +136,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Barcode\BarcodeForSKU.cs" />
     <Compile Include="Barcode\BarcodeRead.cs" />
     <Compile Include="Barcode\Camera.cs" />
     <Compile Include="Barcode\FoundBarcode.cs" />
@@ -299,7 +300,7 @@
     <None Include="Service References\DeleteRMAServiceRef\KrausWarehouseServices1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\Arrays.xsd">
+    <None Include="Service References\GetRMAServiceRef\Arrays1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.ReasonCategoryDTO.datasource">
@@ -335,17 +336,17 @@
     <None Include="Service References\GetRMAServiceRef\KrausRGA.GetRMAServiceRef.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.RMA1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.Shipping1.xsd">
+    <None Include="Service References\GetRMAServiceRef\KrausWarehouseServices.DTO.Shipping.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service.wsdl" />
-    <None Include="Service References\GetRMAServiceRef\service.xsd">
+    <None Include="Service References\GetRMAServiceRef\service1.wsdl" />
+    <None Include="Service References\GetRMAServiceRef\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GetRMAServiceRef\service1.xsd">
+    <None Include="Service References\GetRMAServiceRef\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA.xsd">

@@ -63,6 +63,7 @@
       <xs:element minOccurs="0" name="ExpectedQty" type="xs:int" />
       <xs:element minOccurs="0" name="IsManuallyAdded" type="xs:int" />
       <xs:element minOccurs="0" name="IsSkuScanned" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductStatus" type="xs:int" />
       <xs:element minOccurs="0" name="RGADROWID" nillable="true" type="xs:string" />
@@ -74,6 +75,7 @@
       <xs:element minOccurs="0" name="SKU_Reason_Total_Points" type="xs:int" />
       <xs:element minOccurs="0" name="SKU_Sequence" type="xs:int" />
       <xs:element minOccurs="0" name="SKU_Status" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SalesPrice" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="TCLCOD_0" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UpadatedDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UpdatedBy" type="ser:guid" />

@@ -40,7 +40,7 @@ namespace KrausRGA.UI
         mReturnDetails _mReturn;
 
         mPOnumberRMA _mponumner = new mPOnumberRMA();
-       
+
 
         mUser _mUser;
         DispatcherTimer dsptSacnner;
@@ -85,7 +85,7 @@ namespace KrausRGA.UI
                 bdrScan.Visibility = System.Windows.Visibility.Visible;
                 txtScan.Focus();
 
-               // btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
+                // btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                 txtUserName.Text = _mUser.UserInfo.UserFullName.ToString() + Environment.NewLine + "[ " + _mUser.RoleName + " ]";
             }
             #region Start application within another application.
@@ -180,7 +180,7 @@ namespace KrausRGA.UI
 
 
 
-                           // btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
+                            // btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
                             //Set UserLogged flag true.
                             clGlobal.IsUserlogged = true;
                             //lsaudit.Insert(0
@@ -219,8 +219,8 @@ namespace KrausRGA.UI
             nRMA.Show();
             this.Close();
 
-           // wndNewRMANumber nRMA = new wndNewRMANumber();
-           // nRMA.Show();
+            // wndNewRMANumber nRMA = new wndNewRMANumber();
+            // nRMA.Show();
         }
 
         private void txtScan_KeyDown(object sender, KeyEventArgs e)
@@ -387,7 +387,7 @@ namespace KrausRGA.UI
         {
             System.Windows.Forms.Application.Restart();
             Application.Current.Shutdown();
-            
+
 
         }
 
@@ -437,7 +437,7 @@ namespace KrausRGA.UI
             wndNewRMANumber nRMA = new wndNewRMANumber();
             nRMA.Show();
             this.Close();
-          
+
         }
 
     }

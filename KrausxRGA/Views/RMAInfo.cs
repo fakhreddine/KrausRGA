@@ -38,6 +38,9 @@ namespace KrausRGA.Views
         public int SKU_Sequence { get; set; }
         public int SKU_Qty_Seq { get; set; }
 
+        public string ProductID { get; set; }
+        public decimal? SalesPrice { get; set; }
+
         public RMAInfo()
         {
 
@@ -72,6 +75,9 @@ namespace KrausRGA.Views
             this.SKU_Sequence = (int)_sage.SKU_Sequence;
             this.SKU_Qty_Seq = (int)_sage.SKU_Qty_Seq;
 
+            if (_sage.ProductID != null) this.ProductID = (string)_sage.ProductID;
+            if (_sage.SalesPrice != null) this.SalesPrice = _sage.SalesPrice;
+
         }
 
         public GetRMAServiceRef.RMAInfoDTO CopyToGetDTO(RMAInfo _sage)
@@ -103,6 +109,9 @@ namespace KrausRGA.Views
             if (_sage.TCLCOD_0 != null) this.TCLCOD_0 = (string)_sage.TCLCOD_0;
             this.SKU_Sequence = (int)_sage.SKU_Sequence;
             this.SKU_Qty_Seq = (int)_sage.SKU_Qty_Seq;
+
+            if (_sage.ProductID != null) this.ProductID = (string)_sage.ProductID;
+            if (_sage.SalesPrice != null) this.SalesPrice = _sage.SalesPrice;
 
             return _return;
         }

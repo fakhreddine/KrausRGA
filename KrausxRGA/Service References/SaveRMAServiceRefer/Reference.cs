@@ -752,6 +752,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private int IsSkuScannedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ProductNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -783,6 +786,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKU_StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SalesPriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TCLCOD_0Field;
@@ -877,6 +883,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((this.IsSkuScannedField.Equals(value) != true)) {
                     this.IsSkuScannedField = value;
                     this.RaisePropertyChanged("IsSkuScanned");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductID {
+            get {
+                return this.ProductIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductIDField, value) != true)) {
+                    this.ProductIDField = value;
+                    this.RaisePropertyChanged("ProductID");
                 }
             }
         }
@@ -1020,6 +1039,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((object.ReferenceEquals(this.SKU_StatusField, value) != true)) {
                     this.SKU_StatusField = value;
                     this.RaisePropertyChanged("SKU_Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SalesPrice {
+            get {
+                return this.SalesPriceField;
+            }
+            set {
+                if ((this.SalesPriceField.Equals(value) != true)) {
+                    this.SalesPriceField = value;
+                    this.RaisePropertyChanged("SalesPrice");
                 }
             }
         }
@@ -1778,6 +1810,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/ReturnByPOnmber", ReplyAction="http://tempuri.org/ISave/ReturnByPOnmberResponse")]
         bool ReturnByPOnmber(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/ReturnByRGANumber", ReplyAction="http://tempuri.org/ISave/ReturnByRGANumberResponse")]
+        bool ReturnByRGANumber(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISave/ReturnDetails", ReplyAction="http://tempuri.org/ISave/ReturnDetailsResponse")]
         bool ReturnDetails(KrausRGA.SaveRMAServiceRefer.ReturnDetailsDTO returndetail);
         
@@ -1838,6 +1873,10 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         public bool ReturnByPOnmber(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return) {
             return base.Channel.ReturnByPOnmber(_return);
+        }
+        
+        public bool ReturnByRGANumber(KrausRGA.SaveRMAServiceRefer.ReturnDTO _return) {
+            return base.Channel.ReturnByRGANumber(_return);
         }
         
         public bool ReturnDetails(KrausRGA.SaveRMAServiceRefer.ReturnDetailsDTO returndetail) {

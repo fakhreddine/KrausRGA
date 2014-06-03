@@ -484,7 +484,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guild new ReturnDetailID
         /// </returns>
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int Manually, int NewItemQty, int SKU_Qty_Seq)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int Manually, int NewItemQty, int SKU_Qty_Seq,string ProductID,decimal SalesPrice)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -513,6 +513,8 @@ namespace KrausRGA.Models
                 TblReturnDetails.SKU_Sequence = NewItemQty;
                 TblReturnDetails.SKU_Qty_Seq = SKU_Qty_Seq;
 
+                TblReturnDetails.SalesPrice = SalesPrice;
+                TblReturnDetails.ProductID = ProductID;
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
@@ -715,6 +717,19 @@ namespace KrausRGA.Models
             try
             {
                 SKU = cSage.GetPruductNameByEANCode(code);
+            }
+            catch (Exception)
+            {
+            }
+            return SKU;
+
+        }
+        public String GetSKUNameAndProductNameByItem(string code)
+        {
+            string SKU = "";
+            try
+            {
+                SKU = cSage.GetPruductNameAndProductIDByEANCode(code);
             }
             catch (Exception)
             {

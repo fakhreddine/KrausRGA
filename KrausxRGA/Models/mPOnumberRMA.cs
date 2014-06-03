@@ -174,7 +174,7 @@ namespace KrausRGA.Models
                 TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
 
 
-
+                
 
 
                 //On success of transaction it returns id.
@@ -188,7 +188,7 @@ namespace KrausRGA.Models
             return _returnID;
         }
 
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int IsManually, int NewItemQty, int SKU_Qty_Seq)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int IsManually, int NewItemQty, int SKU_Qty_Seq, string ProductID, decimal SalesPrice)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -217,6 +217,9 @@ namespace KrausRGA.Models
 
                 TblReturnDetails.SKU_Sequence = NewItemQty;
                 TblReturnDetails.SKU_Qty_Seq = SKU_Qty_Seq;
+
+                TblReturnDetails.SalesPrice = SalesPrice;
+                TblReturnDetails.ProductID = ProductID;
 
 
                 //On Success of transaction.
@@ -252,6 +255,20 @@ namespace KrausRGA.Models
                 ex.LogThis("mReturnDetails/SetReturnedImages");
             }
             return _ReturnID;
+        }
+
+        public String GetSKUNameAndProductNameByItem(string code)
+        {
+            string SKU = "";
+            try
+            {
+                SKU = cSage.GetPruductNameAndProductIDByEANCode(code);
+            }
+            catch (Exception)
+            {
+            }
+            return SKU;
+
         }
 
         public Guid SetTransaction(Guid SKUReasonID, Guid ReasonID, Guid ReturnDetailID)

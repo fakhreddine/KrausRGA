@@ -960,6 +960,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private int IsSkuScannedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ProductNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -991,6 +994,9 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKU_StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SalesPriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TCLCOD_0Field;
@@ -1085,6 +1091,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((this.IsSkuScannedField.Equals(value) != true)) {
                     this.IsSkuScannedField = value;
                     this.RaisePropertyChanged("IsSkuScanned");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductID {
+            get {
+                return this.ProductIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductIDField, value) != true)) {
+                    this.ProductIDField = value;
+                    this.RaisePropertyChanged("ProductID");
                 }
             }
         }
@@ -1228,6 +1247,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((object.ReferenceEquals(this.SKU_StatusField, value) != true)) {
                     this.SKU_StatusField = value;
                     this.RaisePropertyChanged("SKU_Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SalesPrice {
+            get {
+                return this.SalesPriceField;
+            }
+            set {
+                if ((this.SalesPriceField.Equals(value) != true)) {
+                    this.SalesPriceField = value;
+                    this.RaisePropertyChanged("SalesPrice");
                 }
             }
         }
@@ -1516,6 +1548,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private string PONumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ProductNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1535,6 +1570,9 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SKU_SequenceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> SalesPriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShipmentNumberField;
@@ -1734,6 +1772,19 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductID {
+            get {
+                return this.ProductIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductIDField, value) != true)) {
+                    this.ProductIDField = value;
+                    this.RaisePropertyChanged("ProductID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string ProductName {
             get {
                 return this.ProductNameField;
@@ -1820,6 +1871,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((this.SKU_SequenceField.Equals(value) != true)) {
                     this.SKU_SequenceField = value;
                     this.RaisePropertyChanged("SKU_Sequence");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> SalesPrice {
+            get {
+                return this.SalesPriceField;
+            }
+            set {
+                if ((this.SalesPriceField.Equals(value) != true)) {
+                    this.SalesPriceField = value;
+                    this.RaisePropertyChanged("SalesPrice");
                 }
             }
         }
@@ -2466,6 +2530,9 @@ namespace KrausRGA.GetRMAServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetProductName", ReplyAction="http://tempuri.org/IGet/GetProductNameResponse")]
         string GetProductName(string CharEAN);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetProductNameAndProductID", ReplyAction="http://tempuri.org/IGet/GetProductNameAndProductIDResponse")]
+        string GetProductNameAndProductID(string CharEAN);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGet/GetPrintReasonFromSage", ReplyAction="http://tempuri.org/IGet/GetPrintReasonFromSageResponse")]
         string GetPrintReasonFromSage(string SRnumber, string SKUNumber);
         
@@ -2689,6 +2756,10 @@ namespace KrausRGA.GetRMAServiceRef {
         
         public string GetProductName(string CharEAN) {
             return base.Channel.GetProductName(CharEAN);
+        }
+        
+        public string GetProductNameAndProductID(string CharEAN) {
+            return base.Channel.GetProductNameAndProductID(CharEAN);
         }
         
         public string GetPrintReasonFromSage(string SRnumber, string SKUNumber) {

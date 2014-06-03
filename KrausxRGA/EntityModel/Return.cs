@@ -43,6 +43,9 @@ namespace KrausRGA.EntityModel
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public String RGAROWID { get; set; }
+
+        public string ProductID { get; set; }
+        public decimal? SalesPrice { get; set; }
         
 
         public Return()
@@ -85,6 +88,8 @@ namespace KrausRGA.EntityModel
 
             if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;
             if (_ReturnDTO.UpdatedDate != null) this.UpdatedDate = (DateTime)_ReturnDTO.UpdatedDate;
+
+            
             this.RGAROWID = _ReturnDTO.RGAROWID;
 
         }
@@ -123,7 +128,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.Setting_Wty_Days != null) this.Setting_Wty_Days = _ReturnDTO.Setting_Wty_Days;
             if (_ReturnDTO.ShipDate_ScanDate_Days_Diff != null) this.ShipDate_ScanDate_Days_Diff = _ReturnDTO.ShipDate_ScanDate_Days_Diff;
 
-
+            
 
 
             if (_ReturnDTO.CreatesDate != null) this.CreatedDate = (DateTime)_ReturnDTO.CreatesDate;

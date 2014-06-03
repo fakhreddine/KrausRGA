@@ -187,6 +187,20 @@ namespace KrausRGA.DBLogics
            }
            return ProductName;
        }
+
+       public string GetPruductNameAndProductIDByEANCode(String Code)
+       {
+           string ProductName = "";
+           try
+           {
+               ProductName = Service.entGet.GetProductNameAndProductID(Code);
+           }
+           catch (Exception)
+           {
+           }
+           return ProductName;
+       }
+
        public string GetSageReason(String SRnumber,String SKUNumber)
        {
            string SageReasons = "";

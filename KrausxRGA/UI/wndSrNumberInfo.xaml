@@ -268,6 +268,18 @@
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
 
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ProductID}" 
+        										Header=""  
+        										Width="" 
+        										IsReadOnly="True" />
+
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding SalesPrice}" 
+        										Header=""  
+        										Width="" 
+        										IsReadOnly="True" />
+
                                         </DataGrid.Columns>
                                         <DataGrid.RowValidationErrorTemplate>
                                             <ControlTemplate>
@@ -368,7 +380,7 @@
                                 <Canvas Height="471">
                                     <Border Width="790" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="324" >
                                         <Canvas Margin="-10,0,10,0" Name="CanvasConditions" IsEnabled="False">
-                                            <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75"></Label>
+                                            <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75" Visibility="Hidden"></Label>
 
                                                 <Canvas>
                                             <Label Canvas.Left="198" Canvas.Top="23" Name="lblItemIsNew" Content="Item is New" Style="{StaticResource lblConstant}" Width="208" Height="45" FontSize="30" ></Label>

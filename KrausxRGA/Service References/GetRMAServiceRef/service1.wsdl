@@ -237,6 +237,12 @@
   <wsdl:message name="IGet_GetProductName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProductNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IGet_GetProductNameAndProductID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductNameAndProductID" />
+  </wsdl:message>
+  <wsdl:message name="IGet_GetProductNameAndProductID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductNameAndProductIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IGet_GetPrintReasonFromSage_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPrintReasonFromSage" />
   </wsdl:message>
@@ -479,6 +485,10 @@
     <wsdl:operation name="GetProductName">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetProductName" message="tns:IGet_GetProductName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetProductNameResponse" message="tns:IGet_GetProductName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductNameAndProductID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetProductNameAndProductID" message="tns:IGet_GetProductNameAndProductID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGet/GetProductNameAndProductIDResponse" message="tns:IGet_GetProductNameAndProductID_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetPrintReasonFromSage">
       <wsdl:input wsaw:Action="http://tempuri.org/IGet/GetPrintReasonFromSage" message="tns:IGet_GetPrintReasonFromSage_InputMessage" />
@@ -878,6 +888,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetProductName">
       <soap:operation soapAction="http://tempuri.org/IGet/GetProductName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductNameAndProductID">
+      <soap:operation soapAction="http://tempuri.org/IGet/GetProductNameAndProductID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

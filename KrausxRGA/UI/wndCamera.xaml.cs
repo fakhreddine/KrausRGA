@@ -109,6 +109,7 @@ namespace KrausRGA.UI
             {
                 CaptureTime.Stop();
                 Views.clGlobal.FBCode.BarcodeValue = _barcodeValue;
+               // Views.clGlobal.FBCodeForSKU.BarcodeValueSKU = _barcodeValue;
                 try
                 {
                     player.Dispose();
