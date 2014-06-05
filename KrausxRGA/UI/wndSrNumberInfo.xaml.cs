@@ -948,6 +948,11 @@ namespace KrausRGA.UI
 
                     //Set returned details table.
 
+                    if ( Views.clGlobal.Warranty == "0")
+                    {
+                        Views.clGlobal.SKU_Staus = "Deny";
+                    }
+
                     Guid ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text));
 
                     Views.clGlobal.IsScanned = 0;
@@ -1098,6 +1103,12 @@ namespace KrausRGA.UI
                         }
                     }
 
+                    if (Views.clGlobal.Warranty == "0")
+                    {
+                        Views.clGlobal.SKU_Staus = "Deny";
+                    }
+
+
                     ReturnDetailsID = _mReturn.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text));
 
                     Views.clGlobal.IsScanned = 0;
@@ -1143,6 +1154,7 @@ namespace KrausRGA.UI
                     Views.clGlobal.TotalPoints = 0;
                     Views.clGlobal.SKU_Staus = "";
                     Views.clGlobal.TotalPoints = 0;
+                 
                     mRMAAudit.saveaudit(Views.AuditType.lsaudit);
                     Views.AuditType.lsaudit.Clear();
                 }
@@ -1150,6 +1162,7 @@ namespace KrausRGA.UI
 
 
             }
+            Views.clGlobal.Warranty = "";
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
           //  WindowThread.Stop();
@@ -1183,175 +1196,175 @@ namespace KrausRGA.UI
         private void btnRed_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!(txtError.Text == "This Return is NOT in Warranty."))
+            //if (!(txtError.Text == "This Return is NOT in Warranty."))
+            //{
+            foreach (DataGridRow item in GetDataGridRows(dgPackageInfo))
             {
-                foreach (DataGridRow item in GetDataGridRows(dgPackageInfo))
+                ContentPresenter butoninfo = dgPackageInfo.Columns[0].GetCellContent(item) as ContentPresenter;
+                DataTemplate DtQty = butoninfo.ContentTemplate;
+                Button txtRetutn = (Button)DtQty.FindName("btnGreen", butoninfo);
+                txtRetutn.Visibility = System.Windows.Visibility.Hidden;
+                Button txtRetutn2 = (Button)DtQty.FindName("btnRed", butoninfo);
+                txtRetutn2.Visibility = System.Windows.Visibility.Visible;
+
+                txtbarcode.Text = "";
+                txtbarcode.Focus();
+
+            }
+            if (Views.clGlobal.ScenarioType == "Lowes")
+            {
+                CanvasConditions.IsEnabled = false;
+                txtbarcode.Focus();
+                btnAdd.IsEnabled = true;
+
+
+                Button btnRed = (Button)e.Source;
+                Canvas SpButtons = (Canvas)btnRed.Parent;
+                Button btnGreen = SpButtons.FindName("btnGreen") as Button;
+                DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+                if (row.Background == Brushes.Gray)
                 {
-                    ContentPresenter butoninfo = dgPackageInfo.Columns[0].GetCellContent(item) as ContentPresenter;
-                    DataTemplate DtQty = butoninfo.ContentTemplate;
-                    Button txtRetutn = (Button)DtQty.FindName("btnGreen", butoninfo);
-                    txtRetutn.Visibility = System.Windows.Visibility.Hidden;
-                    Button txtRetutn2 = (Button)DtQty.FindName("btnRed", butoninfo);
-                    txtRetutn2.Visibility = System.Windows.Visibility.Visible;
-
-                    txtbarcode.Text = "";
-                    txtbarcode.Focus();
-
+                    btnGreen.Visibility = System.Windows.Visibility.Visible;
+                    btnRed.Visibility = System.Windows.Visibility.Hidden;
                 }
-                if (Views.clGlobal.ScenarioType == "Lowes")
+
+                //DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+                _mReturn.GreenRowsNumber.Add(row.GetIndex());
+                bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+                txtbarcode.Text = "";
+                txtbarcode.Focus();
+
+                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
+            }
+            if (Views.clGlobal.ScenarioType == "HomeDepot")
+            {
+
+                //if (txtError.Text == "Select Item and Go ahead")
+                //{
+                //  CanvasConditions.IsEnabled = true;
+                txtbarcode.Focus();
+
+                btnAdd.IsEnabled = true;
+                CanvasConditions.IsEnabled = false;
+                Button btnRed = (Button)e.Source;
+                Canvas SpButtons = (Canvas)btnRed.Parent;
+                Button btnGreen = SpButtons.FindName("btnGreen") as Button;
+                DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+
+                ContentPresenter Cntskustatus = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
+                DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
+                TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
+
+                TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
+
+                ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
+                TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                if (row.Background == Brushes.Gray)
+                {
+                    CanvasConditions.IsEnabled = true;
+
+
+                    btnInstalledNo.IsChecked = true;
+                    btnBoxNotNew.IsChecked = true;
+                    btnStatusNo.IsChecked = true;
+                    btnGreen.Visibility = System.Windows.Visibility.Visible;
+                    btnRed.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+                if (row.Background == Brushes.Gray && txtskustatus.Text != "")
                 {
                     CanvasConditions.IsEnabled = false;
-                    txtbarcode.Focus();
-                    btnAdd.IsEnabled = true;
-                   
-
-                    Button btnRed = (Button)e.Source;
-                    Canvas SpButtons = (Canvas)btnRed.Parent;
-                    Button btnGreen = SpButtons.FindName("btnGreen") as Button;
-                    DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
-                    if (row.Background==Brushes.Gray)
+                    string msg = "";
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        btnGreen.Visibility = System.Windows.Visibility.Visible;
-                        btnRed.Visibility = System.Windows.Visibility.Hidden;
+                        if (SkuNumber.Text == dt.Rows[i][0].ToString() && txtRetutn2.Text == dt.Rows[i][4].ToString())
+                        {
+                            msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
+                        }
                     }
 
-                    //DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
-                    _mReturn.GreenRowsNumber.Add(row.GetIndex());
-                    bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                    txtbarcode.Text = "";
-                    txtbarcode.Focus();
-
-                    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
+                    MessageBox.Show(msg);
                 }
-                if (Views.clGlobal.ScenarioType == "HomeDepot")
+                _mReturn.GreenRowsNumber.Add(row.GetIndex());
+                bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+                txtbarcode.Text = "";
+                txtbarcode.Focus();
+
+                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
+                // }
+            }
+            if (Views.clGlobal.ScenarioType == "Others")
+            {
+
+                // CanvasConditions.IsEnabled = true;
+                txtbarcode.Focus();
+
+                btnAdd.IsEnabled = true;
+                CanvasConditions.IsEnabled = false;
+                Button btnRed = (Button)e.Source;
+                Canvas SpButtons = (Canvas)btnRed.Parent;
+                Button btnGreen = SpButtons.FindName("btnGreen") as Button;
+                DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
+
+                ContentPresenter Cntskustatus = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
+                DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
+                TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
+
+                TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
+
+                ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
+                TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+
+
+                if (row.Background == Brushes.Gray)
                 {
+                    CanvasConditions.IsEnabled = true;
 
-                    //if (txtError.Text == "Select Item and Go ahead")
-                    //{
-                    //  CanvasConditions.IsEnabled = true;
-                    txtbarcode.Focus();
+                    btnInstalledNo.IsChecked = true;
+                    btnBoxNotNew.IsChecked = true;
+                    btnStatusNo.IsChecked = true;
 
-                    btnAdd.IsEnabled = true;
+                    btnGreen.Visibility = System.Windows.Visibility.Visible;
+                    btnRed.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+
+                if (row.Background == Brushes.Gray && txtskustatus.Text != "")
+                {
                     CanvasConditions.IsEnabled = false;
-                    Button btnRed = (Button)e.Source;
-                    Canvas SpButtons = (Canvas)btnRed.Parent;
-                    Button btnGreen = SpButtons.FindName("btnGreen") as Button;
-                    DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
-
-                    ContentPresenter Cntskustatus = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
-                    DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
-                    TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
-
-                    TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-
-
-                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
-                    DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
-                    TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
-
-                    if (row.Background == Brushes.Gray)
+                    string msg = "";
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        CanvasConditions.IsEnabled = true;
-
-
-                        btnInstalledNo.IsChecked = true;
-                        btnBoxNotNew.IsChecked = true;
-                        btnStatusNo.IsChecked = true;
-                        btnGreen.Visibility = System.Windows.Visibility.Visible;
-                        btnRed.Visibility = System.Windows.Visibility.Hidden;
+                        if (SkuNumber.Text == dt.Rows[i][0].ToString() && txtRetutn2.Text == dt.Rows[i][4].ToString())
+                        {
+                            msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
+                        }
                     }
 
-                    if (row.Background == Brushes.Gray && txtskustatus.Text != "")
-                    {
-                        CanvasConditions.IsEnabled = false;
-                        string msg = "";
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            if (SkuNumber.Text == dt.Rows[i][0].ToString() && txtRetutn2.Text == dt.Rows[i][4].ToString())
-                            {
-                                msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
-                            }
-                        }
-
-                        MessageBox.Show(msg);
-                    }
-                    _mReturn.GreenRowsNumber.Add(row.GetIndex());
-                    bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                    txtbarcode.Text = "";
-                    txtbarcode.Focus();
-
-                    mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
-                    // }
+                    MessageBox.Show(msg);
                 }
-                if (Views.clGlobal.ScenarioType == "Others")
-                {
-                   
-                       // CanvasConditions.IsEnabled = true;
-                        txtbarcode.Focus();
-
-                        btnAdd.IsEnabled = true;
-                        CanvasConditions.IsEnabled = false;
-                        Button btnRed = (Button)e.Source;
-                        Canvas SpButtons = (Canvas)btnRed.Parent;
-                        Button btnGreen = SpButtons.FindName("btnGreen") as Button;
-                        DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
-
-                        ContentPresenter Cntskustatus = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
-                        DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
-                        TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
-
-                        TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-
-
-                        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
-                        DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
-                        TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
-
-
-
-                        if (row.Background == Brushes.Gray)
-                        {
-                            CanvasConditions.IsEnabled = true;
-
-                            btnInstalledNo.IsChecked = true;
-                            btnBoxNotNew.IsChecked = true;
-                            btnStatusNo.IsChecked = true;
-
-                            btnGreen.Visibility = System.Windows.Visibility.Visible;
-                            btnRed.Visibility = System.Windows.Visibility.Hidden;
-                        }
-
-
-                        if (row.Background == Brushes.Gray && txtskustatus.Text != "")
-                        {
-                            CanvasConditions.IsEnabled = false;
-                            string msg = "";
-                            for (int i = 0; i < dt.Rows.Count; i++)
-                            {
-                                if (SkuNumber.Text == dt.Rows[i][0].ToString() && txtRetutn2.Text == dt.Rows[i][4].ToString())
-                                {
-                                    msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
-                                }
-                            }
-
-                            MessageBox.Show(msg);
-                        }
 
 
 
 
-                        _mReturn.GreenRowsNumber.Add(row.GetIndex());
-                        bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                        txtbarcode.Text = "";
-                        txtbarcode.Focus();
+                _mReturn.GreenRowsNumber.Add(row.GetIndex());
+                bdrMsg.Visibility = System.Windows.Visibility.Hidden;
+                txtbarcode.Text = "";
+                txtbarcode.Focus();
 
-                        mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
-                    
-                }
+                mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
 
             }
 
-           
+            // }
+
+
         }
 
         private void btnGreen_Click(object sender, RoutedEventArgs e)

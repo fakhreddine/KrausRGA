@@ -605,6 +605,13 @@ namespace KrausRGA.UI
                     }
 
                     //Set returned details table.
+
+                    if (Views.clGlobal.Warranty == "0")
+                    {
+                        Views.clGlobal.SKU_Staus = "Deny";
+                    }
+
+
                     Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text));
 
                     Views.clGlobal.IsScanned = 0;
@@ -758,6 +765,12 @@ namespace KrausRGA.UI
                         Views.clGlobal._SKU_Qty_Seq = 0;
 
                     }
+                    if (Views.clGlobal.Warranty == "0")
+                    {
+                        Views.clGlobal.SKU_Staus = "Deny";
+                    }
+
+
                     Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text));
 
                     Views.clGlobal.IsScanned = 0;
@@ -820,6 +833,11 @@ namespace KrausRGA.UI
             lsskuIsScanned.Clear();
             Views.clGlobal.Ponumber = "";
             Views.clGlobal.IsAlreadySaved = false;
+            Views.clGlobal.SKU_Staus = "";
+            Views.clGlobal.TotalPoints = 0;
+            Views.clGlobal.SKU_Staus = "";
+            Views.clGlobal.TotalPoints = 0;
+            Views.clGlobal.Warranty = "";
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
             this.Close();
