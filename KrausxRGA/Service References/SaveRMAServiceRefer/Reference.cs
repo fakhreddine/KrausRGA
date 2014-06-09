@@ -752,6 +752,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private int IsSkuScannedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> LineTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ProductIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -883,6 +886,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((this.IsSkuScannedField.Equals(value) != true)) {
                     this.IsSkuScannedField = value;
                     this.RaisePropertyChanged("IsSkuScanned");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> LineType {
+            get {
+                return this.LineTypeField;
+            }
+            set {
+                if ((this.LineTypeField.Equals(value) != true)) {
+                    this.LineTypeField = value;
+                    this.RaisePropertyChanged("LineType");
                 }
             }
         }

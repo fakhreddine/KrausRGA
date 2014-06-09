@@ -279,7 +279,12 @@
         										Header=""  
         										Width="" 
         										IsReadOnly="True" />
-
+                                            
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding LineType}" 
+        										Header=""  
+        										Width="" 
+        										IsReadOnly="True" />
                                         </DataGrid.Columns>
                                         <DataGrid.RowValidationErrorTemplate>
                                             <ControlTemplate>

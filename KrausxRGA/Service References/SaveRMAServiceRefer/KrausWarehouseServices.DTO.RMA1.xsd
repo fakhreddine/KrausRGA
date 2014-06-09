@@ -63,6 +63,7 @@
       <xs:element minOccurs="0" name="ExpectedQty" type="xs:int" />
       <xs:element minOccurs="0" name="IsManuallyAdded" type="xs:int" />
       <xs:element minOccurs="0" name="IsSkuScanned" type="xs:int" />
+      <xs:element minOccurs="0" name="LineType" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductStatus" type="xs:int" />

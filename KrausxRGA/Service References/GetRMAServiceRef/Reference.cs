@@ -960,6 +960,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private int IsSkuScannedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> LineTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ProductIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1091,6 +1094,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((this.IsSkuScannedField.Equals(value) != true)) {
                     this.IsSkuScannedField = value;
                     this.RaisePropertyChanged("IsSkuScanned");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> LineType {
+            get {
+                return this.LineTypeField;
+            }
+            set {
+                if ((this.LineTypeField.Equals(value) != true)) {
+                    this.LineTypeField = value;
+                    this.RaisePropertyChanged("LineType");
                 }
             }
         }
@@ -1539,6 +1555,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private int ExpectedQtyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int LineTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime OrderDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1728,6 +1747,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((this.ExpectedQtyField.Equals(value) != true)) {
                     this.ExpectedQtyField = value;
                     this.RaisePropertyChanged("ExpectedQty");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int LineType {
+            get {
+                return this.LineTypeField;
+            }
+            set {
+                if ((this.LineTypeField.Equals(value) != true)) {
+                    this.LineTypeField = value;
+                    this.RaisePropertyChanged("LineType");
                 }
             }
         }

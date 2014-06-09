@@ -41,6 +41,8 @@ namespace KrausRGA.Views
         public string ProductID { get; set; }
         public decimal? SalesPrice { get; set; }
 
+        public int? LineType { get; set; }
+
         public RMAInfo()
         {
 
@@ -78,6 +80,8 @@ namespace KrausRGA.Views
             if (_sage.ProductID != null) this.ProductID = (string)_sage.ProductID;
             if (_sage.SalesPrice != null) this.SalesPrice = _sage.SalesPrice;
 
+            if (_sage.LineType != null) this.LineType = _sage.LineType;
+
         }
 
         public GetRMAServiceRef.RMAInfoDTO CopyToGetDTO(RMAInfo _sage)
@@ -112,6 +116,8 @@ namespace KrausRGA.Views
 
             if (_sage.ProductID != null) this.ProductID = (string)_sage.ProductID;
             if (_sage.SalesPrice != null) this.SalesPrice = _sage.SalesPrice;
+
+            if (_sage.LineType != null) this.LineType = _sage.LineType;
 
             return _return;
         }

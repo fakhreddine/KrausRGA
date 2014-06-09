@@ -31,6 +31,8 @@ namespace KrausRGA.EntityModel
         public string ProductID { get; set; }
         public decimal? SalesPrice { get; set; }
 
+        public int? LineType { get; set; }
+
         public String RGADROWID { get; set; }
 
         public ReturnDetail(SaveRMAServiceRefer.ReturnDetailsDTO _ReturnDetails)
@@ -60,6 +62,8 @@ namespace KrausRGA.EntityModel
             if (_ReturnDetails.ProductID != null) this.ProductID = _ReturnDetails.ProductID;
             if (_ReturnDetails.SalesPrice != null) this.SalesPrice = _ReturnDetails.SalesPrice;
 
+            if (_ReturnDetails.LineType != null) this.LineType = _ReturnDetails.LineType;
+
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
         public ReturnDetail(GetRMAServiceRef.ReturnDetailsDTO _ReturnDetails)
@@ -88,6 +92,8 @@ namespace KrausRGA.EntityModel
 
              if (_ReturnDetails.ProductID != null) this.ProductID = _ReturnDetails.ProductID;
              if (_ReturnDetails.SalesPrice != null) this.SalesPrice = _ReturnDetails.SalesPrice;
+
+             if (_ReturnDetails.LineType != null) this.LineType = _ReturnDetails.LineType;
 
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
@@ -119,6 +125,8 @@ namespace KrausRGA.EntityModel
 
              if (_ReturnDetails.ProductID != null) _return.ProductID = _ReturnDetails.ProductID;
              if (_ReturnDetails.SalesPrice != null) _return.SalesPrice = _ReturnDetails.SalesPrice;
+
+             if (_ReturnDetails.LineType != null) _return.LineType = _ReturnDetails.LineType;
 
             _return.RGADROWID = _ReturnDetails.RGADROWID;
             return _return;
