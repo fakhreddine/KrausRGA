@@ -75,6 +75,8 @@ namespace KrausRGA.UI
 
        List<SkuAndIsScanned> lsIsManually = new List<SkuAndIsScanned>();
 
+       List<SkuReasonIDSequence> _lsReasonSKU = new List<SkuReasonIDSequence>();
+
         Boolean check = true;
 
         List<StatusAndPoints> listofstatus = new List<StatusAndPoints>();
@@ -135,6 +137,20 @@ namespace KrausRGA.UI
             dt.Columns.Add("Points", typeof(int));
             dt.Columns.Add("ItemQuantity", typeof(string));
             //dt.Columns.Add("", typeof(string));
+
+           
+            //fill OtherReason ComboBox
+            List<Reason> lsReturn = _mReturn.GetReasons();
+
+            //add reason select to the Combobox other reason.
+            Reason re = new Reason();
+            re.ReasonID = Guid.NewGuid();
+            re.Reason1 = "--Select--";
+            lsReturn.Insert(0, re);
+            cmbSkuReasons.ItemsSource = lsReturn;
+           // cmbSkuReasons.DisplayMemberPath = lsReturn[0].Reason1;
+            //cmbSkuReasons.SelectedValuePath = lsReturn[0].ReasonID;
+
 
             cmbRMAStatus.SelectedIndex = 0;
             cmbRMADecision.SelectedIndex = 0;
@@ -1110,6 +1126,19 @@ namespace KrausRGA.UI
                         }
                     }
 
+
+                    if (_lsReasonSKU.Count > 0)
+                    {
+                        for (int i = _lsReasonSKU.Count - 1; i >= 0; i--)
+                        {
+                            if (_lsReasonSKU[i].SKUName == SkuNumber.Text && _lsReasonSKU[i].SKU_sequence == Convert.ToInt16(txtRetutn1.Text))
+                            {
+                                _mReturn.SetTransaction(Guid.NewGuid(), _lsReasonSKU[i].ReasonID, ReturnDetailsID);
+                                _lsReasonSKU.RemoveAt(i);
+                            }
+                        }
+                    }
+
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
                     {
@@ -1280,6 +1309,21 @@ namespace KrausRGA.UI
                             Guid ReturnedSKUPoints = _mReturn.SetReturnedSKUPoints(Guid.NewGuid(), ReturnDetailsID, ReturnTblID, SkuNumber.Text, "N/A", "N/A", 0, 0);
                         }
                     }
+
+                    if (_lsReasonSKU.Count > 0)
+                    {
+                        for (int i = _lsReasonSKU.Count - 1; i >= 0; i--)
+                        {
+                            if (_lsReasonSKU[i].SKUName == SkuNumber.Text && _lsReasonSKU[i].SKU_sequence == Convert.ToInt16(txtRetutn1.Text))
+                            {
+                                _mReturn.SetTransaction(Guid.NewGuid(), _lsReasonSKU[i].ReasonID, ReturnDetailsID);
+                                _lsReasonSKU.RemoveAt(i);
+                                break;
+                            }
+                        }
+                    }
+
+
 
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
@@ -2769,6 +2813,31 @@ namespace KrausRGA.UI
                  txtbarcode.Focus();
                  btnAdd.IsEnabled = false;
                  CanvasConditions.IsEnabled = false;
+
+                #region SaveReasons
+                 Guid SkuReasonID = Guid.NewGuid();
+                 if (txtskuReasons.Text != "")
+                 {
+                     SkuReasonID = _mReturn.SetReasons(txtskuReasons.Text);
+                 }
+                 else
+                 {
+                     SkuReasonID =new Guid(cmbSkuReasons.SelectedValuePath);
+                 }
+              
+                 SkuReasonIDSequence lsskusequenceReasons = new SkuReasonIDSequence();
+                 lsskusequenceReasons.ReasonID = SkuReasonID;
+                 lsskusequenceReasons.SKU_sequence = Convert.ToInt16(ItemQuantity);
+                 lsskusequenceReasons.SKUName = SelectedskuName;
+                 _lsReasonSKU.Add(lsskusequenceReasons);
+
+                 fillComboBox();
+
+                 cmbSkuReasons.SelectedIndex = 0;
+                 txtskuReasons.Text = "";
+
+                #endregion
+
             }
             #endregion
 
@@ -2966,9 +3035,46 @@ namespace KrausRGA.UI
 
                 CanvasConditions.IsEnabled = false;
 
+                #region SaveReasons
+                Guid SkuReasonID = Guid.NewGuid();
+                if (txtskuReasons.Text != "")
+                {
+                    SkuReasonID = _mReturn.SetReasons(txtskuReasons.Text);
+                }
+                else
+                {
+                    SkuReasonID = new Guid(cmbSkuReasons.SelectedValue.ToString());
+                }
+                
+                SkuReasonIDSequence lsskusequenceReasons = new SkuReasonIDSequence();
+                lsskusequenceReasons.ReasonID = SkuReasonID;
+                lsskusequenceReasons.SKU_sequence = Convert.ToInt16(ItemQuantity);
+                lsskusequenceReasons.SKUName = SelectedskuName;
+                _lsReasonSKU.Add(lsskusequenceReasons);
+
+                fillComboBox();
+
+                cmbSkuReasons.SelectedIndex = 0;
+                txtskuReasons.Text = "";
+
+                #endregion
+
             }
             #endregion
         }
+
+        private void fillComboBox()
+        {
+            List<Reason> lsReturn = _mReturn.GetReasons();
+
+            //add reason select to the Combobox other reason.
+            Reason re = new Reason();
+            re.ReasonID = Guid.NewGuid();
+            re.Reason1 = "--Select--";
+            lsReturn.Insert(0, re);
+            cmbSkuReasons.ItemsSource = lsReturn;
+        }
+
         private void UncheckAllButtons()
         {
             btnBoxNew.IsChecked = false;
@@ -3095,6 +3201,19 @@ namespace KrausRGA.UI
             {
             }
             return countselectedRow;
+        }
+
+        private void cmbSkuReasons_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbSkuReasons.SelectedIndex!=0)
+            {
+                txtskuReasons.Text = "";
+            }
+        }
+
+        private void txtskuReasons_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            cmbSkuReasons.SelectedIndex = 0;
         }
     }
 }

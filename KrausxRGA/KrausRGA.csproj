@@ -161,6 +161,7 @@
     <Compile Include="EntityModel\Role.cs" />
     <Compile Include="EntityModel\SKUReason.cs" />
     <Compile Include="EntityModel\ReturnImage.cs" />
+    <Compile Include="EntityModel\SkuReasonIDSequence.cs" />
     <Compile Include="EntityModel\User.cs" />
     <Compile Include="EntityModel\Reason.cs" />
     <Compile Include="EntityModel\ReasonCategory.cs" />

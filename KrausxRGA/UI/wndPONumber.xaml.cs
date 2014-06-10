@@ -70,6 +70,8 @@ namespace KrausRGA.UI
 
         DispatcherTimer dtLoadnormal;
 
+        List<SkuReasonIDSequence> _lsReasonSKU = new List<SkuReasonIDSequence>();
+
         mupdatedForPonumber _mUpdate;
 
         // mReturnDetails _mReturn =clGlobal.mReturn;
@@ -494,7 +496,7 @@ namespace KrausRGA.UI
 
                     Guid ReturnedSKUPoints = _mponumber.SetReturnedSKUPoints(Guid.NewGuid(), ReturnDetailsID, ReturnTblID, SkuNumber.Text, "N/A", "N/A", 0, 0);
 
-
+                    
 
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
@@ -668,6 +670,21 @@ namespace KrausRGA.UI
                             Guid ReturnedSKUPoints = _mponumber.SetReturnedSKUPoints(Guid.NewGuid(), ReturnDetailsID, ReturnTblID, SkuNumber.Text, "N/A", "N/A", 0, 0);
                         }
                     }
+
+                    if (_lsReasonSKU.Count > 0)
+                    {
+                        for (int i = _lsReasonSKU.Count - 1; i >= 0; i--)
+                        {
+                            if (_lsReasonSKU[i].SKUName == SkuNumber.Text && _lsReasonSKU[i].SKU_sequence == Convert.ToInt16(txtRetutn1.Text))
+                            {
+                                _mNewRMA.SetTransaction(Guid.NewGuid(), _lsReasonSKU[i].ReasonID, ReturnDetailsID);
+                                _lsReasonSKU.RemoveAt(i);
+                            }
+                        }
+                    }
+
+
+
 
                     //Save Images info Table.
                     foreach (Image imageCaptured in SpImages.Children)
@@ -2058,13 +2075,26 @@ namespace KrausRGA.UI
             }
         }
 
+        private void fillComboBox()
+        {
+            List<Reason> lsReturn = _mNewRMA.GetReasons();
+
+            //add reason select to the Combobox other reason.
+            Reason re = new Reason();
+            re.ReasonID = Guid.NewGuid();
+            re.Reason1 = "--Select--";
+            lsReturn.Insert(0, re);
+            cmbSkuReasons.ItemsSource = lsReturn;
+        }
+
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
             //Views.clGlobal.BarcodeValueFound = Views.clGlobal.FBCodeForSKU.BarcodeValueSKU;
             //Views.clGlobal.FBCodeForSKU.PropertyChanged += FBCode_PropertyChanged1;
 
-            List<Reason> lsReturn = _mNewRMA.GetReasons();
+           
 
             dt.Columns.Add("SKU", typeof(string));
             dt.Columns.Add("Reason", typeof(string));
@@ -2073,6 +2103,15 @@ namespace KrausRGA.UI
             dt.Columns.Add("ItemQuantity", typeof(string));
 
             txtbarcode.Focus();
+            List<Reason> lsReturn = _mNewRMA.GetReasons();
+
+            //add reason select to the Combobox other reason.
+            Reason re = new Reason();
+            re.ReasonID = Guid.NewGuid();
+            re.Reason1 = "--Select--";
+            lsReturn.Insert(0, re);
+            cmbSkuReasons.ItemsSource = lsReturn;
+
 
             cmbRMAStatus.SelectedIndex = 0;
             cmbRMADecision.SelectedIndex = 0;
@@ -2436,6 +2475,30 @@ namespace KrausRGA.UI
                 txtbarcode.Focus();
                 btnAdd.IsEnabled = false;
                 CanvasConditions.IsEnabled = false;
+
+                #region SaveReasons
+                Guid SkuReasonID = Guid.NewGuid();
+                if (txtskuReasons.Text != "")
+                {
+                    SkuReasonID = _mNewRMA.SetReasons(txtskuReasons.Text);
+                }
+                else
+                {
+                    SkuReasonID = new Guid(cmbSkuReasons.SelectedValue.ToString());
+                }
+
+                SkuReasonIDSequence lsskusequenceReasons = new SkuReasonIDSequence();
+                lsskusequenceReasons.ReasonID = SkuReasonID;
+                lsskusequenceReasons.SKU_sequence = Convert.ToInt16(ItemQuantity);
+                lsskusequenceReasons.SKUName = SelectedskuName;
+                _lsReasonSKU.Add(lsskusequenceReasons);
+
+                fillComboBox();
+
+                cmbSkuReasons.SelectedIndex = 0;
+                txtskuReasons.Text = "";
+                #endregion
+
             }
             #endregion
 
@@ -2633,6 +2696,30 @@ namespace KrausRGA.UI
                 btnAdd.IsEnabled = false;
 
                 CanvasConditions.IsEnabled = false;
+
+                #region SaveReasons
+                Guid SkuReasonID = Guid.NewGuid();
+                if (txtskuReasons.Text != "")
+                {
+                    SkuReasonID = _mNewRMA.SetReasons(txtskuReasons.Text);
+                }
+                else
+                {
+                    SkuReasonID = new Guid(cmbSkuReasons.SelectedValue.ToString());
+                }
+
+                SkuReasonIDSequence lsskusequenceReasons = new SkuReasonIDSequence();
+                lsskusequenceReasons.ReasonID = SkuReasonID;
+                lsskusequenceReasons.SKU_sequence = Convert.ToInt16(ItemQuantity);
+                lsskusequenceReasons.SKUName = SelectedskuName;
+                _lsReasonSKU.Add(lsskusequenceReasons);
+
+                fillComboBox();
+
+                cmbSkuReasons.SelectedIndex = 0;
+                txtskuReasons.Text = "";
+
+                #endregion
 
             }
             #endregion
@@ -3788,6 +3875,19 @@ namespace KrausRGA.UI
         {
            // wndCamera camra = new wndCamera();
           //  camra.ShowDialog();
+        }
+
+        private void cmbSkuReasons_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbSkuReasons.SelectedIndex != 0)
+            {
+                txtskuReasons.Text = "";
+            }
+        }
+
+        private void txtskuReasons_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            cmbSkuReasons.SelectedIndex = 0;
         }
 
         //void FBCode_PropertyChanged1(object sender, System.ComponentModel.PropertyChangedEventArgs e)

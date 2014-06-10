@@ -340,13 +340,13 @@ namespace KrausRGA.Models
         }
 
 
-        public Guid SetTransaction(Guid ReasonID, Guid ReturnDetailID)
+        public Guid SetTransaction(Guid SKUReasonID, Guid ReasonID, Guid ReturnDetailID)
         {
             Guid _transationID = Guid.Empty;
             try
             {
                 SKUReason tra = new SKUReason();
-                tra.SKUReasonID = Guid.NewGuid();
+                tra.SKUReasonID = SKUReasonID;
                 tra.ReasonID = ReasonID;
                 tra.ReturnDetailID = ReturnDetailID;
 
