@@ -350,17 +350,17 @@
     <None Include="Service References\GetRMAServiceRef\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA1.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping1.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service1.wsdl" />
-    <None Include="Service References\SaveRMAServiceRefer\service2.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service.wsdl" />
+    <None Include="Service References\SaveRMAServiceRefer\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service21.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

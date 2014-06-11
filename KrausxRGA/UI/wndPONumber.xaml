@@ -243,12 +243,12 @@
                                             </DataGridTemplateColumn>
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Header=""
-        										Width="40">
+        										Width="60">
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel x:Name="spDQyt" Width="40">
-                                                            <TextBlock x:Name="tbDQyt" TextAlignment="Center" Width="40" Text="{Binding SKU_Sequence}" FontSize="20" FontWeight="Bold"/>
+                                                        <StackPanel x:Name="spDQyt" Width="60">
+                                                            <TextBlock x:Name="tbDQyt" TextAlignment="Center" Width="60" Text="{Binding SKU_Sequence}" FontSize="20" FontWeight="Bold"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>

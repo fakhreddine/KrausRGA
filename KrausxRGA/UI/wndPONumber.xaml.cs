@@ -2487,6 +2487,14 @@ namespace KrausRGA.UI
                     SkuReasonID = new Guid(cmbSkuReasons.SelectedValue.ToString());
                 }
 
+                //if (cmbSkuReasons.SelectedIndex == 0 && txtskuReasons.Text == "")
+                //{
+                //    MessageBox.Show("Please Select or Enter Reason");
+                //    btnAdd.IsEnabled = true;
+                //    CanvasConditions.IsEnabled = true;
+                //}
+                //else
+                //{
                 SkuReasonIDSequence lsskusequenceReasons = new SkuReasonIDSequence();
                 lsskusequenceReasons.ReasonID = SkuReasonID;
                 lsskusequenceReasons.SKU_sequence = Convert.ToInt16(ItemQuantity);
@@ -2497,6 +2505,9 @@ namespace KrausRGA.UI
 
                 cmbSkuReasons.SelectedIndex = 0;
                 txtskuReasons.Text = "";
+                //}
+
+
                 #endregion
 
             }
@@ -2708,6 +2719,14 @@ namespace KrausRGA.UI
                     SkuReasonID = new Guid(cmbSkuReasons.SelectedValue.ToString());
                 }
 
+                //if (cmbSkuReasons.SelectedIndex == 0 && txtskuReasons.Text == "")
+                //{
+                //    MessageBox.Show("Please Select or Enter Reason");
+                //    btnAdd.IsEnabled = true;
+                //   // CanvasConditions.IsEnabled = true;
+                //}
+                //else
+                //{
                 SkuReasonIDSequence lsskusequenceReasons = new SkuReasonIDSequence();
                 lsskusequenceReasons.ReasonID = SkuReasonID;
                 lsskusequenceReasons.SKU_sequence = Convert.ToInt16(ItemQuantity);
@@ -2718,6 +2737,7 @@ namespace KrausRGA.UI
 
                 cmbSkuReasons.SelectedIndex = 0;
                 txtskuReasons.Text = "";
+                //}
 
                 #endregion
 

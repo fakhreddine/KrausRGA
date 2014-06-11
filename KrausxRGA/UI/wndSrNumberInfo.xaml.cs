@@ -1828,8 +1828,12 @@ namespace KrausRGA.UI
                             {
                                 row.Background = Brushes.Gray;
                                 txtRetutn.Text = "1";
+                                flag = true;
+                                txtbarcode.Text = "";
+                                txtbarcode.Focus();
+                                break;
                             }
-                            else if (sku == Str && txtRetutn.Text == "1")
+                            else if (sku == Str && txtRetutn.Text == "1" &&  row.Background != Brushes.Gray)
                             {
                                 List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                                 foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
@@ -1838,13 +1842,25 @@ namespace KrausRGA.UI
                                     RMAInfo ls = new RMAInfo();
                                     TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
+                                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
+                                    if (txtRetutn1.Text == "")
+                                    {
+                                        txtRetutn1.Text = "0";
+                                    }
+
                                     ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                                    if (txtRetutn2.Text == "")
+                                    {
+                                        txtRetutn2.Text = "0";
+                                    }
 
                                     TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
 
@@ -1855,9 +1871,13 @@ namespace KrausRGA.UI
                                     ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                                     ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                                     ls.ProductID = ProductID.Text;
+                                    ls.LineType = Convert.ToInt16(LineType.Text);
                                     if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
                                     {
-                                        max = Convert.ToInt16(txtRetutn2.Text);
+                                        if (max < Convert.ToInt16(txtRetutn2.Text))
+                                        {
+                                            max = Convert.ToInt16(txtRetutn2.Text);
+                                        }
                                     }
                                     _lsRMAInfo1.Add(ls);
                                 }
@@ -1879,11 +1899,12 @@ namespace KrausRGA.UI
                                 txtbarcode.Focus();
 
                                 ls1.SKU_Qty_Seq = 1;
-                                ls1.SKU_Sequence = max + 1;
+                                ls1.SKU_Sequence = max + 1000;
+                                ls1.LineType = 1;
                                 max = 0;
 
                                 _lsRMAInfo1.Add(ls1);
-
+                                flag = true;
                                 this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo1; }));
 
                                 dtLoadUpdate1 = new DispatcherTimer();
@@ -1896,14 +1917,15 @@ namespace KrausRGA.UI
 
 
 
-                            txtbarcode.Text = "";
-                            txtbarcode.Focus();
-                            flag = true;
+                           // txtbarcode.Text = "";
+                           // txtbarcode.Focus();
+                          
                             count++;
                             //break;
                         }
                     }
 
+                    #region Flag check
                     if (!flag)
                     {
                         List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
@@ -1912,14 +1934,26 @@ namespace KrausRGA.UI
                             //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+                            string sku = _mReturn.GetENACodeByItem(SkuNumber1.Text);
+                            TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                             ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                             TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
+                            if (txtRetutn1.Text == "")
+                            {
+                                txtRetutn1.Text = "0";
+                            }
+
                             ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                             TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                            if (txtRetutn2.Text == "")
+                            {
+                                txtRetutn2.Text = "0";
+                            }
 
                             TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
 
@@ -1930,7 +1964,18 @@ namespace KrausRGA.UI
                             ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                             ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                             ls.ProductID = ProductID.Text;
+                            ls.LineType = Convert.ToInt16(LineType.Text);
 
+                            if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
+                            {
+                                if (max < Convert.ToInt16(txtRetutn2.Text))
+                                {
+                                    max = Convert.ToInt16(txtRetutn2.Text);
+                                }
+                            }
+
+
+                           
                             _lsRMAInfo1.Add(ls);
                         }
 
@@ -1952,7 +1997,8 @@ namespace KrausRGA.UI
                         txtbarcode.Focus();
 
                         ls1.SKU_Qty_Seq = 1;
-                        ls1.SKU_Sequence = 1;
+                        ls1.SKU_Sequence = max + 1000;
+                        ls1.LineType = 1;
                         max = 0;
 
                         _lsRMAInfo1.Add(ls1);
@@ -1966,6 +2012,9 @@ namespace KrausRGA.UI
                         dtLoadUpdate1.Start();
 
                     }
+                    #endregion
+
+                    
 
                     txtbarcode.Text = "";
                     txtbarcode.Focus();
@@ -1996,7 +2045,7 @@ namespace KrausRGA.UI
                         if (_mReturn.lsRMAInformation[i].SKUNumber == _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString()))
                         {
                             itemcheck = false;// MessageBox.Show("This Scanned item is not part of PO.");
-                            
+
                         }
                     }
 
@@ -2029,14 +2078,18 @@ namespace KrausRGA.UI
                             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                             // row.Background = Brushes.Gray;
 
-                            
+
 
                             if (sku == Str && txtRetutn.Text == "0")
                             {
                                 row.Background = Brushes.Gray;
                                 txtRetutn.Text = "1";
+                                flag = true;
+                                txtbarcode.Text = "";
+                                txtbarcode.Focus();
+                                break;
                             }
-                            else if (sku == Str && txtRetutn.Text == "1")
+                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.Gray)
                             {
                                 List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                                 foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
@@ -2049,22 +2102,34 @@ namespace KrausRGA.UI
 
                                     TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
+                                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
+
+                                    if (txtRetutn1.Text == "")
+                                    {
+                                        txtRetutn1.Text = "0";
+                                    }
+
 
                                     ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
-                                  
+                                    if (txtRetutn2.Text == "")
+                                    {
+                                        txtRetutn2.Text = "0";
+                                    }
+
 
                                     ls.SKUNumber = SkuNumber1.Text;
                                     ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
                                     ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                                     ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                                     ls.ProductID = ProductID1.Text;
-
+                                    ls.LineType = Convert.ToInt16(LineType.Text);
                                     //ls.sta
 
                                     if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
@@ -2095,11 +2160,12 @@ namespace KrausRGA.UI
 
                                 ls1.SKU_Qty_Seq = 1;
                                 ls1.SKU_Sequence = max + 1;
+                                ls1.LineType = 1;
                                 max = 0;
 
                                 _lsRMAInfo1.Add(ls1);
 
-                              
+                                flag = true;
                                 this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo1; }));
 
                                 dtLoadUpdate1 = new DispatcherTimer();
@@ -2112,14 +2178,16 @@ namespace KrausRGA.UI
                             }
 
                             Views.clGlobal.IsScanned = 1;
-                            txtbarcode.Text = "";
-                            txtbarcode.Focus();
-                            flag = true;
+                            //txtbarcode.Text = "";
+                            //txtbarcode.Focus();
+
                             count++;
                             //break;
                         }
 
                     }
+
+                    #region Flag Check
                     if (!flag)
                     {
                         Views.clGlobal.WrongRMAFlag = "1";
@@ -2130,7 +2198,7 @@ namespace KrausRGA.UI
                         Views.clGlobal.IsManually = 1;
 
 
-                       // MessageBox.Show("This Scanned item is not part of PO.");
+                        // MessageBox.Show("This Scanned item is not part of PO.");
 
                         List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                         foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
@@ -2138,14 +2206,27 @@ namespace KrausRGA.UI
                             //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+                            string sku = _mReturn.GetENACodeByItem(SkuNumber1.Text);
+                            TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                             ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                             TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
+                            if (txtRetutn1.Text == "")
+                            {
+                                txtRetutn1.Text = "0";
+                            }
+
                             ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                             TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                            if (txtRetutn2.Text == "")
+                            {
+                                txtRetutn2.Text = "0";
+                            }
+
 
                             TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
 
@@ -2156,6 +2237,15 @@ namespace KrausRGA.UI
                             ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                             ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                             ls.ProductID = ProductID.Text;
+                            ls.LineType = Convert.ToInt16(LineType.Text);
+
+                            if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
+                            {
+                                if (max < Convert.ToInt16(txtRetutn2.Text))
+                                {
+                                    max = Convert.ToInt16(txtRetutn2.Text);
+                                }
+                            }
 
                             _lsRMAInfo1.Add(ls);
                         }
@@ -2179,7 +2269,8 @@ namespace KrausRGA.UI
                         txtbarcode.Focus();
 
                         ls1.SKU_Qty_Seq = 1;
-                        ls1.SKU_Sequence = 1;
+                        ls1.SKU_Sequence = max + 1000;
+                        ls1.LineType = 1;
                         max = 0;
 
                         _lsRMAInfo1.Add(ls1);
@@ -2192,28 +2283,31 @@ namespace KrausRGA.UI
                         //start the dispacher.
                         dtLoadUpdate1.Start();
                     }
+                    #endregion
 
+
+
+                    txtbarcode.Text = "";
+                    txtbarcode.Focus();
+
+
+                    if (CountSelected() == dgPackageInfo.Items.Count)
+                    {
+                        Views.clGlobal.WrongRMAFlag = "0";
+                        ErrorMsg("This is Correct RMA", Color.FromRgb(185, 84, 0));
                         txtbarcode.Text = "";
+
+                        cmbRMAStatus.SelectedIndex = 1;
+
+                        //  RMACheck = true;
+                        count = 0;
                         txtbarcode.Focus();
-
-
-                        if (CountSelected() == dgPackageInfo.Items.Count)
-                        {
-                            Views.clGlobal.WrongRMAFlag = "0";
-                            ErrorMsg("This is Correct RMA", Color.FromRgb(185, 84, 0));
-                            txtbarcode.Text = "";
-
-                            cmbRMAStatus.SelectedIndex = 1;
-
-                            //  RMACheck = true;
-                            count = 0;
-                            txtbarcode.Focus();
-                        }
-                        else
-                        {
-                            Views.clGlobal.WrongRMAFlag = "1";
-                            Views.clGlobal.Warranty = "N/A";
-                        }
+                    }
+                    else
+                    {
+                        Views.clGlobal.WrongRMAFlag = "1";
+                        Views.clGlobal.Warranty = "N/A";
+                    }
                 }
         
                 #endregion
@@ -2245,13 +2339,22 @@ namespace KrausRGA.UI
                             {
                                 row.Background = Brushes.Gray;
                                 txtRetutn.Text = "1";
+                                flag = true;
+                                txtbarcode.Text = "";
+                                txtbarcode.Focus();
+                                break;
                             }
-                            else if (sku == Str && txtRetutn.Text == "1")
+                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.Gray)
                             {
                                 List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                                 foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
                                 {
                                     //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
+                                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+
+                                    //if (LineType.Text != "6")
+                                    //{
+
                                     RMAInfo ls = new RMAInfo();
                                     TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
@@ -2259,9 +2362,21 @@ namespace KrausRGA.UI
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
+                                    if (txtRetutn1.Text == "")
+                                    {
+                                        txtRetutn1.Text = "0";
+                                    }
+
+
                                     ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                                    if (txtRetutn2.Text == "")
+                                    {
+                                        txtRetutn2.Text = "0";
+                                    }
+
 
                                     TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
 
@@ -2272,6 +2387,8 @@ namespace KrausRGA.UI
                                     ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                                     ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                                     ls.ProductID = ProductID.Text;
+                                    ls.LineType = Convert.ToInt16(LineType.Text);
+
                                     if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
                                     {
                                         if (max < Convert.ToInt16(txtRetutn2.Text))
@@ -2280,6 +2397,7 @@ namespace KrausRGA.UI
                                         }
                                     }
                                     _lsRMAInfo1.Add(ls);
+                                    //}
                                 }
 
                                 RMAInfo ls1 = new RMAInfo();
@@ -2289,6 +2407,7 @@ namespace KrausRGA.UI
                                 ls1.ProductID = _mReturn.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
 
                                 ls1.SalesPrice = 0;
+                                ls1.LineType = 1;
 
                                 _lsIsmanually1.IsScanned = 1;
                                 _lsIsmanually1.SKUName = _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
@@ -2300,11 +2419,11 @@ namespace KrausRGA.UI
                                 txtbarcode.Focus();
 
                                 ls1.SKU_Qty_Seq = 1;
-                                ls1.SKU_Sequence = max + 1;
+                                ls1.SKU_Sequence = max + 1000;
                                 max = 0;
 
                                 _lsRMAInfo1.Add(ls1);
-
+                                flag = true;
                                 this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo1; }));
 
                                 dtLoadUpdate1 = new DispatcherTimer();
@@ -2314,15 +2433,17 @@ namespace KrausRGA.UI
                                 dtLoadUpdate1.Start();
                             }
                             Views.clGlobal.IsScanned = 1;
-                            txtbarcode.Text = "";
-                            txtbarcode.Focus();
-                            flag = true;
+                           // txtbarcode.Text = "";
+                          //  txtbarcode.Focus();
+                            
                             count++;
                             //break;
 
                         }
                     }
-                    if (!flag)
+
+                    #region Flag Check
+                     if (!flag)
                     {
                         List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                         foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
@@ -2330,14 +2451,27 @@ namespace KrausRGA.UI
                             //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+                            string sku = _mReturn.GetENACodeByItem(SkuNumber1.Text);
+                            TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                             ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                             TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
+                            if (txtRetutn1.Text == "")
+                            {
+                                txtRetutn1.Text = "0";
+                            }
+
                             ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                             TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+
+                            if (txtRetutn2.Text=="")
+                            {
+                                txtRetutn2.Text = "0";
+                            }
 
                             TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
 
@@ -2348,6 +2482,15 @@ namespace KrausRGA.UI
                             ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                             ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                             ls.ProductID = ProductID.Text;
+                            ls.LineType = Convert.ToInt16(LineType.Text);
+
+                            if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
+                            {
+                                if (max < Convert.ToInt16(txtRetutn2.Text))
+                                {
+                                    max = Convert.ToInt16(txtRetutn2.Text);
+                                }
+                            }
 
                             _lsRMAInfo1.Add(ls);
                         }
@@ -2369,7 +2512,8 @@ namespace KrausRGA.UI
                         txtbarcode.Focus();
 
                         ls1.SKU_Qty_Seq = 1;
-                        ls1.SKU_Sequence = 1;
+                        ls1.SKU_Sequence = max + 1000;
+                        ls1.LineType = 1;
                         max = 0;
 
                         _lsRMAInfo1.Add(ls1);
@@ -2386,6 +2530,10 @@ namespace KrausRGA.UI
                         txtbarcode.Text = "";
                         txtbarcode.Focus();
                     }
+                    #endregion
+
+
+                   
                     if (CountSelected() == dgPackageInfo.Items.Count)
                     {
                         Views.clGlobal.WrongRMAFlag = "0";
