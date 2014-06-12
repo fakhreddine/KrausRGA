@@ -51,6 +51,8 @@ namespace KrausRGA.UI
 
          DispatcherTimer dtLoadUpdate;
 
+         List<SkuReasonIDSequence> _lsReasonSKU = new List<SkuReasonIDSequence>();
+
         Guid ReturnDetailsID;
 
         string SKU,_SKU;
@@ -364,7 +366,20 @@ namespace KrausRGA.UI
                         }
                     }
                 }
-           
+
+
+                if (_lsReasonSKU.Count > 0)
+                {
+                    for (int k = _lsReasonSKU.Count - 1; k >= 0; k--)
+                    {
+                        if (_lsReasonSKU[k].SKUName == SKU && _lsReasonSKU[k].SKU_sequence == Convert.ToInt16(PName))
+                        {
+                            _mNewRMA.SetTransaction(Guid.NewGuid(), _lsReasonSKU[k].ReasonID, ReturnDetailsID);
+                            _lsReasonSKU.RemoveAt(k);
+                        }
+                    }
+                }
+
                 foreach (Image imageCaptured in SpImages.Children)
                 {
                     String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + imageCaptured.Name.ToString() + ".jpg";
@@ -552,12 +567,12 @@ namespace KrausRGA.UI
         {
             List<Reason> lsReturn = _mNewRMA.GetReasons();
 
-
-            //Reason re = new Reason();
-            //re.ReasonID = Guid.NewGuid();
-            //re.Reason1 = "--Select--";
-
-            //lsReturn.Insert(0, re);
+            //add reason select to the Combobox other reason.
+            Reason re = new Reason();
+            re.ReasonID = Guid.NewGuid();
+            re.Reason1 = "--Select--";
+            lsReturn.Insert(0, re);
+            cmbSkuReasons.ItemsSource = lsReturn;
 
             dt.Columns.Add("SKU", typeof(string));
             dt.Columns.Add("Reason", typeof(string));
@@ -853,25 +868,19 @@ namespace KrausRGA.UI
             bdrZoomImage.Visibility = System.Windows.Visibility.Hidden;
         }
 
+        //StackPanel spRowImages;
         private void ContentControl_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
 
-            ContentControl cnt = (ContentControl)sender;
-            StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
-
-            DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
-            int index = row.GetIndex();
-            if (GreenRowsNumber1.Contains(row.GetIndex()))
+            MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
+            if (result == MessageBoxResult.Yes)
             {
-                DataGridCell cell = GetCell(index, 0);
-                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                ContentControl cnt = (ContentControl)sender;
+                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-                DataGridCell cell1 = GetCell(index, 1);
-                ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
-                DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
 
-                if (((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text != "")//&& ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text != "")
+                if (GreenRowsNumber1.Contains(row.GetIndex()))
                 {
                     try
                     {
@@ -881,7 +890,7 @@ namespace KrausRGA.UI
                         {
                             try
                             {
-                                string path = "C:\\images" + "\\";
+                                string path = "C:\\Images\\";
 
                                 BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
 
@@ -909,12 +918,66 @@ namespace KrausRGA.UI
 
                     }
                 }
+                else
+                {
+                    mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                    ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+                }
+            }
+            else if (result == MessageBoxResult.No)
+            {
+
+                ContentControl cnt = (ContentControl)sender;
+                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+
+                // Set filter for file extension and default file extension 
+                dlg.DefaultExt = ".png";
+                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+
+
+                // Display OpenFileDialog by calling ShowDialog method 
+                Nullable<bool> result1 = dlg.ShowDialog();
+
+
+                // Get the selected file name and display in a TextBox 
+                if (result1 == true)
+                {
+                    // Open document 
+                    string filename = dlg.FileName;
+
+                    string originalfilename = dlg.SafeFileName;
+
+                    // textBox1.Text = filename;
+                    //string path = "C:\\Images\\";
+
+                    BitmapSource bs = new BitmapImage(new Uri(filename));
+
+                    Image img = new Image();
+                    //Zoom image.
+                    img.MouseEnter += img_MouseEnter;
+
+                    img.Height = 62;
+                    img.Width = 74;
+                    img.Stretch = Stretch.Fill;
+                    img.Name = originalfilename.ToString().Split(new char[] { '.' })[0];
+                    img.Source = bs;
+                    img.Margin = new Thickness(0.5);
+
+                    //Images added to the Row.
+                    _addToStackPanel(spRowImages, img);
+
+                }
             }
             else
             {
-                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
-                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-            }
+                // Cancel code here
+            } 
         }
 
         private void ErrorMsg(string Msg, Color BgColor)
@@ -1296,8 +1359,44 @@ namespace KrausRGA.UI
                 txtbarcode.Focus();
                 btnAdd.IsEnabled = false;
                 CanvasConditions.IsEnabled = false;
+
+                #region SaveReasons
+                Guid SkuReasonID = Guid.NewGuid();
+                if (txtskuReasons.Text != "")
+                {
+                    SkuReasonID = _mNewRMA.SetReasons(txtskuReasons.Text);
+                }
+                else
+                {
+                    SkuReasonID = new Guid(cmbSkuReasons.SelectedValue.ToString());
+                }
+
+                SkuReasonIDSequence lsskusequenceReasons = new SkuReasonIDSequence();
+                lsskusequenceReasons.ReasonID = SkuReasonID;
+                lsskusequenceReasons.SKU_sequence = Convert.ToInt16(ItemQuantity);
+                lsskusequenceReasons.SKUName = SelectedskuName;
+                _lsReasonSKU.Add(lsskusequenceReasons);
+
+                fillComboBox();
+
+                cmbSkuReasons.SelectedIndex = 0;
+                txtskuReasons.Text = "";
+
+                #endregion
+
+
         }
-        
+        private void fillComboBox()
+        {
+            List<Reason> lsReturn = _mNewRMA.GetReasons();
+
+            //add reason select to the Combobox other reason.
+            Reason re = new Reason();
+            re.ReasonID = Guid.NewGuid();
+            re.Reason1 = "--Select--";
+            lsReturn.Insert(0, re);
+            cmbSkuReasons.ItemsSource = lsReturn;
+        }
 
         Boolean itemnew = true;
        
@@ -1742,6 +1841,18 @@ namespace KrausRGA.UI
 
                 dgPackageInfo.Items.Add(data);
             }
+        }
+        private void cmbSkuReasons_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbSkuReasons.SelectedIndex != 0)
+            {
+                txtskuReasons.Text = "";
+            }
+        }
+
+        private void txtskuReasons_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            cmbSkuReasons.SelectedIndex = 0;
         }
        
     }
