@@ -237,6 +237,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private string Address3Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CallTagField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -264,6 +267,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private System.DateTime ExpirationDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> Exported_in_ERPField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime OrderDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -280,6 +286,9 @@ namespace KrausRGA.GetRMAServiceRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<byte> RMAStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> Ready_To_ExportField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime ReturnDateField;
@@ -371,6 +380,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((object.ReferenceEquals(this.Address3Field, value) != true)) {
                     this.Address3Field = value;
                     this.RaisePropertyChanged("Address3");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CallTag {
+            get {
+                return this.CallTagField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CallTagField, value) != true)) {
+                    this.CallTagField = value;
+                    this.RaisePropertyChanged("CallTag");
                 }
             }
         }
@@ -493,6 +515,19 @@ namespace KrausRGA.GetRMAServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Exported_in_ERP {
+            get {
+                return this.Exported_in_ERPField;
+            }
+            set {
+                if ((this.Exported_in_ERPField.Equals(value) != true)) {
+                    this.Exported_in_ERPField = value;
+                    this.RaisePropertyChanged("Exported_in_ERP");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime OrderDate {
             get {
                 return this.OrderDateField;
@@ -566,6 +601,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((this.RMAStatusField.Equals(value) != true)) {
                     this.RMAStatusField = value;
                     this.RaisePropertyChanged("RMAStatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Ready_To_Export {
+            get {
+                return this.Ready_To_ExportField;
+            }
+            set {
+                if ((this.Ready_To_ExportField.Equals(value) != true)) {
+                    this.Ready_To_ExportField = value;
+                    this.RaisePropertyChanged("Ready_To_Export");
                 }
             }
         }
@@ -1534,6 +1582,9 @@ namespace KrausRGA.GetRMAServiceRef {
         private string Address3Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CallTagField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1656,6 +1707,19 @@ namespace KrausRGA.GetRMAServiceRef {
                 if ((object.ReferenceEquals(this.Address3Field, value) != true)) {
                     this.Address3Field = value;
                     this.RaisePropertyChanged("Address3");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CallTag {
+            get {
+                return this.CallTagField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CallTagField, value) != true)) {
+                    this.CallTagField = value;
+                    this.RaisePropertyChanged("CallTag");
                 }
             }
         }

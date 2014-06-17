@@ -43,6 +43,8 @@ namespace KrausRGA.Views
 
         public int? LineType { get; set; }
 
+        public string CallTag { get; set; }
+
         public RMAInfo()
         {
 
@@ -79,6 +81,8 @@ namespace KrausRGA.Views
 
             if (_sage.ProductID != null) this.ProductID = (string)_sage.ProductID;
             if (_sage.SalesPrice != null) this.SalesPrice = _sage.SalesPrice;
+
+            if (_sage.CallTag != null) this.CallTag = _sage.CallTag;
 
             if (_sage.LineType != null) this.LineType = _sage.LineType;
 
@@ -118,6 +122,8 @@ namespace KrausRGA.Views
             if (_sage.SalesPrice != null) this.SalesPrice = _sage.SalesPrice;
 
             if (_sage.LineType != null) this.LineType = _sage.LineType;
+
+            if (_sage.CallTag != null) this.CallTag = (string)_sage.CallTag;
 
             return _return;
         }

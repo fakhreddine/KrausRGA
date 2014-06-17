@@ -441,6 +441,8 @@ namespace KrausRGA.Models
                 TblRerutn.Setting_Wty_Days = Setting_Wty_Days;
                 TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
 
+                TblRerutn.CallTag = lsRMAInformation[0].CallTag;
+
                 TblRerutn.UpdatedDate = DateTime.Now;
 
                 //On success of transaction it returns id.

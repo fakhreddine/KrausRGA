@@ -82,7 +82,7 @@ namespace KrausRGA.UI
 
         DateTime eastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "Eastern Standard Time");
 
-       // StackPanel spRowImages;
+        StackPanel spRowImages;
         public wndPONumber()
         {
             String[] FontSizes = File.ReadAllLines(Environment.CurrentDirectory + "\\VersionNumber.txt")[1].Split(new char[] { '-' });
@@ -399,7 +399,7 @@ namespace KrausRGA.UI
 
 
             //Save to RMA Master Table.
-            Guid ReturnTblID = _mponumber.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff);
+            Guid ReturnTblID = _mponumber.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff,txtcalltag.Text);
 
             if (Views.clGlobal.IsAlreadySaved)
             {
@@ -1237,6 +1237,7 @@ namespace KrausRGA.UI
                         txtZipCode.Text = _mUpdate._ReturnTbl1.ZipCode;
                         txtName.Text = _mUpdate._ReturnTbl1.CustomerName1;
                         txtRMANumber.Text = _mUpdate._ReturnTbl1.RGAROWID;
+                        txtcalltag.Text = _mUpdate._ReturnTbl1.CallTag;
 
                         cmbRMAStatus.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.RMAStatus);
                         cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.Decision);
@@ -1367,6 +1368,8 @@ namespace KrausRGA.UI
                         txtZipCode.Text = lsCustomeronfo[0].ZipCode;
                         txtName.Text = lsCustomeronfo[0].CustomerName1;
 
+                        txtcalltag.Text = lsCustomeronfo[0].CallTag;
+
                         //cmbRMAStatus.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.RMAStatus);
                         //cmbRMADecision.SelectedIndex = Convert.ToInt16(lsCustomeronfo[0].);
 
@@ -1494,6 +1497,7 @@ namespace KrausRGA.UI
             _showBarcode();
             txtbarcode.Text = "";
             txtbarcode.Focus();
+          //  SetGridChack(dgPackageInfo);
         }
 
         private void txtPoNumber_TextChanged_1(object sender, TextChangedEventArgs e)
@@ -1565,6 +1569,8 @@ namespace KrausRGA.UI
                         txtZipCode.Text = _mUpdate._ReturnTbl1.ZipCode;
                         txtName.Text = _mUpdate._ReturnTbl1.CustomerName1;
                         txtRMANumber.Text = _mUpdate._ReturnTbl1.RGAROWID;
+
+                        txtcalltag.Text = _mUpdate._ReturnTbl1.CallTag;
 
                         cmbRMAStatus.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.RMAStatus);
                         cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.Decision);
@@ -1686,6 +1692,8 @@ namespace KrausRGA.UI
                         txtState.Text = lsCustomeronfo[0].State;
                         txtZipCode.Text = lsCustomeronfo[0].ZipCode;
                         txtName.Text = lsCustomeronfo[0].CustomerName1;
+                        txtcalltag.Text = lsCustomeronfo[0].CallTag;
+
                         dgPackageInfo.ItemsSource = lsCustomeronfo;
                         _lsRMAInfo = lsCustomeronfo;
                         _mponumber.lsRMAInformationforponumner = lsCustomeronfo;
@@ -1936,7 +1944,7 @@ namespace KrausRGA.UI
                     }
                     if (row.Background == Brushes.Gray && txtskustatus.Text != "")
                     {
-                        CanvasConditions.IsEnabled = false;
+                       // CanvasConditions.IsEnabled = false;
                         string msg = "";
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
@@ -1996,7 +2004,7 @@ namespace KrausRGA.UI
 
                     if (row.Background == Brushes.Gray && txtskustatus.Text != "")
                     {
-                        CanvasConditions.IsEnabled = false;
+                        //CanvasConditions.IsEnabled = false;
                         string msg = "";
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
@@ -2093,7 +2101,7 @@ namespace KrausRGA.UI
             }
             if (Views.clGlobal.ScenarioType == "HomeDepot" || Views.clGlobal.ScenarioType == "Others")
             {
-                CanvasConditions.IsEnabled = true;
+                CanvasConditions.IsEnabled = false;
                 txtbarcode.Focus();
             }
             btnAdd.IsEnabled = false;
@@ -2230,6 +2238,8 @@ namespace KrausRGA.UI
                     txtZipCode.Text = _mUpdate._ReturnTbl1.ZipCode;
                     txtName.Text = _mUpdate._ReturnTbl1.CustomerName1;
                     txtRMANumber.Text = _mUpdate._ReturnTbl1.RGAROWID;
+
+                    txtcalltag.Text = _mUpdate._ReturnTbl1.CallTag;
 
                     cmbRMAStatus.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.RMAStatus);
                     cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.Decision);
@@ -3893,7 +3903,7 @@ namespace KrausRGA.UI
 
                     //Convert SKU name to UPC COde;
                     String UPC_Code = _mponumber.GetENACodeByItem(SkuName);//_shipment.ShipmentDetailSage.FirstOrDefault(i => i.SKU == SkuName).UPCCode;
-                    if (UPC_Code.Trim() == "") UPC_Code = "00000000000";
+                    if (UPC_Code == null) UPC_Code = "00000000000";
 
                     //clGlobal.call.SKUnameToUPCCode(SKUNo.Text.ToString());
                     ContentPresenter sp = dgPackageInfo.Columns[4].GetCellContent(row1) as ContentPresenter;
@@ -4034,23 +4044,6 @@ namespace KrausRGA.UI
                                 row.Background = Brushes.Gray;
                             }
 
-                            //item Returned Quantity.
-                            //ContentPresenter CntQuantity = dgPackageInfo.Columns[2].GetCellContent(row) as ContentPresenter;
-                            //DataTemplate DtQty = CntQuantity.ContentTemplate;
-                            //TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
-                            //txtRetutn.Text = _mUpdate._lsReturnDetails1[i].ReturnQty.ToString();
-
-
-                            //item Status.k
-                            //ContentPresenter CntStatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
-                            //DataTemplate DtStatus = CntStatus.ContentTemplate;
-                            //TextBlock txtRGuid = DtStatus.FindName("txtReasosnsGuid", CntStatus) as TextBlock;
-                            //TextBlock txtCheckedCount = DtStatus.FindName("txtCheckedCount", CntStatus) as TextBlock;
-
-                            //txtRGuid.Text = GetReasonFronList(_mUpdate._lsReturnDetails[i].ReturnDetailID);
-
-                            //txtCheckedCount.Text = ((txtRGuid.Text.ToString().Split(new char[] { '#' }).Count()) - 1).ToString() + " Reasons";
-
                             //Images Stack Panel.
                             ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
                             DataTemplate DtImages = CntImag.ContentTemplate;
@@ -4071,8 +4064,20 @@ namespace KrausRGA.UI
                                         img.Height = 62;
                                         img.Width = 74;
                                         img.Stretch = Stretch.Fill;
-                                        String Name = Imgitem.SKUImagePath.Remove(0, Imgitem.SKUImagePath.IndexOf("SR"));
-                                        img.Name = Name.ToString().Split(new char[] { '.' })[0];
+                                        if (Imgitem.SKUImagePath.Contains("SR"))
+                                        {
+                                            String Name = Imgitem.SKUImagePath.Remove(0, Imgitem.SKUImagePath.IndexOf("SR"));
+                                            img.Name = Name.ToString().Split(new char[] { '.' })[0];
+                                        }
+                                        else
+                                        {
+                                            //string original=Imgitem.SKUImagePath
+                                            string path = Imgitem.SKUImagePath; //"C:\\Program Files\\hello.txt";
+                                            string[] pathArr = path.Split('\\');
+                                            string[] fileArr = pathArr.Last().Split('.');
+                                            string fileName = fileArr.Last().ToString();
+                                            img.Name = fileName;
+                                        }
                                         img.Source = bs;
                                         img.Margin = new Thickness(0.5);
 

@@ -18,7 +18,7 @@ namespace KrausRGA.DBLogics
 
         //RMA system database Object.
         //RMASYSTEMEntities entRMA = new RMASYSTEMEntities();
-
+        public Return _ReturnTbl { get; protected set; }
         #endregion
 
         #region GetMethods.
@@ -113,7 +113,7 @@ namespace KrausRGA.DBLogics
             return _lsreturn;
         }
 
-
+      
 
 
         #endregion

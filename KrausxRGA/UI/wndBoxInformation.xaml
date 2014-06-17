@@ -29,7 +29,7 @@
 
                     <Border Name="bdrButtons" Style="{StaticResource trgBorderHideShow0 }" CornerRadius="20" Canvas.Top="100" Height="329" Width="798" Canvas.Left="2">
 
-                        <Canvas Name="cnNewReturn" Canvas.Top="128" Margin="0,0,-10,0" >
+                        <Canvas Name="cnNewReturn" Canvas.Top="128" Margin="0,0,-10,-105" >
                             <Border CornerRadius="20" Width="798" BorderThickness="0,3" BorderBrush="#FF517F95">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -44,7 +44,7 @@
                                     <TextBlock Name="txtUserName" Text="User not Logged." Foreground="WhiteSmoke" FontSize="20" Width="255" Canvas.Left="70" Canvas.Top="36" Height="51" />
                                 </Canvas>
                             </Border>
-                            <Border CornerRadius="20" BorderThickness="0,3" BorderBrush="#FF517F95" Height="201" Width="798" Canvas.Top="122">
+                            <Border CornerRadius="20" BorderThickness="0,3" BorderBrush="#FF517F95" Height="302" Width="798" Canvas.Top="122">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF747476" Offset="0"/>
@@ -66,6 +66,13 @@
                                             <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="PO Number" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click" />
                                         </StackPanel>
                                     </Border>
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="231"  >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnReturn_Click_1"></Image>
+                                            <Button x:Name="btnReturn" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Processed Return" Margin="-1,-1,-1,1" Click="btnReturn_Click_1" />
+                                        </StackPanel>
+                                    </Border>
+                                    
                                     <Border  Style="{StaticResource bdrWin8btn}" Canvas.Left="432" Canvas.Top="139" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSetting.png" MouseDown="btnNewScan_Click"/>

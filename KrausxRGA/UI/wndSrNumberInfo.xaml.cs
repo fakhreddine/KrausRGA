@@ -26,6 +26,8 @@ using WindowsInput;
 using System.Windows.Threading;
 using System.ComponentModel;
 using System.Data;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace KrausRGA.UI
 {
@@ -86,6 +88,8 @@ namespace KrausRGA.UI
 
         DataTable dt = new DataTable();
 
+        DataTable dtimages = new DataTable();
+
         #endregion
 
         public wndSrNumberInfo()
@@ -138,6 +142,16 @@ namespace KrausRGA.UI
             dt.Columns.Add("ItemQuantity", typeof(string));
             //dt.Columns.Add("", typeof(string));
 
+            //DataColumn column = new DataColumn("MyImage"); //Create the column.
+            //column.DataType = System.Type.GetType("System.Byte[]"); //Type byte[] to store image bytes.
+            //column.AllowDBNull = true;
+            //column.Caption = "My Image";
+
+            //dtimages.Columns.Add(column);
+            dtimages.Columns.Add("Images", typeof(byte[]));
+            dtimages.Columns.Add("SKUName", typeof(string));
+            dtimages.Columns.Add("SKUSequence",typeof(int));
+
            
             //fill OtherReason ComboBox
             List<Reason> lsReturn = _mReturn.GetReasons();
@@ -170,6 +184,8 @@ namespace KrausRGA.UI
                 lblState.Content = _mUpdate._ReturnTbl.State;
                 lblZipCode.Content = _mUpdate._ReturnTbl.ZipCode;
                 lblCountry.Content = _mUpdate._ReturnTbl.Country;
+
+                txtcalltag.Text = _mUpdate._ReturnTbl.CallTag;
 
                 cmbRMAStatus.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl.RMAStatus);
                 cmbRMADecision.SelectedIndex =Convert.ToInt16(_mUpdate._ReturnTbl.Decision);
@@ -310,6 +326,8 @@ namespace KrausRGA.UI
                 lblState.Content = _lsRMAInfo[0].State;
                 lblZipCode.Content = _lsRMAInfo[0].ZipCode;
                 lblCountry.Content = _lsRMAInfo[0].Country;
+                txtcalltag.Text = _lsRMAInfo[0].CallTag;
+
                 lblExpirationDate.Content = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(60), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString("MMM dd, yyyy");
                 this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo; }));  //dgPackageInfo.ItemsSource = _lsRMAInfo;
 
@@ -430,7 +448,7 @@ namespace KrausRGA.UI
 
                     //Convert SKU name to UPC COde;
                     String UPC_Code = _mReturn.GetENACodeByItem(SkuName);//_shipment.ShipmentDetailSage.FirstOrDefault(i => i.SKU == SkuName).UPCCode;
-                    if (UPC_Code.Trim() == "") UPC_Code = "00000000000";
+                    if (UPC_Code == null) UPC_Code = "00000000000";
 
                     //clGlobal.call.SKUnameToUPCCode(SKUNo.Text.ToString());
                     ContentPresenter sp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
@@ -554,6 +572,7 @@ namespace KrausRGA.UI
             _showBarcode();
             txtbarcode.Text = "";
             txtbarcode.Focus();
+           // SetGridChack(dgPackageInfo);
         }
 
         #region Data Grid Events.
@@ -1534,7 +1553,7 @@ namespace KrausRGA.UI
 
                 if (row.Background == Brushes.Gray && txtskustatus.Text != "")
                 {
-                    CanvasConditions.IsEnabled = false;
+                   // CanvasConditions.IsEnabled = false;
                     string msg = "";
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
@@ -1595,7 +1614,7 @@ namespace KrausRGA.UI
 
                 if (row.Background == Brushes.Gray && txtskustatus.Text != "")
                 {
-                    CanvasConditions.IsEnabled = false;
+                  //  CanvasConditions.IsEnabled = false;
                     string msg = "";
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
@@ -1634,7 +1653,7 @@ namespace KrausRGA.UI
             }
             if (Views.clGlobal.ScenarioType == "HomeDepot" || Views.clGlobal.ScenarioType == "Others")
             {
-                CanvasConditions.IsEnabled = true;
+                CanvasConditions.IsEnabled = false;
                 txtbarcode.Focus();
             }
 
@@ -1810,8 +1829,23 @@ namespace KrausRGA.UI
                                         img.Height = 62;
                                         img.Width = 74;
                                         img.Stretch = Stretch.Fill;
-                                        String Name = Imgitem.SKUImagePath.Remove(0, Imgitem.SKUImagePath.IndexOf("SR"));
-                                        img.Name = Name.ToString().Split(new char[] { '.' })[0];
+
+                                        if (Imgitem.SKUImagePath.Contains("SR"))
+                                        {
+                                            String Name = Imgitem.SKUImagePath.Remove(0, Imgitem.SKUImagePath.IndexOf("SR"));
+                                            img.Name = Name.ToString().Split(new char[] { '.' })[0];
+                                        }
+                                        else
+                                        { 
+                                        //string original=Imgitem.SKUImagePath
+                                            string path = Imgitem.SKUImagePath; //"C:\\Program Files\\hello.txt";
+                                            string[] pathArr = path.Split('\\');
+                                            string[] fileArr = pathArr.Last().Split('.');
+                                            string fileName = fileArr.Last().ToString();
+                                            img.Name = fileName;
+                                        }
+                                        
+                                        
                                         img.Source = bs;
                                         img.Margin = new Thickness(0.5);
 
@@ -2196,6 +2230,15 @@ namespace KrausRGA.UI
 
                                     TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
+                                    //ContentPresenter Cntimages = dgPackageInfo.Columns[3].GetCellContent(row1) as ContentPresenter;
+                                    //DataTemplate Dtimages = Cntimages.ContentTemplate;
+                                    ////ContentControl cntimages=Dtimages.co
+
+                                    //StackPanel stimages = (StackPanel)Dtimages.FindName("spProductImages", Cntimages);
+
+                                    
+                                    
+
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
@@ -2307,6 +2350,10 @@ namespace KrausRGA.UI
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                             TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
+                                ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row1) as ContentPresenter;
+                            DataTemplate DtImages = CntImag.ContentTemplate;
+                            StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
                             if (txtRetutn1.Text == "")
                             {
                                 txtRetutn1.Text = "0";
@@ -2325,6 +2372,19 @@ namespace KrausRGA.UI
                             TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
 
                             TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+
+                            //foreach (System.Windows.Controls.Image item in SpImages.Children)
+                            //{
+                            //    DataRow row = dtimages.NewRow();
+                            //   // System.Drawing.Image imagesIS = item;
+
+                            //    row["Images"] =imageToByteArray(ConvertSystemWindowsImagesToDrawingImages(item));//<Image byte>;
+                            //    row["SKUName"] = SkuNumber1.Text;
+                            //    row["SKUSequence"] = txtRetutn2.Text; 
+                            //    dtimages.Rows.Add(row);
+                            //}
+
+
 
                             ls.SKUNumber = SkuNumber1.Text;
                             ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
@@ -2369,7 +2429,39 @@ namespace KrausRGA.UI
 
                         _lsRMAInfo1.Add(ls1);
 
-                        this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo1; }));
+                        this.Dispatcher.Invoke(new Action(() =>
+                        {
+                            dgPackageInfo.ItemsSource = _lsRMAInfo1; 
+                        }));
+
+                        //for (int i = 0; i < dtimages.Rows.Count; i++)
+                        //{
+                        //    foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
+                        //    {
+                        //        TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+
+                        //        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                        //        DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
+                        //        TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                        //        ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row1) as ContentPresenter;
+                        //        DataTemplate DtImages = CntImag.ContentTemplate;
+                        //        StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                        //        if (SkuNumber1.Text == dtimages.Rows[i][1].ToString() && txtRetutn2.Text == dtimages.Rows[i][2].ToString())
+                        //        {
+                        //            byte[] arra = new byte[50];
+                        //            arra[0] = Convert.ToByte(dtimages.Rows[i]["Images"]);
+
+                        //            System.Drawing.Image ima = byteArrayToImage(arra);
+
+                        //            _addToStackPanel(SpImages, ConvertDrawingImageToWPFImage(ima));
+
+                        //        }
+                        //    }
+
+                        //}
+                      
 
                         dtLoadUpdate1 = new DispatcherTimer();
                         dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
@@ -2671,6 +2763,67 @@ namespace KrausRGA.UI
 
             }
         }
+        //public System.Drawing.Image byteArrayToImage(byte[] byteArrayIn)
+        //{
+        //    MemoryStream ms = new MemoryStream(byteArrayIn);
+        //    System.Drawing.Image returnImage = System.Drawing.Image.FromStream(ms);
+        //    return returnImage;
+        //    //MemoryStream ms = new MemoryStream(byteArrayIn);
+        //    //Image returnImage = Image.FromStream(ms);
+        //    //return returnImage;
+        //}
+        //public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        //{
+        //    MemoryStream ms = new MemoryStream();
+        //    imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+        //    return ms.ToArray();
+        //}
+
+        //private System.Drawing.Image ConvertSystemWindowsImagesToDrawingImages(System.Windows.Controls.Image Images)
+        //{
+        //    // System.Drawing.Image ConvertedImages = new System.Drawing.Image();
+
+        //    //BitmapImage bi = new BitmapImage(new Uri("pack://application:,,,/Assembly;component/Image.png", UriKind.Absolute));
+
+        //    System.Windows.Controls.Image oldImage = new Image();
+
+        //    oldImage.Source = Images.Source;
+
+        //    MemoryStream ms = new MemoryStream();
+
+        //    System.Windows.Media.Imaging.BmpBitmapEncoder bbe = new BmpBitmapEncoder();
+
+        //    bbe.Frames.Add(BitmapFrame.Create(new Uri(oldImage.Source.ToString(), UriKind.RelativeOrAbsolute)));
+
+        //    bbe.Save(ms);
+
+        //    System.Drawing.Image newImage = System.Drawing.Image.FromStream(ms);
+
+
+        //    return newImage;
+        //}
+
+
+
+        private System.Windows.Controls.Image ConvertDrawingImageToWPFImage(System.Drawing.Image gdiImg)
+        {
+
+
+            System.Windows.Controls.Image img = new System.Windows.Controls.Image();
+
+            //convert System.Drawing.Image to WPF image
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(gdiImg);
+            IntPtr hBitmap = bmp.GetHbitmap();
+            System.Windows.Media.ImageSource WpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+            img.Source = WpfBitmap;
+            img.Width = 74;
+            img.Height = 62;
+            img.Stretch = Stretch.Fill;
+            return img;
+        } 
+
+
         Boolean ISinstalled=true;
 
         void dtLoadUpdate1_Tick(object sender, EventArgs e)
@@ -2707,12 +2860,56 @@ namespace KrausRGA.UI
                 {
                     row1.Background = Brushes.Gray;
                 }
+
+                //for (int i = 0; i < dtimages.Rows.Count; i++)
+                //{
+                //    foreach (DataGridRow row12 in GetDataGridRows(dgPackageInfo))
+                //    {
+                //        TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row12) as TextBlock;
+
+                //        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row12) as ContentPresenter;
+                //        DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
+                //        TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                //        ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row12) as ContentPresenter;
+                //        DataTemplate DtImages = CntImag.ContentTemplate;
+                //        StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                //        if (SkuNumber1.Text == dtimages.Rows[i][1].ToString() && txtRetutn2.Text == dtimages.Rows[i][2].ToString())
+                //        {
+                //           // string arr = dtimages.Rows[i]["Images"];
+                //            //arra[0] = dtimages.Rows[i]["Images"];
+
+                //            //TypeConverter objConverter = TypeDescriptor.GetConverter(dtimages.Rows[i]["Images"].GetType());
+                //           // byte[] data = (byte[])objConverter.ConvertTo(dtimages.Rows[i]["Images"], typeof(byte[]));
+
+
+                //            System.Drawing.Image ima = byteArrayToImage(ObjectToByteArray(dtimages.Rows[i]["Images"]));
+
+                //            _addToStackPanel(SpImages, ConvertDrawingImageToWPFImage(ima));
+
+                //        }
+                //    }
+
+                //}
+
+
+
+
             }
 
             _showBarcode();
 
         }
-
+        private byte[] ObjectToByteArray(Object obj)
+        {
+            if (obj == null)
+                return null;
+            BinaryFormatter bf = new BinaryFormatter();
+            MemoryStream ms = new MemoryStream();
+            bf.Serialize(ms, obj);
+            return ms.ToArray();
+        }
 
         private void btnInstalledYes_Checked_1(object sender, RoutedEventArgs e)
         {

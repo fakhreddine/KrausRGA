@@ -61,33 +61,36 @@
 
                                     <Border Height="210" Width="770" CornerRadius="10" Canvas.Top="242" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
                                         <Canvas Margin="0,0,0,0">
-                                            <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
-                                                <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
-                                            </Border>
-                                            <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="62" Width="154" Canvas.Left="7"/>
-                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="55" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1" GotFocus="txtPoNumber_GotFocus" LostFocus="txtPoNumber_LostFocus"/>
+                                           
+                                            <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="14" Width="154" Canvas.Left="9"/>
+                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="168" Canvas.Top="7" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1" GotFocus="txtPoNumber_GotFocus" LostFocus="txtPoNumber_LostFocus"/>
 
-                                            <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="105" Width="158" Canvas.Left="3"/>
-                                            <TextBox x:Name="txtName"   Canvas.Left="166" Canvas.Top="100" Width="239" Height="33" FontSize="15"/>
+                                            <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="57" Width="158" Canvas.Left="5"/>
+                                            <TextBox x:Name="txtName"   Canvas.Left="168" Canvas.Top="52" Width="239" Height="33" FontSize="15"/>
 
-                                            <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="154" Width="168" Canvas.Left="-7"/>
+                                            <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="100" Width="168" Canvas.Left="-5"/>
 
-                                            <TextBox x:Name="txtAddress" Canvas.Left="166" Canvas.Top="138"  Width="240" Height="56" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True"/>
+                                            <TextBox x:Name="txtAddress" Canvas.Left="168" Canvas.Top="90"  Width="240" Height="52" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True"/>
 
-                                            <Label x:Name="lblcCustCity" Style="{StaticResource lblConstant}" Canvas.Top="58" Width="116" Canvas.Left="439" Height="28" Content="City :"/>
-                                            <TextBox x:Name="txtCustCity"  Canvas.Left="566" Canvas.Top="51" Width="185" Height="33" FontSize="15"/>
+                                            <Label x:Name="lblcCustCity" Style="{StaticResource lblConstant}" Canvas.Top="10" Width="116" Canvas.Left="441" Height="28" Content="City :"/>
+                                            <TextBox x:Name="txtCustCity"  Canvas.Left="568" Canvas.Top="3" Width="185" Height="33" FontSize="15"/>
 
-                                            <Label x:Name="lblcState" Content="State/Province : " Style="{StaticResource lblConstant}" Canvas.Top="98" Width="205" Canvas.Left="358"/>
-                                            <TextBox x:Name="txtState"  Canvas.Left="566" Canvas.Top="89" Width="186" Height="33" FontSize="15"/>
+                                            <Label x:Name="lblcState" Content="State/Province : " Style="{StaticResource lblConstant}" Canvas.Top="50" Width="205" Canvas.Left="360"/>
+                                            <TextBox x:Name="txtState"  Canvas.Left="568" Canvas.Top="41" Width="186" Height="33" FontSize="15"/>
 
-                                            <Label x:Name="lblcZipCode" Content="Zip/Postal Code: " Style="{StaticResource lblConstant}" Canvas.Top="133" Width="205" Canvas.Left="356"/>
-                                            <TextBox x:Name="txtZipCode"  Canvas.Left="566" Canvas.Top="128" Width="185" Height="33" FontSize="15"/>
+                                            <Label x:Name="lblcZipCode" Content="Zip/Postal Code: " Style="{StaticResource lblConstant}" Canvas.Top="85" Width="205" Canvas.Left="358"/>
+                                            <TextBox x:Name="txtZipCode"  Canvas.Left="568" Canvas.Top="80" Width="185" Height="33" FontSize="15"/>
 
-                                            <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="166" Width="114" Canvas.Left="441"/>
-                                            <TextBox x:Name="txtCountry"  Canvas.Left="566" Canvas.Top="166" Width="187" Height="33" FontSize="15"/>
+                                            <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="118" Width="114" Canvas.Left="443"/>
+                                            <TextBox x:Name="txtCountry"  Canvas.Left="568" Canvas.Top="118" Width="187" Height="33" FontSize="15"/>
                                             <ListBox Height="198" FontSize="30" Canvas.Left="407" Width="302" Visibility="Hidden" x:Name="lstponumber"  SelectionChanged="lstponumber_SelectionChanged_1" Canvas.Top="10"/>
                                             <ListBox Height="194" Width="319" FontSize="25" Canvas.Left="437" Name="lstVenderName"  Visibility="Hidden"/>
                                             <ListBox Height="161" x:Name="lstVenderNumber" FontSize="25" Width="252" Canvas.Left="437"  Visibility="Hidden" Canvas.Top="-75" />
+
+                                            <Label x:Name="lblcalltag" Content="Call Tag :" Style="{StaticResource lblConstant}" Canvas.Top="157" Width="130" Canvas.Left="24"/>
+
+                                            <TextBox Canvas.Left="165" Canvas.Top="156" Width="591" Height="50" FontSize="15" x:Name="txtcalltag" />
+
                                         </Canvas>
                                     </Border>
 

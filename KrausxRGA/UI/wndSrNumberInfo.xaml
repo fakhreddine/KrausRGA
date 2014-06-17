@@ -66,35 +66,38 @@
 
                                     <Border Height="210" Width="770" CornerRadius="10" Canvas.Top="242" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
                                         <Canvas Margin="0,0,0,0">
-                                            <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
-                                                <TextBlock TextWrapping="Wrap" Text="PO / Order Details" FontSize="25" Foreground="White" Margin="10,6,192,0"/>
-                                            </Border>
-                                            <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="60" Width="143" Canvas.Left="36"/>
-                                            <Label x:Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="183" Canvas.Top="60" Width="254" Height="33"/>
+                                           
+                                            <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="10" Width="143" Canvas.Left="36"/>
+                                            <Label x:Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="183" Canvas.Top="10" Width="254" Height="33"/>
 
-                                            <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="107" Width="164" Canvas.Left="15"/>
-                                            <Label x:Name="lblName"  Style="{StaticResource lblVeriable}" Canvas.Left="182" Canvas.Top="108" Width="224" Height="33">
+                                            <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="53" Width="164" Canvas.Left="13"/>
+                                            <Label x:Name="lblName"  Style="{StaticResource lblVeriable}" Canvas.Left="182" Canvas.Top="52" Width="224" Height="33">
                                                 <TextBlock x:Name="tbCustomerName" TextWrapping="NoWrap" Text="N/A" Width="334"/>
                                             </Label>
 
-                                            <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="149" Width="187" Canvas.Left="-7"/>
+                                            <Label x:Name="lblcCustomerAddress" Content="Customer Address : " Style="{StaticResource lblConstant}" Canvas.Top="91" Width="187" Canvas.Left="-7"/>
 
-                                            <Label Canvas.Left="186" Canvas.Top="147" Style="{StaticResource lblVeriable}" Width="251" Height="56">
+                                            <Label x:Name="lblcalltag" Content="Call Tag :" Style="{StaticResource lblConstant}" Canvas.Top="141" Width="130" Canvas.Left="36"/>
+                                            
+                                            <TextBox x:Name="txtcalltag" Canvas.Left="171" Canvas.Top="141" Width="585" Height="67" FontSize="15" IsEnabled="False" />
+                                            
+
+                                            <Label Canvas.Left="186" Canvas.Top="85" Style="{StaticResource lblVeriable}" Width="251" Height="56">
                                                 <TextBlock x:Name="lblCustomerAddress" Text="N/A" TextWrapping="Wrap" Margin="0,0,0,0" Width="241" Height="46" 
         											ScrollViewer.HorizontalScrollBarVisibility="Auto" Canvas.Left="197" Canvas.Top="149"
         											Foreground="Black" />
                                             </Label>
-                                            <Label x:Name="lblcCustCity" Content="City : " Style="{StaticResource lblConstant}" Canvas.Top="61" Width="143" Canvas.Left="431"/>
-                                            <Label x:Name="lblCustCity" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="581" Canvas.Top="61" Width="185" Height="33"/>
+                                            <Label x:Name="lblcCustCity" Content="City : " Style="{StaticResource lblConstant}" Canvas.Top="11" Width="143" Canvas.Left="431"/>
+                                            <Label x:Name="lblCustCity" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="581" Canvas.Top="11" Width="185" Height="33"/>
 
-                                            <Label x:Name="lblcState" Content="State/Province : " Style="{StaticResource lblConstant}" Canvas.Top="103" Width="163" Canvas.Left="411"/>
-                                            <Label x:Name="lblState" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="580" Canvas.Top="103" Width="186" Height="33"/>
+                                            <Label x:Name="lblcState" Content="State/Province : " Style="{StaticResource lblConstant}" Canvas.Top="45" Width="163" Canvas.Left="411"/>
+                                            <Label x:Name="lblState" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="580" Canvas.Top="47" Width="186" Height="33"/>
 
-                                            <Label x:Name="lblcZipCode" Content="Zip/Postal Code: " Style="{StaticResource lblConstant}" Canvas.Top="141" Width="163" Canvas.Left="411"/>
-                                            <Label x:Name="lblZipCode" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="579" Canvas.Top="141" Width="177" Height="33"/>
+                                            <Label x:Name="lblcZipCode" Content="Zip/Postal Code: " Style="{StaticResource lblConstant}" Canvas.Top="81" Width="163" Canvas.Left="411"/>
+                                            <Label x:Name="lblZipCode" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="579" Canvas.Top="81" Width="177" Height="27"/>
 
-                                            <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="167" Width="163" Canvas.Left="411"/>
-                                            <Label x:Name="lblCountry" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="575" Canvas.Top="168" Width="181" Height="33"/>
+                                            <Label x:Name="lblcCountry" Content="Country : " Style="{StaticResource lblConstant}" Canvas.Top="111" Width="163" Canvas.Left="409"/>
+                                            <Label x:Name="lblCountry" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="575" Canvas.Top="108" Width="181" Height="30"/>
                                         </Canvas>
                                     </Border>
 
@@ -184,16 +187,6 @@
                                                     <DataTemplate>
                                                         <StackPanel x:Name="spQty1" Width="40">
                                                             <TextBlock x:Name="tbQty" TextAlignment="Center" Width="40" Text="{Binding SKU_Qty_Seq}" FontSize="20" FontWeight="Bold"/>
-                                                            <!--<StackPanel x:Name="spQty2" Orientation="Horizontal">
-                                                                <Button x:Name="btnMinus" Content="-" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-        															Width="40" Height="40" FontSize="12"
-        															Foreground="White" Background="#FF464646" 
-        															Click="btnMinus_Click" />
-                                                                <Button x:Name="btnPluse" Content="+" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
-        															Width="40" Height="40" 
-        															FontSize="12" Foreground="White" Background="#FF464646"
-        															Click="btnPluse_Click" />
-                                                            </StackPanel>-->
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -389,8 +382,8 @@
 
                                                 <Canvas>
                                             <Label Canvas.Left="210" Canvas.Top="7" Name="lblItemIsNew" Content="Item is New" Style="{StaticResource lblConstant}" Width="208" Height="45" FontSize="30" ></Label>
-                                            <RadioButton Content="Yes" Name="btnBoxNew" Canvas.Left="446" Canvas.Top="9" Height="43" Width="78" FontSize="30" Checked="btnBoxNew_Checked_1"></RadioButton>
-                                            <RadioButton Content="No" Name="btnBoxNotNew" Canvas.Left="536" Canvas.Top="11" Height="45" Width="104" FontSize="30" Checked="btnBoxNotNew_Checked_1"></RadioButton>
+                                            <RadioButton Content="Yes" Name="btnBoxNew" Canvas.Left="444" Canvas.Top="9" Height="43" Width="78" FontSize="30" Checked="btnBoxNew_Checked_1"></RadioButton>
+                                            <RadioButton Content="No" Name="btnBoxNotNew" Canvas.Left="532" Canvas.Top="11" Height="45" Width="104" FontSize="30" Checked="btnBoxNotNew_Checked_1"></RadioButton>
                                             </Canvas>
                                             <Canvas>
                                             <Label Canvas.Left="153" Canvas.Top="211" Name="lblDefectontea" Content="Defect in Transite" Style="{StaticResource lblConstant}" Width="261" Height="43" FontSize="30" ></Label>

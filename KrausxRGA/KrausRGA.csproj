@@ -204,6 +204,9 @@
       <DependentUpon>wndNewRMANumber.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\wndPONumber.xaml.cs" />
+    <Compile Include="UI\wndProcessedReturn.xaml.cs">
+      <DependentUpon>wndProcessedReturn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\wndSlipPrint.xaml.cs">
       <DependentUpon>wndSlipPrint.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,10 @@
     <Page Include="UI\wndPONumber.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\wndProcessedReturn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\wndSlipPrint.xaml">
       <SubType>Designer</SubType>
@@ -350,17 +357,17 @@
     <None Include="Service References\GetRMAServiceRef\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.RMA1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\KrausWarehouseServices.DTO.Shipping1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service.wsdl" />
-    <None Include="Service References\SaveRMAServiceRefer\service.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service1.wsdl" />
+    <None Include="Service References\SaveRMAServiceRefer\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SaveRMAServiceRefer\service1.xsd">
+    <None Include="Service References\SaveRMAServiceRefer\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

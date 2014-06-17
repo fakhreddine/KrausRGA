@@ -130,7 +130,7 @@ namespace KrausRGA.Models
             }
             return _lsReasons;
         }
-        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff)
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff,string calltag)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -173,6 +173,7 @@ namespace KrausRGA.Models
                 TblRerutn.Setting_Wty_Days = Setting_Wty_Days;
                 TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
 
+                TblRerutn.CallTag = calltag;
 
                 
 
