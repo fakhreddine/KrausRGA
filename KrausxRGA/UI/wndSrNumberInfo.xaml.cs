@@ -579,112 +579,118 @@ namespace KrausRGA.UI
 
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No","Confirmation", MessageBoxButton.YesNoCancel);
-            if (result == MessageBoxResult.Yes)
-            {
-                ContentControl cnt = (ContentControl)sender;
-                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+            //MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No","Confirmation", MessageBoxButton.YesNoCancel);
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    ContentControl cnt = (ContentControl)sender;
+            //    DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+            //    StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
 
-                if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
-                {
-                    try
-                    {
-                        //Show Camera.
-                        Barcode.Camera.Open();
-                        foreach (String Nameitem in Views.clGlobal.lsImageList)
-                        {
-                            try
-                            {
-                                string path = "C:\\Images\\";
+            //    if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
+            //    {
+            //        try
+            //        {
+            //            //Show Camera.
+            //            Barcode.Camera.Open();
+            //            foreach (String Nameitem in Views.clGlobal.lsImageList)
+            //            {
+            //                try
+            //                {
+            //                    string path = "C:\\Images\\";
 
-                                BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+            //                    BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
 
-                                Image img = new Image();
-                                //Zoom image.
-                                img.MouseEnter += img_MouseEnter;
+            //                    Image img = new Image();
+            //                    //Zoom image.
+            //                   // img.MouseEnter += img_MouseEnter;
 
-                                img.Height = 62;
-                                img.Width = 74;
-                                img.Stretch = Stretch.Fill;
-                                img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
-                                img.Source = bs;
-                                img.Margin = new Thickness(0.5);
+            //                    img.MouseDown += img_MouseDown;
 
-                                //Images added to the Row.
-                                _addToStackPanel(spRowImages, img);
-                            }
-                            catch (Exception)
-                            {
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
+            //                    img.Height = 62;
+            //                    img.Width = 74;
+            //                    img.Stretch = Stretch.Fill;
+            //                    img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+            //                    img.Source = bs;
+            //                    img.Margin = new Thickness(0.5);
 
-                    }
-                }
-                else
-                {
-                    mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
-                    ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-                }
-            }
-            else if (result == MessageBoxResult.No)
-            {
+            //                    //Images added to the Row.
+            //                    _addToStackPanel(spRowImages, img);
+            //                }
+            //                catch (Exception)
+            //                {
+            //                }
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
 
-                ContentControl cnt = (ContentControl)sender;
-                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+            //        ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            //    }
+            //}
+            //else if (result == MessageBoxResult.No)
+            //{
 
-                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+            //    ContentControl cnt = (ContentControl)sender;
+            //    DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            //    StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
 
-
-
-                // Set filter for file extension and default file extension 
-                dlg.DefaultExt = ".png";
-                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+            //    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
 
-                // Display OpenFileDialog by calling ShowDialog method 
-                Nullable<bool> result1 = dlg.ShowDialog();
+
+            //    // Set filter for file extension and default file extension 
+            //    dlg.DefaultExt = ".png";
+            //    dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
 
 
-                // Get the selected file name and display in a TextBox 
-                if (result1 == true)
-                {
-                    // Open document 
-                    string filename = dlg.FileName;
+            //    // Display OpenFileDialog by calling ShowDialog method 
+            //    Nullable<bool> result1 = dlg.ShowDialog();
 
-                    string originalfilename = dlg.SafeFileName;
 
-                   // textBox1.Text = filename;
-                    //string path = "C:\\Images\\";
+            //    // Get the selected file name and display in a TextBox 
+            //    if (result1 == true)
+            //    {
+            //        // Open document 
+            //        string filename = dlg.FileName;
 
-                    BitmapSource bs = new BitmapImage(new Uri(filename));
+            //        string originalfilename = dlg.SafeFileName.Replace("-", "");
 
-                    Image img = new Image();
-                    //Zoom image.
-                    img.MouseEnter += img_MouseEnter;
+            //        string finalfilename = originalfilename.Replace("_", "");
 
-                    img.Height = 62;
-                    img.Width = 74;
-                    img.Stretch = Stretch.Fill;
-                    img.Name = originalfilename.ToString().Split(new char[] { '.' })[0];
-                    img.Source = bs;
-                    img.Margin = new Thickness(0.5);
+            //       // textBox1.Text = filename;
+            //        //string path = "C:\\Images\\";
 
-                    //Images added to the Row.
-                    _addToStackPanel(spRowImages, img);
+            //        BitmapSource bs = new BitmapImage(new Uri(filename));
 
-                }
-            }
-            else
-            {
-                // Cancel code here
-            } 
+            //        Image img = new Image();
+            //        //Zoom image.
+            //       // img.MouseEnter += img_MouseEnter;
+
+            //        img.MouseDown += img_MouseDown;
+
+            //        img.Height = 50;
+            //        img.Width = 50;
+            //        img.Stretch = Stretch.Fill;
+            //        img.Name = finalfilename.ToString().Split(new char[] { '.' })[0];
+            //        img.Source = bs;
+            //        img.Margin = new Thickness(0.5);
+
+            //        //Images added to the Row.
+            //        _addToStackPanel(spRowImages, img);
+
+            //    }
+            //}
+            //else
+            //{
+            //    // Cancel code here
+            //} 
 
 
 
@@ -719,12 +725,20 @@ namespace KrausRGA.UI
 
         #region Zoom Images.
 
-        void img_MouseEnter(object sender, MouseEventArgs e)
-        {
-            Image img = (Image)sender;
-            bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
-            imgZoom.Source = img.Source;
-        }
+        //void img_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    //Image img = (Image)sender;
+
+        //    clGlobal.Zoomimages = (Image)sender;
+
+        //    wndZoomImageWindow zoom = new wndZoomImageWindow();
+        //    zoom.ShowDialog();
+
+        //    // bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
+        //    //imgZoom.Source = img.Source;
+        //}
+
+      
 
         private void imgZoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -1824,7 +1838,11 @@ namespace KrausRGA.UI
 
                                         Image img = new Image();
                                         //Zoom image.
-                                        img.MouseEnter += img_MouseEnter;
+                                       // img.MouseEnter += img_MouseEnter;
+
+                                        img.MouseDown += img_MouseDown;
+
+                                       
 
                                         img.Height = 62;
                                         img.Width = 74;
@@ -1865,6 +1883,15 @@ namespace KrausRGA.UI
             }
             catch (Exception)
             { }
+        }
+
+        void img_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            clGlobal.Zoomimages = (Image)sender;
+
+            wndZoomImageWindow zoom = new wndZoomImageWindow();
+            zoom.ShowDialog();
+            //throw new NotImplementedException();
         }
 
         public String GetReasonFronList(Guid ReturDetailsID)
@@ -3678,6 +3705,124 @@ namespace KrausRGA.UI
         private void txtskuReasons_KeyDown_1(object sender, KeyEventArgs e)
         {
             cmbSkuReasons.SelectedIndex = 0;
+        }
+
+        private void ContentControl_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
+            if (result == MessageBoxResult.Yes)
+            {
+                ContentControl cnt = (ContentControl)sender;
+                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+
+                if (_mReturn.GreenRowsNumber.Contains(row.GetIndex()))
+                {
+                    try
+                    {
+                        //Show Camera.
+                        Barcode.Camera.Open();
+                        foreach (String Nameitem in Views.clGlobal.lsImageList)
+                        {
+                            try
+                            {
+                                string path = "C:\\Images\\";
+
+                                BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+
+                                Image img = new Image();
+                                //Zoom image.
+                                // img.MouseEnter += img_MouseEnter;
+
+                                img.MouseDown += img_MouseDown;
+
+                                img.Height = 62;
+                                img.Width = 74;
+                                img.Stretch = Stretch.Fill;
+                                img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+                                img.Source = bs;
+                                img.Margin = new Thickness(0.5);
+
+                                //Images added to the Row.
+                                _addToStackPanel(spRowImages, img);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                else
+                {
+                    mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                    ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+                }
+            }
+            else if (result == MessageBoxResult.No)
+            {
+
+                ContentControl cnt = (ContentControl)sender;
+                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+
+                // Set filter for file extension and default file extension 
+                dlg.DefaultExt = ".png";
+                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+
+
+                // Display OpenFileDialog by calling ShowDialog method 
+                Nullable<bool> result1 = dlg.ShowDialog();
+
+
+                // Get the selected file name and display in a TextBox 
+                if (result1 == true)
+                {
+                    // Open document 
+                    string filename = dlg.FileName;
+
+                    string originalfilename = dlg.SafeFileName.Replace("-", "");
+
+                    string finalfilename = originalfilename.Replace("_", "");
+
+                    // textBox1.Text = filename;
+                    //string path = "C:\\Images\\";
+
+                    BitmapSource bs = new BitmapImage(new Uri(filename));
+
+                    Image img = new Image();
+                    //Zoom image.
+                    // img.MouseEnter += img_MouseEnter;
+
+                    img.MouseDown += img_MouseDown;
+
+                    img.Height = 50;
+                    img.Width = 50;
+                    img.Stretch = Stretch.Fill;
+                    img.Name = finalfilename.ToString().Split(new char[] { '.' })[0];
+                    img.Source = bs;
+                    img.Margin = new Thickness(0.5);
+
+                    //Images added to the Row.
+                    _addToStackPanel(spRowImages, img);
+
+                }
+            }
+            else
+            {
+                // Cancel code here
+            } 
+
+
         }
     }
 }

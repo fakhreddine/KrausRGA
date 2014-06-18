@@ -31,31 +31,40 @@ namespace KrausRGA.UI
         {
             InitializeComponent();
         }
-
+  DateTime date1;
+  DateTime date2;
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            dgPackageInfo.ItemsSource = cReturnTbl.GetReturnTbl();
+           // dgPackageInfo.ItemsSource = cReturnTbl.GetReturnTbl();
+            var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+
+            dgPackageInfo.ItemsSource = sort;
+          
+
+            //var filter = (from p in cReturnTbl.GetReturnTbl()
+            //              where (p.ReturnDate <= date1 && (p.ReturnDate >= date2))
+            //              select p).ToList();
         }
 
         private void dgPackageInfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             int selectedIndex = dgPackageInfo.SelectedIndex;
 
-            DataGridCell cell = GetCell(selectedIndex, 0);
-            ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-            DataTemplate DataTemp = CntPersenter.ContentTemplate;
-        
-
-            TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
-
+            if (selectedIndex != -1)
+            {
+                DataGridCell cell = GetCell(selectedIndex, 0);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
 
 
-            Guid Returnid= cReturnTbl.GetRetrunByROWID(txtReturnGuid.Text)[0].ReturnID;
+                TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
 
-            dgReturnDetailInfo.ItemsSource = cRetutnDetailsTbl.GetReturnDetailsByReturnID(Returnid);
 
-      
 
+                Guid Returnid = cReturnTbl.GetRetrunByROWID(txtReturnGuid.Text)[0].ReturnID;
+
+                dgReturnDetailInfo.ItemsSource = cRetutnDetailsTbl.GetReturnDetailsByReturnID(Returnid);
+            }
         }
 
         public DataGridCell GetCell(int row, int column)
@@ -114,6 +123,49 @@ namespace KrausRGA.UI
           //  IList rows = dgPackageInfo.SelectedItems;
            // DataRowView row = (DataRowView)dgPackageInfo.SelectedItems[0];
             //string val = rows[0] //row["Column ID"].ToString();
+        }
+
+        private void btnback_Click(object sender, RoutedEventArgs e)
+        {
+            wndBoxInformation boxinfo = new wndBoxInformation();
+            boxinfo.Show();
+            this.Close();
+        }
+
+        private void rbtAll_Checked_1(object sender, RoutedEventArgs e)
+        {
+           // dtpfrom.IsEnabled = false;
+           // dtpto.IsEnabled = false;
+
+
+            var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+
+            dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
+        }
+
+        private void rbtBetween_Checked_1(object sender, RoutedEventArgs e)
+        {
+            dtpfrom.IsEnabled = true;
+            dtpto.IsEnabled = true;
+
+        }
+
+        private void dtpfrom_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var filter = (from p in cReturnTbl.GetReturnTbl()
+                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                          select p).OrderByDescending(y => y.RGAROWID);
+
+            dgPackageInfo.ItemsSource = filter;
+        }
+
+        private void dtpto_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var filter = (from p in cReturnTbl.GetReturnTbl()
+                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                          select p).OrderByDescending(s => s.RGAROWID);
+
+            dgPackageInfo.ItemsSource = filter;
         }
     }
 }

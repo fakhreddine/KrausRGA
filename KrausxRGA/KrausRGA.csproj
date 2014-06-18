@@ -216,6 +216,9 @@
     <Compile Include="UI\wndWait.xaml.cs">
       <DependentUpon>wndWait.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndZoomImageWindow.xaml.cs">
+      <DependentUpon>wndZoomImageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AuditType.cs" />
     <Compile Include="Views\Box.cs" />
     <Compile Include="Views\CanvasToImage.cs" />
@@ -270,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\wndWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\wndZoomImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

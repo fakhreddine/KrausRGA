@@ -186,6 +186,23 @@
                             </ControlTemplate>
                         </DataGrid.RowValidationErrorTemplate>
                     </DataGrid>
+                    <RadioButton Content="All" FontSize="25" Canvas.Left="32" Canvas.Top="72" x:Name="rbtAll" IsChecked="True" Checked="rbtAll_Checked_1" />
+                    <RadioButton Content="Between Date" FontSize="25" Canvas.Left="114" Canvas.Top="72" x:Name="rbtBetween" Checked="rbtBetween_Checked_1" />
+                    <Label Height="39" Width="67" Canvas.Left="312" Canvas.Top="68" Content="From" FontSize="25" />
+
+                    <DatePicker Canvas.Top="78" Canvas.Left="386" Width="159" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpfrom" IsEnabled="False" SelectedDateChanged="dtpfrom_SelectedDateChanged" />
+                    <Label Height="43" Width="37" Canvas.Left="550" Canvas.Top="68" Content="To" FontSize="25" />
+                    <DatePicker Canvas.Top="78" Canvas.Left="594" Width="171" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpto" IsEnabled="False" SelectedDateChanged="dtpto_SelectedDateChanged" />
+                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="1218" Height="56" Width="218" Canvas.Left="6" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Style="{StaticResource btnImage}"  MouseDown="btnback_Click" Source="/KrausRGA;component/Images/bac.png" Width="36"/>
+                            <Button Style="{StaticResource ToolBarButtonBaseStyle}"
+                                    			x:Name="btnback"
+                                    			Content="Back" 
+                                    			Click="btnback_Click"  Width="179"  />
+                        </StackPanel>
+                    </Border>
+
                 </Canvas>
             </Border>
         </Grid>

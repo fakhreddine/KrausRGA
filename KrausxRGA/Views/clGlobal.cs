@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 
 namespace KrausRGA.Views
 {
@@ -21,6 +22,9 @@ namespace KrausRGA.Views
 
         //user Logged in or not.
         public static Boolean IsUserlogged = false;
+
+
+        public static Image Zoomimages;
 
         //User information maintain 
         public static mUser mCurrentUser;

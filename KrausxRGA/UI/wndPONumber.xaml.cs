@@ -100,9 +100,12 @@ namespace KrausRGA.UI
         }
         void img_MouseEnter(object sender, MouseEventArgs e)
         {
-            Image img = (Image)sender;
-            bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
-            imgZoom.Source = img.Source;
+            //Image img = (Image)sender;
+            //bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
+            //imgZoom.Source = img.Source;
+            clGlobal.Zoomimages = (Image)sender;
+            wndZoomImageWindow zoom = new wndZoomImageWindow();
+            zoom.ShowDialog();
         }
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -185,7 +188,9 @@ namespace KrausRGA.UI
                     // Open document 
                     string filename = dlg.FileName;
 
-                    string originalfilename = dlg.SafeFileName;
+                    string originalfilename = dlg.SafeFileName.Replace("-", "");
+
+                    string finalfilename = originalfilename.Replace("_", "");
 
                     // textBox1.Text = filename;
                     //string path = "C:\\Images\\";
@@ -199,7 +204,7 @@ namespace KrausRGA.UI
                     img.Height = 62;
                     img.Width = 74;
                     img.Stretch = Stretch.Fill;
-                    img.Name = originalfilename.ToString().Split(new char[] { '.' })[0];
+                    img.Name = finalfilename.ToString().Split(new char[] { '.' })[0];
                     img.Source = bs;
                     img.Margin = new Thickness(0.5);
 
