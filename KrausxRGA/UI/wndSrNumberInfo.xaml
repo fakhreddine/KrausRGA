@@ -194,18 +194,30 @@
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
         										Header="Images" 
-        										Width="150" >
+        										Width="140" >
                                                 <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate >
+                                                    <DataTemplate>
                                                         <ScrollViewer x:Name="svScrollImages" Width="150" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="70">
                                                             <ContentControl MouseLeftButtonDown="ContentControl_MouseLeftButtonDown" MouseDoubleClick="ContentControl_MouseDoubleClick_1">
-                                                                <StackPanel x:Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" />
+                                                                <StackPanel x:Name="spProductImages" Background="#FFA4A4A4" Orientation="Horizontal" Margin="0,0,0,0"/>
                                                             </ContentControl>
                                                         </ScrollViewer>
+                                                      </DataTemplate>
+                                                   </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Header="Add"
+        										Width="50">
+
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="spQty1" Width="40">
+                                                            <Button x:Name="AddImage" Content="Add" Height="40" Width="40" Click="AddImage_Click_1"></Button>
+                                                        </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
-
                                             <!--<DataGridTemplateColumn Header="Reasons" 
         										HeaderStyle="{StaticResource HeaderStyleKey}"
         										Width="50" >
@@ -220,7 +232,7 @@
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>-->
-                                            <DataGridTemplateColumn Header="Bar Code" Width="290" >
+                                            <DataGridTemplateColumn Header="Bar Code" Width="260" >
                                                 <DataGridTemplateColumn.HeaderStyle>
                                                     <Style TargetType="{x:Type DataGridColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -238,12 +250,12 @@
                                            
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Header=""
-        										Width="60">
+        										Width="50">
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel x:Name="spDQyt" Width="60">
-                                                            <TextBlock x:Name="tbDQyt" TextAlignment="Center" Width="60" Text="{Binding SKU_Sequence}" FontSize="20" FontWeight="Bold"/>
+                                                        <StackPanel x:Name="spDQyt" Width="50">
+                                                            <TextBlock x:Name="tbDQyt" TextAlignment="Center" Width="50" Text="{Binding SKU_Sequence}" FontSize="20" FontWeight="Bold"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>

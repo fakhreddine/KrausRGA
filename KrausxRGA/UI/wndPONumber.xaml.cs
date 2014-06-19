@@ -98,125 +98,125 @@ namespace KrausRGA.UI
             FillRMAStausAndDecision();
             txtRMAReqDate.SelectedDate = DateTime.Now;
         }
-        void img_MouseEnter(object sender, MouseEventArgs e)
-        {
-            //Image img = (Image)sender;
-            //bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
-            //imgZoom.Source = img.Source;
-            clGlobal.Zoomimages = (Image)sender;
-            wndZoomImageWindow zoom = new wndZoomImageWindow();
-            zoom.ShowDialog();
-        }
+        //void img_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    //Image img = (Image)sender;
+        //    //bdrZoomImage.Visibility = System.Windows.Visibility.Visible;
+        //    //imgZoom.Source = img.Source;
+        //    clGlobal.Zoomimages = (Image)sender;
+        //    wndZoomImageWindow zoom = new wndZoomImageWindow();
+        //    zoom.ShowDialog();
+        //}
         private void ContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
-            if (result == MessageBoxResult.Yes)
-            {
-                ContentControl cnt = (ContentControl)sender;
-                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+            //MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    ContentControl cnt = (ContentControl)sender;
+            //    DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+            //    StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
 
-                if (_mponumber.GreenRowsNumber.Contains(row.GetIndex()))
-                {
-                    try
-                    {
-                        //Show Camera.
-                        Barcode.Camera.Open();
-                        foreach (String Nameitem in Views.clGlobal.lsImageList)
-                        {
-                            try
-                            {
-                                string path = "C:\\Images\\";
+            //    if (_mponumber.GreenRowsNumber.Contains(row.GetIndex()))
+            //    {
+            //        try
+            //        {
+            //            //Show Camera.
+            //            Barcode.Camera.Open();
+            //            foreach (String Nameitem in Views.clGlobal.lsImageList)
+            //            {
+            //                try
+            //                {
+            //                    string path = "C:\\Images\\";
 
-                                BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+            //                    BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
 
-                                Image img = new Image();
-                                //Zoom image.
-                                img.MouseEnter += img_MouseEnter;
+            //                    Image img = new Image();
+            //                    //Zoom image.
+            //                    img.MouseEnter += img_MouseEnter;
 
-                                img.Height = 62;
-                                img.Width = 74;
-                                img.Stretch = Stretch.Fill;
-                                img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
-                                img.Source = bs;
-                                img.Margin = new Thickness(0.5);
+            //                    img.Height = 62;
+            //                    img.Width = 74;
+            //                    img.Stretch = Stretch.Fill;
+            //                    img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+            //                    img.Source = bs;
+            //                    img.Margin = new Thickness(0.5);
 
-                                //Images added to the Row.
-                                _addToStackPanel(spRowImages, img);
-                            }
-                            catch (Exception)
-                            {
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
+            //                    //Images added to the Row.
+            //                    _addToStackPanel(spRowImages, img);
+            //                }
+            //                catch (Exception)
+            //                {
+            //                }
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
 
-                    }
-                }
-                else
-                {
-                    mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
-                    ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-                }
-            }
-            else if (result == MessageBoxResult.No)
-            {
+            //        }
+            //    }
+            //    else
+            //    {
+            //        mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+            //        ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            //    }
+            //}
+            //else if (result == MessageBoxResult.No)
+            //{
 
-                ContentControl cnt = (ContentControl)sender;
-                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+            //    ContentControl cnt = (ContentControl)sender;
+            //    DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+            //    StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
 
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-
-
-                // Set filter for file extension and default file extension 
-                dlg.DefaultExt = ".png";
-                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+            //    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
 
-                // Display OpenFileDialog by calling ShowDialog method 
-                Nullable<bool> result1 = dlg.ShowDialog();
+
+            //    // Set filter for file extension and default file extension 
+            //    dlg.DefaultExt = ".png";
+            //    dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
 
 
-                // Get the selected file name and display in a TextBox 
-                if (result1 == true)
-                {
-                    // Open document 
-                    string filename = dlg.FileName;
+            //    // Display OpenFileDialog by calling ShowDialog method 
+            //    Nullable<bool> result1 = dlg.ShowDialog();
 
-                    string originalfilename = dlg.SafeFileName.Replace("-", "");
 
-                    string finalfilename = originalfilename.Replace("_", "");
+            //    // Get the selected file name and display in a TextBox 
+            //    if (result1 == true)
+            //    {
+            //        // Open document 
+            //        string filename = dlg.FileName;
 
-                    // textBox1.Text = filename;
-                    //string path = "C:\\Images\\";
+            //        string originalfilename = dlg.SafeFileName.Replace("-", "");
 
-                    BitmapSource bs = new BitmapImage(new Uri(filename));
+            //        string finalfilename = originalfilename.Replace("_", "");
 
-                    Image img = new Image();
-                    //Zoom image.
-                    img.MouseEnter += img_MouseEnter;
+            //        // textBox1.Text = filename;
+            //        //string path = "C:\\Images\\";
 
-                    img.Height = 62;
-                    img.Width = 74;
-                    img.Stretch = Stretch.Fill;
-                    img.Name = finalfilename.ToString().Split(new char[] { '.' })[0];
-                    img.Source = bs;
-                    img.Margin = new Thickness(0.5);
+            //        BitmapSource bs = new BitmapImage(new Uri(filename));
 
-                    //Images added to the Row.
-                    _addToStackPanel(spRowImages, img);
+            //        Image img = new Image();
+            //        //Zoom image.
+            //        img.MouseEnter += img_MouseEnter;
 
-                }
-            }
-            else
-            {
-                // Cancel code here
-            } 
+            //        img.Height = 50;
+            //        img.Width = 50;
+            //        img.Stretch = Stretch.Fill;
+            //        img.Name = finalfilename.ToString().Split(new char[] { '.' })[0];
+            //        img.Source = bs;
+            //        img.Margin = new Thickness(0.5);
+
+            //        //Images added to the Row.
+            //        _addToStackPanel(spRowImages, img);
+
+            //    }
+            //}
+            //else
+            //{
+            //    // Cancel code here
+            //} 
         }
 
         /// <summary>
@@ -450,7 +450,7 @@ namespace KrausRGA.UI
                     DataTemplate DtQty = CntQuantity.ContentTemplate;
                     TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
 
-                    ContentPresenter CntQuantity1 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                    ContentPresenter CntQuantity1 = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbDQyt", CntQuantity1);
 
@@ -459,11 +459,11 @@ namespace KrausRGA.UI
                     DataTemplate DtImages = CntImag.ContentTemplate;
                     StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
-                    TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row) as TextBlock;
+                    TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
 
-                    TextBlock SalesPrice = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
+                    TextBlock SalesPrice = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
 
-                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
+                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
 
                     //Returned RMA Information.
                     RMAInfo rmaInfo = _mponumber.lsRMAInformationforponumner.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text);
@@ -605,7 +605,7 @@ namespace KrausRGA.UI
                     DataTemplate DtQty = CntQuantity.ContentTemplate;
                     TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
 
-                    ContentPresenter CntQuantity1 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                    ContentPresenter CntQuantity1 = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbDQyt", CntQuantity1);
 
@@ -615,11 +615,11 @@ namespace KrausRGA.UI
                     DataTemplate DtImages = CntImag.ContentTemplate;
                     StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
-                    TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row) as TextBlock;
+                    TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
 
-                    TextBlock SalesPrice = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
+                    TextBlock SalesPrice = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
 
-                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
+                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
 
                     //item Status.k
                     //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
@@ -707,7 +707,7 @@ namespace KrausRGA.UI
                         txtRetutn.Text = "0";
                     }
 
-                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text),Convert.ToInt16(LineType.Text));
+                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text));
 
                     Views.clGlobal.IsScanned = 0;
                     Views.clGlobal.IsManually = 0;
@@ -796,7 +796,7 @@ namespace KrausRGA.UI
                     DataTemplate DtQty = CntQuantity.ContentTemplate;
                     TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
 
-                    ContentPresenter CntQuantity1 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                    ContentPresenter CntQuantity1 = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbDQyt", CntQuantity1);
 
@@ -807,11 +807,11 @@ namespace KrausRGA.UI
                     DataTemplate DtImages = CntImag.ContentTemplate;
                     StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
-                    TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row) as TextBlock;
+                    TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
 
-                    TextBlock SalesPrice = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
+                    TextBlock SalesPrice = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
 
-                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
+                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
                     //item Status.k
                     //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
                     //DataTemplate DtStatus = CntStatus.ContentTemplate;
@@ -897,7 +897,7 @@ namespace KrausRGA.UI
                         txtRetutn.Text = "0";
                     }
 
-                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text));
+                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text));
 
                     Views.clGlobal.IsScanned = 0;
                     Views.clGlobal.IsManually = 0;
@@ -1057,7 +1057,7 @@ namespace KrausRGA.UI
                 {
                     if (row.IsSelected)
                     {
-                        ContentPresenter cp = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                        ContentPresenter cp = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                         DataTemplate Dt = cp.ContentTemplate;
                         TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid", cp);
                         TextBlock txtRCount = (TextBlock)Dt.FindName("txtCheckedCount", cp);
@@ -1922,14 +1922,14 @@ namespace KrausRGA.UI
                     Button btnGreen = SpButtons.FindName("btnGreen") as Button;
                     DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
 
-                    ContentPresenter Cntskustatus = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
+                    ContentPresenter Cntskustatus = dgPackageInfo.Columns[7].GetCellContent(row) as ContentPresenter;
                     DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
                     TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
 
                     TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
 
 
-                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
@@ -1983,13 +1983,13 @@ namespace KrausRGA.UI
                     Button btnGreen = SpButtons.FindName("btnGreen") as Button;
                     DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
 
-                    ContentPresenter Cntskustatus = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
+                    ContentPresenter Cntskustatus = dgPackageInfo.Columns[7].GetCellContent(row) as ContentPresenter;
                     DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
                     TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
 
                     TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
                     
-                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
@@ -2135,7 +2135,7 @@ namespace KrausRGA.UI
                 {
                     if (row.IsSelected)
                     {
-                        ContentPresenter cp = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
+                        ContentPresenter cp = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
                         DataTemplate Dt = cp.ContentTemplate;
                         StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
                         spRowImages = spProductIMages;
@@ -2379,7 +2379,7 @@ namespace KrausRGA.UI
                         TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(item) as TextBlock;
                         SelectedskuName = SkuNumber.Text;
 
-                        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(item) as ContentPresenter;
+                        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(item) as ContentPresenter;
                         DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                         TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
                         ItemQuantity = txtRetutn2.Text;
@@ -2604,7 +2604,7 @@ namespace KrausRGA.UI
                         TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(item) as TextBlock;
                         SelectedskuName = SkuNumber.Text;
 
-                        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(item) as ContentPresenter;
+                        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(item) as ContentPresenter;
                         DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                         TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
                         ItemQuantity = txtRetutn2.Text;
@@ -3133,7 +3133,7 @@ namespace KrausRGA.UI
                                     RMAInfo ls = new RMAInfo();
                                     TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
-                                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+                                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
@@ -3144,7 +3144,7 @@ namespace KrausRGA.UI
                                         txtRetutn1.Text = "0";
                                     }
 
-                                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
@@ -3153,9 +3153,9 @@ namespace KrausRGA.UI
                                         txtRetutn2.Text = "0";
                                     }
 
-                                    TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
+                                    TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
-                                    TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+                                    TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                                     ls.SKUNumber = SkuNumber1.Text;
                                     ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
@@ -3225,7 +3225,7 @@ namespace KrausRGA.UI
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
                             string sku = _mponumber.GetENACodeByItem(SkuNumber1.Text);
-                            TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+                            TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
                             ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
@@ -3236,7 +3236,7 @@ namespace KrausRGA.UI
                                 txtRetutn1.Text = "0";
                             }
 
-                            ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                            ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                             TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
@@ -3245,9 +3245,9 @@ namespace KrausRGA.UI
                                 txtRetutn2.Text = "0";
                             }
 
-                            TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
+                            TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
-                            TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+                            TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                             ls.SKUNumber = SkuNumber1.Text;
                             ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
@@ -3357,9 +3357,9 @@ namespace KrausRGA.UI
                         DataTemplate DtQty = CntQuantity.ContentTemplate;
                         TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
 
-                        TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row) as TextBlock;
+                        TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
 
-                        TextBlock SalesPrices = dgPackageInfo.Columns[8].GetCellContent(row) as TextBlock;
+                        TextBlock SalesPrices = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
 
                         string Str = txtbarcode.Text.TrimStart('0').ToString();
                         string sku = _mponumber.GetENACodeByItem(SkuNumber.Text);
@@ -3395,11 +3395,11 @@ namespace KrausRGA.UI
                                     RMAInfo ls = new RMAInfo();
                                     TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
-                                    TextBlock ProductID1 = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
+                                    TextBlock ProductID1 = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
-                                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+                                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
-                                    TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+                                    TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
@@ -3411,7 +3411,7 @@ namespace KrausRGA.UI
                                     }
 
 
-                                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
@@ -3503,20 +3503,20 @@ namespace KrausRGA.UI
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
                             string sku = _mponumber.GetENACodeByItem(SkuNumber1.Text);
-                            TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+                            TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
                             ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                             TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
-                            ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                            ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                             TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
 
-                            TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
+                            TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
-                            TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+                            TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                             ls.SKUNumber = SkuNumber1.Text;
                             ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
@@ -3658,7 +3658,7 @@ namespace KrausRGA.UI
                                     RMAInfo ls = new RMAInfo();
                                     TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
-                                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+                                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
@@ -3669,7 +3669,7 @@ namespace KrausRGA.UI
                                         txtRetutn1.Text = "0";
                                     }
 
-                                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
@@ -3678,9 +3678,9 @@ namespace KrausRGA.UI
                                         txtRetutn2.Text = "0";
                                     }
 
-                                    TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
+                                    TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
-                                    TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+                                    TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
                                     ls.SKUNumber = SkuNumber1.Text;
                                     ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
@@ -3750,7 +3750,7 @@ namespace KrausRGA.UI
                             RMAInfo ls = new RMAInfo();
                             TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
                             string sku = _mponumber.GetENACodeByItem(SkuNumber1.Text);
-                            TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+                            TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
                             ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
@@ -3761,7 +3761,7 @@ namespace KrausRGA.UI
                                 txtRetutn1.Text = "0";
                             }
 
-                            ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                            ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                             TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
@@ -3770,9 +3770,9 @@ namespace KrausRGA.UI
                                 txtRetutn2.Text = "0";
                             }
 
-                            TextBlock ProductID = dgPackageInfo.Columns[7].GetCellContent(row1) as TextBlock;
+                            TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
-                            TextBlock SalePrices = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+                            TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
 
                             ls.SKUNumber = SkuNumber1.Text;
@@ -3864,7 +3864,7 @@ namespace KrausRGA.UI
                     DataGridRow row1 = (DataGridRow)row;
                     TextBlock SKUNo = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
-                    TextBlock LineType = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
                     if (LineType.Text == "6")
                     {
@@ -3873,13 +3873,13 @@ namespace KrausRGA.UI
                         TextBlock txtproductName = (TextBlock)DtQty.FindName("tbQty", CntQuantity);
                         txtproductName.Text = "";
 
-                        ContentPresenter _contentPar = dgPackageInfo.Columns[4].GetCellContent(row1) as ContentPresenter;
+                        ContentPresenter _contentPar = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                         DataTemplate _dataTemplate = _contentPar.ContentTemplate;
                         Image _imgBarcode = (Image)_dataTemplate.FindName("imgBarCode", _contentPar);
                         // TextBlock txtComboNumber = (TextBlock)_dataTemplate.FindName("txtGroupID", _contentPar);
                         _imgBarcode.Visibility = Visibility.Hidden;
 
-                        ContentPresenter CntSequence = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                        ContentPresenter CntSequence = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                         DataTemplate DtQty2 = CntSequence.ContentTemplate;
                         TextBlock txtproductName2 = (TextBlock)DtQty2.FindName("tbDQyt", CntSequence);
 
@@ -3911,7 +3911,7 @@ namespace KrausRGA.UI
                     if (UPC_Code == null) UPC_Code = "00000000000";
 
                     //clGlobal.call.SKUnameToUPCCode(SKUNo.Text.ToString());
-                    ContentPresenter sp = dgPackageInfo.Columns[4].GetCellContent(row1) as ContentPresenter;
+                    ContentPresenter sp = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
                     DataTemplate myDataTemplate = sp.ContentTemplate;
                     Image ImgbarcodSet = (Image)myDataTemplate.FindName("imgBarCode", sp);
                     System.Drawing.Image Barcodeimg = null;
@@ -3988,12 +3988,12 @@ namespace KrausRGA.UI
                 DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                 TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
-                ContentPresenter CntQuantity = dgPackageInfo.Columns[5].GetCellContent(row1) as ContentPresenter;
+                ContentPresenter CntQuantity = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                 DataTemplate DtQty = CntQuantity.ContentTemplate;
                 TextBlock txtRetutn = (TextBlock)DtQty.FindName("tbDQyt", CntQuantity);
 
 
-                ContentPresenter CntSkuStatus = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
+                ContentPresenter CntSkuStatus = dgPackageInfo.Columns[7].GetCellContent(row1) as ContentPresenter;
                 DataTemplate DtSKuStatus = CntSkuStatus.ContentTemplate;
                 TextBlock txtSkuStatus = (TextBlock)DtSKuStatus.FindName("tbskustatus", CntSkuStatus);
 
@@ -4064,10 +4064,12 @@ namespace KrausRGA.UI
 
                                         Image img = new Image();
                                         //Zoom image.
-                                        img.MouseEnter += img_MouseEnter;
+                                       // img.MouseEnter += img_MouseEnter;
 
-                                        img.Height = 62;
-                                        img.Width = 74;
+                                        img.MouseDown += img_MouseDown;
+
+                                        img.Height = 50;
+                                        img.Width = 50;
                                         img.Stretch = Stretch.Fill;
                                         if (Imgitem.SKUImagePath.Contains("SR"))
                                         {
@@ -4142,6 +4144,148 @@ namespace KrausRGA.UI
         private void txtskuReasons_KeyDown_1(object sender, KeyEventArgs e)
         {
             cmbSkuReasons.SelectedIndex = 0;
+        }
+
+        private void AddImage_Click_1(object sender, RoutedEventArgs e)
+        {
+            ContentControl cnt = (ContentControl)sender;
+            DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+            //StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+
+            ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
+            DataTemplate DtImages = CntImag.ContentTemplate;
+
+            StackPanel spRowImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+            if (GreenRowsNumber1.Contains(row.GetIndex()))
+            {
+                MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    try
+                    {
+                        //Show Camera.
+                        Barcode.Camera.Open();
+                        foreach (String Nameitem in Views.clGlobal.lsImageList)
+                        {
+                            try
+                            {
+                                string path = "C:\\Images\\";
+
+                                BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+
+                                Image img = new Image();
+                                //Zoom image.
+                                // img.MouseEnter += img_MouseEnter;
+
+                                img.MouseDown += img_MouseDown;
+
+                                img.Height = 50;
+                                img.Width = 50;
+                                img.Stretch = Stretch.Fill;
+                                img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+                                img.Source = bs;
+                                img.Margin = new Thickness(0.5);
+
+                                //Images added to the Row.
+                                _addToStackPanel(spRowImages, img);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+
+                }
+                else if (result == MessageBoxResult.No)
+                {
+
+                    //ContentControl cnt1 = (ContentControl)sender;
+                    //DataGridRow row1 = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+                    //StackPanel spRowImages1 = cnt1.FindName("spProductImages") as StackPanel;
+
+                    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+
+                    // Set filter for file extension and default file extension 
+                    dlg.DefaultExt = ".png";
+                    dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+
+
+                    // Display OpenFileDialog by calling ShowDialog method 
+                    Nullable<bool> result1 = dlg.ShowDialog();
+
+
+                    // Get the selected file name and display in a TextBox 
+                    if (result1 == true)
+                    {
+                        // Open document 
+                        string filename = dlg.FileName;
+
+                        string originalfilename = dlg.SafeFileName.Replace("-", "");
+
+                        string finalfilename = originalfilename.Replace("_", "");
+
+                        string ImageName = finalfilename.Replace("%", "");
+
+                        string HashName = ImageName.Replace("#", "");
+
+                        string AName = HashName.Replace("@", "");
+
+                        // textBox1.Text = filename;
+                        //string path = "C:\\Images\\";
+
+                        BitmapSource bs = new BitmapImage(new Uri(filename));
+
+                        Image img = new Image();
+                        //Zoom image.
+                        // img.MouseEnter += img_MouseEnter;
+
+                        img.MouseDown += img_MouseDown;
+
+                        img.Height = 50;
+                        img.Width = 50;
+                        img.Stretch = Stretch.Fill;
+                        img.Name = AName.ToString().Split(new char[] { '.' })[0];
+                        img.Source = bs;
+                        img.Margin = new Thickness(0.5);
+
+                        //Images added to the Row.
+                        _addToStackPanel(spRowImages, img);
+
+                    }
+                }
+                else
+                {
+                    // Cancel code here
+                }
+
+
+
+            }
+            else
+            {
+                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            }
+        }
+
+        void img_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            clGlobal.Zoomimages = (Image)sender;
+
+            wndZoomImageWindow zoom = new wndZoomImageWindow();
+            zoom.ShowDialog();
+            //throw new NotImplementedException();
         }
 
         //void FBCode_PropertyChanged1(object sender, System.ComponentModel.PropertyChangedEventArgs e)

@@ -58,22 +58,28 @@
                         <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding RMANumber}" 
         										Header="SR Number"  
-        										Width="160" 
+        										Width="130" 
         										IsReadOnly="True" />
 
                         <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding PONumber}" 
         										Header="PO Number"  
-        										Width="160" 
+        										Width="140" 
         										IsReadOnly="True" />
 
                         <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding ReturnDate, StringFormat=\{0:MM/dd/yyyy \}}" 
         										Header="Return Date"  
-        										Width="160" 
+        										Width="140" 
         										IsReadOnly="True" />
-                        
-                        <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding CreatedDate, StringFormat=\{0:MM/dd/yyyy \}}" 
+        										Header="Processed Date"  
+        										Width="150" 
+        										IsReadOnly="True" />
+
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding VendoeName}" 
         										Header="Vendor Name"  
         										Width="160" 

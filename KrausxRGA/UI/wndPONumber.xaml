@@ -204,7 +204,7 @@
 
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"
         										Header="Images" 
-        										Width="150" >
+        										Width="140" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <ScrollViewer x:Name="svScrollImages" Width="150" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" Height="70">
@@ -215,22 +215,20 @@
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Header="Add"
+        										Width="50">
 
-                                            <!--<DataGridTemplateColumn Header="Reasons" 
-        										HeaderStyle="{StaticResource HeaderStyleKey}"
-        										Width="50" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
-                                                            <Canvas x:Name="cvItemReasons" >
-                                                                <TextBlock x:Name="txtCheckedCount" Text="" Margin="0,0,0,0" Height="120" Width="200" />
-                                                                <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
-                                                            </Canvas>
-                                                        </ContentControl>
+                                                        <StackPanel x:Name="spQty1" Width="40">
+                                                            <Button x:Name="AddImage" Content="Add" Height="40" Width="40" Click="AddImage_Click_1"></Button>
+                                                        </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>-->
-                                            <DataGridTemplateColumn Header="Bar Code" Width="290" >
+                                            </DataGridTemplateColumn>
+
+                                            <DataGridTemplateColumn Header="Bar Code" Width="260" >
                                                 <DataGridTemplateColumn.HeaderStyle>
                                                     <Style TargetType="{x:Type DataGridColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -246,11 +244,11 @@
                                             </DataGridTemplateColumn>
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Header=""
-        										Width="60">
+        										Width="50">
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel x:Name="spDQyt" Width="60">
+                                                        <StackPanel x:Name="spDQyt" Width="50">
                                                             <TextBlock x:Name="tbDQyt" TextAlignment="Center" Width="60" Text="{Binding SKU_Sequence}" FontSize="20" FontWeight="Bold"/>
                                                         </StackPanel>
                                                     </DataTemplate>
