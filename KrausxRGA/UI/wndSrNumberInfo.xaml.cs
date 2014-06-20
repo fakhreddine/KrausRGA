@@ -192,7 +192,7 @@ namespace KrausRGA.UI
 
                 lblExpirationDate.Content = _mUpdate._ReturnTbl.ExpirationDate; //TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(60), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString("MMM dd, yyyy");
 
-                this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _mUpdate._lsReturnDetails; }));
+                this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _mUpdate._lsReturnDetails.OrderBy(x => x.SKU_Sequence); }));
 
 
 
@@ -329,7 +329,7 @@ namespace KrausRGA.UI
                 txtcalltag.Text = _lsRMAInfo[0].CallTag;
 
                 lblExpirationDate.Content = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(60), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString("MMM dd, yyyy");
-                this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo; }));  //dgPackageInfo.ItemsSource = _lsRMAInfo;
+                this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo.OrderBy(x => x.SKU_Sequence); }));  //dgPackageInfo.ItemsSource = _lsRMAInfo;
 
                 if (_lsRMAInfo[0].VendorNumber.ToString() == "GENC0001" || _lsRMAInfo[0].VendorNumber.ToString() == "DOMC0404" || _lsRMAInfo[0].VendorNumber.ToString() == "INTC0017" || _lsRMAInfo[0].VendorNumber.ToString() == "DOMC0551" || _lsRMAInfo[0].VendorNumber.ToString() == "DOMC0795")
                 {
@@ -1771,10 +1771,19 @@ namespace KrausRGA.UI
 
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
-            wndBoxInformation boxinfo = new wndBoxInformation();
-            clGlobal.IsUserlogged = true;
-            boxinfo.Show();
-            this.Close();
+            if (clGlobal.Redirect == "Processed")
+            {
+                wndProcessedReturn processed = new wndProcessedReturn();
+                processed.Show();
+                this.Close();
+            }
+            else
+            {
+                wndBoxInformation boxinfo = new wndBoxInformation();
+                clGlobal.IsUserlogged = true;
+                boxinfo.Show();
+                this.Close();
+            }
         }
 
         private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
@@ -3608,6 +3617,15 @@ namespace KrausRGA.UI
 
             }
             itemnew = false;
+            btnInstalledNo.IsEnabled = false;
+            btnInstalledYes.IsEnabled = false;
+            btnStatusNo.IsEnabled = false;
+            btnStatusYes.IsEnabled = false;
+
+            btnInstalledNo.IsChecked = false;
+            btnInstalledYes.IsChecked = false;
+            btnStatusNo.IsChecked = false;
+            btnStatusYes.IsChecked = false;
         }
 
         private void btnBoxNotNew_Checked_1(object sender, RoutedEventArgs e)
@@ -3625,6 +3643,10 @@ namespace KrausRGA.UI
                 Views.clGlobal.SKU_Staus = "Deny";
             }
             itemnew = true;
+            btnInstalledNo.IsEnabled = true;
+            btnInstalledYes.IsEnabled = true;
+            btnStatusNo.IsEnabled = true;
+            btnStatusYes.IsEnabled = true;
         }
         Boolean IsDefectiveTransite = true;
         private void btntransiteYes_Checked_1(object sender, RoutedEventArgs e)
@@ -3815,10 +3837,17 @@ namespace KrausRGA.UI
 
                         string AName = HashName.Replace("@", "");
 
-                        // textBox1.Text = filename;
-                        //string path = "C:\\Images\\";
+                        Barcode.Camera.CopytoNetwork(AName);
 
-                        BitmapSource bs = new BitmapImage(new Uri(filename));
+                        // textBox1.Text = filename;
+                        string path = "C:\\Images\\";
+
+
+                        File.Copy(filename, path + "\\" + AName, true);
+
+                        Barcode.Camera.CopytoNetwork(AName);
+
+                        BitmapSource bs = new BitmapImage(new Uri(path + AName));
 
                         Image img = new Image();
                         //Zoom image.

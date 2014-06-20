@@ -45,6 +45,8 @@ namespace KrausRGA.UI
             var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
 
             dgPackageInfo.ItemsSource = sort;
+
+            clGlobal.Redirect = "";
           
 
             //var filter = (from p in cReturnTbl.GetReturnTbl()
@@ -79,6 +81,7 @@ namespace KrausRGA.UI
                         this.Dispatcher.Invoke(new Action(() =>
                         {
                             //Create new instance of window.
+                            clGlobal.Redirect = "Processed";
                             wndSrNumberInfo wndMain = new wndSrNumberInfo();
                             // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
                             //opens new window.
@@ -91,29 +94,12 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    //Views.clGlobal.Ponumber = retunbyrow.PONumber;
-                    //_mponumner.mPOnumberRMA1(Views.clGlobal.Ponumber);
-
-                    //if (Views.clGlobal.IsAlreadySaved)
-                    //{
-                    //    this.Dispatcher.Invoke(new Action(() =>
-                    //    {
-                    //        //Create new instance of window.
-                    //        wndPONumber wndMain = new wndPONumber();
-                    //        //opens new window.
-                    //        wndMain.Show();
-                    //    }));
-
-                    //    //close this screen.
-                    //    this.Close();
-                    //}
-
-
                     if (retunbyrow.OrderNumber == "N/A")
                     {
                         this.Dispatcher.Invoke(new Action(() =>
                         {
                             Views.clGlobal.IsAlreadySaved = true;
+                            clGlobal.Redirect = "Processed";
                             //Create new instance of window.
                             wndNewRMANumber wndMain = new wndNewRMANumber();
                            // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
@@ -134,6 +120,7 @@ namespace KrausRGA.UI
                             this.Dispatcher.Invoke(new Action(() =>
                             {
                                 //Create new instance of window.
+                                clGlobal.Redirect = "Processed";
                                 wndPONumber wndMain = new wndPONumber();
                                // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
                                 //opens new window.

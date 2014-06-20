@@ -529,10 +529,20 @@ namespace KrausRGA.UI
      
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
-            wndBoxInformation boxinfo = new wndBoxInformation();
-            clGlobal.IsUserlogged = true;
-            boxinfo.Show();
-            this.Close();
+            if (clGlobal.Redirect == "Processed")
+            {
+               
+                wndProcessedReturn processed = new wndProcessedReturn();
+                processed.Show();
+                this.Close();
+            }
+            else
+            {
+                wndBoxInformation boxinfo = new wndBoxInformation();
+                clGlobal.IsUserlogged = true;
+                boxinfo.Show();
+                this.Close();
+            }
         }
 
         public void FillRMAStausAndDecision()
@@ -1414,6 +1424,16 @@ namespace KrausRGA.UI
 
             }
             itemnew = false;
+            btnInstalledNo.IsEnabled = false;
+            btnInstalledYes.IsEnabled = false;
+            btnStatusNo.IsEnabled = false;
+            btnStatusYes.IsEnabled = false;
+
+            btnInstalledNo.IsChecked = false;
+            btnInstalledYes.IsChecked = false;
+            btnStatusNo.IsChecked = false;
+            btnStatusYes.IsChecked = false;
+
         }
 
         private void UncheckAllButtons()
@@ -1450,6 +1470,10 @@ namespace KrausRGA.UI
                 Views.clGlobal.SKU_Staus = "Deny";
             }
             itemnew = true;
+            btnInstalledNo.IsEnabled = true;
+            btnInstalledYes.IsEnabled = true;
+            btnStatusNo.IsEnabled = true;
+            btnStatusYes.IsEnabled = true;
         }
         Boolean IsDefectiveTransite = true;
         private void btntransiteYes_Checked_1(object sender, RoutedEventArgs e)

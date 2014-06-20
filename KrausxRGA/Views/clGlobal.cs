@@ -53,6 +53,8 @@ namespace KrausRGA.Views
 
         public static string NewRGANumber;
 
+        public static string Redirect;
+
         public static List<StatusAndPoints> statuspoints;
 
         //audit object.
