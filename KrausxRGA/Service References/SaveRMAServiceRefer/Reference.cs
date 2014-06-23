@@ -228,6 +228,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private string PONumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ProgressFlagField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string RGAROWIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -511,6 +514,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((object.ReferenceEquals(this.PONumberField, value) != true)) {
                     this.PONumberField = value;
                     this.RaisePropertyChanged("PONumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ProgressFlag {
+            get {
+                return this.ProgressFlagField;
+            }
+            set {
+                if ((this.ProgressFlagField.Equals(value) != true)) {
+                    this.ProgressFlagField = value;
+                    this.RaisePropertyChanged("ProgressFlag");
                 }
             }
         }
@@ -821,6 +837,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         private System.Guid ReturnIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ReturnLinesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ReturnQtyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -840,6 +859,9 @@ namespace KrausRGA.SaveRMAServiceRefer {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<decimal> SalesPriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> ShipmentLinesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TCLCOD_0Field;
@@ -1030,6 +1052,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ReturnLines {
+            get {
+                return this.ReturnLinesField;
+            }
+            set {
+                if ((this.ReturnLinesField.Equals(value) != true)) {
+                    this.ReturnLinesField = value;
+                    this.RaisePropertyChanged("ReturnLines");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int ReturnQty {
             get {
                 return this.ReturnQtyField;
@@ -1116,6 +1151,19 @@ namespace KrausRGA.SaveRMAServiceRefer {
                 if ((this.SalesPriceField.Equals(value) != true)) {
                     this.SalesPriceField = value;
                     this.RaisePropertyChanged("SalesPrice");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> ShipmentLines {
+            get {
+                return this.ShipmentLinesField;
+            }
+            set {
+                if ((this.ShipmentLinesField.Equals(value) != true)) {
+                    this.ShipmentLinesField = value;
+                    this.RaisePropertyChanged("ShipmentLines");
                 }
             }
         }

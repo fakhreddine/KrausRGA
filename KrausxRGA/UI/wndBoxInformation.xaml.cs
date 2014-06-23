@@ -442,6 +442,15 @@ namespace KrausRGA.UI
 
         private void btnReturn_Click_1(object sender, RoutedEventArgs e)
         {
+            clGlobal.AllReturn = "AllReturn";
+            wndProcessedReturn nRMA = new wndProcessedReturn();
+            nRMA.Show();
+            this.Close();
+        }
+
+        private void btnProcessed_Click_1(object sender, RoutedEventArgs e)
+        {
+           
             wndProcessedReturn nRMA = new wndProcessedReturn();
             nRMA.Show();
             this.Close();

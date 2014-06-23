@@ -36,8 +36,8 @@
                                             <Label x:Name="lblExpirationDate" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="427" Canvas.Top="198" Width="256" Height="33"/>
 
 
-                                            <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="127" Canvas.Left="60"/>
-                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="252" Canvas.Left="10" Canvas.Top="85" Style="{StaticResource combo}" IsReadOnly="True" IsEnabled="False"
+                                            <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="46" Width="127" Canvas.Left="60"/>
+                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="252" Canvas.Left="10" Canvas.Top="67" Style="{StaticResource combo}" IsReadOnly="True" IsEnabled="False"
         										ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -50,8 +50,9 @@
                                                 </ComboBox.Background>
                                             </ComboBox>
 
-                                            <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="139" Width="97" Canvas.Left="78"/>
-                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="252" Canvas.Left="10" Canvas.Top="170" Style="{StaticResource combo}" 
+                                            <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="115" Width="97" Canvas.Left="78"/>
+                                            <CheckBox Height="33" Width="152" Canvas.Top="185" Canvas.Left="26" Content="In Progress" FontSize="25" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
+                                            <ComboBox x:Name="cmbRMADecision" Height="45" Width="252" Canvas.Left="10" Canvas.Top="136" Style="{StaticResource combo}" 
         										ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -218,20 +219,7 @@
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
-                                            <!--<DataGridTemplateColumn Header="Reasons" 
-        										HeaderStyle="{StaticResource HeaderStyleKey}"
-        										Width="50" >
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <ContentControl x:Name="cntItemStatus" MouseLeftButtonDown="cntItemStatus_MouseLeftButtonDown" >
-                                                            <Canvas x:Name="cvItemReasons" >
-                                                                <TextBlock x:Name="txtCheckedCount" Text="" Margin="0,0,0,0" Height="120" Width="200" />
-                                                                <TextBlock x:Name="txtReasosnsGuid" Visibility="Hidden" />
-                                                            </Canvas>
-                                                        </ContentControl>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>-->
+                                   
                                             <DataGridTemplateColumn Header="Bar Code" Width="260" >
                                                 <DataGridTemplateColumn.HeaderStyle>
                                                     <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -290,6 +278,20 @@
         										Header=""  
         										Width="" 
         										IsReadOnly="True" />
+
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ShipmentLines}" 
+        										Header=""  
+        										Width="" 
+        										IsReadOnly="True" />
+
+                                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ReturnLines}" 
+        										Header=""  
+        										Width="" 
+        										IsReadOnly="True" />
+
+
                                         </DataGrid.Columns>
                                         <DataGrid.RowValidationErrorTemplate>
                                             <ControlTemplate>

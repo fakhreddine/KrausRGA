@@ -85,7 +85,14 @@
         										Width="160" 
         										IsReadOnly="True" />
 
-                    </DataGrid.Columns>
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ProgressFlag}" 
+        										Header="Progress Flag"  
+        										Width="160" 
+        										IsReadOnly="True" />
+
+
+                        </DataGrid.Columns>
                     <DataGrid.RowValidationErrorTemplate>
                         <ControlTemplate>
                             <Grid Margin="0,-2,0,-2"
@@ -106,7 +113,7 @@
             <Border>
                 <Canvas>
                     <Border Height="45" Width="803" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
-                        <TextBlock TextWrapping="Wrap" Text="Processed Return" FontSize="25" Foreground="White" Margin="308,6,273,0"/>
+                        <TextBlock TextWrapping="Wrap" Text="Processed Return" FontSize="25" Foreground="White" Margin="308,6,273,0" x:Name="txtHeadLine"/>
                     </Border>
                     <Border Height="45" Width="803" Background="#B2111111" Canvas.Top="689" Canvas.Left="-3">
                         <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="308,6,273,0"/>

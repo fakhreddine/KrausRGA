@@ -33,6 +33,9 @@ namespace KrausRGA.EntityModel
 
         public int? LineType { get; set; }
 
+        public int? ReturnLines { get; set; }
+        public int? ShipmentLines { get; set; }
+
         public String RGADROWID { get; set; }
 
         public ReturnDetail(SaveRMAServiceRefer.ReturnDetailsDTO _ReturnDetails)
@@ -64,6 +67,10 @@ namespace KrausRGA.EntityModel
 
             if (_ReturnDetails.LineType != null) this.LineType = _ReturnDetails.LineType;
 
+            if (_ReturnDetails.ShipmentLines != null) this.ShipmentLines = _ReturnDetails.ShipmentLines;
+            if (_ReturnDetails.ReturnLines != null) this.ReturnLines = _ReturnDetails.ReturnLines;
+
+
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
         public ReturnDetail(GetRMAServiceRef.ReturnDetailsDTO _ReturnDetails)
@@ -94,6 +101,9 @@ namespace KrausRGA.EntityModel
              if (_ReturnDetails.SalesPrice != null) this.SalesPrice = _ReturnDetails.SalesPrice;
 
              if (_ReturnDetails.LineType != null) this.LineType = _ReturnDetails.LineType;
+
+             if (_ReturnDetails.ShipmentLines != null) this.ShipmentLines = _ReturnDetails.ShipmentLines;
+             if (_ReturnDetails.ReturnLines != null) this.ReturnLines = _ReturnDetails.ReturnLines;
 
             this.RGADROWID = _ReturnDetails.RGADROWID;
         }
@@ -127,6 +137,9 @@ namespace KrausRGA.EntityModel
              if (_ReturnDetails.SalesPrice != null) _return.SalesPrice = _ReturnDetails.SalesPrice;
 
              if (_ReturnDetails.LineType != null) _return.LineType = _ReturnDetails.LineType;
+
+             if (_ReturnDetails.ShipmentLines != null) _return.ShipmentLines = _ReturnDetails.ShipmentLines;
+             if (_ReturnDetails.ReturnLines != null) _return.ReturnLines = _ReturnDetails.ReturnLines;
 
             _return.RGADROWID = _ReturnDetails.RGADROWID;
             return _return;

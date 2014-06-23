@@ -351,6 +351,13 @@ namespace KrausRGA.UI
                 cmbRMADecision.SelectedIndex = 1;
             }
 
+            int InProgress=0;
+
+            if (chkInProgress.IsChecked==true)
+            {
+                InProgress = 1;
+            }
+
 
             Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
             Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
@@ -407,7 +414,7 @@ namespace KrausRGA.UI
 
 
             //Save to RMA Master Table.
-            Guid ReturnTblID = _mponumber.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff,txtcalltag.Text);
+            Guid ReturnTblID = _mponumber.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff,txtcalltag.Text,InProgress);
 
             if (Views.clGlobal.IsAlreadySaved)
             {
@@ -467,6 +474,10 @@ namespace KrausRGA.UI
                     TextBlock SalesPrice = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
 
                     TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
+
+                     TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
+
+                     TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
 
                     //Returned RMA Information.
                     RMAInfo rmaInfo = _mponumber.lsRMAInformationforponumner.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text);
@@ -557,7 +568,7 @@ namespace KrausRGA.UI
                     }
 
 
-                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, 0, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Convert.ToInt16(txtRetutn.Text), ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text));
+                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, 0, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Convert.ToInt16(txtRetutn.Text), ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text),Convert.ToInt16(ShipmentLines.Text),Convert.ToInt16(ReturnLines.Text));
                     Views.clGlobal.IsScanned = 0;
                     Views.clGlobal.IsManually = 0;
 
@@ -624,6 +635,10 @@ namespace KrausRGA.UI
                     TextBlock SalesPrice = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
 
                     TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
+
+                      TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
+
+                     TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
 
                     //item Status.k
                     //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
@@ -712,7 +727,7 @@ namespace KrausRGA.UI
                        
                     }
 
-                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text));
+                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text),Convert.ToInt16(ShipmentLines.Text),Convert.ToInt16(ReturnLines.Text));
 
                     Views.clGlobal.IsScanned = 0;
                     Views.clGlobal.IsManually = 0;
@@ -817,6 +832,10 @@ namespace KrausRGA.UI
                     TextBlock SalesPrice = dgPackageInfo.Columns[9].GetCellContent(row) as TextBlock;
 
                     TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
+
+                      TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
+
+                     TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
                     //item Status.k
                     //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
                     //DataTemplate DtStatus = CntStatus.ContentTemplate;
@@ -903,7 +922,7 @@ namespace KrausRGA.UI
                         
                     }
 
-                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text));
+                    Guid ReturnDetailsID = _mponumber.SetReturnDetailTbl(Guid.NewGuid(), ReturnTblID, SkuNumber.Text, "", DeliveredQty, ExpectedQty, Convert.ToInt32(txtRetutn.Text), tck, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, Views.clGlobal.IsScanned, Views.clGlobal.IsManually, Convert.ToInt16(txtRetutn1.Text), Views.clGlobal._SKU_Qty_Seq, ProductID.Text, Convert.ToDecimal(SalesPrice.Text), Convert.ToInt16(LineType.Text),Convert.ToInt16(ShipmentLines.Text),Convert.ToInt16(ReturnLines.Text));
 
                     Views.clGlobal.IsScanned = 0;
                     Views.clGlobal.IsManually = 0;
@@ -1211,6 +1230,7 @@ namespace KrausRGA.UI
 
                     //_mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
+                    chkInProgress.IsEnabled = true;
 
                     this.Dispatcher.Invoke(new Action(() =>
                     {
@@ -1265,6 +1285,14 @@ namespace KrausRGA.UI
                         cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.Decision);
 
                         this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _mUpdate._lsReturnDetails1.OrderBy(x => x.SKU_Sequence); }));
+
+                        if (_mUpdate._ReturnTbl1.ProgressFlag==0)
+                        {
+                            chkInProgress.IsChecked = false;
+                        }
+
+
+
                         _lsRMAInfo = lsCustomeronfo;
                         _mponumber.lsRMAInformationforponumner = lsCustomeronfo;
 
@@ -1551,6 +1579,8 @@ namespace KrausRGA.UI
                     //Get the all information from datebase to the Update mode from RMA Number.
                     _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
+                    chkInProgress.IsEnabled = true;
+
                     for (int i = 0; i < _mUpdate._lsskuandpoints.Count; i++)
                     {
                         DataRow dr0 = dt.NewRow();
@@ -1598,6 +1628,12 @@ namespace KrausRGA.UI
                         cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.Decision);
 
                         dgPackageInfo.ItemsSource = _mUpdate._lsReturnDetails1.OrderBy(x => x.SKU_Sequence);
+
+                        if (_mUpdate._ReturnTbl1.ProgressFlag == 0)
+                        {
+                            chkInProgress.IsChecked = false;
+                        }
+
 
                         _lsRMAInfo = lsCustomeronfo;
                         _mponumber.lsRMAInformationforponumner = lsCustomeronfo;
@@ -2215,6 +2251,8 @@ namespace KrausRGA.UI
                 lstponumber.Visibility = Visibility.Hidden;
                 _mponumber.lsRMAInformationforponumner = lsCustomeronfo;
 
+                chkInProgress.IsEnabled = true;
+
                 _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
                 for (int i = 0; i < _mUpdate._lsskuandpoints.Count; i++)
@@ -2267,6 +2305,13 @@ namespace KrausRGA.UI
                     cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.Decision);
 
                     dgPackageInfo.ItemsSource = _mUpdate._lsReturnDetails1.OrderBy(x => x.SKU_Sequence);
+
+
+                    if (_mUpdate._ReturnTbl1.ProgressFlag == 0)
+                    {
+                        chkInProgress.IsChecked = false;
+                    }
+
                     _lsRMAInfo = lsCustomeronfo;
                     _mponumber.lsRMAInformationforponumner = lsCustomeronfo;
 
@@ -3111,7 +3156,7 @@ namespace KrausRGA.UI
         }
         int count = 0;
         int points = 0;
-        int max;
+        int max,shipmax,returnmax;
         private void txtbarcode_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && txtbarcode.Text.Trim() != "")
@@ -3167,6 +3212,10 @@ namespace KrausRGA.UI
 
                                     TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
+                                    TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row1) as TextBlock;
+
+                                    TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row1) as TextBlock;
+
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
@@ -3195,11 +3244,23 @@ namespace KrausRGA.UI
                                     ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                                     ls.ProductID = ProductID.Text;
                                     ls.LineType = Convert.ToInt16(LineType.Text);
+                                    ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                                    ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
                                     if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
                                     {
                                         if (max < Convert.ToInt16(txtRetutn2.Text))
                                         {
                                             max = Convert.ToInt16(txtRetutn2.Text);
+                                        }
+                                        if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                                        {
+                                            shipmax = Convert.ToInt16(ShipmentLines.Text);
+                                        }
+
+                                        if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                                        {
+                                            returnmax = Convert.ToInt16(ReturnLines.Text);
                                         }
                                     }
                                     _lsRMAInfo1.Add(ls);
@@ -3223,8 +3284,13 @@ namespace KrausRGA.UI
 
                                 ls1.SKU_Qty_Seq = 1;
                                 ls1.SKU_Sequence = max + 1000;
+                                ls1.ReturnLines = returnmax + 1000;
+                                ls1.ShipmentLines = shipmax + 1000;
                                 ls1.LineType = 1;
                                 max = 0;
+                                returnmax = 0;
+                                shipmax = 0;
+
 
                                 _lsRMAInfo1.Add(ls1);
                                 flag = true;
@@ -3258,6 +3324,10 @@ namespace KrausRGA.UI
                             TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
                             string sku = _mponumber.GetENACodeByItem(SkuNumber1.Text);
                             TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
+
+                            TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row1) as TextBlock;
+
+                            TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row1) as TextBlock;
 
                             ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
@@ -3294,6 +3364,15 @@ namespace KrausRGA.UI
                                 {
                                     max = Convert.ToInt16(txtRetutn2.Text);
                                 }
+                                if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                                {
+                                    shipmax = Convert.ToInt16(ShipmentLines.Text);
+                                }
+
+                                if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                                {
+                                    returnmax = Convert.ToInt16(ReturnLines.Text);
+                                }
                             }
 
                             _lsRMAInfo1.Add(ls);
@@ -3317,8 +3396,12 @@ namespace KrausRGA.UI
 
                         ls1.SKU_Qty_Seq = 1;
                         ls1.SKU_Sequence = max + 1000;
+                        ls1.ReturnLines = returnmax + 1000;
+                        ls1.ShipmentLines = shipmax + 1000;
                         ls1.LineType = 1;
                         max = 0;
+                        returnmax = 0;
+                        shipmax = 0;
 
                         _lsRMAInfo1.Add(ls1);
 
@@ -3433,6 +3516,10 @@ namespace KrausRGA.UI
 
                                     TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
+                                    TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
+
+                                    TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
+
                                     ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
                                     DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                                     TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
@@ -3452,11 +3539,17 @@ namespace KrausRGA.UI
                                         txtRetutn2.Text = "0";
                                     }
 
+
+
                                     ls.SKUNumber = SkuNumber1.Text;
                                     ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
                                     ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                                     ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                                     ls.ProductID = ProductID1.Text;
+                                    ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                                    ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
+
                                     ls.LineType = Convert.ToInt16(LineType.Text);
                                     //ls.sta
 
@@ -3466,6 +3559,17 @@ namespace KrausRGA.UI
                                         {
                                             max = Convert.ToInt16(txtRetutn2.Text);
                                         }
+
+                                        if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                                        {
+                                            shipmax = Convert.ToInt16(ShipmentLines.Text);
+                                        }
+
+                                        if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                                        {
+                                            returnmax = Convert.ToInt16(ReturnLines.Text);
+                                        }
+                                        
                                     }
 
                                     _lsRMAInfo1.Add(ls);
@@ -3487,9 +3591,14 @@ namespace KrausRGA.UI
                                 txtbarcode.Focus();
 
                                 ls1.SKU_Qty_Seq = 1;
-                                ls1.SKU_Sequence = max + 1;
+                                ls1.SKU_Sequence = max + 1000;
+                                ls1.ReturnLines = returnmax + 1000;
+                                ls1.ShipmentLines = shipmax + 1000;
+
                                 ls1.LineType = 1;
                                 max = 0;
+                                shipmax = 0;
+                                returnmax = 0;
 
                                 _lsRMAInfo1.Add(ls1);
                                 flag = true;
@@ -3550,6 +3659,10 @@ namespace KrausRGA.UI
 
                             TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
+                            TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row1) as TextBlock;
+
+                            TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row1) as TextBlock;
+
                             ls.SKUNumber = SkuNumber1.Text;
                             ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
                             ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
@@ -3562,6 +3675,16 @@ namespace KrausRGA.UI
                                 if (max < Convert.ToInt16(txtRetutn2.Text))
                                 {
                                     max = Convert.ToInt16(txtRetutn2.Text);
+                                }
+
+                                if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                                {
+                                    shipmax = Convert.ToInt16(ShipmentLines.Text);
+                                }
+
+                                if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                                {
+                                    returnmax = Convert.ToInt16(ReturnLines.Text);
                                 }
                             }
                             _lsRMAInfo1.Add(ls);
@@ -3585,11 +3708,15 @@ namespace KrausRGA.UI
 
                         ls1.SKU_Qty_Seq = 1;
                         ls1.SKU_Sequence = max + 1000;
+                        ls1.ReturnLines = returnmax + 1000;
+                        ls1.ShipmentLines = shipmax + 1000;
                         ls1.LineType = 1;
 
                         Views.clGlobal.WrongRMAFlag = "1";
 
                         max = 0;
+                        returnmax = 0;
+                        shipmax = 0;
 
                         _lsRMAInfo1.Add(ls1);
 
@@ -3714,6 +3841,10 @@ namespace KrausRGA.UI
 
                                     TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
+                                    TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
+
+                                    TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
+
                                     ls.SKUNumber = SkuNumber1.Text;
                                     ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
                                     ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
@@ -3723,6 +3854,15 @@ namespace KrausRGA.UI
                                         if (max < Convert.ToInt16(txtRetutn2.Text))
                                         {
                                             max = Convert.ToInt16(txtRetutn2.Text);
+                                        }
+                                        if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                                        {
+                                            shipmax = Convert.ToInt16(ShipmentLines.Text);
+                                        }
+
+                                        if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                                        {
+                                            returnmax = Convert.ToInt16(ReturnLines.Text);
                                         }
                                     }
                                     _lsRMAInfo1.Add(ls);
@@ -3746,8 +3886,13 @@ namespace KrausRGA.UI
 
                                 ls1.SKU_Qty_Seq = 1;
                                 ls1.SKU_Sequence = max + 1000;
+                                ls1.ReturnLines = returnmax + 1000;
+                                ls1.ShipmentLines = shipmax + 1000;
+
                                 ls1.LineType = 1;
                                 max = 0;
+                                returnmax = 0;
+                                shipmax = 0;
 
                                 _lsRMAInfo1.Add(ls1);
                                 flag = true;
@@ -3806,6 +3951,10 @@ namespace KrausRGA.UI
 
                             TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
+                            TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row1) as TextBlock;
+
+                            TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row1) as TextBlock;
+
 
                             ls.SKUNumber = SkuNumber1.Text;
                             ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
@@ -3819,6 +3968,15 @@ namespace KrausRGA.UI
                                 if (max < Convert.ToInt16(txtRetutn2.Text))
                                 {
                                     max = Convert.ToInt16(txtRetutn2.Text);
+                                }
+                                if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                                {
+                                    shipmax = Convert.ToInt16(ShipmentLines.Text);
+                                }
+
+                                if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                                {
+                                    returnmax = Convert.ToInt16(ReturnLines.Text);
                                 }
                             }
 
@@ -3843,8 +4001,12 @@ namespace KrausRGA.UI
 
                         ls1.SKU_Qty_Seq = 1;
                         ls1.SKU_Sequence = max + 1000;
+                        ls1.ReturnLines = returnmax + 1000;
+                        ls1.ShipmentLines = shipmax + 1000;
                         ls1.LineType = 1;
                         max = 0;
+                        returnmax = 0;
+                        shipmax = 0;
 
                         _lsRMAInfo1.Add(ls1);
 

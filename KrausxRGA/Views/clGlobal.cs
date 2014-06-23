@@ -23,6 +23,7 @@ namespace KrausRGA.Views
         //user Logged in or not.
         public static Boolean IsUserlogged = false;
 
+        public static string AllReturn;
 
         public static Image Zoomimages;
 

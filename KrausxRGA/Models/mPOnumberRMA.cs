@@ -130,7 +130,7 @@ namespace KrausRGA.Models
             }
             return _lsReasons;
         }
-        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff,string calltag)
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, string calltag, int InProgress)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -140,7 +140,7 @@ namespace KrausRGA.Models
                 Return TblRerutn = new Return();
 
                 TblRerutn.ReturnID = Guid.NewGuid();
-                TblRerutn.RMANumber = null;//lsNewRMA[0].RMANumber;
+                TblRerutn.RMANumber = "N/A";// null;//lsNewRMA[0].RMANumber;
                 TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
                 TblRerutn.OrderNumber = lsNewRMA[0].OrderNumber;
                 TblRerutn.PONumber = lsNewRMA[0].PONumber;
@@ -175,6 +175,8 @@ namespace KrausRGA.Models
 
                 TblRerutn.CallTag = calltag;
 
+                TblRerutn.ProgressFlag = InProgress;
+
                 
 
 
@@ -189,7 +191,7 @@ namespace KrausRGA.Models
             return _returnID;
         }
 
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int IsManually, int NewItemQty, int SKU_Qty_Seq, string ProductID, decimal SalesPrice,int LineType)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int IsManually, int NewItemQty, int SKU_Qty_Seq, string ProductID, decimal SalesPrice, int LineType, int ShipmentLines, int ReturnLines)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -223,6 +225,9 @@ namespace KrausRGA.Models
                 TblReturnDetails.ProductID = ProductID;
 
                 TblReturnDetails.LineType = LineType;
+
+                TblReturnDetails.ReturnLines = ReturnLines;
+                TblReturnDetails.ShipmentLines = ShipmentLines;
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;

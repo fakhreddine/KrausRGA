@@ -26,6 +26,7 @@
       <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PONumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProgressFlag" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="RGAROWID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RMANumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RMAStatus" nillable="true" type="xs:unsignedByte" />
@@ -88,6 +89,7 @@
       <xs:element minOccurs="0" name="RGADROWID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReturnDetailID" type="ser:guid" />
       <xs:element minOccurs="0" name="ReturnID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ReturnLines" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ReturnQty" type="xs:int" />
       <xs:element minOccurs="0" name="SKUNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SKU_Qty_Seq" type="xs:int" />
@@ -95,6 +97,7 @@
       <xs:element minOccurs="0" name="SKU_Sequence" type="xs:int" />
       <xs:element minOccurs="0" name="SKU_Status" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SalesPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ShipmentLines" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="TCLCOD_0" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UpadatedDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="UpdatedBy" type="ser:guid" />
@@ -158,11 +161,13 @@
       <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="RMANumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ReturnDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReturnLines" type="xs:int" />
       <xs:element minOccurs="0" name="ReturnedQty" type="xs:int" />
       <xs:element minOccurs="0" name="SKUNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="SKU_Qty_Seq" type="xs:int" />
       <xs:element minOccurs="0" name="SKU_Sequence" type="xs:int" />
       <xs:element minOccurs="0" name="SalesPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ShipmentLines" type="xs:int" />
       <xs:element minOccurs="0" name="ShipmentNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TCLCOD_0" nillable="true" type="xs:string" />

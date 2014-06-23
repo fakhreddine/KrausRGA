@@ -50,6 +50,8 @@ namespace KrausRGA.EntityModel
         public string CallTag { get; set; }
         public int Ready_To_Export { get; set; }
         public int Exported_in_ERP { get; set; }
+
+        public int ProgressFlag { get; set; }
         
 
         public Return()
@@ -97,6 +99,8 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.CallTag != null) this.CallTag = _ReturnDTO.CallTag;
             if (_ReturnDTO.Ready_To_Export != null) this.Ready_To_Export =(int)_ReturnDTO.Ready_To_Export;
             if (_ReturnDTO.Exported_in_ERP != null) this.Exported_in_ERP = (int)_ReturnDTO.Exported_in_ERP;
+
+            if (_ReturnDTO.ProgressFlag != null) this.ProgressFlag = (int)_ReturnDTO.ProgressFlag;
 
             
             this.RGAROWID = _ReturnDTO.RGAROWID;
@@ -147,6 +151,8 @@ namespace KrausRGA.EntityModel
             if (_ReturnDTO.Ready_To_Export != null) this.Ready_To_Export = (int)_ReturnDTO.Ready_To_Export;
             if (_ReturnDTO.Exported_in_ERP != null) this.Exported_in_ERP = (int)_ReturnDTO.Exported_in_ERP;
 
+            if (_ReturnDTO.ProgressFlag != null) this.ProgressFlag = (int)_ReturnDTO.ProgressFlag;
+
             this.RGAROWID = _ReturnDTO.RGAROWID;
         }
 
@@ -192,7 +198,7 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.Ready_To_Export != null) _return.Ready_To_Export = _ReturnTbl.Ready_To_Export;
             if (_ReturnTbl.Exported_in_ERP != null) _return.Exported_in_ERP = _ReturnTbl.Exported_in_ERP;
 
-
+            if (_ReturnTbl.ProgressFlag != null) _return.ProgressFlag = _ReturnTbl.ProgressFlag;
 
             _return.RGAROWID = _ReturnTbl.RGAROWID;
             return _return;
@@ -242,6 +248,8 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.CallTag != null) _return.CallTag = _ReturnTbl.CallTag;
             if (_ReturnTbl.Ready_To_Export != null) _return.Ready_To_Export = _ReturnTbl.Ready_To_Export;
             if (_ReturnTbl.Exported_in_ERP != null) _return.Exported_in_ERP = _ReturnTbl.Exported_in_ERP;
+
+            if (_ReturnTbl.ProgressFlag != null) _return.ProgressFlag = _ReturnTbl.ProgressFlag;
 
             _return.RGAROWID = _ReturnTbl.RGAROWID;
             return _return;

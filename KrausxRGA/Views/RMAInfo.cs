@@ -45,6 +45,9 @@ namespace KrausRGA.Views
 
         public string CallTag { get; set; }
 
+        public int? ShipmentLines { get; set; }
+        public int? ReturnLines { get; set; }
+
         public RMAInfo()
         {
 
@@ -86,6 +89,9 @@ namespace KrausRGA.Views
 
             if (_sage.LineType != null) this.LineType = _sage.LineType;
 
+            if (_sage.ReturnLines != null) this.ReturnLines = _sage.ReturnLines;
+            if (_sage.ShipmentLines != null) this.ShipmentLines = _sage.ShipmentLines;
+
         }
 
         public GetRMAServiceRef.RMAInfoDTO CopyToGetDTO(RMAInfo _sage)
@@ -124,6 +130,9 @@ namespace KrausRGA.Views
             if (_sage.LineType != null) this.LineType = _sage.LineType;
 
             if (_sage.CallTag != null) this.CallTag = (string)_sage.CallTag;
+
+            if (_sage.ReturnLines != null) this.ReturnLines = _sage.ReturnLines;
+            if (_sage.ShipmentLines != null) this.ShipmentLines = _sage.ShipmentLines;
 
             return _return;
         }

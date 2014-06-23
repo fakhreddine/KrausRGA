@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace KrausRGA.UI
 {
@@ -27,6 +28,8 @@ namespace KrausRGA.UI
         protected DBLogics.cmdReturn cReturnTbl = new DBLogics.cmdReturn();
 
         mReturnDetails _mReturn;
+
+        DispatcherTimer dtLoadUpdate;
 
         mPOnumberRMA _mponumner = new mPOnumberRMA();
         
@@ -42,16 +45,49 @@ namespace KrausRGA.UI
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
            // dgPackageInfo.ItemsSource = cReturnTbl.GetReturnTbl();
-            var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
 
-            dgPackageInfo.ItemsSource = sort;
+            if (clGlobal.AllReturn == "AllReturn")
+            {
+                        
 
-            clGlobal.Redirect = "";
+                var sort = (from so in cReturnTbl.GetReturnTbl()  select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
+
+                dgPackageInfo.ItemsSource = sort;
+
+                txtHeadLine.Text = "View All Returns";
+
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+
+               // clGlobal.AllReturn = "";
+                clGlobal.Redirect = "";
+            }
+            else
+            {
+
+                var sort = (from so in cReturnTbl.GetReturnTbl() where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+
+                dgPackageInfo.ItemsSource = sort;
+
+                clGlobal.Redirect = "";
+            }
+
+
           
 
             //var filter = (from p in cReturnTbl.GetReturnTbl()
             //              where (p.ReturnDate <= date1 && (p.ReturnDate >= date2))
             //              select p).ToList();
+        }
+
+        void dtLoadUpdate_Tick(object sender, EventArgs e)
+        {
+            dtLoadUpdate.Stop();
+            _showProgressFlag();
+
         }
 
         private void dgPackageInfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -68,7 +104,7 @@ namespace KrausRGA.UI
 
 
 
-                if (retunbyrow.RMANumber != null)
+                if (retunbyrow.RMANumber != "N/A")
                 {
                     _mReturn = new mReturnDetails(retunbyrow.RMANumber);
 
@@ -218,11 +254,30 @@ namespace KrausRGA.UI
         {
            // dtpfrom.IsEnabled = false;
            // dtpto.IsEnabled = false;
+            if (clGlobal.AllReturn == "AllReturn")
+            {
+                var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
 
+                dgPackageInfo.ItemsSource = sort;
 
-            var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+                txtHeadLine.Text = "View All Returns";
 
-            dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+
+                // clGlobal.AllReturn = "";
+                clGlobal.Redirect = "";
+            }
+            else
+            {
+
+                var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+
+                dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
+            }
         }
 
         private void rbtBetween_Checked_1(object sender, RoutedEventArgs e)
@@ -234,20 +289,102 @@ namespace KrausRGA.UI
 
         private void dtpfrom_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            var filter = (from p in cReturnTbl.GetReturnTbl()
-                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
-                          select p).OrderByDescending(y => y.RGAROWID);
 
-            dgPackageInfo.ItemsSource = filter;
+            if (clGlobal.AllReturn == "AllReturn")
+            {
+                var filter = (from p in cReturnTbl.GetReturnTbl()
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                              select p).OrderByDescending(y => y.RGAROWID);
+
+                dgPackageInfo.ItemsSource = filter;
+            }
+            else
+            {
+                var filter = (from p in cReturnTbl.GetReturnTbl()
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                              select p).OrderByDescending(y => y.RGAROWID);
+
+                dgPackageInfo.ItemsSource = filter;
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+            }
+
+
+           
         }
 
         private void dtpto_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            var filter = (from p in cReturnTbl.GetReturnTbl()
-                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
-                          select p).OrderByDescending(s => s.RGAROWID);
+            if (clGlobal.AllReturn == "AllReturn")
+            {
+                var filter = (from p in cReturnTbl.GetReturnTbl()
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                              select p).OrderByDescending(y => y.RGAROWID);
 
-            dgPackageInfo.ItemsSource = filter;
+                dgPackageInfo.ItemsSource = filter;
+            }
+            else
+            {
+                var filter = (from p in cReturnTbl.GetReturnTbl()
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                              select p).OrderByDescending(y => y.RGAROWID);
+
+                dgPackageInfo.ItemsSource = filter;
+
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+            }
         }
+
+        private void _showProgressFlag()
+        {
+            try
+            {
+                BarcodeLib.Barcode b = new BarcodeLib.Barcode();
+                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+                {
+
+                    DataGridRow row1 = (DataGridRow)row;
+                  //  TextBlock SKUNo = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+
+                    TextBlock ProgressFlag = dgPackageInfo.Columns[6].GetCellContent(row1) as TextBlock;
+
+                    if (ProgressFlag.Text == "1")
+                    {
+                       // row1.IsEnabled = false;
+                        row1.Background = Brushes.LightPink;
+                    }
+
+                
+                }
+            }
+            catch (Exception)
+            {
+                //Log the Error to the Error Log table
+                //  ErrorLoger.save("wndShipmentDetailPage - _showBarcode", "[" + DateTime.UtcNow.ToString() + "]" + Ex.ToString(), DateTime.UtcNow, Global.LoggedUserId);
+            }
+        }
+
+        public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
+        {
+            var itemsSource = grid.ItemsSource as IEnumerable;
+            if (null == itemsSource) yield return null;
+            if (itemsSource != null)
+            {
+
+                foreach (var item in itemsSource)
+                {
+                    var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                    if (null != row) yield return row;
+                }
+            }
+        }
+
     }
 }

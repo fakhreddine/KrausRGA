@@ -66,13 +66,19 @@
                                             <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="PO Number" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click" />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="231"  >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="433"  >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnReturn_Click_1"></Image>
-                                            <Button x:Name="btnReturn" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Processed Return" Margin="-1,-1,-1,1" Click="btnReturn_Click_1" />
+                                            <Button x:Name="btnReturn" Style="{StaticResource ToolBarButtonBaseStyle}" Content="View All Return" Margin="-1,-1,-1,1" Click="btnReturn_Click_1" />
                                         </StackPanel>
                                     </Border>
-                                    
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="39"  >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnReturn_Click_1"></Image>
+                                            <Button x:Name="btnProcessed" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Processed Return" Margin="-1,-1,-1,1" Click="btnProcessed_Click_1"/>
+                                        </StackPanel>
+                                    </Border>
+
                                     <Border  Style="{StaticResource bdrWin8btn}" Canvas.Left="432" Canvas.Top="139" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSetting.png" MouseDown="btnNewScan_Click"/>

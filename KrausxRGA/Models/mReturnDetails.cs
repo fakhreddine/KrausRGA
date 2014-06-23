@@ -400,7 +400,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guid RetutnID that is inserted or updated on transaction filure it return empty Guid.
         /// </returns>
-        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, DateTime ScannedDate, DateTime ExpirationDate, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff)
+        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, DateTime ScannedDate, DateTime ExpirationDate, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, int InProgress)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -442,6 +442,8 @@ namespace KrausRGA.Models
                 TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
 
                 TblRerutn.CallTag = lsRMAInformation[0].CallTag;
+
+                TblRerutn.ProgressFlag = InProgress;
 
                 TblRerutn.UpdatedDate = DateTime.Now;
 
@@ -486,7 +488,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guild new ReturnDetailID
         /// </returns>
-        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int Manually, int NewItemQty, int SKU_Qty_Seq,string ProductID,decimal SalesPrice,int LineType)
+        public Guid SetReturnDetailTbl(Guid ReturnDetailsID, Guid ReturnTblID, String SKUNumber, String ProductName, int DeliveredQty, int ExpectedQty, int ReturnQty, string TK, Guid CreatedBy, string SKU_Status, int SKU_Reason_Total_Points, int IsScanned, int Manually, int NewItemQty, int SKU_Qty_Seq, string ProductID, decimal SalesPrice, int LineType, int ShipmentLines, int ReturnLines)
         {
             Guid _ReturnID = Guid.Empty;
             try
@@ -519,6 +521,9 @@ namespace KrausRGA.Models
                 TblReturnDetails.ProductID = ProductID;
 
                 TblReturnDetails.LineType = LineType;
+
+                TblReturnDetails.ShipmentLines = ShipmentLines;
+                TblReturnDetails.ReturnLines = ReturnLines;
 
                 //On Success of transaction.
                 if (cRetutnDetailsTbl.UpsetReturnDetail(TblReturnDetails)) _ReturnID = TblReturnDetails.ReturnDetailID;
