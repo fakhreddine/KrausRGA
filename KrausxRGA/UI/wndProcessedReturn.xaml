@@ -28,8 +28,8 @@
         								BorderBrush="{x:Null}" 
         								HorizontalGridLinesBrush="#FF575757" 
         								VerticalGridLinesBrush="Gray"
-        								Height="554"  
-        								SelectedIndex="-1" Canvas.Top="122" Canvas.Left="2"  SelectionChanged="dgPackageInfo_SelectionChanged_1" MouseDoubleClick="dgPackageInfo_MouseDoubleClick"
+        								Height="476"  
+        								SelectedIndex="-1" Canvas.Top="204"  SelectionChanged="dgPackageInfo_SelectionChanged_1" MouseDoubleClick="dgPackageInfo_MouseDoubleClick" Canvas.Left="4"
                                            >
 
                     <DataGrid.Resources>
@@ -54,14 +54,23 @@
                                 </DataGridTemplateColumn.CellTemplate>
 
                             </DataGridTemplateColumn>
-                       
-                        <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ProgressFlag}" 
+        										Header="Progress Flag"  
+        										Width="160" 
+        										IsReadOnly="True" />
+
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding RMANumber}" 
         										Header="SR Number"  
         										Width="130" 
         										IsReadOnly="True" />
 
-                        <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+
+                         
+
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding PONumber}" 
         										Header="PO Number"  
         										Width="140" 
@@ -85,11 +94,6 @@
         										Width="160" 
         										IsReadOnly="True" />
 
-                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-        										Binding="{Binding ProgressFlag}" 
-        										Header="Progress Flag"  
-        										Width="160" 
-        										IsReadOnly="True" />
 
 
                         </DataGrid.Columns>
@@ -199,13 +203,30 @@
                             </ControlTemplate>
                         </DataGrid.RowValidationErrorTemplate>
                     </DataGrid>
-                    <RadioButton Content="All" FontSize="25" Canvas.Left="32" Canvas.Top="72" x:Name="rbtAll" IsChecked="True" Checked="rbtAll_Checked_1" />
-                    <RadioButton Content="Between Date" FontSize="25" Canvas.Left="114" Canvas.Top="72" x:Name="rbtBetween" Checked="rbtBetween_Checked_1" />
-                    <Label Height="39" Width="67" Canvas.Left="312" Canvas.Top="68" Content="From" FontSize="25" />
 
-                    <DatePicker Canvas.Top="78" Canvas.Left="386" Width="159" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpfrom" IsEnabled="False" SelectedDateChanged="dtpfrom_SelectedDateChanged" />
-                    <Label Height="43" Width="37" Canvas.Left="550" Canvas.Top="68" Content="To" FontSize="25" />
-                    <DatePicker Canvas.Top="78" Canvas.Left="594" Width="171" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpto" IsEnabled="False" SelectedDateChanged="dtpto_SelectedDateChanged" />
+                    <ComboBox Canvas.Left="121" Canvas.Top="108" Width="200" Height="45" x:Name="cmbSearchBy" BorderBrush="Black" FontSize="20" SelectionChanged="cmbSearchBy_SelectionChanged_1" >
+                        <ComboBoxItem Name="clear" FontSize="20">All-Clear Search</ComboBoxItem>
+                        <ComboBoxItem Name="rganumber" FontSize="20">RGA Number</ComboBoxItem>
+                        <ComboBoxItem Name="SRnumber" FontSize="20" >SR Number</ComboBoxItem>
+                        <ComboBoxItem Name="Ponumber" FontSize="20">PO Number</ComboBoxItem>
+                        <ComboBoxItem Name="BetweenDate" FontSize="20">Between Date</ComboBoxItem>
+                       
+                    </ComboBox>
+
+                    <TextBox Width="319" Canvas.Left="408" Canvas.Top="110" Height="45" x:Name="txtsearch" BorderBrush="Black" KeyDown="txtsearch_KeyDown" TextChanged="txtsearch_TextChanged_1" FontSize="20" Visibility="Hidden"/>
+                    
+                    <ListBox Height="155" Width="319" Canvas.Left="408" Canvas.Top="155" x:Name="lstSearch" FontSize="20" Visibility="Hidden" SelectionChanged="lstSearch_SelectionChanged_1"/>
+                    <!--<RadioButton Content="All" FontSize="25" Canvas.Left="32" Canvas.Top="72" x:Name="rbtAll" IsChecked="True" Checked="rbtAll_Checked_1" Visibility="Hidden" />
+                    <RadioButton Content="Between Date" FontSize="25" Canvas.Left="114" Canvas.Top="72" x:Name="rbtBetween" Checked="rbtBetween_Checked_1" Visibility="Hidden"/>-->
+                    <Canvas x:Name="canvasdate" Visibility="Hidden" Canvas.Top="44">
+                    
+                    <Label Height="39" Width="67" Canvas.Left="334" Canvas.Top="68" Content="From" FontSize="25" />
+                    <DatePicker Canvas.Top="78" Canvas.Left="408" Width="159" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpfrom" IsEnabled="True" SelectedDateChanged="dtpfrom_SelectedDateChanged" />
+                    <Label Height="43" Width="37" Canvas.Left="574" Canvas.Top="68" Content="To" FontSize="25" />
+                    <DatePicker Canvas.Top="78" Canvas.Left="618" Width="171" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpto" IsEnabled="True" SelectedDateChanged="dtpto_SelectedDateChanged" />
+
+                    </Canvas>
+
                     <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="1218" Height="56" Width="218" Canvas.Left="6" >
                         <StackPanel Orientation="Horizontal">
                             <Image Style="{StaticResource btnImage}"  MouseDown="btnback_Click" Source="/KrausRGA;component/Images/bac.png" Width="36"/>
@@ -215,6 +236,7 @@
                                     			Click="btnback_Click"  Width="179"  />
                         </StackPanel>
                     </Border>
+                    <Label Height="51" Width="122" Canvas.Top="102" Content="Search By" FontSize="25" Canvas.Left="-2" />
 
                 </Canvas>
             </Border>

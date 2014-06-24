@@ -450,7 +450,7 @@ namespace KrausRGA.UI
 
         private void btnProcessed_Click_1(object sender, RoutedEventArgs e)
         {
-           
+            clGlobal.AllReturn = "";
             wndProcessedReturn nRMA = new wndProcessedReturn();
             nRMA.Show();
             this.Close();

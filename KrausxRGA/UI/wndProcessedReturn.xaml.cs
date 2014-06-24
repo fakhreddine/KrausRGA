@@ -250,42 +250,44 @@ namespace KrausRGA.UI
             this.Close();
         }
 
-        private void rbtAll_Checked_1(object sender, RoutedEventArgs e)
-        {
-           // dtpfrom.IsEnabled = false;
-           // dtpto.IsEnabled = false;
-            if (clGlobal.AllReturn == "AllReturn")
-            {
-                var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
+        //private void rbtAll_Checked_1(object sender, RoutedEventArgs e)
+        //{
+        //   // dtpfrom.IsEnabled = false;
+        //   // dtpto.IsEnabled = false;
+        //    if (clGlobal.AllReturn == "AllReturn")
+        //    {
+        //        var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
 
-                dgPackageInfo.ItemsSource = sort;
+        //        dgPackageInfo.ItemsSource = sort;
 
-                txtHeadLine.Text = "View All Returns";
+        //        txtHeadLine.Text = "View All Returns";
 
-                dtLoadUpdate = new DispatcherTimer();
-                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
-                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
-                //start the dispacher.
-                dtLoadUpdate.Start();
+        //        dtLoadUpdate = new DispatcherTimer();
+        //        dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+        //        dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+        //        //start the dispacher.
+        //        dtLoadUpdate.Start();
 
-                // clGlobal.AllReturn = "";
-                clGlobal.Redirect = "";
-            }
-            else
-            {
+        //        // clGlobal.AllReturn = "";
+        //        clGlobal.Redirect = "";
+        //    }
+        //    else
+        //    {
 
-                var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+        //        var sort = (from so in cReturnTbl.GetReturnTbl() where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
 
-                dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
-            }
-        }
+        //        dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
 
-        private void rbtBetween_Checked_1(object sender, RoutedEventArgs e)
-        {
-            dtpfrom.IsEnabled = true;
-            dtpto.IsEnabled = true;
+              
+        //    }
+        //}
 
-        }
+        //private void rbtBetween_Checked_1(object sender, RoutedEventArgs e)
+        //{
+        //    dtpfrom.IsEnabled = true;
+        //    dtpto.IsEnabled = true;
+
+        //}
 
         private void dtpfrom_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -293,23 +295,25 @@ namespace KrausRGA.UI
             if (clGlobal.AllReturn == "AllReturn")
             {
                 var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) )
                               select p).OrderByDescending(y => y.RGAROWID);
 
                 dgPackageInfo.ItemsSource = filter;
-            }
-            else
-            {
-                var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
-                              select p).OrderByDescending(y => y.RGAROWID);
 
-                dgPackageInfo.ItemsSource = filter;
+               
                 dtLoadUpdate = new DispatcherTimer();
                 dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
                 dtLoadUpdate.Tick += dtLoadUpdate_Tick;
                 //start the dispacher.
                 dtLoadUpdate.Start();
+            }
+            else
+            {
+                var filter = (from p in cReturnTbl.GetReturnTbl()
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                              select p).OrderByDescending(y => y.RGAROWID);
+
+                dgPackageInfo.ItemsSource = filter;
             }
 
 
@@ -321,15 +325,7 @@ namespace KrausRGA.UI
             if (clGlobal.AllReturn == "AllReturn")
             {
                 var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
-                              select p).OrderByDescending(y => y.RGAROWID);
-
-                dgPackageInfo.ItemsSource = filter;
-            }
-            else
-            {
-                var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) )
                               select p).OrderByDescending(y => y.RGAROWID);
 
                 dgPackageInfo.ItemsSource = filter;
@@ -339,6 +335,16 @@ namespace KrausRGA.UI
                 dtLoadUpdate.Tick += dtLoadUpdate_Tick;
                 //start the dispacher.
                 dtLoadUpdate.Start();
+            }
+            else
+            {
+                var filter = (from p in cReturnTbl.GetReturnTbl()
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                              select p).OrderByDescending(y => y.RGAROWID);
+
+                dgPackageInfo.ItemsSource = filter;
+
+             
             }
         }
 
@@ -353,7 +359,7 @@ namespace KrausRGA.UI
                     DataGridRow row1 = (DataGridRow)row;
                   //  TextBlock SKUNo = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
-                    TextBlock ProgressFlag = dgPackageInfo.Columns[6].GetCellContent(row1) as TextBlock;
+                    TextBlock ProgressFlag = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
                     if (ProgressFlag.Text == "1")
                     {
@@ -382,6 +388,448 @@ namespace KrausRGA.UI
                 {
                     var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
                     if (null != row) yield return row;
+                }
+            }
+        }
+
+        private void txtsearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (cmbSearchBy.SelectedIndex == 1)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                                      where p.RGAROWID == txtsearch.Text
+                                      select p).OrderByDescending(y => y.RGAROWID);
+
+                        if (!filter.Any())
+                        {
+                            MessageBox.Show("RGA Number Not Found!");
+                            txtsearch.Text = "";
+
+                        }
+                        else
+                        {
+
+                            dgPackageInfo.ItemsSource = filter;
+                            txtsearch.Text = "";
+                            dtLoadUpdate = new DispatcherTimer();
+                            dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                            dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                            //start the dispacher.
+                            dtLoadUpdate.Start();
+                        }
+                    }
+                    else
+                    {
+
+                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                                      where p.ProgressFlag == 1 && p.RGAROWID == txtsearch.Text
+                                      select p).OrderByDescending(y => y.RGAROWID);
+                        if (!filter.Any())
+                        {
+                            MessageBox.Show("RGA Number Not Found!");
+                            txtsearch.Text = "";
+                        }
+                        else
+                        {
+                            dgPackageInfo.ItemsSource = filter;
+                            txtsearch.Text = "";
+                        }
+
+                    }
+                }
+
+                if (cmbSearchBy.SelectedIndex == 2)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                                      where p.RMANumber == txtsearch.Text
+                                      select p).OrderByDescending(y => y.RGAROWID);
+
+                        if (!filter.Any())
+                        {
+                            MessageBox.Show("SR Number Not Found!");
+                            txtsearch.Text = "";
+                        }
+                        else
+                        {
+
+                            dgPackageInfo.ItemsSource = filter;
+                            txtsearch.Text = "";
+
+                            dtLoadUpdate = new DispatcherTimer();
+                            dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                            dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                            //start the dispacher.
+                            dtLoadUpdate.Start();
+                        }
+                    }
+                    else
+                    {
+                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                                      where p.ProgressFlag == 1 && p.RMANumber == txtsearch.Text
+                                      select p).OrderByDescending(y => y.RGAROWID);
+                        if (!filter.Any())
+                        {
+                            MessageBox.Show("SR Number Not Found!");
+                            txtsearch.Text = "";
+                        }
+                        else
+                        {
+
+                            dgPackageInfo.ItemsSource = filter;
+                            txtsearch.Text = "";
+                        }
+
+                    }
+                }
+                if (cmbSearchBy.SelectedIndex == 3)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                                      where p.PONumber == txtsearch.Text
+                                      select p).OrderByDescending(y => y.RGAROWID);
+
+                        if (!filter.Any())
+                        {
+                            MessageBox.Show("PO Number Not Found!");
+                            txtsearch.Text = "";
+                        }
+                        else
+                        {
+
+                            dgPackageInfo.ItemsSource = filter;
+                            txtsearch.Text = "";
+
+                            dtLoadUpdate = new DispatcherTimer();
+                            dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                            dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                            //start the dispacher.
+                            dtLoadUpdate.Start();
+                        }
+                    }
+                    else
+                    {
+                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                                      where p.ProgressFlag == 1 && p.PONumber == txtsearch.Text
+                                      select p).OrderByDescending(y => y.RGAROWID);
+                        if (!filter.Any())
+                        {
+                            MessageBox.Show("PO Number Not Found!");
+                            txtsearch.Text = "";
+                        }
+                        else
+                        {
+
+                            dgPackageInfo.ItemsSource = filter;
+                            txtsearch.Text = "";
+                        }
+
+                    }
+                }
+            }
+
+          
+        }
+
+        private void cmbSearchBy_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbSearchBy.SelectedIndex == 0)
+            {
+                canvasdate.Visibility = Visibility.Hidden;
+                txtsearch.Visibility = Visibility.Hidden;
+
+                txtsearch.Text = "";
+                if (clGlobal.AllReturn == "AllReturn")
+                {
+                    var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
+
+                    dgPackageInfo.ItemsSource = sort;
+
+                    txtHeadLine.Text = "View All Returns";
+
+                    dtLoadUpdate = new DispatcherTimer();
+                    dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                    dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                    //start the dispacher.
+                    dtLoadUpdate.Start();
+
+                    // clGlobal.AllReturn = "";
+                    clGlobal.Redirect = "";
+                }
+                else
+                {
+
+                    var sort = (from so in cReturnTbl.GetReturnTbl() where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+
+                    dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
+
+
+                }
+            }
+                if (cmbSearchBy.SelectedIndex == 1)
+                {
+                    canvasdate.Visibility = Visibility.Hidden;
+                    txtsearch.Visibility = Visibility.Visible;
+                }
+
+                if (cmbSearchBy.SelectedIndex == 2)
+                {
+                     canvasdate.Visibility = Visibility.Hidden;
+                     txtsearch.Visibility = Visibility.Visible;
+                }
+
+
+                if (cmbSearchBy.SelectedIndex == 3)
+                {
+                    canvasdate.Visibility = Visibility.Hidden;
+                    txtsearch.Visibility = Visibility.Visible;
+                }
+
+                if (cmbSearchBy.SelectedIndex == 4)
+                {
+                    canvasdate.Visibility = Visibility.Visible;
+                    txtsearch.Visibility = Visibility.Hidden;
+                }
+
+            
+        }
+
+        private void lstSearch_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            txtsearch.Text = lstSearch.SelectedItem.ToString();
+            lstSearch.Visibility = Visibility.Hidden;
+            if (cmbSearchBy.SelectedIndex == 1)
+            {
+              
+                if (clGlobal.AllReturn == "AllReturn")
+                {
+                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                                  where p.RGAROWID == txtsearch.Text
+                                  select p).OrderByDescending(y => y.RGAROWID);
+
+                    if (!filter.Any())
+                    {
+                        MessageBox.Show("RGA Number Not Found!");
+                        txtsearch.Text = "";
+
+                    }
+                    else
+                    {
+
+                        dgPackageInfo.ItemsSource = filter;
+                        txtsearch.Text = "";
+                        dtLoadUpdate = new DispatcherTimer();
+                        dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                        dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                        //start the dispacher.
+                        dtLoadUpdate.Start();
+                    }
+                }
+                else
+                {
+
+                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                                  where p.ProgressFlag == 1 && p.RGAROWID == txtsearch.Text
+                                  select p).OrderByDescending(y => y.RGAROWID);
+                    if (!filter.Any())
+                    {
+                        MessageBox.Show("RGA Number Not Found!");
+                        txtsearch.Text = "";
+                    }
+                    else
+                    {
+                        dgPackageInfo.ItemsSource = filter;
+                        txtsearch.Text = "";
+                    }
+
+                }
+            }
+
+            if (cmbSearchBy.SelectedIndex == 2)
+            {
+             
+                if (clGlobal.AllReturn == "AllReturn")
+                {
+                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                                  where p.RMANumber == txtsearch.Text
+                                  select p).OrderByDescending(y => y.RGAROWID);
+
+                    if (!filter.Any())
+                    {
+                        MessageBox.Show("SR Number Not Found!");
+                        txtsearch.Text = "";
+                    }
+                    else
+                    {
+
+                        dgPackageInfo.ItemsSource = filter;
+                        txtsearch.Text = "";
+
+                        dtLoadUpdate = new DispatcherTimer();
+                        dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                        dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                        //start the dispacher.
+                        dtLoadUpdate.Start();
+                    }
+                }
+                else
+                {
+                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                                  where p.ProgressFlag == 1 && p.RMANumber == txtsearch.Text
+                                  select p).OrderByDescending(y => y.RGAROWID);
+                    if (!filter.Any())
+                    {
+                        MessageBox.Show("SR Number Not Found!");
+                        txtsearch.Text = "";
+                    }
+                    else
+                    {
+
+                        dgPackageInfo.ItemsSource = filter;
+                        txtsearch.Text = "";
+                    }
+
+                }
+            }
+            if (cmbSearchBy.SelectedIndex == 3)
+            {
+               
+
+                if (clGlobal.AllReturn == "AllReturn")
+                {
+                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                                  where p.PONumber == txtsearch.Text
+                                  select p).OrderByDescending(y => y.RGAROWID);
+
+                    if (!filter.Any())
+                    {
+                        MessageBox.Show("PO Number Not Found!");
+                        txtsearch.Text = "";
+                    }
+                    else
+                    {
+
+                        dgPackageInfo.ItemsSource = filter;
+                        txtsearch.Text = "";
+
+                        dtLoadUpdate = new DispatcherTimer();
+                        dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                        dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                        //start the dispacher.
+                        dtLoadUpdate.Start();
+                    }
+                }
+                else
+                {
+                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                                  where p.ProgressFlag == 1 && p.PONumber == txtsearch.Text
+                                  select p).OrderByDescending(y => y.RGAROWID);
+                    if (!filter.Any())
+                    {
+                        MessageBox.Show("PO Number Not Found!");
+                        txtsearch.Text = "";
+                    }
+                    else
+                    {
+
+                        dgPackageInfo.ItemsSource = filter;
+                        txtsearch.Text = "";
+                    }
+
+                }
+            }
+
+           
+        }
+
+        private void txtsearch_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (txtsearch.Text == "")
+            {
+                lstSearch.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                lstSearch.Visibility = Visibility.Visible;
+                if (cmbSearchBy.SelectedIndex == 1)
+                {
+                    try
+                    {
+                        List<string> lsRGANUmber = new List<string>();
+
+                        var filter = (from p in cReturnTbl.GetReturnTbl() //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
+                                      where p.RGAROWID.Contains(txtsearch.Text)
+                                      select new { p.RGAROWID });
+
+                        foreach (var item in filter)
+                        {
+                            lsRGANUmber.Add(item.RGAROWID);
+                        }
+
+                        lstSearch.ItemsSource = lsRGANUmber;
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                  
+                }
+
+                if (cmbSearchBy.SelectedIndex == 2)
+                {
+                    try
+                    {
+                        List<string> lsSRNUmber = new List<string>();
+
+                        var filter = (from p in cReturnTbl.GetReturnTbl() //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
+                                      where p.RMANumber.Contains(txtsearch.Text) //&& p.PONumber
+                                      select new { p.RMANumber });
+
+                        foreach (var item in filter)
+                        {
+                            lsSRNUmber.Add(item.RMANumber);
+                        }
+
+                        lstSearch.ItemsSource = lsSRNUmber;
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                   
+                }
+
+                if (cmbSearchBy.SelectedIndex == 3)
+                {
+                    try
+                    {
+                        List<string> lsPONUmber = new List<string>();
+
+                        var filter = (from p in cReturnTbl.GetReturnTbl() //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
+                                      where p.PONumber.Contains(txtsearch.Text)
+                                      select new { p.PONumber });
+
+                        foreach (var item in filter)
+                        {
+                            lsPONUmber.Add(item.PONumber);
+                        }
+
+                        lstSearch.ItemsSource = lsPONUmber;
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                  
                 }
             }
         }

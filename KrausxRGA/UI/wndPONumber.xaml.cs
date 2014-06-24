@@ -1927,8 +1927,8 @@ namespace KrausRGA.UI
         private void btnRed_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!(txtError.Text == "This Return is NOT in Warranty."))
-            {
+            //if (!(txtError.Text == "This Return is NOT in Warranty."))
+            //{
                 foreach (DataGridRow item in GetDataGridRows(dgPackageInfo))
                 {
                     ContentPresenter butoninfo = dgPackageInfo.Columns[0].GetCellContent(item) as ContentPresenter;
@@ -2041,7 +2041,7 @@ namespace KrausRGA.UI
                     TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
 
                     TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-                    
+
                     ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                     DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                     TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
@@ -2083,7 +2083,7 @@ namespace KrausRGA.UI
                     mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
 
                 }
-            }
+            //}
 
             //  mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ProductPersentInRMA_Checked.ToString(), DateTime.UtcNow.ToString(), "RowIndex_( " + row.GetIndex().ToString() + " )");
         }
