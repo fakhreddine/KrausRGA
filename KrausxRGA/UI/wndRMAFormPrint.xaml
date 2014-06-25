@@ -1,0 +1,12 @@
+﻿<Window x:Class="KrausRGA.UI.wndRMAFormPrint"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="wndRMAFormPrint" Height="1000" Width="700">
+    <Grid>
+        <Border>
+            <Canvas>
+                <Image HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="161" Source="" Opacity="0.7"/>
+            </Canvas>
+        </Border>
+    </Grid>
+</Window>

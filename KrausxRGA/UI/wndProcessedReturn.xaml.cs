@@ -365,6 +365,7 @@ namespace KrausRGA.UI
                     {
                        // row1.IsEnabled = false;
                         row1.Background = Brushes.LightPink;
+                        ProgressFlag.Text = "InProgress";
                     }
 
                 

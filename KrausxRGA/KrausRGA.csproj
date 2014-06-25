@@ -207,6 +207,9 @@
     <Compile Include="UI\wndProcessedReturn.xaml.cs">
       <DependentUpon>wndProcessedReturn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndRMAFormPrint.xaml.cs">
+      <DependentUpon>wndRMAFormPrint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\wndSlipPrint.xaml.cs">
       <DependentUpon>wndSlipPrint.xaml</DependentUpon>
     </Compile>
@@ -261,6 +264,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\wndProcessedReturn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\wndRMAFormPrint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
