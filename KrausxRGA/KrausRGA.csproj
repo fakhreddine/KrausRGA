@@ -93,6 +93,7 @@
       <HintPath>\\SHIVA5-PC\Shared Folder\Debug\InputSimulator.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Encoder, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
@@ -122,6 +123,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WpfCap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\WpfCap\bin\Debug\WpfCap.dll</HintPath>
@@ -200,6 +202,9 @@
     <Compile Include="UI\wndCamera.xaml.cs">
       <DependentUpon>wndCamera.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\wndMainReport.xaml.cs">
+      <DependentUpon>wndMainReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\wndNewRMANumber.xaml.cs">
       <DependentUpon>wndNewRMANumber.xaml</DependentUpon>
     </Compile>
@@ -252,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\wndCamera.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\wndMainReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -467,6 +476,7 @@
     <Resource Include="Images\Unchecked .png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UI\MainReport.rdlc" />
     <EmbeddedResource Include="VersionNumber.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

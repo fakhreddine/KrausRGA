@@ -29,7 +29,7 @@
         								HorizontalGridLinesBrush="#FF575757" 
         								VerticalGridLinesBrush="Gray"
         								Height="476"  
-        								SelectedIndex="-1" Canvas.Top="204"  SelectionChanged="dgPackageInfo_SelectionChanged_1" MouseDoubleClick="dgPackageInfo_MouseDoubleClick" Canvas.Left="4"
+        								SelectedIndex="-1" Canvas.Top="204"   MouseDoubleClick="dgPackageInfo_MouseDoubleClick" Canvas.Left="4"
                                            >
 
                     <DataGrid.Resources>
@@ -93,7 +93,16 @@
         										Header="Vendor Name"  
         										Width="160" 
         										IsReadOnly="True" />
-
+                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="62" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <Canvas x:Name="cvButtons">
+                                            <Button x:Name="btnRed" Width="50" Content="Print" Height="30"  Click="btnRed_Click_1">
+                                            </Button>
+                                        </Canvas>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
 
                         </DataGrid.Columns>
@@ -182,11 +191,7 @@
         										Width="170" 
         										IsReadOnly="True" />
 
-                            <!--<DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-        										Binding="{Binding VendoeName}" 
-        										Header="Vendor Name"  
-        										Width="160" 
-        										IsReadOnly="True" />-->
+                        
 
                         </DataGrid.Columns>
                         <DataGrid.RowValidationErrorTemplate>

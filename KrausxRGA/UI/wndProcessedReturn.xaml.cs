@@ -90,90 +90,90 @@ namespace KrausRGA.UI
 
         }
 
-        private void dgPackageInfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            int selectedIndex = dgPackageInfo.SelectedIndex;
+        //private void dgPackageInfo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        //{
+        //    int selectedIndex = dgPackageInfo.SelectedIndex;
 
-            if (selectedIndex != -1)
-            {
-                DataGridCell cell = GetCell(selectedIndex, 0);
-                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-                DataTemplate DataTemp = CntPersenter.ContentTemplate;
-                TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
-                var retunbyrow = _mponumner.GetReturnByRowID(txtReturnGuid.Text)[0];
+        //    if (selectedIndex != -1)
+        //    {
+        //        DataGridCell cell = GetCell(selectedIndex, 0);
+        //        ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+        //        DataTemplate DataTemp = CntPersenter.ContentTemplate;
+        //        TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
+        //        var retunbyrow = _mponumner.GetReturnByRowID(txtReturnGuid.Text)[0];
 
 
 
-                if (retunbyrow.RMANumber != "N/A")
-                {
-                    _mReturn = new mReturnDetails(retunbyrow.RMANumber);
+        //        if (retunbyrow.RMANumber != "N/A")
+        //        {
+        //            _mReturn = new mReturnDetails(retunbyrow.RMANumber);
 
-                    //keeps deep copy throughout project to access.
-                    clGlobal.mReturn = _mReturn;
+        //            //keeps deep copy throughout project to access.
+        //            clGlobal.mReturn = _mReturn;
 
-                    if (_mReturn.IsValidNumber) //Is number valid or not.
-                    {
+        //            if (_mReturn.IsValidNumber) //Is number valid or not.
+        //            {
 
-                        this.Dispatcher.Invoke(new Action(() =>
-                        {
-                            //Create new instance of window.
-                            clGlobal.Redirect = "Processed";
-                            wndSrNumberInfo wndMain = new wndSrNumberInfo();
-                            // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
-                            //opens new window.
-                            wndMain.Show();
-                        }));
+        //                this.Dispatcher.Invoke(new Action(() =>
+        //                {
+        //                    //Create new instance of window.
+        //                    clGlobal.Redirect = "Processed";
+        //                    wndSrNumberInfo wndMain = new wndSrNumberInfo();
+        //                    // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+        //                    //opens new window.
+        //                    wndMain.Show();
+        //                }));
 
-                        //close this screen.
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    if (retunbyrow.OrderNumber == "N/A")
-                    {
-                        this.Dispatcher.Invoke(new Action(() =>
-                        {
-                            Views.clGlobal.IsAlreadySaved = true;
-                            clGlobal.Redirect = "Processed";
-                            //Create new instance of window.
-                            wndNewRMANumber wndMain = new wndNewRMANumber();
-                           // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
-                            //opens new window.
-                            wndMain.Show();
-                        }));
+        //                //close this screen.
+        //                this.Close();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (retunbyrow.OrderNumber == "N/A")
+        //            {
+        //                this.Dispatcher.Invoke(new Action(() =>
+        //                {
+        //                    Views.clGlobal.IsAlreadySaved = true;
+        //                    clGlobal.Redirect = "Processed";
+        //                    //Create new instance of window.
+        //                    wndNewRMANumber wndMain = new wndNewRMANumber();
+        //                   // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+        //                    //opens new window.
+        //                    wndMain.Show();
+        //                }));
 
-                        //close this screen.
-                        this.Close();
-                    }
-                    else
-                    {
-                        Views.clGlobal.Ponumber = retunbyrow.PONumber;
-                        _mponumner.mPOnumberRMA1(Views.clGlobal.Ponumber);
+        //                //close this screen.
+        //                this.Close();
+        //            }
+        //            else
+        //            {
+        //                Views.clGlobal.Ponumber = retunbyrow.PONumber;
+        //                _mponumner.mPOnumberRMA1(Views.clGlobal.Ponumber);
 
-                        if (Views.clGlobal.IsAlreadySaved)
-                        {
-                            this.Dispatcher.Invoke(new Action(() =>
-                            {
-                                //Create new instance of window.
-                                clGlobal.Redirect = "Processed";
-                                wndPONumber wndMain = new wndPONumber();
-                               // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
-                                //opens new window.
-                                wndMain.Show();
-                            }));
+        //                if (Views.clGlobal.IsAlreadySaved)
+        //                {
+        //                    this.Dispatcher.Invoke(new Action(() =>
+        //                    {
+        //                        //Create new instance of window.
+        //                        clGlobal.Redirect = "Processed";
+        //                        wndPONumber wndMain = new wndPONumber();
+        //                       // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+        //                        //opens new window.
+        //                        wndMain.Show();
+        //                    }));
 
-                            //close this screen.
-                            this.Close();
-                        }
-                    }
+        //                    //close this screen.
+        //                    this.Close();
+        //                }
+        //            }
 
-                }
+        //        }
 
-                Guid Returnid = cReturnTbl.GetRetrunByROWID(txtReturnGuid.Text)[0].ReturnID;
+        //        Guid Returnid = cReturnTbl.GetRetrunByROWID(txtReturnGuid.Text)[0].ReturnID;
              
 
-                dgReturnDetailInfo.ItemsSource = cRetutnDetailsTbl.GetReturnDetailsByReturnID(Returnid);
+        //        dgReturnDetailInfo.ItemsSource = cRetutnDetailsTbl.GetReturnDetailsByReturnID(Returnid);
 
                
 
@@ -182,8 +182,8 @@ namespace KrausRGA.UI
 
 
 
-            }
-        }
+        //    }
+        //}
 
         public DataGridCell GetCell(int row, int column)
         {
@@ -241,6 +241,101 @@ namespace KrausRGA.UI
           //  IList rows = dgPackageInfo.SelectedItems;
            // DataRowView row = (DataRowView)dgPackageInfo.SelectedItems[0];
             //string val = rows[0] //row["Column ID"].ToString();
+
+
+            int selectedIndex = dgPackageInfo.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                DataGridCell cell = GetCell(selectedIndex, 0);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
+                var retunbyrow = _mponumner.GetReturnByRowID(txtReturnGuid.Text)[0];
+
+
+
+                if (retunbyrow.RMANumber != "N/A")
+                {
+                    _mReturn = new mReturnDetails(retunbyrow.RMANumber);
+
+                    //keeps deep copy throughout project to access.
+                    clGlobal.mReturn = _mReturn;
+
+                    if (_mReturn.IsValidNumber) //Is number valid or not.
+                    {
+
+                        this.Dispatcher.Invoke(new Action(() =>
+                        {
+                            //Create new instance of window.
+                            clGlobal.Redirect = "Processed";
+                            wndSrNumberInfo wndMain = new wndSrNumberInfo();
+                            // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                            //opens new window.
+                            wndMain.Show();
+                        }));
+
+                        //close this screen.
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    if (retunbyrow.OrderNumber == "N/A")
+                    {
+                        this.Dispatcher.Invoke(new Action(() =>
+                        {
+                            Views.clGlobal.IsAlreadySaved = true;
+                            clGlobal.Redirect = "Processed";
+                            //Create new instance of window.
+                            wndNewRMANumber wndMain = new wndNewRMANumber();
+                            // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                            //opens new window.
+                            wndMain.Show();
+                        }));
+
+                        //close this screen.
+                        this.Close();
+                    }
+                    else
+                    {
+                        Views.clGlobal.Ponumber = retunbyrow.PONumber;
+                        _mponumner.mPOnumberRMA1(Views.clGlobal.Ponumber);
+
+                        if (Views.clGlobal.IsAlreadySaved)
+                        {
+                            this.Dispatcher.Invoke(new Action(() =>
+                            {
+                                //Create new instance of window.
+                                clGlobal.Redirect = "Processed";
+                                wndPONumber wndMain = new wndPONumber();
+                                // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                                //opens new window.
+                                wndMain.Show();
+                            }));
+
+                            //close this screen.
+                            this.Close();
+                        }
+                    }
+
+                }
+
+                Guid Returnid = cReturnTbl.GetRetrunByROWID(txtReturnGuid.Text)[0].ReturnID;
+
+
+                dgReturnDetailInfo.ItemsSource = cRetutnDetailsTbl.GetReturnDetailsByReturnID(Returnid);
+
+
+
+
+
+
+
+
+            }
+
+
         }
 
         private void btnback_Click(object sender, RoutedEventArgs e)
@@ -833,6 +928,34 @@ namespace KrausRGA.UI
                   
                 }
             }
+        }
+
+        private void btnRed_Click_1(object sender, RoutedEventArgs e)
+        {
+            int selectedindex = dgPackageInfo.SelectedIndex;
+
+            DataGridCell cell = GetCell(selectedindex, 0);
+            ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+            DataTemplate DataTemp = CntPersenter.ContentTemplate;
+            TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
+        
+
+           // Button btnRed = (Button)e.Source;
+           //// Canvas SpButtons = (Canvas)btnRed.Parent;
+           ////Button btnGreen = SpButtons.FindName("btnRed") as Button;
+           // DataGridRow row = (DataGridRow)btnRed.FindParent<DataGridRow>();
+
+           // TextBox RGANumber = dgPackageInfo.Columns[0].GetCellContent(row) as TextBox;
+
+           // var retunbyrow = _mponumner.GetReturnByRowID(RGANumber.Text)[0];
+
+            //_mReturn = new mReturnDetails(retunbyrow.RMANumber);
+
+            //clGlobal.mReturn = _mReturn;
+
+            wndMainReport slip = new wndMainReport();
+            clGlobal.NewRGANumber = txtReturnGuid.Text;
+            slip.ShowDialog();
         }
 
     }

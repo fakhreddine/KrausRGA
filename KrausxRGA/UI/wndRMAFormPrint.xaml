@@ -1,11 +1,164 @@
 ﻿<Window x:Class="KrausRGA.UI.wndRMAFormPrint"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="wndRMAFormPrint" Height="1000" Width="700">
+        Title="wndRMAFormPrint" Height="2500" Width="700" Loaded="Window_Loaded_1">
     <Grid>
         <Border>
             <Canvas>
-                <Image HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="161" Source="" Opacity="0.7"/>
+                <Border>
+                    <Canvas>
+                <!--<Image HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="161" Source="/KrausRGA;component/Images/PrintLogo.png" Opacity="0.7" Canvas.Top="17" Canvas.Left="16"/>-->
+                        <Label Content="Kraus"  Canvas.Top="12" Width="95" FontSize="32" FontWeight="Bold" Canvas.Left="16" ></Label>
+                    </Canvas>
+                </Border>
+                <Label Content="RMA REQUEST FORM" Canvas.Left="221" Canvas.Top="22" Width="262" FontSize="22" FontWeight="Bold" ></Label>
+
+                <Border Height="24" Width="692" Background="LightGray" Canvas.Top="74">
+                    <TextBlock TextWrapping="Wrap" Text="Instructions for Return:" FontSize="18" Foreground="Black" Margin="4,0,340,5"/>
+                </Border>
+                <Border Canvas.Top="100" Canvas.Left="2">
+                    <TextBlock Text="Please follow these instruction when returning your items to Kraus USA, lnc." TextWrapping="Wrap">
+                    </TextBlock>
+                </Border>
+                <Border Canvas.Top="124" Canvas.Left="31">
+                    <TextBlock Text="1. Insert copy of original P.O. and this form inside the return package."></TextBlock>
+                </Border>
+                <Border Canvas.Top="141" Canvas.Left="31">
+                    <TextBlock Text="2. Please make sure that the RMA number is written on the outer portion of the box."></TextBlock>
+                </Border>
+                <Border Canvas.Top="156" Canvas.Left="31">
+                    <TextBlock Text="3. Ship Return Package to:Kraus USA,lnc. Return Department 12 Harbor Park Drive Port Washington,NY 11050."></TextBlock>
+                </Border>
+                <Border Height="24" Width="692" Background="LightGray" Canvas.Top="182">
+                    <TextBlock TextWrapping="Wrap" Text="RMA Details:" FontSize="18" Foreground="Black" Margin="4,0,340,5"/>
+                </Border>
+                <Border Height="24" Width="250" Canvas.Top="206">
+                    <Canvas>
+                    <Label Content="RMA Request Date:"></Label>
+                        <TextBlock x:Name="txtRequestDate" Width="120" Canvas.Left="120" Canvas.Top="5" ></TextBlock>
+                    </Canvas>
+                </Border>
+                <Border Height="24" Width="334" Canvas.Top="208" Canvas.Left="288">
+                    <Canvas>
+                        <Label Content="Vendor Name:"></Label>
+                        <TextBlock x:Name="txtVendorName" Width="233" Canvas.Left="91" Canvas.Top="5" TextWrapping="Wrap"></TextBlock>
+                    </Canvas>
+                </Border>
+                <Border Height="24" Width="250" Canvas.Top="238">
+                    <Canvas>
+                        <Label Content="RMA#:"></Label>
+                        <TextBlock x:Name="txtRMA" Width="126" Canvas.Left="114" Canvas.Top="5" ></TextBlock>
+                    </Canvas>
+                </Border>
+                <Border Height="24" Width="692" Background="LightGray" Canvas.Top="270">
+                    <TextBlock TextWrapping="Wrap" Text="PO Details:" FontSize="18" Foreground="Black" Margin="4,0,340,5"/>
+                </Border>
+                <Border Height="24" Width="250" Canvas.Top="297">
+                    <Canvas>
+                        <Label Content="P.O.#:"></Label>
+                        <TextBlock x:Name="txtPonumber" Width="177" Canvas.Left="63" Canvas.Top="5" ></TextBlock>
+                    </Canvas>
+                </Border>
+                <Border Height="24" Width="521" Canvas.Top="323">
+                    <Canvas>
+                        <Label Content="Name:"></Label>
+                        <TextBlock x:Name="txtName" Width="448" Canvas.Left="63" Canvas.Top="5" TextWrapping="Wrap" ></TextBlock>
+                    </Canvas>
+                </Border>
+                <Border Height="24" Width="662" Canvas.Top="350">
+                    <Canvas>
+                        <Label Content="Address:"></Label>
+                        <TextBlock x:Name="txtAddress" Width="589" Canvas.Left="63" Canvas.Top="5" TextWrapping="Wrap" ></TextBlock>
+                    </Canvas>
+                </Border>
+                <Border Height="24" Width="692" Background="LightGray" Canvas.Top="381">
+                    <TextBlock TextWrapping="Wrap" Text="Return Details:" FontSize="18" Foreground="Black" Margin="4,0,340,0"/>
+                </Border>
+                
+                
+                
+                <Canvas x:Name="CanvasNote">
+                <Border Height="24" Width="692" Background="LightGray" Canvas.Top="584">
+                    <TextBlock TextWrapping="Wrap" Text="Note:" FontSize="18" Foreground="Black" Margin="4,0,493,0"/>
+                </Border>
+                <Border Canvas.Top="611" Canvas.Left="6">
+                    <TextBlock Text="All return items will be rejected if the requirements are not completed as requested. Items returned will be inspected. If you have any further questions, comments, or concerns, please do not hesitate to let us know. We will be more  than happy to assist you." Width="620" TextWrapping="Wrap"></TextBlock>
+                </Border>
+                <Border Canvas.Top="674" Canvas.Left="6">
+                    <TextBlock Text="Thank you for choosing Kraus Products." Width="620" TextWrapping="Wrap"></TextBlock>
+                </Border>
+                </Canvas>
+                
+                
+                <Border>
+                    <Canvas x:Name="CanvasGrid">
+                        <DataGrid x:Name="dgPackageInfo"
+        								SelectionMode="Extended" 
+        								ItemsSource="{Binding}" 
+        								HorizontalAlignment="Center" 
+        								VerticalAlignment="Center"
+        								Width="650" 
+        								CanUserAddRows="False"    
+        								AutoGenerateColumns="False" 
+        								FontSize="17" 
+        								Background="{x:Null}" 
+        								SelectionUnit="FullRow" 
+        								BorderThickness="1" 
+        								Cursor="Hand"   
+        								BorderBrush="{x:Null}" 
+        								HorizontalGridLinesBrush="#FF575757" 
+        								VerticalGridLinesBrush="Gray"
+        								 Canvas.Top="407" >
+
+                            <DataGrid.Resources>
+                                <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="FontSize" Value="15"/>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.Columns>
+                            
+                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding SKUNumber}" 
+        										Header="SKU"  
+        										Width="150" 
+        										IsReadOnly="True" />
+
+
+                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ReturnQty}" 
+        										Header="Quantity"  
+        										Width="150" 
+        										IsReadOnly="True" />
+
+                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding }" 
+        										Header="Comment"  
+        										Width="300" 
+        										IsReadOnly="True" />
+                       
+
+                             
+
+                            </DataGrid.Columns>
+                            <!--<DataGrid.RowValidationErrorTemplate>
+                                <ControlTemplate>
+                                    <Grid Margin="0,-2,0,-2"
+        											ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}}">
+                                        <Ellipse StrokeThickness="0" Fill="Red" 
+        												Width="{TemplateBinding FontSize}" 
+        												Height="{TemplateBinding FontSize}" />
+                                        <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
+        												FontWeight="Bold" Foreground="White" 
+        												HorizontalAlignment="Center"  />
+                                    </Grid>
+                                </ControlTemplate>
+                            </DataGrid.RowValidationErrorTemplate>-->
+                        </DataGrid>
+                    </Canvas>
+                </Border>
+                
             </Canvas>
         </Border>
     </Grid>
