@@ -279,7 +279,7 @@ namespace KrausRGA.UI
                 if (ch.IsChecked == true)
                 {
                     ch.IsChecked = false;
-                    bdr.Background = new SolidColorBrush(Colors.Gray);
+                    bdr.Background = new SolidColorBrush(Colors.SkyBlue);
                 }
                 else
                 {
@@ -550,7 +550,7 @@ namespace KrausRGA.UI
 
                     }
 
-                    if (row.Background == Brushes.Gray)
+                    if (row.Background == Brushes.SkyBlue)
                     {
                         Views.clGlobal.SKU_Staus = "Refund";
                     }
@@ -1115,7 +1115,7 @@ namespace KrausRGA.UI
             else if (Chk.IsChecked == true)
             {
                 Chk.IsChecked = false;
-                txt.Background = new SolidColorBrush(Colors.Gray);
+                txt.Background = new SolidColorBrush(Colors.SkyBlue);
                 can.Background = new SolidColorBrush(Color.FromRgb(198, 122, 58));
             }
         }
@@ -1227,7 +1227,7 @@ namespace KrausRGA.UI
 
                     this.Dispatcher.Invoke(new Action(() => { _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); }));
 
-
+                    brdPrint.Visibility = Visibility.Visible;
                     //_mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
                     chkInProgress.IsEnabled = true;
@@ -1580,6 +1580,8 @@ namespace KrausRGA.UI
                     _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
                     chkInProgress.IsEnabled = true;
+
+                    brdPrint.Visibility = Visibility.Visible;
 
                     for (int i = 0; i < _mUpdate._lsskuandpoints.Count; i++)
                     {
@@ -1949,7 +1951,7 @@ namespace KrausRGA.UI
                     Canvas SpButtons = (Canvas)btnRed.Parent;
                     Button btnGreen = SpButtons.FindName("btnGreen") as Button;
                     DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
-                    if (row.Background == Brushes.Gray)
+                    if (row.Background == Brushes.SkyBlue)
                     {
 
                         btnGreen.Visibility = System.Windows.Visibility.Visible;
@@ -1988,7 +1990,7 @@ namespace KrausRGA.UI
 
 
 
-                    if (row.Background == Brushes.Gray)
+                    if (row.Background == Brushes.SkyBlue)
                     {
                         CanvasConditions.IsEnabled = true;
 
@@ -2000,7 +2002,7 @@ namespace KrausRGA.UI
                         btnGreen.Visibility = System.Windows.Visibility.Visible;
                         btnRed.Visibility = System.Windows.Visibility.Hidden;
                     }
-                    if (row.Background == Brushes.Gray && txtskustatus.Text != "")
+                    if (row.Background == Brushes.SkyBlue && txtskustatus.Text != "")
                     {
                        // CanvasConditions.IsEnabled = false;
                         string msg = "";
@@ -2048,7 +2050,7 @@ namespace KrausRGA.UI
 
 
 
-                    if (row.Background == Brushes.Gray)
+                    if (row.Background == Brushes.SkyBlue)
                     {
                         CanvasConditions.IsEnabled = true;
 
@@ -2060,7 +2062,7 @@ namespace KrausRGA.UI
                         btnRed.Visibility = System.Windows.Visibility.Hidden;
                     }
 
-                    if (row.Background == Brushes.Gray && txtskustatus.Text != "")
+                    if (row.Background == Brushes.SkyBlue && txtskustatus.Text != "")
                     {
                         //CanvasConditions.IsEnabled = false;
                         string msg = "";
@@ -2252,6 +2254,8 @@ namespace KrausRGA.UI
                 _mponumber.lsRMAInformationforponumner = lsCustomeronfo;
 
                 chkInProgress.IsEnabled = true;
+
+                brdPrint.Visibility = Visibility.Visible;
 
                 _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
@@ -2897,6 +2901,9 @@ namespace KrausRGA.UI
             {
 
             }
+
+            btnBoxNotNew.IsChecked = false;
+
             itemnew = false;
             btnInstalledNo.IsEnabled = false;
             btnInstalledYes.IsEnabled = false;
@@ -2924,6 +2931,9 @@ namespace KrausRGA.UI
                 Views.clGlobal.SKU_Staus = "Deny";
             }
             itemnew = true;
+
+            btnBoxNew.IsChecked = false;
+
             btnInstalledNo.IsEnabled = true;
             btnInstalledYes.IsEnabled = true;
             btnStatusNo.IsEnabled = true;
@@ -2937,20 +2947,7 @@ namespace KrausRGA.UI
                 points = points - 100;
                 lblpoints.Content = points.ToString();
                 Views.clGlobal.SKU_Staus = "Deny";
-                btnStatusNo.IsEnabled = false;
-                btnStatusYes.IsEnabled = false;
-
-                btnManufacturerNo.IsEnabled = false;
-                btnManufacturerYes.IsEnabled = false;
-                btntransiteNo.IsEnabled = false;
-                btntransiteYes.IsEnabled = false;
-
-                btnManufacturerNo.IsChecked = false;
-                btnManufacturerYes.IsChecked = false;
-                btntransiteNo.IsChecked = false;
-                btntransiteYes.IsChecked = false;
-                btnStatusNo.IsChecked = false;
-                btnStatusYes.IsChecked = false;
+              
 
 
             }
@@ -2959,24 +2956,26 @@ namespace KrausRGA.UI
                 points = points + 0;
                 lblpoints.Content = points.ToString();
                 Views.clGlobal.SKU_Staus = "Deny";
-                btnStatusNo.IsEnabled = false;
-                btnStatusYes.IsEnabled = false;
-
-                btnManufacturerNo.IsEnabled = false;
-                btnManufacturerYes.IsEnabled = false;
-                btntransiteNo.IsEnabled = false;
-                btntransiteYes.IsEnabled = false;
-
-                btnManufacturerNo.IsChecked = false;
-                btnManufacturerYes.IsChecked = false;
-                btntransiteNo.IsChecked = false;
-                btntransiteYes.IsChecked = false;
-                btnStatusNo.IsChecked = false;
-                btnStatusYes.IsChecked = false;
+               
 
             }
             ISinstalled = true;
+            btnStatusNo.IsEnabled = false;
+            btnStatusYes.IsEnabled = false;
 
+            btnManufacturerNo.IsEnabled = false;
+            btnManufacturerYes.IsEnabled = false;
+            btntransiteNo.IsEnabled = false;
+            btntransiteYes.IsEnabled = false;
+
+            btnManufacturerNo.IsChecked = false;
+            btnManufacturerYes.IsChecked = false;
+            btntransiteNo.IsChecked = false;
+            btntransiteYes.IsChecked = false;
+            btnStatusNo.IsChecked = false;
+            btnStatusYes.IsChecked = false;
+
+            btnInstalledNo.IsChecked = false;
 
 
             ErrorMsg("This Item is Rejected.", Color.FromRgb(185, 84, 0));
@@ -3003,6 +3002,8 @@ namespace KrausRGA.UI
             btnStatusNo.IsEnabled = true;
             btnStatusYes.IsEnabled = true;
 
+            btnInstalledYes.IsChecked = false;
+
             btnStatusNo.IsChecked = true;
         }
 
@@ -3026,6 +3027,8 @@ namespace KrausRGA.UI
             btntransiteYes.IsChecked = false;
             IsManufacture = true;
             IsDefectiveTransite = true;
+
+            btnStatusNo.IsChecked = false;
         }
         Boolean IsStatus = true;
         Boolean IsManufacture = true;
@@ -3065,6 +3068,8 @@ namespace KrausRGA.UI
             btntransiteNo.IsChecked = false;
             btntransiteYes.IsChecked = false;
             btnAdd.IsEnabled = true;
+
+            btnStatusYes.IsChecked = false;
         }
 
         private void btnManufacturerYes_Checked(object sender, RoutedEventArgs e)
@@ -3088,6 +3093,8 @@ namespace KrausRGA.UI
 
             }
             IsManufacture = false;
+
+            btnManufacturerNo.IsChecked = false;
         }
 
         private void btnManufacturerNo_Checked(object sender, RoutedEventArgs e)
@@ -3103,6 +3110,9 @@ namespace KrausRGA.UI
                 lblpoints.Content = points.ToString();
             }
             IsManufacture = true;
+
+            btnManufacturerYes.IsChecked = false;
+
             // Views.clGlobal.SKU_Staus = "";
 
             if (btnManufacturerNo.IsChecked == true && btntransiteNo.IsChecked == true)
@@ -3131,6 +3141,8 @@ namespace KrausRGA.UI
 
             }
             IsDefectiveTransite = false;
+
+            btntransiteNo.IsChecked = false;
         }
 
         private void btntransiteNo_Checked(object sender, RoutedEventArgs e)
@@ -3146,6 +3158,8 @@ namespace KrausRGA.UI
                 lblpoints.Content = points.ToString();
             }
             IsDefectiveTransite = true;
+
+            btntransiteYes.IsChecked = false;
             // Views.clGlobal.SKU_Staus = "";
 
             if (btnManufacturerNo.IsChecked == true && btntransiteNo.IsChecked == true)
@@ -3184,14 +3198,14 @@ namespace KrausRGA.UI
                             _lsskuandscanned.IsScanned = 1;
                             lsskuIsScanned.Add(_lsskuandscanned);
                             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                            //row.Background = Brushes.Gray;
+                            //row.Background = Brushes.SkyBlue;
 
 
 
                             #region If Zero
                             if (sku == Str && txtRetutn.Text == "0")
                             {
-                                row.Background = Brushes.Gray;
+                                row.Background = Brushes.SkyBlue;
                                 txtRetutn.Text = "1";
                                 flag = true;
                                 txtbarcode.Text = "";
@@ -3201,7 +3215,7 @@ namespace KrausRGA.UI
                             #endregion
 
                             #region If One
-                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.Gray)
+                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.SkyBlue)
                             {
                                 List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                                 foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
@@ -3485,13 +3499,13 @@ namespace KrausRGA.UI
 
                             lsskuIsScanned.Add(_lsskuandscanned);
                             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                            // row.Background = Brushes.Gray;
+                            // row.Background = Brushes.SkyBlue;
 
 
                             #region For Zero
                             if (sku == Str && txtRetutn.Text == "0")
                             {
-                                row.Background = Brushes.Gray;
+                                row.Background = Brushes.SkyBlue;
                                 txtRetutn.Text = "1";
                                 flag = true;
                                 txtbarcode.Text = "";
@@ -3501,7 +3515,7 @@ namespace KrausRGA.UI
                             #endregion
 
                             #region For One
-                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.Gray)
+                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.SkyBlue)
                             {
                                 List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                                 foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
@@ -3794,11 +3808,11 @@ namespace KrausRGA.UI
                             lsskuIsScanned.Add(_lsskuandscanned);
 
                             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
-                            //row.Background = Brushes.Gray;
+                            //row.Background = Brushes.SkyBlue;
                             #region For Zero
                             if (sku == Str && txtRetutn.Text == "0")
                             {
-                                row.Background = Brushes.Gray;
+                                row.Background = Brushes.SkyBlue;
                                 txtRetutn.Text = "1";
                                 flag = true;
                                 txtbarcode.Text = "";
@@ -3808,7 +3822,7 @@ namespace KrausRGA.UI
                             #endregion
 
                             #region For One
-                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.Gray)
+                            else if (sku == Str && txtRetutn.Text == "1" && row.Background != Brushes.SkyBlue)
                             {
                                 List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
                                 foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
@@ -4196,14 +4210,14 @@ namespace KrausRGA.UI
                     if (listofstatus[i].NewItemQuantity == Convert.ToInt16(txtRetutn.Text) && listofstatus[i].SKUName == SkuNumber.Text)
                     {
                         // row1.IsEnabled = false;
-                        row1.Background = Brushes.Gray;
+                        row1.Background = Brushes.SkyBlue;
                         txtSkuStatus.Text = listofstatus[i].Status;
                     }
                 }
 
                 if (txtRetutn1.Text == "1")
                 {
-                    row1.Background = Brushes.Gray;
+                    row1.Background = Brushes.SkyBlue;
                 }
             }
 
@@ -4240,7 +4254,7 @@ namespace KrausRGA.UI
                             if (_mUpdate._lsReturnDetails1[i].SKU_Qty_Seq == 1)
                             {
                                 // btnGreen.Visibility = System.Windows.Visibility.Visible; //row.IsEnabled = false;
-                                row.Background = Brushes.Gray;
+                                row.Background = Brushes.SkyBlue;
                             }
 
                             //Images Stack Panel.
@@ -4309,7 +4323,7 @@ namespace KrausRGA.UI
             {
                 foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
                 {
-                    if (row.Background == Brushes.Gray)
+                    if (row.Background == Brushes.SkyBlue)
                     {
                         countselectedRow++;
                     }
@@ -4518,6 +4532,14 @@ namespace KrausRGA.UI
         //        }
         //    }
         //}
+
+
+        private void btnPrint_Click_1(object sender, RoutedEventArgs e)
+        {
+            wndRMAFormPrint slip = new wndRMAFormPrint();
+            clGlobal.NewRGANumber = _mUpdate._ReturnTbl1.RGAROWID;
+            slip.ShowDialog();
+        }
 
     }
     

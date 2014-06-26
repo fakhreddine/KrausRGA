@@ -107,7 +107,7 @@
 
 
                             <Border x:Name="bdrmain2" Height="337" >
-                                <Canvas x:Name="cvsTb1main2" Margin="0,0,0,0" Height="327">
+                                <Canvas x:Name="cvsTb1main2" Margin="0,5,0,0">
                                     <!-- Grid View-->
                                     <Border Visibility="Hidden" x:Name="bdrButtonTemp" Height="62" Width="249" Canvas.Left="788" Canvas.Top="437">
                                         <TextBox x:Name="btnTemp" TextWrapping="Wrap" Text="" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="{x:Null}" CaretBrush="White"/>
@@ -137,7 +137,7 @@
         								BorderBrush="{x:Null}" 
         								HorizontalGridLinesBrush="#FF575757" 
         								VerticalGridLinesBrush="Gray"
-        								Height="289"  
+        								Height="297"  
         								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" Canvas.Left="2" LoadingRow="dgPackageInfo_LoadingRow" MouseDoubleClick="dgPackageInfo_MouseDoubleClick" 
                                            >
 
@@ -149,16 +149,16 @@
                                         </DataGrid.Resources>
 
                                         <DataGrid.Columns>
-                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="62" >
+                                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Select" Width="62" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
                                                         <Canvas x:Name="cvButtons" Background="White">
-                                                            <Button x:Name="btnRed" Width="60" Height="70" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
+                                                            <Button x:Name="btnRed" Width="50" Height="60" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnRed_Click" Style="{StaticResource ImageButton}">
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Unchecked .png"/>
                                                                 </Button.Background>
                                                             </Button>
-                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="60" Height="70"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
+                                                            <Button x:Name="btnGreen" Visibility="Hidden" Width="50" Height="60"  BorderBrush="{x:Null}" Foreground="{x:Null}" Style="{StaticResource ImageButton}"
         														Click="btnGreen_Click" >
                                                                 <Button.Background>
                                                                     <ImageBrush Stretch="Fill" ImageSource="/KrausRGA;component/Images/Checked .png"/>
@@ -387,37 +387,57 @@
                                     </Canvas>
                                 </Canvas>
                             </Border>
-
-                            <Border Height="483">
-                                <Canvas Height="471">
-                                    <Border Width="790" CornerRadius="10" Canvas.Top="10" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="356" >
+                            <Label Content="Line Items Detail Below :" FontSize="25"/>
+                            <Border Height="446">
+                                <Canvas>
+                                    <Border Width="790" CornerRadius="10" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="356" Canvas.Top="-18" >
                                         <Canvas Margin="-10,0,10,0" Name="CanvasConditions" IsEnabled="False">
                                             <Label Name="lblpoints" Height="39" Width="105" Canvas.Left="656" Canvas.Top="75" Visibility="Hidden"></Label>
 
                                                 <Canvas>
                                             <Label Canvas.Left="210" Canvas.Top="7" Name="lblItemIsNew" Content="Item is New" Style="{StaticResource lblConstant}" Width="208" Height="45" FontSize="30" ></Label>
-                                            <RadioButton Content="Yes" Name="btnBoxNew" Canvas.Left="444" Canvas.Top="9" Height="43" Width="78" FontSize="30" Checked="btnBoxNew_Checked_1"></RadioButton>
-                                            <RadioButton Content="No" Name="btnBoxNotNew" Canvas.Left="532" Canvas.Top="11" Height="45" Width="104" FontSize="30" Checked="btnBoxNotNew_Checked_1"></RadioButton>
+                                                <Viewbox Height="74" Canvas.Left="434" Canvas.Top="6" Width="139">
+                                                    <RadioButton Content="Yes" Name="btnBoxNew" Canvas.Left="444" Canvas.Top="9" Height="43" Width="78" FontSize="20" Checked="btnBoxNew_Checked_1"></RadioButton>
+                                                </Viewbox>
+                                                <Viewbox Height="74" Canvas.Top="8" Canvas.Left="534" Width="125">
+                                                    <RadioButton Content="No" Name="btnBoxNotNew" Canvas.Left="532" Canvas.Top="11" Height="43" Width="78" FontSize="20" Checked="btnBoxNotNew_Checked_1"></RadioButton>
+                                                </Viewbox>
                                             </Canvas>
                                             <Canvas>
                                             <Label Canvas.Left="153" Canvas.Top="211" Name="lblDefectontea" Content="Defect in Transite" Style="{StaticResource lblConstant}" Width="261" Height="43" FontSize="30" ></Label>
-                                                <RadioButton Content="Yes" Name="btntransiteYes" Canvas.Left="436" Canvas.Top="212" Height="43" Width="84" FontSize="30" Checked="btntransiteYes_Checked_1" IsEnabled="False"></RadioButton>
-                                                <RadioButton Content="No" Canvas.Left="532" Name="btntransiteNo" Canvas.Top="212" Height="41" Width="90" FontSize="30" Checked="btntransiteNo_Checked" IsEnabled="False" ></RadioButton>
+                                                <Viewbox Height="74" Canvas.Top="208" Canvas.Left="432">
+                                                <RadioButton Content="Yes" Name="btntransiteYes" Canvas.Left="436" Canvas.Top="212" Height="43" Width="84" FontSize="20" Checked="btntransiteYes_Checked_1" IsEnabled="False"></RadioButton>
+                                                </Viewbox>
+                                                <Viewbox Height="74" Canvas.Top="208" Canvas.Left="534">
+                                                <RadioButton Content="No" Canvas.Left="532" Name="btntransiteNo" Canvas.Top="212" Height="43" Width="90" FontSize="20" Checked="btntransiteNo_Checked" IsEnabled="False" ></RadioButton>
+                                                </Viewbox>
                                             </Canvas>
                                             <Canvas>
                                             <Label Canvas.Left="170" Name="lblInstalled" Canvas.Top="58" Content="Installed" Style="{StaticResource lblConstant}" Width="241" Height="42" FontSize="30" ></Label>
-                                            <RadioButton Content="Yes" Canvas.Left="440" Canvas.Top="61" Name="btnInstalledYes" Height="43" Width="84" FontSize="30" Checked="btnInstalledYes_Checked_1"></RadioButton>
-                                            <RadioButton Content="No" Canvas.Left="531" Canvas.Top="62" Name="btnInstalledNo" Height="44" Width="98" FontSize="30" Checked="btnInstalledNo_Checked_1" ></RadioButton>
+                                                <Viewbox Height="74" Canvas.Top="58" Canvas.Left="434">
+                                            <RadioButton Content="Yes" Canvas.Left="440" Canvas.Top="61" Name="btnInstalledYes" Height="43" Width="84" FontSize="20" Checked="btnInstalledYes_Checked_1"></RadioButton>
+                                                </Viewbox>
+                                                <Viewbox Height="74" Canvas.Left="534" Canvas.Top="60">
+                                                <RadioButton Content="No" Canvas.Left="531" Canvas.Top="62" Name="btnInstalledNo" Height="44" Width="98" FontSize="20" Checked="btnInstalledNo_Checked_1" ></RadioButton>
+                                                </Viewbox>
                                             </Canvas>
                                             <Canvas>
                                             <Label Canvas.Left="25" Name="lblStatus" Canvas.Top="109" Content="Chip/Bended/Scratch/Broken" Style="{StaticResource lblConstant}" Width="397" Height="39" FontSize="30" ></Label>
-                                            <RadioButton Content="Yes"  Canvas.Left="441" Canvas.Top="115" Name="btnStatusYes" Height="39" Width="84" FontSize="30" Checked="btnStatusYes_Checked" ></RadioButton>
-                                            <RadioButton Content="No"  Canvas.Left="533" Canvas.Top="115" Name="btnStatusNo" Height="39" Width="84" FontSize="30" Checked="btnStatusNo_Checked"></RadioButton>
+                                                <Viewbox Height="74" Canvas.Top="108" Canvas.Left="434">
+                                            <RadioButton Content="Yes"  Canvas.Left="441" Canvas.Top="115" Name="btnStatusYes" Height="43" Width="84" FontSize="20" Checked="btnStatusYes_Checked" ></RadioButton>
+                                                </Viewbox>
+                                                <Viewbox Height="74" Canvas.Top="108" Canvas.Left="534">
+                                                <RadioButton Content="No"  Canvas.Left="533" Canvas.Top="115" Name="btnStatusNo" Height="43" Width="84" FontSize="20" Checked="btnStatusNo_Checked"></RadioButton>
+                                                </Viewbox>
                                             </Canvas>
                                             <Canvas>
                                             <Label Canvas.Left="89" Canvas.Top="160" Name="lblManufacturer" Content="Manufacturer Defective" Style="{StaticResource lblConstant}" Width="330" Height="48" FontSize="30" ></Label>
-                                            <RadioButton Content="Yes" Canvas.Left="440" IsEnabled="False" Canvas.Top="165" Name="btnManufacturerYes" Height="47" Width="84" FontSize="30" Checked="btnManufacturerYes_Checked"></RadioButton>
-                                                <RadioButton Content="No" Canvas.Left="533" Canvas.Top="166" IsEnabled="False" Name="btnManufacturerNo" Height="39" Width="84" FontSize="30" Checked="btnManufacturerNo_Checked"></RadioButton>
+                                                <Viewbox Height="74" Canvas.Top="160" Canvas.Left="434">
+                                            <RadioButton Content="Yes" Canvas.Left="440" IsEnabled="False" Canvas.Top="165" Name="btnManufacturerYes" Height="43" Width="84" FontSize="20" Checked="btnManufacturerYes_Checked"></RadioButton>
+                                                </Viewbox>
+                                                <Viewbox Height="74" Canvas.Top="160" Canvas.Left="536">
+                                                <RadioButton Content="No" Canvas.Left="533" Canvas.Top="166" IsEnabled="False" Name="btnManufacturerNo" Height="43" Width="84" FontSize="20" Checked="btnManufacturerNo_Checked"></RadioButton>
+                                                </Viewbox>
                                             </Canvas>
                                             <Button Content="Done" Name="btnAdd" Canvas.Left="640" Canvas.Top="303" Width="136" Height="46" FontSize="20" Click="btnAdd_Click" ></Button>
                                             <ComboBox Canvas.Left="212" Canvas.Top="258" Width="392" Height="45" x:Name="cmbSkuReasons" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID" FontSize="25" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbSkuReasons_SelectionChanged_1"/>
@@ -429,132 +449,17 @@
 
 
                                         </Canvas>
-                                        <!--<Canvas x:Name="cvCheckboxHolder" Margin="-10,0,10,0">
-                                            <Border Height="45" Width="789" Background="#B2111111" Canvas.Top="1" Canvas.Left="8">
-                                                <TextBlock TextWrapping="Wrap" Text="Reason(s) for Return" FontSize="25" Foreground="White" Margin="10,6,236,0"/>
-                                            </Border>
-
-
-                                            <Border x:Name="bdrDamaged" Canvas.Left="19" Canvas.Top="59" Height="51" Width="291"
-        										BorderBrush="Black" BorderThickness="1,1,1,1" 
-        										CornerRadius="3" Background="#FFC7C7C7">
-                                                <ContentControl MouseDown="ContentControl_MouseDown" Margin="0,0,-1,0">
-                                                    <Border HorizontalAlignment="Center">
-                                                        <Canvas Width="286">
-                                                            <CheckBox x:Name="cbrDamaged" Style="{StaticResource cbStyleKey}" Content="Item Damaged." Canvas.Left="277" Canvas.Top="-50" 
-        														Checked="cbrDamaged_Checked" Unchecked="cbrDamaged_Unchecked" Background="White" Visibility="Hidden" />
-                                                            <TextBlock x:Name="txtitemdamage"  Text="Item Damaged."  FontSize="20" Background="Gray" Foreground="WhiteSmoke" Width="289" Height="49" TextAlignment="Center" Canvas.Left="-3" />
-                                                            <Canvas x:Name="cnvDamage" Height="10" Width="290" Canvas.Left="-3" Canvas.Top="40" Background="#FFC67A3A" />
-                                                        </Canvas>
-                                                    </Border>
-                                                </ContentControl>
-                                            </Border>
-
-
-                                            <Border x:Name="bdrDuplicate" Canvas.Left="18" Canvas.Top="177" Height="51" Width="292"
-        										BorderBrush="Black" BorderThickness="1,1,1,1" 
-        										CornerRadius="3" Background="#FFC7C7C7" RenderTransformOrigin="0.718,0.322">
-                                                <ContentControl MouseDown="ContentControl_MouseDown_1">
-                                                    <Border>
-                                                        <Canvas>
-                                                            <CheckBox x:Name="cbrDuplicate" Style="{StaticResource cbStyleKey}" Content="Duplicate Shipment." Canvas.Left="42" Canvas.Top="237"   Margin="13,3,169,30"  Visibility="Hidden"
-        														Checked="cbrDuplicate_Checked" Unchecked="cbrDuplicate_Unchecked"/>
-                                                            <TextBlock x:Name="txtDuplicate" Text="Duplicate Shipment." Background="Gray" Foreground="WhiteSmoke" FontSize="20" Height="49" Width="290" TextAlignment="Center"/>
-                                                            <Canvas x:Name="cnvDuplicate" Height="10" Width="290" Canvas.Top="39" Background="#FFC67A3A" />
-                                                        </Canvas>
-                                                    </Border>
-                                                </ContentControl>
-                                            </Border>
-                                            <Border x:Name="bdrIcorrectOrder" Canvas.Left="328" Canvas.Top="58" Height="51" Width="458"
-        										BorderBrush="Black" BorderThickness="1,1,1,1" 
-        										CornerRadius="3" Background="#FFC7C7C7">
-                                                <ContentControl MouseDown="ContentControl_MouseDown_4">
-                                                    <Border>
-                                                        <Canvas>
-                                                            <CheckBox x:Name="cbrIncorrectOrder" Style="{StaticResource cbStyleKey}" Content="Incorrect item ordered." Canvas.Left="450" Canvas.Top="74" Visibility="Hidden"
-        														Margin="5,5,269,26"  
-        														Checked="cbrIncorrectOrder_Checked" Unchecked="cbrIncorrectOrder_Unchecked"/>
-                                                            <TextBlock x:Name="txtinccorectorder" Text="Incorrect item ordered." Background="Gray" Foreground="WhiteSmoke" TextAlignment="Center" FontSize="20" Width="456" Height="49"/>
-                                                            <Canvas x:Name="cnvInccorectorder" Height="10" Width="456" Canvas.Top="39" Background="#FFC67A3A" />
-
-                                                        </Canvas>
-                                                    </Border>
-                                                </ContentControl>
-                                            </Border>
-
-                                            <Border x:Name="bdrDisplayedDiff" Canvas.Left="327" Canvas.Top="118" Height="51" Width="459"
-        										BorderBrush="Black" BorderThickness="1,1,1,1" 
-        										CornerRadius="3" Background="#FFC7C7C7">
-                                                <ContentControl MouseDown="ContentControl_MouseDown_3">
-                                                    <Border>
-                                                        <Canvas>
-                                                            <CheckBox x:Name="cbrDisplayedDiff" Style="{StaticResource cbStyleKey}" Content="Item is different from displayed on web." Canvas.Left="451" Canvas.Top="154" Margin="7,4,286,28" Visibility="Hidden"  
-        														Checked="cbrDisplayedDiff_Checked" Unchecked="cbrDisplayedDiff_Unchecked"/>
-                                                            <TextBlock x:Name="txtDisplayedOff" Text="Item is different from displayed on web." Foreground="WhiteSmoke" Background="Gray" FontSize="20" TextAlignment="Center" Height="49" Width="457"/>
-                                                            <Canvas x:Name="cnvDisplayedOff" Height="10" Width="460" Canvas.Left="-2" Canvas.Top="38" Background="#FFC67A3A" />
-                                                        </Canvas>
-                                                    </Border>
-                                                </ContentControl>
-                                            </Border>
-                                            <Border x:Name="bdrSatisfied" Canvas.Left="329" Canvas.Top="176" Height="51" Width="459"
-        										BorderBrush="Black" BorderThickness="1,1,1,1" 
-        										CornerRadius="3" Background="#FFC7C7C7">
-                                                <ContentControl MouseDown="ContentControl_MouseDown_5">
-                                                    <Border>
-                                                        <Canvas>
-                                                            <CheckBox x:Name="cbrSatisfied" Style="{StaticResource cbStyleKey}" Content="Not satisfied with item." Canvas.Left="450" Canvas.Top="237" Margin="8,6,270,23" 
-        														Checked="cbrSatisfied_Checked" Unchecked="cbrSatisfied_Unchecked" Visibility="Hidden"/>
-                                                            <TextBlock x:Name="txtSatisfied" FontSize="20" Text="Not satisfied with item." Foreground="WhiteSmoke" Background="Gray" TextAlignment="Center" Width="457" Height="49"/>
-                                                            <Canvas x:Name="cnvSatisfied" Height="10" Width="460" Canvas.Left="-2" Canvas.Top="39" Background="#FFC67A3A" />
-                                                        </Canvas>
-                                                    </Border>
-                                                </ContentControl>
-                                            </Border>
-                                            <Border x:Name="bdrRecivedWrong" Canvas.Left="17" Canvas.Top="116" Height="51" Width="293"
-        										BorderBrush="Black" BorderThickness="1,1,1,1" 
-        										CornerRadius="3" Background="#FFC7C7C7">
-                                                <ContentControl MouseDown="ContentControl_MouseDown_2">
-                                                    <Border>
-                                                        <Canvas>
-                                                            <CheckBox x:Name="cbrWrong" Style="{StaticResource cbStyleKey}"
-        														Content="Received wrong item."  Margin="14,4,173,28" 
-        														Checked="cbrWrong_Checked" 
-        														Unchecked="cbrWrong_Unchecked" Visibility="Hidden"/>
-                                                            <TextBlock x:Name="txtreceicewrongitem" Text="Received wrong item." FontSize="20" TextAlignment="Center" Background="Gray" Foreground="WhiteSmoke" Height="49" Width="291"/>
-                                                            <Canvas x:Name="cnvRecieve" Height="10" Width="290" Canvas.Top="40" Background="#FFC67A3A" Canvas.Left="1" />
-                                                        </Canvas>
-                                                    </Border>
-                                                </ContentControl>
-                                            </Border>
-                                        </Canvas>-->
+                                   
                                     </Border>
 
-                                    <!--<Border Width="791" CornerRadius="10" Canvas.Top="244" BorderBrush="#FF787878" BorderThickness="2,0,2,2" Height="144" Canvas.Left="-1" >
-                                        <Canvas Margin="0,2,0,5">
-                                            <Border Height="47" Width="787" Background="#B2111111" Canvas.Top="1" Canvas.Left="3">
-                                                <TextBlock TextWrapping="Wrap" Text="Other Reason" FontSize="25" Foreground="White" Margin="10,4,266,6"/>
-                                            </Border>
-
-                                            <TextBox x:Name="txtOtherReason" Height="43" Width="783" Canvas.Top="49" TextWrapping="WrapWithOverflow" Background="White" Canvas.Left="4" FontSize="30"/>
-                                            <ComboBox x:Name="cmbOtherReason" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID" Canvas.Top="95" Width="787" Height="45" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbOtherReason_SelectionChanged" Foreground="#FF55BFB6" BorderBrush="#FF292828" Style="{StaticResource combo}" Canvas.Left="-1">
-                                                <ComboBox.Background>
-                                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                                        <GradientStop Color="#FF292828" Offset="0.498"/>
-                                                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                                                        <GradientStop Color="#FF292828" Offset="0.5"/>
-                                                        <GradientStop Color="#FF292828" Offset="1"/>
-                                                    </LinearGradientBrush>
-                                                </ComboBox.Background>
-                                            </ComboBox>
-                                        </Canvas>
-                                    </Border>-->
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="416" Height="56" Width="234" Canvas.Left="556" >
+                                  
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="234" Canvas.Left="556" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnHomeDone_Click" Width="59"/>
                                             <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnHomeDone" Content="Done" Click="btnHomeDone_Click" Width="169"  />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="418" Height="56" Width="218" >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="218" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}"  MouseDown="btnback_Click" Source="/KrausRGA;component/Images/bac.png" Width="36"/>
                                             <Button Style="{StaticResource ToolBarButtonBaseStyle}"
@@ -564,11 +469,17 @@
                                         </StackPanel>
                                     </Border>
                                     <ProgressBar Visibility="Hidden" x:Name="PbrSaving" Height="47" Canvas.Left="223" Canvas.Top="424" Width="328" Value="10" IsIndeterminate="True" Background="{x:Null}" Foreground="#FF37A22C" />
+                                    <Border Visibility="Hidden" x:Name="brdPrint" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="234" Canvas.Left="284" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnPrint_Click_1" Width="59"/>
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnPrint" Content="Print" Click="btnPrint_Click_1" Width="169"  />
+                                        </StackPanel>
+                                    </Border>
                                 </Canvas>
                             </Border>
                         </StackPanel>
                     </Canvas>
-                    <Border BorderThickness="1" Height="46" Canvas.Top="1171" Width="781" Canvas.Left="6">
+                    <Border BorderThickness="1" Height="46" Canvas.Top="1179" Width="781" Canvas.Left="10">
                         <Canvas Margin="0,1,0,-1">
                             <Border x:Name="bdrMsg" Visibility="Hidden" BorderThickness="1" Height="27" Canvas.Left="0" Width="779" Background="#E1007ACC" Canvas.Top="3">
                                 <Border.Style >

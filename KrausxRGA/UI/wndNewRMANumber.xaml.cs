@@ -159,7 +159,7 @@ namespace KrausRGA.UI
                 if (ch.IsChecked == true)
                 {
                     ch.IsChecked = false;
-                    bdr.Background = new SolidColorBrush(Colors.Gray);
+                    bdr.Background = new SolidColorBrush(Colors.SkyBlue);
                 }
                 else
                 {
@@ -521,7 +521,7 @@ namespace KrausRGA.UI
             else if (Chk.IsChecked == true)
             {
                 Chk.IsChecked = false;
-                txt.Background = new SolidColorBrush(Colors.Gray);
+                txt.Background = new SolidColorBrush(Colors.SkyBlue);
                 can.Background = new SolidColorBrush(Color.FromRgb(198, 122, 58));
             }
         }
@@ -600,7 +600,8 @@ namespace KrausRGA.UI
 
                // List<RMAInfo> lsCustomeronfo = _mNewRMA.GetCustomer(Views.clGlobal.Ponumber);
                 lstponumber.Visibility = Visibility.Hidden;
-               
+
+                brdPrint.Visibility = Visibility.Visible;
 
                 _mUpdate = new mUpdateForNewRMA(Views.clGlobal.NewRGANumber); //mReturn.lsRMAInformation[0].RMANumber);
 
@@ -724,7 +725,7 @@ namespace KrausRGA.UI
                             if (_mUpdate._lsReturnDetails1[j].SKU_Qty_Seq == 1)
                             {
                                 // btnGreen.Visibility = System.Windows.Visibility.Visible; //row.IsEnabled = false;
-                                row.Background = Brushes.Gray;
+                                row.Background = Brushes.SkyBlue;
                             }
 
                             //Images Stack Panel.
@@ -1434,6 +1435,8 @@ namespace KrausRGA.UI
             btnStatusNo.IsChecked = false;
             btnStatusYes.IsChecked = false;
 
+            btnBoxNotNew.IsChecked = false;
+
         }
 
         private void UncheckAllButtons()
@@ -1474,6 +1477,8 @@ namespace KrausRGA.UI
             btnInstalledYes.IsEnabled = true;
             btnStatusNo.IsEnabled = true;
             btnStatusYes.IsEnabled = true;
+
+            btnBoxNew.IsChecked = false;
         }
         Boolean IsDefectiveTransite = true;
         private void btntransiteYes_Checked_1(object sender, RoutedEventArgs e)
@@ -1496,6 +1501,8 @@ namespace KrausRGA.UI
 
             }
             IsDefectiveTransite = false;
+
+            btntransiteNo.IsChecked = false;
         }
 
         private void btntransiteNo_Checked(object sender, RoutedEventArgs e)
@@ -1511,6 +1518,9 @@ namespace KrausRGA.UI
                 lblpoints.Content = points.ToString();
             }
             IsDefectiveTransite = true;
+
+            btntransiteYes.IsChecked = false;
+
             // Views.clGlobal.SKU_Staus = "";
 
             if (btnManufacturerNo.IsChecked == true && btntransiteNo.IsChecked == true)
@@ -1549,7 +1559,7 @@ namespace KrausRGA.UI
             }
             ISinstalled = true;
 
-
+            btnInstalledNo.IsChecked = false;
 
            // ErrorMsg("This Item is Rejected.", Color.FromRgb(185, 84, 0));
             //btnStatusNo.IsEnabled = false;
@@ -1573,6 +1583,8 @@ namespace KrausRGA.UI
             // btnAdd.IsEnabled = false;
             btnStatusNo.IsEnabled = true;
             btnStatusYes.IsEnabled = true;
+
+            btnInstalledYes.IsChecked = false;
         }
         private void btnStatusNo_Checked(object sender, RoutedEventArgs e)
         {
@@ -1609,6 +1621,9 @@ namespace KrausRGA.UI
             btntransiteNo.IsChecked = false;
             btntransiteYes.IsChecked = false;
             btnAdd.IsEnabled = true;
+
+            btnStatusYes.IsChecked = false;
+
         }
 
         private void btnManufacturerYes_Checked(object sender, RoutedEventArgs e)
@@ -1632,6 +1647,8 @@ namespace KrausRGA.UI
 
             }
             IsManufacture = false;
+
+            btnManufacturerNo.IsChecked = false;
         }
 
         private void btnManufacturerNo_Checked(object sender, RoutedEventArgs e)
@@ -1647,6 +1664,8 @@ namespace KrausRGA.UI
                 lblpoints.Content = points.ToString();
             }
             IsManufacture = true;
+
+            btnManufacturerYes.IsChecked = false;
             // Views.clGlobal.SKU_Staus = "";
 
             if (btnManufacturerNo.IsChecked == true && btntransiteNo.IsChecked == true)
@@ -1676,6 +1695,9 @@ namespace KrausRGA.UI
             btntransiteYes.IsChecked = false;
             IsManufacture = true;
             IsDefectiveTransite = true;
+
+            btnStatusNo.IsChecked = false;
+
         }
 
         private void btnRed_Click(object sender, RoutedEventArgs e)
@@ -1725,7 +1747,7 @@ namespace KrausRGA.UI
                 DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                 TextBox txtRetutn2 = (TextBox)DtQty2.FindName("tbDQyt", CntQuantity2);
 
-                if (row.Background == Brushes.Gray)
+                if (row.Background == Brushes.SkyBlue)
                 {
                     CanvasConditions.IsEnabled = true;
 
@@ -1737,7 +1759,7 @@ namespace KrausRGA.UI
                     btnGreen.Visibility = System.Windows.Visibility.Visible;
                     btnRed.Visibility = System.Windows.Visibility.Hidden;
                 }
-                if (row.Background == Brushes.Gray && txtskustatus.Text != "")
+                if (row.Background == Brushes.SkyBlue && txtskustatus.Text != "")
                 {
                     CanvasConditions.IsEnabled = false;
                     string msg = "";
@@ -1844,7 +1866,7 @@ namespace KrausRGA.UI
 
 
                 DataGridRow row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(count);
-                row.Background = Brushes.Gray;
+                row.Background = Brushes.SkyBlue;
 
                 if (check)
                 {
@@ -1877,6 +1899,13 @@ namespace KrausRGA.UI
         private void txtskuReasons_KeyDown_1(object sender, KeyEventArgs e)
         {
             cmbSkuReasons.SelectedIndex = 0;
+        }
+
+        private void btnPrint_Click_1(object sender, RoutedEventArgs e)
+        {
+            wndRMAFormPrint slip = new wndRMAFormPrint();
+            clGlobal.NewRGANumber = _mUpdate._ReturnTbl1.RGAROWID;
+            slip.ShowDialog();
         }
        
     }

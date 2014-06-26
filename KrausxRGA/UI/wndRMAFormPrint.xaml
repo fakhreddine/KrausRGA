@@ -113,7 +113,7 @@
                             <DataGrid.Resources>
                                 <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="FontSize" Value="12"/>
                                 </Style>
                             </DataGrid.Resources>
 
@@ -128,18 +128,23 @@
 
                                 <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding ReturnQty}" 
-        										Header="Quantity"  
-        										Width="150" 
+        										Header="Qty"  
+        										Width="50" 
         										IsReadOnly="True" />
 
                                 <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-        										Binding="{Binding }" 
-        										Header="Comment"  
-        										Width="300" 
-        										IsReadOnly="True" />
-                       
+        										x:Name="txtComment"
+        										Header="Status"  
+        										Width="250" 
+        										IsReadOnly="True" FontSize="12" />
+                                
+                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										x:Name="txtReason"
+        										Header="Reason"  
+        										Width="200" 
+        										IsReadOnly="True" FontSize="12" />
 
-                             
+
 
                             </DataGrid.Columns>
                             <!--<DataGrid.RowValidationErrorTemplate>

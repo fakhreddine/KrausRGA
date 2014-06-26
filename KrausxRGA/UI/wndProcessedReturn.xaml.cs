@@ -953,7 +953,7 @@ namespace KrausRGA.UI
 
             //clGlobal.mReturn = _mReturn;
 
-            wndMainReport slip = new wndMainReport();
+            wndRMAFormPrint slip = new wndRMAFormPrint();
             clGlobal.NewRGANumber = txtReturnGuid.Text;
             slip.ShowDialog();
         }

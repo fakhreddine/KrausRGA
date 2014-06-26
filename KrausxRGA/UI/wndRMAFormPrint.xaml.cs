@@ -1,6 +1,7 @@
 ﻿using KrausRGA.Models;
 using KrausRGA.Views;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Printing;
@@ -30,14 +31,14 @@ namespace KrausRGA.UI
 
         mUpdateModeRMA forSRnumber = new mUpdateModeRMA();
 
+        DispatcherTimer dtLoadUpdate1;
+
         double hei = 2000;
 
         public wndRMAFormPrint()
         {
             InitializeComponent();
-            _threadPrint.Interval = new TimeSpan(0, 0, 1);
-            _threadPrint.Start();
-            _threadPrint.Tick += _threadPrint_Tick;
+         
             // txtTextToAdd.Visibility = Visibility.Hidden;
         }
 
@@ -47,7 +48,7 @@ namespace KrausRGA.UI
 
             if (retunbyrow.RMANumber == "N/A")
             {
-                this.Dispatcher.Invoke(new Action(() => { forgetdata = new mupdatedForPonumber(retunbyrow.PONumber); }));
+                forgetdata = new mupdatedForPonumber(retunbyrow.PONumber);
 
                 txtPonumber.Text = forgetdata._ReturnTbl1.PONumber;
                 txtRMA.Text = forgetdata._ReturnTbl1.RMANumber;
@@ -58,9 +59,22 @@ namespace KrausRGA.UI
 
                 dgPackageInfo.ItemsSource = forgetdata._lsReturnDetails1;
 
+                dtLoadUpdate1 = new DispatcherTimer();
+                dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
+                dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
+                //start the dispacher.
+                dtLoadUpdate1.Start();
+
+                _threadPrint.Interval = new TimeSpan(0, 0, 5);
+                _threadPrint.Start();
+                _threadPrint.Tick += _threadPrint_Tick;
+
+
+                              
+
                 double height = dgPackageInfo.DesiredSize.Height;
 
-               // Canvas.GetTop(CanvasGrid);
+                // Canvas.GetTop(CanvasGrid);
 
                 Canvas.SetTop(CanvasNote, height);
             }
@@ -79,18 +93,68 @@ namespace KrausRGA.UI
 
                 double height = dgPackageInfo.DesiredSize.Height;
 
-              //  Canvas.GetTop(CanvasGrid);
+                //  Canvas.GetTop(CanvasGrid);
+
+                dtLoadUpdate1 = new DispatcherTimer();
+                dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
+                dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
+                //start the dispacher.
+                dtLoadUpdate1.Start();
 
                 Canvas.SetTop(CanvasNote, height);
 
             }
 
-            //_mponumner.mPOnumberRMA1(retunbyrow.PONumber);
-            //forgetdata._ReturnTbl1
-
-            //retunbyrow.ReturnID
 
         }
+
+        void dtLoadUpdate1_Tick(object sender, EventArgs e)
+        {
+            dtLoadUpdate1.Stop();
+
+            foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
+            {
+
+                string Reason = "";
+                TextBlock SkuNumber = dgPackageInfo.Columns[0].GetCellContent(row1) as TextBlock;
+
+                
+
+                for (int i = 0; i < forgetdata._lsReturnDetails1.Count; i++)
+                {
+                    TextBlock Status = dgPackageInfo.Columns[2].GetCellContent(row1) as TextBlock;
+                    Reason = "";
+                    for (int j = 0; j < forgetdata._lsskuandpoints.Count; j++)
+                    {
+                        if (forgetdata._lsReturnDetails1[i].SKUNumber == SkuNumber.Text && forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsskuandpoints[j].ReturnDetailID)
+                        {
+                            Reason = Reason + forgetdata._lsskuandpoints[j].Reason + ", ";
+                        }
+                    }
+                     Status.Text = Reason;
+                }
+              
+            }
+        
+
+        }
+
+        public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
+        {
+            var itemsSource = grid.ItemsSource as IEnumerable;
+            if (null == itemsSource) yield return null;
+            if (itemsSource != null)
+            {
+
+                foreach (var item in itemsSource)
+                {
+                    var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                    if (null != row) yield return row;
+                }
+            }
+        }
+
+
 
 
         void _threadPrint_Tick(object sender, EventArgs e)
