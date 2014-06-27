@@ -247,7 +247,7 @@ namespace KrausRGA.UI
 
             if (selectedIndex != -1)
             {
-                DataGridCell cell = GetCell(selectedIndex, 0);
+                DataGridCell cell = GetCell(selectedIndex, 7);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
                 DataTemplate DataTemp = CntPersenter.ContentTemplate;
                 TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
@@ -321,16 +321,16 @@ namespace KrausRGA.UI
 
                 }
 
-                Guid Returnid = cReturnTbl.GetRetrunByROWID(txtReturnGuid.Text)[0].ReturnID;
+               // Guid Returnid = cReturnTbl.GetRetrunByROWID(txtReturnGuid.Text)[0].ReturnID;
 
 
-                dgReturnDetailInfo.ItemsSource = cRetutnDetailsTbl.GetReturnDetailsByReturnID(Returnid);
-
-
-
+              //  dgReturnDetailInfo.ItemsSource = cRetutnDetailsTbl.GetReturnDetailsByReturnID(Returnid);
 
 
 
+
+
+            
 
 
             }
@@ -454,7 +454,7 @@ namespace KrausRGA.UI
                     DataGridRow row1 = (DataGridRow)row;
                   //  TextBlock SKUNo = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
 
-                    TextBlock ProgressFlag = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+                    TextBlock ProgressFlag = dgPackageInfo.Columns[3].GetCellContent(row1) as TextBlock;
 
                     if (ProgressFlag.Text == "1")
                     {
@@ -869,6 +869,9 @@ namespace KrausRGA.UI
                         }
 
                         lstSearch.ItemsSource = lsRGANUmber;
+
+
+
                     }
                     catch (Exception)
                     {
@@ -934,7 +937,7 @@ namespace KrausRGA.UI
         {
             int selectedindex = dgPackageInfo.SelectedIndex;
 
-            DataGridCell cell = GetCell(selectedindex, 0);
+            DataGridCell cell = GetCell(selectedindex, 7);
             ContentPresenter CntPersenter = cell.Content as ContentPresenter;
             DataTemplate DataTemp = CntPersenter.ContentTemplate;
             TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);

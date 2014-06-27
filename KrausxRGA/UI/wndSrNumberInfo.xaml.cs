@@ -178,7 +178,7 @@ namespace KrausRGA.UI
                 lblRMAReqDate.Content = _mUpdate._ReturnTbl.ReturnDate.ToString("MMM dd, yyyy");
                 lblVendorNumber.Content = _mUpdate._ReturnTbl.VendorNumber.ToString();
                 lblVendorName.Content = _mUpdate._ReturnTbl.VendoeName;
-                lblPoNumber.Content = _mUpdate._ReturnTbl.PONumber.ToString();
+                lblPoNumber.Text = _mUpdate._ReturnTbl.PONumber.ToString();
                 lblCustomerAddress.Text = _mUpdate._ReturnTbl.Address1;
                 lblCustCity.Content = _mUpdate._ReturnTbl.City;
                 lblState.Content = _mUpdate._ReturnTbl.State;
@@ -326,7 +326,7 @@ namespace KrausRGA.UI
                 lblRMAReqDate.Content = _lsRMAInfo[0].ReturnDate.ToString("MMM dd, yyyy");
                 lblVendorNumber.Content = _lsRMAInfo[0].VendorNumber.ToString();
                 lblVendorName.Content = _lsRMAInfo[0].VendorName;
-                lblPoNumber.Content = _lsRMAInfo[0].PONumber.ToString();
+                lblPoNumber.Text = _lsRMAInfo[0].PONumber.ToString();
                 lblCustomerAddress.Text = _lsRMAInfo[0].Address1;
                 lblCustCity.Content = _lsRMAInfo[0].City;
                 lblState.Content = _lsRMAInfo[0].State;
@@ -1604,11 +1604,51 @@ namespace KrausRGA.UI
                     {
                         if (SkuNumber.Text == dt.Rows[i][0].ToString() && txtRetutn2.Text == dt.Rows[i][4].ToString())
                         {
-                            msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
+                           // msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
+                            if (dt.Rows[i][1].ToString() == "Item is New" && dt.Rows[i][2].ToString() == "Yes")
+                            {
+                                btnBoxNew.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Item is New" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnBoxNotNew.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Installed" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btnInstalledYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Installed" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnInstalledNo.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Chip/Bended/Scratch/Broken" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btnStatusYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Chip/Bended/Scratch/Broken" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnStatusNo.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Manufacturer Defective" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btnManufacturerYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Manufacturer Defective" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnManufacturerNo.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Defect in Transite" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btntransiteYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Defect in Transite" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btntransiteNo.IsChecked = true;
+                            }
                         }
                     }
 
-                    MessageBox.Show(msg);
+                   // MessageBox.Show(msg);
                 }
                 _mReturn.GreenRowsNumber.Add(row.GetIndex());
                 bdrMsg.Visibility = System.Windows.Visibility.Hidden;
@@ -1665,11 +1705,51 @@ namespace KrausRGA.UI
                     {
                         if (SkuNumber.Text == dt.Rows[i][0].ToString() && txtRetutn2.Text == dt.Rows[i][4].ToString())
                         {
-                            msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
+                           // msg = dt.Rows[i][1].ToString() + " : " + dt.Rows[i][2].ToString() + "\n" + msg;
+                            if (dt.Rows[i][1].ToString() == "Item is New" && dt.Rows[i][2].ToString() == "Yes")
+                            {
+                                btnBoxNew.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Item is New" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnBoxNotNew.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Installed" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btnInstalledYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Installed" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnInstalledNo.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Chip/Bended/Scratch/Broken" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btnStatusYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Chip/Bended/Scratch/Broken" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnStatusNo.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Manufacturer Defective" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btnManufacturerYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Manufacturer Defective" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btnManufacturerNo.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Defect in Transite" && dt.Rows[i][2].ToString() == "Yes"))
+                            {
+                                btntransiteYes.IsChecked = true;
+                            }
+                            else if ((dt.Rows[i][1].ToString() == "Defect in Transite" && dt.Rows[i][2].ToString() == "No"))
+                            {
+                                btntransiteNo.IsChecked = true;
+                            }
                         }
                     }
 
-                    MessageBox.Show(msg);
+                   // MessageBox.Show(msg);
                 }
 
 

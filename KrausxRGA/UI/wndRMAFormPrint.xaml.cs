@@ -1,4 +1,5 @@
-﻿using KrausRGA.Models;
+﻿using KrausRGA.DBLogics;
+using KrausRGA.Models;
 using KrausRGA.Views;
 using System;
 using System.Collections;
@@ -8,6 +9,7 @@ using System.Printing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -29,7 +31,13 @@ namespace KrausRGA.UI
 
         mupdatedForPonumber forgetdata = new mupdatedForPonumber();
 
+        mUpdateForNewRMA forgetdataNewRMA = new mUpdateForNewRMA();
+
         mUpdateModeRMA forSRnumber = new mUpdateModeRMA();
+
+        protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
+
+        mReturnDetails mreturn;
 
         DispatcherTimer dtLoadUpdate1;
 
@@ -48,16 +56,82 @@ namespace KrausRGA.UI
 
             if (retunbyrow.RMANumber == "N/A")
             {
-                forgetdata = new mupdatedForPonumber(retunbyrow.PONumber);
+                if (retunbyrow.OrderNumber == "N/A")
+                {
+                    forgetdataNewRMA = new mUpdateForNewRMA(retunbyrow.RGAROWID);
 
-                txtPonumber.Text = forgetdata._ReturnTbl1.PONumber;
-                txtRMA.Text = forgetdata._ReturnTbl1.RMANumber;
-                txtVendorName.Text = forgetdata._ReturnTbl1.VendoeName;
-                txtName.Text = forgetdata._ReturnTbl1.VendoeName;
-                txtAddress.Text = forgetdata._ReturnTbl1.Address1 + " " + forgetdata._ReturnTbl1.Address2 + " " + forgetdata._ReturnTbl1.Address3;
-                txtRequestDate.Text = Convert.ToString(forgetdata._ReturnTbl1.CreatedDate);
+                    txtPonumber.Text = forgetdataNewRMA._ReturnTbl1.PONumber;
+                    txtRMA.Text = forgetdataNewRMA._ReturnTbl1.RMANumber;
+                    txtVendorName.Text = forgetdataNewRMA._ReturnTbl1.VendoeName;
+                    txtName.Text = forgetdataNewRMA._ReturnTbl1.VendoeName;
+                    txtAddress.Text = forgetdataNewRMA._ReturnTbl1.Address1 + " " + forgetdata._ReturnTbl1.Address2 + " " + forgetdata._ReturnTbl1.Address3;
+                    txtRequestDate.Text = Convert.ToString(forgetdataNewRMA._ReturnTbl1.CreatedDate);
 
-                dgPackageInfo.ItemsSource = forgetdata._lsReturnDetails1;
+                    dgPackageInfo.ItemsSource = forgetdataNewRMA._lsReturnDetails1;//.OrderByDescending(q => q.SKU_Sequence);
+
+                    dtLoadUpdate1 = new DispatcherTimer();
+                    dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
+                    dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
+                    //start the dispacher.
+                    dtLoadUpdate1.Start();
+
+                    double height = dgPackageInfo.DesiredSize.Height;
+
+                    // Canvas.GetTop(CanvasGrid);
+
+                    Canvas.SetTop(CanvasNote, height);
+
+                    _threadPrint.Interval = new TimeSpan(0, 0, 5);
+                    _threadPrint.Start();
+                    _threadPrint.Tick += _threadPrint_Tick;
+                }
+                else
+                {
+                    forgetdata = new mupdatedForPonumber(retunbyrow.PONumber);
+
+                    txtPonumber.Text = forgetdata._ReturnTbl1.PONumber;
+                    txtRMA.Text = forgetdata._ReturnTbl1.RMANumber;
+                    txtVendorName.Text = forgetdata._ReturnTbl1.VendoeName;
+                    txtName.Text = forgetdata._ReturnTbl1.VendoeName;
+                    txtAddress.Text = forgetdata._ReturnTbl1.Address1 + " " + forgetdata._ReturnTbl1.Address2 + " " + forgetdata._ReturnTbl1.Address3;
+                    txtRequestDate.Text = Convert.ToString(forgetdata._ReturnTbl1.CreatedDate);
+
+                    dgPackageInfo.ItemsSource = forgetdata._lsReturnDetails1;//.OrderByDescending(q => q.SKU_Sequence);
+
+                    dtLoadUpdate1 = new DispatcherTimer();
+                    dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
+                    dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
+                    //start the dispacher.
+                    dtLoadUpdate1.Start();
+
+                    double height = dgPackageInfo.DesiredSize.Height;
+
+                    // Canvas.GetTop(CanvasGrid);
+
+                    Canvas.SetTop(CanvasNote, height);
+
+                    _threadPrint.Interval = new TimeSpan(0, 0, 5);
+                    _threadPrint.Start();
+                    _threadPrint.Tick += _threadPrint_Tick;
+                }
+            }
+            else
+            {
+
+                this.Dispatcher.Invoke(new Action(() => { forSRnumber = new mUpdateModeRMA(retunbyrow.RMANumber); }));
+
+                txtPonumber.Text = forSRnumber._ReturnTbl.PONumber;
+                txtRMA.Text = forSRnumber._ReturnTbl.RMANumber;
+                txtVendorName.Text = forSRnumber._ReturnTbl.VendoeName;
+                txtName.Text = forSRnumber._ReturnTbl.VendoeName;
+                txtAddress.Text = forSRnumber._ReturnTbl.Address1 + " " + forSRnumber._ReturnTbl.Address2 + " " + forSRnumber._ReturnTbl.Address3;
+                txtRequestDate.Text = Convert.ToString(forSRnumber._ReturnTbl.CreatedDate);
+
+                dgPackageInfo.ItemsSource = forSRnumber._lsReturnDetails;//.OrderByDescending(q => q.SKU_Sequence);
+
+                double height = dgPackageInfo.DesiredSize.Height;
+                Canvas.SetTop(CanvasNote, height);
+                //  Canvas.GetTop(CanvasGrid);
 
                 dtLoadUpdate1 = new DispatcherTimer();
                 dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
@@ -68,42 +142,8 @@ namespace KrausRGA.UI
                 _threadPrint.Interval = new TimeSpan(0, 0, 5);
                 _threadPrint.Start();
                 _threadPrint.Tick += _threadPrint_Tick;
-
-
-                              
-
-                double height = dgPackageInfo.DesiredSize.Height;
-
-                // Canvas.GetTop(CanvasGrid);
-
-                Canvas.SetTop(CanvasNote, height);
             }
-            else
-            {
-                this.Dispatcher.Invoke(new Action(() => { forSRnumber = new mUpdateModeRMA(retunbyrow.RMANumber); }));
 
-                txtPonumber.Text = forSRnumber._ReturnTbl.PONumber;
-                txtRMA.Text = forSRnumber._ReturnTbl.RMANumber;
-                txtVendorName.Text = forSRnumber._ReturnTbl.VendoeName;
-                txtName.Text = forSRnumber._ReturnTbl.VendoeName;
-                txtAddress.Text = forSRnumber._ReturnTbl.Address1 + " " + forSRnumber._ReturnTbl.Address2 + " " + forSRnumber._ReturnTbl.Address3;
-                txtRequestDate.Text = Convert.ToString(forSRnumber._ReturnTbl.CreatedDate);
-
-                dgPackageInfo.ItemsSource = forSRnumber._lsReturnDetails;
-
-                double height = dgPackageInfo.DesiredSize.Height;
-
-                //  Canvas.GetTop(CanvasGrid);
-
-                dtLoadUpdate1 = new DispatcherTimer();
-                dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
-                dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
-                //start the dispacher.
-                dtLoadUpdate1.Start();
-
-                Canvas.SetTop(CanvasNote, height);
-
-            }
 
 
         }
@@ -112,32 +152,161 @@ namespace KrausRGA.UI
         {
             dtLoadUpdate1.Stop();
 
-            foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
+            string Reason = "";
+
+
+            #region ForStatus
+             for (int i = 0; i < dgPackageInfo.Items.Count; i++)
             {
 
-                string Reason = "";
-                TextBlock SkuNumber = dgPackageInfo.Columns[0].GetCellContent(row1) as TextBlock;
+                DataGridRow rowContainer = GetRow(i);
 
-                
+                TextBlock SkuNumber = dgPackageInfo.Columns[0].GetCellContent(rowContainer) as TextBlock;
 
-                for (int i = 0; i < forgetdata._lsReturnDetails1.Count; i++)
+                TextBlock Status = dgPackageInfo.Columns[2].GetCellContent(rowContainer) as TextBlock;
+
+                TextBlock ReasonFeild = dgPackageInfo.Columns[3].GetCellContent(rowContainer) as TextBlock;
+
+                Reason = "";
+                for (int j = 0; j < forgetdata._lsskuandpoints.Count; j++)
                 {
-                    TextBlock Status = dgPackageInfo.Columns[2].GetCellContent(row1) as TextBlock;
-                    Reason = "";
-                    for (int j = 0; j < forgetdata._lsskuandpoints.Count; j++)
+                    if (forgetdata._lsReturnDetails1[i].SKUNumber == SkuNumber.Text && forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsskuandpoints[j].ReturnDetailID)
                     {
-                        if (forgetdata._lsReturnDetails1[i].SKUNumber == SkuNumber.Text && forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsskuandpoints[j].ReturnDetailID)
+                        // Reason = Reason + forgetdata._lsskuandpoints[j].Reason + ", ";
+
+                      
+
+                        if (forgetdata._lsskuandpoints[j].Reason == "Item is New" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
                         {
-                            Reason = Reason + forgetdata._lsskuandpoints[j].Reason + ", ";
+                            Reason = Reason + "New" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Item is New" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                        {
+                            Reason = Reason + "Not New" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Installed" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                        {
+                            Reason = Reason + "Installed" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Installed" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                        {
+                            Reason = Reason + "Not Installed" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                        {
+                            Reason = Reason + "Chip/Bended/Scratch/Broken" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                        {
+                            Reason = Reason + "Not Chip/Bended/Scratch/Broken" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                        {
+                            Reason = Reason + "Manufacturer Defective" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                        {
+                            Reason = Reason + "Not Manufacturer Defective" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                        {
+                            Reason = Reason + "Defect in Transite" + ",";
+                        }
+                        else if (forgetdata._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                        {
+                            Reason = Reason + "Not Defect in Transite" + ",";
                         }
                     }
-                     Status.Text = Reason;
                 }
-              
+                string Reason1 = Reason.TrimEnd(',');
+                Status.Text = Reason1;
+                Reason1 = "";
             }
-        
+            #endregion
+
+            #region For Reason
+
+             for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+             {
+                DataGridRow rowContainer = GetRow(i);
+
+                TextBlock ReasonFeild = dgPackageInfo.Columns[3].GetCellContent(rowContainer) as TextBlock;
+
+                for (int j = 0; j < forgetdata._lsReasons1.Count; j++)
+                {
+                    if (forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsReasons1[j].ReturnDetailID)
+                    {
+                        System.Guid ReturnID = forgetdata._lsReturnDetails1[i].ReturnDetailID;
+
+                        string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
+
+                        ReasonFeild.Text = reas;
+                    }
+                }
+
+             }
+
+
+            #endregion
+
+
 
         }
+
+
+
+        public DataGridCell GetCell(int row, int column)
+        {
+            DataGridRow rowContainer = GetRow(row);
+
+            if (rowContainer != null)
+            {
+                DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(rowContainer);
+
+                DataGridCell cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(column);
+                if (cell == null)
+                {
+                    dgPackageInfo.ScrollIntoView(rowContainer, dgPackageInfo.Columns[column]);
+                    cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(column);
+                }
+                return cell;
+            }
+            return null;
+        }
+
+        public DataGridRow GetRow(int index)
+        {
+            DataGridRow row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(index);
+            if (row == null)
+            {
+                dgPackageInfo.UpdateLayout();
+                dgPackageInfo.ScrollIntoView(dgPackageInfo.Items[index]);
+                row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(index);
+            }
+            return row;
+        }
+
+        public static T GetVisualChild<T>(Visual parent) where T : Visual
+        {
+            T child = default(T);
+            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < numVisuals; i++)
+            {
+                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
+                child = v as T;
+                if (child == null)
+                {
+                    child = GetVisualChild<T>(v);
+                }
+                if (child != null)
+                {
+                    break;
+                }
+            }
+            return child;
+        }
+
+
 
         public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
         {

@@ -115,33 +115,40 @@
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     <Setter Property="FontSize" Value="12"/>
                                 </Style>
+
+                                <Style x:Key="DataGridTextColumnStyle" TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                </Style>
                             </DataGrid.Resources>
 
                             <DataGrid.Columns>
-                            
-                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+
+                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}"  
         										Binding="{Binding SKUNumber}" 
+                                                    x:Name="txtSKU"
         										Header="SKU"  
-        										Width="150" 
-        										IsReadOnly="True" />
+        										Width="120" 
+        										IsReadOnly="True" 
+                                                    FontSize="12" />
 
 
                                 <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding ReturnQty}" 
         										Header="Qty"  
-        										Width="50" 
-        										IsReadOnly="True" />
+        										Width="30" 
+        										IsReadOnly="True"
+                                                    FontSize="12"/>
 
-                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" ElementStyle="{StaticResource DataGridTextColumnStyle}"
         										x:Name="txtComment"
         										Header="Status"  
-        										Width="250" 
-        										IsReadOnly="True" FontSize="12" />
+        										Width="280" 
+        										IsReadOnly="True" FontSize="12"  />
                                 
                                 <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										x:Name="txtReason"
         										Header="Reason"  
-        										Width="200" 
+        										Width="210" 
         										IsReadOnly="True" FontSize="12" />
 
 

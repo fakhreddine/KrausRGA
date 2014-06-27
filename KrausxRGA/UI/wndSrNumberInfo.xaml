@@ -69,7 +69,7 @@
                                         <Canvas Margin="0,0,0,0">
                                            
                                             <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="10" Width="143" Canvas.Left="36"/>
-                                            <Label x:Name="lblPoNumber" Content="N/A " Style="{StaticResource lblVeriable}" Canvas.Left="183" Canvas.Top="10" Width="254" Height="33"/>
+                                            <TextBox x:Name="lblPoNumber" Text="N/A " FontSize="25" Canvas.Left="183" Canvas.Top="10" Width="254" Height="37" />
 
                                             <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="53" Width="164" Canvas.Left="13"/>
                                             <Label x:Name="lblName"  Style="{StaticResource lblVeriable}" Canvas.Left="182" Canvas.Top="52" Width="224" Height="33">

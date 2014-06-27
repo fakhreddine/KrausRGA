@@ -9,6 +9,7 @@
                     <Border Height="45" Width="803" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
                         <TextBlock TextWrapping="Wrap" Text="Processed Return" FontSize="25" Foreground="White" Margin="308,6,273,0"/>
                     </Border>
+                
                     <DataGrid x:Name="dgPackageInfo"
         								SelectionMode="Extended" 
         								ItemsSource="{Binding}" 
@@ -28,7 +29,7 @@
         								BorderBrush="{x:Null}" 
         								HorizontalGridLinesBrush="#FF575757" 
         								VerticalGridLinesBrush="Gray"
-        								Height="476"  
+        								Height="978"  
         								SelectedIndex="-1" Canvas.Top="204"   MouseDoubleClick="dgPackageInfo_MouseDoubleClick" Canvas.Left="4"
                                            >
 
@@ -41,25 +42,16 @@
 
                     <DataGrid.Columns>
 
-                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-                                        		Header="RGA Number"  
-                                        		Width="150" 
-                                        		IsReadOnly="True" >
+                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Print" Width="62" >
                                 <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel  Height="40" Width="150">
-                                            <TextBox x:Name="txtRGANumber"  Height="40" Margin="0,0,0,0" Text="{Binding RGAROWID}" FontSize="20" FontWeight="Bold" IsEnabled="False"/>
-                                        </StackPanel>
+                                    <DataTemplate >
+                                        <Canvas x:Name="cvButtons">
+                                            <Button x:Name="btnRed" Width="50" Content="Print" Height="30"  Click="btnRed_Click_1">
+                                            </Button>
+                                        </Canvas>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-
                             </DataGridTemplateColumn>
-
-                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
-        										Binding="{Binding ProgressFlag}" 
-        										Header="Progress Flag"  
-        										Width="160" 
-        										IsReadOnly="True" />
 
                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding RMANumber}" 
@@ -68,13 +60,21 @@
         										IsReadOnly="True" />
 
 
-                         
-
                             <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding PONumber}" 
         										Header="PO Number"  
         										Width="140" 
         										IsReadOnly="True" />
+                        
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding ProgressFlag}" 
+        										Header="Progress Flag"  
+        										Width="160" 
+        										IsReadOnly="True" />
+
+                                           
+
+                           
 
                         <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding ReturnDate, StringFormat=\{0:MM/dd/yyyy \}}" 
@@ -93,15 +93,20 @@
         										Header="Vendor Name"  
         										Width="160" 
         										IsReadOnly="True" />
-                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Item" Width="62" >
+                          
+
+                            <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+                                        		Header="RGA Number"  
+                                        		Width="150" 
+                                        		IsReadOnly="True" >
                                 <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate >
-                                        <Canvas x:Name="cvButtons">
-                                            <Button x:Name="btnRed" Width="50" Content="Print" Height="30"  Click="btnRed_Click_1">
-                                            </Button>
-                                        </Canvas>
+                                    <DataTemplate>
+                                        <StackPanel  Height="40" Width="150">
+                                            <TextBox x:Name="txtRGANumber"  Height="40" Margin="0,0,0,0" Text="{Binding RGAROWID}" FontSize="20" FontWeight="Bold" IsEnabled="False"/>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
+
                             </DataGridTemplateColumn>
 
 
@@ -128,10 +133,10 @@
                     <Border Height="45" Width="803" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
                         <TextBlock TextWrapping="Wrap" Text="Processed Return" FontSize="25" Foreground="White" Margin="308,6,273,0" x:Name="txtHeadLine"/>
                     </Border>
-                    <Border Height="45" Width="803" Background="#B2111111" Canvas.Top="689" Canvas.Left="-3">
+                    <!--<Border Height="45" Width="803" Background="#B2111111" Canvas.Top="689" Canvas.Left="-3">
                         <TextBlock TextWrapping="Wrap" Text="Return Detail" FontSize="25" Foreground="White" Margin="308,6,273,0"/>
-                    </Border>
-                    <DataGrid x:Name="dgReturnDetailInfo"
+                    </Border>-->
+                    <!--<DataGrid x:Name="dgReturnDetailInfo"
         								SelectionMode="Extended" 
         								ItemsSource="{Binding}" 
         								HorizontalAlignment="Center" 
@@ -207,7 +212,7 @@
                                 </Grid>
                             </ControlTemplate>
                         </DataGrid.RowValidationErrorTemplate>
-                    </DataGrid>
+                    </DataGrid>-->
 
                     <ComboBox Canvas.Left="121" Canvas.Top="108" Width="200" Height="45" x:Name="cmbSearchBy" BorderBrush="Black" FontSize="20" SelectionChanged="cmbSearchBy_SelectionChanged_1" >
                         <ComboBoxItem Name="clear" FontSize="20">All-Clear Search</ComboBoxItem>
