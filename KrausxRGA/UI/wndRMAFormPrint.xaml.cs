@@ -37,11 +37,15 @@ namespace KrausRGA.UI
 
         protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
 
+        Boolean SRNmumber = false;
+        Boolean POnumber = false;
+        Boolean NewRMANumber = false;
+
         mReturnDetails mreturn;
 
         DispatcherTimer dtLoadUpdate1;
 
-        double hei = 2000;
+       // double hei = 2000;
 
         public wndRMAFormPrint()
         {
@@ -58,6 +62,7 @@ namespace KrausRGA.UI
             {
                 if (retunbyrow.OrderNumber == "N/A")
                 {
+                    NewRMANumber = true;
                     forgetdataNewRMA = new mUpdateForNewRMA(retunbyrow.RGAROWID);
 
                     txtPonumber.Text = forgetdataNewRMA._ReturnTbl1.PONumber;
@@ -81,12 +86,13 @@ namespace KrausRGA.UI
 
                     Canvas.SetTop(CanvasNote, height);
 
-                    _threadPrint.Interval = new TimeSpan(0, 0, 5);
+                    _threadPrint.Interval = new TimeSpan(0, 0, 3);
                     _threadPrint.Start();
                     _threadPrint.Tick += _threadPrint_Tick;
                 }
                 else
                 {
+                    POnumber = true;
                     forgetdata = new mupdatedForPonumber(retunbyrow.PONumber);
 
                     txtPonumber.Text = forgetdata._ReturnTbl1.PONumber;
@@ -110,7 +116,7 @@ namespace KrausRGA.UI
 
                     Canvas.SetTop(CanvasNote, height);
 
-                    _threadPrint.Interval = new TimeSpan(0, 0, 5);
+                    _threadPrint.Interval = new TimeSpan(0, 0, 3);
                     _threadPrint.Start();
                     _threadPrint.Tick += _threadPrint_Tick;
                 }
@@ -119,6 +125,8 @@ namespace KrausRGA.UI
             {
 
                 this.Dispatcher.Invoke(new Action(() => { forSRnumber = new mUpdateModeRMA(retunbyrow.RMANumber); }));
+
+                SRNmumber = true;
 
                 txtPonumber.Text = forSRnumber._ReturnTbl.PONumber;
                 txtRMA.Text = forSRnumber._ReturnTbl.RMANumber;
@@ -139,7 +147,7 @@ namespace KrausRGA.UI
                 //start the dispacher.
                 dtLoadUpdate1.Start();
 
-                _threadPrint.Interval = new TimeSpan(0, 0, 5);
+                _threadPrint.Interval = new TimeSpan(0, 0, 3);
                 _threadPrint.Start();
                 _threadPrint.Tick += _threadPrint_Tick;
             }
@@ -168,59 +176,178 @@ namespace KrausRGA.UI
                 TextBlock ReasonFeild = dgPackageInfo.Columns[3].GetCellContent(rowContainer) as TextBlock;
 
                 Reason = "";
-                for (int j = 0; j < forgetdata._lsskuandpoints.Count; j++)
+
+                if (SRNmumber)
                 {
-                    if (forgetdata._lsReturnDetails1[i].SKUNumber == SkuNumber.Text && forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsskuandpoints[j].ReturnDetailID)
+                    for (int j = 0; j < forSRnumber._lsReturnDetails.Count; j++)
                     {
-                        // Reason = Reason + forgetdata._lsskuandpoints[j].Reason + ", ";
+                        if (forSRnumber._lsReturnDetails[i].SKUNumber == SkuNumber.Text && forSRnumber._lsReturnDetails[i].ReturnDetailID == forSRnumber._lsskuandpoints1[j].ReturnDetailID)
+                        {
+                            // Reason = Reason + forgetdata._lsskuandpoints[j].Reason + ", ";
 
-                      
 
-                        if (forgetdata._lsskuandpoints[j].Reason == "Item is New" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
-                        {
-                            Reason = Reason + "New" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Item is New" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
-                        {
-                            Reason = Reason + "Not New" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Installed" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
-                        {
-                            Reason = Reason + "Installed" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Installed" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
-                        {
-                            Reason = Reason + "Not Installed" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
-                        {
-                            Reason = Reason + "Chip/Bended/Scratch/Broken" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
-                        {
-                            Reason = Reason + "Not Chip/Bended/Scratch/Broken" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
-                        {
-                            Reason = Reason + "Manufacturer Defective" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
-                        {
-                            Reason = Reason + "Not Manufacturer Defective" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
-                        {
-                            Reason = Reason + "Defect in Transite" + ",";
-                        }
-                        else if (forgetdata._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
-                        {
-                            Reason = Reason + "Not Defect in Transite" + ",";
+
+                            if (forSRnumber._lsskuandpoints1[j].Reason == "Item is New" && forSRnumber._lsskuandpoints1[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "New" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Item is New" && forSRnumber._lsskuandpoints1[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not New" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Installed" && forSRnumber._lsskuandpoints1[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Installed" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Installed" && forSRnumber._lsskuandpoints1[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Installed" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Chip/Bended/Scratch/Broken" && forSRnumber._lsskuandpoints1[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Chip/Bended/Scratch/Broken" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Chip/Bended/Scratch/Broken" && forSRnumber._lsskuandpoints1[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Chip/Bended/Scratch/Broken" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Manufacturer Defective" && forSRnumber._lsskuandpoints1[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Manufacturer Defective" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Manufacturer Defective" && forSRnumber._lsskuandpoints1[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Manufacturer Defective" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Defect in Transite" && forSRnumber._lsskuandpoints1[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Defect in Transite" + ",";
+                            }
+                            else if (forSRnumber._lsskuandpoints1[j].Reason == "Defect in Transite" && forSRnumber._lsskuandpoints1[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Defect in Transite" + ",";
+                            }
                         }
                     }
+                    string Reason1 = Reason.TrimEnd(',');
+                    Status.Text = Reason1;
+                    Reason1 = "";
                 }
-                string Reason1 = Reason.TrimEnd(',');
-                Status.Text = Reason1;
-                Reason1 = "";
+                else if (POnumber)
+                {
+                    for (int j = 0; j < forgetdata._lsskuandpoints.Count; j++)
+                    {
+                        if (forgetdata._lsReturnDetails1[i].SKUNumber == SkuNumber.Text && forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsskuandpoints[j].ReturnDetailID)
+                        {
+                            // Reason = Reason + forgetdata._lsskuandpoints[j].Reason + ", ";
+
+
+
+                            if (forgetdata._lsskuandpoints[j].Reason == "Item is New" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "New" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Item is New" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not New" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Installed" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Installed" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Installed" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Installed" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Chip/Bended/Scratch/Broken" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Chip/Bended/Scratch/Broken" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Manufacturer Defective" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Manufacturer Defective" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdata._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Defect in Transite" + ",";
+                            }
+                            else if (forgetdata._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdata._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Defect in Transite" + ",";
+                            }
+                        }
+                    }
+                    string Reason1 = Reason.TrimEnd(',');
+                    Status.Text = Reason1;
+                    Reason1 = "";
+                }
+                else if (NewRMANumber)
+                {
+                    for (int j = 0; j < forgetdataNewRMA._lsskuandpoints.Count; j++)
+                    {
+                        if (forgetdataNewRMA._lsReturnDetails1[i].SKUNumber == SkuNumber.Text && forgetdataNewRMA._lsReturnDetails1[i].ReturnDetailID == forgetdataNewRMA._lsskuandpoints[j].ReturnDetailID)
+                        {
+                            // Reason = Reason + forgetdata._lsskuandpoints[j].Reason + ", ";
+
+
+
+                            if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Item is New" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "New" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Item is New" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not New" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Installed" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Installed" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Installed" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Installed" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Chip/Bended/Scratch/Broken" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Chip/Bended/Scratch/Broken" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Chip/Bended/Scratch/Broken" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Manufacturer Defective" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Manufacturer Defective" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Manufacturer Defective" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "Yes")
+                            {
+                                Reason = Reason + "Defect in Transite" + ",";
+                            }
+                            else if (forgetdataNewRMA._lsskuandpoints[j].Reason == "Defect in Transite" && forgetdataNewRMA._lsskuandpoints[j].Reason_Value == "No")
+                            {
+                                Reason = Reason + "Not Defect in Transite" + ",";
+                            }
+                        }
+                    }
+                    string Reason1 = Reason.TrimEnd(',');
+                    Status.Text = Reason1;
+                    Reason1 = "";
+                }
+             
+
+              
             }
             #endregion
 
@@ -232,17 +359,52 @@ namespace KrausRGA.UI
 
                 TextBlock ReasonFeild = dgPackageInfo.Columns[3].GetCellContent(rowContainer) as TextBlock;
 
-                for (int j = 0; j < forgetdata._lsReasons1.Count; j++)
+
+                if (SRNmumber)
                 {
-                    if (forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsReasons1[j].ReturnDetailID)
+                    for (int j = 0; j < forSRnumber._lsReasons.Count; j++)
                     {
-                        System.Guid ReturnID = forgetdata._lsReturnDetails1[i].ReturnDetailID;
+                        if (forSRnumber._lsReturnDetails[i].ReturnDetailID == forSRnumber._lsReasons[j].ReturnDetailID)
+                        {
+                            System.Guid ReturnID = forSRnumber._lsReturnDetails[i].ReturnDetailID;
 
-                        string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
+                            string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
 
-                        ReasonFeild.Text = reas;
+                            ReasonFeild.Text = reas;
+                        }
                     }
                 }
+                else if (POnumber)
+                {
+                    for (int j = 0; j < forgetdata._lsReasons1.Count; j++)
+                    {
+                        if (forgetdata._lsReturnDetails1[i].ReturnDetailID == forgetdata._lsReasons1[j].ReturnDetailID)
+                        {
+                            System.Guid ReturnID = forgetdata._lsReturnDetails1[i].ReturnDetailID;
+
+                            string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
+
+                            ReasonFeild.Text = reas;
+                        }
+                    }
+                }
+                else if (NewRMANumber)
+                {
+                    for (int j = 0; j < forgetdataNewRMA._lsReasons1.Count; j++)
+                    {
+                        if (forgetdataNewRMA._lsReturnDetails1[i].ReturnDetailID == forgetdataNewRMA._lsReasons1[j].ReturnDetailID)
+                        {
+                            System.Guid ReturnID = forgetdataNewRMA._lsReturnDetails1[i].ReturnDetailID;
+
+                            string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
+
+                            ReasonFeild.Text = reas;
+                        }
+                    }
+                }
+
+
+                
 
              }
 
@@ -250,7 +412,9 @@ namespace KrausRGA.UI
             #endregion
 
 
-
+             SRNmumber = false;
+             POnumber = false;
+             NewRMANumber = false;
         }
 
 
@@ -342,7 +506,7 @@ namespace KrausRGA.UI
             {
 
                 PrintDialog printDlg = new System.Windows.Controls.PrintDialog();
-                printDlg.PrintTicket.PageMediaSize = new PageMediaSize((Double)700.0, (Double)hei);
+                printDlg.PrintTicket.PageMediaSize = new PageMediaSize((Double)700.0, (Double)1500.0);
                 //printDlg.ShowDialog();
 
                 //get selected printer capabilities

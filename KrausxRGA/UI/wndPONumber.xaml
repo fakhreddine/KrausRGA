@@ -394,49 +394,49 @@
 
                                             <Canvas  Height="54" Width="493" RenderTransformOrigin="2.093,1.173" Canvas.Left="227" Canvas.Top="12">
                                                 <Label Canvas.Left="12" Canvas.Top="1" Name="lblItemIsNew" Content="Item is New" Style="{StaticResource lblConstant}" Width="167" Height="46" FontSize="30" ></Label>
-                                                <Viewbox Height="74" Canvas.Left="194" Width="117" Canvas.Top="-2">
+                                                <Viewbox Height="54" Canvas.Left="192" Width="131" Canvas.Top="-4">
                                                    
-                                                <RadioButton Content="Yes" Name="btnBoxNew" Canvas.Left="199" Height="45" Width="75" FontSize="20" Checked="btnBoxNew_Checked_1" Canvas.Top="-8"/>
+                                                <RadioButton Content="Yes" Name="btnBoxNew" Canvas.Left="199" Height="28" Width="75" FontSize="20" Checked="btnBoxNew_Checked_1" Canvas.Top="-8"/>
                                                      </Viewbox>
-                                                <Viewbox Height="74" Canvas.Left="302" Canvas.Top="-2" Width="159">
-                                                <RadioButton Content="No" Name="btnBoxNotNew" Canvas.Left="299" Canvas.Top="-9" Height="46" Width="104" FontSize="20" Checked="btnBoxNotNew_Checked_1" ></RadioButton>
+                                                <Viewbox Height="58" Canvas.Left="398" Canvas.Top="-4" Width="171">
+                                                <RadioButton Content="No" Name="btnBoxNotNew" Canvas.Left="299" Canvas.Top="-9" Height="28" Width="104" FontSize="20" Checked="btnBoxNotNew_Checked_1" ></RadioButton>
                                                 </Viewbox>
 
                                             </Canvas>
                                             <Canvas>
-                                                <Label Canvas.Left="125" Canvas.Top="195" Name="lblDefectontea" Content="Defect in Transite" Style="{StaticResource lblConstant}" Width="284" Height="43" FontSize="30" ></Label>
-                                                <Viewbox Height="74" Canvas.Left="418" Canvas.Top="194" Width="135">
-                                                <RadioButton Content="Yes" Name="btntransiteYes" Canvas.Left="424" Canvas.Top="196" Height="44" Width="84" FontSize="20" Checked="btntransiteYes_Checked_1" IsEnabled="False"></RadioButton>
+                                                <Label Canvas.Left="125" Canvas.Top="213" Name="lblDefectontea" Content="Defect in Transite" Style="{StaticResource lblConstant}" Width="284" Height="43" FontSize="30" ></Label>
+                                                <Viewbox Height="59" Canvas.Left="418" Canvas.Top="208" Width="143">
+                                                <RadioButton Content="Yes" Name="btntransiteYes" Canvas.Left="424" Canvas.Top="196" Height="33" Width="84" FontSize="20" Checked="btntransiteYes_Checked_1" IsEnabled="False"></RadioButton>
                                                 </Viewbox>
-                                                <Viewbox Height="74" Canvas.Top="194" Canvas.Left="530" Width="131">
-                                                <RadioButton Content="No" Canvas.Left="530" Name="btntransiteNo" Canvas.Top="196" Height="42" Width="79" FontSize="20" Checked="btntransiteNo_Checked" IsEnabled="False" ></RadioButton>
-                                                </Viewbox>
-                                            </Canvas>
-                                            <Canvas>
-                                                <Label Canvas.Left="166" Name="lblInstalled" Canvas.Top="54" Content="Installed" Style="{StaticResource lblConstant}" Width="241" Height="47" FontSize="30" ></Label>
-                                                <Viewbox Height="74" Canvas.Left="420" Canvas.Top="54" Width="133">
-                                                <RadioButton Content="Yes" Canvas.Left="424" Canvas.Top="52" Name="btnInstalledYes" Height="45" Width="84" FontSize="20" Checked="btnInstalledYes_Checked_1"></RadioButton>
-                                                </Viewbox>
-                                                <Viewbox Height="74" Canvas.Left="530" Canvas.Top="52" Width="130">
-                                                <RadioButton Content="No" Canvas.Left="529" Canvas.Top="53" Name="btnInstalledNo" Height="44" Width="84" FontSize="20" Checked="btnInstalledNo_Checked_1" ></RadioButton>
+                                                <Viewbox Height="71" Canvas.Top="208" Canvas.Left="624" Width="145">
+                                                <RadioButton Content="No" Canvas.Left="530" Name="btntransiteNo" Canvas.Top="196" Height="37" Width="79" FontSize="20" Checked="btntransiteNo_Checked" IsEnabled="False" ></RadioButton>
                                                 </Viewbox>
                                             </Canvas>
                                             <Canvas>
-                                                <Label Canvas.Left="16" Name="lblStatus" Canvas.Top="100" Content="Chip/Bended/Scratch/Broken" Style="{StaticResource lblConstant}" Width="396" Height="46" FontSize="30" ></Label>
-                                                <Viewbox Height="74" Canvas.Left="420" Canvas.Top="102">
-                                                <RadioButton Content="Yes"  Canvas.Left="427" Canvas.Top="97" Name="btnStatusYes" Height="49" Width="84" FontSize="20" Checked="btnStatusYes_Checked" ></RadioButton>
+                                                <Label Canvas.Left="166" Name="lblInstalled" Canvas.Top="64" Content="Installed" Style="{StaticResource lblConstant}" Width="241" Height="47" FontSize="30" ></Label>
+                                                <Viewbox Height="59" Canvas.Left="418" Canvas.Top="58" Width="95">
+                                                <RadioButton Content="Yes" Canvas.Left="424" Canvas.Top="52" Name="btnInstalledYes" Height="31" Width="56" FontSize="20" Checked="btnInstalledYes_Checked_1"></RadioButton>
                                                 </Viewbox>
-                                                <Viewbox Height="74" Canvas.Left="530" Canvas.Top="100">
-                                                <RadioButton Content="No"  Canvas.Left="531" Canvas.Top="99" Name="btnStatusNo" Height="47" Width="84" FontSize="20" Checked="btnStatusNo_Checked"></RadioButton>
+                                                <Viewbox Height="49" Canvas.Left="624" Canvas.Top="62" Width="141">
+                                                <RadioButton Content="No" Canvas.Left="529" Canvas.Top="53" Name="btnInstalledNo" Height="29" Width="84" FontSize="20" Checked="btnInstalledNo_Checked_1" ></RadioButton>
                                                 </Viewbox>
                                             </Canvas>
                                             <Canvas>
-                                                <Label Canvas.Left="42" Canvas.Top="147" Name="lblManufacturer" Content="Manufacturer Defective" Style="{StaticResource lblConstant}" Width="372" Height="48" FontSize="30" ></Label>
-                                                <Viewbox Height="74" Canvas.Top="146" Canvas.Left="418">
-                                                <RadioButton Content="Yes" Canvas.Left="426" IsEnabled="False" Canvas.Top="147" Name="btnManufacturerYes" Height="46" Width="84" FontSize="20" Checked="btnManufacturerYes_Checked"></RadioButton>
+                                                <Label Canvas.Left="16" Name="lblStatus" Canvas.Top="114" Content="Chip/Bended/Scratch/Broken" Style="{StaticResource lblConstant}" Width="396" Height="46" FontSize="30" ></Label>
+                                                <Viewbox Height="52" Canvas.Left="418" Canvas.Top="112">
+                                                <RadioButton Content="Yes"  Canvas.Left="427" Canvas.Top="97" Name="btnStatusYes" Height="31" Width="56" FontSize="20" Checked="btnStatusYes_Checked" ></RadioButton>
                                                 </Viewbox>
-                                                <Viewbox Height="74" Canvas.Left="530" Canvas.Top="146">
-                                                    <RadioButton Content="No" Canvas.Left="529" Canvas.Top="147" IsEnabled="False" Name="btnManufacturerNo" Height="48" Width="98" FontSize="20" Checked="btnManufacturerNo_Checked"></RadioButton>
+                                                <Viewbox Height="60" Canvas.Left="624" Canvas.Top="110" Width="142">
+                                                <RadioButton Content="No"  Canvas.Left="531" Canvas.Top="99" Name="btnStatusNo" Height="34" Width="84" FontSize="20" Checked="btnStatusNo_Checked"></RadioButton>
+                                                </Viewbox>
+                                            </Canvas>
+                                            <Canvas>
+                                                <Label Canvas.Left="42" Canvas.Top="161" Name="lblManufacturer" Content="Manufacturer Defective" Style="{StaticResource lblConstant}" Width="372" Height="48" FontSize="30" ></Label>
+                                                <Viewbox Height="63" Canvas.Top="158" Canvas.Left="418" Width="140">
+                                                <RadioButton Content="Yes" Canvas.Left="426" IsEnabled="False" Canvas.Top="147" Name="btnManufacturerYes" Height="36" Width="84" FontSize="20" Checked="btnManufacturerYes_Checked"></RadioButton>
+                                                </Viewbox>
+                                                <Viewbox Height="47" Canvas.Left="620" Canvas.Top="162" Width="155">
+                                                    <RadioButton Content="No" Canvas.Left="529" Canvas.Top="147" IsEnabled="False" Name="btnManufacturerNo" Height="27" Width="85" FontSize="20" Checked="btnManufacturerNo_Checked"></RadioButton>
                                                 </Viewbox>
                                             </Canvas>
                                             <Button Content="Done" Name="btnAdd" Canvas.Left="640" Canvas.Top="303" Width="119" Height="44" FontSize="20" Click="btnAdd_Click" ></Button>

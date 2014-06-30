@@ -72,6 +72,12 @@ namespace KrausRGA.UI
 
                 dgPackageInfo.ItemsSource = sort;
 
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+
                 clGlobal.Redirect = "";
             }
 
@@ -456,14 +462,22 @@ namespace KrausRGA.UI
 
                     TextBlock ProgressFlag = dgPackageInfo.Columns[3].GetCellContent(row1) as TextBlock;
 
-                    if (ProgressFlag.Text == "1")
-                    {
-                       // row1.IsEnabled = false;
-                        row1.Background = Brushes.LightPink;
-                        ProgressFlag.Text = "InProgress";
-                    }
+                    
+                        if (ProgressFlag.Text == "1")
+                        {
+                            if (clGlobal.AllReturn == "AllReturn")
+                            {
+                                row1.Background = Brushes.LightPink;
+                                ProgressFlag.Text = "InProgress";
 
-                
+                            }
+                            else
+                            {
+                                // row1.IsEnabled = false;
+                                ProgressFlag.Text = "InProgress";
+                            }
+                        }
+                    
                 }
             }
             catch (Exception)
@@ -870,6 +884,12 @@ namespace KrausRGA.UI
 
                         lstSearch.ItemsSource = lsRGANUmber;
 
+                        dtLoadUpdate = new DispatcherTimer();
+                        dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                        dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                        //start the dispacher.
+                        dtLoadUpdate.Start();
+
 
 
                     }
@@ -897,6 +917,12 @@ namespace KrausRGA.UI
                         }
 
                         lstSearch.ItemsSource = lsSRNUmber;
+
+                        dtLoadUpdate = new DispatcherTimer();
+                        dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                        dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                        //start the dispacher.
+                        dtLoadUpdate.Start();
                     }
                     catch (Exception)
                     {
@@ -921,6 +947,12 @@ namespace KrausRGA.UI
                         }
 
                         lstSearch.ItemsSource = lsPONUmber;
+
+                        dtLoadUpdate = new DispatcherTimer();
+                        dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                        dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                        //start the dispacher.
+                        dtLoadUpdate.Start();
 
                     }
                     catch (Exception)

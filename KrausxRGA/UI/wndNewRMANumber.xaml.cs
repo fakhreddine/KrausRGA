@@ -53,6 +53,8 @@ namespace KrausRGA.UI
 
          List<SkuReasonIDSequence> _lsReasonSKU = new List<SkuReasonIDSequence>();
 
+         protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
+
         Guid ReturnDetailsID;
 
         string SKU,_SKU;
@@ -1739,6 +1741,8 @@ namespace KrausRGA.UI
 
                 DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
 
+                TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
                 ContentPresenter Cntskustatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
                 DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
                 TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
@@ -1810,7 +1814,20 @@ namespace KrausRGA.UI
                             }
                         }
                     }
+                    for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+                    {
+                        for (int j = 0; j < _mUpdate._lsReasons1.Count; j++)
+                        {
+                            if (_mUpdate._lsReturnDetails1[i].SKUNumber == SkuNumber.Text && _mUpdate._lsReturnDetails1[i].SKU_Sequence == Convert.ToInt16(txtRetutn2.Text) && _mUpdate._lsReturnDetails1[i].ReturnDetailID == _mUpdate._lsReasons1[j].ReturnDetailID)
+                            {
+                                System.Guid ReturnID = _mUpdate._lsReasons1[j].ReturnDetailID;
 
+                                string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
+
+                                cmbSkuReasons.Text = reas;
+                            }
+                        }
+                    }
                    // MessageBox.Show(msg);
                 }
 

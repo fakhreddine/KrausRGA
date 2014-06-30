@@ -47,6 +47,8 @@ namespace KrausRGA.UI
         //return details model object.
         mReturnDetails _mReturn = clGlobal.mReturn;
 
+
+        protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
         //Print slip class list.
         List<cSlipInfo> _lsSlpiInfo = new List<cSlipInfo>();
 
@@ -429,7 +431,7 @@ namespace KrausRGA.UI
                         DataTemplate DtQty2 = CntSequence.ContentTemplate;
                         TextBlock txtproductName2 = (TextBlock)DtQty2.FindName("tbDQyt", CntSequence);
 
-                        txtproductName2.Text = "";
+                       // txtproductName2.Text = "";
 
                         ContentPresenter _contentPar1 = dgPackageInfo.Columns[3].GetCellContent(row1) as ContentPresenter;
                         DataTemplate _dataTemplate1 = _contentPar1.ContentTemplate;
@@ -1599,7 +1601,7 @@ namespace KrausRGA.UI
                 if (row.Background == Brushes.SkyBlue && txtskustatus.Text != "")
                 {
                     // CanvasConditions.IsEnabled = false;
-                    string msg = "";
+                   // string msg = "";
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         if (SkuNumber.Text == dt.Rows[i][0].ToString() && txtRetutn2.Text == dt.Rows[i][4].ToString())
@@ -1648,8 +1650,30 @@ namespace KrausRGA.UI
                         }
                     }
 
+                    for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+                    {
+                        for (int j = 0; j < _mUpdate._lsReasons.Count; j++)
+                        {
+                            if (_mUpdate._lsReturnDetails[i].SKUNumber ==SkuNumber.Text && _mUpdate._lsReturnDetails[i].SKU_Sequence==Convert.ToInt16(txtRetutn2.Text) &&  _mUpdate._lsReturnDetails[i].ReturnDetailID == _mUpdate._lsReasons[j].ReturnDetailID)
+                            {
+                                System.Guid ReturnID = _mUpdate._lsReasons[j].ReturnDetailID;
+
+                                string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
+
+                                cmbSkuReasons.Text = reas;
+                            }
+                        }
+                    }
+
+                    //_mUpdate._lsReasons
+
+
                    // MessageBox.Show(msg);
                 }
+
+
+
+
                 _mReturn.GreenRowsNumber.Add(row.GetIndex());
                 bdrMsg.Visibility = System.Windows.Visibility.Hidden;
                 txtbarcode.Text = "";
@@ -1748,7 +1772,20 @@ namespace KrausRGA.UI
                             }
                         }
                     }
+                    for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+                    {
+                        for (int j = 0; j < _mUpdate._lsReasons.Count; j++)
+                        {
+                            if (_mUpdate._lsReturnDetails[i].SKUNumber == SkuNumber.Text && _mUpdate._lsReturnDetails[i].SKU_Sequence == Convert.ToInt16(txtRetutn2.Text) && _mUpdate._lsReturnDetails[i].ReturnDetailID == _mUpdate._lsReasons[j].ReturnDetailID)
+                            {
+                                System.Guid ReturnID = _mUpdate._lsReasons[j].ReturnDetailID;
 
+                                string reas = cRtnreasons.GetReasonsByReturnDetailID(ReturnID);
+
+                                cmbSkuReasons.Text = reas;
+                            }
+                        }
+                    }
                    // MessageBox.Show(msg);
                 }
 
@@ -3368,7 +3405,7 @@ namespace KrausRGA.UI
                         TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(item) as TextBlock;
                         SelectedskuName = SkuNumber.Text;
 
-                        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[7].GetCellContent(item) as ContentPresenter;
+                        ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(item) as ContentPresenter;
                         DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                         TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
                         ItemQuantity = txtRetutn2.Text;
