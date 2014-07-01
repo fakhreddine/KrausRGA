@@ -253,7 +253,7 @@ namespace KrausRGA.UI
 
             if (selectedIndex != -1)
             {
-                DataGridCell cell = GetCell(selectedIndex, 7);
+                DataGridCell cell = GetCell(selectedIndex, 8);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
                 DataTemplate DataTemp = CntPersenter.ContentTemplate;
                 TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);
@@ -261,36 +261,13 @@ namespace KrausRGA.UI
 
 
 
-                if (retunbyrow.RMANumber != "N/A")
-                {
-                    _mReturn = new mReturnDetails(retunbyrow.RMANumber);
-
-                    //keeps deep copy throughout project to access.
-                    clGlobal.mReturn = _mReturn;
-
-                    if (_mReturn.IsValidNumber) //Is number valid or not.
-                    {
-
-                        this.Dispatcher.Invoke(new Action(() =>
-                        {
-                            //Create new instance of window.
-                            clGlobal.Redirect = "Processed";
-                            wndSrNumberInfo wndMain = new wndSrNumberInfo();
-                            // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
-                            //opens new window.
-                            wndMain.Show();
-                        }));
-
-                        //close this screen.
-                        this.Close();
-                    }
-                }
-                else
+                if (retunbyrow.RMANumber == "N/A" || retunbyrow.RMANumber==null)
                 {
                     if (retunbyrow.OrderNumber == "N/A")
                     {
                         this.Dispatcher.Invoke(new Action(() =>
                         {
+                            Views.clGlobal.NewRGANumber = retunbyrow.RGAROWID;
                             Views.clGlobal.IsAlreadySaved = true;
                             clGlobal.Redirect = "Processed";
                             //Create new instance of window.
@@ -324,6 +301,35 @@ namespace KrausRGA.UI
                             this.Close();
                         }
                     }
+                }
+                else
+                {
+                    _mReturn = new mReturnDetails(retunbyrow.RMANumber);
+
+                    //keeps deep copy throughout project to access.
+                    clGlobal.mReturn = _mReturn;
+
+                    if (_mReturn.IsValidNumber) //Is number valid or not.
+                    {
+
+                        this.Dispatcher.Invoke(new Action(() =>
+                        {
+                            //Create new instance of window.
+                            clGlobal.Redirect = "Processed";
+                            wndSrNumberInfo wndMain = new wndSrNumberInfo();
+                            // mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
+                            //opens new window.
+                            wndMain.Show();
+                        }));
+
+                        //close this screen.
+                        this.Close();
+                    }
+
+
+
+
+                 
 
                 }
 
@@ -462,6 +468,8 @@ namespace KrausRGA.UI
 
                     TextBlock ProgressFlag = dgPackageInfo.Columns[3].GetCellContent(row1) as TextBlock;
 
+                    TextBlock RMAStatus = dgPackageInfo.Columns[4].GetCellContent(row1) as TextBlock;
+
                     
                         if (ProgressFlag.Text == "1")
                         {
@@ -477,6 +485,21 @@ namespace KrausRGA.UI
                                 ProgressFlag.Text = "InProgress";
                             }
                         }
+
+                        if (RMAStatus.Text=="0")
+                        {
+                            RMAStatus.Text = "Incomplete";
+                        }
+                        else if (RMAStatus.Text == "1")
+                        {
+                            RMAStatus.Text = "Complete";
+                        }
+                        else if (RMAStatus.Text == "2")
+                        {
+                            RMAStatus.Text = "Wrong RMA";
+                        }
+
+
                     
                 }
             }
@@ -969,7 +992,7 @@ namespace KrausRGA.UI
         {
             int selectedindex = dgPackageInfo.SelectedIndex;
 
-            DataGridCell cell = GetCell(selectedindex, 7);
+            DataGridCell cell = GetCell(selectedindex, 8);
             ContentPresenter CntPersenter = cell.Content as ContentPresenter;
             DataTemplate DataTemp = CntPersenter.ContentTemplate;
             TextBox txtReturnGuid = (TextBox)DataTemp.FindName("txtRGANumber", CntPersenter);

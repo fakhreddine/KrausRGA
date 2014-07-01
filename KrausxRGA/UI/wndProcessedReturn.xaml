@@ -71,12 +71,17 @@
         										Header="Progress Flag"  
         										Width="160" 
         										IsReadOnly="True" />
+                        
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+        										Binding="{Binding RMAStatus}" 
+        										Header="RMA Status"  
+        										Width="160" 
+        										IsReadOnly="True" />
 
-                                           
 
-                           
 
-                        <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
+
+                            <DataGridTextColumn HeaderStyle="{StaticResource HeaderStyleKey}" 
         										Binding="{Binding ReturnDate, StringFormat=\{0:MM/dd/yyyy \}}" 
         										Header="Return Date"  
         										Width="140" 

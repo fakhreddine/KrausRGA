@@ -80,7 +80,7 @@
 
                                             <Label x:Name="lblcalltag" Content="Call Tag :" Style="{StaticResource lblConstant}" Canvas.Top="141" Width="130" Canvas.Left="36"/>
                                             
-                                            <TextBox x:Name="txtcalltag" Canvas.Left="171" Canvas.Top="141" Width="585" Height="67" FontSize="15" IsEnabled="False" />
+                                            <TextBox x:Name="txtcalltag" Canvas.Left="171" Canvas.Top="141" Width="585" Height="67" FontSize="15" IsEnabled="True" />
                                             
 
                                             <Label Canvas.Left="186" Canvas.Top="85" Style="{StaticResource lblVeriable}" Width="251" Height="56">

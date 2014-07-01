@@ -932,7 +932,7 @@ namespace KrausRGA.UI
                 wrongRMA = Views.clGlobal.WrongRMAFlag;
                 Warranty = Views.clGlobal.Warranty;
             }
-            Guid ReturnTblID = _mReturn.SetReturnTbl("", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, ScannedDate, ExpirationDate, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff, InProgress);//ReturnReasons()
+            Guid ReturnTblID = _mReturn.SetReturnTbl("", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, ScannedDate, ExpirationDate, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff, InProgress,txtcalltag.Text);//ReturnReasons()
 
             if (Views.clGlobal.mReturn.IsAlreadySaved)
             {
@@ -2179,6 +2179,7 @@ namespace KrausRGA.UI
                                     ls.LineType = Convert.ToInt16(LineType.Text);
                                     ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
                                     ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+                              
 
                                     if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
                                     {
@@ -2294,6 +2295,8 @@ namespace KrausRGA.UI
                             ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                             ls.ProductID = ProductID.Text;
                             ls.LineType = Convert.ToInt16(LineType.Text);
+                            ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                            ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
 
                             if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
                             {
@@ -2489,6 +2492,8 @@ namespace KrausRGA.UI
                                     ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                                     ls.ProductID = ProductID1.Text;
                                     ls.LineType = Convert.ToInt16(LineType.Text);
+                                    ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                                    ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
                                     //ls.sta
 
                                     if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
@@ -2631,6 +2636,8 @@ namespace KrausRGA.UI
                             ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                             ls.ProductID = ProductID.Text;
                             ls.LineType = Convert.ToInt16(LineType.Text);
+                            ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                            ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
 
                             if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
                             {
@@ -2852,6 +2859,11 @@ namespace KrausRGA.UI
                                     ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                                     ls.ProductID = ProductID.Text;
                                     ls.LineType = Convert.ToInt16(LineType.Text);
+                                    ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                                    ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
+
+
 
                                     if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
                                     {
@@ -2965,6 +2977,8 @@ namespace KrausRGA.UI
                             ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                             ls.ProductID = ProductID.Text;
                             ls.LineType = Convert.ToInt16(LineType.Text);
+                            ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                            ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
 
                             if (sku == _mReturn.GetENACodeByItem(SkuNumber1.Text))
                             {
@@ -3131,6 +3145,8 @@ namespace KrausRGA.UI
                 DataTemplate DtSKuStatus = CntSkuStatus.ContentTemplate;
                 TextBlock txtSkuStatus = (TextBlock)DtSKuStatus.FindName("tbskustatus", CntSkuStatus);
 
+              
+
                 for (int i = 0; i < listofstatus.Count; i++)
                 {
                     if (listofstatus[i].NewItemQuantity == Convert.ToInt16(txtRetutn.Text) && listofstatus[i].SKUName == SkuNumber.Text)
@@ -3145,6 +3161,12 @@ namespace KrausRGA.UI
                 {
                     row1.Background = Brushes.SkyBlue;
                 }
+
+                if (txtSkuStatus.Text!="")
+                {
+                    row1.IsEnabled = false;
+                }
+
 
                 //for (int i = 0; i < dtimages.Rows.Count; i++)
                 //{

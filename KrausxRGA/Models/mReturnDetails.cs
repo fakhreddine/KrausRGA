@@ -400,7 +400,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guid RetutnID that is inserted or updated on transaction filure it return empty Guid.
         /// </returns>
-        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, DateTime ScannedDate, DateTime ExpirationDate, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, int InProgress)
+        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, DateTime ScannedDate, DateTime ExpirationDate, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, int InProgress,string calltag)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -441,7 +441,7 @@ namespace KrausRGA.Models
                 TblRerutn.Setting_Wty_Days = Setting_Wty_Days;
                 TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
 
-                TblRerutn.CallTag = lsRMAInformation[0].CallTag;
+                TblRerutn.CallTag = calltag;
 
                 TblRerutn.ProgressFlag = InProgress;
 

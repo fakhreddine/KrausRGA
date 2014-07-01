@@ -80,11 +80,11 @@ namespace KrausRGA.UI
                     //start the dispacher.
                     dtLoadUpdate1.Start();
 
-                    double height = dgPackageInfo.DesiredSize.Height;
+                 //   double height = dgPackageInfo.DesiredSize.Height;
 
                     // Canvas.GetTop(CanvasGrid);
 
-                    Canvas.SetTop(CanvasNote, height);
+                  //  Canvas.SetTop(CanvasNote,25+ height);
 
                     _threadPrint.Interval = new TimeSpan(0, 0, 3);
                     _threadPrint.Start();
@@ -104,17 +104,19 @@ namespace KrausRGA.UI
 
                     dgPackageInfo.ItemsSource = forgetdata._lsReturnDetails1;//.OrderByDescending(q => q.SKU_Sequence);
 
+                   // double height1 = dgPackageInfo.DesiredSize.Height;
+
                     dtLoadUpdate1 = new DispatcherTimer();
                     dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
                     dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
                     //start the dispacher.
                     dtLoadUpdate1.Start();
 
-                    double height = dgPackageInfo.DesiredSize.Height;
+             //       double height = dgPackageInfo.DesiredSize.Height;
 
                     // Canvas.GetTop(CanvasGrid);
 
-                    Canvas.SetTop(CanvasNote, height);
+                 //   Canvas.SetTop(CanvasNote, 25+height);
 
                     _threadPrint.Interval = new TimeSpan(0, 0, 3);
                     _threadPrint.Start();
@@ -135,10 +137,12 @@ namespace KrausRGA.UI
                 txtAddress.Text = forSRnumber._ReturnTbl.Address1 + " " + forSRnumber._ReturnTbl.Address2 + " " + forSRnumber._ReturnTbl.Address3;
                 txtRequestDate.Text = Convert.ToString(forSRnumber._ReturnTbl.CreatedDate);
 
+             //   double height2 = dgPackageInfo.DesiredSize.Height;
+
                 dgPackageInfo.ItemsSource = forSRnumber._lsReturnDetails;//.OrderByDescending(q => q.SKU_Sequence);
 
-                double height = dgPackageInfo.DesiredSize.Height;
-                Canvas.SetTop(CanvasNote, height);
+               // double height1 = dgPackageInfo.DesiredSize.Height;
+               
                 //  Canvas.GetTop(CanvasGrid);
 
                 dtLoadUpdate1 = new DispatcherTimer();
@@ -146,6 +150,10 @@ namespace KrausRGA.UI
                 dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
                 //start the dispacher.
                 dtLoadUpdate1.Start();
+
+             //   double height = dgPackageInfo.DesiredSize.Height;
+
+               // Canvas.SetTop(CanvasNote, 25 + height);
 
                 _threadPrint.Interval = new TimeSpan(0, 0, 3);
                 _threadPrint.Start();
@@ -179,7 +187,7 @@ namespace KrausRGA.UI
 
                 if (SRNmumber)
                 {
-                    for (int j = 0; j < forSRnumber._lsReturnDetails.Count; j++)
+                    for (int j = 0; j < forSRnumber._lsskuandpoints1.Count; j++)
                     {
                         if (forSRnumber._lsReturnDetails[i].SKUNumber == SkuNumber.Text && forSRnumber._lsReturnDetails[i].ReturnDetailID == forSRnumber._lsskuandpoints1[j].ReturnDetailID)
                         {

@@ -765,6 +765,7 @@ namespace KrausRGA.UI
                             }
                         }
                     }
+                                   
 
 
 
@@ -948,7 +949,17 @@ namespace KrausRGA.UI
                         //}
                     }
 
-
+                    if (_lsReasonSKU.Count > 0)
+                    {
+                        for (int i = _lsReasonSKU.Count - 1; i >= 0; i--)
+                        {
+                            if (_lsReasonSKU[i].SKUName == SkuNumber.Text && _lsReasonSKU[i].SKU_sequence == Convert.ToInt16(txtRetutn1.Text))
+                            {
+                                _mNewRMA.SetTransaction(Guid.NewGuid(), _lsReasonSKU[i].ReasonID, ReturnDetailsID);
+                                _lsReasonSKU.RemoveAt(i);
+                            }
+                        }
+                    }
 
 
                     //Save Images info Table.
@@ -3480,6 +3491,11 @@ namespace KrausRGA.UI
                             ls.ProductID = ProductID.Text;
                             ls.LineType = Convert.ToInt16(LineType.Text);
 
+
+                            ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                            ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
+
                             if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
                             {
                                 if (max < Convert.ToInt16(txtRetutn2.Text))
@@ -3792,6 +3808,11 @@ namespace KrausRGA.UI
                             ls.ProductID = ProductID.Text;
                             ls.LineType = Convert.ToInt16(LineType.Text);
 
+
+                            ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                            ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
+
                             if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
                             {
                                 if (max < Convert.ToInt16(txtRetutn2.Text))
@@ -3971,6 +3992,12 @@ namespace KrausRGA.UI
                                     ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
                                     ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
                                     ls.LineType = Convert.ToInt16(LineType.Text);
+
+                                    ls.ProductID = ProductID.Text;
+                                    ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                                    ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
+
                                     if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
                                     {
                                         if (max < Convert.ToInt16(txtRetutn2.Text))
@@ -4084,6 +4111,11 @@ namespace KrausRGA.UI
                             ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
                             ls.ProductID = ProductID.Text;
                             ls.LineType = Convert.ToInt16(LineType.Text);
+
+                          
+                            ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                            ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
 
                             if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
                             {
@@ -4326,6 +4358,10 @@ namespace KrausRGA.UI
                 if (txtRetutn1.Text == "1")
                 {
                     row1.Background = Brushes.SkyBlue;
+                }
+                if (txtSkuStatus.Text != "")
+                {
+                    row1.IsEnabled = false;
                 }
             }
 
