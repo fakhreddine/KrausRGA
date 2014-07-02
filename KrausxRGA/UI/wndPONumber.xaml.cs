@@ -594,11 +594,14 @@ namespace KrausRGA.UI
 
                     if (LineType.Text != "6")
                     {
-                        wndSlipPrint slip = new wndSlipPrint();
+                        if (chkPrintLabel.IsChecked==true)
+                        {
+                            wndSlipPrint slip = new wndSlipPrint();
 
-                        Views.clGlobal.lsSlipInfo = _mponumber.GetSlipInfo(_lsreturn, SkuNumber.Text, _mNewRMA.GetENACodeByItem(SkuNumber.Text), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), "Refund");
+                            Views.clGlobal.lsSlipInfo = _mponumber.GetSlipInfo(_lsreturn, SkuNumber.Text, _mNewRMA.GetENACodeByItem(SkuNumber.Text), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), "Refund");
 
-                        slip.ShowDialog();
+                            slip.ShowDialog();
+                        }
                     }
 
                     
@@ -636,9 +639,9 @@ namespace KrausRGA.UI
 
                     TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
 
-                      TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
+                    TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
 
-                     TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
+                    TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
 
                     //item Status.k
                     //ContentPresenter CntStatus = dgPackageInfo.Columns[4].GetCellContent(row) as ContentPresenter;
@@ -788,12 +791,15 @@ namespace KrausRGA.UI
 
                     if (LineType.Text != "6")
                     {
-                        wndSlipPrint slip = new wndSlipPrint();
+                        if (chkPrintLabel.IsChecked == true)
+                        {
 
-                        Views.clGlobal.lsSlipInfo = _mponumber.GetSlipInfo(_lsreturn, SkuNumber.Text, _mNewRMA.GetENACodeByItem(SkuNumber.Text), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+                            wndSlipPrint slip = new wndSlipPrint();
 
-                        slip.ShowDialog();
+                            Views.clGlobal.lsSlipInfo = _mponumber.GetSlipInfo(_lsreturn, SkuNumber.Text, _mNewRMA.GetENACodeByItem(SkuNumber.Text), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
 
+                            slip.ShowDialog();
+                        }
 
                         Views.clGlobal.SKU_Staus = "";
                         Views.clGlobal.TotalPoints = 0;
@@ -980,11 +986,15 @@ namespace KrausRGA.UI
 
                     if (LineType.Text != "6")
                     {
-                        wndSlipPrint slip = new wndSlipPrint();
+                        if (chkPrintLabel.IsChecked == true)
+                        {
 
-                        Views.clGlobal.lsSlipInfo = _mponumber.GetSlipInfo(_lsreturn, SkuNumber.Text, _mNewRMA.GetENACodeByItem(SkuNumber.Text), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+                            wndSlipPrint slip = new wndSlipPrint();
 
-                        slip.ShowDialog();
+                            Views.clGlobal.lsSlipInfo = _mponumber.GetSlipInfo(_lsreturn, SkuNumber.Text, _mNewRMA.GetENACodeByItem(SkuNumber.Text), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+
+                            slip.ShowDialog();
+                        }
                         Views.clGlobal.SKU_Staus = "";
                         Views.clGlobal.TotalPoints = 0;
 
@@ -1239,6 +1249,9 @@ namespace KrausRGA.UI
                     this.Dispatcher.Invoke(new Action(() => { _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); }));
 
                     brdPrint.Visibility = Visibility.Visible;
+
+                    brdPrintlabel.Visibility = Visibility.Visible;
+                    chkPrintLabel.IsChecked = false;
                     //_mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
                     chkInProgress.IsEnabled = true;
@@ -1593,6 +1606,8 @@ namespace KrausRGA.UI
                     chkInProgress.IsEnabled = true;
 
                     brdPrint.Visibility = Visibility.Visible;
+                    brdPrintlabel.Visibility = Visibility.Visible;
+                    chkPrintLabel.IsChecked = false;
 
                     for (int i = 0; i < _mUpdate._lsskuandpoints.Count; i++)
                     {
@@ -2375,6 +2390,9 @@ namespace KrausRGA.UI
                 chkInProgress.IsEnabled = true;
 
                 brdPrint.Visibility = Visibility.Visible;
+
+                brdPrintlabel.Visibility = Visibility.Visible;
+                chkPrintLabel.IsChecked = false;
 
                 _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
@@ -3788,9 +3806,19 @@ namespace KrausRGA.UI
                             DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
                             TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
 
+                            if (txtRetutn1.Text == "")
+                            {
+                                txtRetutn1.Text = "0";
+                            }
+
                             ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
                             DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
                             TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                            if (txtRetutn2.Text == "")
+                            {
+                                txtRetutn2.Text = "0";
+                            }
 
 
                             TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
@@ -4567,10 +4595,10 @@ namespace KrausRGA.UI
                     Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
 
-
+                  //  dlg.Multiselect = true;
                     // Set filter for file extension and default file extension 
                     dlg.DefaultExt = ".png";
-                    dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+                    dlg.Filter = "JPG Files (*.jpg)|*.jpg";
 
 
                     // Display OpenFileDialog by calling ShowDialog method 
@@ -4641,6 +4669,10 @@ namespace KrausRGA.UI
         void img_MouseDown(object sender, MouseButtonEventArgs e)
         {
             clGlobal.Zoomimages = (Image)sender;
+
+            //Image.NameProperty();
+
+            //string name = e. //(Image)sender.ToString();
 
             wndZoomImageWindow zoom = new wndZoomImageWindow();
             zoom.ShowDialog();

@@ -392,12 +392,14 @@ namespace KrausRGA.UI
 
                 if (_SKU != "")
                 {
+                    if (chkPrintLabel.IsChecked == true)
+                    {
+                        wndSlipPrint slip = new wndSlipPrint();
 
-                    wndSlipPrint slip = new wndSlipPrint();
+                        Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
 
-                    Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
-
-                    slip.ShowDialog();
+                        slip.ShowDialog();
+                    }
                 }
                 Views.clGlobal.SKU_Staus = "";
                 Views.clGlobal.TotalPoints = 0;
@@ -604,6 +606,9 @@ namespace KrausRGA.UI
                 lstponumber.Visibility = Visibility.Hidden;
 
                 brdPrint.Visibility = Visibility.Visible;
+
+                brdPrintlabel.Visibility = Visibility.Visible;
+                chkPrintLabel.IsChecked = false;
 
                 _mUpdate = new mUpdateForNewRMA(Views.clGlobal.NewRGANumber); //mReturn.lsRMAInformation[0].RMANumber);
 

@@ -469,10 +469,20 @@
                                         </StackPanel>
                                     </Border>
                                     <ProgressBar Visibility="Hidden" x:Name="PbrSaving" Height="47" Canvas.Left="223" Canvas.Top="424" Width="328" Value="10" IsIndeterminate="True" Background="{x:Null}" Foreground="#FF37A22C" />
-                                    <Border Visibility="Hidden" x:Name="brdPrint" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="234" Canvas.Left="284" >
+                                    <Border Visibility="Hidden" x:Name="brdPrint" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="97" Canvas.Left="240" >
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnPrint_Click_1" Width="59"/>
-                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnPrint" Content="Print" Click="btnPrint_Click_1" Width="169"  />
+                                            <!--<Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnPrint_Click_1" Width="59"/>-->
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnPrint" Content="Print" Click="btnPrint_Click_1" Width="91"  />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Visibility="Hidden" x:Name="brdPrintlabel"  Canvas.Top="382" Height="56" Width="120" Canvas.Left="374" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnPrint_Click_1" Width="59"/>-->
+                                            <Viewbox Height="56" Width="120">
+                                                <CheckBox Name="chkPrintLabel" Content="Print Label" IsChecked="True"></CheckBox>
+                                                
+                                            </Viewbox>
+
                                         </StackPanel>
                                     </Border>
                                 </Canvas>

@@ -193,6 +193,8 @@ namespace KrausRGA.UI
                 cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl.Decision);
 
                 brdPrint.Visibility = Visibility.Visible;
+                brdPrintlabel.Visibility = Visibility.Visible;
+                chkPrintLabel.IsChecked = false;
 
                 lblExpirationDate.Content = _mUpdate._ReturnTbl.ExpirationDate; //TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow.AddDays(60), TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString("MMM dd, yyyy");
 
@@ -1092,11 +1094,15 @@ namespace KrausRGA.UI
 
                     if (LineType.Text != "6")
                     {
-                        wndSlipPrint slip = new wndSlipPrint();
+                        if (chkPrintLabel.IsChecked == true)
+                        {
 
-                        Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), "Refund");
+                            wndSlipPrint slip = new wndSlipPrint();
 
-                        slip.ShowDialog();
+                            Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), "Refund");
+
+                            slip.ShowDialog();
+                        }
                     }
 
 
@@ -1275,15 +1281,20 @@ namespace KrausRGA.UI
 
                     if (LineType.Text != "6")
                     {
-                        wndSlipPrint slip = new wndSlipPrint();
+                        if (chkPrintLabel.IsChecked==true)
+                        {
+                            wndSlipPrint slip = new wndSlipPrint();
 
-                        Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+                            Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
 
-                        slip.ShowDialog();
-                        Views.clGlobal.SKU_Staus = "";
-                        Views.clGlobal.TotalPoints = 0;
-                        Views.clGlobal.SKU_Staus = "";
-                        Views.clGlobal.TotalPoints = 0;
+                            slip.ShowDialog();
+                            Views.clGlobal.SKU_Staus = "";
+                            Views.clGlobal.TotalPoints = 0;
+                            Views.clGlobal.SKU_Staus = "";
+                            Views.clGlobal.TotalPoints = 0;
+                        }
+
+                      
                     }
 
 
@@ -1466,15 +1477,18 @@ namespace KrausRGA.UI
 
                     if (LineType.Text != "6")
                     {
-                        wndSlipPrint slip = new wndSlipPrint();
+                        if (chkPrintLabel.IsChecked == true)
+                        {
+                            wndSlipPrint slip = new wndSlipPrint();
 
-                        Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+                            Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
 
-                        slip.ShowDialog();
-                        Views.clGlobal.SKU_Staus = "";
-                        Views.clGlobal.TotalPoints = 0;
-                        Views.clGlobal.SKU_Staus = "";
-                        Views.clGlobal.TotalPoints = 0;
+                            slip.ShowDialog();
+                            Views.clGlobal.SKU_Staus = "";
+                            Views.clGlobal.TotalPoints = 0;
+                            Views.clGlobal.SKU_Staus = "";
+                            Views.clGlobal.TotalPoints = 0;
+                        }
                     }
 
 
@@ -4099,7 +4113,7 @@ namespace KrausRGA.UI
 
                     // Set filter for file extension and default file extension 
                     dlg.DefaultExt = ".png";
-                    dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+                    dlg.Filter = "JPG Files (*.jpg)|*.jpg";
 
 
                     // Display OpenFileDialog by calling ShowDialog method 

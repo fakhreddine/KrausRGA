@@ -453,10 +453,20 @@
                                     			Click="btnHomeDone_Click" Width="169"  />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Hidden" x:Name="brdPrint" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="234" Canvas.Left="272" >
+                                    <Border Visibility="Hidden" x:Name="brdPrintlabel"  Canvas.Top="382" Height="56" Width="120" Canvas.Left="374" >
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnPrint_Click_1" Width="59"/>
-                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnPrint" Content="Print" Click="btnPrint_Click_1" Width="169"  />
+                                            <!--<Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnPrint_Click_1" Width="59"/>-->
+                                            <Viewbox Height="56" Width="120">
+                                                <CheckBox Name="chkPrintLabel" Content="Print Label" IsChecked="True"></CheckBox>
+
+                                            </Viewbox>
+
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Visibility="Hidden" x:Name="brdPrint" Style="{StaticResource bdrWin8btn}" Canvas.Top="380" Height="56" Width="102" Canvas.Left="240" >
+                                        <StackPanel Orientation="Horizontal">
+                                            
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnPrint" Content="Print" Click="btnPrint_Click_1" Width="95"  />
                                         </StackPanel>
                                     </Border>
                                     <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="384" Height="56" Width="218" Canvas.Left="4" >
