@@ -188,6 +188,7 @@
                                                     <DataTemplate>
                                                         <StackPanel x:Name="spQty1" Width="40">
                                                             <TextBlock x:Name="tbQty" TextAlignment="Center" Width="40" Text="{Binding SKU_Qty_Seq}" FontSize="20" FontWeight="Bold"/>
+                                                            <Button x:Name="btnadditem" Content="Add" Width="40" Click="btnadditem_Click_1"></Button>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
