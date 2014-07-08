@@ -1969,6 +1969,11 @@ namespace KrausRGA.UI
             clGlobal.NewRGANumber = _mUpdate._ReturnTbl1.RGAROWID;
             slip.ShowDialog();
         }
+
+        private void btnAddsku_Click_1(object sender, RoutedEventArgs e)
+        {
+            cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+        }
        
     }
 }

@@ -241,57 +241,57 @@ namespace KrausRGA.UI
             { }
         }
 
-        public void FilldgReasons(String cat)
-        {
-            dgReasons.ItemsSource = _mponumber.GetReasons(cat);
-        }
+        //public void FilldgReasons(String cat)
+        //{
+        //    dgReasons.ItemsSource = _mponumber.GetReasons(cat);
+        //}
 
-        private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            TextBlock cbk = (TextBlock)e.Source;
-            Canvas cs = cbk.Parent as Canvas;
-            TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
-            DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+        //private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    TextBlock cbk = (TextBlock)e.Source;
+        //    Canvas cs = cbk.Parent as Canvas;
+        //    TextBlock txtReasonGuids = cs.FindName("txtReasosnsGuid") as TextBlock;
+        //    DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
 
-            if (GreenRowsNumber.Contains(row.GetIndex()))
-            {
-                cvItemStatus.Visibility = System.Windows.Visibility.Visible;
-                TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
-                txtSKUname.Text = tbSKUName.Text.ToString();
-                FilldgReasons(tbSKUName.Text.ToString());
-            }
-            else
-            {
-                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
-                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-            }
-        }
+        //    if (GreenRowsNumber.Contains(row.GetIndex()))
+        //    {
+        //        cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+        //        TextBlock tbSKUName = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+        //        txtSKUname.Text = tbSKUName.Text.ToString();
+        //        FilldgReasons(tbSKUName.Text.ToString());
+        //    }
+        //    else
+        //    {
+        //        mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+        //        ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+        //    }
+        //}
 
-        private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                TextBlock cbk = (TextBlock)e.Source;
-                Canvas cvs = (Canvas)cbk.Parent;
-                Border bdr = (Border)cvs.Parent;
-                DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
-                ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
-                DataTemplate Dt = cp.ContentTemplate;
-                CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
-                if (ch.IsChecked == true)
-                {
-                    ch.IsChecked = false;
-                    bdr.Background = new SolidColorBrush(Colors.SkyBlue);
-                }
-                else
-                {
-                    ch.IsChecked = true;
-                    bdr.Background = new SolidColorBrush(Colors.Black);
-                }
-            }
-            catch { }
+        //private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
+        //{
+        //    try
+        //    {
+        //        TextBlock cbk = (TextBlock)e.Source;
+        //        Canvas cvs = (Canvas)cbk.Parent;
+        //        Border bdr = (Border)cvs.Parent;
+        //        DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+        //        ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
+        //        DataTemplate Dt = cp.ContentTemplate;
+        //        CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
+        //        if (ch.IsChecked == true)
+        //        {
+        //            ch.IsChecked = false;
+        //            bdr.Background = new SolidColorBrush(Colors.SkyBlue);
+        //        }
+        //        else
+        //        {
+        //            ch.IsChecked = true;
+        //            bdr.Background = new SolidColorBrush(Colors.Black);
+        //        }
+        //    }
+        //    catch { }
 
-        }
+        //}
 
         private void txtItemReason_KeyDown(object sender, KeyEventArgs e)
         {
@@ -311,7 +311,7 @@ namespace KrausRGA.UI
             //    Guid reasonID = _mNewRMA.SetReasons(txtOtherReason.Text);
             //}
             //txtOtherReason.Text = "";
-            txtItemReason.Text = "";
+            //txtItemReason.Text = "";
             int refundcount = 0;
             int denycount = 0;
             int listcount = listofstatus.Count;
@@ -1116,54 +1116,54 @@ namespace KrausRGA.UI
             return child;
         }
 
-        public String GetGuidChecked(DataGridRow Row)
-        {
-            String _return = "";
-            try
-            {
-                ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
-                DataTemplate chkDt = chkCp.ContentTemplate;
-                Border bdrChec = chkDt.FindName("bdrCheck", chkCp) as Border;
-                TextBlock ResonGuid = dgReasons.Columns[1].GetCellContent(Row) as TextBlock;
-                if (bdrChec.Background.ToString() == Colors.Black.ToString()) _return = ResonGuid.Text.ToString();
-            }
-            catch (Exception)
-            {
-            }
-            return _return;
-        }
+        //public String GetGuidChecked(DataGridRow Row)
+        //{
+        //    String _return = "";
+        //    try
+        //    {
+        //        ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
+        //        DataTemplate chkDt = chkCp.ContentTemplate;
+        //        Border bdrChec = chkDt.FindName("bdrCheck", chkCp) as Border;
+        //        TextBlock ResonGuid = dgReasons.Columns[1].GetCellContent(Row) as TextBlock;
+        //        if (bdrChec.Background.ToString() == Colors.Black.ToString()) _return = ResonGuid.Text.ToString();
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //    return _return;
+        //}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
 
-            int selectedIndex = dgPackageInfo.SelectedIndex;
-            if (selectedIndex != -1)
-            {
-                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
-                {
-                    if (row.IsSelected)
-                    {
-                        ContentPresenter cp = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
-                        DataTemplate Dt = cp.ContentTemplate;
-                        TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid", cp);
-                        TextBlock txtRCount = (TextBlock)Dt.FindName("txtCheckedCount", cp);
-                        int countReasons = 0;
-                        txtReturnGuid.Text = "";
-                        foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
-                        {
-                            string RGuid = GetGuidChecked(RowReason);
-                            if (RGuid != "")
-                            {
-                                txtReturnGuid.Text += "#" + RGuid;
-                                countReasons++;
-                            }
-                        }
-                        txtRCount.Text = countReasons.ToString() + " Reason.";
-                    }
-                }
-            }
-        }
+        //    int selectedIndex = dgPackageInfo.SelectedIndex;
+        //    if (selectedIndex != -1)
+        //    {
+        //        foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+        //        {
+        //            if (row.IsSelected)
+        //            {
+        //                ContentPresenter cp = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
+        //                DataTemplate Dt = cp.ContentTemplate;
+        //                TextBlock txtReturnGuid = (TextBlock)Dt.FindName("txtReasosnsGuid", cp);
+        //                TextBlock txtRCount = (TextBlock)Dt.FindName("txtCheckedCount", cp);
+        //                int countReasons = 0;
+        //                txtReturnGuid.Text = "";
+        //                foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
+        //                {
+        //                    string RGuid = GetGuidChecked(RowReason);
+        //                    if (RGuid != "")
+        //                    {
+        //                        txtReturnGuid.Text += "#" + RGuid;
+        //                        countReasons++;
+        //                    }
+        //                }
+        //                txtRCount.Text = countReasons.ToString() + " Reason.";
+        //            }
+        //        }
+        //    }
+        //}
 
         private void ChangeColor(CheckBox Chk, TextBlock txt, Canvas can)
         {
@@ -1659,6 +1659,7 @@ namespace KrausRGA.UI
                 }
             }
         }
+
         void dtLoadUpdate_Tick(object sender, EventArgs e)
         {
             dtLoadUpdate.Stop();
@@ -5586,8 +5587,149 @@ namespace KrausRGA.UI
             #endregion
 
         }
-        
-        
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+
+            List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
+            foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
+            {
+                //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
+                RMAInfo ls = new RMAInfo();
+                TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+                string sku = _mponumber.GetENACodeByItem(SkuNumber1.Text);
+                TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
+
+                ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
+                DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
+                TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
+
+                ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row1) as ContentPresenter;
+                DataTemplate DtImages = CntImag.ContentTemplate;
+                StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                if (txtRetutn1.Text == "")
+                {
+                    txtRetutn1.Text = "0";
+                }
+
+                ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
+                DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
+                TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
+
+                if (txtRetutn2.Text == "")
+                {
+                    txtRetutn2.Text = "0";
+                }
+
+                TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
+
+                TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
+
+                TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row1) as TextBlock;
+
+                TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row1) as TextBlock;
+
+                ls.SKUNumber = SkuNumber1.Text;
+                ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
+                ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
+                ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
+                ls.ProductID = ProductID.Text;
+                ls.LineType = Convert.ToInt16(LineType.Text);
+                ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
+                foreach (System.Windows.Controls.Image item in SpImages.Children)
+                {
+                    DataRow dtrow = dtimages.NewRow();
+
+                    BitmapImage img = item.Source as BitmapImage;
+
+                    if (img != null)
+                    {
+
+                        byte[] bmp = getJPGFromImageControl(img);
+
+
+                        dtrow["Images"] = bmp;//imageToByteArray(ConvertSystemWindowsImagesToDrawingImages(item));//<Image byte>;
+                        dtrow["SKUName"] = SkuNumber1.Text;
+                        dtrow["SKUSequence"] = txtRetutn2.Text;
+                        dtimages.Rows.Add(dtrow);
+                    }
+
+                }
+
+                if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
+                {
+                    if (max < Convert.ToInt16(txtRetutn2.Text))
+                    {
+                        max = Convert.ToInt16(txtRetutn2.Text);
+                    }
+                    if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                    {
+                        shipmax = Convert.ToInt16(ShipmentLines.Text);
+                    }
+
+                    if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                    {
+                        returnmax = Convert.ToInt16(ReturnLines.Text);
+                    }
+                }
+
+                _lsRMAInfo1.Add(ls);
+            }
+
+            RMAInfo ls1 = new RMAInfo();
+            SkuAndIsScanned _lsIsmanually1 = new SkuAndIsScanned();
+
+            ls1.SKUNumber = txtSKUname.Text;// _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+            ls1.ProductID = _mponumber.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+
+            ls1.SalesPrice = 0;
+
+            _lsIsmanually1.IsScanned = 1;
+            _lsIsmanually1.SKUName = txtSKUname.Text; //_mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+            lsIsManually.Add(_lsIsmanually1);
+
+
+            txtbarcode.Text = "";
+            txtbarcode.Focus();
+
+            ls1.SKU_Qty_Seq = 1;
+            ls1.SKU_Sequence = max + 1000;
+            ls1.ReturnLines = returnmax + 1000;
+            ls1.ShipmentLines = shipmax + 1000;
+            ls1.LineType = 1;
+            max = 0;
+            returnmax = 0;
+            shipmax = 0;
+
+            _lsRMAInfo1.Add(ls1);
+
+            this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo1; }));
+
+            txtSKUname.Text = "";
+
+            dtLoadUpdate1 = new DispatcherTimer();
+            dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
+            //start the dispacher.
+            dtLoadUpdate1.Start();
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+            txtSKUname.Text = "";
+        }
+
+        private void btnAddsku_Click_1(object sender, RoutedEventArgs e)
+        {
+            cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+        }
 
     }
     

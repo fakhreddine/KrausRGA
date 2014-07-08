@@ -104,7 +104,7 @@
 
                                 </Canvas>
                             </Border>
-
+                          
 
                             <Border x:Name="bdrmain2" Height="337" >
                                 <Canvas x:Name="cvsTb1main2" Margin="0,5,0,0">
@@ -115,7 +115,7 @@
 
                                     <!-- Grid View-->
                                     <Border Height="45" Width="788" Background="#B2111111" Canvas.Top="-7" Canvas.Left="2">
-                                        <TextBlock TextWrapping="Wrap" FontSize="25" Foreground="White" Margin="10,6,276,0"><Run Text="Return Detail"/></TextBlock>
+                                        <TextBlock TextWrapping="Wrap" FontSize="25" Foreground="White" Margin="10,6,619,0"><Run Text="Return Detail"/></TextBlock>
                                     </Border>
 
                                     <DataGrid x:Name="dgPackageInfo"
@@ -313,7 +313,7 @@
                                         <Image Canvas.Left="417" Stretch="Fill"  Canvas.Top="130" x:Name="imgZoom" Visibility="Visible" MouseLeftButtonDown="imgZoom_MouseLeftButtonDown" Margin="4"/>
                                     </Border>
 
-                                    <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="268" Canvas.Left="300" Canvas.Top="48" Width="500" OpacityMask="#FF535252" Background="#FF406B83">
+                                    <Canvas x:Name="cvItemStatus" Visibility="Hidden" Height="268" Canvas.Left="143" Canvas.Top="43" Background="SkyBlue" Width="500" OpacityMask="#FF535252" >
                                         <Canvas.Style>
                                             <Style TargetType="{x:Type Canvas}">
                                                 <Style.Triggers>
@@ -322,8 +322,8 @@
                                                             <BeginStoryboard >
                                                                 <Storyboard >
                                                                     <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" 
-        																From="1000" 
-        																To="300" 
+        																From="700" 
+        																To="143" 
         																Duration="0:0:0.1"/>
                                                                 </Storyboard>
                                                             </BeginStoryboard>
@@ -332,9 +332,9 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Canvas.Style>
-                                        <TextBlock x:Name="tbTitle" Text="Select Reasons" Foreground="#FFF9F9F9" Canvas.Left="133" Canvas.Top="7" FontSize="25"/>
+                                        <TextBlock x:Name="tbTitle" Text="Add SKU Name:"  Canvas.Left="23" Canvas.Top="97" FontSize="25" RenderTransformOrigin="1.048,0.641"/>
 
-                                        <Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-177" Width="270"
+                                        <!--<Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-177" Width="270"
         									Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="88" Background="#FFE07D1A" Foreground="WhiteSmoke" FontSize="35" >
                                             <Button.RenderTransform>
                                                 <TransformGroup>
@@ -344,47 +344,14 @@
                                                     <TranslateTransform/>
                                                 </TransformGroup>
                                             </Button.RenderTransform>
-                                        </Button>
-                                        <DataGrid Height="221" x:Name="dgReasons"
-        									MinRowHeight="70"
-        									ItemsSource="{Binding}" 
-        									AutoGenerateColumns="False"
-        									CanUserAddRows="False"
-        									HeadersVisibility="None"
-        									HorizontalGridLinesBrush="#FF272626" VerticalGridLinesBrush="{x:Null}" 
-        									Background="#FFE6E6E6" Width="500" GridLinesVisibility="None" RowHeight="45" Canvas.Top="46" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
-                                            <DataGrid.Columns >
-                                                <DataGridTemplateColumn Header="Reasons" Width="500" >
-                                                    <DataGridTemplateColumn.CellStyle>
-                                                        <Style TargetType="{x:Type DataGridCell}">
-                                                            <Setter Property="Margin" Value="2,2,2,2"/>
-                                                            <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                        </Style>
-                                                    </DataGridTemplateColumn.CellStyle>
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate  >
-                                                            <ContentControl x:Name="ctlReasons" MouseDown="ctlReasons_MouseDown_1" Height="70">
-                                                                <Border x:Name="bdrCheck" BorderBrush="#FF0F0F0F" BorderThickness="1,1,1,1"  Background="#FF919191" CornerRadius="0" Height="100" Margin="0,0,0,0" >
-                                                                    <Canvas Margin="0,0,0,0">
-                                                                        <TextBlock x:Name="tbReason" Text="{Binding Reason1}" TextWrapping="WrapWithOverflow" Margin="10,0,0,0" FontSize="25" Height="70"  Width="500" Foreground="WhiteSmoke"/>
-                                                                        <CheckBox x:Name="cbReasons" Width="0" Content="" Canvas.Top="4" Canvas.Left="2" Visibility="Hidden" />
-                                                                    </Canvas>
-                                                                </Border>
-                                                            </ContentControl>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                                <DataGridTextColumn  
-        											Binding="{Binding ReasonID}"
-        											Header=""  
-        											Width="0"
-        											Foreground="WhiteSmoke"
-        											IsReadOnly="True"/>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
+                                        </Button>-->
+                                       
                                         <!--</ScrollViewer>-->
-                                        <TextBox Height="49" x:Name="txtItemReason" TextWrapping="Wrap" Visibility="Hidden" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>
-                                        <TextBlock Canvas.Left="490" TextWrapping="Wrap" Text="" Visibility="Hidden" Canvas.Top="11" Height="30" Width="112" x:Name="txtSKUname"/>
+                                        <!--<TextBox Height="49" x:Name="txtItemReason" TextWrapping="Wrap" Visibility="Visible" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>-->
+                                        <TextBox Canvas.Left="218" TextWrapping="Wrap" Text="" Visibility="Visible" Canvas.Top="97" Height="45" Width="272" x:Name="txtSKUname" FontSize="25"/>
+                                        <Button Content="Add" Canvas.Left="144" Canvas.Top="171" Width="89" Height="31" FontSize="20" Click="Button_Click_2" ></Button>
+
+                                        <Button Content="Cancel" Canvas.Left="302" Canvas.Top="171" Width="89" Height="31" FontSize="20" Click="Button_Click_3" Name="btnCancel"></Button>
                                     </Canvas>
                                 </Canvas>
                             </Border>
@@ -444,10 +411,6 @@
                                             <ComboBox Canvas.Left="212" Canvas.Top="264" Width="392" Height="48" x:Name="cmbSkuReasons" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID" FontSize="25" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbSkuReasons_SelectionChanged_1"/>
                                             <TextBox Height="38" Canvas.Left="212" TextWrapping="Wrap" Text="" Canvas.Top="314" Width="392" x:Name="txtskuReasons" FontSize="25" KeyDown="txtskuReasons_KeyDown_1"/>
                                             <Label Content="Reasons" Canvas.Left="58" FontSize="30" Canvas.Top="253" Width="124" Height="53"/>
-
-
-
-
 
                                         </Canvas>
                                    
@@ -550,6 +513,7 @@
                 </Canvas>
             </Border>
             <Button Content="Show Barcode" FontSize="20"  HorizontalAlignment="Left" Margin="656,463,0,0" VerticalAlignment="Top" Width="134" Height="38" Name="btnshow" Click="Button_Click_1"/>
+            <Button Content="Add Non PO SKU" FontSize="20"  HorizontalAlignment="Left" Margin="458,463,0,0" VerticalAlignment="Top" Width="175" Height="38" Name="btnAddsku" Click="btnAddsku_Click_1" />
         </Grid>
     </Viewbox>
 </Window>
