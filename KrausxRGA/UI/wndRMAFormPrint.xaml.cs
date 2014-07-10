@@ -514,7 +514,7 @@ namespace KrausRGA.UI
             {
 
                 PrintDialog printDlg = new System.Windows.Controls.PrintDialog();
-                printDlg.PrintTicket.PageMediaSize = new PageMediaSize((Double)700.0, (Double)1500.0);
+                printDlg.PrintTicket.PageMediaSize = new PageMediaSize((Double)700.0, (Double)1000.0);
                 //printDlg.ShowDialog();
 
                 //get selected printer capabilities

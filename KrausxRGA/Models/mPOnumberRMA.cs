@@ -432,5 +432,17 @@ namespace KrausRGA.Models
             return lsreurnbyrowid;
         }
 
+        public List<string> NewRMAInfo(string Chars)
+        {
+            List<string> _lsNewRMA = new List<string>();
+            try
+            {
+                _lsNewRMA = cSage.GetNewRMANumber(Chars);
+            }
+            catch (Exception)
+            { }
+            return _lsNewRMA;
+        }
+
     }
 }

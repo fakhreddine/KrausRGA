@@ -87,7 +87,7 @@ namespace KrausRGA.Views
 
             if (_sage.CallTag != null) this.CallTag = _sage.CallTag;
 
-            if (_sage.LineType != null) this.LineType = _sage.LineType;
+            if (_sage.LineType != null) this.LineType =_sage.LineType;
 
             if (_sage.ReturnLines != null) this.ReturnLines = _sage.ReturnLines;
             if (_sage.ShipmentLines != null) this.ShipmentLines = _sage.ShipmentLines;

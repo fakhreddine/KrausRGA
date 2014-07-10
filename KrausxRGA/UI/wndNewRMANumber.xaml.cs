@@ -59,7 +59,7 @@ namespace KrausRGA.UI
 
         string SKU,_SKU;
         string PName,_PName;
-        string Qty,_Qty;
+        string Qty, _Qty;
         string ProductID;
         string SalesPrices;
 
@@ -1444,6 +1444,16 @@ namespace KrausRGA.UI
 
             btnBoxNotNew.IsChecked = false;
 
+            btnManufacturerNo.IsChecked = false;
+            btnManufacturerYes.IsChecked = false;
+            btntransiteNo.IsChecked = false;
+            btntransiteYes.IsChecked = false;
+
+            btnManufacturerNo.IsEnabled = false;
+            btnManufacturerYes.IsEnabled = false;
+            btntransiteNo.IsEnabled = false;
+            btntransiteYes.IsEnabled = false;
+
         }
 
         private void UncheckAllButtons()
@@ -1486,6 +1496,11 @@ namespace KrausRGA.UI
             btnStatusYes.IsEnabled = true;
 
             btnBoxNew.IsChecked = false;
+
+
+            btnInstalledNo.IsChecked = true;
+            btnStatusNo.IsChecked = true;
+
         }
         Boolean IsDefectiveTransite = true;
         private void btntransiteYes_Checked_1(object sender, RoutedEventArgs e)

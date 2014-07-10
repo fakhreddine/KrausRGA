@@ -332,7 +332,7 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Canvas.Style>
-                                        <TextBlock x:Name="tbTitle" Text="Add SKU Name:"  Canvas.Left="23" Canvas.Top="97" FontSize="25" RenderTransformOrigin="1.048,0.641"/>
+                                        <TextBlock x:Name="tbTitle" Text="Add SKU Name:"  Canvas.Left="23" Canvas.Top="23" FontSize="25" RenderTransformOrigin="1.048,0.641"/>
 
                                         <!--<Button Content="Close" Style="{StaticResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Canvas.Left="-177" Width="270"
         									Click="Button_Click" Height="89" RenderTransformOrigin="0.5,0.5" Canvas.Top="88" Background="#FFE07D1A" Foreground="WhiteSmoke" FontSize="35" >
@@ -348,10 +348,11 @@
                                        
                                         <!--</ScrollViewer>-->
                                         <!--<TextBox Height="49" x:Name="txtItemReason" TextWrapping="Wrap" Visibility="Visible" Text="Please type other Reason" Canvas.Top="451" Width="950" Canvas.Left="0" KeyDown="txtItemReason_KeyDown" GotFocus="txtItemReason_GotFocus"/>-->
-                                        <TextBox Canvas.Left="218" TextWrapping="Wrap" Text="" Visibility="Visible" Canvas.Top="97" Height="45" Width="272" x:Name="txtSKUname" FontSize="25"/>
+                                        <TextBox Canvas.Left="218" TextWrapping="Wrap" Text="" Visibility="Visible" Canvas.Top="19" Height="45" Width="272" x:Name="txtSKUname" FontSize="25" TextChanged="txtSKUname_TextChanged_1"/>
                                         <Button Content="Add" Canvas.Left="144" Canvas.Top="171" Width="89" Height="31" FontSize="20" Click="Button_Click_2" ></Button>
 
                                         <Button Content="Cancel" Canvas.Left="302" Canvas.Top="171" Width="89" Height="31" FontSize="20" Click="Button_Click_3" Name="btnCancel"></Button>
+                                        <ListBox Height="190" Canvas.Left="218" Canvas.Top="64" Width="272" x:Name="lstSKUName" Visibility="Hidden" FontSize="25" SelectionChanged="lstSKUName_SelectionChanged_1" />
                                     </Canvas>
                                 </Canvas>
                             </Border>
