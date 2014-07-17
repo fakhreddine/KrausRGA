@@ -33,7 +33,7 @@
                                             <TextBox x:Name="txtVendorName"  Canvas.Left="435" Canvas.Top="161" Width="321" Height="62" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True"   IsEnabled="False"/>
 
                                             <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="46" Width="150" Canvas.Left="28"/>
-                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="213" Canvas.Left="12" Canvas.Top="67" Style="{StaticResource combo}" IsReadOnly="True" IsEnabled="False"
+                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="213" Canvas.Left="12" Canvas.Top="67" Style="{StaticResource combo}" IsReadOnly="True" 
 													ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">

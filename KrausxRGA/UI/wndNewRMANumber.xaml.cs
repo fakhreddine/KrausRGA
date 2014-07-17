@@ -41,19 +41,19 @@ namespace KrausRGA.UI
 
         mUser _mUser = clGlobal.mCurrentUser;
 
-         DataTable dt = new DataTable();
+        DataTable dt = new DataTable();
 
-         List<StatusAndPoints> listofstatus = new List<StatusAndPoints>();
+        List<StatusAndPoints> listofstatus = new List<StatusAndPoints>();
 
-         mPOnumberRMA _mponumber = new mPOnumberRMA();
+        mPOnumberRMA _mponumber = new mPOnumberRMA();
 
-         mUpdateForNewRMA _mUpdate;
+        mUpdateForNewRMA _mUpdate;
 
-         DispatcherTimer dtLoadUpdate;
+        DispatcherTimer dtLoadUpdate;
 
-         List<SkuReasonIDSequence> _lsReasonSKU = new List<SkuReasonIDSequence>();
+        List<SkuReasonIDSequence> _lsReasonSKU = new List<SkuReasonIDSequence>();
 
-         protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
+        protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
 
         Guid ReturnDetailsID;
 
@@ -1204,6 +1204,7 @@ namespace KrausRGA.UI
         {
             lstponumber.Visibility = Visibility.Hidden;
         }
+
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             string SelectedskuName = "";
@@ -1404,6 +1405,7 @@ namespace KrausRGA.UI
 
 
         }
+
         private void fillComboBox()
         {
             List<Reason> lsReturn = _mNewRMA.GetReasons();

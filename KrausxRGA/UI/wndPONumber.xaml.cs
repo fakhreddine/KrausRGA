@@ -5284,7 +5284,7 @@ namespace KrausRGA.UI
                                             string path = Imgitem.SKUImagePath; //"C:\\Program Files\\hello.txt";
                                             string[] pathArr = path.Split('\\');
                                             string[] fileArr = pathArr.Last().Split('.');
-                                            string fileName = fileArr.Last().ToString();
+                                            string fileName = fileArr[0].ToString();
                                             img.Name = fileName;
                                         }
                                         img.Source = bs;
@@ -5458,7 +5458,7 @@ namespace KrausRGA.UI
                         img.Height = 50;
                         img.Width = 50;
                         img.Stretch = Stretch.Fill;
-                        img.Name =AName.ToString().Split(new char[] { '.' })[0];
+                        img.Name = AName.ToString().Split(new char[] { '.' })[0];
                         img.Source = bs;
                         img.Margin = new Thickness(0.5);
 
@@ -5701,142 +5701,137 @@ namespace KrausRGA.UI
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (dgPackageInfo.Items.Count > 1)
+
+            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+
+            List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
+            foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
             {
-                cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+                //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
+                RMAInfo ls = new RMAInfo();
+                TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
+                string sku = _mponumber.GetENACodeByItem(SkuNumber1.Text);
+                TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
 
-                List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
-                foreach (DataGridRow row1 in GetDataGridRows(dgPackageInfo))
+                ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
+                DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
+                TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
+
+                ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row1) as ContentPresenter;
+                DataTemplate DtImages = CntImag.ContentTemplate;
+                StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+                if (txtRetutn1.Text == "")
                 {
-                    //SkuAndIsScanned _lsIsmanually = new SkuAndIsScanned();
-                    RMAInfo ls = new RMAInfo();
-                    TextBlock SkuNumber1 = dgPackageInfo.Columns[1].GetCellContent(row1) as TextBlock;
-                    string sku = _mponumber.GetENACodeByItem(SkuNumber1.Text);
-                    TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row1) as TextBlock;
-
-                    ContentPresenter CntQuantity1 = dgPackageInfo.Columns[2].GetCellContent(row1) as ContentPresenter;
-                    DataTemplate DtQty1 = CntQuantity1.ContentTemplate;
-                    TextBlock txtRetutn1 = (TextBlock)DtQty1.FindName("tbQty", CntQuantity1);
-
-                    ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row1) as ContentPresenter;
-                    DataTemplate DtImages = CntImag.ContentTemplate;
-                    StackPanel SpImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
-
-                    if (txtRetutn1.Text == "")
-                    {
-                        txtRetutn1.Text = "0";
-                    }
-
-                    ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
-                    DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
-                    TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
-
-                    if (txtRetutn2.Text == "")
-                    {
-                        txtRetutn2.Text = "0";
-                    }
-
-                    TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
-
-                    TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
-
-                    TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row1) as TextBlock;
-
-                    TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row1) as TextBlock;
-
-                    ls.SKUNumber = SkuNumber1.Text;
-                    ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
-                    ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
-                    ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
-                    ls.ProductID = ProductID.Text;
-                    ls.LineType = Convert.ToInt16(LineType.Text);
-                    ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
-                    ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
-
-                    foreach (System.Windows.Controls.Image item in SpImages.Children)
-                    {
-                        DataRow dtrow = dtimages.NewRow();
-
-                        BitmapImage img = item.Source as BitmapImage;
-
-                        if (img != null)
-                        {
-
-                            byte[] bmp = getJPGFromImageControl(img);
-
-
-                            dtrow["Images"] = bmp;//imageToByteArray(ConvertSystemWindowsImagesToDrawingImages(item));//<Image byte>;
-                            dtrow["SKUName"] = SkuNumber1.Text;
-                            dtrow["SKUSequence"] = txtRetutn2.Text;
-                            dtrow["ImageName"] = item.Name;
-                            dtimages.Rows.Add(dtrow);
-                        }
-
-                    }
-
-                    if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
-                    {
-                        if (max < Convert.ToInt16(txtRetutn2.Text))
-                        {
-                            max = Convert.ToInt16(txtRetutn2.Text);
-                        }
-                        if (shipmax == Convert.ToInt16(ShipmentLines.Text))
-                        {
-                            shipmax = Convert.ToInt16(ShipmentLines.Text);
-                        }
-
-                        if (returnmax == Convert.ToInt16(ReturnLines.Text))
-                        {
-                            returnmax = Convert.ToInt16(ReturnLines.Text);
-                        }
-                    }
-
-                    _lsRMAInfo1.Add(ls);
+                    txtRetutn1.Text = "0";
                 }
 
-                RMAInfo ls1 = new RMAInfo();
-                SkuAndIsScanned _lsIsmanually1 = new SkuAndIsScanned();
+                ContentPresenter CntQuantity2 = dgPackageInfo.Columns[6].GetCellContent(row1) as ContentPresenter;
+                DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
+                TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
-                ls1.SKUNumber = txtSKUname.Text;// _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
-                ls1.ProductID = _mponumber.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+                if (txtRetutn2.Text == "")
+                {
+                    txtRetutn2.Text = "0";
+                }
 
-                ls1.SalesPrice = 0;
+                TextBlock ProductID = dgPackageInfo.Columns[8].GetCellContent(row1) as TextBlock;
 
-                _lsIsmanually1.IsScanned = 1;
-                _lsIsmanually1.SKUName = txtSKUname.Text; //_mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+                TextBlock SalePrices = dgPackageInfo.Columns[9].GetCellContent(row1) as TextBlock;
 
-                lsIsManually.Add(_lsIsmanually1);
+                TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row1) as TextBlock;
+
+                TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row1) as TextBlock;
+
+                ls.SKUNumber = SkuNumber1.Text;
+                ls.SKU_Qty_Seq = Convert.ToInt16(txtRetutn1.Text);
+                ls.SKU_Sequence = Convert.ToInt16(txtRetutn2.Text);
+                ls.SalesPrice = Convert.ToDecimal(SalePrices.Text);
+                ls.ProductID = ProductID.Text;
+                ls.LineType = Convert.ToInt16(LineType.Text);
+                ls.ShipmentLines = Convert.ToInt16(ShipmentLines.Text);
+                ls.ReturnLines = Convert.ToInt16(ReturnLines.Text);
+
+                foreach (System.Windows.Controls.Image item in SpImages.Children)
+                {
+                    DataRow dtrow = dtimages.NewRow();
+
+                    BitmapImage img = item.Source as BitmapImage;
+
+                    if (img != null)
+                    {
+
+                        byte[] bmp = getJPGFromImageControl(img);
 
 
-                txtbarcode.Text = "";
-                txtbarcode.Focus();
+                        dtrow["Images"] = bmp;//imageToByteArray(ConvertSystemWindowsImagesToDrawingImages(item));//<Image byte>;
+                        dtrow["SKUName"] = SkuNumber1.Text;
+                        dtrow["SKUSequence"] = txtRetutn2.Text;
+                        dtrow["ImageName"] = item.Name;
+                        dtimages.Rows.Add(dtrow);
+                    }
 
-                ls1.SKU_Qty_Seq = 1;
-                ls1.SKU_Sequence = max + 1000;
-                ls1.ReturnLines = returnmax + 1000;
-                ls1.ShipmentLines = shipmax + 1000;
-                ls1.LineType = 1;
-                max = 0;
-                returnmax = 0;
-                shipmax = 0;
-                NonPo = false;
+                }
 
-                _lsRMAInfo1.Add(ls1);
+                if (sku == _mponumber.GetENACodeByItem(SkuNumber1.Text))
+                {
+                    if (max < Convert.ToInt16(txtRetutn2.Text))
+                    {
+                        max = Convert.ToInt16(txtRetutn2.Text);
+                    }
+                    if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                    {
+                        shipmax = Convert.ToInt16(ShipmentLines.Text);
+                    }
 
-                this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo1; }));
+                    if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                    {
+                        returnmax = Convert.ToInt16(ReturnLines.Text);
+                    }
+                }
 
-                txtSKUname.Text = "";
-
-                dtLoadUpdate1 = new DispatcherTimer();
-                dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
-                dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
-                //start the dispacher.
-                dtLoadUpdate1.Start();
+                _lsRMAInfo1.Add(ls);
             }
-            else
-            {
-                MessageBox.Show("You can't add SKU");
-            }
+
+            RMAInfo ls1 = new RMAInfo();
+            SkuAndIsScanned _lsIsmanually1 = new SkuAndIsScanned();
+
+            ls1.SKUNumber = txtSKUname.Text;// _mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+            ls1.ProductID = _mponumber.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+
+            ls1.SalesPrice = 0;
+
+            _lsIsmanually1.IsScanned = 1;
+            _lsIsmanually1.SKUName = txtSKUname.Text; //_mReturn.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+            lsIsManually.Add(_lsIsmanually1);
+
+
+            txtbarcode.Text = "";
+            txtbarcode.Focus();
+
+            ls1.SKU_Qty_Seq = 1;
+            ls1.SKU_Sequence = max + 1000;
+            ls1.ReturnLines = returnmax + 1000;
+            ls1.ShipmentLines = shipmax + 1000;
+            ls1.LineType = 1;
+            max = 0;
+            returnmax = 0;
+            shipmax = 0;
+            NonPo = false;
+
+            _lsRMAInfo1.Add(ls1);
+
+            this.Dispatcher.Invoke(new Action(() => { dgPackageInfo.ItemsSource = _lsRMAInfo1; }));
+
+            txtSKUname.Text = "";
+
+            dtLoadUpdate1 = new DispatcherTimer();
+            dtLoadUpdate1.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            dtLoadUpdate1.Tick += dtLoadUpdate1_Tick;
+            //start the dispacher.
+            dtLoadUpdate1.Start();
+
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)

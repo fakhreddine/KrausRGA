@@ -37,7 +37,7 @@
 
 
                                             <Label x:Name="lblcRMAStatus" Content="RMA Status : " Style="{StaticResource lblConstant}" Canvas.Top="46" Width="127" Canvas.Left="60"/>
-                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="252" Canvas.Left="10" Canvas.Top="67" Style="{StaticResource combo}" IsReadOnly="True" IsEnabled="False"
+                                            <ComboBox x:Name="cmbRMAStatus" Height="45" Width="252" Canvas.Left="10" Canvas.Top="67" Style="{StaticResource combo}" IsReadOnly="True" 
         										ItemsSource="{Binding RAMStatus}" DisplayMemberPath="Status" SelectedValuePath="ID" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929">
                                                 <ComboBox.Background>
                                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
