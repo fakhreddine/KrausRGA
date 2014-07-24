@@ -29,7 +29,7 @@
 
                     <Border Name="bdrButtons" Style="{StaticResource trgBorderHideShow0 }" CornerRadius="20" Canvas.Top="100" Height="329" Width="798" Canvas.Left="2">
 
-                        <Canvas Name="cnNewReturn" Canvas.Top="128" Margin="0,0,-10,-105" >
+                        <Canvas Name="cnNewReturn" Canvas.Top="128" Margin="0,0,-10,-222" >
                             <Border CornerRadius="20" Width="798" BorderThickness="0,3" BorderBrush="#FF517F95">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -44,7 +44,7 @@
                                     <TextBlock Name="txtUserName" Text="User not Logged." Foreground="WhiteSmoke" FontSize="20" Width="255" Canvas.Left="70" Canvas.Top="36" Height="51" />
                                 </Canvas>
                             </Border>
-                            <Border CornerRadius="20" BorderThickness="0,3" BorderBrush="#FF517F95" Height="302" Width="798" Canvas.Top="122">
+                            <Border CornerRadius="20" BorderThickness="0,3" BorderBrush="#FF517F95" Height="419" Width="798" Canvas.Top="122">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF747476" Offset="0"/>
@@ -54,38 +54,47 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <Canvas Margin="0,-120,0,120">
-                                    <Border Style="{StaticResource bdrWin8btn}"  Canvas.Top="140" Canvas.Left="37"  >
+                                    <Border Style="{StaticResource bdrWin8btn}"  Canvas.Top="139" Canvas.Left="432"  >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnBoxNumber_Click"></Image>
-                                            <Button x:Name="btnPONumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="New RMA" Margin="-1,-1,-1,1" Click="btnPONumber_Click" />
+                                            <Button x:Name="btnPONumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Add RMA without PO" Margin="-1,-1,-1,1" Click="btnPONumber_Click" />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="226" Canvas.Left="37"  >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="39"  >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoScan.jpg" MouseDown="btnBoxNumber_Click" ></Image>
-                                            <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="PO Number" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click" />
+                                            <Button x:Name="btnBoxNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Add RMA with PO" Margin="-1,-1,-1,1" Click="btnBoxNumber_Click" />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="433"  >
+
+
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="428" Canvas.Left="234"  >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoScan.jpg" MouseDown="btnSRNumber_Click_1" ></Image>
+                                            <Button x:Name="btnSRNumber" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Scan SR Barcode" Margin="-1,-1,-1,1" Click="btnSRNumber_Click_1" />
+                                        </StackPanel>
+                                    </Border>
+
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="139" Canvas.Left="39"  >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnReturn_Click_1"></Image>
                                             <Button x:Name="btnReturn" Style="{StaticResource ToolBarButtonBaseStyle}" Content="View All Return" Margin="-1,-1,-1,1" Click="btnReturn_Click_1" />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="39"  >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="226" Canvas.Left="39"  >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoEnterNumber.png" MouseDown="btnReturn_Click_1"></Image>
-                                            <Button x:Name="btnProcessed" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Processed Return" Margin="-1,-1,-1,1" Click="btnProcessed_Click_1"/>
+                                            <Button x:Name="btnProcessed" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Incomplete Return" Margin="-1,-1,-1,1" Click="btnProcessed_Click_1"/>
                                         </StackPanel>
                                     </Border>
 
-                                    <Border  Style="{StaticResource bdrWin8btn}" Canvas.Left="432" Canvas.Top="139" >
+                                    <Border  Style="{StaticResource bdrWin8btn}" Canvas.Left="432" Canvas.Top="226" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSetting.png" MouseDown="btnNewScan_Click"/>
                                             <Button x:Name="btnNewScan" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Application Setting" Click="btnNewScan_Click" />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="225" Canvas.Left="432" >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="316" Canvas.Left="432" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoLogout.png" MouseDown="btnlogout_Click"></Image>
                                             <Button x:Name="btnlogout" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Log Out" Click="btnlogout_Click"/>
@@ -96,7 +105,7 @@
                         </Canvas>
                     </Border>
 
-                    <Border Name="bdrLogin" Style="{StaticResource trgBorderHideShowTO390}" BorderBrush="#FF209DD8" BorderThickness="2,2,2,2" Height="265" Canvas.Left="10" Canvas.Top="548" Width="750" CornerRadius="15" Background="#CC232121">
+                    <Border Name="bdrLogin" Style="{StaticResource trgBorderHideShowTO390}" Visibility="Visible" BorderBrush="#FF209DD8" BorderThickness="2,2,2,2" Height="265" Canvas.Left="10" Canvas.Top="548" Width="750" CornerRadius="15" Background="#CC232121">
                         <Canvas Name="cvsLoginBox">
                             <TextBlock Name="tbLoginText" Text="Please scan your badge" FontSize="20" Canvas.Left="188" Canvas.Top="71" Foreground="#FFE0E0E0" />
                             <TextBlock Name="tbTitleLogin" Style="{StaticResource tbFormTitle}"  Text="Login" Height="52" Width="124" Canvas.Left="8" Canvas.Top="8"/>
@@ -124,6 +133,8 @@
                                     <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoCam.png"  />
                                 </StackPanel>
                             </Border>
+
+                            <Button Height="37" Width="89" Canvas.Top="214" Canvas.Left="24" x:Name="btnBack" Style="{StaticResource ToolBarButtonBaseStyle}" Content="Back" BorderBrush="White" Click="btnBack_Click_1"></Button>
                         </Canvas>
                     </Border>
                     <Border BorderThickness="1" Height="160" Canvas.Top="1116" Width="800">

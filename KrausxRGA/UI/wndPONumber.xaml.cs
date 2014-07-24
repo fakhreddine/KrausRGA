@@ -327,7 +327,6 @@ namespace KrausRGA.UI
                 {
                     denycount++;
                 }
-
             }
 
             if (listcount == refundcount)
@@ -2597,22 +2596,29 @@ namespace KrausRGA.UI
 
         private void dgPackageInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int selectedIndex = dgPackageInfo.SelectedIndex;
-            if (selectedIndex != -1)
+            try
             {
-                foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+                int selectedIndex = dgPackageInfo.SelectedIndex;
+                if (selectedIndex != -1)
                 {
-                    if (row.IsSelected)
+                    foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
                     {
-                        ContentPresenter cp = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
-                        DataTemplate Dt = cp.ContentTemplate;
-                        StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
-                        spRowImages = spProductIMages;
-                        ScrollViewer SvImages = (ScrollViewer)Dt.FindName("svScrollImages", cp);
-                        SvImagesScroll = SvImages;
+                        if (row.IsSelected)
+                        {
+                            ContentPresenter cp = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
+                            DataTemplate Dt = cp.ContentTemplate;
+                            StackPanel spProductIMages = (StackPanel)Dt.FindName("spProductImages", cp);
+                            spRowImages = spProductIMages;
+                            ScrollViewer SvImages = (ScrollViewer)Dt.FindName("svScrollImages", cp);
+                            SvImagesScroll = SvImages;
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+            }
+         
         }
 
         private void fillComboBox()
@@ -5482,8 +5488,6 @@ namespace KrausRGA.UI
             }
         }
 
-     
-
         void img_MouseDown(object sender, MouseButtonEventArgs e)
         {
             clGlobal.Zoomimages = (Image)sender;
@@ -5496,8 +5500,6 @@ namespace KrausRGA.UI
             zoom.ShowDialog();
             //throw new NotImplementedException();
         }
-
-       
 
         //void FBCode_PropertyChanged1(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         //{
@@ -5877,9 +5879,30 @@ namespace KrausRGA.UI
             else
             {
                 lstSKUName.ItemsSource = lstSKU(_mponumber.NewRMAInfo(txtSKUname.Text.ToUpper()));
-                lstSKUName.Visibility = Visibility.Visible;
+
+                if (lstSKUName.Items.Count > 0)
+                {
+                    lstSKUName.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    lstSKUName.Visibility = Visibility.Hidden;
+                }
             }
         }
+
+        private void dgPackageInfo_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("Double click not allowed");
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+     
 
     }
     

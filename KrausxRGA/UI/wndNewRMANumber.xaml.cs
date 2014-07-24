@@ -26,6 +26,7 @@ using WindowsInput;
 using System.Data;
 using System.Reflection;
 using System.Windows.Threading;
+using System.Text.RegularExpressions;
 
 
 
@@ -94,7 +95,7 @@ namespace KrausRGA.UI
         
         public void FilldgReasons(String cat)
         {
-            dgReasons.ItemsSource = _mNewRMA.GetReasons(cat);
+            //dgReasons.ItemsSource = _mNewRMA.GetReasons(cat);
         }
         
         private void cntItemStatus_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -149,27 +150,27 @@ namespace KrausRGA.UI
 
         private void ctlReasons_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            try
-            {
-                TextBlock cbk = (TextBlock)e.Source;
-                Canvas cvs = (Canvas)cbk.Parent;
-                Border bdr = (Border)cvs.Parent;
-                DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
-                ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
-                DataTemplate Dt = cp.ContentTemplate;
-                CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
-                if (ch.IsChecked == true)
-                {
-                    ch.IsChecked = false;
-                    bdr.Background = new SolidColorBrush(Colors.SkyBlue);
-                }
-                else
-                {
-                    ch.IsChecked = true;
-                    bdr.Background = new SolidColorBrush(Colors.Black);
-                }
-            }
-            catch { }
+            //try
+            //{
+            //    TextBlock cbk = (TextBlock)e.Source;
+            //    Canvas cvs = (Canvas)cbk.Parent;
+            //    Border bdr = (Border)cvs.Parent;
+            //    DataGridRow row = (DataGridRow)cbk.FindParent<DataGridRow>();
+            //    ContentPresenter cp = dgReasons.Columns[0].GetCellContent(row) as ContentPresenter;
+            //    DataTemplate Dt = cp.ContentTemplate;
+            //    CheckBox ch = (CheckBox)Dt.FindName("cbReasons", cp);
+            //    if (ch.IsChecked == true)
+            //    {
+            //        ch.IsChecked = false;
+            //        bdr.Background = new SolidColorBrush(Colors.SkyBlue);
+            //    }
+            //    else
+            //    {
+            //        ch.IsChecked = true;
+            //        bdr.Background = new SolidColorBrush(Colors.Black);
+            //    }
+            //}
+            //catch { }
 
         }
 
@@ -193,7 +194,7 @@ namespace KrausRGA.UI
             //    Guid reasonID = _mNewRMA.SetReasons(txtOtherReason.Text);
             //}
             //txtOtherReason.Text = "";
-            txtItemReason.Text = "";
+            //txtItemReason.Text = "";
 
             Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
             Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
@@ -214,11 +215,21 @@ namespace KrausRGA.UI
             ret.Country = txtCountry.Text;
             ret.ZipCode = txtZipCode.Text;
             ret.State = txtState.Text;
+            ret.CallTag = txtcalltag.Text;
+            ret.RGAROWID = txtRMANumber.Text;
 
             _lsreturn.Add(ret);
 
+            int InProgress = 0;
+
+            if (chkInProgress.IsChecked == true)
+            {
+                InProgress = 1;
+            }
+
+
             //Save to RMA Master Table.
-            Guid ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.WrongRMAFlag, Views.clGlobal.Warranty, 60, 0);
+            Guid ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.WrongRMAFlag, Views.clGlobal.Warranty, 60, 0, InProgress, txtcalltag.Text);
 
             if (Views.clGlobal.IsAlreadySaved)
             {
@@ -250,7 +261,7 @@ namespace KrausRGA.UI
                 SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
 
 
-                DataGridCell cell1 = GetCell(i, 4);
+                DataGridCell cell1 = GetCell(i, 5);
                 ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
                 DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
                 PName = ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text.ToString();
@@ -261,12 +272,12 @@ namespace KrausRGA.UI
                 DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
                 Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
 
-                DataGridCell cellforProductID = GetCell(i, 6);
+                DataGridCell cellforProductID = GetCell(i, 7);
                 ContentPresenter CntPersenterforProductID = cellforProductID.Content as ContentPresenter;
                 DataTemplate DataTempforProductID = CntPersenterforProductID.ContentTemplate;
                 ProductID = ((TextBox)DataTempforProductID.FindName("txtProductID", CntPersenterforProductID)).Text;//= _mNewRMA.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
 
-                DataGridCell cellforSales = GetCell(i, 7);
+                DataGridCell cellforSales = GetCell(i, 8);
                 ContentPresenter CntPersenterforSales = cellforSales.Content as ContentPresenter;
                 DataTemplate DataTempforSales = CntPersenterforSales.ContentTemplate;
                 SalesPrices = ((TextBox)DataTempforSales.FindName("txtSalesPrice", CntPersenterforSales)).Text;// = "0"
@@ -384,7 +395,7 @@ namespace KrausRGA.UI
 
                 foreach (Image imageCaptured in SpImages.Children)
                 {
-                    String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + imageCaptured.Name.ToString() + ".jpg";
+                    String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpg";
 
                     //Set Images table from model.
                     Guid ImageID = _mNewRMA.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
@@ -465,52 +476,52 @@ namespace KrausRGA.UI
         }
         
      
-        public String GetGuidChecked(DataGridRow Row)
-        {
-            String _return = "";
-            try
-            {
-                ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
-                DataTemplate chkDt = chkCp.ContentTemplate;
-                Border bdrChec = chkDt.FindName("bdrCheck", chkCp) as Border;
-                TextBlock ResonGuid = dgReasons.Columns[1].GetCellContent(Row) as TextBlock;
-                if (bdrChec.Background.ToString() == Colors.Black.ToString()) _return = ResonGuid.Text.ToString();
-            }
-            catch (Exception)
-            {
-            }
-            return _return;
-        }
+        //public String GetGuidChecked(DataGridRow Row)
+        //{
+        //    //String _return = "";
+        //    //try
+        //    //{
+        //    //    ContentPresenter chkCp = dgReasons.Columns[0].GetCellContent(Row) as ContentPresenter;
+        //    //    DataTemplate chkDt = chkCp.ContentTemplate;
+        //    //    Border bdrChec = chkDt.FindName("bdrCheck", chkCp) as Border;
+        //    //    TextBlock ResonGuid = dgReasons.Columns[1].GetCellContent(Row) as TextBlock;
+        //    //    if (bdrChec.Background.ToString() == Colors.Black.ToString()) _return = ResonGuid.Text.ToString();
+        //    //}
+        //    //catch (Exception)
+        //    //{
+        //    //}
+        //    //return _return;
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+            //cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
 
-            int selectedIndex = dgPackageInfo.SelectedIndex;
-            if (selectedIndex != -1)
-            {
+            //int selectedIndex = dgPackageInfo.SelectedIndex;
+            //if (selectedIndex != -1)
+            //{
 
 
-                DataGridCell cell = GetCell(selectedIndex, 4);
-                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+            //    DataGridCell cell = GetCell(selectedIndex, 4);
+            //    ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+            //    DataTemplate DataTemp = CntPersenter.ContentTemplate;
 
-                TextBlock txtReturnGuid = (TextBlock)DataTemp.FindName("txtReasosnsGuid", CntPersenter);
-                TextBlock txtRCount = (TextBlock)DataTemp.FindName("txtCheckedCount", CntPersenter);
-                int countReasons = 0;
-                txtReturnGuid.Text = "";
-                foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
-                {
-                    string RGuid = GetGuidChecked(RowReason);
-                    if (RGuid != "")
-                    {
-                        txtReturnGuid.Text += "#" + RGuid;
-                        countReasons++;
-                    }
-                }
-                txtRCount.Text = countReasons.ToString() + " Reason.";
+            //    TextBlock txtReturnGuid = (TextBlock)DataTemp.FindName("txtReasosnsGuid", CntPersenter);
+            //    TextBlock txtRCount = (TextBlock)DataTemp.FindName("txtCheckedCount", CntPersenter);
+            //    int countReasons = 0;
+            //    txtReturnGuid.Text = "";
+            //    foreach (DataGridRow RowReason in GetDataGridRows(dgReasons))
+            //    {
+            //        string RGuid = GetGuidChecked(RowReason);
+            //        if (RGuid != "")
+            //        {
+            //            txtReturnGuid.Text += "#" + RGuid;
+            //            countReasons++;
+            //        }
+            //    }
+            //    txtRCount.Text = countReasons.ToString() + " Reason.";
 
-            }
+            //}
         }
         
         private void ChangeColor(CheckBox Chk, TextBlock txt, Canvas can)
@@ -610,6 +621,9 @@ namespace KrausRGA.UI
                 brdPrintlabel.Visibility = Visibility.Visible;
                 chkPrintLabel.IsChecked = false;
 
+
+               
+
                 _mUpdate = new mUpdateForNewRMA(Views.clGlobal.NewRGANumber); //mReturn.lsRMAInformation[0].RMANumber);
 
                 for (int i = 0; i < _mUpdate._lsskuandpoints.Count; i++)
@@ -639,6 +653,12 @@ namespace KrausRGA.UI
 
                 }
 
+                if (_mUpdate._ReturnTbl1.ProgressFlag == 0)
+                {
+                    chkInProgress.IsChecked = false;
+                }
+
+                chkInProgress.IsEnabled = true;
 
                 if (_mUpdate._lsReturnDetails1.Count > 0)
                 {
@@ -655,6 +675,8 @@ namespace KrausRGA.UI
                     txtZipCode.Text = _mUpdate._ReturnTbl1.ZipCode;
                     txtName.Text = _mUpdate._ReturnTbl1.CustomerName1;
                     txtRMANumber.Text = _mUpdate._ReturnTbl1.RGAROWID;
+
+                    txtcalltag.Text = _mUpdate._ReturnTbl1.CallTag;
 
                     cmbRMAStatus.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.RMAStatus);
                     cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl1.Decision);
@@ -681,7 +703,7 @@ namespace KrausRGA.UI
 
             FillRMAStausAndDecision();
 
-            var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1", ProductID = "", SalesPrice="" };
+            var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1000", ProductID = "", SalesPrice="" };
 
             dgPackageInfo.Items.Add(data);
             txtbarcode.Focus();
@@ -752,11 +774,23 @@ namespace KrausRGA.UI
                                         //Zoom image.
                                         img.MouseEnter += img_MouseEnter;
 
-                                        img.Height = 62;
-                                        img.Width = 74;
+                                        img.Height = 50;
+                                        img.Width = 50;
                                         img.Stretch = Stretch.Fill;
-                                        String Name = Imgitem.SKUImagePath.Remove(0, Imgitem.SKUImagePath.IndexOf("SR"));
-                                        img.Name = Name.ToString().Split(new char[] { '.' })[0];
+                                        if (Imgitem.SKUImagePath.Contains("SR"))
+                                        {
+                                            String Name = Imgitem.SKUImagePath.Remove(0, Imgitem.SKUImagePath.IndexOf("SR"));
+                                            img.Name = Name.ToString().Split(new char[] { '.' })[0];
+                                        }
+                                        else
+                                        {
+                                            //string original=Imgitem.SKUImagePath
+                                            string path = Imgitem.SKUImagePath; //"C:\\Program Files\\hello.txt";
+                                            string[] pathArr = path.Split('\\');
+                                            string[] fileArr = pathArr.Last().Split('.');
+                                            string fileName = fileArr[0].ToString();
+                                            img.Name = fileName;
+                                        }
                                         img.Source = bs;
                                         img.Margin = new Thickness(0.5);
 
@@ -799,69 +833,69 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
-                var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1", ProductID = "", SalesPrice = "" };
+                var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1000", ProductID = "", SalesPrice = "" };
 
                 dgPackageInfo.Items.Add(data);
             }
         }
 
-        private void txtSKU_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-            List<String> _lsNewRMAnumber = new List<string>();
+        //private void txtSKU_TextChanged_1(object sender, TextChangedEventArgs e)
+        //{
+        //    List<String> _lsNewRMAnumber = new List<string>();
 
-            string che = ((System.Windows.Controls.TextBox)(e.Source)).Text.ToUpper();
+        //    string che = ((System.Windows.Controls.TextBox)(e.Source)).Text.ToUpper();
 
-            _lsNewRMAnumber = _mNewRMA.NewRMAInfo(che);
+        //    _lsNewRMAnumber = _mNewRMA.NewRMAInfo(che);
 
-           // lstSKU.Visibility = Visibility.Visible;
+        //   // lstSKU.Visibility = Visibility.Visible;
 
-            lstSKU.ItemsSource = _lsNewRMAnumber;
+        //    lstSKU.ItemsSource = _lsNewRMAnumber;
 
-        }
+        //}
 
-        private void lstSKU_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //private void lstSKU_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-            ListBox itembox = (ListBox)sender;
+        //    ListBox itembox = (ListBox)sender;
 
-            if (itembox.SelectedItem != null)
-            {
-                string item = lstSKU.SelectedItem.ToString();
+        //    if (itembox.SelectedItem != null)
+        //    {
+        //        string item = lstSKU.SelectedItem.ToString();
 
-                string[] NewRMA = item.Split(new char[] { '#' });
+        //        string[] NewRMA = item.Split(new char[] { '#' });
 
-                string NewSKU = NewRMA[0];
-                string NewPName = NewRMA[1];
-                string Category = NewRMA[2];
+        //        string NewSKU = NewRMA[0];
+        //        string NewPName = NewRMA[1];
+        //        string Category = NewRMA[2];
 
-                int index = dgPackageInfo.SelectedIndex;
+        //        int index = dgPackageInfo.SelectedIndex;
 
-                DataGridCell cell = GetCell(index, 0);
-                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-                DataTemplate DataTemp = CntPersenter.ContentTemplate;
-                ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = NewSKU;
+        //        DataGridCell cell = GetCell(index, 0);
+        //        ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+        //        DataTemplate DataTemp = CntPersenter.ContentTemplate;
+        //        ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text = NewSKU;
 
-                DataGridCell cell1 = GetCell(index, 1);
-                ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
-                DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
-                ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text = NewPName;
+        //        DataGridCell cell1 = GetCell(index, 1);
+        //        ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+        //        DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+        //        ((TextBox)DataTemp1.FindName("txtProductName", CntPersenter1)).Text = NewPName;
 
-                DataGridCell cell2 = GetCell(index, 2);
-                ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
-                DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
-                ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Focus();
+        //        DataGridCell cell2 = GetCell(index, 2);
+        //        ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
+        //        DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
+        //        ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Focus();
 
-                InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);
+        //        InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);
 
-                DataGridCell cell7 = GetCell(index, 5);
-                ContentPresenter CntPersenter7 = cell7.Content as ContentPresenter;
-                DataTemplate DataTemp7 = CntPersenter7.ContentTemplate;
-                ((TextBox)DataTemp7.FindName("txtcategory", CntPersenter7)).Text = Category;
+        //        DataGridCell cell7 = GetCell(index, 5);
+        //        ContentPresenter CntPersenter7 = cell7.Content as ContentPresenter;
+        //        DataTemplate DataTemp7 = CntPersenter7.ContentTemplate;
+        //        ((TextBox)DataTemp7.FindName("txtcategory", CntPersenter7)).Text = Category;
 
-                lstSKU.Visibility = Visibility.Hidden;
+        //        lstSKU.Visibility = Visibility.Hidden;
 
-            }
-        }
+        //    }
+        //}
 
         protected void _addToStackPanel(StackPanel StackPanelName, Image CapImage)
         {
@@ -956,7 +990,7 @@ namespace KrausRGA.UI
 
                 // Set filter for file extension and default file extension 
                 dlg.DefaultExt = ".png";
-                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif|All files (*.*)|*.*";
+                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg";
 
 
                 // Display OpenFileDialog by calling ShowDialog method 
@@ -1013,6 +1047,7 @@ namespace KrausRGA.UI
         private void dgPackageInfo_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
           //  dgPackageInfo.Items.RemoveAt(dgPackageInfo.SelectedIndex);
+            MessageBox.Show("Double click not allowed");
         }
 
         private void txtPoNumber_KeyDown_1(object sender, KeyEventArgs e)
@@ -1078,7 +1113,7 @@ namespace KrausRGA.UI
         {
             if (Key.Down==Key.Enter)
             {
-                 txtVendorName.Text = _mNewRMA.GetVenderNameByVenderNumber(txtVendorNumber.Text);
+                 txtVendorName.Text = _mNewRMA.GetVenderNameByVenderNumber(txtVendorNumber.Text.ToUpper());
             }
             lstVenderNumber.Visibility = Visibility.Hidden;   
         }
@@ -1224,7 +1259,7 @@ namespace KrausRGA.UI
                 SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter2)).Text.ToString();
 
 
-                DataGridCell cell3 = GetCell(i, 4);
+                DataGridCell cell3 = GetCell(i, 5);
                 ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
                 DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
                 string skuname3 = ((TextBlock)DataTemp3.FindName("tbDQyt", CntPersenter3)).Text.ToString();
@@ -1560,28 +1595,31 @@ namespace KrausRGA.UI
                 points = points - 100;
                 lblpoints.Content = points.ToString();
                 Views.clGlobal.SKU_Staus = "Deny";
-                btnStatusNo.IsEnabled = false;
-                btnStatusYes.IsEnabled = false;
-
-                btnManufacturerNo.IsEnabled = false;
-                btnManufacturerYes.IsEnabled = false;
-                btntransiteNo.IsEnabled = false;
-                btntransiteYes.IsEnabled = false;
+              
             }
             else
             {
                 points = points + 0;
                 lblpoints.Content = points.ToString();
                 Views.clGlobal.SKU_Staus = "Deny";
-                btnStatusNo.IsEnabled = false;
-                btnStatusYes.IsEnabled = false;
-
-                btnManufacturerNo.IsEnabled = false;
-                btnManufacturerYes.IsEnabled = false;
-                btntransiteNo.IsEnabled = false;
-                btntransiteYes.IsEnabled = false;
+             
             }
             ISinstalled = true;
+
+            btnManufacturerNo.IsEnabled = false;
+            btnManufacturerYes.IsEnabled = false;
+            btntransiteNo.IsEnabled = false;
+            btntransiteYes.IsEnabled = false;
+
+            btnManufacturerNo.IsChecked = false;
+            btnManufacturerYes.IsChecked = false;
+            btntransiteNo.IsChecked = false;
+            btntransiteYes.IsChecked = false;
+            btnStatusNo.IsChecked = false;
+            btnStatusYes.IsChecked = false;
+
+
+
 
             btnInstalledNo.IsChecked = false;
 
@@ -1763,15 +1801,21 @@ namespace KrausRGA.UI
 
                 DataGridRow row = (DataGridRow)btnGreen.FindParent<DataGridRow>();
 
-                TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+                ContentPresenter CntskuName = dgPackageInfo.Columns[1].GetCellContent(row) as ContentPresenter;
+                DataTemplate DtskuName = CntskuName.ContentTemplate;
+                TextBox SkuNumber = (TextBox)DtskuName.FindName("txtSKU", CntskuName);
+            
 
-                ContentPresenter Cntskustatus = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
+
+              //  TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
+                ContentPresenter Cntskustatus = dgPackageInfo.Columns[6].GetCellContent(row) as ContentPresenter;
                 DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
                 TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
 
-                ContentPresenter CntQuantity2 = dgPackageInfo.Columns[2].GetCellContent(row) as ContentPresenter;
+                ContentPresenter CntQuantity2 = dgPackageInfo.Columns[5].GetCellContent(row) as ContentPresenter;
                 DataTemplate DtQty2 = CntQuantity2.ContentTemplate;
-                TextBox txtRetutn2 = (TextBox)DtQty2.FindName("tbDQyt", CntQuantity2);
+                TextBlock txtRetutn2 = (TextBlock)DtQty2.FindName("tbDQyt", CntQuantity2);
 
                 if (row.Background == Brushes.SkyBlue)
                 {
@@ -1836,7 +1880,7 @@ namespace KrausRGA.UI
                             }
                         }
                     }
-                    for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+                    for (int i = 0; i < dgPackageInfo.Items.Count-1; i++)
                     {
                         for (int j = 0; j < _mUpdate._lsReasons1.Count; j++)
                         {
@@ -1909,7 +1953,7 @@ namespace KrausRGA.UI
                     DataTemplate DataTemp = CntPersenter.ContentTemplate;
                     string skuname = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
 
-                    DataGridCell cell3 = GetCell(i, 4);
+                    DataGridCell cell3 = GetCell(i, 5);
                     ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
                     DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
                     string skuname3 = ((TextBlock)DataTemp3.FindName("tbDQyt", CntPersenter3)).Text.ToString();
@@ -1933,12 +1977,12 @@ namespace KrausRGA.UI
                 ((TextBox)DataTemp4.FindName("txtSKU", CntPersenter4)).Text = _mNewRMA.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
 
 
-                DataGridCell cellforProductID= GetCell(count, 6);
+                DataGridCell cellforProductID= GetCell(count, 7);
                 ContentPresenter CntPersenterforProductID = cellforProductID.Content as ContentPresenter;
                 DataTemplate DataTempforProductID = CntPersenterforProductID.ContentTemplate;
                 ((TextBox)DataTempforProductID.FindName("txtProductID", CntPersenterforProductID)).Text = _mNewRMA.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
 
-                DataGridCell cellforSales = GetCell(count, 7);
+                DataGridCell cellforSales = GetCell(count, 8);
                 ContentPresenter CntPersenterforSales = cellforSales.Content as ContentPresenter;
                 DataTemplate DataTempforSales = CntPersenterforSales.ContentTemplate;
                 ((TextBox)DataTempforSales.FindName("txtSalesPrice", CntPersenterforSales)).Text = "0";//_mNewRMA.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
@@ -1949,10 +1993,10 @@ namespace KrausRGA.UI
 
                 if (check)
                 {
-                    DataGridCell cell1 = GetCell(count, 4);
+                    DataGridCell cell1 = GetCell(count, 5);
                     ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
                     DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
-                    ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text = (max + 1).ToString();
+                    ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text = (max + 1000).ToString();
 
                 }
 
@@ -1962,7 +2006,7 @@ namespace KrausRGA.UI
                 txtbarcode.Focus();
 
 
-                var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1", ProductID = "", SalesPrice = "" };
+                var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1000", ProductID = "", SalesPrice = "" };
 
                 dgPackageInfo.Items.Add(data);
             }
@@ -1987,9 +2031,391 @@ namespace KrausRGA.UI
             slip.ShowDialog();
         }
 
-        private void btnAddsku_Click_1(object sender, RoutedEventArgs e)
+     
+        private void btnAddsku_Click_2(object sender, RoutedEventArgs e)
         {
             cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void lstSKUName_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstSKUName.SelectedItem != null)
+            {
+                txtSKUname.Text = lstSKUName.SelectedItem.ToString();
+                lstSKUName.Visibility = System.Windows.Visibility.Hidden;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
+            int count = 0;
+
+            if (dgPackageInfo.Items.Count > 1)
+            {
+                count = dgPackageInfo.Items.Count - 1;
+            }
+
+
+            Boolean check = false;
+            for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+            {
+
+                DataGridCell cell = GetCell(i, 1);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                string skuname = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
+
+                DataGridCell cell3 = GetCell(i, 5);
+                ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
+                DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
+                string skuname3 = ((TextBlock)DataTemp3.FindName("tbDQyt", CntPersenter3)).Text.ToString();
+
+                string Str = txtSKUname.Text;//txtbarcode.Text.TrimStart('0').ToString();
+                string sku = skuname;//_mNewRMA.GetENACodeByItem(skuname);
+                if (sku == Str)
+                {
+                    check = true;
+                    if (max < Convert.ToInt16(skuname3))
+                    {
+                        max = Convert.ToInt16(skuname3);
+                    }
+                }
+
+            }
+
+            DataGridCell cell4 = GetCell(count, 1);
+            ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
+            DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
+            ((TextBox)DataTemp4.FindName("txtSKU", CntPersenter4)).Text = txtSKUname.Text; //_mNewRMA.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+
+            DataGridCell cellforProductID = GetCell(count, 7);
+            ContentPresenter CntPersenterforProductID = cellforProductID.Content as ContentPresenter;
+            DataTemplate DataTempforProductID = CntPersenterforProductID.ContentTemplate;
+            ((TextBox)DataTempforProductID.FindName("txtProductID", CntPersenterforProductID)).Text = _mNewRMA.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+
+            DataGridCell cellforSales = GetCell(count, 8);
+            ContentPresenter CntPersenterforSales = cellforSales.Content as ContentPresenter;
+            DataTemplate DataTempforSales = CntPersenterforSales.ContentTemplate;
+            ((TextBox)DataTempforSales.FindName("txtSalesPrice", CntPersenterforSales)).Text = "0";//_mNewRMA.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+
+
+            DataGridRow row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(count);
+            row.Background = Brushes.SkyBlue;
+
+            if (check)
+            {
+                DataGridCell cell1 = GetCell(count, 5);
+                ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+                DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+                ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text = (max + 1000).ToString();
+
+            }
+
+            max = 0;
+
+            txtbarcode.Text = "";
+            txtbarcode.Focus();
+
+
+            var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1000", ProductID = "", SalesPrice = "" };
+
+            dgPackageInfo.Items.Add(data);
+
+            txtSKUname.Text = "";
+
+            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void btnCancel_Click_1(object sender, RoutedEventArgs e)
+        {
+            cvItemStatus.Visibility = System.Windows.Visibility.Hidden;
+            txtSKUname.Text = "";
+        }
+
+       
+        private void txtSKUname_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (txtSKUname.Text == "")
+            {
+                lstSKUName.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                lstSKUName.ItemsSource = lstSKU(_mNewRMA.NewRMAInfo(txtSKUname.Text.ToUpper()));
+
+                if (lstSKUName.Items.Count > 0)
+                {
+                    lstSKUName.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    lstSKUName.Visibility = Visibility.Hidden;
+                }
+
+                
+            }
+        }
+
+        public List<string> lstSKU(List<string> listofsku)
+        {
+            List<string> ls = new List<string>();
+
+            foreach (var item in listofsku)
+            {
+                ls.Add(item.Split(new char[] { '#' })[0]);
+            }
+
+            return ls;
+        }
+
+        private void txtSKU_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void btnadditem_Click_1(object sender, RoutedEventArgs e)
+        {
+            List<RMAInfo> _lsRMAInfo1 = new List<RMAInfo>();
+            int count = 0;
+
+            if (dgPackageInfo.Items.Count > 1)
+            {
+                count = dgPackageInfo.Items.Count - 1;
+            }
+
+
+            Boolean check = false;
+            for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+            {
+
+                DataGridCell cell = GetCell(i, 1);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+                string skuname = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
+
+                DataGridCell cell3 = GetCell(i, 5);
+                ContentPresenter CntPersenter3 = cell3.Content as ContentPresenter;
+                DataTemplate DataTemp3 = CntPersenter3.ContentTemplate;
+                string skuname3 = ((TextBlock)DataTemp3.FindName("tbDQyt", CntPersenter3)).Text.ToString();
+
+                string Str = skuname;//txtbarcode.Text.TrimStart('0').ToString();
+                string sku = skuname;//_mNewRMA.GetENACodeByItem(skuname);
+                if (sku == Str)
+                {
+                    check = true;
+                    if (max < Convert.ToInt16(skuname3))
+                    {
+                        max = Convert.ToInt16(skuname3);
+                    }
+                }
+
+            }
+
+            int rowindex = dgPackageInfo.SelectedIndex;
+
+          //  DataGridRow row3 = GetRow(rowindex);
+
+            //  SkuAndIsScanned _lsskuandscanned = new SkuAndIsScanned();
+          //  TextBox SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row3) as TextBox;
+
+            DataGridCell cell41 = GetCell(rowindex, 1);
+            ContentPresenter CntPersenter41 = cell41.Content as ContentPresenter;
+            DataTemplate DataTemp41 = CntPersenter41.ContentTemplate;
+            string skuName = ((TextBox)DataTemp41.FindName("txtSKU", CntPersenter41)).Text;
+
+            if (skuName == "")
+            {
+                cvItemStatus.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                DataGridCell cell4 = GetCell(count, 1);
+                ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
+                DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
+                ((TextBox)DataTemp4.FindName("txtSKU", CntPersenter4)).Text = skuName; //_mNewRMA.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString());
+
+
+                DataGridCell cellforProductID = GetCell(count, 7);
+                ContentPresenter CntPersenterforProductID = cellforProductID.Content as ContentPresenter;
+                DataTemplate DataTempforProductID = CntPersenterforProductID.ContentTemplate;
+                ((TextBox)DataTempforProductID.FindName("txtProductID", CntPersenterforProductID)).Text = _mNewRMA.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+
+                DataGridCell cellforSales = GetCell(count, 8);
+                ContentPresenter CntPersenterforSales = cellforSales.Content as ContentPresenter;
+                DataTemplate DataTempforSales = CntPersenterforSales.ContentTemplate;
+                ((TextBox)DataTempforSales.FindName("txtSalesPrice", CntPersenterforSales)).Text = "0";//_mNewRMA.GetSKUNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+
+
+                DataGridRow row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(count);
+                row.Background = Brushes.SkyBlue;
+
+                if (check)
+                {
+                    DataGridCell cell1 = GetCell(count, 5);
+                    ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+                    DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+                    ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text = (max + 1000).ToString();
+
+                }
+
+                max = 0;
+
+                txtbarcode.Text = "";
+                txtbarcode.Focus();
+
+
+                var data = new RDetails { SKUNumber = "", ProductName = "", SKU_Qty_Seq = "1", SKU_Status = "", SKU_Sequence = "1000", ProductID = "", SalesPrice = "" };
+
+                dgPackageInfo.Items.Add(data);
+            }
+        }
+
+        private void AddImage_Click_1(object sender, RoutedEventArgs e)
+        {
+            ContentControl cnt = (ContentControl)sender;
+            DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+            //StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+
+            ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
+            DataTemplate DtImages = CntImag.ContentTemplate;
+
+            StackPanel spRowImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+
+            if (GreenRowsNumber1.Contains(row.GetIndex()))
+            {
+                MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    try
+                    {
+                        //Show Camera.
+                        Barcode.Camera.Open();
+                        foreach (String Nameitem in Views.clGlobal.lsImageList)
+                        {
+                            try
+                            {
+                                string path = "C:\\Images\\";
+
+                                BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+
+                                Image img = new Image();
+                                //Zoom image.
+                                // img.MouseEnter += img_MouseEnter;
+
+                                img.MouseDown += img_MouseDown;
+
+                                img.Height = 50;
+                                img.Width = 50;
+                                img.Stretch = Stretch.Fill;
+                                img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+                                img.Source = bs;
+                                img.Margin = new Thickness(0.5);
+
+                                //Images added to the Row.
+                                _addToStackPanel(spRowImages, img);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+
+                }
+                else if (result == MessageBoxResult.No)
+                {
+
+                    //ContentControl cnt1 = (ContentControl)sender;
+                    //DataGridRow row1 = (DataGridRow)cnt.FindParent<DataGridRow>();
+
+                    //StackPanel spRowImages1 = cnt1.FindName("spProductImages") as StackPanel;
+
+                    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+
+                    // Set filter for file extension and default file extension 
+                    dlg.DefaultExt = ".png";
+                    dlg.Filter = "JPG Files (*.jpg)|*.jpg";
+
+
+                    // Display OpenFileDialog by calling ShowDialog method 
+                    Nullable<bool> result1 = dlg.ShowDialog();
+
+
+                    // Get the selected file name and display in a TextBox 
+                    if (result1 == true)
+                    {
+                        // Open document 
+                        string filename = dlg.FileName;
+
+                        string AName = RemoveSpecialCharacters(dlg.SafeFileName);
+
+                        Barcode.Camera.CopytoNetwork(AName);
+
+                        // textBox1.Text = filename;
+                        string path = "C:\\Images\\";
+
+
+                        File.Copy(filename, path + "\\" + AName, true);
+
+                        Barcode.Camera.CopytoNetwork(AName);
+
+                        BitmapSource bs = new BitmapImage(new Uri(path + AName));
+
+                        Image img = new Image();
+                        //Zoom image.
+                        // img.MouseEnter += img_MouseEnter;
+
+                        img.MouseDown += img_MouseDown;
+
+                        img.Height = 50;
+                        img.Width = 50;
+                        img.Stretch = Stretch.Fill;
+                        img.Name = AName.ToString().Split(new char[] { '.' })[0];
+                        img.Source = bs;
+                        img.Margin = new Thickness(0.5);
+
+                        //Images added to the Row.
+                        _addToStackPanel(spRowImages, img);
+
+                    }
+                }
+                else
+                {
+                    // Cancel code here
+                }
+
+
+
+            }
+            else
+            {
+                mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+                ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            }
+        }
+
+        public static string RemoveSpecialCharacters(string str)
+        {
+            return Regex.Replace(str, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled);
+        }
+        void img_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            clGlobal.Zoomimages = (Image)sender;
+
+            wndZoomImageWindow zoom = new wndZoomImageWindow();
+            zoom.ShowDialog();
+            //throw new NotImplementedException();
         }
        
     }

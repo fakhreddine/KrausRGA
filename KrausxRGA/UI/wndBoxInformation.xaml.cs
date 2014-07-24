@@ -41,6 +41,8 @@ namespace KrausRGA.UI
 
         mPOnumberRMA _mponumner = new mPOnumberRMA();
 
+        protected DBLogics.cmdReturn cReturnTbl = new DBLogics.cmdReturn();
+
 
         mUser _mUser;
         DispatcherTimer dsptSacnner;
@@ -82,7 +84,7 @@ namespace KrausRGA.UI
                 _mUser = clGlobal.mCurrentUser;
 
                 bdrScan.Visibility = System.Windows.Visibility.Hidden;
-                bdrScan.Visibility = System.Windows.Visibility.Visible;
+               // bdrScan.Visibility = System.Windows.Visibility.Visible;
                 txtScan.Focus();
 
                 // btnBoxNumber_Click(btnBoxNumber, new RoutedEventArgs { });
@@ -175,7 +177,7 @@ namespace KrausRGA.UI
                             hideButtons(System.Windows.Visibility.Visible);
 
                             bdrScan.Visibility = System.Windows.Visibility.Hidden;
-                            bdrScan.Visibility = System.Windows.Visibility.Visible;
+                            //bdrScan.Visibility = System.Windows.Visibility.Visible;
                             txtScan.Focus();
 
 
@@ -442,6 +444,27 @@ namespace KrausRGA.UI
 
         private void btnReturn_Click_1(object sender, RoutedEventArgs e)
         {
+
+
+            clGlobal.lsreturnShow = cReturnTbl.GetReturnTbl();// select so).OrderByDescending(x => x.RGAROWID);
+
+            //foreach (var item in lsretirn)
+            //{
+            //    //Return showall = new Return();
+            //    //showall.RMANumber = item.RMANumber;
+            //    //showall.RGAROWID = item.RGAROWID;
+            //    //showall.PONumber = item.PONumber;
+            //    //showall.ProgressFlag = item.ProgressFlag;
+            //    //showall.ReturnDate = item.ReturnDate;
+            //    //showall.CreatedDate = item.CreatedDate;
+            //    //showall.VendoeName = item.VendoeName;
+            //    //showall.RMAStatus = item.RMAStatus;  
+            //    //clGlobal.lsreturnShow.Add(showall);
+
+            //    clGlobal.lsreturnShow.Add(new Return(item));
+            //}
+          
+            //clGlobal.lsreturnShow
             clGlobal.AllReturn = "AllReturn";
             wndProcessedReturn nRMA = new wndProcessedReturn();
             nRMA.Show();
@@ -454,6 +477,20 @@ namespace KrausRGA.UI
             wndProcessedReturn nRMA = new wndProcessedReturn();
             nRMA.Show();
             this.Close();
+        }
+
+        private void btnSRNumber_Click_1(object sender, RoutedEventArgs e)
+        {
+            hideButtons(System.Windows.Visibility.Hidden);
+            bdrScan.Visibility = System.Windows.Visibility.Visible;
+
+
+        }
+
+        private void btnBack_Click_1(object sender, RoutedEventArgs e)
+        {
+            hideButtons(System.Windows.Visibility.Visible);
+            bdrScan.Visibility = System.Windows.Visibility.Hidden;
         }
 
     }

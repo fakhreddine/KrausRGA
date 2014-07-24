@@ -51,7 +51,9 @@
                                             </ComboBox>
 
                                             <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="115" Width="97" Canvas.Left="78"/>
-                                            <CheckBox Height="33" Width="152" Canvas.Top="185" Canvas.Left="26" Content="In Progress" FontSize="25" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
+                                            <Viewbox Height="59" Canvas.Left="26" Canvas.Top="189">
+                                            <CheckBox Height="25" Width="85" Canvas.Top="185" Canvas.Left="26" Content="In Progress" FontSize="12" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
+                                            </Viewbox>
                                             <ComboBox x:Name="cmbRMADecision" Height="45" Width="252" Canvas.Left="10" Canvas.Top="136" Style="{StaticResource combo}" 
         										ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
                                                 <ComboBox.Background>
@@ -137,9 +139,8 @@
         								BorderBrush="{x:Null}" 
         								HorizontalGridLinesBrush="#FF575757" 
         								VerticalGridLinesBrush="Gray"
-        								Height="297"  
-        								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" Canvas.Left="2" LoadingRow="dgPackageInfo_LoadingRow" MouseDoubleClick="dgPackageInfo_MouseDoubleClick" 
-                                           >
+        								Height="297"  IsReadOnly="True"
+        								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" Canvas.Left="2"  MouseDoubleClick="dgPackageInfo_MouseDoubleClick"  >
 
                                         <DataGrid.Resources>
                                             <Style x:Key="HeaderStyleKey" TargetType="{x:Type DataGridColumnHeader}">
@@ -148,7 +149,7 @@
                                             </Style>
                                         </DataGrid.Resources>
 
-                                        <DataGrid.Columns>
+                                        <DataGrid.Columns >
                                             <DataGridTemplateColumn HeaderStyle="{StaticResource HeaderStyleKey}"   Header="Select" Width="62" >
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate >
@@ -230,7 +231,7 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Canvas>
-                                                            <Image x:Name="imgBarCode" Canvas.Left="20" Width="250" Height="50" Stretch="Uniform"/>
+                                                            <Image x:Name="imgBarCode" Canvas.Left="20" Width="250" Height="50" Stretch="Uniform" />
                                                         </Canvas>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -253,10 +254,10 @@
         										Header="Status"
         										Width="70">
 
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel x:Name="spskustatus" Width="60">
-                                                            <TextBlock x:Name="tbskustatus" TextAlignment="Center" Width="60" Text="{Binding SKU_Status}" FontSize="15" FontWeight="Bold"/>
+                                                <DataGridTemplateColumn.CellTemplate> 
+                                                    <DataTemplate >
+                                                        <StackPanel x:Name="spskustatus" Height="70" Width="70" IsEnabled="False" >
+                                                            <TextBlock x:Name="tbskustatus" TextAlignment="Center" Width="70" Height="70" Text="{Binding SKU_Status}" FontSize="15" FontWeight="Bold" IsEnabled="False" />
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -404,11 +405,11 @@
                                                 <Viewbox Height="60" Canvas.Top="156" Canvas.Left="434" Width="145" >
                                             <RadioButton Content="Yes" Canvas.Left="440" IsEnabled="False" Canvas.Top="165" Name="btnManufacturerYes" Height="30" Width="84" FontSize="20" Checked="btnManufacturerYes_Checked"></RadioButton>
                                                 </Viewbox>
-                                                <Viewbox Height="60" Canvas.Top="160" Canvas.Left="620" Width="147">
+                                                <Viewbox Height="60" Canvas.Top="158" Canvas.Left="620" Width="147">
                                                 <RadioButton Content="No" Canvas.Left="533" Canvas.Top="166" IsEnabled="False" Name="btnManufacturerNo" Height="30" Width="84" FontSize="20" Checked="btnManufacturerNo_Checked"></RadioButton>
                                                 </Viewbox>
                                             </Canvas>
-                                            <Button Content="Done" Name="btnAdd" Canvas.Left="640" Canvas.Top="303" Width="136" Height="46" FontSize="20" Click="btnAdd_Click" ></Button>
+                                            <Button Content="Submit" Name="btnAdd" Canvas.Left="640" Canvas.Top="303" Width="136" Height="46" FontSize="20" Click="btnAdd_Click" ></Button>
                                             <ComboBox Canvas.Left="212" Canvas.Top="264" Width="392" Height="48" x:Name="cmbSkuReasons" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID" FontSize="25" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbSkuReasons_SelectionChanged_1"/>
                                             <TextBox Height="38" Canvas.Left="212" TextWrapping="Wrap" Text="" Canvas.Top="314" Width="392" x:Name="txtskuReasons" FontSize="25" KeyDown="txtskuReasons_KeyDown_1"/>
                                             <Label Content="Reasons" Canvas.Left="58" FontSize="30" Canvas.Top="253" Width="124" Height="53"/>

@@ -48,7 +48,7 @@ namespace KrausRGA.UI
 
             if (clGlobal.AllReturn == "AllReturn")
             {
-                var sort = (from so in cReturnTbl.GetReturnTbl()  select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
+                var sort = (from so in clGlobal.lsreturnShow select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
 
                 dgPackageInfo.ItemsSource = sort;
 
@@ -65,7 +65,7 @@ namespace KrausRGA.UI
             }
             else
             {
-                var sort = (from so in cReturnTbl.GetReturnTbl() where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+                var sort = (from so in clGlobal.lsreturnShow where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
 
                 dgPackageInfo.ItemsSource = sort;
 
@@ -371,29 +371,29 @@ namespace KrausRGA.UI
         private void dtpfrom_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (clGlobal.AllReturn == "AllReturn")
-            {
-                var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) )
-                              select p).OrderByDescending(y => y.RGAROWID);
+            //if (clGlobal.AllReturn == "AllReturn")
+            //{
+            //    var filter = (from p in clGlobal.lsreturnShow
+            //                  where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) )
+            //                  select p).OrderByDescending(y => y.RGAROWID);
 
-                dgPackageInfo.ItemsSource = filter;
+            //    dgPackageInfo.ItemsSource = filter;
 
                
-                dtLoadUpdate = new DispatcherTimer();
-                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
-                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
-                //start the dispacher.
-                dtLoadUpdate.Start();
-            }
-            else
-            {
-                var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
-                              select p).OrderByDescending(y => y.RGAROWID);
+            //    dtLoadUpdate = new DispatcherTimer();
+            //    dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            //    dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+            //    //start the dispacher.
+            //    dtLoadUpdate.Start();
+            //}
+            //else
+            //{
+            //    var filter = (from p in clGlobal.lsreturnShow
+            //                  where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+            //                  select p).OrderByDescending(y => y.RGAROWID);
 
-                dgPackageInfo.ItemsSource = filter;
-            }
+            //    dgPackageInfo.ItemsSource = filter;
+            //}
 
 
            
@@ -401,28 +401,28 @@ namespace KrausRGA.UI
 
         private void dtpto_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (clGlobal.AllReturn == "AllReturn")
-            {
-                var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) )
-                              select p).OrderByDescending(y => y.RGAROWID);
+            //if (clGlobal.AllReturn == "AllReturn")
+            //{
+            //    var filter = (from p in clGlobal.lsreturnShow
+            //                  where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) )
+            //                  select p).OrderByDescending(y => y.RGAROWID);
 
-                dgPackageInfo.ItemsSource = filter;
+            //    dgPackageInfo.ItemsSource = filter;
 
-                dtLoadUpdate = new DispatcherTimer();
-                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
-                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
-                //start the dispacher.
-                dtLoadUpdate.Start();
-            }
-            else
-            {
-                var filter = (from p in cReturnTbl.GetReturnTbl()
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
-                              select p).OrderByDescending(y => y.RGAROWID);
+            //    dtLoadUpdate = new DispatcherTimer();
+            //    dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            //    dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+            //    //start the dispacher.
+            //    dtLoadUpdate.Start();
+            //}
+            //else
+            //{
+            //    var filter = (from p in clGlobal.lsreturnShow
+            //                  where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+            //                  select p).OrderByDescending(y => y.RGAROWID);
 
-                dgPackageInfo.ItemsSource = filter;
-            }
+            //    dgPackageInfo.ItemsSource = filter;
+            //}
         }
 
         private void _showProgressFlag()
@@ -495,7 +495,7 @@ namespace KrausRGA.UI
                 {
                     if (clGlobal.AllReturn == "AllReturn")
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where p.RGAROWID == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
 
@@ -518,7 +518,7 @@ namespace KrausRGA.UI
                     else
                     {
 
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where p.ProgressFlag == 1 && p.RGAROWID == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
                         if (!filter.Any())
@@ -539,7 +539,7 @@ namespace KrausRGA.UI
                 {
                     if (clGlobal.AllReturn == "AllReturn")
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where p.RMANumber == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
 
@@ -563,7 +563,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where p.ProgressFlag == 1 && p.RMANumber == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
                         if (!filter.Any())
@@ -584,7 +584,7 @@ namespace KrausRGA.UI
                 {
                     if (clGlobal.AllReturn == "AllReturn")
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where p.PONumber == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
 
@@ -607,7 +607,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where p.ProgressFlag == 1 && p.PONumber == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
                         if (!filter.Any())
@@ -636,7 +636,7 @@ namespace KrausRGA.UI
                 txtsearch.Text = "";
                 if (clGlobal.AllReturn == "AllReturn")
                 {
-                    var sort = (from so in cReturnTbl.GetReturnTbl() select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
+                    var sort = (from so in clGlobal.lsreturnShow select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
 
                     dgPackageInfo.ItemsSource = sort;
 
@@ -653,7 +653,7 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    var sort = (from so in cReturnTbl.GetReturnTbl() where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+                    var sort = (from so in clGlobal.lsreturnShow where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
                     dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
                 }
             }
@@ -691,7 +691,7 @@ namespace KrausRGA.UI
             {
                 if (clGlobal.AllReturn == "AllReturn")
                 {
-                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                    var filter = (from p in clGlobal.lsreturnShow
                                   where p.RGAROWID == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
 
@@ -714,7 +714,7 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                    var filter = (from p in clGlobal.lsreturnShow
                                   where p.ProgressFlag == 1 && p.RGAROWID == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
                     if (!filter.Any())
@@ -735,7 +735,7 @@ namespace KrausRGA.UI
             {
                 if (clGlobal.AllReturn == "AllReturn")
                 {
-                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                    var filter = (from p in clGlobal.lsreturnShow
                                   where p.RMANumber == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
 
@@ -758,7 +758,7 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                    var filter = (from p in clGlobal.lsreturnShow
                                   where p.ProgressFlag == 1 && p.RMANumber == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
                     if (!filter.Any())
@@ -779,7 +779,7 @@ namespace KrausRGA.UI
             {
                 if (clGlobal.AllReturn == "AllReturn")
                 {
-                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                    var filter = (from p in clGlobal.lsreturnShow
                                   where p.PONumber == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
 
@@ -802,7 +802,7 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    var filter = (from p in cReturnTbl.GetReturnTbl()
+                    var filter = (from p in clGlobal.lsreturnShow
                                   where p.ProgressFlag == 1 && p.PONumber == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
                     if (!filter.Any())
@@ -836,7 +836,7 @@ namespace KrausRGA.UI
                     {
                         List<string> lsRGANUmber = new List<string>();
 
-                        var filter = (from p in cReturnTbl.GetReturnTbl() //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
+                        var filter = (from p in clGlobal.lsreturnShow //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
                                       where p.RGAROWID.Contains(txtsearch.Text)
                                       select new { p.RGAROWID });
 
@@ -866,7 +866,7 @@ namespace KrausRGA.UI
                     {
                         List<string> lsSRNUmber = new List<string>();
 
-                        var filter = (from p in cReturnTbl.GetReturnTbl() //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
+                        var filter = (from p in clGlobal.lsreturnShow //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
                                       where p.RMANumber.Contains(txtsearch.Text) //&& p.PONumber
                                       select new { p.RMANumber });
 
@@ -895,7 +895,7 @@ namespace KrausRGA.UI
                     {
                         List<string> lsPONUmber = new List<string>();
 
-                        var filter = (from p in cReturnTbl.GetReturnTbl() //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
+                        var filter = (from p in clGlobal.lsreturnShow //.Where(e=>e.RGAROWID.Contains(txtsearch.Text))
                                       where p.PONumber.Contains(txtsearch.Text)
                                       select new { p.PONumber });
 
@@ -937,6 +937,10 @@ namespace KrausRGA.UI
 
         private void cmbSortBy_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+
+            cmbOrderBy.SelectedIndex = 0;
+
+
             if (cmbSortBy.SelectedIndex == 0)
             {
                 if (clGlobal.AllReturn == "AllReturn")
@@ -945,7 +949,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
 
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
                                       select p).OrderByDescending(y => y.RMANumber);
 
@@ -953,19 +957,19 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       select p).OrderByDescending(y => y.RMANumber);
 
                         dgPackageInfo.ItemsSource = filter;
                     }
 
-                   
+
                 }
                 else
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.RMANumber);
 
@@ -973,14 +977,14 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.RMANumber);
 
                         dgPackageInfo.ItemsSource = filter;
-                    
+
                     }
-            
+
                 }
             }
             else if (cmbSortBy.SelectedIndex == 1)
@@ -989,7 +993,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
                                       select p).OrderByDescending(y => y.PONumber);
 
@@ -997,7 +1001,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       select p).OrderByDescending(y => y.PONumber);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1007,7 +1011,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.PONumber);
 
@@ -1015,7 +1019,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.PONumber);
 
@@ -1031,7 +1035,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
 
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
                                       select p).OrderByDescending(y => y.ReturnDate);
 
@@ -1039,7 +1043,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       select p).OrderByDescending(y => y.ReturnDate);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1047,9 +1051,9 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    if (cmbSearchBy.SelectedIndex==4)
+                    if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.ReturnDate);
 
@@ -1057,7 +1061,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.ReturnDate);
 
@@ -1071,7 +1075,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
                                       select p).OrderByDescending(y => y.CreatedDate);
 
@@ -1079,7 +1083,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       select p).OrderByDescending(y => y.CreatedDate);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1090,7 +1094,7 @@ namespace KrausRGA.UI
 
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.CreatedDate);
 
@@ -1098,7 +1102,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.CreatedDate);
 
@@ -1112,7 +1116,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
                                       select p).OrderByDescending(y => y.RGAROWID);
 
@@ -1120,7 +1124,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       select p).OrderByDescending(y => y.RGAROWID);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1130,7 +1134,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.RGAROWID);
 
@@ -1138,7 +1142,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.RGAROWID);
 
@@ -1152,7 +1156,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
                                       select p).OrderByDescending(y => y.RMAStatus);
 
@@ -1160,9 +1164,9 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
-                                      select p).OrderByDescending(y => y.RMAStatus);  
-                        
+                        var filter = (from p in clGlobal.lsreturnShow
+                                      select p).OrderByDescending(y => y.RMAStatus);
+
                         dgPackageInfo.ItemsSource = filter;
                     }
                 }
@@ -1170,17 +1174,17 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.RMAStatus);
 
                         dgPackageInfo.ItemsSource = filter;
                     }
                     else
-                    { 
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
-                                  where (p.ProgressFlag == 1)
-                                  select p).OrderByDescending(y => y.RMAStatus);
+                    {
+                        var filter = (from p in clGlobal.lsreturnShow
+                                      where (p.ProgressFlag == 1)
+                                      select p).OrderByDescending(y => y.RMAStatus);
 
                         dgPackageInfo.ItemsSource = filter;
                     }
@@ -1192,7 +1196,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
                                       select p).OrderByDescending(y => y.ProgressFlag);
 
@@ -1200,7 +1204,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       select p).OrderByDescending(y => y.ProgressFlag);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1210,7 +1214,7 @@ namespace KrausRGA.UI
                 {
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.ProgressFlag);
 
@@ -1218,7 +1222,7 @@ namespace KrausRGA.UI
                     }
                     else
                     {
-                        var filter = (from p in cReturnTbl.GetReturnTbl()
+                        var filter = (from p in clGlobal.lsreturnShow
                                       where (p.ProgressFlag == 1)
                                       select p).OrderByDescending(y => y.ProgressFlag);
 
@@ -1231,6 +1235,634 @@ namespace KrausRGA.UI
             dtLoadUpdate.Tick += dtLoadUpdate_Tick;
             //start the dispacher.
             dtLoadUpdate.Start();
+        }
+
+        private void cmbOrderBy_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbOrderBy.SelectedIndex == 0)
+            {
+
+            }
+            else if(cmbOrderBy.SelectedIndex == 1)
+            {
+                if (cmbSortBy.SelectedIndex == 0)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderByDescending(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderByDescending(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+
+                        }
+
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 1)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderByDescending(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderByDescending(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 2)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderByDescending(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderByDescending(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 3)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderByDescending(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderByDescending(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 4)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderByDescending(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderByDescending(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 5)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderByDescending(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderByDescending(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 6)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderByDescending(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderByDescending(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderByDescending(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+            }
+            else if (cmbOrderBy.SelectedIndex == 2)
+            {
+                if (cmbSortBy.SelectedIndex == 0)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderBy(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderBy(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.RMANumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+
+                        }
+
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 1)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderBy(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderBy(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.PONumber);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 2)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderBy(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderBy(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.ReturnDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 3)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderBy(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderBy(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.CreatedDate);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 4)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderBy(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderBy(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.RGAROWID);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 5)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderBy(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderBy(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.RMAStatus);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                else if (cmbSortBy.SelectedIndex == 6)
+                {
+                    if (clGlobal.AllReturn == "AllReturn")
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                                          select p).OrderBy(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          select p).OrderBy(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                    else
+                    {
+                        if (cmbSearchBy.SelectedIndex == 4)
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                        else
+                        {
+                            var filter = (from p in clGlobal.lsreturnShow
+                                          where (p.ProgressFlag == 1)
+                                          select p).OrderBy(y => y.ProgressFlag);
+
+                            dgPackageInfo.ItemsSource = filter;
+                        }
+                    }
+                }
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+            }
+        }
+
+        private void btnsearch_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (clGlobal.AllReturn == "AllReturn")
+            {
+                var filter = (from p in clGlobal.lsreturnShow
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate))
+                              select p).OrderByDescending(y => y.RGAROWID);
+
+                dgPackageInfo.ItemsSource = filter;
+
+                dtLoadUpdate = new DispatcherTimer();
+                dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                dtLoadUpdate.Tick += dtLoadUpdate_Tick;
+                //start the dispacher.
+                dtLoadUpdate.Start();
+            }
+            else
+            {
+                var filter = (from p in clGlobal.lsreturnShow
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                              select p).OrderByDescending(y => y.RGAROWID);
+
+                dgPackageInfo.ItemsSource = filter;
+            }
         }
     }
 }

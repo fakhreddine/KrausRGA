@@ -58,6 +58,9 @@ namespace KrausRGA.Views
 
         public static List<StatusAndPoints> statuspoints;
 
+
+        public static List<Return> lsreturnShow; 
+
         //audit object.
         public static mRMAAudit mAuditDetail;
 

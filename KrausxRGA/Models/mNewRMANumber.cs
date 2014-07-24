@@ -95,7 +95,7 @@ namespace KrausRGA.Models
             return _reasonID;
         }
 
-        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff)
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff,int inprogress,string calltag)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -105,10 +105,10 @@ namespace KrausRGA.Models
                 Return TblRerutn = new Return();
 
                 TblRerutn.ReturnID = Guid.NewGuid();
-                TblRerutn.RMANumber = null;//lsNewRMA[0].RMANumber;
+                TblRerutn.RMANumber = "N/A";//lsNewRMA[0].RMANumber;
                 TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
                 TblRerutn.OrderNumber = "N/A";
-                TblRerutn.PONumber = lsNewRMA[0].PONumber;
+                TblRerutn.PONumber = "N/A";
                 TblRerutn.OrderDate = DateTime.UtcNow;
                 TblRerutn.DeliveryDate = DateTime.UtcNow;
                 TblRerutn.ReturnDate = lsNewRMA[0].ReturnDate;
@@ -137,6 +137,10 @@ namespace KrausRGA.Models
                 TblRerutn.Warranty_STA = Warranty_STA;
                 TblRerutn.Setting_Wty_Days = Setting_Wty_Days;
                 TblRerutn.ShipDate_ScanDate_Days_Diff = ShipDate_ScanDate_Days_Diff;
+
+                TblRerutn.RGAROWID = lsNewRMA[0].RGAROWID;
+                TblRerutn.ProgressFlag = inprogress;
+                TblRerutn.CallTag = calltag;
 
 
                 //On success of transaction it returns id.

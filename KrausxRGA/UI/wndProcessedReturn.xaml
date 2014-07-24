@@ -219,7 +219,7 @@
                         </DataGrid.RowValidationErrorTemplate>
                     </DataGrid>-->
 
-                    <ComboBox Canvas.Left="121" Canvas.Top="78" Width="200" Height="45" x:Name="cmbSearchBy" BorderBrush="Black" FontSize="20" SelectionChanged="cmbSearchBy_SelectionChanged_1" >
+                    <ComboBox Canvas.Left="91" Canvas.Top="78" Width="180" Height="45" x:Name="cmbSearchBy" BorderBrush="Black" FontSize="20" SelectionChanged="cmbSearchBy_SelectionChanged_1" >
                         <ComboBoxItem Name="clear" FontSize="20">All-Clear Search</ComboBoxItem>
                         <ComboBoxItem Name="rganumber" FontSize="20">RGA Number</ComboBoxItem>
                         <ComboBoxItem Name="SRnumber" FontSize="20" >SR Number</ComboBoxItem>
@@ -228,17 +228,19 @@
                        
                     </ComboBox>
 
-                    <ComboBox Canvas.Left="135" Canvas.Top="140" Width="317" Height="45" x:Name="cmbSortBy" BorderBrush="Black" FontSize="20" SelectionChanged="cmbSortBy_SelectionChanged_1">
-                        <ComboBoxItem Name="RMA" FontSize="20" Width="307">SR Number</ComboBoxItem>
-                        <ComboBoxItem Name="PO" FontSize="20" Width="307">PO Number</ComboBoxItem>
-                        <ComboBoxItem Name="ReturnDate" FontSize="20" Width="307">Return Date</ComboBoxItem>
-                        <ComboBoxItem Name="ProcessedDate" FontSize="20" Width="307">Processed Date</ComboBoxItem>
-                        <ComboBoxItem Name="RGA" FontSize="20" Width="307">RGA Number</ComboBoxItem>
-                        <ComboBoxItem Name="RMAstatus" FontSize="20" Width="307">RMA Status</ComboBoxItem>
-                        <ComboBoxItem Name="ProgressFlag" FontSize="20" Width="307">Progress Flag</ComboBoxItem>
+                    <ComboBox Canvas.Left="107" Canvas.Top="138" Width="250" Height="40" x:Name="cmbSortBy" BorderBrush="Black" FontSize="18" SelectionChanged="cmbSortBy_SelectionChanged_1">
+                        <ComboBoxItem Name="RMA" FontSize="18" Width="250">SR Number</ComboBoxItem>
+                        <ComboBoxItem Name="PO" FontSize="18" Width="250">PO Number</ComboBoxItem>
+                        <ComboBoxItem Name="ReturnDate" FontSize="18" Width="250">Return Date</ComboBoxItem>
+                        <ComboBoxItem Name="ProcessedDate" FontSize="18" Width="250">Processed Date</ComboBoxItem>
+                        <ComboBoxItem Name="RGA" FontSize="18" Width="250">RGA Number</ComboBoxItem>
+                        <ComboBoxItem Name="RMAstatus" FontSize="18" Width="250">RMA Status</ComboBoxItem>
+                        <ComboBoxItem Name="ProgressFlag" FontSize="18" Width="250">Progress Flag</ComboBoxItem>
+                    </ComboBox>
 
-
-
+                    <ComboBox Canvas.Left="536" Canvas.Top="140" Width="200" Height="40" x:Name="cmbOrderBy" BorderBrush="Black" FontSize="18" SelectionChanged="cmbOrderBy_SelectionChanged_1">
+                        <ComboBoxItem Name="Descending" FontSize="18" Width="200">Descending</ComboBoxItem>
+                        <ComboBoxItem Name="Ascending" FontSize="18" Width="200">Ascending</ComboBoxItem>
                     </ComboBox>
 
                     <TextBox Width="319" Canvas.Left="408" Canvas.Top="80" Height="45" x:Name="txtsearch" BorderBrush="Black" KeyDown="txtsearch_KeyDown" TextChanged="txtsearch_TextChanged_1" FontSize="20" Visibility="Hidden"/>
@@ -248,10 +250,11 @@
                     <RadioButton Content="Between Date" FontSize="25" Canvas.Left="114" Canvas.Top="72" x:Name="rbtBetween" Checked="rbtBetween_Checked_1" Visibility="Hidden"/>-->
                     <Canvas x:Name="canvasdate" Visibility="Hidden" Canvas.Top="44">
                     
-                    <Label Height="39" Width="67" Canvas.Left="334" Canvas.Top="36" Content="From" FontSize="25" />
-                    <DatePicker Canvas.Top="46" Canvas.Left="408" Width="159" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpfrom" IsEnabled="True" SelectedDateChanged="dtpfrom_SelectedDateChanged" />
-                    <Label Height="43" Width="37" Canvas.Left="574" Canvas.Top="36" Content="To" FontSize="25" />
-                    <DatePicker Canvas.Top="46" Canvas.Left="618" Width="171" FontSize="15" Height="25" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpto" IsEnabled="True" SelectedDateChanged="dtpto_SelectedDateChanged" />
+                    <Label Height="39" Width="67" Canvas.Left="286" Canvas.Top="36" Content="From" FontSize="18" />
+                    <DatePicker Canvas.Top="38" Canvas.Left="340" Width="159" FontSize="18" Height="33" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpfrom" IsEnabled="True" SelectedDateChanged="dtpfrom_SelectedDateChanged" />
+                    <Label Height="43" Width="37" Canvas.Left="516" Canvas.Top="36" Content="To" FontSize="18" />
+                    <DatePicker Canvas.Top="40" Canvas.Left="548" Width="171" FontSize="18" Height="33" CalendarStyle="{StaticResource styleCalendar}" x:Name="dtpto" IsEnabled="True" SelectedDateChanged="dtpto_SelectedDateChanged" />
+                        <Button Content="Search" FontSize="18" x:Name="btnsearch" RenderTransformOrigin="1.135,2.935" Canvas.Left="727" Canvas.Top="41" Click="btnsearch_Click_1" ></Button>
 
                     </Canvas>
 
@@ -264,9 +267,11 @@
                                     			Click="btnback_Click"  Width="179"  />
                         </StackPanel>
                     </Border>
-                    <Label Height="51" Width="122" Canvas.Top="76" Content="Search By" FontSize="25" Canvas.Left="-2" />
+                    <Label Height="51" Width="122" Canvas.Top="76" Content="Search By" FontSize="18" Canvas.Left="-2" />
 
-                    <Label Height="51" Width="122" Canvas.Top="136" Content="Sorting By" FontSize="25" />
+                    <Label Height="51" Width="122" Canvas.Top="136" Content="Sorting By" FontSize="18" />
+
+                    <Label Height="44" Width="154" Canvas.Top="141" Content="Select Order" FontSize="18" Canvas.Left="394" />
 
                 </Canvas>
             </Border>

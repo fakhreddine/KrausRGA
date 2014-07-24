@@ -16,8 +16,9 @@
                                             <Border Height="45" Width="769" Background="#B2111111" Canvas.Top="1" Canvas.Left="-3">
                                                 <TextBlock TextWrapping="Wrap" Text="RMA Details" FontSize="25" Foreground="White" Margin="10,6,351,0"/>
                                             </Border>
-                                            
-                                            <CheckBox Height="33" Width="152" Canvas.Top="185" Canvas.Left="26" Content="In Progress" FontSize="25" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
+                                            <Viewbox Height="48" Canvas.Left="26" Canvas.Top="183" Width="169">
+                                                <CheckBox Height="20" Width="81" Canvas.Top="185" Canvas.Left="26" Content="In Progress" FontSize="12" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
+                                            </Viewbox>
                                             <Label x:Name="lblcRMANumber" Content="RMA Number : " Style="{StaticResource lblConstant}" Canvas.Top="52" Width="189" Canvas.Left="205"/>
                                             <TextBox x:Name="txtRMANumber" IsEnabled="False" Canvas.Left="433"  FontSize="15" Foreground="Red"  Text="Generated after saving this information." Canvas.Top="49" Width="271" Height="33"  />
 
@@ -139,7 +140,8 @@
         								HorizontalGridLinesBrush="#FF575757" 
         								VerticalGridLinesBrush="Gray"
         								Height="263"  
-        								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" 
+                                              IsReadOnly="True"
+        								SelectedIndex="-1" SelectionChanged="dgPackageInfo_SelectionChanged" Canvas.Top="38" MouseDoubleClick="dgPackageInfo_MouseDoubleClick_1"
                                            >
 
                                         <DataGrid.Resources>
@@ -254,8 +256,8 @@
 
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel x:Name="spskustatus" Width="60">
-                                                            <TextBlock x:Name="tbskustatus" TextAlignment="Center" Width="60" Text="{Binding SKU_Status}" FontSize="15" FontWeight="Bold"/>
+                                                        <StackPanel x:Name="spskustatus" Width="70"  Height="40" IsEnabled="False" >
+                                                            <TextBlock x:Name="tbskustatus" TextAlignment="Center" Width="70" Text="{Binding SKU_Status}" FontSize="15" FontWeight="Bold" />
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
@@ -407,7 +409,7 @@
                                                     <RadioButton Content="No" Canvas.Left="529" Canvas.Top="147" IsEnabled="False" Name="btnManufacturerNo" Height="27" Width="85" FontSize="20" Checked="btnManufacturerNo_Checked"></RadioButton>
                                                 </Viewbox>
                                             </Canvas>
-                                            <Button Content="Done" Name="btnAdd" Canvas.Left="640" Canvas.Top="303" Width="119" Height="44" FontSize="20" Click="btnAdd_Click" ></Button>
+                                            <Button Content="Submit" Name="btnAdd" Canvas.Left="640" Canvas.Top="303" Width="119" Height="44" FontSize="20" Click="btnAdd_Click" ></Button>
                                             <ComboBox Canvas.Left="212" Canvas.Top="258" Width="392" Height="45" x:Name="cmbSkuReasons" ItemsSource="{Binding}" DisplayMemberPath="Reason1" SelectedValuePath="ReasonID" FontSize="25" SelectedIndex="0" SelectedValue="0" SelectionChanged="cmbSkuReasons_SelectionChanged_1"/>
                                             <TextBox Height="46" Canvas.Left="212" TextWrapping="Wrap" Text="" Canvas.Top="306" Width="392" x:Name="txtskuReasons" FontSize="25" KeyDown="txtskuReasons_KeyDown_1"/>
                                             <Label Content="Reasons" Canvas.Left="58" FontSize="30" Canvas.Top="253" Width="124" Height="53"/>

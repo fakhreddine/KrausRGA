@@ -186,6 +186,8 @@ namespace KrausRGA.EntityModel
             if (_ReturnTbl.CreatedBy != null) _return.CreatedBy = _ReturnTbl.CreatedBy;
             if (_ReturnTbl.UpdatedBy != null) _return.UpdatedBy = _ReturnTbl.UpdatedBy;
 
+           
+
             if (_ReturnTbl.Wrong_RMA_Flg != null) _return.Wrong_RMA_Flg = _ReturnTbl.Wrong_RMA_Flg;
             if (_ReturnTbl.Warranty_STA != null) _return.Warranty_STA = _ReturnTbl.Warranty_STA;
             if (_ReturnTbl.Setting_Wty_Days != null) _return.Setting_Wty_Days = _ReturnTbl.Setting_Wty_Days;
