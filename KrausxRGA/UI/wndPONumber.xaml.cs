@@ -313,6 +313,7 @@ namespace KrausRGA.UI
             //}
             //txtOtherReason.Text = "";
             //txtItemReason.Text = "";
+            WindowThread.start();
             int refundcount = 0;
             int denycount = 0;
             int listcount = listofstatus.Count;
@@ -420,11 +421,21 @@ namespace KrausRGA.UI
 
             if (Views.clGlobal.IsAlreadySaved)
             {
+                if (clGlobal.newWindowThread.IsAlive)
+                {
+                    clGlobal.newWindowThread.Abort();
+                }
                 MessageBox.Show("RMA number for this return is : " + _mUpdate._ReturnTbl1.RGAROWID);
+                WindowThread.start();
             }
             else
             {
+                if (clGlobal.newWindowThread.IsAlive)
+                {
+                    clGlobal.newWindowThread.Abort();
+                }
                 MessageBox.Show("RMA number for this return is : " + _mNewRMA.GetNewROWID(ReturnTblID));
+                WindowThread.start();
             }
 
             if (Views.clGlobal.IsAlreadySaved)
@@ -477,9 +488,9 @@ namespace KrausRGA.UI
 
                     TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
 
-                     TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
+                    TextBlock ShipmentLines = dgPackageInfo.Columns[11].GetCellContent(row) as TextBlock;
 
-                     TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
+                    TextBlock ReturnLines = dgPackageInfo.Columns[12].GetCellContent(row) as TextBlock;
 
                     //Returned RMA Information.
                     RMAInfo rmaInfo = _mponumber.lsRMAInformationforponumner.FirstOrDefault(xrm => xrm.SKUNumber == SkuNumber.Text);
@@ -1186,6 +1197,7 @@ namespace KrausRGA.UI
         {
             if (clGlobal.Redirect == "Processed")
             {
+                WindowThread.start();       
                 Views.clGlobal.Ponumber = "";
                 Views.clGlobal.IsAlreadySaved = false;
                 wndProcessedReturn processed = new wndProcessedReturn();
@@ -1271,7 +1283,7 @@ namespace KrausRGA.UI
         {
             if (e.Key == Key.Enter)
             {
-
+                WindowThread.start();
 
                 this.Dispatcher.Invoke(new Action(() =>
                 {
@@ -1395,7 +1407,13 @@ namespace KrausRGA.UI
 
                                 cmbRMAStatus.SelectedIndex = 2;
 
+
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 // btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
                                 txtbarcode.Text = "";
@@ -1434,7 +1452,12 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
 
                                 cmbRMAStatus.SelectedIndex = 2;
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -1471,9 +1494,14 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
 
                                 cmbRMAStatus.SelectedIndex = 2;
-
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
 
                                 MessageBox.Show("This Return is NOT in Warranty.");
+
+                                WindowThread.start();
 
                                 //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -1562,7 +1590,13 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
 
                                 cmbRMAStatus.SelectedIndex = 2;
+
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 // btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
                                 txtbarcode.Text = "";
@@ -1601,7 +1635,13 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
 
                                 cmbRMAStatus.SelectedIndex = 2;
+
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -1639,7 +1679,12 @@ namespace KrausRGA.UI
 
                                 cmbRMAStatus.SelectedIndex = 2;
 
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 // btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -1668,6 +1713,10 @@ namespace KrausRGA.UI
             txtbarcode.Focus();
             //set the all setting from update model.
             SetGridChack(dgPackageInfo);
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
 
         }
 
@@ -1677,6 +1726,10 @@ namespace KrausRGA.UI
             _showBarcode();
             txtbarcode.Text = "";
             txtbarcode.Focus();
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
           //  SetGridChack(dgPackageInfo);
         }
 
@@ -1706,6 +1759,7 @@ namespace KrausRGA.UI
             {
                 if (Views.clGlobal.IsAlreadySaved)
                 {
+                    WindowThread.start();
                     //Get the all information from datebase to the Update mode from RMA Number.
                     _mUpdate = new mupdatedForPonumber(_mponumber.lsRMAInformationforponumner[0].PONumber); //mReturn.lsRMAInformation[0].RMANumber);
 
@@ -1805,7 +1859,12 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
 
                                 cmbRMAStatus.SelectedIndex = 2;
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 // btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
                                 txtbarcode.Text = "";
@@ -1844,7 +1903,12 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
 
                                 cmbRMAStatus.SelectedIndex = 2;
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -1882,7 +1946,12 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
                                 cmbRMAStatus.SelectedIndex = 2;
 
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -1904,6 +1973,7 @@ namespace KrausRGA.UI
                 }
                 else
                 {
+                    WindowThread.start();
                     List<RMAInfo> lsCustomeronfo = _mNewRMA.GetCustomer(txtPoNumber.Text);
                     lstponumber.Visibility = Visibility.Hidden;
 
@@ -1957,7 +2027,12 @@ namespace KrausRGA.UI
 
                                 cmbRMAStatus.SelectedIndex = 2;
 
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 // btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
                                 txtbarcode.Text = "";
@@ -1995,7 +2070,12 @@ namespace KrausRGA.UI
                                 Views.clGlobal.WrongRMAFlag = "N/A";
 
                                 cmbRMAStatus.SelectedIndex = 2;
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -2033,7 +2113,12 @@ namespace KrausRGA.UI
 
                                 cmbRMAStatus.SelectedIndex = 2;
 
+                                if (clGlobal.newWindowThread.IsAlive)
+                                {
+                                    clGlobal.newWindowThread.Abort();
+                                }
                                 MessageBox.Show("This Return is NOT in Warranty.");
+                                WindowThread.start();
 
                                 //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -2784,7 +2869,12 @@ namespace KrausRGA.UI
 
                             cmbRMAStatus.SelectedIndex = 2;
 
+                            if (clGlobal.newWindowThread.IsAlive)
+                            {
+                                clGlobal.newWindowThread.Abort();
+                            }
                             MessageBox.Show("This Return is NOT in Warranty.");
+                            WindowThread.start();
 
                             // btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
                             txtbarcode.Text = "";
@@ -2823,7 +2913,12 @@ namespace KrausRGA.UI
                             Views.clGlobal.WrongRMAFlag = "N/A";
 
                             cmbRMAStatus.SelectedIndex = 2;
+                            if (clGlobal.newWindowThread.IsAlive)
+                            {
+                                clGlobal.newWindowThread.Abort();
+                            }
                             MessageBox.Show("This Return is NOT in Warranty.");
+                            WindowThread.start();
 
                             //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -2861,7 +2956,12 @@ namespace KrausRGA.UI
                             Views.clGlobal.WrongRMAFlag = "N/A";
 
                             cmbRMAStatus.SelectedIndex = 2;
+                            if (clGlobal.newWindowThread.IsAlive)
+                            {
+                                clGlobal.newWindowThread.Abort();
+                            }
                             MessageBox.Show("This Return is NOT in Warranty.");
+                            WindowThread.start();
 
                             //  btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 

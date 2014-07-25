@@ -1,15 +1,15 @@
 ﻿<Window x:Class="KrausRGA.UI.wndWait"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Topmost="True"
-        Title="wndWait"  Height="675" Width="1160" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None"
-        Background="{x:Null}" Foreground="{x:Null}" WindowState="Maximized" AllowsTransparency="True" Name="WaitWindow">
-    <Viewbox>
-        <Grid HorizontalAlignment="Left"  Height="800" Width="1393" Background="{x:Null}"  >
+        Title="wndWait"  Height="321.269" Width="551.045" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None"
+        Background="{x:Null}" Foreground="{x:Null}" AllowsTransparency="True" Name="WaitWindow">
+    <Viewbox Margin="0,0,0,0">
+        <Grid HorizontalAlignment="Left"  Height="800" Width="1361" Background="{x:Null}"  >
 
             <Border BorderThickness="3" CornerRadius="30" Background="#7F000000" BorderBrush="#FF5ABBCB">
                 <Canvas Margin="-3,-3,3,3" Background="{x:Null}">
-                    <Label FontSize="35" FontWeight="Bold" Foreground="White" Content="Please wait ..." Canvas.Top="505" Width="512" Canvas.Left="55" Background="{x:Null}"/>
-                    <ProgressBar Height="35" Width="1300" RenderTransformOrigin="0.5,0.5" Canvas.Top="590" SmallChange="20" FontSize="60" FontWeight="Bold" LargeChange="50" Value="100" IsIndeterminate="True" Canvas.Left="55">
+                    <Label FontSize="50" FontWeight="Bold" Foreground="White" Content="Please wait ..." Canvas.Top="325" Width="817" Canvas.Left="228" Background="{x:Null}"/>
+                    <ProgressBar Height="63" Width="943" RenderTransformOrigin="0.5,0.5" Canvas.Top="411" SmallChange="20" FontSize="60" FontWeight="Bold" LargeChange="50" Value="100" IsIndeterminate="True" Canvas.Left="235">
                         <ProgressBar.Effect>
                             <DropShadowEffect Color="#FF383940" BlurRadius="20" ShadowDepth="18"/>
                         </ProgressBar.Effect>

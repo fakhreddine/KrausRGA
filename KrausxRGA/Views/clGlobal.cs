@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Controls;
 
 namespace KrausRGA.Views
@@ -15,6 +16,8 @@ namespace KrausRGA.Views
     {
         /// return model object.
         public static mReturnDetails mReturn;
+
+        public static Thread newWindowThread;
 
         public static mPOnumberRMA mPONumber;
 

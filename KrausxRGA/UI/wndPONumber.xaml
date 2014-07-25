@@ -539,7 +539,7 @@
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnHomeDone_Click" Width="59"/>
                                             <Button Style="{StaticResource ToolBarButtonBaseStyle}"
                                     			x:Name="btnHomeDone"
-                                    			Content="Done" 
+                                    			Content="Save" 
                                     			Click="btnHomeDone_Click" Width="169"  />
                                         </StackPanel>
                                     </Border>

@@ -263,7 +263,12 @@ namespace KrausRGA.UI
                         Views.clGlobal.TotalPoints = points;
                         // Views.clGlobal.Warranty = "N/A";
 
+                        if (clGlobal.newWindowThread.IsAlive)
+                        {
+                            clGlobal.newWindowThread.Abort();
+                        }
                         MessageBox.Show("This Return is NOT in Warranty.");
+                        WindowThread.start();
 
                         // btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
                         txtbarcode.Text = "";
@@ -299,7 +304,12 @@ namespace KrausRGA.UI
                         Views.clGlobal.WrongRMAFlag = "N/A";
 
 
+                        if (clGlobal.newWindowThread.IsAlive)
+                        {
+                            clGlobal.newWindowThread.Abort();
+                        }
                         MessageBox.Show("This Return is NOT in Warranty.");
+                        WindowThread.start();
 
                         //   btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -334,7 +344,12 @@ namespace KrausRGA.UI
                         Views.clGlobal.WrongRMAFlag = "N/A";
 
 
+                        if (clGlobal.newWindowThread.IsAlive)
+                        {
+                            clGlobal.newWindowThread.Abort();
+                        }
                         MessageBox.Show("This Return is NOT in Warranty.");
+                        WindowThread.start();
 
                         //   btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -354,6 +369,8 @@ namespace KrausRGA.UI
             }
             else
             {
+               // WindowThread.start();
+
                 //RMA information assigned from the Model of Return.
                 _lsRMAInfo = _mReturn.lsRMAInformation;
 
@@ -411,7 +428,12 @@ namespace KrausRGA.UI
                         Views.clGlobal.WrongRMAFlag = "N/A";
 
 
+                        if (clGlobal.newWindowThread.IsAlive)
+                        {
+                            clGlobal.newWindowThread.Abort();
+                        }
                         MessageBox.Show("This Return is NOT in Warranty.");
+                        WindowThread.start();
 
                         //   btnHomeDone_Click(btnHomeDone, new RoutedEventArgs { });
 
@@ -445,7 +467,12 @@ namespace KrausRGA.UI
                         Views.clGlobal.WrongRMAFlag = "N/A";
 
 
+                        if (clGlobal.newWindowThread.IsAlive)
+                        {
+                            clGlobal.newWindowThread.Abort();
+                        }
                         MessageBox.Show("This Return is NOT in Warranty.");
+                        WindowThread.start();
                     }
                 }
                 txtbarcode.Text = "";
@@ -638,6 +665,10 @@ namespace KrausRGA.UI
             txtbarcode.Focus();
             //set the all setting from update model.
             SetGridChack(dgPackageInfo);
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
 
         }
         void dtLoadnormal_Tick(object sender, EventArgs e)
@@ -647,6 +678,10 @@ namespace KrausRGA.UI
             txtbarcode.Text = "";
             txtbarcode.Focus();
             // SetGridChack(dgPackageInfo);
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
         }
 
         #region Data Grid Events.
@@ -920,6 +955,9 @@ namespace KrausRGA.UI
         {
             //  WindowThread.start();
             //  txtItemReason.Text = "";
+
+            WindowThread.start();
+
             int refundcount = 0;
             int denycount = 0;
             int listcount = listofstatus.Count;
@@ -1604,6 +1642,12 @@ namespace KrausRGA.UI
 
 
             }
+
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
+
             Views.clGlobal.Warranty = "";
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
@@ -2141,6 +2185,7 @@ namespace KrausRGA.UI
         {
             if (clGlobal.Redirect == "Processed")
             {
+                WindowThread.start();       
                 wndProcessedReturn processed = new wndProcessedReturn();
                 processed.Show();
                 this.Close();
@@ -3592,6 +3637,11 @@ namespace KrausRGA.UI
                 }
             }
             _showBarcode();
+
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
 
         }
         private byte[] ObjectToByteArray(Object obj)
@@ -5168,31 +5218,6 @@ namespace KrausRGA.UI
 
             return ls;
         }
-
-     
-
-    
-
-
-
-
-
-        //datagrid.KeyDown += new KeyEventHandler(datagrid_KeyDown);
-
-        //void datagrid_KeyDown(object sender, KeyEventArgs e)
-        //    {
-        //        //obviously you'll have to add some code here
-        //        //if(!datagridIsInEditMode) then
-        //            if (Keyboard.IsKeyDown(Key.F2))
-        //                   datagrid.BeginEdit();
-        //            else
-        //                  e.Handled = true;
-        //}
-
-
-
-
-
 
     }
 }

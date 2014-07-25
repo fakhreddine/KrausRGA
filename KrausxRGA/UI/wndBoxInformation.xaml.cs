@@ -227,8 +227,10 @@ namespace KrausRGA.UI
 
         private void txtScan_KeyDown(object sender, KeyEventArgs e)
         {
+          
             if (e.Key == Key.Enter)
             {
+
                 Application.Current.Dispatcher.BeginInvoke((ThreadStart)delegate()
              {
                  ScannProgressBarStart();
@@ -247,6 +249,7 @@ namespace KrausRGA.UI
 
                         this.Dispatcher.Invoke(new Action(() =>
                             {
+                                WindowThread.start();
                                 //Create new instance of window.
                                 wndSrNumberInfo wndMain = new wndSrNumberInfo();
                                 mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), eActionType.ValidRMANumberScan.ToString(), DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
@@ -269,6 +272,7 @@ namespace KrausRGA.UI
                             {
                                 this.Dispatcher.Invoke(new Action(() =>
                                 {
+                                    WindowThread.start();
                                     Views.clGlobal.IsAlreadySaved = true;
                                     //Create new instance of window.
                                     wndNewRMANumber wndMain = new wndNewRMANumber();
@@ -289,6 +293,7 @@ namespace KrausRGA.UI
                                 {
                                     this.Dispatcher.Invoke(new Action(() =>
                                     {
+                                        WindowThread.start();
                                         //Create new instance of window.
                                         wndPONumber wndMain = new wndPONumber();
                                         mRMAAudit.logthis(_mUser.UserInfo.UserID.ToString(), "Valid_RGANumber_Scan", DateTime.UtcNow.ToString(), _mReturn.EnteredNumber);
@@ -445,7 +450,7 @@ namespace KrausRGA.UI
         private void btnReturn_Click_1(object sender, RoutedEventArgs e)
         {
 
-
+            WindowThread.start();       
             clGlobal.lsreturnShow = cReturnTbl.GetReturnTbl();// select so).OrderByDescending(x => x.RGAROWID);
 
             //foreach (var item in lsretirn)

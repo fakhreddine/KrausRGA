@@ -46,6 +46,8 @@ namespace KrausRGA.UI
         {
            // dgPackageInfo.ItemsSource = cReturnTbl.GetReturnTbl();
 
+           
+
             if (clGlobal.AllReturn == "AllReturn")
             {
                 var sort = (from so in clGlobal.lsreturnShow select so).OrderByDescending(x => x.RGAROWID);//;.SingleOrDefault(q => q.ProgressFlag == 1); //RGAROWID
@@ -83,6 +85,10 @@ namespace KrausRGA.UI
         {
             dtLoadUpdate.Stop();
             _showProgressFlag();
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
 
         }
 
@@ -238,6 +244,7 @@ namespace KrausRGA.UI
            // DataRowView row = (DataRowView)dgPackageInfo.SelectedItems[0];
             //string val = rows[0] //row["Column ID"].ToString();
 
+            WindowThread.start();
 
             int selectedIndex = dgPackageInfo.SelectedIndex;
 
@@ -438,20 +445,24 @@ namespace KrausRGA.UI
                     TextBlock ProgressFlag = dgPackageInfo.Columns[3].GetCellContent(row1) as TextBlock;
 
                     TextBlock RMAStatus = dgPackageInfo.Columns[4].GetCellContent(row1) as TextBlock;
-                    
-                        if (ProgressFlag.Text == "1")
+
+                    if (ProgressFlag.Text == "1")
+                    {
+                        if (clGlobal.AllReturn == "AllReturn")
                         {
-                            if (clGlobal.AllReturn == "AllReturn")
-                            {
-                                row1.Background = Brushes.LightPink;
-                                ProgressFlag.Text = "InProgress";
-                            }
-                            else
-                            {
-                                // row1.IsEnabled = false;
-                                ProgressFlag.Text = "InProgress";
-                            }
+                            row1.Background = Brushes.LightPink;
+                            ProgressFlag.Text = "Flag";
                         }
+                        else
+                        {
+                            // row1.IsEnabled = false;
+                            ProgressFlag.Text = "Flag";
+                        }
+                    }
+                    else
+                    {
+                        ProgressFlag.Text = "";
+                    }
                         if (RMAStatus.Text=="0")
                         {
                             RMAStatus.Text = "Incomplete";
@@ -1239,11 +1250,8 @@ namespace KrausRGA.UI
 
         private void cmbOrderBy_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbOrderBy.SelectedIndex == 0)
-            {
-
-            }
-            else if(cmbOrderBy.SelectedIndex == 1)
+            WindowThread.start();           
+            if(cmbOrderBy.SelectedIndex == 0)
             {
                 if (cmbSortBy.SelectedIndex == 0)
                 {
@@ -1540,7 +1548,7 @@ namespace KrausRGA.UI
                 //start the dispacher.
                 dtLoadUpdate.Start();
             }
-            else if (cmbOrderBy.SelectedIndex == 2)
+            else if (cmbOrderBy.SelectedIndex == 1)
             {
                 if (cmbSortBy.SelectedIndex == 0)
                 {
@@ -1837,6 +1845,8 @@ namespace KrausRGA.UI
                 //start the dispacher.
                 dtLoadUpdate.Start();
             }
+
+          
         }
 
         private void btnsearch_Click_1(object sender, RoutedEventArgs e)

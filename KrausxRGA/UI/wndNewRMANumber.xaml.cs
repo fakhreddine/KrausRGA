@@ -196,6 +196,8 @@ namespace KrausRGA.UI
             //txtOtherReason.Text = "";
             //txtItemReason.Text = "";
 
+            WindowThread.start();
+
             Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
             Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
 
@@ -233,11 +235,22 @@ namespace KrausRGA.UI
 
             if (Views.clGlobal.IsAlreadySaved)
             {
+                if (clGlobal.newWindowThread.IsAlive)
+                {
+                    clGlobal.newWindowThread.Abort();
+                }
                 MessageBox.Show("RMA number for this return is : " + _mUpdate._ReturnTbl1.RGAROWID);
+               
+                WindowThread.start();
             }
             else
             {
+                if (clGlobal.newWindowThread.IsAlive)
+                {
+                    clGlobal.newWindowThread.Abort();
+                }
                 MessageBox.Show("RMA number for this return is : " + _mNewRMA.GetNewROWID(ReturnTblID));
+                WindowThread.start();
             }
 
             if (Views.clGlobal.IsAlreadySaved)
@@ -415,6 +428,12 @@ namespace KrausRGA.UI
                 Views.clGlobal.SKU_Staus = "";
                 Views.clGlobal.TotalPoints = 0;
             }
+
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
+
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
             this.Close();
@@ -546,7 +565,7 @@ namespace KrausRGA.UI
         {
             if (clGlobal.Redirect == "Processed")
             {
-               
+                WindowThread.start();       
                 wndProcessedReturn processed = new wndProcessedReturn();
                 processed.Show();
                 this.Close();
@@ -590,6 +609,8 @@ namespace KrausRGA.UI
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
+
+           
             List<Reason> lsReturn = _mNewRMA.GetReasons();
 
             //add reason select to the Combobox other reason.
@@ -613,7 +634,7 @@ namespace KrausRGA.UI
                 //InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);
                 //txtPoNumber_KeyDown_1(txtPoNumber, new KeyEventArgs { });
 
-               // List<RMAInfo> lsCustomeronfo = _mNewRMA.GetCustomer(Views.clGlobal.Ponumber);
+                // List<RMAInfo> lsCustomeronfo = _mNewRMA.GetCustomer(Views.clGlobal.Ponumber);
                 lstponumber.Visibility = Visibility.Hidden;
 
                 brdPrint.Visibility = Visibility.Visible;
@@ -622,7 +643,7 @@ namespace KrausRGA.UI
                 chkPrintLabel.IsChecked = false;
 
 
-               
+
 
                 _mUpdate = new mUpdateForNewRMA(Views.clGlobal.NewRGANumber); //mReturn.lsRMAInformation[0].RMANumber);
 
@@ -685,7 +706,7 @@ namespace KrausRGA.UI
                     {
                         dgPackageInfo.Items.Add(_mUpdate._lsReturnDetails1[i]);
                     }
-                    
+
                     txtbarcode.Focus();
                     // _mponumber = new mPOnumberRMA(txtPoNumber.Text.ToUpper());
                     txtbarcode.Focus();
@@ -693,6 +714,11 @@ namespace KrausRGA.UI
                 }
 
             }
+            else
+            {
+                WindowThread.start();
+            }
+
 
             dtLoadUpdate = new DispatcherTimer();
             dtLoadUpdate.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -719,6 +745,11 @@ namespace KrausRGA.UI
             txtbarcode.Focus();
             //set the all setting from update model.
             SetGridChack(dgPackageInfo);
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
+
 
         }
 

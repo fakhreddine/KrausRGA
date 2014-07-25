@@ -10,13 +10,13 @@ namespace KrausRGA.Views
 {
     public static class WindowThread
     {
-        public static Thread newWindowThread;
+       // public static Thread newWindowThread;
         /// <summary>
         /// Start new thread of the window in the application for wait screen.
         /// </summary>
         public static void start()
         {
-            newWindowThread = new Thread(new ThreadStart(() =>
+            clGlobal.newWindowThread = new Thread(new ThreadStart(() =>
             {
                 try
                 {
@@ -35,20 +35,20 @@ namespace KrausRGA.Views
                 { }
             }));
             // Set the apartment state
-            newWindowThread.SetApartmentState(ApartmentState.STA);
+          clGlobal.newWindowThread.SetApartmentState(ApartmentState.STA);
             // Make the thread a background thread
-            newWindowThread.IsBackground = true;
+          clGlobal.newWindowThread.IsBackground = true;
             // Start the thread
-            newWindowThread.Start();
+          clGlobal.newWindowThread.Start();
         }
 
         public static void Stop()
         {
             try
             {
-                if (newWindowThread.IsAlive)
+                if (clGlobal.newWindowThread.IsAlive)
                 {
-                    newWindowThread.Abort();
+                   clGlobal.newWindowThread.Abort();
                     Window win = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.Name == "wndWait");
                     win.Close();
                     
