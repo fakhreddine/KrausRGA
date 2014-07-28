@@ -1067,6 +1067,13 @@ namespace KrausRGA.UI
             Views.clGlobal.SKU_Staus = "";
             Views.clGlobal.TotalPoints = 0;
             Views.clGlobal.Warranty = "";
+
+            if (clGlobal.newWindowThread.IsAlive)
+            {
+                clGlobal.newWindowThread.Abort();
+            }
+
+
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
             this.Close();

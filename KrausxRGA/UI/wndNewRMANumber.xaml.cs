@@ -240,7 +240,7 @@ namespace KrausRGA.UI
                     clGlobal.newWindowThread.Abort();
                 }
                 MessageBox.Show("RMA number for this return is : " + _mUpdate._ReturnTbl1.RGAROWID);
-               
+
                 WindowThread.start();
             }
             else
@@ -370,7 +370,6 @@ namespace KrausRGA.UI
                     Views.clGlobal.IsManually = 1;
                     Views.clGlobal.NewItemQty = 1;
                     Views.clGlobal._SKU_Qty_Seq = 0;
-
                 }
 
 
