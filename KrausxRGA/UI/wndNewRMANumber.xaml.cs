@@ -264,7 +264,7 @@ namespace KrausRGA.UI
                 }
             }
 
-            for (int i = 0; i < dgPackageInfo.Items.Count; i++)
+            for (int i = 0; i < dgPackageInfo.Items.Count - 1; i++)
             {
 
                 DataGridCell cell = GetCell(i, 1);
@@ -435,6 +435,7 @@ namespace KrausRGA.UI
 
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
+            Views.clGlobal.IsAlreadySaved = false;
             this.Close();
             //close wait screen.
            // WindowThread.Stop();
@@ -567,6 +568,7 @@ namespace KrausRGA.UI
                 WindowThread.start();       
                 wndProcessedReturn processed = new wndProcessedReturn();
                 processed.Show();
+                Views.clGlobal.IsAlreadySaved = false;
                 this.Close();
             }
             else
@@ -574,6 +576,7 @@ namespace KrausRGA.UI
                 wndBoxInformation boxinfo = new wndBoxInformation();
                 clGlobal.IsUserlogged = true;
                 boxinfo.Show();
+                Views.clGlobal.IsAlreadySaved = false;
                 this.Close();
             }
         }
@@ -759,9 +762,6 @@ namespace KrausRGA.UI
                 //SetReasons(_mUpdate._ReturnTbl.ReturnReason);
                 for (int i = 0; i < dgPackageInfo.Items.Count; i++)
                 {
-
-
-                    
                     DataGridRow row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(i);
 
                     for (int j = 0; j < _mUpdate._lsReturnDetails1.Count(); j++)
@@ -769,13 +769,18 @@ namespace KrausRGA.UI
                         DataGridCell cell = GetCell(i, 1);
                         ContentPresenter CntPersenter = cell.Content as ContentPresenter;
                         DataTemplate DataTemp = CntPersenter.ContentTemplate;
-
                         SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
+
+                        DataGridCell cell1 = GetCell(i, 5);
+                        ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+                        DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+                        PName = ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text.ToString();
+
                      
                         Button btnGreen = (Button)DataTemp.FindName("btnGreen", CntPersenter);
                         Button btnRed = (Button)DataTemp.FindName("btnRed", CntPersenter);
 
-                        if (_mUpdate._lsReturnDetails1[j].SKUNumber == SKU)// && btnGreen.Visibility == System.Windows.Visibility.Hidden)
+                        if (_mUpdate._lsReturnDetails1[j].SKUNumber == SKU && _mUpdate._lsReturnDetails1[i].SKU_Sequence == Convert.ToInt16(PName))// && btnGreen.Visibility == System.Windows.Visibility.Hidden)
                         {
                             GreenRowsNumber1.Add(row.GetIndex());
                             // btnGreen.Visibility = System.Windows.Visibility.Visible;
@@ -954,112 +959,112 @@ namespace KrausRGA.UI
         private void ContentControl_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
 
-            MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
-            if (result == MessageBoxResult.Yes)
-            {
-                ContentControl cnt = (ContentControl)sender;
-                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+            //MessageBoxResult result = MessageBox.Show("Images Capture By Camera Press  -  Yes\n\nBrowse From System Press - No", "Confirmation", MessageBoxButton.YesNoCancel);
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    ContentControl cnt = (ContentControl)sender;
+            //    DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+            //    StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
 
-                if (GreenRowsNumber1.Contains(row.GetIndex()))
-                {
-                    try
-                    {
-                        //Show Camera.
-                        Barcode.Camera.Open();
-                        foreach (String Nameitem in Views.clGlobal.lsImageList)
-                        {
-                            try
-                            {
-                                string path = "C:\\Images\\";
+            //    if (GreenRowsNumber1.Contains(row.GetIndex()))
+            //    {
+            //        try
+            //        {
+            //            //Show Camera.
+            //            Barcode.Camera.Open();
+            //            foreach (String Nameitem in Views.clGlobal.lsImageList)
+            //            {
+            //                try
+            //                {
+            //                    string path = "C:\\Images\\";
 
-                                BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
+            //                    BitmapSource bs = new BitmapImage(new Uri(path + Nameitem));
 
-                                Image img = new Image();
-                                //Zoom image.
-                                img.MouseEnter += img_MouseEnter;
+            //                    Image img = new Image();
+            //                    //Zoom image.
+            //                    img.MouseEnter += img_MouseEnter;
 
-                                img.Height = 62;
-                                img.Width = 74;
-                                img.Stretch = Stretch.Fill;
-                                img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
-                                img.Source = bs;
-                                img.Margin = new Thickness(0.5);
+            //                    img.Height = 62;
+            //                    img.Width = 74;
+            //                    img.Stretch = Stretch.Fill;
+            //                    img.Name = Nameitem.ToString().Split(new char[] { '.' })[0];
+            //                    img.Source = bs;
+            //                    img.Margin = new Thickness(0.5);
 
-                                //Images added to the Row.
-                                _addToStackPanel(spRowImages, img);
-                            }
-                            catch (Exception)
-                            {
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
+            //                    //Images added to the Row.
+            //                    _addToStackPanel(spRowImages, img);
+            //                }
+            //                catch (Exception)
+            //                {
+            //                }
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
 
-                    }
-                }
-                else
-                {
-                    mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
-                    ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
-                }
-            }
-            else if (result == MessageBoxResult.No)
-            {
+            //        }
+            //    }
+            //    else
+            //    {
+            //        mRMAAudit.logthis(clGlobal.mCurrentUser.UserInfo.UserID.ToString(), eActionType.SelectItem__00.ToString(), DateTime.UtcNow.ToString());
+            //        ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
+            //    }
+            //}
+            //else if (result == MessageBoxResult.No)
+            //{
 
-                ContentControl cnt = (ContentControl)sender;
-                DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
+            //    ContentControl cnt = (ContentControl)sender;
+            //    DataGridRow row = (DataGridRow)cnt.FindParent<DataGridRow>();
 
-                StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
+            //    StackPanel spRowImages = cnt.FindName("spProductImages") as StackPanel;
 
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-
-
-                // Set filter for file extension and default file extension 
-                dlg.DefaultExt = ".png";
-                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg";
+            //    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
 
-                // Display OpenFileDialog by calling ShowDialog method 
-                Nullable<bool> result1 = dlg.ShowDialog();
+
+            //    // Set filter for file extension and default file extension 
+            //    dlg.DefaultExt = ".png";
+            //    dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg";
 
 
-                // Get the selected file name and display in a TextBox 
-                if (result1 == true)
-                {
-                    // Open document 
-                    string filename = dlg.FileName;
+            //    // Display OpenFileDialog by calling ShowDialog method 
+            //    Nullable<bool> result1 = dlg.ShowDialog();
 
-                    string originalfilename = dlg.SafeFileName;
 
-                    // textBox1.Text = filename;
-                    //string path = "C:\\Images\\";
+            //    // Get the selected file name and display in a TextBox 
+            //    if (result1 == true)
+            //    {
+            //        // Open document 
+            //        string filename = dlg.FileName;
 
-                    BitmapSource bs = new BitmapImage(new Uri(filename));
+            //        string originalfilename = dlg.SafeFileName;
 
-                    Image img = new Image();
-                    //Zoom image.
-                    img.MouseEnter += img_MouseEnter;
+            //        // textBox1.Text = filename;
+            //        //string path = "C:\\Images\\";
 
-                    img.Height = 62;
-                    img.Width = 74;
-                    img.Stretch = Stretch.Fill;
-                    img.Name = originalfilename.ToString().Split(new char[] { '.' })[0];
-                    img.Source = bs;
-                    img.Margin = new Thickness(0.5);
+            //        BitmapSource bs = new BitmapImage(new Uri(filename));
 
-                    //Images added to the Row.
-                    _addToStackPanel(spRowImages, img);
+            //        Image img = new Image();
+            //        //Zoom image.
+            //        img.MouseEnter += img_MouseEnter;
 
-                }
-            }
-            else
-            {
-                // Cancel code here
-            } 
+            //        img.Height = 62;
+            //        img.Width = 74;
+            //        img.Stretch = Stretch.Fill;
+            //        img.Name = originalfilename.ToString().Split(new char[] { '.' })[0];
+            //        img.Source = bs;
+            //        img.Margin = new Thickness(0.5);
+
+            //        //Images added to the Row.
+            //        _addToStackPanel(spRowImages, img);
+
+            //    }
+            //}
+            //else
+            //{
+            //    // Cancel code here
+            //} 
         }
 
         private void ErrorMsg(string Msg, Color BgColor)
@@ -2356,7 +2361,7 @@ namespace KrausRGA.UI
                     }
                     catch (Exception)
                     {
-
+                        MessageBox.Show("Camera not found");
                     }
 
 
@@ -2390,28 +2395,31 @@ namespace KrausRGA.UI
 
                         string AName = RemoveSpecialCharacters(dlg.SafeFileName);
 
-                        Barcode.Camera.CopytoNetwork(AName);
+                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
 
                         // textBox1.Text = filename;
                         string path = "C:\\Images\\";
 
+                      //  DateTime dt = DateTime.Now;
 
-                        File.Copy(filename, path + "\\" + AName, true);
+                        File.Copy(filename, path + "\\" + "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName, true);
 
-                        Barcode.Camera.CopytoNetwork(AName);
+                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
 
-                        BitmapSource bs = new BitmapImage(new Uri(path + AName));
+                        BitmapSource bs = new BitmapImage(new Uri(path + "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName));
 
                         Image img = new Image();
                         //Zoom image.
                         // img.MouseEnter += img_MouseEnter;
+
+                      
 
                         img.MouseDown += img_MouseDown;
 
                         img.Height = 50;
                         img.Width = 50;
                         img.Stretch = Stretch.Fill;
-                        img.Name = AName.ToString().Split(new char[] { '.' })[0];
+                        img.Name = "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName.ToString().Split(new char[] { '.' })[0];
                         img.Source = bs;
                         img.Margin = new Thickness(0.5);
 

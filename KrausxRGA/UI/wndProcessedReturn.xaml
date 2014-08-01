@@ -1,6 +1,6 @@
 ﻿<Window x:Class="KrausRGA.UI.wndProcessedReturn"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         Title="wndProcessedReturn" Height="1280" Width="800" WindowState="Maximized" Loaded="Window_Loaded_1">
     <Viewbox>
         <Grid Height="1280" Width="800">

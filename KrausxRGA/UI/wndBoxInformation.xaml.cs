@@ -217,9 +217,9 @@ namespace KrausRGA.UI
             //bdrScan.Visibility = System.Windows.Visibility.Visible;
             //txtScan.Focus();
 
-            wndPONumber nRMA = new wndPONumber();
-            nRMA.Show();
-            this.Close();
+            //wndPONumber nRMA = new wndPONumber();
+            //nRMA.Show();
+            //this.Close();
 
             // wndNewRMANumber nRMA = new wndNewRMANumber();
             // nRMA.Show();
@@ -392,16 +392,16 @@ namespace KrausRGA.UI
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.Application.Restart();
-            Application.Current.Shutdown();
+            //System.Windows.Forms.Application.Restart();
+            //Application.Current.Shutdown();
 
 
         }
 
         private void btnNewScan_Click(object sender, RoutedEventArgs e)
         {
-            wndAppSetting app = new wndAppSetting();
-            app.ShowDialog();
+            //wndAppSetting app = new wndAppSetting();
+            //app.ShowDialog();
         }
 
         #endregion
@@ -420,7 +420,7 @@ namespace KrausRGA.UI
             bdrButtons.Visibility = visibility;
             if (visibility.ToString() == System.Windows.Visibility.Hidden.ToString())
             {
-                btnCameraScan.Visibility = System.Windows.Visibility.Visible;
+                btnCameraScan.Visibility = System.Windows.Visibility.Hidden;
                 bdrLogin.Visibility = System.Windows.Visibility.Visible;
                 txtLogin.Focus();
             }
@@ -441,47 +441,44 @@ namespace KrausRGA.UI
 
         private void btnPONumber_Click(object sender, RoutedEventArgs e)
         {
-            wndNewRMANumber nRMA = new wndNewRMANumber();
-            nRMA.Show();
-            this.Close();
+            //wndNewRMANumber nRMA = new wndNewRMANumber();
+            //nRMA.Show();
+            //this.Close();
 
         }
 
         private void btnReturn_Click_1(object sender, RoutedEventArgs e)
         {
 
-            WindowThread.start();       
-            clGlobal.lsreturnShow = cReturnTbl.GetReturnTbl();// select so).OrderByDescending(x => x.RGAROWID);
+           // WindowThread.start();       
+           // clGlobal.lsreturnShow = cReturnTbl.GetReturnTbl();// select so).OrderByDescending(x => x.RGAROWID);
 
-            //foreach (var item in lsretirn)
-            //{
-            //    //Return showall = new Return();
-            //    //showall.RMANumber = item.RMANumber;
-            //    //showall.RGAROWID = item.RGAROWID;
-            //    //showall.PONumber = item.PONumber;
-            //    //showall.ProgressFlag = item.ProgressFlag;
-            //    //showall.ReturnDate = item.ReturnDate;
-            //    //showall.CreatedDate = item.CreatedDate;
-            //    //showall.VendoeName = item.VendoeName;
-            //    //showall.RMAStatus = item.RMAStatus;  
-            //    //clGlobal.lsreturnShow.Add(showall);
-
-            //    clGlobal.lsreturnShow.Add(new Return(item));
-            //}
-          
-            //clGlobal.lsreturnShow
-            clGlobal.AllReturn = "AllReturn";
-            wndProcessedReturn nRMA = new wndProcessedReturn();
-            nRMA.Show();
-            this.Close();
+           // clGlobal.AllReturn = "AllReturn"; 
+            
+           // wndProcessedReturn nRMA = new wndProcessedReturn();
+           // nRMA.Show();
+           //// nRMA.Topmost = true;
+           
+           // this.Close();
+           // if (clGlobal.newWindowThread.IsAlive)
+           // {
+           //     clGlobal.newWindowThread.Abort();
+           // }
         }
 
         private void btnProcessed_Click_1(object sender, RoutedEventArgs e)
         {
-            clGlobal.AllReturn = "";
-            wndProcessedReturn nRMA = new wndProcessedReturn();
-            nRMA.Show();
-            this.Close();
+
+            //WindowThread.start();
+            //clGlobal.lsreturnShow = cReturnTbl.GetReturnTbl();
+            //clGlobal.AllReturn = "";
+            //wndProcessedReturn nRMA = new wndProcessedReturn();
+            //nRMA.Show();
+            //if (clGlobal.newWindowThread.IsAlive)
+            //{
+            //    clGlobal.newWindowThread.Abort();
+            //}
+            //this.Close();
         }
 
         private void btnSRNumber_Click_1(object sender, RoutedEventArgs e)
@@ -496,6 +493,57 @@ namespace KrausRGA.UI
         {
             hideButtons(System.Windows.Visibility.Visible);
             bdrScan.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void btnReturn_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            WindowThread.start();
+            clGlobal.lsreturnShow = cReturnTbl.GetReturnTbl();// select so).OrderByDescending(x => x.RGAROWID);
+
+            clGlobal.AllReturn = "AllReturn";
+
+            wndProcessedReturn nRMA = new wndProcessedReturn();
+            nRMA.Show();
+            // nRMA.Topmost = true;
+
+            this.Close();
+        }
+
+        private void btnProcessed_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            WindowThread.start();
+            clGlobal.lsreturnShow = cReturnTbl.GetReturnTbl();
+            clGlobal.AllReturn = "";
+            wndProcessedReturn nRMA = new wndProcessedReturn();
+            nRMA.Show();
+          
+            this.Close();
+        }
+
+        private void btnBoxNumber_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            wndPONumber nRMA = new wndPONumber();
+            nRMA.Show();
+            this.Close();
+        }
+
+        private void btnPONumber_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            wndNewRMANumber nRMA = new wndNewRMANumber();
+            nRMA.Show();
+            this.Close();
+        }
+
+        private void btnNewScan_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            wndAppSetting app = new wndAppSetting();
+            app.ShowDialog();
+        }
+
+        private void btnlogout_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
         }
 
     }

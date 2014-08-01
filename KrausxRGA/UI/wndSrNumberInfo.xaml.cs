@@ -1649,6 +1649,7 @@ namespace KrausRGA.UI
             }
 
             Views.clGlobal.Warranty = "";
+            Views.clGlobal.IsAlreadySaved = false;
             wndBoxInformation wndBox = new wndBoxInformation();
             clGlobal.IsUserlogged = true;
             //  WindowThread.Stop();
@@ -2183,9 +2184,10 @@ namespace KrausRGA.UI
 
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
+            Views.clGlobal.IsAlreadySaved = false;
             if (clGlobal.Redirect == "Processed")
             {
-                WindowThread.start();       
+                WindowThread.start();
                 wndProcessedReturn processed = new wndProcessedReturn();
                 processed.Show();
                 this.Close();
@@ -4757,6 +4759,7 @@ namespace KrausRGA.UI
                             }
                             catch (Exception)
                             {
+                                MessageBox.Show("Camera not found");
                             }
                         }
                     }
@@ -4796,17 +4799,17 @@ namespace KrausRGA.UI
 
                         string AName = RemoveSpecialCharacters(dlg.SafeFileName);
 
-                        Barcode.Camera.CopytoNetwork(AName);
+                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
 
                         // textBox1.Text = filename;
                         string path = "C:\\Images\\";
 
 
-                        File.Copy(filename, path + "\\" + AName, true);
+                        File.Copy(filename, path + "\\" + "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName, true);
 
-                        Barcode.Camera.CopytoNetwork(AName);
+                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
 
-                        BitmapSource bs = new BitmapImage(new Uri(path + AName));
+                        BitmapSource bs = new BitmapImage(new Uri(path +"img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName));
 
                         Image img = new Image();
                         //Zoom image.
@@ -4817,7 +4820,7 @@ namespace KrausRGA.UI
                         img.Height = 50;
                         img.Width = 50;
                         img.Stretch = Stretch.Fill;
-                        img.Name = AName.ToString().Split(new char[] { '.' })[0];
+                        img.Name = "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName.ToString().Split(new char[] { '.' })[0];
                         img.Source = bs;
                         img.Margin = new Thickness(0.5);
 
