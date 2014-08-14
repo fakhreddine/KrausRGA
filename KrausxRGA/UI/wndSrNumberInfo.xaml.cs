@@ -196,6 +196,11 @@ namespace KrausRGA.UI
                 cmbRMADecision.SelectedIndex = Convert.ToInt16(_mUpdate._ReturnTbl.Decision);
 
                 brdPrint.Visibility = Visibility.Visible;
+
+                btnHomeDone.Content = "Update";
+
+                brdReprint.Visibility = Visibility.Visible;
+
                 brdPrintlabel.Visibility = Visibility.Visible;
                 chkPrintLabel.IsChecked = false;
 
@@ -406,7 +411,7 @@ namespace KrausRGA.UI
                     //dgPackageInfo.IsEnabled=FA;
                     //dgPackageInfo.IsEnabled = false;
 
-                    DateTime DeliveryDate = _mUpdate._ReturnTbl.DeliveryDate;
+                    DateTime DeliveryDate = _lsRMAInfo[0].DeliveryDate;
                     DateTime CurrentDate = DateTime.UtcNow;
                     TimeSpan Diff = CurrentDate.Subtract(DeliveryDate);
                     int Days = Diff.Days;
@@ -958,45 +963,45 @@ namespace KrausRGA.UI
 
             WindowThread.start();
 
-            int refundcount = 0;
-            int denycount = 0;
-            int listcount = listofstatus.Count;
+            //int refundcount = 0;
+            //int denycount = 0;
+            //int listcount = listofstatus.Count;
 
-            for (int i = 0; i < listcount; i++)
-            {
-                if (listofstatus[i].Status == "Refund" && cmbRMAStatus.SelectedIndex == 1)
-                {
-                    refundcount++;
-                }
-                if (listofstatus[i].Status == "Deny" && cmbRMAStatus.SelectedIndex == 1)
-                {
-                    denycount++;
-                }
+            //for (int i = 0; i < listcount; i++)
+            //{
+            //    if (listofstatus[i].Status == "Refund" && cmbRMAStatus.SelectedIndex == 1)
+            //    {
+            //        refundcount++;
+            //    }
+            //    if (listofstatus[i].Status == "Deny" && cmbRMAStatus.SelectedIndex == 1)
+            //    {
+            //        denycount++;
+            //    }
 
-            }
+            //}
 
-            if (listcount == refundcount)
-            {
-                cmbRMADecision.SelectedIndex = 2;
-            }
-            else if (listcount > refundcount)
-            {
-                cmbRMADecision.SelectedIndex = 3;
-            }
-            if (denycount == refundcount)
-            {
-                cmbRMADecision.SelectedIndex = 1;
-            }
+            //if (listcount == refundcount)
+            //{
+            //    cmbRMADecision.SelectedIndex = 2;
+            //}
+            //else if (listcount > refundcount)
+            //{
+            //    cmbRMADecision.SelectedIndex = 3;
+            //}
+            //if (denycount == refundcount)
+            //{
+            //    cmbRMADecision.SelectedIndex = 1;
+            //}
 
-            if (cmbRMAStatus.SelectedIndex == 2)
-            {
-                cmbRMADecision.SelectedIndex = 1;
-            }
+            //if (cmbRMAStatus.SelectedIndex == 2)
+            //{
+            //    cmbRMADecision.SelectedIndex = 1;
+            //}
 
-            if (cmbRMAStatus.SelectedIndex == 0)
-            {
-                cmbRMADecision.SelectedIndex = 1;
-            }
+            //if (cmbRMAStatus.SelectedIndex == 0)
+            //{
+            //    cmbRMADecision.SelectedIndex = 1;
+            //}
 
             int InProgress = 0;
 
@@ -1036,8 +1041,16 @@ namespace KrausRGA.UI
                 wrongRMA = Views.clGlobal.WrongRMAFlag;
                 Warranty = Views.clGlobal.Warranty;
             }
-            Guid ReturnTblID = _mReturn.SetReturnTbl("", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, ScannedDate, ExpirationDate, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff, InProgress, txtcalltag.Text);//ReturnReasons()
+            Guid ReturnTblID;
+            if (Views.clGlobal.mReturn.IsAlreadySaved)
+            {
 
+                ReturnTblID = _mReturn.SetReturnTbl("", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, ScannedDate, ExpirationDate, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff, InProgress, txtcalltag.Text, _mUpdate._ReturnTbl.CreatedDate);//ReturnReasons()
+            }
+            else
+            {
+                 ReturnTblID = _mReturn.SetReturnTbl("", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, ScannedDate, ExpirationDate, wrongRMA, Warranty, 60, Views.clGlobal.ShipDate_ScanDate_Diff, InProgress, txtcalltag.Text, DateTime.UtcNow);//ReturnReasons()
+            }
             if (Views.clGlobal.mReturn.IsAlreadySaved)
             {
                 ReturnTblID = _mUpdate._ReturnTbl.ReturnID;
@@ -1238,15 +1251,31 @@ namespace KrausRGA.UI
                     {
                         if (chkPrintLabel.IsChecked == true)
                         {
+                            if (row.IsEnabled != true)
+                            {
+                                wndSlipPrint slip = new wndSlipPrint();
 
-                            wndSlipPrint slip = new wndSlipPrint();
+                                Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), "Refund");
 
-                            Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), "Refund");
-
-                            slip.ShowDialog();
+                                slip.ShowDialog();
+                            }
                         }
                     }
+                    if (LineType.Text != "6")
+                    {
+                        if (Views.clGlobal.IsAlreadySaved)
+                        {
+                            if (chkPrintLabel.IsChecked == true)
+                            {
+                                wndSlipPrint slip = new wndSlipPrint();
 
+                                Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), "Refund");
+
+                                slip.ShowDialog();
+                            }
+                        }
+                    }
+                
 
 
                     mRMAAudit.saveaudit(Views.AuditType.lsaudit);
@@ -1425,18 +1454,41 @@ namespace KrausRGA.UI
                     {
                         if (chkPrintLabel.IsChecked == true)
                         {
-                            wndSlipPrint slip = new wndSlipPrint();
+                            if (row.IsEnabled != true)
+                            {
 
-                            Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+                                wndSlipPrint slip = new wndSlipPrint();
 
-                            slip.ShowDialog();
-                            Views.clGlobal.SKU_Staus = "";
-                            Views.clGlobal.TotalPoints = 0;
-                            Views.clGlobal.SKU_Staus = "";
-                            Views.clGlobal.TotalPoints = 0;
+                                Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+
+                                slip.ShowDialog();
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                            }
                         }
 
 
+                    }
+                    if (LineType.Text != "6")
+                    {
+                        if (Views.clGlobal.IsAlreadySaved)
+                        {
+                            if (chkPrintLabel.IsChecked == true)
+                            {
+
+                                wndSlipPrint slip = new wndSlipPrint();
+
+                                Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+
+                                slip.ShowDialog();
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                            }
+                        }
                     }
 
 
@@ -1621,18 +1673,38 @@ namespace KrausRGA.UI
                     {
                         if (chkPrintLabel.IsChecked == true)
                         {
-                            wndSlipPrint slip = new wndSlipPrint();
+                            if (row.IsEnabled != true)
+                            {
+                                wndSlipPrint slip = new wndSlipPrint();
 
-                            Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+                                Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
 
-                            slip.ShowDialog();
-                            Views.clGlobal.SKU_Staus = "";
-                            Views.clGlobal.TotalPoints = 0;
-                            Views.clGlobal.SKU_Staus = "";
-                            Views.clGlobal.TotalPoints = 0;
+                                slip.ShowDialog();
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                            }
                         }
                     }
+                    if (LineType.Text != "6")
+                    {
+                        if (Views.clGlobal.IsAlreadySaved)
+                        {
+                            if (chkPrintLabel.IsChecked == true)
+                            {
+                                wndSlipPrint slip = new wndSlipPrint();
 
+                                Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+
+                                slip.ShowDialog();
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                                Views.clGlobal.SKU_Staus = "";
+                                Views.clGlobal.TotalPoints = 0;
+                            }
+                        }
+                    }
 
 
                     mRMAAudit.saveaudit(Views.AuditType.lsaudit);
@@ -2184,21 +2256,31 @@ namespace KrausRGA.UI
 
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
-            Views.clGlobal.IsAlreadySaved = false;
-            if (clGlobal.Redirect == "Processed")
-            {
-                WindowThread.start();
-                wndProcessedReturn processed = new wndProcessedReturn();
-                processed.Show();
-                this.Close();
-            }
-            else
-            {
-                wndBoxInformation boxinfo = new wndBoxInformation();
-                clGlobal.IsUserlogged = true;
-                boxinfo.Show();
-                this.Close();
-            }
+
+              MessageBoxResult result = MessageBox.Show("Do you want to leave this page?", "Warning", MessageBoxButton.YesNo);
+
+              if (result == MessageBoxResult.Yes)
+              {
+                  Views.clGlobal.IsAlreadySaved = false;
+                  if (clGlobal.Redirect == "Processed")
+                  {
+                      WindowThread.start();
+                      wndProcessedReturn processed = new wndProcessedReturn();
+                      processed.Show();
+                      this.Close();
+                  }
+                  else
+                  {
+                      wndBoxInformation boxinfo = new wndBoxInformation();
+                      clGlobal.IsUserlogged = true;
+                      boxinfo.Show();
+                      this.Close();
+                  }
+              }
+              else
+              { 
+              
+              }
         }
 
         private void ContentControl_MouseDown(object sender, MouseButtonEventArgs e)
@@ -2273,8 +2355,9 @@ namespace KrausRGA.UI
                                         //Zoom image.
                                         // img.MouseEnter += img_MouseEnter;
 
-                                        img.MouseDown += img_MouseDown;
+                                        img.MouseLeftButtonDown +=img_MouseLeftButtonDown;
 
+                                        img.MouseRightButtonDown+=img_MouseRightButtonDown;
 
 
                                         img.Height = 50;
@@ -2317,14 +2400,11 @@ namespace KrausRGA.UI
             { }
         }
 
-        void img_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            clGlobal.Zoomimages = (Image)sender;
-
-            wndZoomImageWindow zoom = new wndZoomImageWindow();
-            zoom.ShowDialog();
-            //throw new NotImplementedException();
-        }
+        //void img_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+           
+        //    //throw new NotImplementedException();
+        //}
 
         public String GetReasonFronList(Guid ReturDetailsID)
         {
@@ -4745,7 +4825,9 @@ namespace KrausRGA.UI
                                 //Zoom image.
                                 // img.MouseEnter += img_MouseEnter;
 
-                                img.MouseDown += img_MouseDown;
+                                img.MouseLeftButtonDown += img_MouseLeftButtonDown;
+
+                                img.MouseRightButtonDown += img_MouseRightButtonDown;
 
                                 img.Height = 50;
                                 img.Width = 50;
@@ -4786,7 +4868,7 @@ namespace KrausRGA.UI
                     dlg.DefaultExt = ".png";
                     dlg.Filter = "JPG Files (*.jpg)|*.jpg";
 
-
+                    dlg.Multiselect = true;
                     // Display OpenFileDialog by calling ShowDialog method 
                     Nullable<bool> result1 = dlg.ShowDialog();
 
@@ -4795,39 +4877,46 @@ namespace KrausRGA.UI
                     if (result1 == true)
                     {
                         // Open document 
-                        string filename = dlg.FileName;
+                        foreach (String file in dlg.FileNames)
+                        {
+                            string filename = file;
 
-                        string AName = RemoveSpecialCharacters(dlg.SafeFileName);
+                            string AName = RemoveSpecialCharacters(file);
 
-                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
+                            string source = "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName;
 
-                        // textBox1.Text = filename;
-                        string path = "C:\\Images\\";
+                            Barcode.Camera.CopytoNetwork(source);
+
+                            // textBox1.Text = filename;
+                            string path = "C:\\Images\\";
 
 
-                        File.Copy(filename, path + "\\" + "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName, true);
+                            File.Copy(filename, path + "\\" + source, true);
 
-                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
+                            Barcode.Camera.CopytoNetwork(source);
 
-                        BitmapSource bs = new BitmapImage(new Uri(path +"img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName));
+                            BitmapSource bs = new BitmapImage(new Uri(path + source));
 
-                        Image img = new Image();
-                        //Zoom image.
-                        // img.MouseEnter += img_MouseEnter;
+                            Image img = new Image();
+                            //Zoom image.
+                            // img.MouseEnter += img_MouseEnter;
 
-                        img.MouseDown += img_MouseDown;
+                            img.MouseLeftButtonDown += img_MouseLeftButtonDown;
 
-                        img.Height = 50;
-                        img.Width = 50;
-                        img.Stretch = Stretch.Fill;
-                        img.Name = "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName.ToString().Split(new char[] { '.' })[0];
-                        img.Source = bs;
-                        img.Margin = new Thickness(0.5);
+                            img.MouseRightButtonDown += img_MouseRightButtonDown;
 
-                        //Images added to the Row.
-                        _addToStackPanel(spRowImages, img);
+                            img.Height = 50;
+                            img.Width = 50;
+                            img.Stretch = Stretch.Fill;
+                            img.Name = source.ToString().Split(new char[] { '.' })[0];
+                            img.Source = bs;
+                            img.Margin = new Thickness(0.5);
 
+                            //Images added to the Row.
+                            _addToStackPanel(spRowImages, img);
+                        }
                     }
+                    
                 }
                 else
                 {
@@ -4843,6 +4932,42 @@ namespace KrausRGA.UI
                 ErrorMsg("Please select the item.", Color.FromRgb(185, 84, 0));
             }
 
+        }
+
+        void img_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //throw new NotImplementedException();
+            MessageBoxResult result = MessageBox.Show("Do you want to remove the image", "Confirmation", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _RemoveFromStackPanel(spRowImages, (Image)sender);
+            }
+            else
+            {
+
+            }
+        }
+
+        void img_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //throw new NotImplementedException();
+
+            clGlobal.Zoomimages = (Image)sender;
+
+            wndZoomImageWindow zoom = new wndZoomImageWindow();
+            zoom.ShowDialog();
+        }
+
+        protected void _RemoveFromStackPanel(StackPanel StackPanelName, Image CapImage)
+        {
+            try
+            {
+                StackPanelName.Children.Remove(CapImage);
+                SvImagesScroll.ScrollToRightEnd();
+            }
+            catch (Exception)
+            { }
         }
 
         public static string RemoveSpecialCharacters(string str)
@@ -4969,12 +5094,12 @@ namespace KrausRGA.UI
                         {
                             max = Convert.ToInt16(txtRetutn2.Text);
                         }
-                        if (shipmax == Convert.ToInt16(ShipmentLines.Text))
+                        if (shipmax < Convert.ToInt16(ShipmentLines.Text))
                         {
                             shipmax = Convert.ToInt16(ShipmentLines.Text);
                         }
 
-                        if (returnmax == Convert.ToInt16(ReturnLines.Text))
+                        if (returnmax < Convert.ToInt16(ReturnLines.Text))
                         {
                             returnmax = Convert.ToInt16(ReturnLines.Text);
                         }
@@ -5220,6 +5345,42 @@ namespace KrausRGA.UI
             }
 
             return ls;
+        }
+
+        private void btnReprint_Click_1(object sender, RoutedEventArgs e)
+        {
+            DateTime ScannedDate = DateTime.UtcNow;
+            DateTime ExpirationDate = DateTime.UtcNow.AddDays(60);
+
+            // _lsreturn.Add(ret);
+
+            foreach (DataGridRow row in GetDataGridRows(dgPackageInfo))
+            {
+                TextBlock LineType = dgPackageInfo.Columns[10].GetCellContent(row) as TextBlock;
+
+                TextBlock SkuNumber = dgPackageInfo.Columns[1].GetCellContent(row) as TextBlock;
+
+                ContentPresenter Cntskustatus = dgPackageInfo.Columns[7].GetCellContent(row) as ContentPresenter;
+                DataTemplate Dtskustatus = Cntskustatus.ContentTemplate;
+                TextBlock txtskustatus = (TextBlock)Dtskustatus.FindName("tbskustatus", Cntskustatus);
+
+                if (LineType.Text != "6")
+                {
+                    if (Views.clGlobal.mReturn.IsAlreadySaved)
+                    {
+                        if (row.Background == Brushes.SkyBlue)
+                        {
+                            wndSlipPrint slip = new wndSlipPrint();
+
+                            Views.clGlobal.lsSlipInfo = _mReturn.GetSlipInfo(SkuNumber.Text, _mReturn.GetENACodeByItem(SkuNumber.Text), _mReturn.GetSageReasonBySKUSR(lblRMANumber.Content.ToString(), SkuNumber.Text), ScannedDate, ExpirationDate, cmbRMAStatus.SelectedIndex.ToString(), txtskustatus.Text);
+
+                            slip.ShowDialog();
+                        }
+
+                    }
+                }
+            }
+
         }
 
     }

@@ -46,7 +46,7 @@
 
                                             <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="113" Width="152" Canvas.Left="26"/>
                                             <Viewbox Height="50" Canvas.Left="26" Canvas.Top="183" >
-                                                <CheckBox Height="20" Width="85" Canvas.Top="185" Canvas.Left="26" Content="In Progress" FontSize="12" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
+                                                <CheckBox Height="20" Width="85" Canvas.Top="185" Canvas.Left="26" Content="Flag" FontSize="12" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
                                             </Viewbox>
                                             <ComboBox x:Name="cmbRMADecision" Height="45" Width="202" Canvas.Left="10" Canvas.Top="136" Style="{StaticResource combo}" IsEnabled="True"
 													ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
@@ -65,7 +65,7 @@
                                     <Border Height="235" Width="770" CornerRadius="10" Canvas.Top="242" BorderBrush="#FF787878" Canvas.Left="10" BorderThickness="2,0,2,2" >
                                         <Canvas Margin="0,0,0,0">
                                             <Label x:Name="lblcPoNumber" Content="PO Number : " Style="{StaticResource lblConstant}" Canvas.Top="20" Width="154" Canvas.Left="7"/>
-                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="13" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1" GotFocus="txtPoNumber_GotFocus" LostFocus="txtPoNumber_LostFocus" IsEnabled="False"/>
+                                            <TextBox x:Name="txtPoNumber"  Canvas.Left="166" Canvas.Top="13" Width="238" Height="33" FontSize="15" KeyDown="txtPoNumber_KeyDown_1" TextChanged="txtPoNumber_TextChanged_1" GotFocus="txtPoNumber_GotFocus" LostFocus="txtPoNumber_LostFocus" />
 
                                             <Label x:Name="lblcName" Content="Customer Name : " Style="{StaticResource lblConstant}" Canvas.Top="63" Width="158" Canvas.Left="3"/>
                                             <TextBox x:Name="txtName"   Canvas.Left="166" Canvas.Top="58" Width="239" Height="33" FontSize="15"/>
@@ -175,7 +175,7 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel  Height="60" Width="200">
-                                                            <TextBox x:Name="txtSKU"  Height="60" Margin="0,0,0,0" Text="{Binding SKUNumber}" FontSize="20" FontWeight="Bold" TextChanged="txtSKU_TextChanged_1"/>
+                                                            <TextBox x:Name="txtSKU"  Height="60" Margin="0,0,0,0" Text="{Binding SKUNumber}" FontSize="20" FontWeight="Bold" TextChanged="txtSKU_TextChanged_1" IsReadOnly="True"/>
                                                            
                                                         </StackPanel>
                                                     </DataTemplate>
@@ -410,15 +410,26 @@
                                     </Border>
 
                                  
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="234" Canvas.Left="556" >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="380" Height="56" Width="147" Canvas.Left="635" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnHomeDone_Click" Width="59"/>
                                             <Button Style="{StaticResource ToolBarButtonBaseStyle}"
                                     			x:Name="btnHomeDone"
                                     			Content="Save" 
-                                    			Click="btnHomeDone_Click" Width="169"  />
+                                    			Click="btnHomeDone_Click" Width="88" Height="52" VerticalAlignment="Top"  />
                                         </StackPanel>
                                     </Border>
+
+                                    <Border Visibility="Hidden" Style="{StaticResource bdrWin8btn}" Name="brdReprint" Canvas.Top="380" Height="56" Width="105" Canvas.Left="525" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png"  Width="59"/>-->
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}"
+                                    			x:Name="btnReprint"
+                                    			Content="Re-Print" 
+                                    			 Width="98" Click="btnReprint_Click_1"/>
+                                        </StackPanel>
+                                    </Border>
+
                                     <Border Visibility="Hidden" x:Name="brdPrintlabel"  Canvas.Top="382" Height="56" Width="120" Canvas.Left="374" >
                                         <StackPanel Orientation="Horizontal">
                                             <!--<Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnPrint_Click_1" Width="59"/>-->

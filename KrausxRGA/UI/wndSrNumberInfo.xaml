@@ -52,7 +52,7 @@
 
                                             <Label x:Name="lblcRMADecision" Content="Decision : " Style="{StaticResource lblConstant}" Canvas.Top="115" Width="97" Canvas.Left="78"/>
                                             <Viewbox Height="59" Canvas.Left="26" Canvas.Top="189">
-                                            <CheckBox Height="25" Width="85" Canvas.Top="185" Canvas.Left="26" Content="In Progress" FontSize="12" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
+                                            <CheckBox Height="25" Width="85" Canvas.Top="185" Canvas.Left="26" Content="Flag" FontSize="12" IsEnabled="False" IsChecked="True"  x:Name="chkInProgress"/>
                                             </Viewbox>
                                             <ComboBox x:Name="cmbRMADecision" Height="45" Width="252" Canvas.Left="10" Canvas.Top="136" Style="{StaticResource combo}" 
         										ItemsSource="{Binding RAMStatus}" SelectedValuePath="ID" DisplayMemberPath="Status" SelectedIndex="0" SelectedValue="-1" Foreground="#FF55BFB6" BorderBrush="#FF292929" >
@@ -419,13 +419,22 @@
                                     </Border>
 
                                   
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="234" Canvas.Left="556" >
+                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="380" Height="56" Width="148" Canvas.Left="635" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png" MouseDown="btnHomeDone_Click" Width="59"/>
-                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnHomeDone" Content="Save" Click="btnHomeDone_Click" Width="169"  />
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}" x:Name="btnHomeDone" Content="Save" Click="btnHomeDone_Click" Width="88"  />
                                         </StackPanel>
                                     </Border>
-                                    <Border Visibility="Visible" Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="218" >
+                                    <Border Visibility="Hidden" Style="{StaticResource bdrWin8btn}" Name="brdReprint" Canvas.Top="380" Height="56" Width="105" Canvas.Left="525" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <!--<Image Style="{StaticResource btnImage}" Source="/KrausRGA;component/Images/icoSave.png"  Width="59"/>-->
+                                            <Button Style="{StaticResource ToolBarButtonBaseStyle}"
+                                    			x:Name="btnReprint"
+                                    			Content="Re-Print" 
+                                    			 Width="98" Click="btnReprint_Click_1" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Visibility="Visible"  Style="{StaticResource bdrWin8btn}" Canvas.Top="382" Height="56" Width="218" >
                                         <StackPanel Orientation="Horizontal">
                                             <Image Style="{StaticResource btnImage}"  MouseDown="btnback_Click" Source="/KrausRGA;component/Images/bac.png" Width="36"/>
                                             <Button Style="{StaticResource ToolBarButtonBaseStyle}"

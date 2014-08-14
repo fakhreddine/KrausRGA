@@ -1,6 +1,6 @@
 ﻿<Window x:Class="KrausRGA.UI.wndZoomImageWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Topmost="True"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         Title="Zoom Image" Height="600" Width="500" Loaded="Window_Loaded_1" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
@@ -27,7 +27,7 @@
         </Border>
         
         <Canvas Width="500" Margin="0,74,-8,35">
-             <Image x:Name="imgzoom" Height="490" Width="500" Canvas.Top="10" />
+             <Image x:Name="imgzoom" Height="490" Width="500" Canvas.Top="10" MouseDown="imgzoom_MouseDown_1" />
        </Canvas>
     </Grid>
 </Window>

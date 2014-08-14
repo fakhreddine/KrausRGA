@@ -130,7 +130,7 @@ namespace KrausRGA.Models
             }
             return _lsReasons;
         }
-        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, string calltag, int InProgress)
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, string calltag, int InProgress,DateTime createddate)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -164,7 +164,16 @@ namespace KrausRGA.Models
                 TblRerutn.RMAStatus = RMAStatus;
                 TblRerutn.Decision = Decision;
                 TblRerutn.CreatedBy = CreatedBy;
-                TblRerutn.CreatedDate = DateTime.UtcNow;
+
+
+                if (Views.clGlobal.IsAlreadySaved)
+                {
+                    TblRerutn.CreatedDate = createddate;
+                }
+                else
+                {
+                    TblRerutn.CreatedDate = DateTime.UtcNow;
+                }
                 TblRerutn.UpdatedBy = CreatedBy;
                 TblRerutn.UpdatedDate = DateTime.Now;
 

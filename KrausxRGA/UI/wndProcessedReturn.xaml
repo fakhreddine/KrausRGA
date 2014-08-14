@@ -263,7 +263,7 @@
                             <Image Style="{StaticResource btnImage}"  MouseDown="btnback_Click" Source="/KrausRGA;component/Images/bac.png" Width="36"/>
                             <Button Style="{StaticResource ToolBarButtonBaseStyle}"
                                     			x:Name="btnback"
-                                    			Content="Back" 
+                                    			Content="Home" 
                                     			Click="btnback_Click"  Width="179"  />
                         </StackPanel>
                     </Border>

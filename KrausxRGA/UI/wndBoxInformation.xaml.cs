@@ -63,6 +63,14 @@ namespace KrausRGA.UI
             InitializeComponent();
             bdrMsg.Visibility = System.Windows.Visibility.Hidden;
 
+           // DateTime currentdate = DateTime.UtcNow;
+           // txtdatetime.Text = Convert.ToString(currentdate);
+
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                this.txtdatetime.Text = DateTime.Now.ToString("MM/dd/yyyy HH:mm:s");
+            }, this.Dispatcher);
+
 
         }
 

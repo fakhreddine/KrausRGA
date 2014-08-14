@@ -95,7 +95,7 @@ namespace KrausRGA.Models
             return _reasonID;
         }
 
-        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff,int inprogress,string calltag)
+        public Guid SetReturnTbl(List<Return> lsNewRMA, String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff,int inprogress,string calltag,DateTime CreatedDate)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -108,7 +108,7 @@ namespace KrausRGA.Models
                 TblRerutn.RMANumber = "N/A";//lsNewRMA[0].RMANumber;
                 TblRerutn.ShipmentNumber = lsNewRMA[0].ShipmentNumber;
                 TblRerutn.OrderNumber = "N/A";
-                TblRerutn.PONumber = "N/A";
+                TblRerutn.PONumber = lsNewRMA[0].PONumber;
                 TblRerutn.OrderDate = DateTime.UtcNow;
                 TblRerutn.DeliveryDate = DateTime.UtcNow;
                 TblRerutn.ReturnDate = lsNewRMA[0].ReturnDate;
@@ -129,7 +129,16 @@ namespace KrausRGA.Models
                 TblRerutn.RMAStatus = RMAStatus;
                 TblRerutn.Decision = Decision;
                 TblRerutn.CreatedBy = CreatedBy;
-                TblRerutn.CreatedDate = DateTime.UtcNow;
+
+                if (Views.clGlobal.IsAlreadySaved)
+                {
+                    TblRerutn.CreatedDate = CreatedDate;
+                }
+                else
+                {
+                    TblRerutn.CreatedDate = DateTime.UtcNow;
+                
+                }
                 TblRerutn.UpdatedBy = null;
                 TblRerutn.UpdatedDate = DateTime.Now;
 
@@ -190,10 +199,15 @@ namespace KrausRGA.Models
                 ram3.ID = 2;
                 ram3.Status = "Wrong RMA";
 
+                RAMStatus ram4 = new RAMStatus();
+                ram4.ID = 3;
+                ram4.Status = "To Process";
+
             
                 lsReturn.Add(ram);
                 lsReturn.Add(ram1);
                 lsReturn.Add(ram3);
+                lsReturn.Add(ram4);
 
             }
             catch (Exception ex)

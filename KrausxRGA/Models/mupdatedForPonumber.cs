@@ -93,7 +93,7 @@ namespace KrausRGA.Models
                    rt.Add(new Return(lsitem));
                }
                _ReturnTbl1 = rt.FirstOrDefault(i => i.PONumber == RMANumber);
-               //_ReturnTbl = rt.SingleOrDefault(i=
+               //_ReturnTbl1 = rt.SingleOrDefault(i => i.PONumber == RMANumber);
 
 
            }

@@ -50,10 +50,12 @@ namespace KrausRGA.UI
 
         mUpdateForNewRMA _mUpdate;
 
+        StackPanel spRowImages;
+
         DispatcherTimer dtLoadUpdate;
 
         List<SkuReasonIDSequence> _lsReasonSKU = new List<SkuReasonIDSequence>();
-
+        ScrollViewer SvImagesScroll;
         protected DBLogics.cmdReasons cRtnreasons = new DBLogics.cmdReasons();
 
         Guid ReturnDetailsID;
@@ -196,250 +198,270 @@ namespace KrausRGA.UI
             //txtOtherReason.Text = "";
             //txtItemReason.Text = "";
 
-            WindowThread.start();
-
-            Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
-            Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
-
-            List<Return> _lsreturn = new List<Return>();
-            Return ret = new Return();
-            ret.RMANumber = txtRMANumber.Text;
-            ret.VendoeName = txtVendorName.Text;
-            ret.VendorNumber = txtVendorNumber.Text;
-            ret.ScannedDate = DateTime.UtcNow;
-            ret.ExpirationDate = DateTime.UtcNow.AddDays(60);
-            eastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(txtRMAReqDate.SelectedDate.Value, "Eastern Standard Time");
-            ret.ReturnDate = eastern;
-            ret.PONumber = txtPoNumber.Text;
-            ret.CustomerName1 = txtName.Text;
-            ret.Address1 = txtAddress.Text;
-            ret.City = txtCustCity.Text;
-            ret.Country = txtCountry.Text;
-            ret.ZipCode = txtZipCode.Text;
-            ret.State = txtState.Text;
-            ret.CallTag = txtcalltag.Text;
-            ret.RGAROWID = txtRMANumber.Text;
-
-            _lsreturn.Add(ret);
-
-            int InProgress = 0;
-
-            if (chkInProgress.IsChecked == true)
+            if (dgPackageInfo.Items.Count > 1)
             {
-                InProgress = 1;
-            }
 
 
-            //Save to RMA Master Table.
-            Guid ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.WrongRMAFlag, Views.clGlobal.Warranty, 60, 0, InProgress, txtcalltag.Text);
 
-            if (Views.clGlobal.IsAlreadySaved)
-            {
-                if (clGlobal.newWindowThread.IsAlive)
-                {
-                    clGlobal.newWindowThread.Abort();
-                }
-                MessageBox.Show("RMA number for this return is : " + _mUpdate._ReturnTbl1.RGAROWID);
 
                 WindowThread.start();
-            }
-            else
-            {
-                if (clGlobal.newWindowThread.IsAlive)
+
+                Byte RMAStatus = Convert.ToByte(cmbRMAStatus.SelectedValue.ToString());
+                Byte Decision = Convert.ToByte(cmbRMADecision.SelectedValue.ToString());
+
+                List<Return> _lsreturn = new List<Return>();
+                Return ret = new Return();
+                ret.RMANumber = txtRMANumber.Text;
+                ret.VendoeName = txtVendorName.Text;
+                ret.VendorNumber = txtVendorNumber.Text;
+                ret.ScannedDate = DateTime.UtcNow;
+                ret.ExpirationDate = DateTime.UtcNow.AddDays(60);
+                eastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(txtRMAReqDate.SelectedDate.Value, "Eastern Standard Time");
+                ret.ReturnDate = eastern;
+                ret.PONumber = txtPoNumber.Text;
+                ret.CustomerName1 = txtName.Text;
+                ret.Address1 = txtAddress.Text;
+                ret.City = txtCustCity.Text;
+                ret.Country = txtCountry.Text;
+                ret.ZipCode = txtZipCode.Text;
+                ret.State = txtState.Text;
+                ret.CallTag = txtcalltag.Text;
+                ret.RGAROWID = txtRMANumber.Text;
+
+                _lsreturn.Add(ret);
+
+                int InProgress = 0;
+
+                if (chkInProgress.IsChecked == true)
                 {
-                    clGlobal.newWindowThread.Abort();
+                    InProgress = 1;
                 }
-                MessageBox.Show("RMA number for this return is : " + _mNewRMA.GetNewROWID(ReturnTblID));
-                WindowThread.start();
-            }
 
-            if (Views.clGlobal.IsAlreadySaved)
-            {
-                ReturnTblID = _mUpdate._ReturnTbl1.ReturnID;
-                _lsreturn.Add(_mUpdate._ReturnTbl1);
 
-                foreach (var ReturnDetailsID in _mUpdate._lsReturnDetails1)
+                //Save to RMA Master Table.
+                Guid ReturnTblID;
+                if (Views.clGlobal.IsAlreadySaved)
                 {
-                    _mponumber.DeleteReturnDetails(ReturnDetailsID.ReturnDetailID);
-                }
-            }
 
-            for (int i = 0; i < dgPackageInfo.Items.Count - 1; i++)
-            {
-
-                DataGridCell cell = GetCell(i, 1);
-                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
-                DataTemplate DataTemp = CntPersenter.ContentTemplate;
-
-                SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
-
-
-                DataGridCell cell1 = GetCell(i, 5);
-                ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
-                DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
-                PName = ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text.ToString();
-
-
-                DataGridCell cell2 = GetCell(i, 2);
-                ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
-                DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
-                Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
-
-                DataGridCell cellforProductID = GetCell(i, 7);
-                ContentPresenter CntPersenterforProductID = cellforProductID.Content as ContentPresenter;
-                DataTemplate DataTempforProductID = CntPersenterforProductID.ContentTemplate;
-                ProductID = ((TextBox)DataTempforProductID.FindName("txtProductID", CntPersenterforProductID)).Text;//= _mNewRMA.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
-
-                DataGridCell cellforSales = GetCell(i, 8);
-                ContentPresenter CntPersenterforSales = cellforSales.Content as ContentPresenter;
-                DataTemplate DataTempforSales = CntPersenterforSales.ContentTemplate;
-                SalesPrices = ((TextBox)DataTempforSales.FindName("txtSalesPrice", CntPersenterforSales)).Text;// = "0"
-
-
-                DataGridCell cell4 = GetCell(i, 3);
-                ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
-                DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
-                StackPanel SpImages = (StackPanel)DataTemp4.FindName("spProductImages", CntPersenter4);
-
-
-                if (SKU != null) _SKU = SKU;
-                if (PName != null) _PName = PName;
-                if (Qty != null) _Qty = Qty;
-                if (Cat != null) _Cat = Cat;
-
-                //string SKUNewName = "";
-                //if (listofstatus.Count > 0)
-                //{
-                //    for (int j = 0; j < listofstatus.Count; j++)
-                //    {
-                //        if (listofstatus[j].SKUName == _SKU)
-                //        {
-                //            SKUNewName = _SKU;
-                //            Views.clGlobal.SKU_Staus = listofstatus[j].Status;
-                //            Views.clGlobal.TotalPoints = listofstatus[j].Points;
-                //            break;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    SKUNewName = _SKU;
-                //    Views.clGlobal.SKU_Staus = "Reject";
-                //    Views.clGlobal.TotalPoints = 0;
-                //}
-
-                string SKUNewName = "";
-                Boolean checkflag = false;
-                if (listofstatus.Count > 0)
-                {
-                    for (int k = listofstatus.Count - 1; k >= 0; k--)
-                    {
-                        if (listofstatus[k].SKUName == SKU && listofstatus[k].NewItemQuantity == Convert.ToInt16(PName))
-                        {
-                            SKUNewName = SKU;
-                            Views.clGlobal.SKU_Staus = listofstatus[k].Status;
-                            Views.clGlobal.TotalPoints = listofstatus[k].Points;
-                            Views.clGlobal.IsScanned = listofstatus[k].IsScanned;
-                            Views.clGlobal.IsManually = listofstatus[k].IsMannually;
-                            Views.clGlobal.NewItemQty = listofstatus[k].NewItemQuantity;
-                            Views.clGlobal._SKU_Qty_Seq = listofstatus[k].skusequence;
-
-                            listofstatus.RemoveAt(k);
-                            checkflag = true;
-
-                            break;
-                        }
-
-                    }
-                    if (!checkflag)
-                    {
-                        Views.clGlobal.SKU_Staus = "";
-                        Views.clGlobal.TotalPoints = 0;
-                        Views.clGlobal.IsScanned = 1;//listofstatus[i].IsScanned;
-                        Views.clGlobal.IsManually = 1;//listofstatus[i].IsMannually;
-                        Views.clGlobal.NewItemQty = 1;
-                        Views.clGlobal._SKU_Qty_Seq = 0;
-                    }
+                    ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.WrongRMAFlag, Views.clGlobal.Warranty, 60, 0, InProgress, txtcalltag.Text, _mUpdate._ReturnTbl1.CreatedDate);
                 }
                 else
                 {
-                    SKUNewName = SKU;
+                    ReturnTblID = _mNewRMA.SetReturnTbl(_lsreturn, "", RMAStatus, Decision, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.WrongRMAFlag, Views.clGlobal.Warranty, 60, 0, InProgress, txtcalltag.Text, DateTime.UtcNow);
+                }
+
+                if (Views.clGlobal.IsAlreadySaved)
+                {
+                    if (clGlobal.newWindowThread.IsAlive)
+                    {
+                        clGlobal.newWindowThread.Abort();
+                    }
+                    MessageBox.Show("RMA number for this return is : " + _mUpdate._ReturnTbl1.RGAROWID);
+
+                    WindowThread.start();
+                }
+                else
+                {
+                    if (clGlobal.newWindowThread.IsAlive)
+                    {
+                        clGlobal.newWindowThread.Abort();
+                    }
+                    MessageBox.Show("RMA number for this return is : " + _mNewRMA.GetNewROWID(ReturnTblID));
+                    WindowThread.start();
+                }
+
+                if (Views.clGlobal.IsAlreadySaved)
+                {
+                    ReturnTblID = _mUpdate._ReturnTbl1.ReturnID;
+                    _lsreturn.Add(_mUpdate._ReturnTbl1);
+
+                    foreach (var ReturnDetailsID in _mUpdate._lsReturnDetails1)
+                    {
+                        _mponumber.DeleteReturnDetails(ReturnDetailsID.ReturnDetailID);
+                    }
+                }
+
+                for (int i = 0; i < dgPackageInfo.Items.Count - 1; i++)
+                {
+
+                    DataGridCell cell = GetCell(i, 1);
+                    ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                    DataTemplate DataTemp = CntPersenter.ContentTemplate;
+
+                    SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
+
+
+                    DataGridCell cell1 = GetCell(i, 5);
+                    ContentPresenter CntPersenter1 = cell1.Content as ContentPresenter;
+                    DataTemplate DataTemp1 = CntPersenter1.ContentTemplate;
+                    PName = ((TextBlock)DataTemp1.FindName("tbDQyt", CntPersenter1)).Text.ToString();
+
+
+                    DataGridCell cell2 = GetCell(i, 2);
+                    ContentPresenter CntPersenter2 = cell2.Content as ContentPresenter;
+                    DataTemplate DataTemp2 = CntPersenter2.ContentTemplate;
+                    Qty = ((TextBox)DataTemp2.FindName("tbQty", CntPersenter2)).Text.ToString();
+
+                    DataGridCell cellforProductID = GetCell(i, 7);
+                    ContentPresenter CntPersenterforProductID = cellforProductID.Content as ContentPresenter;
+                    DataTemplate DataTempforProductID = CntPersenterforProductID.ContentTemplate;
+                    ProductID = ((TextBox)DataTempforProductID.FindName("txtProductID", CntPersenterforProductID)).Text;//= _mNewRMA.GetSKUNameAndProductNameByItem(txtbarcode.Text.TrimStart('0').ToString()).ToString().Split(new char[] { '@' })[1];
+
+                    DataGridCell cellforSales = GetCell(i, 8);
+                    ContentPresenter CntPersenterforSales = cellforSales.Content as ContentPresenter;
+                    DataTemplate DataTempforSales = CntPersenterforSales.ContentTemplate;
+                    SalesPrices = ((TextBox)DataTempforSales.FindName("txtSalesPrice", CntPersenterforSales)).Text;// = "0"
+
+
+                    DataGridCell cell4 = GetCell(i, 3);
+                    ContentPresenter CntPersenter4 = cell4.Content as ContentPresenter;
+                    DataTemplate DataTemp4 = CntPersenter4.ContentTemplate;
+                    StackPanel SpImages = (StackPanel)DataTemp4.FindName("spProductImages", CntPersenter4);
+
+
+                    if (SKU != null) _SKU = SKU;
+                    if (PName != null) _PName = PName;
+                    if (Qty != null) _Qty = Qty;
+                    if (Cat != null) _Cat = Cat;
+
+                    //string SKUNewName = "";
+                    //if (listofstatus.Count > 0)
+                    //{
+                    //    for (int j = 0; j < listofstatus.Count; j++)
+                    //    {
+                    //        if (listofstatus[j].SKUName == _SKU)
+                    //        {
+                    //            SKUNewName = _SKU;
+                    //            Views.clGlobal.SKU_Staus = listofstatus[j].Status;
+                    //            Views.clGlobal.TotalPoints = listofstatus[j].Points;
+                    //            break;
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    SKUNewName = _SKU;
+                    //    Views.clGlobal.SKU_Staus = "Reject";
+                    //    Views.clGlobal.TotalPoints = 0;
+                    //}
+
+                    string SKUNewName = "";
+                    Boolean checkflag = false;
+                    if (listofstatus.Count > 0)
+                    {
+                        for (int k = listofstatus.Count - 1; k >= 0; k--)
+                        {
+                            if (listofstatus[k].SKUName == SKU && listofstatus[k].NewItemQuantity == Convert.ToInt16(PName))
+                            {
+                                SKUNewName = SKU;
+                                Views.clGlobal.SKU_Staus = listofstatus[k].Status;
+                                Views.clGlobal.TotalPoints = listofstatus[k].Points;
+                                Views.clGlobal.IsScanned = listofstatus[k].IsScanned;
+                                Views.clGlobal.IsManually = listofstatus[k].IsMannually;
+                                Views.clGlobal.NewItemQty = listofstatus[k].NewItemQuantity;
+                                Views.clGlobal._SKU_Qty_Seq = listofstatus[k].skusequence;
+
+                                listofstatus.RemoveAt(k);
+                                checkflag = true;
+
+                                break;
+                            }
+
+                        }
+                        if (!checkflag)
+                        {
+                            Views.clGlobal.SKU_Staus = "";
+                            Views.clGlobal.TotalPoints = 0;
+                            Views.clGlobal.IsScanned = 1;//listofstatus[i].IsScanned;
+                            Views.clGlobal.IsManually = 1;//listofstatus[i].IsMannually;
+                            Views.clGlobal.NewItemQty = 1;
+                            Views.clGlobal._SKU_Qty_Seq = 0;
+                        }
+                    }
+                    else
+                    {
+                        SKUNewName = SKU;
+                        Views.clGlobal.SKU_Staus = "";
+                        Views.clGlobal.TotalPoints = 0;
+                        Views.clGlobal.IsScanned = 1;
+                        Views.clGlobal.IsManually = 1;
+                        Views.clGlobal.NewItemQty = 1;
+                        Views.clGlobal._SKU_Qty_Seq = 0;
+                    }
+
+
+                    if (_SKU != "")
+                    {
+                        ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, 1, 1, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID, Convert.ToDecimal(SalesPrices));
+                    }
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        for (int j = dt.Rows.Count - 1; j >= 0; j--)
+                        {
+                            DataRow d = dt.Rows[j];
+                            if (d["SKU"].ToString() == SKU && d["ItemQuantity"].ToString() == PName)
+                            {
+                                Guid ReturnedSKUPoints = _mNewRMA.SetReturnedSKUPoints(Guid.NewGuid(), ReturnDetailsID, ReturnTblID, dt.Rows[j][0].ToString(), dt.Rows[j][1].ToString(), dt.Rows[j][2].ToString(), Convert.ToInt16(dt.Rows[j][3].ToString()), Convert.ToInt16(dt.Rows[j][4].ToString()));
+                                d.Delete();
+                            }
+                        }
+                    }
+
+
+                    if (_lsReasonSKU.Count > 0)
+                    {
+                        for (int k = _lsReasonSKU.Count - 1; k >= 0; k--)
+                        {
+                            if (_lsReasonSKU[k].SKUName == SKU && _lsReasonSKU[k].SKU_sequence == Convert.ToInt16(PName))
+                            {
+                                _mNewRMA.SetTransaction(Guid.NewGuid(), _lsReasonSKU[k].ReasonID, ReturnDetailsID);
+                                _lsReasonSKU.RemoveAt(k);
+                            }
+                        }
+                    }
+
+                    foreach (Image imageCaptured in SpImages.Children)
+                    {
+                        String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpg";
+
+                        //Set Images table from model.
+                        Guid ImageID = _mNewRMA.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
+                    }
+
+                    if (_SKU != "")
+                    {
+                        if (chkPrintLabel.IsChecked == true)
+                        {
+                            wndSlipPrint slip = new wndSlipPrint();
+
+                            Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
+
+                            slip.ShowDialog();
+                        }
+                    }
                     Views.clGlobal.SKU_Staus = "";
                     Views.clGlobal.TotalPoints = 0;
-                    Views.clGlobal.IsScanned = 1;
-                    Views.clGlobal.IsManually = 1;
-                    Views.clGlobal.NewItemQty = 1;
-                    Views.clGlobal._SKU_Qty_Seq = 0;
                 }
 
-
-                if (_SKU != "")
+                if (clGlobal.newWindowThread.IsAlive)
                 {
-                    ReturnDetailsID = _mNewRMA.SetReturnDetailTbl(ReturnTblID, _SKU, _PName, 0, 0, Convert.ToInt32(_Qty), _Cat, clGlobal.mCurrentUser.UserInfo.UserID, Views.clGlobal.SKU_Staus, Views.clGlobal.TotalPoints, 1, 1, Views.clGlobal.NewItemQty, Views.clGlobal._SKU_Qty_Seq, ProductID, Convert.ToDecimal(SalesPrices));
+                    clGlobal.newWindowThread.Abort();
                 }
 
-
-                if (dt.Rows.Count > 0)
-                {
-                    for (int j = dt.Rows.Count - 1; j >= 0; j--)
-                    {
-                        DataRow d = dt.Rows[j];
-                        if (d["SKU"].ToString() == SKU && d["ItemQuantity"].ToString() == PName)
-                        {
-                            Guid ReturnedSKUPoints = _mNewRMA.SetReturnedSKUPoints(Guid.NewGuid(), ReturnDetailsID, ReturnTblID, dt.Rows[j][0].ToString(), dt.Rows[j][1].ToString(), dt.Rows[j][2].ToString(), Convert.ToInt16(dt.Rows[j][3].ToString()), Convert.ToInt16(dt.Rows[j][4].ToString()));
-                            d.Delete();
-                        }
-                    }
-                }
-
-
-                if (_lsReasonSKU.Count > 0)
-                {
-                    for (int k = _lsReasonSKU.Count - 1; k >= 0; k--)
-                    {
-                        if (_lsReasonSKU[k].SKUName == SKU && _lsReasonSKU[k].SKU_sequence == Convert.ToInt16(PName))
-                        {
-                            _mNewRMA.SetTransaction(Guid.NewGuid(), _lsReasonSKU[k].ReasonID, ReturnDetailsID);
-                            _lsReasonSKU.RemoveAt(k);
-                        }
-                    }
-                }
-
-                foreach (Image imageCaptured in SpImages.Children)
-                {
-                    String NameImage = KrausRGA.Properties.Settings.Default.DrivePath + "\\" + imageCaptured.Name.ToString() + ".jpg";
-
-                    //Set Images table from model.
-                    Guid ImageID = _mNewRMA.SetReturnedImages(ReturnDetailsID, NameImage, clGlobal.mCurrentUser.UserInfo.UserID);
-                }
-
-                if (_SKU != "")
-                {
-                    if (chkPrintLabel.IsChecked == true)
-                    {
-                        wndSlipPrint slip = new wndSlipPrint();
-
-                        Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(ReturnTblID), cmbRMAStatus.SelectedIndex.ToString(), Views.clGlobal.SKU_Staus);
-
-                        slip.ShowDialog();
-                    }
-                }
-                Views.clGlobal.SKU_Staus = "";
-                Views.clGlobal.TotalPoints = 0;
+                wndBoxInformation wndBox = new wndBoxInformation();
+                clGlobal.IsUserlogged = true;
+                Views.clGlobal.IsAlreadySaved = false;
+                this.Close();
+                //close wait screen.
+                // WindowThread.Stop();
+                wndBox.Show();
             }
-
-            if (clGlobal.newWindowThread.IsAlive)
+            else
             {
-                clGlobal.newWindowThread.Abort();
+                MessageBox.Show("Save Failed. Enter Data.");
             }
-
-            wndBoxInformation wndBox = new wndBoxInformation();
-            clGlobal.IsUserlogged = true;
-            Views.clGlobal.IsAlreadySaved = false;
-            this.Close();
-            //close wait screen.
-           // WindowThread.Stop();
-            wndBox.Show(); 
 
         }
 
@@ -563,22 +585,32 @@ namespace KrausRGA.UI
      
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
-            if (clGlobal.Redirect == "Processed")
-            {
-                WindowThread.start();       
-                wndProcessedReturn processed = new wndProcessedReturn();
-                processed.Show();
-                Views.clGlobal.IsAlreadySaved = false;
-                this.Close();
-            }
-            else
-            {
-                wndBoxInformation boxinfo = new wndBoxInformation();
-                clGlobal.IsUserlogged = true;
-                boxinfo.Show();
-                Views.clGlobal.IsAlreadySaved = false;
-                this.Close();
-            }
+
+             MessageBoxResult result = MessageBox.Show("Do you want to leave this page?", "Warning", MessageBoxButton.YesNo);
+
+             if (result == MessageBoxResult.Yes)
+             {
+                 if (clGlobal.Redirect == "Processed")
+                 {
+                     WindowThread.start();
+                     wndProcessedReturn processed = new wndProcessedReturn();
+                     processed.Show();
+                     Views.clGlobal.IsAlreadySaved = false;
+                     this.Close();
+                 }
+                 else
+                 {
+                     wndBoxInformation boxinfo = new wndBoxInformation();
+                     clGlobal.IsUserlogged = true;
+                     boxinfo.Show();
+                     Views.clGlobal.IsAlreadySaved = false;
+                     this.Close();
+                 }
+             }
+             else
+             { 
+             
+             }
         }
 
         public void FillRMAStausAndDecision()
@@ -638,8 +670,15 @@ namespace KrausRGA.UI
 
                 // List<RMAInfo> lsCustomeronfo = _mNewRMA.GetCustomer(Views.clGlobal.Ponumber);
                 lstponumber.Visibility = Visibility.Hidden;
+                lstVenderName.Visibility = Visibility.Hidden;
+                lstVenderNumber.Visibility = Visibility.Hidden;
+
 
                 brdPrint.Visibility = Visibility.Visible;
+
+                btnHomeDone.Content = "Update";
+
+                brdReprint.Visibility = Visibility.Visible;
 
                 brdPrintlabel.Visibility = Visibility.Visible;
                 chkPrintLabel.IsChecked = false;
@@ -807,7 +846,9 @@ namespace KrausRGA.UI
 
                                         Image img = new Image();
                                         //Zoom image.
-                                        img.MouseEnter += img_MouseEnter;
+                                        img.MouseLeftButtonDown += img_MouseLeftButtonDown;
+
+                                        img.MouseRightButtonDown += img_MouseRightButtonDown;
 
                                         img.Height = 50;
                                         img.Width = 50;
@@ -1119,8 +1160,17 @@ namespace KrausRGA.UI
             }
             else
             {
-                lstponumber.ItemsSource = _mNewRMA.GetPOnumber(txtPoNumber.Text);
-                lstponumber.Visibility = Visibility.Visible;
+                if (_mNewRMA.GetPOnumber(txtPoNumber.Text).Count > 0)
+                {
+                    lstponumber.ItemsSource = _mNewRMA.GetPOnumber(txtPoNumber.Text);
+                    lstponumber.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    lstponumber.Visibility = Visibility.Hidden;
+                }
+
+             
             }
         }
 
@@ -1162,8 +1212,15 @@ namespace KrausRGA.UI
             }
             else
             {
-                lstVenderNumber.ItemsSource = _mNewRMA.GetVanderNumber(txtVendorNumber.Text.ToUpper());
-                lstVenderNumber.Visibility = Visibility.Visible;
+                if (_mNewRMA.GetVanderNumber(txtVendorNumber.Text.ToUpper()).Count > 0)
+                {
+                    lstVenderNumber.ItemsSource = _mNewRMA.GetVanderNumber(txtVendorNumber.Text.ToUpper());
+                    lstVenderNumber.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    lstVenderNumber.Visibility = Visibility.Hidden;
+                }
             }
         }
 
@@ -1207,8 +1264,17 @@ namespace KrausRGA.UI
             }
             else
             {
-                lstVenderName.ItemsSource = _mNewRMA.GetVenderName(txtVendorName.Text.ToUpper());
-                lstVenderName.Visibility = Visibility.Visible;
+                if (_mNewRMA.GetVenderName(txtVendorName.Text.ToUpper()).Count > 0)
+                {
+                    lstVenderName.ItemsSource = _mNewRMA.GetVenderName(txtVendorName.Text.ToUpper());
+                    lstVenderName.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    lstVenderName.Visibility = Visibility.Hidden;
+                }
+
+              
             }
         }
 
@@ -2318,7 +2384,7 @@ namespace KrausRGA.UI
             ContentPresenter CntImag = dgPackageInfo.Columns[3].GetCellContent(row) as ContentPresenter;
             DataTemplate DtImages = CntImag.ContentTemplate;
 
-            StackPanel spRowImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
+             spRowImages = (StackPanel)DtImages.FindName("spProductImages", CntImag);
 
             if (GreenRowsNumber1.Contains(row.GetIndex()))
             {
@@ -2342,7 +2408,9 @@ namespace KrausRGA.UI
                                 //Zoom image.
                                 // img.MouseEnter += img_MouseEnter;
 
-                                img.MouseDown += img_MouseDown;
+                                img.MouseLeftButtonDown += img_MouseLeftButtonDown;
+
+                                img.MouseRightButtonDown += img_MouseRightButtonDown;
 
                                 img.Height = 50;
                                 img.Width = 50;
@@ -2382,7 +2450,7 @@ namespace KrausRGA.UI
                     dlg.DefaultExt = ".png";
                     dlg.Filter = "JPG Files (*.jpg)|*.jpg";
 
-
+                    dlg.Multiselect = true;
                     // Display OpenFileDialog by calling ShowDialog method 
                     Nullable<bool> result1 = dlg.ShowDialog();
 
@@ -2391,40 +2459,50 @@ namespace KrausRGA.UI
                     if (result1 == true)
                     {
                         // Open document 
-                        string filename = dlg.FileName;
+                        foreach (String file in dlg.FileNames)
+                        {
+                            // string filename = dlg.FileName;                        
+                            string filename = file;
+                            string AName = RemoveSpecialCharacters(file);
 
-                        string AName = RemoveSpecialCharacters(dlg.SafeFileName);
+                            string source = "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName;
 
-                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
+                            Barcode.Camera.CopytoNetwork(source);
+                            // Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
 
-                        // textBox1.Text = filename;
-                        string path = "C:\\Images\\";
+                            // textBox1.Text = filename;
+                            string path = "C:\\Images\\";
 
-                      //  DateTime dt = DateTime.Now;
+                            //  DateTime dt = DateTime.Now;
 
-                        File.Copy(filename, path + "\\" + "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName, true);
+                            File.Copy(filename, path + "\\" + source, true);
 
-                        Barcode.Camera.CopytoNetwork("img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName);
+                            Barcode.Camera.CopytoNetwork(source);
 
-                        BitmapSource bs = new BitmapImage(new Uri(path + "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName));
+                            BitmapSource bs = new BitmapImage(new Uri(path + source));
 
-                        Image img = new Image();
-                        //Zoom image.
-                        // img.MouseEnter += img_MouseEnter;
+                            Image img = new Image();
+                            //Zoom image.
+                            // img.MouseEnter += img_MouseEnter;
 
-                      
 
-                        img.MouseDown += img_MouseDown;
 
-                        img.Height = 50;
-                        img.Width = 50;
-                        img.Stretch = Stretch.Fill;
-                        img.Name = "img" + RemoveSpecialCharacters(Convert.ToString(DateTime.Now)) + AName.ToString().Split(new char[] { '.' })[0];
-                        img.Source = bs;
-                        img.Margin = new Thickness(0.5);
+                            img.MouseLeftButtonDown += img_MouseLeftButtonDown;
 
-                        //Images added to the Row.
-                        _addToStackPanel(spRowImages, img);
+                            img.MouseRightButtonDown += img_MouseRightButtonDown;
+
+                            img.Height = 50;
+                            img.Width = 50;
+                            img.Stretch = Stretch.Fill;
+                            img.Name = source.ToString().Split(new char[] { '.' })[0];
+                            img.Source = bs;
+                            img.Margin = new Thickness(0.5);
+
+                            //Images added to the Row.
+                            // foreach (String file in dlg.FileNames)
+                            //{
+                            _addToStackPanel(spRowImages, img);
+                        }
 
                     }
                 }
@@ -2443,18 +2521,167 @@ namespace KrausRGA.UI
             }
         }
 
+        void img_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //throw new NotImplementedException();
+            MessageBoxResult result = MessageBox.Show("Do you want to remove the image", "Confirmation", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _RemoveFromStackPanel(spRowImages, (Image)sender);
+            }
+            else
+            {
+
+            }
+        }
+
+        void img_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //throw new NotImplementedException();
+
+            clGlobal.Zoomimages = (Image)sender;
+
+            wndZoomImageWindow zoom = new wndZoomImageWindow();
+            zoom.ShowDialog();
+        }
+
         public static string RemoveSpecialCharacters(string str)
         {
             return Regex.Replace(str, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled);
         }
         void img_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            clGlobal.Zoomimages = (Image)sender;
+            //clGlobal.Zoomimages = (Image)sender;
 
-            wndZoomImageWindow zoom = new wndZoomImageWindow();
-            zoom.ShowDialog();
+            //wndZoomImageWindow zoom = new wndZoomImageWindow();
+            //zoom.ShowDialog();
             //throw new NotImplementedException();
         }
-       
+        protected void _RemoveFromStackPanel(StackPanel StackPanelName, Image CapImage)
+        {
+            try
+            {
+                StackPanelName.Children.Remove(CapImage);
+                SvImagesScroll.ScrollToRightEnd();
+            }
+            catch (Exception)
+            { }
+        }
+
+        private void btnReprint_Click_1(object sender, RoutedEventArgs e)
+        {
+            List<Return> _lsreturn = new List<Return>();
+            Return ret = new Return();
+            ret.RMANumber = txtRMANumber.Text;
+            ret.VendoeName = txtVendorName.Text;
+            ret.VendorNumber = txtVendorNumber.Text;
+            ret.ScannedDate = DateTime.UtcNow;
+            ret.ExpirationDate = DateTime.UtcNow.AddDays(60);
+            eastern = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(txtRMAReqDate.SelectedDate.Value, "Eastern Standard Time");
+            ret.ReturnDate = eastern;
+            ret.PONumber = txtPoNumber.Text;
+            ret.CustomerName1 = txtName.Text;
+            ret.Address1 = txtAddress.Text;
+            ret.City = txtCustCity.Text;
+            ret.Country = txtCountry.Text;
+            ret.ZipCode = txtZipCode.Text;
+            ret.State = txtState.Text;
+            ret.CallTag = txtcalltag.Text;
+            ret.RGAROWID = txtRMANumber.Text;
+
+            _lsreturn.Add(ret);
+
+
+            for (int i = 0; i < dgPackageInfo.Items.Count - 1; i++)
+            {
+                DataGridCell cell = GetCell(i, 1);
+                ContentPresenter CntPersenter = cell.Content as ContentPresenter;
+                DataTemplate DataTemp = CntPersenter.ContentTemplate;
+
+                SKU = ((TextBox)DataTemp.FindName("txtSKU", CntPersenter)).Text.ToString();
+
+                DataGridCell cellforProductID = GetCell(i, 6);
+                ContentPresenter CntPersenterforProductID = cellforProductID.Content as ContentPresenter;
+                DataTemplate DataTempforProductID = CntPersenterforProductID.ContentTemplate;
+                string sku_status = ((TextBlock)DataTempforProductID.FindName("tbskustatus", CntPersenterforProductID)).Text;
+
+                DataGridRow row = (DataGridRow)dgPackageInfo.ItemContainerGenerator.ContainerFromIndex(i);
+
+                if (_SKU != "")
+                {
+                    if (Views.clGlobal.IsAlreadySaved)
+                    {
+                        if (row.Background == Brushes.SkyBlue)
+                        {
+                            wndSlipPrint slip = new wndSlipPrint();
+
+                            Views.clGlobal.lsSlipInfo = _mNewRMA.GetSlipInfo(_lsreturn, _SKU, _mNewRMA.GetENACodeByItem(_SKU), "", _mNewRMA.GetNewROWID(_mUpdate._ReturnTbl1.ReturnID), cmbRMAStatus.SelectedIndex.ToString(), sku_status);
+
+                            slip.ShowDialog();
+                        }
+                    }
+                }
+            }
+        }
+
+        //private byte[] GetCroppedImage(byte[] originalBytes, Size size, ImageFormat format)
+        //{
+        //    using (var streamOriginal = new MemoryStream(originalBytes))
+        //    using (var imgOriginal = Image.FromStream(streamOriginal))
+        //    {
+        //        //get original width and height of the incoming image
+        //        var originalWidth = imgOriginal.Width; // 1000
+        //        var originalHeight = imgOriginal.Height; // 800
+
+        //        //get the percentage difference in size of the dimension that will change the least
+        //        var percWidth = ((float)size.Width / (float)originalWidth); // 0.2
+        //        var percHeight = ((float)size.Height / (float)originalHeight); // 0.25
+        //        var percentage = Math.Max(percHeight, percWidth); // 0.25
+
+        //        //get the ideal width and height for the resize (to the next whole number)
+        //        var width = (int)Math.Max(originalWidth * percentage, size.Width); // 250
+        //        var height = (int)Math.Max(originalHeight * percentage, size.Height); // 200
+
+        //        //actually resize it
+        //        using (var resizedBmp = new System.Drawing.Bitmap(width, height))
+        //        {
+        //            using (var graphics = System.Drawing.Graphics.FromImage((Image)resizedBmp))
+        //            {
+        //                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
+        //                graphics.DrawImage(imgOriginal, 0, 0, width, height);
+        //            }
+
+        //            //work out the coordinates of the top left pixel for cropping
+        //            var x = (width - size.Width) / 2; // 25
+        //            var y = (height - size.Height) / 2; // 0
+
+        //            //create the cropping rectangle
+        //            var rectangle = new Rectangle(x, y, size.Width, size.Height); // 25, 0, 200, 200
+
+        //            //crop
+        //            using (var croppedBmp = resizedBmp.Clone(rectangle, resizedBmp.PixelFormat))
+        //            using (var ms = new MemoryStream())
+        //            {
+        //                //get the codec needed
+        //                var imgCodec = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == format.Guid);
+
+        //                //make a paramater to adjust quality
+        //                var codecParams = new EncoderParameters(1);
+
+        //                //reduce to quality of 80 (from range of 0 (max compression) to 100 (no compression))
+        //                codecParams.Param[0] = new EncoderParameter(Encoder.Quality, 80L);
+
+        //                //save to the memorystream - convert it to an array and send it back as a byte[]
+        //                croppedBmp.Save(ms, imgCodec, codecParams);
+        //                return ms.ToArray();
+        //            }
+        //        }
+        //    }
+        //}
+
+
+
+
     }
 }

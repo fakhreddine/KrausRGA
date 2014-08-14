@@ -67,7 +67,7 @@ namespace KrausRGA.UI
             }
             else
             {
-                var sort = (from so in clGlobal.lsreturnShow where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+                var sort = (from so in clGlobal.lsreturnShow where so.RMAStatus == 0 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
 
                 dgPackageInfo.ItemsSource = sort;
 
@@ -244,12 +244,14 @@ namespace KrausRGA.UI
            // DataRowView row = (DataRowView)dgPackageInfo.SelectedItems[0];
             //string val = rows[0] //row["Column ID"].ToString();
 
-            WindowThread.start();
+           
 
             int selectedIndex = dgPackageInfo.SelectedIndex;
 
             if (selectedIndex != -1)
             {
+                WindowThread.start();
+
                 DataGridCell cell = GetCell(selectedIndex, 8);
                 ContentPresenter CntPersenter = cell.Content as ContentPresenter;
                 DataTemplate DataTemp = CntPersenter.ContentTemplate;
@@ -456,6 +458,7 @@ namespace KrausRGA.UI
                         else
                         {
                             // row1.IsEnabled = false;
+                            row1.Background = Brushes.LightPink;
                             ProgressFlag.Text = "Flag";
                         }
                     }
@@ -474,6 +477,10 @@ namespace KrausRGA.UI
                         else if (RMAStatus.Text == "2")
                         {
                             RMAStatus.Text = "Wrong RMA";
+                        }
+                        else if (RMAStatus.Text == "3")
+                        {
+                            RMAStatus.Text = "To Process";
                         }
                 }
             }
@@ -575,7 +582,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where p.ProgressFlag == 1 && p.RMANumber == txtsearch.Text
+                                      where p.RMAStatus == 0 && p.RMANumber == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
                         if (!filter.Any())
                         {
@@ -619,7 +626,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where p.ProgressFlag == 1 && p.PONumber == txtsearch.Text
+                                      where p.RMAStatus == 0 && p.PONumber == txtsearch.Text
                                       select p).OrderByDescending(y => y.RGAROWID);
                         if (!filter.Any())
                         {
@@ -664,7 +671,7 @@ namespace KrausRGA.UI
                 }
                 else
                 {
-                    var sort = (from so in clGlobal.lsreturnShow where so.ProgressFlag == 1 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
+                    var sort = (from so in clGlobal.lsreturnShow where so.RMAStatus == 0 select so).OrderByDescending(x => x.RGAROWID); //RGAROWID
                     dgPackageInfo.ItemsSource = sort;// cReturnTbl.GetReturnTbl();
                 }
             }
@@ -726,7 +733,7 @@ namespace KrausRGA.UI
                 else
                 {
                     var filter = (from p in clGlobal.lsreturnShow
-                                  where p.ProgressFlag == 1 && p.RGAROWID == txtsearch.Text
+                                  where p.RMAStatus == 0 && p.RGAROWID == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
                     if (!filter.Any())
                     {
@@ -770,7 +777,7 @@ namespace KrausRGA.UI
                 else
                 {
                     var filter = (from p in clGlobal.lsreturnShow
-                                  where p.ProgressFlag == 1 && p.RMANumber == txtsearch.Text
+                                  where p.RMAStatus == 0 && p.RMANumber == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
                     if (!filter.Any())
                     {
@@ -814,7 +821,7 @@ namespace KrausRGA.UI
                 else
                 {
                     var filter = (from p in clGlobal.lsreturnShow
-                                  where p.ProgressFlag == 1 && p.PONumber == txtsearch.Text
+                                  where p.RMAStatus == 0 && p.PONumber == txtsearch.Text
                                   select p).OrderByDescending(y => y.RGAROWID);
                     if (!filter.Any())
                     {
@@ -981,7 +988,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.RMANumber);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -989,7 +996,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ProgressFlag == 1)
+                                      where (p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.RMANumber);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1023,7 +1030,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.PONumber);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1031,7 +1038,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ProgressFlag == 1)
+                                      where (p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.PONumber);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1065,7 +1072,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.ReturnDate);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1073,7 +1080,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ProgressFlag == 1)
+                                      where (p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.ReturnDate);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1106,7 +1113,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.CreatedDate);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1114,7 +1121,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ProgressFlag == 1)
+                                      where (p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.CreatedDate);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1146,7 +1153,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.RGAROWID);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1154,7 +1161,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ProgressFlag == 1)
+                                      where (p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.RGAROWID);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1186,7 +1193,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.RMAStatus);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1194,7 +1201,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ProgressFlag == 1)
+                                      where (p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.RMAStatus);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1226,7 +1233,7 @@ namespace KrausRGA.UI
                     if (cmbSearchBy.SelectedIndex == 4)
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                      where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.ProgressFlag);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1234,7 +1241,7 @@ namespace KrausRGA.UI
                     else
                     {
                         var filter = (from p in clGlobal.lsreturnShow
-                                      where (p.ProgressFlag == 1)
+                                      where (p.RMAStatus == 0)
                                       select p).OrderByDescending(y => y.ProgressFlag);
 
                         dgPackageInfo.ItemsSource = filter;
@@ -1282,7 +1289,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.RMANumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1290,7 +1297,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.RMANumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1324,7 +1331,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.PONumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1332,7 +1339,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.PONumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1366,7 +1373,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.ReturnDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1374,7 +1381,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.ReturnDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1407,7 +1414,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.CreatedDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1415,7 +1422,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.CreatedDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1447,7 +1454,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.RGAROWID);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1455,7 +1462,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.RGAROWID);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1487,7 +1494,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.RMAStatus);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1495,7 +1502,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.RMAStatus);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1527,7 +1534,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.ProgressFlag);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1535,7 +1542,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderByDescending(y => y.ProgressFlag);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1579,7 +1586,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderBy(y => y.RMANumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1587,7 +1594,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderBy(y => y.RMANumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1621,7 +1628,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderBy(y => y.PONumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1629,7 +1636,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderBy(y => y.PONumber);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1663,7 +1670,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderBy(y => y.ReturnDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1671,7 +1678,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderBy(y => y.ReturnDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1704,7 +1711,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderBy(y => y.CreatedDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1712,7 +1719,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderBy(y => y.CreatedDate);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1744,7 +1751,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderBy(y => y.RGAROWID);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1752,7 +1759,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderBy(y => y.RGAROWID);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1784,7 +1791,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderBy(y => y.RMAStatus);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1792,7 +1799,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderBy(y => y.RMAStatus);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1824,7 +1831,7 @@ namespace KrausRGA.UI
                         if (cmbSearchBy.SelectedIndex == 4)
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                                          where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                                           select p).OrderBy(y => y.ProgressFlag);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1832,7 +1839,7 @@ namespace KrausRGA.UI
                         else
                         {
                             var filter = (from p in clGlobal.lsreturnShow
-                                          where (p.ProgressFlag == 1)
+                                          where (p.RMAStatus == 0)
                                           select p).OrderBy(y => y.ProgressFlag);
 
                             dgPackageInfo.ItemsSource = filter;
@@ -1868,7 +1875,7 @@ namespace KrausRGA.UI
             else
             {
                 var filter = (from p in clGlobal.lsreturnShow
-                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.ProgressFlag == 1)
+                              where (p.ReturnDate >= dtpfrom.SelectedDate && (p.ReturnDate <= dtpto.SelectedDate) && p.RMAStatus == 0)
                               select p).OrderByDescending(y => y.RGAROWID);
 
                 dgPackageInfo.ItemsSource = filter;

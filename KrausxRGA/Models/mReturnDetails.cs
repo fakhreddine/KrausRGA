@@ -56,6 +56,7 @@ namespace KrausRGA.Models
         /// </summary>
         protected DBLogics.cmdSKUReasons crtTransaction = new DBLogics.cmdSKUReasons();
 
+        mUpdateModeRMA _mUpdate;
 
 
         protected DBLogics.cmdReturnedSKUPoints cRetutnedSKUPoints = new DBLogics.cmdReturnedSKUPoints();
@@ -276,10 +277,15 @@ namespace KrausRGA.Models
                 ram3.ID = 2;
                 ram3.Status = "Wrong RMA";
 
+                RAMStatus ram4 = new RAMStatus();
+                ram4.ID = 3;
+                ram4.Status = "To Process";
+
 
                 lsReturn.Add(ram);
                 lsReturn.Add(ram1);
                 lsReturn.Add(ram3);
+                lsReturn.Add(ram4);
 
             }
             catch (Exception ex)
@@ -400,7 +406,7 @@ namespace KrausRGA.Models
         /// <returns>
         /// Guid RetutnID that is inserted or updated on transaction filure it return empty Guid.
         /// </returns>
-        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, DateTime ScannedDate, DateTime ExpirationDate, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, int InProgress,string calltag)
+        public Guid SetReturnTbl(String ReturnReason, Byte RMAStatus, Byte Decision, Guid CreatedBy, DateTime ScannedDate, DateTime ExpirationDate, string Wrong_RMA_Flg, string Warranty_STA, int Setting_Wty_Days, int ShipDate_ScanDate_Days_Diff, int InProgress,string calltag,DateTime Createddate)
         {
             Guid _returnID = Guid.Empty;
             try
@@ -433,7 +439,15 @@ namespace KrausRGA.Models
                 TblRerutn.RMAStatus = RMAStatus;
                 TblRerutn.Decision = Decision;
                 TblRerutn.CreatedBy = CreatedBy;
-                TblRerutn.CreatedDate = DateTime.UtcNow;
+
+                if (Views.clGlobal.mReturn.IsAlreadySaved)
+                {
+                    TblRerutn.CreatedDate = Createddate;
+                }
+                else
+                {
+                    TblRerutn.CreatedDate = DateTime.Now;
+                }
                 TblRerutn.UpdatedBy = null;
 
                 TblRerutn.Wrong_RMA_Flg = Wrong_RMA_Flg;
